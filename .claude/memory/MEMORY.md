@@ -9,3 +9,4 @@
 - [uGUI Filled image needs a sprite](ugui-filled-image-needs-sprite.md) — no sprite = full quad, fillAmount ignored; use UiBuild.Fillable
 - [Verify audio silence outside Unity](audio-silence-verify-outside-unity.md) — scripts/probe-audio-session.ps1; check the default playback endpoint
 - [Memory lives in repo](memory-lives-in-repo.md) — .claude/memory is git-tracked; ~/.claude/projects path is a junction/symlink; push/pull to sync
+- [Final audit report regenerated on Mac](final-audit-report-regenerated-on-mac.md) — EditMode rewrites production/FINAL_MVP_COMPLETION_REPORT.md; on Mac build/smoke lines are NOT RUN; git checkout the report before committing

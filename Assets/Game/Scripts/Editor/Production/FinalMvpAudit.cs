@@ -147,12 +147,18 @@ namespace RuinRail.EditorTools.Production
             // The suite XML of the current run only exists after the harness finished: the post-harness audit fills these lines; inside the suite they are NOT RUN, never fabricated.
             r.Lines.Add(new Line { Requirement = "EditMode suite green (TestResults/EditMode-results.xml of this run)", Evidence = r.EditModeTotal > 0 ? $"{r.EditModePassed}/{r.EditModeTotal} passed, {r.EditModeFailed} failed, {r.EditModeSkipped} skipped" : "XML not present while the suite executes", Result = r.EditModeTotal == 0 ? "NOT RUN" : r.EditModeFailed == 0 ? "PASS" : "FAIL" });
             r.Lines.Add(new Line { Requirement = "PlayMode suite green (TestResults/PlayMode-results.xml of this run)", Evidence = r.PlayModeTotal > 0 ? $"{r.PlayModePassed}/{r.PlayModeTotal} passed, {r.PlayModeFailed} failed, {r.PlayModeSkipped} skipped" : "XML not present while the suite executes", Result = r.PlayModeTotal == 0 ? "NOT RUN" : r.PlayModeFailed == 0 ? "PASS" : "FAIL" });
-            var build = File.Exists(ReleaseBuildTool.ReportPath) ? File.ReadAllText(ReleaseBuildTool.ReportPath) : string.Empty;
+            // The build report and the smoke result are produced by the Windows release-build step and are not versioned:
+            // like the suite XML above they are NOT RUN when absent (fresh clone, non-Windows host) and FAIL only when present but failed.
+            var buildPresent = File.Exists(ReleaseBuildTool.ReportPath);
+            var build = buildPresent ? File.ReadAllText(ReleaseBuildTool.ReportPath) : string.Empty;
             var buildOk = build.Contains("Result: **Succeeded**") && File.Exists(Path.Combine(ReleaseBuildTool.OutputDirectory, ReleaseBuildTool.ExecutableName));
-            Add("Clean non-development release build (Windows x64)", buildOk, buildOk ? Regex.Match(build, @"Result: \*\*Succeeded\*\* — [^\n]*").Value : "build report missing or failed");
+            r.Lines.Add(new Line { Requirement = "Clean non-development release build (Windows x64)", Evidence = buildOk ? Regex.Match(build, @"Result: \*\*Succeeded\*\* — [^\n]*").Value : buildPresent ? "build report present but not Succeeded, or executable missing" : "build report not present (produced by the Windows release-build step)", Result = buildOk ? "PASS" : buildPresent ? "FAIL" : "NOT RUN" });
+            if (!buildPresent) r.NotRun.Add("Windows x64 release build (no build report in TestResults/ on this machine; run the release-build step on Windows).");
             var smokePath = "TestResults/smoke_result.json";
-            var smokeOk = File.Exists(smokePath) && File.ReadAllText(smokePath).Contains("\"Success\": true");
-            Add("Built-player smoke: boot → menu → profile/base → solo expedition → return → save/load", smokeOk, smokeOk ? "TestResults/smoke_result.json Success=true (stages menu/base/dungeon/return/done)" : "smoke result missing or failed");
+            var smokePresent = File.Exists(smokePath);
+            var smokeOk = smokePresent && File.ReadAllText(smokePath).Contains("\"Success\": true");
+            r.Lines.Add(new Line { Requirement = "Built-player smoke: boot → menu → profile/base → solo expedition → return → save/load", Evidence = smokeOk ? "TestResults/smoke_result.json Success=true (stages menu/base/dungeon/return/done)" : smokePresent ? "smoke result present but Success!=true" : "smoke result not present (produced by the built-player smoke step)", Result = smokeOk ? "PASS" : smokePresent ? "FAIL" : "NOT RUN" });
+            if (!smokePresent) r.NotRun.Add("Built-player smoke on this machine (no TestResults/smoke_result.json; produced by the Windows release-build step).");
             Add("Exploit hardening: no unresolved duplication/loss/authority/save defect", File.Exists("production/EXPLOIT_HARDENING_REPORT.md") && r.EditModeFailed == 0 && r.PlayModeFailed == 0, "ExploitHardeningTests + PersistenceHardeningTests green; two defects found and fixed in TASK 144 (ledger scoping, RPC ownership)");
 
             // ---- Prohibited scope ----
