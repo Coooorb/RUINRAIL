@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8054e1595d46b7e4cb1468698d841eef, type: 3}
+  m_Name: Room_Rust_Boss_01
+  m_EditorClassIdentifier: Game.Dungeon::RuinRail.Dungeon.Rooms.RoomDefinition
+  _id: rust_boss_01
+  _biome: 1
+  _roomType: 7
+  _sizeClass: 3
+  _dimensions: {x: 36, y: 24}
+  _allowsAuthoredSizeVariation: 0
+  _difficulty: 4
+  _minDepth: 1
+  _maxDepth: 0
+  _supportsElite: 0
+  _selectionWeight: 1
+  _supportedDoors: 01000000
+  _tags:
+  - rustworks
+  - boss
+  - foundry_floor
+  - boss:the_foundry_titan
+  _prefab: {fileID: 3312475935329750987, guid: 5a5f62e74f57fe44d813c3142627b07c, type: 3}

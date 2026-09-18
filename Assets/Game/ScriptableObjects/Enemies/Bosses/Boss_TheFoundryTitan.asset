@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1906dce41f141c3b844fed647b047e4, type: 3}
+  m_Name: Boss_TheFoundryTitan
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Bosses.BossDefinition
+  _id: boss_the_foundry_titan
+  _displayName: The Foundry Titan
+  _biome: 1
+  _baseHealth: 1350
+  _moveSpeed: 1.6
+  _baseXp: 800
+  _strongestAttackDamageMin: 30
+  _strongestAttackDamageMax: 36
+  _phaseTwoHealthFraction: 0.5
+  _phaseTwoTimingMultiplier: 0.8
+  _staggerResistancePercent: 95
+  _moveset:
+  - {fileID: 11400000, guid: 91755022075d46229fd0c93398174d5d, type: 2}
+  - {fileID: 11400000, guid: a4093d2057664734abf44931af5ecabe, type: 2}
+  - {fileID: 11400000, guid: 1430659233ce47439aad3ebaaff43c34, type: 2}
+  - {fileID: 11400000, guid: 6667e25a34404ba7a4102516c292d536, type: 2}
+  _phaseTwoArenaHazards:
+  - {fileID: 11400000, guid: b2e468f5d0db4cc08353590a86590b7e, type: 2}
+  _summonAttack: {fileID: 0}
+  _summonDefinition: {fileID: 0}
+  _summonCount: 0
+  _maxLivingSummons: 0
+  _summonRadiusTiles: 2

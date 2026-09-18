@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da16c0d4e415473db5e963ec0abe3e53, type: 3}
+  m_Name: Attack_Titan_RocketBarrage
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Attacks.EnemyAttackDefinition
+  _id: titan_rocket_barrage
+  _displayName: Marked Rocket Barrage
+  _motion: 3
+  _damageMin: 24
+  _damageMax: 28
+  _minTriggerRange: 3
+  _maxTriggerRange: 10
+  _telegraphSeconds: 1.3
+  _recoverySeconds: 1.4
+  _hitCount: 1
+  _hitIntervalSeconds: 0
+  _hitRadius: 1.0
+  _dashDistance: 0
+  _dashSpeed: 0
+  _knockback: 6
+  _staggerPower: 6
+  _cooldownSeconds: 8
+  _projectileCount: 1
+  _spreadDegrees: 0
+  _projectileSpeed: 10
+  _projectileRange: 12
+  _zoneLength: 4
+  _zoneWidth: 4

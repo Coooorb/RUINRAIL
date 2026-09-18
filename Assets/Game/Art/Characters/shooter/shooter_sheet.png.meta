@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: a0c103dab04572549817f771a8ead5db
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -5499734157526829519
+    second: shooter_sheet_0
+  - first:
+      213: 4839515278065634146
+    second: shooter_sheet_1
+  - first:
+      213: 2835474989663861801
+    second: shooter_sheet_2
+  - first:
+      213: -7649734378771072285
+    second: shooter_sheet_3
+  - first:
+      213: 1299340473417625210
+    second: shooter_sheet_4
+  - first:
+      213: -7995046007846883106
+    second: shooter_sheet_5
+  - first:
+      213: -3456966549647218871
+    second: shooter_sheet_6
+  - first:
+      213: 503276793349897640
+    second: shooter_sheet_7
+  - first:
+      213: 4612897017065471010
+    second: shooter_sheet_8
+  - first:
+      213: 1296567241244170957
+    second: shooter_sheet_9
+  - first:
+      213: 7551288569968055900
+    second: shooter_sheet_10
+  - first:
+      213: 6763866156085885446
+    second: shooter_sheet_11
+  - first:
+      213: -809312436798152213
+    second: shooter_sheet_12
+  - first:
+      213: -6806846956885633688
+    second: shooter_sheet_13
+  - first:
+      213: 4056769372224911231
+    second: shooter_sheet_14
+  - first:
+      213: 1350907103982708050
+    second: shooter_sheet_15
+  - first:
+      213: 9065989544140251806
+    second: shooter_sheet_16
+  - first:
+      213: 5925727569922440804
+    second: shooter_sheet_17
+  - first:
+      213: 4057444448790796259
+    second: shooter_sheet_18
+  - first:
+      213: -8312753304038889018
+    second: shooter_sheet_19
+  - first:
+      213: -7683385243282070193
+    second: shooter_sheet_20
+  - first:
+      213: 2426214234879994066
+    second: shooter_sheet_21
+  - first:
+      213: 8883446541043931580
+    second: shooter_sheet_22
+  - first:
+      213: -8916011094910442747
+    second: shooter_sheet_23
+  - first:
+      213: 9124293661657863708
+    second: shooter_sheet_24
+  - first:
+      213: -1844170037374881336
+    second: shooter_sheet_25
+  - first:
+      213: 5018873585062578642
+    second: shooter_sheet_26
+  - first:
+      213: -4316269553979785695
+    second: shooter_sheet_27
+  - first:
+      213: 1437229837560844097
+    second: shooter_sheet_28
+  - first:
+      213: -6309232174037829477
+    second: shooter_sheet_29
+  - first:
+      213: -2455609983615383682
+    second: shooter_sheet_30
+  - first:
+      213: 9054815733898334643
+    second: shooter_sheet_31
+  - first:
+      213: -7267835742693301612
+    second: shooter_sheet_32
+  - first:
+      213: -6424127074557925254
+    second: shooter_sheet_33
+  - first:
+      213: 7542739702281693255
+    second: shooter_sheet_34
+  - first:
+      213: 5500159067436650465
+    second: shooter_sheet_35
+  - first:
+      213: -3690069115793681548
+    second: shooter_sheet_36
+  - first:
+      213: -4601483895138880157
+    second: shooter_sheet_37
+  - first:
+      213: 2539485439803409006
+    second: shooter_sheet_38
+  - first:
+      213: 7582593564317588560
+    second: shooter_sheet_39
+  - first:
+      213: -5877206289615703438
+    second: shooter_sheet_40
+  - first:
+      213: -4536971594269457274
+    second: shooter_sheet_41
+  - first:
+      213: -1054719247585207111
+    second: shooter_sheet_42
+  - first:
+      213: 7703151562983069142
+    second: shooter_sheet_43
+  - first:
+      213: 4385385744268385225
+    second: shooter_sheet_44
+  - first:
+      213: 4814457847852280229
+    second: shooter_sheet_45
+  - first:
+      213: 8248552579876134605
+    second: shooter_sheet_46
+  - first:
+      213: -3626548034365885683
+    second: shooter_sheet_47
+  - first:
+      213: 2109789114616603395
+    second: shooter_sheet_48
+  - first:
+      213: 3119663856927758771
+    second: shooter_sheet_49
+  - first:
+      213: -7479130446798609215
+    second: shooter_sheet_50
+  - first:
+      213: 2303730426845005086
+    second: shooter_sheet_51
+  - first:
+      213: 2909244622491696885
+    second: shooter_sheet_52
+  - first:
+      213: -700369457942312269
+    second: shooter_sheet_53
+  - first:
+      213: 6441630633713525148
+    second: shooter_sheet_54
+  - first:
+      213: -6144485517513774186
+    second: shooter_sheet_55
+  - first:
+      213: 4640504631928486154
+    second: shooter_sheet_56
+  - first:
+      213: -2312899926140610011
+    second: shooter_sheet_57
+  - first:
+      213: -5646669113066466675
+    second: shooter_sheet_58
+  - first:
+      213: -419889468310306052
+    second: shooter_sheet_59
+  - first:
+      213: 226676349420955847
+    second: shooter_sheet_60
+  - first:
+      213: -8881625566628674432
+    second: shooter_sheet_61
+  - first:
+      213: 668486487416410386
+    second: shooter_sheet_62
+  - first:
+      213: -5277493145663496302
+    second: shooter_sheet_63
+  - first:
+      213: 4485301849376858364
+    second: shooter_sheet_64
+  - first:
+      213: -4157258833165228612
+    second: shooter_sheet_65
+  - first:
+      213: 132075210850153068
+    second: shooter_sheet_66
+  - first:
+      213: 8345926866028921012
+    second: shooter_sheet_67
+  - first:
+      213: 7460712949271506273
+    second: shooter_sheet_68
+  - first:
+      213: 7786714492182392766
+    second: shooter_sheet_69
+  - first:
+      213: 2545972182624365262
+    second: shooter_sheet_70
+  - first:
+      213: 3363419880781032860
+    second: shooter_sheet_71
+  - first:
+      213: 632439978603634637
+    second: shooter_sheet_72
+  - first:
+      213: -6373245583434065677
+    second: shooter_sheet_73
+  - first:
+      213: -3671728097665818293
+    second: shooter_sheet_74
+  - first:
+      213: -6260463247322242596
+    second: shooter_sheet_75
+  - first:
+      213: 6335305721503942920
+    second: shooter_sheet_76
+  - first:
+      213: -3132004190867194375
+    second: shooter_sheet_77
+  - first:
+      213: -4116752875202139604
+    second: shooter_sheet_78
+  - first:
+      213: -4644994078668669819
+    second: shooter_sheet_79
+  - first:
+      213: -7080232569867502773
+    second: shooter_sheet_80
+  - first:
+      213: 6826040702636120569
+    second: shooter_sheet_81
+  - first:
+      213: -874157111474034913
+    second: shooter_sheet_82
+  - first:
+      213: -2997069992037853979
+    second: shooter_sheet_83
+  - first:
+      213: 2580941162294738886
+    second: shooter_sheet_84
+  - first:
+      213: 8606585648044220554
+    second: shooter_sheet_85
+  - first:
+      213: -7777221682343294010
+    second: shooter_sheet_86
+  - first:
+      213: -3031005261650428566
+    second: shooter_sheet_87
+  - first:
+      213: -9062763474256572220
+    second: shooter_sheet_88
+  - first:
+      213: 5458824292262970392
+    second: shooter_sheet_89
+  - first:
+      213: 2713277675710972337
+    second: shooter_sheet_90
+  - first:
+      213: 6665319388321694447
+    second: shooter_sheet_91
+  - first:
+      213: 6736918644097321155
+    second: shooter_sheet_92
+  - first:
+      213: 854176380379813023
+    second: shooter_sheet_93
+  - first:
+      213: 6650661220419929038
+    second: shooter_sheet_94
+  - first:
+      213: -2922203871993743751
+    second: shooter_sheet_95
+  - first:
+      213: -5624251949374038277
+    second: shooter_sheet_96
+  - first:
+      213: 5985555855106272131
+    second: shooter_sheet_97
+  - first:
+      213: 4375199862383483027
+    second: shooter_sheet_98
+  - first:
+      213: -8541990033775076683
+    second: shooter_sheet_99
+  - first:
+      213: 7051937404628550144
+    second: shooter_sheet_100
+  - first:
+      213: 4420784602646491609
+    second: shooter_sheet_101
+  - first:
+      213: -5484428530921754510
+    second: shooter_sheet_102
+  - first:
+      213: -9128227580777107645
+    second: shooter_sheet_103
+  - first:
+      213: -3269560930100478632
+    second: shooter_sheet_104
+  - first:
+      213: 4242878620111296139
+    second: shooter_sheet_105
+  - first:
+      213: -5881747116191692097
+    second: shooter_sheet_106
+  - first:
+      213: -7232867740649670713
+    second: shooter_sheet_107
+  - first:
+      213: 6221094041106436746
+    second: shooter_sheet_108
+  - first:
+      213: -1321607838506643250
+    second: shooter_sheet_109
+  - first:
+      213: -7517732988650541608
+    second: shooter_sheet_110
+  - first:
+      213: -6403637947901649221
+    second: shooter_sheet_111
+  - first:
+      213: -1937903338813807880
+    second: shooter_sheet_112
+  - first:
+      213: 1640028948425494358
+    second: shooter_sheet_113
+  - first:
+      213: 7887881744049612735
+    second: shooter_sheet_114
+  - first:
+      213: 3553484975983090022
+    second: shooter_sheet_115
+  - first:
+      213: -6814571027748297971
+    second: shooter_sheet_116
+  - first:
+      213: 3891931463655672884
+    second: shooter_sheet_117
+  - first:
+      213: -3907408533260807971
+    second: shooter_sheet_118
+  - first:
+      213: -2682733334255919932
+    second: shooter_sheet_119
+  - first:
+      213: 2013477772638891939
+    second: shooter_sheet_120
+  - first:
+      213: 3613264942001406429
+    second: shooter_sheet_121
+  - first:
+      213: 9049886906940584374
+    second: shooter_sheet_122
+  - first:
+      213: -6095700929967180315
+    second: shooter_sheet_123
+  - first:
+      213: 6612120890503647571
+    second: shooter_sheet_124
+  - first:
+      213: 4481384750857135594
+    second: shooter_sheet_125
+  - first:
+      213: 7162440976513303105
+    second: shooter_sheet_126
+  - first:
+      213: -440333538053675199
+    second: shooter_sheet_127
+  - first:
+      213: 6535383850428593302
+    second: shooter_sheet_128
+  - first:
+      213: -8194674107118095616
+    second: shooter_sheet_129
+  - first:
+      213: -5173525667249764369
+    second: shooter_sheet_130
+  - first:
+      213: -7234544587982876596
+    second: shooter_sheet_131
+  - first:
+      213: 7833498783575009389
+    second: shooter_sheet_132
+  - first:
+      213: -2810139990333329683
+    second: shooter_sheet_133
+  - first:
+      213: 5325175664208830443
+    second: shooter_sheet_134
+  - first:
+      213: 8704833312625097997
+    second: shooter_sheet_135
+  - first:
+      213: -6682473482820736306
+    second: shooter_sheet_136
+  - first:
+      213: 4764574615502728612
+    second: shooter_sheet_137
+  - first:
+      213: 7418915011314762623
+    second: shooter_sheet_138
+  - first:
+      213: 2516348309208599795
+    second: shooter_sheet_139
+  - first:
+      213: 1083335930130363788
+    second: shooter_sheet_140
+  - first:
+      213: -768215681263866832
+    second: shooter_sheet_141
+  - first:
+      213: 4284311002408756575
+    second: shooter_sheet_142
+  - first:
+      213: -6070175532906032610
+    second: shooter_sheet_143
+  - first:
+      213: 3543986872695009226
+    second: shooter_sheet_144
+  - first:
+      213: -3259440585478158117
+    second: shooter_sheet_145
+  - first:
+      213: 4012890854895663527
+    second: shooter_sheet_146
+  - first:
+      213: -8437447135338875194
+    second: shooter_sheet_147
+  - first:
+      213: 7491875951601677651
+    second: shooter_sheet_148
+  - first:
+      213: -110718824089245327
+    second: shooter_sheet_149
+  - first:
+      213: 6949179373808191616
+    second: shooter_sheet_150
+  - first:
+      213: 4339969526085375036
+    second: shooter_sheet_151
+  - first:
+      213: -5232422480205280450
+    second: shooter_sheet_152
+  - first:
+      213: 5818606418476637097
+    second: shooter_sheet_153
+  - first:
+      213: -7308046609362561922
+    second: shooter_sheet_154
+  - first:
+      213: -383147092404460857
+    second: shooter_sheet_155
+  - first:
+      213: -8236652503155305159
+    second: shooter_sheet_156
+  - first:
+      213: 5357188263051624033
+    second: shooter_sheet_157
+  - first:
+      213: 7784946062912512290
+    second: shooter_sheet_158
+  - first:
+      213: 1982207936009048736
+    second: shooter_sheet_159
+  - first:
+      213: -1756890418950782033
+    second: shooter_sheet_160
+  - first:
+      213: 6503987100370762386
+    second: shooter_sheet_161
+  - first:
+      213: 6122437931622375711
+    second: shooter_sheet_162
+  - first:
+      213: 7028948626648463093
+    second: shooter_sheet_163
+  - first:
+      213: -3084748438516948758
+    second: shooter_sheet_164
+  - first:
+      213: -3816517519329436114
+    second: shooter_sheet_165
+  - first:
+      213: -5143057520618096083
+    second: shooter_sheet_166
+  - first:
+      213: 9024707291499010636
+    second: shooter_sheet_167
+  - first:
+      213: -7591574763160949595
+    second: shooter_sheet_0_0
+  - first:
+      213: 945350155313187792
+    second: shooter_sheet_0_1
+  - first:
+      213: -6840384004911866484
+    second: shooter_sheet_0_2
+  - first:
+      213: -2964402572472085677
+    second: shooter_sheet_0_3
+  - first:
+      213: -4101358852223071819
+    second: shooter_sheet_0_4
+  - first:
+      213: -1401492879711216227
+    second: shooter_sheet_0_5
+  - first:
+      213: 2431438074491417098
+    second: shooter_sheet_0_6
+  - first:
+      213: 7692523838976881465
+    second: shooter_sheet_0_7
+  - first:
+      213: -771540668603662711
+    second: shooter_sheet_0_8
+  - first:
+      213: -6054407294648453260
+    second: shooter_sheet_0_9
+  - first:
+      213: -3697227466232313043
+    second: shooter_sheet_0_10
+  - first:
+      213: -8014165861411695916
+    second: shooter_sheet_0_11
+  - first:
+      213: -2409132358593171499
+    second: shooter_sheet_0_12
+  - first:
+      213: 2539961001366779572
+    second: shooter_sheet_0_13
+  - first:
+      213: 5845741584235591058
+    second: shooter_sheet_0_14
+  - first:
+      213: 5678696631434520467
+    second: shooter_sheet_0_15
+  - first:
+      213: 7751511462074666792
+    second: shooter_sheet_0_16
+  - first:
+      213: 6727014927607360506
+    second: shooter_sheet_0_17
+  - first:
+      213: -5661445985519561149
+    second: shooter_sheet_0_18
+  - first:
+      213: -3944552883481030023
+    second: shooter_sheet_0_19
+  - first:
+      213: 6575324653935672268
+    second: shooter_sheet_0_20
+  - first:
+      213: 1718944303599833418
+    second: shooter_sheet_1_0
+  - first:
+      213: -318968874557230987
+    second: shooter_sheet_1_1
+  - first:
+      213: -1344336709387802484
+    second: shooter_sheet_1_2
+  - first:
+      213: 4396207297954898874
+    second: shooter_sheet_1_3
+  - first:
+      213: 1500844022988308423
+    second: shooter_sheet_1_4
+  - first:
+      213: 7191023341443693133
+    second: shooter_sheet_1_5
+  - first:
+      213: 6749876942234135529
+    second: shooter_sheet_1_6
+  - first:
+      213: -5472200812436352653
+    second: shooter_sheet_1_7
+  - first:
+      213: -8711934039269161803
+    second: shooter_sheet_1_8
+  - first:
+      213: 5828432836272886891
+    second: shooter_sheet_1_9
+  - first:
+      213: 1801752486140803362
+    second: shooter_sheet_1_10
+  - first:
+      213: -6780995039937174268
+    second: shooter_sheet_1_11
+  - first:
+      213: -3977887558996543541
+    second: shooter_sheet_1_12
+  - first:
+      213: -8985823278263747816
+    second: shooter_sheet_1_13
+  - first:
+      213: 4871526649726200665
+    second: shooter_sheet_1_14
+  - first:
+      213: 3363748774573530829
+    second: shooter_sheet_1_15
+  - first:
+      213: 5731757718849058055
+    second: shooter_sheet_1_16
+  - first:
+      213: 4014410132623244639
+    second: shooter_sheet_1_17
+  - first:
+      213: 4456587789490780622
+    second: shooter_sheet_1_18
+  - first:
+      213: -6740843302302715927
+    second: shooter_sheet_1_19
+  - first:
+      213: -1509692082081311448
+    second: shooter_sheet_1_20
+  - first:
+      213: -3993705712047012810
+    second: shooter_sheet_2_0
+  - first:
+      213: -5444322235858904663
+    second: shooter_sheet_2_1
+  - first:
+      213: -5818705011727428452
+    second: shooter_sheet_2_2
+  - first:
+      213: 5278590752289344218
+    second: shooter_sheet_2_3
+  - first:
+      213: 8088933644472686079
+    second: shooter_sheet_2_4
+  - first:
+      213: 8376613306277944453
+    second: shooter_sheet_2_5
+  - first:
+      213: -6757732578460828059
+    second: shooter_sheet_2_6
+  - first:
+      213: 1390310022469781294
+    second: shooter_sheet_2_7
+  - first:
+      213: -5302709566637496992
+    second: shooter_sheet_2_8
+  - first:
+      213: 3833586356213403252
+    second: shooter_sheet_2_9
+  - first:
+      213: 8709851390482983379
+    second: shooter_sheet_2_10
+  - first:
+      213: -53966341921477458
+    second: shooter_sheet_2_11
+  - first:
+      213: -4958364061652050276
+    second: shooter_sheet_2_12
+  - first:
+      213: -5936962994022519743
+    second: shooter_sheet_2_13
+  - first:
+      213: -4082432375549540761
+    second: shooter_sheet_2_14
+  - first:
+      213: 4912859091261198448
+    second: shooter_sheet_2_15
+  - first:
+      213: 6933832105686873008
+    second: shooter_sheet_2_16
+  - first:
+      213: -6848059102767851673
+    second: shooter_sheet_2_17
+  - first:
+      213: -6563198336134852920
+    second: shooter_sheet_2_18
+  - first:
+      213: 5963612600817460030
+    second: shooter_sheet_2_19
+  - first:
+      213: -2671151911462445966
+    second: shooter_sheet_2_20
+  - first:
+      213: 4321861264953195985
+    second: shooter_sheet_3_0
+  - first:
+      213: 6071898851500522503
+    second: shooter_sheet_3_1
+  - first:
+      213: -3694529656638336830
+    second: shooter_sheet_3_2
+  - first:
+      213: 1759616885900834484
+    second: shooter_sheet_3_3
+  - first:
+      213: -5294593928924500577
+    second: shooter_sheet_3_4
+  - first:
+      213: 3659460613668712165
+    second: shooter_sheet_3_5
+  - first:
+      213: -4040789640780987522
+    second: shooter_sheet_3_6
+  - first:
+      213: 6218075900928727945
+    second: shooter_sheet_3_7
+  - first:
+      213: 577777860929907387
+    second: shooter_sheet_3_8
+  - first:
+      213: -3829833810503748455
+    second: shooter_sheet_3_9
+  - first:
+      213: -1994047403095324272
+    second: shooter_sheet_3_10
+  - first:
+      213: 4684186623494116051
+    second: shooter_sheet_3_11
+  - first:
+      213: -6381051115331066243
+    second: shooter_sheet_3_12
+  - first:
+      213: 6960548850751113240
+    second: shooter_sheet_3_13
+  - first:
+      213: -1790136256107909249
+    second: shooter_sheet_3_14
+  - first:
+      213: -2467443796196937465
+    second: shooter_sheet_3_15
+  - first:
+      213: 4760924293041560378
+    second: shooter_sheet_3_16
+  - first:
+      213: -32196845726747643
+    second: shooter_sheet_3_17
+  - first:
+      213: 3012748513728462007
+    second: shooter_sheet_3_18
+  - first:
+      213: -4866522886501312238
+    second: shooter_sheet_3_19
+  - first:
+      213: 7053175877522211245
+    second: shooter_sheet_3_20
+  - first:
+      213: -9022471678320093551
+    second: shooter_sheet_4_0
+  - first:
+      213: 3567260247645375487
+    second: shooter_sheet_4_1
+  - first:
+      213: -1862224772239067366
+    second: shooter_sheet_4_2
+  - first:
+      213: 8764567960708957113
+    second: shooter_sheet_4_3
+  - first:
+      213: -5112439168784472788
+    second: shooter_sheet_4_4
+  - first:
+      213: 2652926878506182508
+    second: shooter_sheet_4_5
+  - first:
+      213: -7340882640436867469
+    second: shooter_sheet_4_6
+  - first:
+      213: -8018367621989865227
+    second: shooter_sheet_4_7
+  - first:
+      213: 9149752098075714952
+    second: shooter_sheet_4_8
+  - first:
+      213: -7177190967528767087
+    second: shooter_sheet_4_9
+  - first:
+      213: 6855000685518246949
+    second: shooter_sheet_4_10
+  - first:
+      213: -249988066024461914
+    second: shooter_sheet_4_11
+  - first:
+      213: -2861664022116459397
+    second: shooter_sheet_4_12
+  - first:
+      213: -5302143256473506520
+    second: shooter_sheet_4_13
+  - first:
+      213: 7187111495331395059
+    second: shooter_sheet_4_14
+  - first:
+      213: 1899940655114162241
+    second: shooter_sheet_4_15
+  - first:
+      213: 105640474726760443
+    second: shooter_sheet_4_16
+  - first:
+      213: -5809182478728962599
+    second: shooter_sheet_4_17
+  - first:
+      213: -4365783201135798115
+    second: shooter_sheet_4_18
+  - first:
+      213: 4791093581995650571
+    second: shooter_sheet_4_19
+  - first:
+      213: 5425177071329584155
+    second: shooter_sheet_4_20
+  - first:
+      213: 6100456746734952814
+    second: shooter_sheet_5_0
+  - first:
+      213: -451763999960506402
+    second: shooter_sheet_5_1
+  - first:
+      213: -2200676528383973548
+    second: shooter_sheet_5_2
+  - first:
+      213: 509072542126368271
+    second: shooter_sheet_5_3
+  - first:
+      213: -7873621884203200944
+    second: shooter_sheet_5_4
+  - first:
+      213: 766554976897691255
+    second: shooter_sheet_5_5
+  - first:
+      213: -8184185594039698254
+    second: shooter_sheet_5_6
+  - first:
+      213: -3378159366866165098
+    second: shooter_sheet_5_7
+  - first:
+      213: -7720227633828480633
+    second: shooter_sheet_5_8
+  - first:
+      213: 3819501774094755108
+    second: shooter_sheet_5_9
+  - first:
+      213: 5745866993845149768
+    second: shooter_sheet_5_10
+  - first:
+      213: -7893592977481489452
+    second: shooter_sheet_5_11
+  - first:
+      213: 9221542718883234837
+    second: shooter_sheet_5_12
+  - first:
+      213: 458103799723125852
+    second: shooter_sheet_5_13
+  - first:
+      213: -3759040905230088799
+    second: shooter_sheet_5_14
+  - first:
+      213: -249258125577689332
+    second: shooter_sheet_5_15
+  - first:
+      213: 8059779155487733044
+    second: shooter_sheet_5_16
+  - first:
+      213: 3131755071478540405
+    second: shooter_sheet_5_17
+  - first:
+      213: -4799445290528851892
+    second: shooter_sheet_5_18
+  - first:
+      213: -5977688499197501587
+    second: shooter_sheet_5_19
+  - first:
+      213: 340764964025739218
+    second: shooter_sheet_5_20
+  - first:
+      213: -1993164585357771003
+    second: shooter_sheet_6_0
+  - first:
+      213: -5195728897448532653
+    second: shooter_sheet_6_1
+  - first:
+      213: -454381767575946006
+    second: shooter_sheet_6_2
+  - first:
+      213: -6862952106555522525
+    second: shooter_sheet_6_3
+  - first:
+      213: 3588196405205716792
+    second: shooter_sheet_6_4
+  - first:
+      213: 6044734132562338759
+    second: shooter_sheet_6_5
+  - first:
+      213: 6239624223887007588
+    second: shooter_sheet_6_6
+  - first:
+      213: -5043591843925555401
+    second: shooter_sheet_6_7
+  - first:
+      213: -791190146892358585
+    second: shooter_sheet_6_8
+  - first:
+      213: -7191543652700370124
+    second: shooter_sheet_6_9
+  - first:
+      213: 2822535689560472861
+    second: shooter_sheet_6_10
+  - first:
+      213: -4682077975195489891
+    second: shooter_sheet_6_11
+  - first:
+      213: -1876473830008088159
+    second: shooter_sheet_6_12
+  - first:
+      213: -2623419216348989928
+    second: shooter_sheet_6_13
+  - first:
+      213: -9080215198147980862
+    second: shooter_sheet_6_14
+  - first:
+      213: 7406133154288188230
+    second: shooter_sheet_6_15
+  - first:
+      213: -8565914546472436025
+    second: shooter_sheet_6_16
+  - first:
+      213: -6076687465374911805
+    second: shooter_sheet_6_17
+  - first:
+      213: -8783386190099360221
+    second: shooter_sheet_6_18
+  - first:
+      213: -3232531659223060060
+    second: shooter_sheet_6_19
+  - first:
+      213: 3999780248489589882
+    second: shooter_sheet_6_20
+  - first:
+      213: -7910641219760625030
+    second: shooter_sheet_7_0
+  - first:
+      213: -5221347539478624434
+    second: shooter_sheet_7_1
+  - first:
+      213: 4057085758312253563
+    second: shooter_sheet_7_2
+  - first:
+      213: -2025439585281544200
+    second: shooter_sheet_7_3
+  - first:
+      213: 26840495908937031
+    second: shooter_sheet_7_4
+  - first:
+      213: 17324419557928695
+    second: shooter_sheet_7_5
+  - first:
+      213: -2649670866852176375
+    second: shooter_sheet_7_6
+  - first:
+      213: 2542358814599412666
+    second: shooter_sheet_7_7
+  - first:
+      213: 6438070049071631677
+    second: shooter_sheet_7_8
+  - first:
+      213: -1900247340544909587
+    second: shooter_sheet_7_9
+  - first:
+      213: -8617640894018481778
+    second: shooter_sheet_7_10
+  - first:
+      213: 4044085051457148120
+    second: shooter_sheet_7_11
+  - first:
+      213: -1851662250658542990
+    second: shooter_sheet_7_12
+  - first:
+      213: -1894132286210916033
+    second: shooter_sheet_7_13
+  - first:
+      213: -5517635802456932822
+    second: shooter_sheet_7_14
+  - first:
+      213: 4422796511627112428
+    second: shooter_sheet_7_15
+  - first:
+      213: 847533372541570502
+    second: shooter_sheet_7_16
+  - first:
+      213: -2296491766485294111
+    second: shooter_sheet_7_17
+  - first:
+      213: -7174294119805665620
+    second: shooter_sheet_7_18
+  - first:
+      213: -6799056526704593910
+    second: shooter_sheet_7_19
+  - first:
+      213: 2821359337958196875
+    second: shooter_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shooter_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5aca8fb89fe45a690800000000000000
+      internalID: -7591574763160949595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db8dc325fe8e1d00800000000000000
+      internalID: 945350155313187792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8dd6fb4df21211a0800000000000000
+      internalID: -6840384004911866484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3531c8001935cd6d0800000000000000
+      internalID: -2964402572472085677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b907d49adb0517c0800000000000000
+      internalID: -4101358852223071819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9dd29db6a5ec8ce0800000000000000
+      internalID: -1401492879711216227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a02bb63eb043eb120800000000000000
+      internalID: 2431438074491417098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933f070cca551ca60800000000000000
+      internalID: 7692523838976881465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98e7c1689dfea45f0800000000000000
+      internalID: -771540668603662711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 477f1f4a4ac6afba0800000000000000
+      internalID: -6054407294648453260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2bc76d453fc0bcc0800000000000000
+      internalID: -3697227466232313043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d25e732c96f7c090800000000000000
+      internalID: -8014165861411695916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfa72d42ea019ed0800000000000000
+      internalID: -2409132358593171499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6ffcdc211cf3320800000000000000
+      internalID: 2539961001366779572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2957711bffe302150800000000000000
+      internalID: 5845741584235591058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397acdfcf78cece40800000000000000
+      internalID: 5678696631434520467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82f44510b96e29b60800000000000000
+      internalID: 7751511462074666792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb69c67f682b5d50800000000000000
+      internalID: 6727014927607360506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3469b0e2fd08e61b0800000000000000
+      internalID: -5661445985519561149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972de563d022249c0800000000000000
+      internalID: -3944552883481030023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccb34b86fee304b50800000000000000
+      internalID: 6575324653935672268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41dfbc9cbaead710800000000000000
+      internalID: 1718944303599833418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5703c91af7bc29bf0800000000000000
+      internalID: -318968874557230987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c882c6aa2e4f75de0800000000000000
+      internalID: -1344336709387802484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab3e491de37720d30800000000000000
+      internalID: 4396207297954898874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cf7c75efa114d410800000000000000
+      internalID: 1500844022988308423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4a3b4e11a5abc360800000000000000
+      internalID: 7191023341443693133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb277b01516cad50800000000000000
+      internalID: 6749876942234135529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3719023aa56de04b0800000000000000
+      internalID: -5472200812436352653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b44aba262ef81780800000000000000
+      internalID: -8711934039269161803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b649443c8c0c2e050800000000000000
+      internalID: 5828432836272886891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 229799d075c110910800000000000000
+      internalID: 1801752486140803362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405ebdc30f015e1a0800000000000000
+      internalID: -6780995039937174268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc7b0914754bbc8c0800000000000000
+      internalID: -3977887558996543541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81b37ac5651fb4380800000000000000
+      internalID: -8985823278263747816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b67ce6da32b9340800000000000000
+      internalID: 4871526649726200665
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce5c1640bf6eae20800000000000000
+      internalID: 3363748774573530829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 705f992f64b4b8f40800000000000000
+      internalID: 5731757718849058055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5dbcb11fbc06b730800000000000000
+      internalID: 4014410132623244639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9f0f68bfaf8dd30800000000000000
+      internalID: 4456587789490780622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9efeca72bb6b372a0800000000000000
+      internalID: -6740843302302715927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 825d25fcc0f7c0be0800000000000000
+      internalID: -1509692082081311448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6344dff70d18398c0800000000000000
+      internalID: -3993705712047012810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a99ed095c1e174b0800000000000000
+      internalID: -5444322235858904663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c949333ee9ecf3fa0800000000000000
+      internalID: -5818705011727428452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ada4ed07252514940800000000000000
+      internalID: 5278590752289344218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff5108aea4aa14070800000000000000
+      internalID: 8088933644472686079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58cd18dbb65bf3470800000000000000
+      internalID: 8376613306277944453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56ef1cd1606b732a0800000000000000
+      internalID: -6757732578460828059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e270af8699f5b4310800000000000000
+      internalID: 1390310022469781294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 065a18d7ebdf866b0800000000000000
+      internalID: -5302709566637496992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47e42e1da72a33530800000000000000
+      internalID: 3833586356213403252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d92e2061bb9fd870800000000000000
+      internalID: 8709851390482983379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac61ffd5e5404ff0800000000000000
+      internalID: -53966341921477458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e9a2e082a503bb0800000000000000
+      internalID: -4958364061652050276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ce5a0cc9bab9da0800000000000000
+      internalID: -5936962994022519743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 766c0d352694857c0800000000000000
+      internalID: -4082432375549540761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0701c26605bfd2440800000000000000
+      internalID: 4912859091261198448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b33aa7209be93060800000000000000
+      internalID: 6933832105686873008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76754a2578ec6f0a0800000000000000
+      internalID: -6848059102767851673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ce4f38f2e5dae4a0800000000000000
+      internalID: -6563198336134852920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e33a4c9501203c250800000000000000
+      internalID: 5963612600817460030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27cdc282d792eead0800000000000000
+      internalID: -2671151911462445966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dd3e0a1ce55afb30800000000000000
+      internalID: 4321861264953195985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c7acbc5d7b34450800000000000000
+      internalID: 6071898851500522503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c01deb0ad46abcc0800000000000000
+      internalID: -3694529656638336830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b6f5e02c3a6b6810800000000000000
+      internalID: 1759616885900834484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9de384afd2d586b0800000000000000
+      internalID: -5294593928924500577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eea14b1a0409c230800000000000000
+      internalID: 3659460613668712165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e73cb211b3b3ce7c0800000000000000
+      internalID: -4040789640780987522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b164d461b0b4650800000000000000
+      internalID: 6218075900928727945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbaefcf37eda40800800000000000000
+      internalID: 577777860929907387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 994b420d072b9dac0800000000000000
+      internalID: -3829833810503748455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0998639a378b354e0800000000000000
+      internalID: -1994047403095324272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d2d00b8ae2910140800000000000000
+      internalID: 4684186623494116051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d76e411a1d3f177a0800000000000000
+      internalID: -6381051115331066243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81806ca1d46d89060800000000000000
+      internalID: 6960548850751113240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fe3234f882827e0800000000000000
+      internalID: -1790136256107909249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 701b070c0f0e1cdd0800000000000000
+      internalID: -2467443796196937465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b15498b63321240800000000000000
+      internalID: 4760924293041560378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504b19fa32d9d8ff0800000000000000
+      internalID: -32196845726747643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bcfe5e9fce6fc920800000000000000
+      internalID: 3012748513728462007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 219d7caf733a67cb0800000000000000
+      internalID: -4866522886501312238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da1c01e571ae1e160800000000000000
+      internalID: 7053175877522211245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19655b9cfcdb9c280800000000000000
+      internalID: -9022471678320093551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffb464a8b44718130800000000000000
+      internalID: 3567260247645375487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a17f1c6af6c0826e0800000000000000
+      internalID: -1862224772239067366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3c3d3af1002a970800000000000000
+      internalID: 8764567960708957113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c25eec0b9a7fc09b0800000000000000
+      internalID: -5112439168784472788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c676270b0f611d420800000000000000
+      internalID: 2652926878506182508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ecde6d122ff1a90800000000000000
+      internalID: -7340882640436867469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8ecc4812909b090800000000000000
+      internalID: -8018367621989865227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88520b44e037afe70800000000000000
+      internalID: 9149752098075714952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1914e4767de756c90800000000000000
+      internalID: -7177190967528767087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 524df5bddcad12f50800000000000000
+      internalID: 6855000685518246949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a9668ead2dd78cf0800000000000000
+      internalID: -249988066024461914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c9b3fcbb35948d0800000000000000
+      internalID: -2861664022116459397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82de9a9dcc00b66b0800000000000000
+      internalID: -5302143256473506520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5ba5873dfbdb360800000000000000
+      internalID: 7187111495331395059
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1401762a5f1fd5a10800000000000000
+      internalID: 1899940655114162241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfffdf9b37f477100800000000000000
+      internalID: 105640474726760443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dddfef5053a16fa0800000000000000
+      internalID: -5809182478728962599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d98dee93f4f9963c0800000000000000
+      internalID: -4365783201135798115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0e21808a326d7240800000000000000
+      internalID: 4791093581995650571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14a1347dc91a4b40800000000000000
+      internalID: 5425177071329584155
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61a5cce61d29a450800000000000000
+      internalID: 6100456746734952814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edf5b0c19030bb9f0800000000000000
+      internalID: -451763999960506402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 457222c6b50a571e0800000000000000
+      internalID: -2200676528383973548
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f06e856a7c6901700800000000000000
+      internalID: 509072542126368271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e8350dc964bb290800000000000000
+      internalID: -7873621884203200944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e6bcaa0b953aa00800000000000000
+      internalID: 766554976897691255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bcf46b509eeb6e80800000000000000
+      internalID: -8184185594039698254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 692a84f34fd5e11d0800000000000000
+      internalID: -3378159366866165098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 789bf7cdedd3cd490800000000000000
+      internalID: -7720227633828480633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42564ef70a8910530800000000000000
+      internalID: 3819501774094755108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84028c6869b6dbf40800000000000000
+      internalID: 5745866993845149768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d3a2bf4203547290800000000000000
+      internalID: -7893592977481489452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5140028be3089ff70800000000000000
+      internalID: 9221542718883234837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5ce0cc8af28b5600800000000000000
+      internalID: 458103799723125852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a50993863435dbc0800000000000000
+      internalID: -3759040905230088799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c07ef8f2e057a8cf0800000000000000
+      internalID: -249258125577689332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 435b1fa70761adf60800000000000000
+      internalID: 8059779155487733044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 578a10f05aa367b20800000000000000
+      internalID: 3131755071478540405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c483b13dfe1f46db0800000000000000
+      internalID: -4799445290528851892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6f156b2bfbfa0da0800000000000000
+      internalID: -5977688499197501587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d727a8ede3aab400800000000000000
+      internalID: 340764964025739218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50f7cdeae5bd654e0800000000000000
+      internalID: -1993164585357771003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 355295e881015e7b0800000000000000
+      internalID: -5195728897448532653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aecb8379036b1b9f0800000000000000
+      internalID: -454381767575946006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3224d3aab65e1c0a0800000000000000
+      internalID: -6862952106555522525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83fce949e95dbc130800000000000000
+      internalID: 3588196405205716792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c3ae0dcaa533e350800000000000000
+      internalID: 6044734132562338759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46f15b43c29979650800000000000000
+      internalID: 6239624223887007588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73782c6a0ff810ab0800000000000000
+      internalID: -5043591843925555401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c11b8d0c02505f0800000000000000
+      internalID: -791190146892358585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43b441a7621823c90800000000000000
+      internalID: -7191543652700370124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1d3d165149ab2720800000000000000
+      internalID: 2822535689560472861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d99eac563eae50fb0800000000000000
+      internalID: -4682077975195489891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a91d0c5efc65f5e0800000000000000
+      internalID: -1876473830008088159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 816b5984f1eb79bd0800000000000000
+      internalID: -2623419216348989928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c15946e2689cf180800000000000000
+      internalID: -9080215198147980862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b379c4dded7c660800000000000000
+      internalID: 7406133154288188230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ceb829aa12cf1980800000000000000
+      internalID: -8565914546472436025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c2724722f44baba0800000000000000
+      internalID: -6076687465374911805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3265e06ebc42b1680800000000000000
+      internalID: -8783386190099360221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a13ec6259db323d0800000000000000
+      internalID: -3232531659223060060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7c78dab1f2128730800000000000000
+      internalID: 3999780248489589882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7aea9619b1c73290800000000000000
+      internalID: -7910641219760625030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e474484a31c0a87b0800000000000000
+      internalID: -5221347539478624434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b788f77700aad4830800000000000000
+      internalID: 4057085758312253563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ff674dad6134e3e0800000000000000
+      internalID: -2025439585281544200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74d5f30f94b5f5000800000000000000
+      internalID: 26840495908937031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fea0b1c77c8d3000800000000000000
+      internalID: 17324419557928695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e1399926a7a3bd0800000000000000
+      internalID: -2649670866852176375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abbf7c33fd5484320800000000000000
+      internalID: 2542358814599412666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d0ff9699e985950800000000000000
+      internalID: 6438070049071631677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dee90799c17f0a5e0800000000000000
+      internalID: -1900247340544909587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e81162ed34df76880800000000000000
+      internalID: -8617640894018481778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d412958de97f1830800000000000000
+      internalID: 4044085051457148120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27a4f795ef29d46e0800000000000000
+      internalID: -1851662250658542990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31ccc2a8b0b6b5e0800000000000000
+      internalID: -1894132286210916033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2eb39aa87b6d63b0800000000000000
+      internalID: -5517635802456932822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefee5d8efde06d30800000000000000
+      internalID: 4422796511627112428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cd01a5ac1b03cb00800000000000000
+      internalID: 847533372541570502
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e3e80dd7e83120e0800000000000000
+      internalID: -2296491766485294111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae3fc25289cf6c90800000000000000
+      internalID: -7174294119805665620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a04b8f5ac16e4a1a0800000000000000
+      internalID: -6799056526704593910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shooter_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b86cab2ae5b772720800000000000000
+      internalID: 2821359337958196875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shooter_sheet_0: -5499734157526829519
+      shooter_sheet_0_0: -7591574763160949595
+      shooter_sheet_0_1: 945350155313187792
+      shooter_sheet_0_10: -3697227466232313043
+      shooter_sheet_0_11: -8014165861411695916
+      shooter_sheet_0_12: -2409132358593171499
+      shooter_sheet_0_13: 2539961001366779572
+      shooter_sheet_0_14: 5845741584235591058
+      shooter_sheet_0_15: 5678696631434520467
+      shooter_sheet_0_16: 7751511462074666792
+      shooter_sheet_0_17: 6727014927607360506
+      shooter_sheet_0_18: -5661445985519561149
+      shooter_sheet_0_19: -3944552883481030023
+      shooter_sheet_0_2: -6840384004911866484
+      shooter_sheet_0_20: 6575324653935672268
+      shooter_sheet_0_3: -2964402572472085677
+      shooter_sheet_0_4: -4101358852223071819
+      shooter_sheet_0_5: -1401492879711216227
+      shooter_sheet_0_6: 2431438074491417098
+      shooter_sheet_0_7: 7692523838976881465
+      shooter_sheet_0_8: -771540668603662711
+      shooter_sheet_0_9: -6054407294648453260
+      shooter_sheet_1: 4839515278065634146
+      shooter_sheet_10: 7551288569968055900
+      shooter_sheet_100: 7051937404628550144
+      shooter_sheet_101: 4420784602646491609
+      shooter_sheet_102: -5484428530921754510
+      shooter_sheet_103: -9128227580777107645
+      shooter_sheet_104: -3269560930100478632
+      shooter_sheet_105: 4242878620111296139
+      shooter_sheet_106: -5881747116191692097
+      shooter_sheet_107: -7232867740649670713
+      shooter_sheet_108: 6221094041106436746
+      shooter_sheet_109: -1321607838506643250
+      shooter_sheet_11: 6763866156085885446
+      shooter_sheet_110: -7517732988650541608
+      shooter_sheet_111: -6403637947901649221
+      shooter_sheet_112: -1937903338813807880
+      shooter_sheet_113: 1640028948425494358
+      shooter_sheet_114: 7887881744049612735
+      shooter_sheet_115: 3553484975983090022
+      shooter_sheet_116: -6814571027748297971
+      shooter_sheet_117: 3891931463655672884
+      shooter_sheet_118: -3907408533260807971
+      shooter_sheet_119: -2682733334255919932
+      shooter_sheet_12: -809312436798152213
+      shooter_sheet_120: 2013477772638891939
+      shooter_sheet_121: 3613264942001406429
+      shooter_sheet_122: 9049886906940584374
+      shooter_sheet_123: -6095700929967180315
+      shooter_sheet_124: 6612120890503647571
+      shooter_sheet_125: 4481384750857135594
+      shooter_sheet_126: 7162440976513303105
+      shooter_sheet_127: -440333538053675199
+      shooter_sheet_128: 6535383850428593302
+      shooter_sheet_129: -8194674107118095616
+      shooter_sheet_13: -6806846956885633688
+      shooter_sheet_130: -5173525667249764369
+      shooter_sheet_131: -7234544587982876596
+      shooter_sheet_132: 7833498783575009389
+      shooter_sheet_133: -2810139990333329683
+      shooter_sheet_134: 5325175664208830443
+      shooter_sheet_135: 8704833312625097997
+      shooter_sheet_136: -6682473482820736306
+      shooter_sheet_137: 4764574615502728612
+      shooter_sheet_138: 7418915011314762623
+      shooter_sheet_139: 2516348309208599795
+      shooter_sheet_14: 4056769372224911231
+      shooter_sheet_140: 1083335930130363788
+      shooter_sheet_141: -768215681263866832
+      shooter_sheet_142: 4284311002408756575
+      shooter_sheet_143: -6070175532906032610
+      shooter_sheet_144: 3543986872695009226
+      shooter_sheet_145: -3259440585478158117
+      shooter_sheet_146: 4012890854895663527
+      shooter_sheet_147: -8437447135338875194
+      shooter_sheet_148: 7491875951601677651
+      shooter_sheet_149: -110718824089245327
+      shooter_sheet_15: 1350907103982708050
+      shooter_sheet_150: 6949179373808191616
+      shooter_sheet_151: 4339969526085375036
+      shooter_sheet_152: -5232422480205280450
+      shooter_sheet_153: 5818606418476637097
+      shooter_sheet_154: -7308046609362561922
+      shooter_sheet_155: -383147092404460857
+      shooter_sheet_156: -8236652503155305159
+      shooter_sheet_157: 5357188263051624033
+      shooter_sheet_158: 7784946062912512290
+      shooter_sheet_159: 1982207936009048736
+      shooter_sheet_16: 9065989544140251806
+      shooter_sheet_160: -1756890418950782033
+      shooter_sheet_161: 6503987100370762386
+      shooter_sheet_162: 6122437931622375711
+      shooter_sheet_163: 7028948626648463093
+      shooter_sheet_164: -3084748438516948758
+      shooter_sheet_165: -3816517519329436114
+      shooter_sheet_166: -5143057520618096083
+      shooter_sheet_167: 9024707291499010636
+      shooter_sheet_17: 5925727569922440804
+      shooter_sheet_18: 4057444448790796259
+      shooter_sheet_19: -8312753304038889018
+      shooter_sheet_1_0: 1718944303599833418
+      shooter_sheet_1_1: -318968874557230987
+      shooter_sheet_1_10: 1801752486140803362
+      shooter_sheet_1_11: -6780995039937174268
+      shooter_sheet_1_12: -3977887558996543541
+      shooter_sheet_1_13: -8985823278263747816
+      shooter_sheet_1_14: 4871526649726200665
+      shooter_sheet_1_15: 3363748774573530829
+      shooter_sheet_1_16: 5731757718849058055
+      shooter_sheet_1_17: 4014410132623244639
+      shooter_sheet_1_18: 4456587789490780622
+      shooter_sheet_1_19: -6740843302302715927
+      shooter_sheet_1_2: -1344336709387802484
+      shooter_sheet_1_20: -1509692082081311448
+      shooter_sheet_1_3: 4396207297954898874
+      shooter_sheet_1_4: 1500844022988308423
+      shooter_sheet_1_5: 7191023341443693133
+      shooter_sheet_1_6: 6749876942234135529
+      shooter_sheet_1_7: -5472200812436352653
+      shooter_sheet_1_8: -8711934039269161803
+      shooter_sheet_1_9: 5828432836272886891
+      shooter_sheet_2: 2835474989663861801
+      shooter_sheet_20: -7683385243282070193
+      shooter_sheet_21: 2426214234879994066
+      shooter_sheet_22: 8883446541043931580
+      shooter_sheet_23: -8916011094910442747
+      shooter_sheet_24: 9124293661657863708
+      shooter_sheet_25: -1844170037374881336
+      shooter_sheet_26: 5018873585062578642
+      shooter_sheet_27: -4316269553979785695
+      shooter_sheet_28: 1437229837560844097
+      shooter_sheet_29: -6309232174037829477
+      shooter_sheet_2_0: -3993705712047012810
+      shooter_sheet_2_1: -5444322235858904663
+      shooter_sheet_2_10: 8709851390482983379
+      shooter_sheet_2_11: -53966341921477458
+      shooter_sheet_2_12: -4958364061652050276
+      shooter_sheet_2_13: -5936962994022519743
+      shooter_sheet_2_14: -4082432375549540761
+      shooter_sheet_2_15: 4912859091261198448
+      shooter_sheet_2_16: 6933832105686873008
+      shooter_sheet_2_17: -6848059102767851673
+      shooter_sheet_2_18: -6563198336134852920
+      shooter_sheet_2_19: 5963612600817460030
+      shooter_sheet_2_2: -5818705011727428452
+      shooter_sheet_2_20: -2671151911462445966
+      shooter_sheet_2_3: 5278590752289344218
+      shooter_sheet_2_4: 8088933644472686079
+      shooter_sheet_2_5: 8376613306277944453
+      shooter_sheet_2_6: -6757732578460828059
+      shooter_sheet_2_7: 1390310022469781294
+      shooter_sheet_2_8: -5302709566637496992
+      shooter_sheet_2_9: 3833586356213403252
+      shooter_sheet_3: -7649734378771072285
+      shooter_sheet_30: -2455609983615383682
+      shooter_sheet_31: 9054815733898334643
+      shooter_sheet_32: -7267835742693301612
+      shooter_sheet_33: -6424127074557925254
+      shooter_sheet_34: 7542739702281693255
+      shooter_sheet_35: 5500159067436650465
+      shooter_sheet_36: -3690069115793681548
+      shooter_sheet_37: -4601483895138880157
+      shooter_sheet_38: 2539485439803409006
+      shooter_sheet_39: 7582593564317588560
+      shooter_sheet_3_0: 4321861264953195985
+      shooter_sheet_3_1: 6071898851500522503
+      shooter_sheet_3_10: -1994047403095324272
+      shooter_sheet_3_11: 4684186623494116051
+      shooter_sheet_3_12: -6381051115331066243
+      shooter_sheet_3_13: 6960548850751113240
+      shooter_sheet_3_14: -1790136256107909249
+      shooter_sheet_3_15: -2467443796196937465
+      shooter_sheet_3_16: 4760924293041560378
+      shooter_sheet_3_17: -32196845726747643
+      shooter_sheet_3_18: 3012748513728462007
+      shooter_sheet_3_19: -4866522886501312238
+      shooter_sheet_3_2: -3694529656638336830
+      shooter_sheet_3_20: 7053175877522211245
+      shooter_sheet_3_3: 1759616885900834484
+      shooter_sheet_3_4: -5294593928924500577
+      shooter_sheet_3_5: 3659460613668712165
+      shooter_sheet_3_6: -4040789640780987522
+      shooter_sheet_3_7: 6218075900928727945
+      shooter_sheet_3_8: 577777860929907387
+      shooter_sheet_3_9: -3829833810503748455
+      shooter_sheet_4: 1299340473417625210
+      shooter_sheet_40: -5877206289615703438
+      shooter_sheet_41: -4536971594269457274
+      shooter_sheet_42: -1054719247585207111
+      shooter_sheet_43: 7703151562983069142
+      shooter_sheet_44: 4385385744268385225
+      shooter_sheet_45: 4814457847852280229
+      shooter_sheet_46: 8248552579876134605
+      shooter_sheet_47: -3626548034365885683
+      shooter_sheet_48: 2109789114616603395
+      shooter_sheet_49: 3119663856927758771
+      shooter_sheet_4_0: -9022471678320093551
+      shooter_sheet_4_1: 3567260247645375487
+      shooter_sheet_4_10: 6855000685518246949
+      shooter_sheet_4_11: -249988066024461914
+      shooter_sheet_4_12: -2861664022116459397
+      shooter_sheet_4_13: -5302143256473506520
+      shooter_sheet_4_14: 7187111495331395059
+      shooter_sheet_4_15: 1899940655114162241
+      shooter_sheet_4_16: 105640474726760443
+      shooter_sheet_4_17: -5809182478728962599
+      shooter_sheet_4_18: -4365783201135798115
+      shooter_sheet_4_19: 4791093581995650571
+      shooter_sheet_4_2: -1862224772239067366
+      shooter_sheet_4_20: 5425177071329584155
+      shooter_sheet_4_3: 8764567960708957113
+      shooter_sheet_4_4: -5112439168784472788
+      shooter_sheet_4_5: 2652926878506182508
+      shooter_sheet_4_6: -7340882640436867469
+      shooter_sheet_4_7: -8018367621989865227
+      shooter_sheet_4_8: 9149752098075714952
+      shooter_sheet_4_9: -7177190967528767087
+      shooter_sheet_5: -7995046007846883106
+      shooter_sheet_50: -7479130446798609215
+      shooter_sheet_51: 2303730426845005086
+      shooter_sheet_52: 2909244622491696885
+      shooter_sheet_53: -700369457942312269
+      shooter_sheet_54: 6441630633713525148
+      shooter_sheet_55: -6144485517513774186
+      shooter_sheet_56: 4640504631928486154
+      shooter_sheet_57: -2312899926140610011
+      shooter_sheet_58: -5646669113066466675
+      shooter_sheet_59: -419889468310306052
+      shooter_sheet_5_0: 6100456746734952814
+      shooter_sheet_5_1: -451763999960506402
+      shooter_sheet_5_10: 5745866993845149768
+      shooter_sheet_5_11: -7893592977481489452
+      shooter_sheet_5_12: 9221542718883234837
+      shooter_sheet_5_13: 458103799723125852
+      shooter_sheet_5_14: -3759040905230088799
+      shooter_sheet_5_15: -249258125577689332
+      shooter_sheet_5_16: 8059779155487733044
+      shooter_sheet_5_17: 3131755071478540405
+      shooter_sheet_5_18: -4799445290528851892
+      shooter_sheet_5_19: -5977688499197501587
+      shooter_sheet_5_2: -2200676528383973548
+      shooter_sheet_5_20: 340764964025739218
+      shooter_sheet_5_3: 509072542126368271
+      shooter_sheet_5_4: -7873621884203200944
+      shooter_sheet_5_5: 766554976897691255
+      shooter_sheet_5_6: -8184185594039698254
+      shooter_sheet_5_7: -3378159366866165098
+      shooter_sheet_5_8: -7720227633828480633
+      shooter_sheet_5_9: 3819501774094755108
+      shooter_sheet_6: -3456966549647218871
+      shooter_sheet_60: 226676349420955847
+      shooter_sheet_61: -8881625566628674432
+      shooter_sheet_62: 668486487416410386
+      shooter_sheet_63: -5277493145663496302
+      shooter_sheet_64: 4485301849376858364
+      shooter_sheet_65: -4157258833165228612
+      shooter_sheet_66: 132075210850153068
+      shooter_sheet_67: 8345926866028921012
+      shooter_sheet_68: 7460712949271506273
+      shooter_sheet_69: 7786714492182392766
+      shooter_sheet_6_0: -1993164585357771003
+      shooter_sheet_6_1: -5195728897448532653
+      shooter_sheet_6_10: 2822535689560472861
+      shooter_sheet_6_11: -4682077975195489891
+      shooter_sheet_6_12: -1876473830008088159
+      shooter_sheet_6_13: -2623419216348989928
+      shooter_sheet_6_14: -9080215198147980862
+      shooter_sheet_6_15: 7406133154288188230
+      shooter_sheet_6_16: -8565914546472436025
+      shooter_sheet_6_17: -6076687465374911805
+      shooter_sheet_6_18: -8783386190099360221
+      shooter_sheet_6_19: -3232531659223060060
+      shooter_sheet_6_2: -454381767575946006
+      shooter_sheet_6_20: 3999780248489589882
+      shooter_sheet_6_3: -6862952106555522525
+      shooter_sheet_6_4: 3588196405205716792
+      shooter_sheet_6_5: 6044734132562338759
+      shooter_sheet_6_6: 6239624223887007588
+      shooter_sheet_6_7: -5043591843925555401
+      shooter_sheet_6_8: -791190146892358585
+      shooter_sheet_6_9: -7191543652700370124
+      shooter_sheet_7: 503276793349897640
+      shooter_sheet_70: 2545972182624365262
+      shooter_sheet_71: 3363419880781032860
+      shooter_sheet_72: 632439978603634637
+      shooter_sheet_73: -6373245583434065677
+      shooter_sheet_74: -3671728097665818293
+      shooter_sheet_75: -6260463247322242596
+      shooter_sheet_76: 6335305721503942920
+      shooter_sheet_77: -3132004190867194375
+      shooter_sheet_78: -4116752875202139604
+      shooter_sheet_79: -4644994078668669819
+      shooter_sheet_7_0: -7910641219760625030
+      shooter_sheet_7_1: -5221347539478624434
+      shooter_sheet_7_10: -8617640894018481778
+      shooter_sheet_7_11: 4044085051457148120
+      shooter_sheet_7_12: -1851662250658542990
+      shooter_sheet_7_13: -1894132286210916033
+      shooter_sheet_7_14: -5517635802456932822
+      shooter_sheet_7_15: 4422796511627112428
+      shooter_sheet_7_16: 847533372541570502
+      shooter_sheet_7_17: -2296491766485294111
+      shooter_sheet_7_18: -7174294119805665620
+      shooter_sheet_7_19: -6799056526704593910
+      shooter_sheet_7_2: 4057085758312253563
+      shooter_sheet_7_20: 2821359337958196875
+      shooter_sheet_7_3: -2025439585281544200
+      shooter_sheet_7_4: 26840495908937031
+      shooter_sheet_7_5: 17324419557928695
+      shooter_sheet_7_6: -2649670866852176375
+      shooter_sheet_7_7: 2542358814599412666
+      shooter_sheet_7_8: 6438070049071631677
+      shooter_sheet_7_9: -1900247340544909587
+      shooter_sheet_8: 4612897017065471010
+      shooter_sheet_80: -7080232569867502773
+      shooter_sheet_81: 6826040702636120569
+      shooter_sheet_82: -874157111474034913
+      shooter_sheet_83: -2997069992037853979
+      shooter_sheet_84: 2580941162294738886
+      shooter_sheet_85: 8606585648044220554
+      shooter_sheet_86: -7777221682343294010
+      shooter_sheet_87: -3031005261650428566
+      shooter_sheet_88: -9062763474256572220
+      shooter_sheet_89: 5458824292262970392
+      shooter_sheet_9: 1296567241244170957
+      shooter_sheet_90: 2713277675710972337
+      shooter_sheet_91: 6665319388321694447
+      shooter_sheet_92: 6736918644097321155
+      shooter_sheet_93: 854176380379813023
+      shooter_sheet_94: 6650661220419929038
+      shooter_sheet_95: -2922203871993743751
+      shooter_sheet_96: -5624251949374038277
+      shooter_sheet_97: 5985555855106272131
+      shooter_sheet_98: 4375199862383483027
+      shooter_sheet_99: -8541990033775076683
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

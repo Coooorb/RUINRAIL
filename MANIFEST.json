@@ -1,0 +1,681 @@
+{
+  "project": "RUINRAIL",
+  "generated_at": "2026-09-14",
+  "markdown_file_count": 130,
+  "environment": {
+    "unity": "6000.3.24f1",
+    "package_manager_resolution": "NOT_YET_VERIFIED"
+  },
+  "files": [
+    {
+      "path": ".gitignore.snippet",
+      "sha256": "1533734705b8366fb7bd9b66a0e045bdf6875d46a595c53e6c7d75b1024d2ab6",
+      "bytes": 46
+    },
+    {
+      "path": "00_INDEX.md",
+      "sha256": "496ab96506efbfb1f433ec5ff69daf9ed3c8cefa7b35d86003615f95ac7b5011",
+      "bytes": 4665
+    },
+    {
+      "path": "01_PROJECT_VISION.md",
+      "sha256": "ae177302212353d0603d5e49c331239d07ad687b184b9655ff5641c24f0ff267",
+      "bytes": 2810
+    },
+    {
+      "path": "02_CORE_PILLARS.md",
+      "sha256": "8902d540fd8ece1c41b2197bac399c89fbcb8fdbdf17076edeca8708b1e1164e",
+      "bytes": 1371
+    },
+    {
+      "path": "03_CORE_GAME_LOOP.md",
+      "sha256": "89371dabcad4a656be0f662bfb48993de977f484e2521410987ec5ac7da36e51",
+      "bytes": 1390
+    },
+    {
+      "path": "04_SCOPE_AND_NON_GOALS.md",
+      "sha256": "42290556b1070c24800b2b2840dd693bfa88288b741b06815c6d98db755722b6",
+      "bytes": 1447
+    },
+    {
+      "path": "05_TERMINOLOGY.md",
+      "sha256": "1d772381baa5a5233006dfbaa749f37c828201c737a743dbd2c86b9326b23fdd",
+      "bytes": 2331
+    },
+    {
+      "path": "06_OPEN_DECISIONS.md",
+      "sha256": "c8b42f3f19430419f4bcb2039b0ce17915de7886dffd79af0cd300a65b976c38",
+      "bytes": 1796
+    },
+    {
+      "path": "07_TUNABLE_VALUES.md",
+      "sha256": "152ec2f42e9d81ea5b37d8ba70bbce301e37fd129ad67c95b2788c6838ea93fc",
+      "bytes": 1289
+    },
+    {
+      "path": "08_REFERENCE_BOUNDARIES.md",
+      "sha256": "d5d1ec25a3badf6dbce8f21808ef7f2f9e2974a7287ba6a874f276d6cbd87568",
+      "bytes": 929
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "bf81486446a2aee144d32f7d4cfce7e2b1711abac0126d26d6262965d123e371",
+      "bytes": 307
+    },
+    {
+      "path": "CLAUDE_START_HERE.md",
+      "sha256": "725b909a6f516d523b8d705085e9f36613b29d105a34bff2cbf1dc4c65707925",
+      "bytes": 1352
+    },
+    {
+      "path": "CONSISTENCY_CHECK.txt",
+      "sha256": "b3106a30d52f709239221330af93b57880e50e014a2300b6c7ae14a4abefe74b",
+      "bytes": 104
+    },
+    {
+      "path": "ENVIRONMENT.md",
+      "sha256": "dd20557d2a3fb9e7a38885cb597c63ea601c8e82addca0dbd21395ff45e5f8fb",
+      "bytes": 4122
+    },
+    {
+      "path": "REVIEW_PATCH_2026-09-14.md",
+      "sha256": "f7ccbf1b3f2f71dc7eea6a7618d56d8545259453c6bea1ba59ad111ee8abdd8c",
+      "bytes": 3705
+    },
+    {
+      "path": "art/100_ART_DIRECTION.md",
+      "sha256": "e89ab73bebd1e48c56ce1b109fc00d3bdd93622a9bb6a8c4c3823892c6ef2833",
+      "bytes": 1028
+    },
+    {
+      "path": "art/101_PIXEL_GRID_AND_SCALE.md",
+      "sha256": "f20abcc49473f10b8cc264244fece458327fe6bf0638bf51636b003246079135",
+      "bytes": 909
+    },
+    {
+      "path": "art/102_CAMERA_SORTING_LIGHTING.md",
+      "sha256": "12215934ecdf86d655afd5daa5f57c6072f5a2fc1fbd826377f113d9debdab61",
+      "bytes": 1255
+    },
+    {
+      "path": "art/103_ANIMATION_RULES.md",
+      "sha256": "c456655c218233b8dccd5d2e7cb264c40f6e5d1c3d2f216457b2b0be24113072",
+      "bytes": 911
+    },
+    {
+      "path": "art/104_VFX_GAME_FEEL.md",
+      "sha256": "77a2ef37d18dcf623e1416faf732c2f1c9f7cf5c0e137d45a09a0a891482242b",
+      "bytes": 1110
+    },
+    {
+      "path": "art/105_AUDIO_MUSIC.md",
+      "sha256": "ad1d8271cb43b676c3f968b0ad89a316e46e51745e359b8cd4e6b9f213872223",
+      "bytes": 1996
+    },
+    {
+      "path": "base/70_BASE_OVERVIEW.md",
+      "sha256": "1b153c496766ea6760fea6598080bb336d2f6c4771fa14dc20af5579c271c0e8",
+      "bytes": 648
+    },
+    {
+      "path": "base/71_STORAGE.md",
+      "sha256": "4a6fa2f0dcd124a651e8e024327c764f16b3a19a1de17b97b7aa9068c51b08f4",
+      "bytes": 779
+    },
+    {
+      "path": "base/72_TRADER.md",
+      "sha256": "25dfa6e8e0fce9859fa35f23239b9799128f8cb717206a3ad847814fd15c8da4",
+      "bytes": 1205
+    },
+    {
+      "path": "base/73_CHARACTER_STATION.md",
+      "sha256": "50c6f8fb5be299f3850f97e05e78c3c6584548a59922179513f1ddbe9b21fdda",
+      "bytes": 449
+    },
+    {
+      "path": "base/74_WORKSHOP.md",
+      "sha256": "bfdabe94f218562e2c25b3bbb5e16515427803863cb0e1bf2458a188cbdcea23",
+      "bytes": 755
+    },
+    {
+      "path": "base/75_STARTER_KIT.md",
+      "sha256": "6f632fdde3a208c311c72885008c200ec442d4894585ceb66007558a09087f29",
+      "bytes": 798
+    },
+    {
+      "path": "base/76_EXPEDITION_SUMMARY.md",
+      "sha256": "2132acdf1faeb67069d73dd1a56bbf1ced5f5b8a78316d5af0069d643a342a7d",
+      "bytes": 752
+    },
+    {
+      "path": "base/77_ECONOMY.md",
+      "sha256": "797e91d257a735adfb56b422049b606fb0ce2222b80efdb677f09d65abca5060",
+      "bytes": 2208
+    },
+    {
+      "path": "combat/40_COMBAT_RULES.md",
+      "sha256": "34b347f3c9c649317ef40069c44926ef3e97541af1ff75d4cb1991bd31ea20c4",
+      "bytes": 1003
+    },
+    {
+      "path": "combat/41_DAMAGE_HEALING_STATUS.md",
+      "sha256": "03f6450abb3250a0b13aa4b6fa9966756940ea6cb709374f86c0dc8bbcd5e254",
+      "bytes": 1183
+    },
+    {
+      "path": "combat/42_STAGGER_KNOCKBACK.md",
+      "sha256": "d9becdc0674330c7098d41d0c6845a532c7ab4911cf46942575df886f553bdbf",
+      "bytes": 874
+    },
+    {
+      "path": "combat/43_ENEMY_FRAMEWORK.md",
+      "sha256": "7ecfe8f3c28cfb3fc09eef145fc9ece5cc97d488af32999f67baca2944626f61",
+      "bytes": 833
+    },
+    {
+      "path": "combat/44_NORMAL_ENEMIES.md",
+      "sha256": "dfe5a87a5f6a8a0c8450fa1d4a2df08242a422c4c32cce691e4ec6a710159d60",
+      "bytes": 2387
+    },
+    {
+      "path": "combat/45_ELITES.md",
+      "sha256": "a4941d38d4d0f1216d3ba66088287b958963b7ca6d45a80525f7a5e8520f9159",
+      "bytes": 1980
+    },
+    {
+      "path": "combat/46_BOSSES.md",
+      "sha256": "d5f0b6a8048782725f38aff1d5c25eca4c183af9066cad98a410adc3f7143604",
+      "bytes": 2492
+    },
+    {
+      "path": "combat/47_ENCOUNTER_BUDGETS.md",
+      "sha256": "6c40c2f294ae5759ad21d750737c6c40445413d9f9d35f17fe7dd4fae155ac85",
+      "bytes": 1015
+    },
+    {
+      "path": "dungeon/50_GRID_TILE_SYSTEM.md",
+      "sha256": "de74af41ecbfaf70ae177e607a2caf61284fdfd31db32c9dc75aeb8612a91d94",
+      "bytes": 1311
+    },
+    {
+      "path": "dungeon/51_ROOM_AUTHORING.md",
+      "sha256": "5140a2deeee9a19b25bbb7b29beb5bf10da28707220c964a1e48c6d3cac4cbbe",
+      "bytes": 1314
+    },
+    {
+      "path": "dungeon/52_ROOM_METADATA_AND_TAGS.md",
+      "sha256": "a1d3441e03136590459a9da945574eda541060a4d631fde9f9e22796b87f8f7e",
+      "bytes": 867
+    },
+    {
+      "path": "dungeon/53_DUNGEON_GENERATOR.md",
+      "sha256": "9abfebeb017d55865e2060d1307fe50058d3158885f7e550cb56fe1eeb8f44ea",
+      "bytes": 1537
+    },
+    {
+      "path": "dungeon/54_DUNGEON_VALIDATION.md",
+      "sha256": "86d9c3aca222ec607fe26728f3f79b193303ee5d0ef86f54299d31909ed03686",
+      "bytes": 1097
+    },
+    {
+      "path": "dungeon/55_ROOM_TYPES.md",
+      "sha256": "d017bf33eb774983446c6eac38d28c67109fc4284df616eaa5aa467b76191ef2",
+      "bytes": 1160
+    },
+    {
+      "path": "dungeon/56_BIOMES.md",
+      "sha256": "c4369fba7c8961b13bb46a788de6e68ab73e09e0e7bd0c4a87525e74a10a8d51",
+      "bytes": 1253
+    },
+    {
+      "path": "dungeon/57_EVENTS.md",
+      "sha256": "7e71f59639c992a01f2e732c54bb4af74c645b7bb9aa982c202c872b5e54a875",
+      "bytes": 1438
+    },
+    {
+      "path": "dungeon/58_CHESTS_MERCHANT_LOOT.md",
+      "sha256": "33c7cb1ec4156689759e7b796ba83d3f5990e582e292fb17c2891d24979ab67f",
+      "bytes": 1322
+    },
+    {
+      "path": "dungeon/59_DEPTH_SCALING.md",
+      "sha256": "e53724da34cfb9906d3c34eefb99335fb2bd735ac713a300434adbb0a816ac97",
+      "bytes": 2146
+    },
+    {
+      "path": "dungeon/60_EXTRACTION_TRANSIT.md",
+      "sha256": "c4ca723f2d6dd3b95838a3f9a112106a7f4520b1fef9356965bfbfb7aaf9126e",
+      "bytes": 925
+    },
+    {
+      "path": "items/20_INVENTORY_SYSTEM.md",
+      "sha256": "ba3a9bd84fa21c776c57485faf0e35c9b68cc12dd03131e905be40ffeca4e33b",
+      "bytes": 1540
+    },
+    {
+      "path": "items/21_ITEM_DATA_MODEL.md",
+      "sha256": "5cc46570492b789b034e2e0d1b831dfcdfdef6ea44eb123432b6fde30b410049",
+      "bytes": 1286
+    },
+    {
+      "path": "items/22_RARITY_AND_AFFIXES.md",
+      "sha256": "3c93ba0e03f484a60eafd1685683b89a71bf9cc883f4964727d67574b43d702f",
+      "bytes": 1639
+    },
+    {
+      "path": "items/23_WEAPON_FRAMEWORK.md",
+      "sha256": "af673fd6afb2b7d2227ea6bb65b9f561244b51e77aad5e779c8d2c76f746e5a4",
+      "bytes": 1472
+    },
+    {
+      "path": "items/24_WEAPON_CLASSES.md",
+      "sha256": "3674e11e75b484f2b5cf6e8aec841b299f6530f00aa28eeded5d26b3c78f693c",
+      "bytes": 2111
+    },
+    {
+      "path": "items/25_LEGENDARY_WEAPON_SPECIALS.md",
+      "sha256": "7e1c2c8ad2ddb6d89211f0872396623d39750446596fa5923a3f9d9c06ffe19e",
+      "bytes": 2155
+    },
+    {
+      "path": "items/26_AMMO_SYSTEM.md",
+      "sha256": "1b9b814d27b6a3e6a62c06e06f4b5f4e36d12655c3abfb812abc915ba90d539e",
+      "bytes": 1352
+    },
+    {
+      "path": "items/27_ARMOR_SYSTEM.md",
+      "sha256": "1f11661d97907d94b617fc120f7a7452199176df46bcebe83175bdd998d8f482",
+      "bytes": 1528
+    },
+    {
+      "path": "items/28_ARMOR_CATALOG.md",
+      "sha256": "7703102d24a6979f3a8d7a128c68b694c3f798be1ece0a7463a3d4b1b0d1b80f",
+      "bytes": 2298
+    },
+    {
+      "path": "items/29_ACCESSORY_SYSTEM.md",
+      "sha256": "866b5859ccc4d2bd6962a244e53f01784153ac13418ca1b68317a67bb312a000",
+      "bytes": 1119
+    },
+    {
+      "path": "items/30_ACCESSORY_CATALOG.md",
+      "sha256": "92f04f95595ffbfb5ab057b89d706bffb794a6ef0f72e7b0f3928664cb8135c7",
+      "bytes": 1221
+    },
+    {
+      "path": "items/31_CONSUMABLES.md",
+      "sha256": "5249c15b2d9bff52f58a8606abcaddd6e4acbfe85bb8fe63f43875770e515960",
+      "bytes": 1706
+    },
+    {
+      "path": "items/32_LOOT_PICKUPS_AND_ITEM_TRANSFER.md",
+      "sha256": "18833b8051e997610946cf8433eed9e59023562fdfdd0efc4596921311140777",
+      "bytes": 1092
+    },
+    {
+      "path": "items/33_WEAPON_CATALOG.md",
+      "sha256": "dcbf3ebaa088b222035cadf1a17af8a078453a403ec8aa7e0f1a33f82573a94b",
+      "bytes": 3957
+    },
+    {
+      "path": "items/34_LEGENDARY_ACCESSORY_PASSIVES.md",
+      "sha256": "a78424a894bfcc292d98f71337fd933ca792e98774d4e3fd0bdc94965540112a",
+      "bytes": 2974
+    },
+    {
+      "path": "multiplayer/80_MULTIPLAYER_ARCHITECTURE.md",
+      "sha256": "4aa05eaf13974c414a74e6824be86eb222b97f4f52e9fc0f01dcc2039ce94ec6",
+      "bytes": 878
+    },
+    {
+      "path": "multiplayer/81_SESSIONS_JOIN_CODES.md",
+      "sha256": "cd048b498b65c578188f2f28c34437bfffec82e6fec3651b0508280d73dc07ad",
+      "bytes": 853
+    },
+    {
+      "path": "multiplayer/82_NETWORK_AUTHORITY.md",
+      "sha256": "089ff67a60fe7b857dc1aeccf9c94c0bee6689fdcb1040c4423364b7cecf73eb",
+      "bytes": 924
+    },
+    {
+      "path": "multiplayer/83_COOP_SCALING.md",
+      "sha256": "1779174829531f0651ab6879c52d8e69dc1de2824c65bc6bdcf7026d9358095e",
+      "bytes": 859
+    },
+    {
+      "path": "multiplayer/84_DOWNED_REVIVE_DEATH.md",
+      "sha256": "a3da05ee60a5b712f1a6642b927f16def5bdaf442954835f3cc0ae20c9fb1f34",
+      "bytes": 1477
+    },
+    {
+      "path": "multiplayer/85_DISCONNECTS_SPECTATOR.md",
+      "sha256": "6d188e7b77eece93f375b77512e613381a4152b22a3f8a5b8a44d6284dd9fe4a",
+      "bytes": 1275
+    },
+    {
+      "path": "multiplayer/86_TRANSIT_VOTING.md",
+      "sha256": "27ded4c874b28f5c8ab04a452c18a52d4940472a2f054e4356def2a1e021fd82",
+      "bytes": 693
+    },
+    {
+      "path": "player/10_PLAYER_PROFILE.md",
+      "sha256": "dec76928b4ad3ac42c7bec6b6f081b312013ddcad2209ba656691eebc3fa5b18",
+      "bytes": 1325
+    },
+    {
+      "path": "player/11_PLAYER_CONTROLLER.md",
+      "sha256": "e3fa30780ac9833c46e68134cdc5ea2ce5a85b8068e1a9dadee864659585a3d2",
+      "bytes": 1253
+    },
+    {
+      "path": "player/12_PLAYER_STATS.md",
+      "sha256": "0bb59b231d7e0194c2ca798393c259d3ffdc46955228b184b48055b109a1d5cd",
+      "bytes": 915
+    },
+    {
+      "path": "player/13_LEVELING_AND_SKILL_POINTS.md",
+      "sha256": "4512af66e27a1cc00a04282ac3f0383ab3948d30c48e76effe2f810aa3055b82",
+      "bytes": 1603
+    },
+    {
+      "path": "player/14_DASH_AND_MOVEMENT.md",
+      "sha256": "bcd30d38938eb4177e31e93f5dfe66d79d5448817f234368454bbcb10e80c0c2",
+      "bytes": 976
+    },
+    {
+      "path": "player/15_PLAYER_LIFE_STATES.md",
+      "sha256": "314680aa1ea621cf89fc4faab79c8675c958287794a57aa5d33f38b284f5a9df",
+      "bytes": 800
+    },
+    {
+      "path": "player/16_GLOBAL_STAT_CAPS.md",
+      "sha256": "4c1b4eb462b98838ac22b54ca0e478db7a6c86ae11af7f3d9d37941075eb57b3",
+      "bytes": 1456
+    },
+    {
+      "path": "production/120_IMPLEMENTATION_ORDER.md",
+      "sha256": "e105a105a466a79f55bfe3069f756953a33d6e05fa8de41d43dc1e9e45e4535f",
+      "bytes": 2696
+    },
+    {
+      "path": "production/121_VERTICAL_SLICE.md",
+      "sha256": "5ec838ca278df0d9af4d96d49f795281f76eab6431f3433c97c259e71ee4c2a9",
+      "bytes": 837
+    },
+    {
+      "path": "production/122_MVP_SCOPE.md",
+      "sha256": "89a4f7501b47ba927f3f158ab6c3dd53440e5e4aefd37109909bdd1309161eba",
+      "bytes": 1104
+    },
+    {
+      "path": "production/123_POST_MVP.md",
+      "sha256": "8e0030bf1b2be10194b83ca40e41caba54d966cccdeec275ef23f530af7c0e52",
+      "bytes": 642
+    },
+    {
+      "path": "production/124_CLAUDE_TASK_PROTOCOL.md",
+      "sha256": "eff0085454fdf0c733a3b3889259b3b6a767b8148c4ac02afddbb7c78aba63f8",
+      "bytes": 1486
+    },
+    {
+      "path": "production/125_PROMPT_TEMPLATE.md",
+      "sha256": "a6e760010034ea1314c951168c31a372529e235bb6622ad8c2d2eeb9540963f1",
+      "bytes": 1361
+    },
+    {
+      "path": "production/126_FINAL_MVP_CONTENT_COUNTS.md",
+      "sha256": "42936deb5e4a38e7e1a7ca0ea2a8fc1a5f27645e6d70271447e15a24989dc34e",
+      "bytes": 983
+    },
+    {
+      "path": "production/127_MODEL_ROUTING_GUIDE.md",
+      "sha256": "df2d79da53db6bcf51fc81c140f3d1542923cd243522cc4cdff7ceb82e9f6514",
+      "bytes": 1660
+    },
+    {
+      "path": "scripts/README.md",
+      "sha256": "47cd23eab9191e604d39c507e73b18e4be2cf20fe216c4eb55d521aefe77a7c8",
+      "bytes": 1134
+    },
+    {
+      "path": "scripts/run-unity-tests.ps1",
+      "sha256": "2db1bd86cceac6a6056082a59a76181c5dfc38551e86fe34ce935c385486f216",
+      "bytes": 3892
+    },
+    {
+      "path": "scripts/run-unity-tests.sh",
+      "sha256": "c529276c7066a1f3a1dc5da12e3ac983c378c36cbab9f2417547230102fcf079",
+      "bytes": 3675
+    },
+    {
+      "path": "tasks/TASK_001_project_bootstrap.md",
+      "sha256": "26f38b94e7ceba934216a8b74abf58bc32039e86411e868c2dbb2d70d30778ab",
+      "bytes": 1774
+    },
+    {
+      "path": "tasks/TASK_002_input_actions.md",
+      "sha256": "a43ab70873075122c414418f25c7cadc47d251cd2ed05394236d68e960b6d223",
+      "bytes": 1014
+    },
+    {
+      "path": "tasks/TASK_003_player_movement.md",
+      "sha256": "30f244f96157d67e0130d043607a5e4023b5f940de4701caeee6ca83f5ee6efd",
+      "bytes": 991
+    },
+    {
+      "path": "tasks/TASK_004_player_aiming.md",
+      "sha256": "cebe8f3e70fab425eed0904704f2ef7d6ade341faba0f7f3ab5d8d5be599c8e0",
+      "bytes": 922
+    },
+    {
+      "path": "tasks/TASK_005_dash.md",
+      "sha256": "d5fbd15bba3e54dd4c093b3c722792a6286a25d251aa506d2be898b9bc1a423c",
+      "bytes": 876
+    },
+    {
+      "path": "tasks/TASK_006_health_damage.md",
+      "sha256": "9229b5b5ba87d250be5bd31c135ef6f35888869577ed8fe41540ca206295897a",
+      "bytes": 956
+    },
+    {
+      "path": "tasks/TASK_007_projectile_foundation.md",
+      "sha256": "0218fabdeeeedd2c1a4d776d818bcccee54144e9adb4310467935adfafc16bc1",
+      "bytes": 988
+    },
+    {
+      "path": "tasks/TASK_008_pistol_reference.md",
+      "sha256": "19d68248d1cad5ceaee5b5c2eb09661e41fd8298a6b87c7044d9028e4993c137",
+      "bytes": 897
+    },
+    {
+      "path": "tasks/TASK_009_knife_reference.md",
+      "sha256": "3fd4bfe021148bcfa076d6d07caf06def79dbd151503a998263ebccce81a5a2e",
+      "bytes": 870
+    },
+    {
+      "path": "tasks/TASK_010_dual_weapon_switching.md",
+      "sha256": "0793199c2171fae84212e55b45fa6b29690ec3ff190d002173f9a4e8984b9df5",
+      "bytes": 889
+    },
+    {
+      "path": "tasks/TASK_011_ammo_reload.md",
+      "sha256": "e910c9d7e4f457716e6b21c23e21ae2a97da41deeafc8b2c83401426a40c5409",
+      "bytes": 863
+    },
+    {
+      "path": "tasks/TASK_012_basic_grunt.md",
+      "sha256": "7ea2d51b175daef1704c6e162b2dc364d48ec99c63aca886aae6f03f413c96f6",
+      "bytes": 865
+    },
+    {
+      "path": "tasks/TASK_013_item_data_model.md",
+      "sha256": "04d28d967f1c6fbb780fe1db81f83a1bbc6b1c5ed95193b8c669c407dea16dc9",
+      "bytes": 952
+    },
+    {
+      "path": "tasks/TASK_014_inventory_shell.md",
+      "sha256": "14df4a1ada789fc89f28301492e0587061b0f624479c2574e02dc9d5ae0ab9bc",
+      "bytes": 867
+    },
+    {
+      "path": "tasks/TASK_015_item_transfer_service.md",
+      "sha256": "f6e9e5b958ffe2fe58f7c2994d3cc80f5ac2fa6e02d295e7783938b8b4e99401",
+      "bytes": 921
+    },
+    {
+      "path": "tasks/TASK_016_rarity_affixes.md",
+      "sha256": "cf364d4870a5a5b6842e1b9485540fd7ad13dc18aac586087013c92496dc6eb0",
+      "bytes": 889
+    },
+    {
+      "path": "tasks/TASK_017_assault_rifle_reference.md",
+      "sha256": "8f737620e831688a32d4b862308d7c758d86db894b96063be69e6cd7cea802e5",
+      "bytes": 870
+    },
+    {
+      "path": "tasks/TASK_018_shotgun_reference.md",
+      "sha256": "92f04138ff7ed9a794106e2f0e5ab0d7c0392d055c920c9a73316cc52b7a3584",
+      "bytes": 825
+    },
+    {
+      "path": "tasks/TASK_019_blaster_reference.md",
+      "sha256": "6056521417ceb6fdc0201b1d985127f0901fb63a340511467a64c38038829cb9",
+      "bytes": 868
+    },
+    {
+      "path": "tasks/TASK_020_bow_reference.md",
+      "sha256": "5da187bf258f5be3c4e207396e70085069cb7e32974b0208a47830c99617ca65",
+      "bytes": 832
+    },
+    {
+      "path": "tasks/TASK_021_grid_tile_foundation.md",
+      "sha256": "09fa30908a7eefb7ddd2c8d3f9a5524c685a20da76d3a3a3402b58605b512f37",
+      "bytes": 859
+    },
+    {
+      "path": "tasks/TASK_022_room_prefab_schema.md",
+      "sha256": "6908fabec44b0131216ee688253e0a26e540439801245cbdf6fdf3bd2849c594",
+      "bytes": 877
+    },
+    {
+      "path": "tasks/TASK_023_room_validator.md",
+      "sha256": "72b0ad73f662ca91000bcdd55789886dc3812936dafdc0cbec2a723184fe12f4",
+      "bytes": 890
+    },
+    {
+      "path": "tasks/TASK_024_dungeon_graph.md",
+      "sha256": "06bb1ebc894847e6eef99ecb9338488e5a261655b37c99b735aa99cb2bf56411",
+      "bytes": 851
+    },
+    {
+      "path": "tasks/TASK_025_dungeon_assembler.md",
+      "sha256": "6b93461fdbb9099b37a596f6fccc2df53160db7eb262e61a3237ff3368b6953f",
+      "bytes": 906
+    },
+    {
+      "path": "tasks/TASK_026_loot_chest_reference.md",
+      "sha256": "b1c29e2f4b6c19be50a0344b8205f0d02c09809f0cd2211e5c4f08cbed2b469a",
+      "bytes": 885
+    },
+    {
+      "path": "tasks/TASK_027_first_elite_tunnel_stalker.md",
+      "sha256": "902b96ec08c8d6e2f1092a598ca54bc692fcc6351af10fc3d1f48a9394d167c6",
+      "bytes": 819
+    },
+    {
+      "path": "tasks/TASK_028_first_boss_conductor.md",
+      "sha256": "bbffc0bd10d97ad2a21090ffbadb88eed09b511a11ebfb17230c431867cd4b63",
+      "bytes": 881
+    },
+    {
+      "path": "tasks/TASK_029_transit_extraction_loop.md",
+      "sha256": "8b323a116a4b5ab54b35e600c376871e2c80e452e8c901635e5f3af487e9bb2a",
+      "bytes": 960
+    },
+    {
+      "path": "tasks/TASK_030_base_storage_first_pass.md",
+      "sha256": "90558303e59a2c9d99c4cd3d8fdffa70034e1a2251c526e1666e5fcad6371968",
+      "bytes": 881
+    },
+    {
+      "path": "technical/110_UNITY_PROJECT_STRUCTURE.md",
+      "sha256": "2ba067bd1c436eb1d8b6c804d0cea86f1c8d4e9ae53345dda95cbb17419c3662",
+      "bytes": 1408
+    },
+    {
+      "path": "technical/111_DATA_ARCHITECTURE.md",
+      "sha256": "d845898bbf622db171e42aba438d45ba600ef19f36caa3de87a601ead3c99c89",
+      "bytes": 807
+    },
+    {
+      "path": "technical/112_SCRIPTABLE_OBJECTS.md",
+      "sha256": "f38c82448022bd89b8374488c33c6179459022a6ed314aee3c63c86e290bc38a",
+      "bytes": 925
+    },
+    {
+      "path": "technical/113_SAVE_PERSISTENCE.md",
+      "sha256": "ca24b9847b09fe0b07c4afe8b49aa170a0503d17613d2f2279386f422a78776f",
+      "bytes": 1532
+    },
+    {
+      "path": "technical/114_RNG_DETERMINISM.md",
+      "sha256": "b6aa624eb90f5f475891f0c8a6abc8fc732f768740a971b53fb8e9f80f11a5d2",
+      "bytes": 830
+    },
+    {
+      "path": "technical/115_EDITOR_VALIDATION_TOOLS.md",
+      "sha256": "5da6bc4640f195101368e80c8b88be7e7cb182a82b61780324fe222cd316ec19",
+      "bytes": 897
+    },
+    {
+      "path": "technical/116_INPUT_SYSTEM.md",
+      "sha256": "075a0b87c6b81f6e83a27cc5463fc629fe6150de798b8896f2753d2aa4a9d5dc",
+      "bytes": 1497
+    },
+    {
+      "path": "technical/117_CODING_RULES_FOR_CLAUDE.md",
+      "sha256": "ae883504c630cc4213badfe2bbe67d46bbf91eb24095c45d707751e867380de8",
+      "bytes": 2441
+    },
+    {
+      "path": "technical/118_TESTING_STRATEGY.md",
+      "sha256": "bae991b9782d895c15e61b857ca0059f1d56c6f2741f87e8515ac3c2313a14a3",
+      "bytes": 3531
+    },
+    {
+      "path": "technical/119_DEPENDENCY_RULES.md",
+      "sha256": "d70e6d55e8c4d2ece2b0961e85109e10c715e4575227ee6c204449db505ec0c3",
+      "bytes": 934
+    },
+    {
+      "path": "ui/90_UI_UX_OVERVIEW.md",
+      "sha256": "264dcf2a2aed0c812157a671a071ae9fbd359d8cb2b45b06a461db7479a65ae1",
+      "bytes": 771
+    },
+    {
+      "path": "ui/91_DUNGEON_HUD.md",
+      "sha256": "17d7814a15f9a4c61fc061fd2b3aa7e07d7cea95bb72b0e036fa8e9cbb547786",
+      "bytes": 1259
+    },
+    {
+      "path": "ui/92_INVENTORY_UI.md",
+      "sha256": "b37b79ac11f0359d0e64b5c81617573d0056bc8e07004e7c4019477e59ee1026",
+      "bytes": 790
+    },
+    {
+      "path": "ui/93_LOOT_TOOLTIPS.md",
+      "sha256": "25f6b24c70123713d77305f5c91c5756004811ab3d54ccadfeac11b60993cf76",
+      "bytes": 749
+    },
+    {
+      "path": "ui/94_BASE_UI.md",
+      "sha256": "cef82e39f1a761f7359daa0a23400bcddc8d07985949b52507065a0b74669c76",
+      "bytes": 766
+    },
+    {
+      "path": "ui/95_ONBOARDING_TUTORIAL.md",
+      "sha256": "083bfe73a20ca2435145193b9cb74bd535bb54b1d38ddd0952bb4cebdeee6037",
+      "bytes": 1043
+    }
+  ]
+}

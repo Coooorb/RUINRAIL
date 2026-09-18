@@ -1,0 +1,6501 @@
+fileFormatVersion: 2
+guid: 6ec87cfcfb335f74483e5e68f1087c1d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -3084495500961769118
+    second: boss_scrap_king_sheet_0
+  - first:
+      213: 1203774964110241284
+    second: boss_scrap_king_sheet_1
+  - first:
+      213: 3002444070038780058
+    second: boss_scrap_king_sheet_2
+  - first:
+      213: -4924866840670588660
+    second: boss_scrap_king_sheet_3
+  - first:
+      213: 4284421191367622291
+    second: boss_scrap_king_sheet_4
+  - first:
+      213: 4910938127827027994
+    second: boss_scrap_king_sheet_5
+  - first:
+      213: -6312760012138999259
+    second: boss_scrap_king_sheet_6
+  - first:
+      213: -7047039414738853855
+    second: boss_scrap_king_sheet_7
+  - first:
+      213: -6239030218442590501
+    second: boss_scrap_king_sheet_8
+  - first:
+      213: 7565092859255234241
+    second: boss_scrap_king_sheet_9
+  - first:
+      213: 1330066999706676968
+    second: boss_scrap_king_sheet_10
+  - first:
+      213: 634356355777117715
+    second: boss_scrap_king_sheet_11
+  - first:
+      213: 2652780446394561859
+    second: boss_scrap_king_sheet_12
+  - first:
+      213: 8987513093408515833
+    second: boss_scrap_king_sheet_13
+  - first:
+      213: 984853422836301976
+    second: boss_scrap_king_sheet_14
+  - first:
+      213: -4156915754572847513
+    second: boss_scrap_king_sheet_15
+  - first:
+      213: -3066986119363348137
+    second: boss_scrap_king_sheet_16
+  - first:
+      213: 8235780217364817415
+    second: boss_scrap_king_sheet_17
+  - first:
+      213: -3738224473008057519
+    second: boss_scrap_king_sheet_18
+  - first:
+      213: 7625803210979041907
+    second: boss_scrap_king_sheet_19
+  - first:
+      213: -7164650275125008862
+    second: boss_scrap_king_sheet_20
+  - first:
+      213: -4735678648376252883
+    second: boss_scrap_king_sheet_21
+  - first:
+      213: 8791062726866162414
+    second: boss_scrap_king_sheet_22
+  - first:
+      213: -4136525057841685531
+    second: boss_scrap_king_sheet_23
+  - first:
+      213: 4809237354654758955
+    second: boss_scrap_king_sheet_24
+  - first:
+      213: -4724029492769608290
+    second: boss_scrap_king_sheet_25
+  - first:
+      213: 5166777424528283487
+    second: boss_scrap_king_sheet_26
+  - first:
+      213: -4521897459617781860
+    second: boss_scrap_king_sheet_27
+  - first:
+      213: -647184652933361126
+    second: boss_scrap_king_sheet_28
+  - first:
+      213: 8688101445719847658
+    second: boss_scrap_king_sheet_29
+  - first:
+      213: -5808997683758366191
+    second: boss_scrap_king_sheet_30
+  - first:
+      213: 3985672772171396805
+    second: boss_scrap_king_sheet_31
+  - first:
+      213: 5820986759118186765
+    second: boss_scrap_king_sheet_32
+  - first:
+      213: 9128944124932847413
+    second: boss_scrap_king_sheet_33
+  - first:
+      213: 4304918576689228349
+    second: boss_scrap_king_sheet_34
+  - first:
+      213: -5238883094842739401
+    second: boss_scrap_king_sheet_35
+  - first:
+      213: -3777478476134955291
+    second: boss_scrap_king_sheet_36
+  - first:
+      213: -3010715848039980087
+    second: boss_scrap_king_sheet_37
+  - first:
+      213: 8242685816489374006
+    second: boss_scrap_king_sheet_38
+  - first:
+      213: -6616989331170627126
+    second: boss_scrap_king_sheet_39
+  - first:
+      213: -2752803419283316018
+    second: boss_scrap_king_sheet_40
+  - first:
+      213: -399124879669709871
+    second: boss_scrap_king_sheet_41
+  - first:
+      213: -6680462533292816743
+    second: boss_scrap_king_sheet_42
+  - first:
+      213: 278337315936970483
+    second: boss_scrap_king_sheet_43
+  - first:
+      213: 2076025406796773360
+    second: boss_scrap_king_sheet_44
+  - first:
+      213: -4768538645752120876
+    second: boss_scrap_king_sheet_45
+  - first:
+      213: -4751615302815289109
+    second: boss_scrap_king_sheet_46
+  - first:
+      213: -621631305485011714
+    second: boss_scrap_king_sheet_47
+  - first:
+      213: 4457396622474554575
+    second: boss_scrap_king_sheet_48
+  - first:
+      213: 3902236897724622309
+    second: boss_scrap_king_sheet_49
+  - first:
+      213: 1102986430801050031
+    second: boss_scrap_king_sheet_50
+  - first:
+      213: -5093461246163076701
+    second: boss_scrap_king_sheet_51
+  - first:
+      213: -7936931205507945233
+    second: boss_scrap_king_sheet_52
+  - first:
+      213: -7923960034988196217
+    second: boss_scrap_king_sheet_53
+  - first:
+      213: -8540917548443889994
+    second: boss_scrap_king_sheet_54
+  - first:
+      213: -1663123393943081390
+    second: boss_scrap_king_sheet_55
+  - first:
+      213: -588003502097555672
+    second: boss_scrap_king_sheet_56
+  - first:
+      213: 9079831950669803267
+    second: boss_scrap_king_sheet_57
+  - first:
+      213: 8029178777497703676
+    second: boss_scrap_king_sheet_58
+  - first:
+      213: 8429881797869494537
+    second: boss_scrap_king_sheet_59
+  - first:
+      213: 2964351776232872919
+    second: boss_scrap_king_sheet_60
+  - first:
+      213: 1838890368958516407
+    second: boss_scrap_king_sheet_61
+  - first:
+      213: 4391507290718656400
+    second: boss_scrap_king_sheet_62
+  - first:
+      213: 713125433009845960
+    second: boss_scrap_king_sheet_63
+  - first:
+      213: -8093185955395160018
+    second: boss_scrap_king_sheet_64
+  - first:
+      213: -3422081369525500912
+    second: boss_scrap_king_sheet_65
+  - first:
+      213: 1175022174467743907
+    second: boss_scrap_king_sheet_66
+  - first:
+      213: 8663288998003047340
+    second: boss_scrap_king_sheet_67
+  - first:
+      213: -5389841304472437812
+    second: boss_scrap_king_sheet_68
+  - first:
+      213: 3609442438362629919
+    second: boss_scrap_king_sheet_69
+  - first:
+      213: -3316326435638744621
+    second: boss_scrap_king_sheet_70
+  - first:
+      213: -2347514253330007768
+    second: boss_scrap_king_sheet_71
+  - first:
+      213: -252259404043423972
+    second: boss_scrap_king_sheet_72
+  - first:
+      213: -3425011832552698584
+    second: boss_scrap_king_sheet_73
+  - first:
+      213: -7123046383616852267
+    second: boss_scrap_king_sheet_74
+  - first:
+      213: -677362679887751387
+    second: boss_scrap_king_sheet_75
+  - first:
+      213: 7044900200608875127
+    second: boss_scrap_king_sheet_76
+  - first:
+      213: -1748619870663223970
+    second: boss_scrap_king_sheet_77
+  - first:
+      213: 5792211585199532608
+    second: boss_scrap_king_sheet_78
+  - first:
+      213: 189697265265142407
+    second: boss_scrap_king_sheet_79
+  - first:
+      213: -7720471214343966762
+    second: boss_scrap_king_sheet_80
+  - first:
+      213: 2419356303374716438
+    second: boss_scrap_king_sheet_81
+  - first:
+      213: 5378997866732505231
+    second: boss_scrap_king_sheet_82
+  - first:
+      213: 6301460210544528959
+    second: boss_scrap_king_sheet_83
+  - first:
+      213: 857568628189797853
+    second: boss_scrap_king_sheet_84
+  - first:
+      213: 4104097361353720091
+    second: boss_scrap_king_sheet_85
+  - first:
+      213: -943340041306653967
+    second: boss_scrap_king_sheet_86
+  - first:
+      213: -9054038929764028454
+    second: boss_scrap_king_sheet_87
+  - first:
+      213: -6079029840038914277
+    second: boss_scrap_king_sheet_88
+  - first:
+      213: 5046321715211472823
+    second: boss_scrap_king_sheet_89
+  - first:
+      213: 3100453252971517199
+    second: boss_scrap_king_sheet_90
+  - first:
+      213: -1465554188923254981
+    second: boss_scrap_king_sheet_91
+  - first:
+      213: -4344829357980091739
+    second: boss_scrap_king_sheet_92
+  - first:
+      213: -8735121552186378836
+    second: boss_scrap_king_sheet_93
+  - first:
+      213: 4846919304329621592
+    second: boss_scrap_king_sheet_94
+  - first:
+      213: 1037635651100877616
+    second: boss_scrap_king_sheet_95
+  - first:
+      213: -1111445063312380646
+    second: boss_scrap_king_sheet_96
+  - first:
+      213: -950447263979798314
+    second: boss_scrap_king_sheet_97
+  - first:
+      213: -7276138723720052239
+    second: boss_scrap_king_sheet_98
+  - first:
+      213: 8941669056044400229
+    second: boss_scrap_king_sheet_99
+  - first:
+      213: 3027975952053999654
+    second: boss_scrap_king_sheet_100
+  - first:
+      213: -985952358873858651
+    second: boss_scrap_king_sheet_101
+  - first:
+      213: 7176718567088337187
+    second: boss_scrap_king_sheet_102
+  - first:
+      213: 3645859575672587062
+    second: boss_scrap_king_sheet_103
+  - first:
+      213: -2642780152658901507
+    second: boss_scrap_king_sheet_104
+  - first:
+      213: 1924980816342292914
+    second: boss_scrap_king_sheet_105
+  - first:
+      213: -4063183759424963646
+    second: boss_scrap_king_sheet_106
+  - first:
+      213: 377332337027887245
+    second: boss_scrap_king_sheet_107
+  - first:
+      213: 5871509014432049138
+    second: boss_scrap_king_sheet_108
+  - first:
+      213: -4161458930887269447
+    second: boss_scrap_king_sheet_109
+  - first:
+      213: 7331514689967292186
+    second: boss_scrap_king_sheet_110
+  - first:
+      213: 2278964091248387465
+    second: boss_scrap_king_sheet_111
+  - first:
+      213: -4149282134435100281
+    second: boss_scrap_king_sheet_112
+  - first:
+      213: -3815481008302718068
+    second: boss_scrap_king_sheet_113
+  - first:
+      213: -1475300111945598027
+    second: boss_scrap_king_sheet_114
+  - first:
+      213: 161274246617259408
+    second: boss_scrap_king_sheet_115
+  - first:
+      213: 6815388991664874332
+    second: boss_scrap_king_sheet_116
+  - first:
+      213: 8232275248078241447
+    second: boss_scrap_king_sheet_117
+  - first:
+      213: -7603452878975027893
+    second: boss_scrap_king_sheet_118
+  - first:
+      213: 426824694718337179
+    second: boss_scrap_king_sheet_119
+  - first:
+      213: 4767604141838761361
+    second: boss_scrap_king_sheet_120
+  - first:
+      213: 8507837553239102737
+    second: boss_scrap_king_sheet_121
+  - first:
+      213: -659130706423550620
+    second: boss_scrap_king_sheet_122
+  - first:
+      213: 4883972858031879019
+    second: boss_scrap_king_sheet_123
+  - first:
+      213: -8225733615480887501
+    second: boss_scrap_king_sheet_124
+  - first:
+      213: 685123084644481888
+    second: boss_scrap_king_sheet_125
+  - first:
+      213: -5408061669766858318
+    second: boss_scrap_king_sheet_126
+  - first:
+      213: -2917005654581108250
+    second: boss_scrap_king_sheet_127
+  - first:
+      213: -6495454505645714991
+    second: boss_scrap_king_sheet_128
+  - first:
+      213: 803548115816070737
+    second: boss_scrap_king_sheet_129
+  - first:
+      213: -5877867608726612794
+    second: boss_scrap_king_sheet_130
+  - first:
+      213: -260295833950941420
+    second: boss_scrap_king_sheet_131
+  - first:
+      213: 7063580274206242207
+    second: boss_scrap_king_sheet_132
+  - first:
+      213: -6003668758003048546
+    second: boss_scrap_king_sheet_133
+  - first:
+      213: -9042320753238932607
+    second: boss_scrap_king_sheet_134
+  - first:
+      213: 4183383751640609150
+    second: boss_scrap_king_sheet_135
+  - first:
+      213: 1646631718744649972
+    second: boss_scrap_king_sheet_136
+  - first:
+      213: 462539192898342796
+    second: boss_scrap_king_sheet_137
+  - first:
+      213: 254060194256075150
+    second: boss_scrap_king_sheet_138
+  - first:
+      213: 6683039788805324098
+    second: boss_scrap_king_sheet_139
+  - first:
+      213: 2746042980847631697
+    second: boss_scrap_king_sheet_140
+  - first:
+      213: -7620236050530024464
+    second: boss_scrap_king_sheet_141
+  - first:
+      213: -4169967071543440082
+    second: boss_scrap_king_sheet_142
+  - first:
+      213: 3448078741939106583
+    second: boss_scrap_king_sheet_143
+  - first:
+      213: 519073184723277639
+    second: boss_scrap_king_sheet_144
+  - first:
+      213: -7127740366271810552
+    second: boss_scrap_king_sheet_145
+  - first:
+      213: 1376123933117883760
+    second: boss_scrap_king_sheet_146
+  - first:
+      213: -6131329198731982562
+    second: boss_scrap_king_sheet_147
+  - first:
+      213: -2616670569164899878
+    second: boss_scrap_king_sheet_148
+  - first:
+      213: -8234461351155459965
+    second: boss_scrap_king_sheet_149
+  - first:
+      213: 6404156260724508131
+    second: boss_scrap_king_sheet_150
+  - first:
+      213: 4433783768268855053
+    second: boss_scrap_king_sheet_151
+  - first:
+      213: 6314525598731527921
+    second: boss_scrap_king_sheet_152
+  - first:
+      213: 7383059247591224857
+    second: boss_scrap_king_sheet_153
+  - first:
+      213: 7565050380388590064
+    second: boss_scrap_king_sheet_154
+  - first:
+      213: 3804456732413751155
+    second: boss_scrap_king_sheet_155
+  - first:
+      213: 8536587615710664461
+    second: boss_scrap_king_sheet_156
+  - first:
+      213: 2935550717190153972
+    second: boss_scrap_king_sheet_157
+  - first:
+      213: 4774996090066242495
+    second: boss_scrap_king_sheet_158
+  - first:
+      213: 9149078293896725972
+    second: boss_scrap_king_sheet_159
+  - first:
+      213: -7847010514601671664
+    second: boss_scrap_king_sheet_160
+  - first:
+      213: 4785832781129738466
+    second: boss_scrap_king_sheet_161
+  - first:
+      213: 5754742886276825847
+    second: boss_scrap_king_sheet_162
+  - first:
+      213: -6165921443664325413
+    second: boss_scrap_king_sheet_163
+  - first:
+      213: -2515271686628135349
+    second: boss_scrap_king_sheet_164
+  - first:
+      213: 7352135843460492203
+    second: boss_scrap_king_sheet_165
+  - first:
+      213: 2635711051282916685
+    second: boss_scrap_king_sheet_166
+  - first:
+      213: -427705684183328980
+    second: boss_scrap_king_sheet_167
+  - first:
+      213: -5676477066687203779
+    second: boss_scrap_king_sheet_168
+  - first:
+      213: 6780514698335578995
+    second: boss_scrap_king_sheet_169
+  - first:
+      213: 857428000913133728
+    second: boss_scrap_king_sheet_170
+  - first:
+      213: -2778534184174919565
+    second: boss_scrap_king_sheet_171
+  - first:
+      213: 299333141371689293
+    second: boss_scrap_king_sheet_172
+  - first:
+      213: 415110233959260481
+    second: boss_scrap_king_sheet_173
+  - first:
+      213: 64578588096164674
+    second: boss_scrap_king_sheet_174
+  - first:
+      213: -2156905125192790583
+    second: boss_scrap_king_sheet_175
+  - first:
+      213: -9043423053930200570
+    second: boss_scrap_king_sheet_176
+  - first:
+      213: -2879769101131050485
+    second: boss_scrap_king_sheet_177
+  - first:
+      213: -6955081542091320059
+    second: boss_scrap_king_sheet_178
+  - first:
+      213: 7128659869759569213
+    second: boss_scrap_king_sheet_179
+  - first:
+      213: 5217774732409225784
+    second: boss_scrap_king_sheet_180
+  - first:
+      213: -5119168057243298868
+    second: boss_scrap_king_sheet_181
+  - first:
+      213: 3042739135167254656
+    second: boss_scrap_king_sheet_182
+  - first:
+      213: -8920195670014917601
+    second: boss_scrap_king_sheet_183
+  - first:
+      213: 3192612580783778518
+    second: boss_scrap_king_sheet_184
+  - first:
+      213: 1373529834474140910
+    second: boss_scrap_king_sheet_185
+  - first:
+      213: 5728625707719050174
+    second: boss_scrap_king_sheet_186
+  - first:
+      213: -3725767142867176566
+    second: boss_scrap_king_sheet_187
+  - first:
+      213: 7460652436159971280
+    second: boss_scrap_king_sheet_188
+  - first:
+      213: -5608092519789308577
+    second: boss_scrap_king_sheet_189
+  - first:
+      213: 3101097944196936343
+    second: boss_scrap_king_sheet_190
+  - first:
+      213: 6102142432207148183
+    second: boss_scrap_king_sheet_191
+  - first:
+      213: 7028423814762935761
+    second: boss_scrap_king_sheet_192
+  - first:
+      213: 1013945523213480341
+    second: boss_scrap_king_sheet_193
+  - first:
+      213: -2304950663701446723
+    second: boss_scrap_king_sheet_194
+  - first:
+      213: -5113125591188525601
+    second: boss_scrap_king_sheet_195
+  - first:
+      213: 3486188361888482975
+    second: boss_scrap_king_sheet_196
+  - first:
+      213: 863143474409894666
+    second: boss_scrap_king_sheet_197
+  - first:
+      213: 7276798143490702106
+    second: boss_scrap_king_sheet_198
+  - first:
+      213: -4151590519634687614
+    second: boss_scrap_king_sheet_199
+  - first:
+      213: 8439399052188225985
+    second: boss_scrap_king_sheet_200
+  - first:
+      213: -4777974018342594375
+    second: boss_scrap_king_sheet_201
+  - first:
+      213: 3823215817303834523
+    second: boss_scrap_king_sheet_202
+  - first:
+      213: 4209226618792901728
+    second: boss_scrap_king_sheet_203
+  - first:
+      213: 1046842527583398284
+    second: boss_scrap_king_sheet_204
+  - first:
+      213: 5167998529712386787
+    second: boss_scrap_king_sheet_205
+  - first:
+      213: 8068757552322486767
+    second: boss_scrap_king_sheet_206
+  - first:
+      213: -539073388773973735
+    second: boss_scrap_king_sheet_207
+  - first:
+      213: -2198479938397825517
+    second: boss_scrap_king_sheet_208
+  - first:
+      213: 4762936939770014117
+    second: boss_scrap_king_sheet_209
+  - first:
+      213: -4599390531702225246
+    second: boss_scrap_king_sheet_210
+  - first:
+      213: -9133013244570842524
+    second: boss_scrap_king_sheet_211
+  - first:
+      213: -8799840514262702241
+    second: boss_scrap_king_sheet_212
+  - first:
+      213: -1982473392871453295
+    second: boss_scrap_king_sheet_213
+  - first:
+      213: 611951551768367093
+    second: boss_scrap_king_sheet_214
+  - first:
+      213: -6312280921175219126
+    second: boss_scrap_king_sheet_215
+  - first:
+      213: 2022275754873200999
+    second: boss_scrap_king_sheet_216
+  - first:
+      213: 5826653082127100324
+    second: boss_scrap_king_sheet_217
+  - first:
+      213: -155783136145325751
+    second: boss_scrap_king_sheet_218
+  - first:
+      213: 6615300217773692223
+    second: boss_scrap_king_sheet_219
+  - first:
+      213: -5939412455457368041
+    second: boss_scrap_king_sheet_220
+  - first:
+      213: 6815521189780538805
+    second: boss_scrap_king_sheet_221
+  - first:
+      213: -6546890196515470988
+    second: boss_scrap_king_sheet_222
+  - first:
+      213: -4429005009883125064
+    second: boss_scrap_king_sheet_223
+  - first:
+      213: 1299635680658417090
+    second: boss_scrap_king_sheet_224
+  - first:
+      213: 6542773099182742575
+    second: boss_scrap_king_sheet_225
+  - first:
+      213: -4922188265332534728
+    second: boss_scrap_king_sheet_226
+  - first:
+      213: -6340645034197298962
+    second: boss_scrap_king_sheet_227
+  - first:
+      213: 6117622915228208230
+    second: boss_scrap_king_sheet_228
+  - first:
+      213: -1638937288569573862
+    second: boss_scrap_king_sheet_229
+  - first:
+      213: 1556217976340970115
+    second: boss_scrap_king_sheet_230
+  - first:
+      213: -9003902061529668266
+    second: boss_scrap_king_sheet_231
+  - first:
+      213: 4652694857850824772
+    second: boss_scrap_king_sheet_232
+  - first:
+      213: -6977794361177472983
+    second: boss_scrap_king_sheet_233
+  - first:
+      213: -8021077307946584105
+    second: boss_scrap_king_sheet_234
+  - first:
+      213: 4078473088854260144
+    second: boss_scrap_king_sheet_235
+  - first:
+      213: 1462878097209562246
+    second: boss_scrap_king_sheet_236
+  - first:
+      213: 3717965601368486453
+    second: boss_scrap_king_sheet_237
+  - first:
+      213: 562251481340316690
+    second: boss_scrap_king_sheet_238
+  - first:
+      213: 1639068053699561060
+    second: boss_scrap_king_sheet_239
+  - first:
+      213: 656206314438714116
+    second: boss_scrap_king_sheet_240
+  - first:
+      213: -3986190583181169442
+    second: boss_scrap_king_sheet_241
+  - first:
+      213: -2761453007775931691
+    second: boss_scrap_king_sheet_242
+  - first:
+      213: -1480147361650060989
+    second: boss_scrap_king_sheet_243
+  - first:
+      213: -6369709000095911042
+    second: boss_scrap_king_sheet_244
+  - first:
+      213: -5448537129999933985
+    second: boss_scrap_king_sheet_245
+  - first:
+      213: 3804204512782170073
+    second: boss_scrap_king_sheet_246
+  - first:
+      213: 4037003528211970739
+    second: boss_scrap_king_sheet_247
+  - first:
+      213: 4551825621433898605
+    second: boss_scrap_king_sheet_248
+  - first:
+      213: 3214345478776963034
+    second: boss_scrap_king_sheet_249
+  - first:
+      213: 7305305172572989126
+    second: boss_scrap_king_sheet_250
+  - first:
+      213: 7821361573058921754
+    second: boss_scrap_king_sheet_251
+  - first:
+      213: 7340728348202003299
+    second: boss_scrap_king_sheet_252
+  - first:
+      213: -4937912971510491542
+    second: boss_scrap_king_sheet_253
+  - first:
+      213: 8856380303391180599
+    second: boss_scrap_king_sheet_254
+  - first:
+      213: 1288237064943830033
+    second: boss_scrap_king_sheet_255
+  - first:
+      213: -5167516679483499327
+    second: boss_scrap_king_sheet_256
+  - first:
+      213: -7434089671424649229
+    second: boss_scrap_king_sheet_257
+  - first:
+      213: 6263889348054833986
+    second: boss_scrap_king_sheet_258
+  - first:
+      213: 178292040059244049
+    second: boss_scrap_king_sheet_259
+  - first:
+      213: 8101677443459226128
+    second: boss_scrap_king_sheet_260
+  - first:
+      213: 3468638554836574741
+    second: boss_scrap_king_sheet_261
+  - first:
+      213: 6747601967715048799
+    second: boss_scrap_king_sheet_262
+  - first:
+      213: -2113963315144404426
+    second: boss_scrap_king_sheet_263
+  - first:
+      213: -767200320348358408
+    second: boss_scrap_king_sheet_264
+  - first:
+      213: 3912728478797707898
+    second: boss_scrap_king_sheet_265
+  - first:
+      213: -670459421736465899
+    second: boss_scrap_king_sheet_266
+  - first:
+      213: 3840171012592402006
+    second: boss_scrap_king_sheet_267
+  - first:
+      213: -2004009372422215605
+    second: boss_scrap_king_sheet_268
+  - first:
+      213: -2570230367967408911
+    second: boss_scrap_king_sheet_269
+  - first:
+      213: -6579108478271098211
+    second: boss_scrap_king_sheet_270
+  - first:
+      213: -8826129775399383982
+    second: boss_scrap_king_sheet_271
+  - first:
+      213: -6251963497380211557
+    second: boss_scrap_king_sheet_272
+  - first:
+      213: -5743219757338787311
+    second: boss_scrap_king_sheet_273
+  - first:
+      213: 7063577634787026858
+    second: boss_scrap_king_sheet_274
+  - first:
+      213: -2757006369211420971
+    second: boss_scrap_king_sheet_275
+  - first:
+      213: 6849635643930931123
+    second: boss_scrap_king_sheet_276
+  - first:
+      213: -8206107078416259529
+    second: boss_scrap_king_sheet_277
+  - first:
+      213: 4035503696352446276
+    second: boss_scrap_king_sheet_278
+  - first:
+      213: 3918221449561034488
+    second: boss_scrap_king_sheet_279
+  - first:
+      213: -1303308502072776591
+    second: boss_scrap_king_sheet_280
+  - first:
+      213: 2205851176682196799
+    second: boss_scrap_king_sheet_281
+  - first:
+      213: 7145849360633727923
+    second: boss_scrap_king_sheet_282
+  - first:
+      213: -7158934800774115949
+    second: boss_scrap_king_sheet_283
+  - first:
+      213: 6218740730603073064
+    second: boss_scrap_king_sheet_284
+  - first:
+      213: 5951024021925687354
+    second: boss_scrap_king_sheet_285
+  - first:
+      213: -4497012749450560464
+    second: boss_scrap_king_sheet_286
+  - first:
+      213: -8312040729984079587
+    second: boss_scrap_king_sheet_287
+  - first:
+      213: -3973075373943963173
+    second: boss_scrap_king_sheet_288
+  - first:
+      213: -3259390050886601696
+    second: boss_scrap_king_sheet_289
+  - first:
+      213: 2370060612332073905
+    second: boss_scrap_king_sheet_290
+  - first:
+      213: -1314524121541149073
+    second: boss_scrap_king_sheet_291
+  - first:
+      213: -189608681802372925
+    second: boss_scrap_king_sheet_292
+  - first:
+      213: 6169376462610143638
+    second: boss_scrap_king_sheet_293
+  - first:
+      213: -4260383496300781416
+    second: boss_scrap_king_sheet_294
+  - first:
+      213: -2204465347658386718
+    second: boss_scrap_king_sheet_295
+  - first:
+      213: -4304886537908093658
+    second: boss_scrap_king_sheet_296
+  - first:
+      213: -842342320116646089
+    second: boss_scrap_king_sheet_297
+  - first:
+      213: -5829772196687116963
+    second: boss_scrap_king_sheet_298
+  - first:
+      213: -6208284366444981988
+    second: boss_scrap_king_sheet_299
+  - first:
+      213: 7249579867684991969
+    second: boss_scrap_king_sheet_300
+  - first:
+      213: 6487340765645394213
+    second: boss_scrap_king_sheet_301
+  - first:
+      213: -8271775545402479018
+    second: boss_scrap_king_sheet_302
+  - first:
+      213: 6164491003240797049
+    second: boss_scrap_king_sheet_303
+  - first:
+      213: -3632979346294282686
+    second: boss_scrap_king_sheet_304
+  - first:
+      213: -1450487144480401787
+    second: boss_scrap_king_sheet_305
+  - first:
+      213: -4729992692423761644
+    second: boss_scrap_king_sheet_306
+  - first:
+      213: -6302430019584207819
+    second: boss_scrap_king_sheet_307
+  - first:
+      213: 3228764408376790488
+    second: boss_scrap_king_sheet_308
+  - first:
+      213: 8314307185500497804
+    second: boss_scrap_king_sheet_309
+  - first:
+      213: -1649263482762344971
+    second: boss_scrap_king_sheet_310
+  - first:
+      213: -1809280463077221772
+    second: boss_scrap_king_sheet_311
+  - first:
+      213: 8618378851377553958
+    second: boss_scrap_king_sheet_312
+  - first:
+      213: -4099456299136315357
+    second: boss_scrap_king_sheet_313
+  - first:
+      213: 446659758987893862
+    second: boss_scrap_king_sheet_314
+  - first:
+      213: -7452050554079960988
+    second: boss_scrap_king_sheet_315
+  - first:
+      213: 8841167135883305150
+    second: boss_scrap_king_sheet_316
+  - first:
+      213: 8840550344910628884
+    second: boss_scrap_king_sheet_317
+  - first:
+      213: -3853369839753226251
+    second: boss_scrap_king_sheet_318
+  - first:
+      213: -2785815189876000568
+    second: boss_scrap_king_sheet_319
+  - first:
+      213: -8227716532104100563
+    second: boss_scrap_king_sheet_320
+  - first:
+      213: -7262304722674034990
+    second: boss_scrap_king_sheet_321
+  - first:
+      213: 6624583526564557208
+    second: boss_scrap_king_sheet_322
+  - first:
+      213: -3602243701342764057
+    second: boss_scrap_king_sheet_323
+  - first:
+      213: -1471729643019237847
+    second: boss_scrap_king_sheet_324
+  - first:
+      213: -1273696570088011317
+    second: boss_scrap_king_sheet_325
+  - first:
+      213: -7679778745778404637
+    second: boss_scrap_king_sheet_326
+  - first:
+      213: 7857679364070628124
+    second: boss_scrap_king_sheet_327
+  - first:
+      213: 8348746753614433834
+    second: boss_scrap_king_sheet_328
+  - first:
+      213: -6315186529950410079
+    second: boss_scrap_king_sheet_329
+  - first:
+      213: -3668941837966198305
+    second: boss_scrap_king_sheet_330
+  - first:
+      213: 4532172125891201183
+    second: boss_scrap_king_sheet_331
+  - first:
+      213: 3384186933952164475
+    second: boss_scrap_king_sheet_332
+  - first:
+      213: 4885975791619960036
+    second: boss_scrap_king_sheet_333
+  - first:
+      213: -3977917634519074515
+    second: boss_scrap_king_sheet_334
+  - first:
+      213: 639725591246894290
+    second: boss_scrap_king_sheet_335
+  - first:
+      213: 1362158176301018837
+    second: boss_scrap_king_sheet_336
+  - first:
+      213: -6191273663153747458
+    second: boss_scrap_king_sheet_337
+  - first:
+      213: 3903548393192815364
+    second: boss_scrap_king_sheet_338
+  - first:
+      213: 2921090886345225603
+    second: boss_scrap_king_sheet_339
+  - first:
+      213: 1059093433912285970
+    second: boss_scrap_king_sheet_340
+  - first:
+      213: -1488841235918939398
+    second: boss_scrap_king_sheet_341
+  - first:
+      213: -7504623383653877597
+    second: boss_scrap_king_sheet_342
+  - first:
+      213: 6209956312210129321
+    second: boss_scrap_king_sheet_343
+  - first:
+      213: -5575556458520664798
+    second: boss_scrap_king_sheet_344
+  - first:
+      213: -8608509267820181072
+    second: boss_scrap_king_sheet_345
+  - first:
+      213: -3724673824381926918
+    second: boss_scrap_king_sheet_346
+  - first:
+      213: 5292930314647872661
+    second: boss_scrap_king_sheet_347
+  - first:
+      213: -5945824798171009291
+    second: boss_scrap_king_sheet_348
+  - first:
+      213: 4968139110303148038
+    second: boss_scrap_king_sheet_349
+  - first:
+      213: -8127237634782111530
+    second: boss_scrap_king_sheet_350
+  - first:
+      213: -421291585100782760
+    second: boss_scrap_king_sheet_351
+  - first:
+      213: 2399838803696812733
+    second: boss_scrap_king_sheet_352
+  - first:
+      213: -2147517829538888758
+    second: boss_scrap_king_sheet_353
+  - first:
+      213: -7058560915860285789
+    second: boss_scrap_king_sheet_354
+  - first:
+      213: -1227532861740781441
+    second: boss_scrap_king_sheet_355
+  - first:
+      213: 3995478294312545791
+    second: boss_scrap_king_sheet_356
+  - first:
+      213: -2448590001983930801
+    second: boss_scrap_king_sheet_357
+  - first:
+      213: 4215896480610172893
+    second: boss_scrap_king_sheet_358
+  - first:
+      213: 6929384553826344625
+    second: boss_scrap_king_sheet_359
+  - first:
+      213: 2859775611421980608
+    second: boss_scrap_king_sheet_360
+  - first:
+      213: -7453774361529230829
+    second: boss_scrap_king_sheet_361
+  - first:
+      213: -7649212869341849916
+    second: boss_scrap_king_sheet_362
+  - first:
+      213: 6327750799378200633
+    second: boss_scrap_king_sheet_363
+  - first:
+      213: -678116700454865480
+    second: boss_scrap_king_sheet_364
+  - first:
+      213: 2423292269133086681
+    second: boss_scrap_king_sheet_365
+  - first:
+      213: 4172999316644134659
+    second: boss_scrap_king_sheet_366
+  - first:
+      213: -7549205040308852145
+    second: boss_scrap_king_sheet_367
+  - first:
+      213: -5013197539831628423
+    second: boss_scrap_king_sheet_368
+  - first:
+      213: 1219460743772601827
+    second: boss_scrap_king_sheet_369
+  - first:
+      213: -6130994169519064274
+    second: boss_scrap_king_sheet_370
+  - first:
+      213: 3378761746422190607
+    second: boss_scrap_king_sheet_371
+  - first:
+      213: -9101475046663813587
+    second: boss_scrap_king_sheet_372
+  - first:
+      213: 7862909034938806879
+    second: boss_scrap_king_sheet_373
+  - first:
+      213: 53559253231682476
+    second: boss_scrap_king_sheet_374
+  - first:
+      213: 1996360068955243986
+    second: boss_scrap_king_sheet_375
+  - first:
+      213: 3865011628067666558
+    second: boss_scrap_king_sheet_376
+  - first:
+      213: 8105601490386267351
+    second: boss_scrap_king_sheet_377
+  - first:
+      213: -7786376359838994639
+    second: boss_scrap_king_sheet_378
+  - first:
+      213: -1942230487793280812
+    second: boss_scrap_king_sheet_379
+  - first:
+      213: 4672797015232610433
+    second: boss_scrap_king_sheet_380
+  - first:
+      213: 1276168130779279086
+    second: boss_scrap_king_sheet_381
+  - first:
+      213: -2337002164635270366
+    second: boss_scrap_king_sheet_382
+  - first:
+      213: -7390756923143560411
+    second: boss_scrap_king_sheet_383
+  - first:
+      213: -2374954201545330055
+    second: boss_scrap_king_sheet_384
+  - first:
+      213: -8305580731210670893
+    second: boss_scrap_king_sheet_385
+  - first:
+      213: 8178828976271309301
+    second: boss_scrap_king_sheet_386
+  - first:
+      213: 8610140905689982830
+    second: boss_scrap_king_sheet_387
+  - first:
+      213: -1160667587284773918
+    second: boss_scrap_king_sheet_388
+  - first:
+      213: -5770661887823786551
+    second: boss_scrap_king_sheet_389
+  - first:
+      213: 7494113949706276811
+    second: boss_scrap_king_sheet_390
+  - first:
+      213: 2435735009477233158
+    second: boss_scrap_king_sheet_391
+  - first:
+      213: 2481187445331331560
+    second: boss_scrap_king_sheet_392
+  - first:
+      213: 8550146752303965838
+    second: boss_scrap_king_sheet_393
+  - first:
+      213: -8662976533938240643
+    second: boss_scrap_king_sheet_394
+  - first:
+      213: 3899082020693132273
+    second: boss_scrap_king_sheet_395
+  - first:
+      213: 818551672062374846
+    second: boss_scrap_king_sheet_396
+  - first:
+      213: 4575057964382049833
+    second: boss_scrap_king_sheet_397
+  - first:
+      213: -1954803720573968293
+    second: boss_scrap_king_sheet_398
+  - first:
+      213: -398137168462451771
+    second: boss_scrap_king_sheet_399
+  - first:
+      213: -5334676508509939922
+    second: boss_scrap_king_sheet_400
+  - first:
+      213: -6749950830739080172
+    second: boss_scrap_king_sheet_401
+  - first:
+      213: 5627733697024104514
+    second: boss_scrap_king_sheet_402
+  - first:
+      213: -2189439255089653297
+    second: boss_scrap_king_sheet_403
+  - first:
+      213: 3342648236884233985
+    second: boss_scrap_king_sheet_404
+  - first:
+      213: 6485342734600876035
+    second: boss_scrap_king_sheet_405
+  - first:
+      213: 7235256758854874111
+    second: boss_scrap_king_sheet_406
+  - first:
+      213: -4821565008470106326
+    second: boss_scrap_king_sheet_407
+  - first:
+      213: -1721305675051163199
+    second: boss_scrap_king_sheet_408
+  - first:
+      213: -1521159330159545553
+    second: boss_scrap_king_sheet_409
+  - first:
+      213: 3461376337967067206
+    second: boss_scrap_king_sheet_410
+  - first:
+      213: 1008117053766639180
+    second: boss_scrap_king_sheet_411
+  - first:
+      213: -147756397875930239
+    second: boss_scrap_king_sheet_412
+  - first:
+      213: -4435379108996960109
+    second: boss_scrap_king_sheet_413
+  - first:
+      213: 5264560755948306776
+    second: boss_scrap_king_sheet_414
+  - first:
+      213: -8876379504059044887
+    second: boss_scrap_king_sheet_415
+  - first:
+      213: -5366081135232634375
+    second: boss_scrap_king_sheet_416
+  - first:
+      213: -1534092167749906078
+    second: boss_scrap_king_sheet_417
+  - first:
+      213: -6975287447830581585
+    second: boss_scrap_king_sheet_418
+  - first:
+      213: 1584522892396375200
+    second: boss_scrap_king_sheet_419
+  - first:
+      213: 4662741932956836676
+    second: boss_scrap_king_sheet_420
+  - first:
+      213: -217417117571242920
+    second: boss_scrap_king_sheet_421
+  - first:
+      213: 3263569697214996636
+    second: boss_scrap_king_sheet_422
+  - first:
+      213: 613213737573430871
+    second: boss_scrap_king_sheet_423
+  - first:
+      213: -226141127507061284
+    second: boss_scrap_king_sheet_424
+  - first:
+      213: 1240219283967730578
+    second: boss_scrap_king_sheet_425
+  - first:
+      213: 20698966457926230
+    second: boss_scrap_king_sheet_426
+  - first:
+      213: -7062981552821956393
+    second: boss_scrap_king_sheet_427
+  - first:
+      213: 8766616017411514011
+    second: boss_scrap_king_sheet_428
+  - first:
+      213: 2154138102495893358
+    second: boss_scrap_king_sheet_429
+  - first:
+      213: 4506437882238727592
+    second: boss_scrap_king_sheet_430
+  - first:
+      213: -3658776357132272998
+    second: boss_scrap_king_sheet_431
+  - first:
+      213: 6170245902787808159
+    second: boss_scrap_king_sheet_432
+  - first:
+      213: -796785036407889497
+    second: boss_scrap_king_sheet_433
+  - first:
+      213: 7731807990876695973
+    second: boss_scrap_king_sheet_434
+  - first:
+      213: 6562646569561607483
+    second: boss_scrap_king_sheet_435
+  - first:
+      213: 6089618201592418971
+    second: boss_scrap_king_sheet_436
+  - first:
+      213: -5223326665603888077
+    second: boss_scrap_king_sheet_437
+  - first:
+      213: 4478549378435200976
+    second: boss_scrap_king_sheet_438
+  - first:
+      213: 5173010371045937177
+    second: boss_scrap_king_sheet_439
+  - first:
+      213: 8059167631213337994
+    second: boss_scrap_king_sheet_440
+  - first:
+      213: -1406259717870481052
+    second: boss_scrap_king_sheet_441
+  - first:
+      213: 3065425037127100501
+    second: boss_scrap_king_sheet_442
+  - first:
+      213: -7833034690660796704
+    second: boss_scrap_king_sheet_443
+  - first:
+      213: 6183447304996725182
+    second: boss_scrap_king_sheet_444
+  - first:
+      213: -1795995821991746266
+    second: boss_scrap_king_sheet_445
+  - first:
+      213: 8126584063300409390
+    second: boss_scrap_king_sheet_446
+  - first:
+      213: -7281317606848443676
+    second: boss_scrap_king_sheet_447
+  - first:
+      213: -3120710249215036017
+    second: boss_scrap_king_sheet_448
+  - first:
+      213: 7413482515790387177
+    second: boss_scrap_king_sheet_449
+  - first:
+      213: -1937607504533878457
+    second: boss_scrap_king_sheet_450
+  - first:
+      213: 2735861437427878443
+    second: boss_scrap_king_sheet_451
+  - first:
+      213: -6767252823574738983
+    second: boss_scrap_king_sheet_452
+  - first:
+      213: -5946693511735141574
+    second: boss_scrap_king_sheet_453
+  - first:
+      213: -1425626663825836238
+    second: boss_scrap_king_sheet_454
+  - first:
+      213: 7710311860005423946
+    second: boss_scrap_king_sheet_455
+  - first:
+      213: -6397450531281903774
+    second: boss_scrap_king_sheet_456
+  - first:
+      213: 529290900304006037
+    second: boss_scrap_king_sheet_457
+  - first:
+      213: -7465083201927281451
+    second: boss_scrap_king_sheet_458
+  - first:
+      213: 2695382282678851580
+    second: boss_scrap_king_sheet_459
+  - first:
+      213: -6914605979960929695
+    second: boss_scrap_king_sheet_460
+  - first:
+      213: -6455421427176133357
+    second: boss_scrap_king_sheet_461
+  - first:
+      213: -7385869514734095468
+    second: boss_scrap_king_sheet_462
+  - first:
+      213: 7041928232480658947
+    second: boss_scrap_king_sheet_463
+  - first:
+      213: -4895119006933915656
+    second: boss_scrap_king_sheet_464
+  - first:
+      213: 1748099265931148351
+    second: boss_scrap_king_sheet_465
+  - first:
+      213: -8992499743145626174
+    second: boss_scrap_king_sheet_466
+  - first:
+      213: 2324573481218853302
+    second: boss_scrap_king_sheet_467
+  - first:
+      213: -2775764227914771637
+    second: boss_scrap_king_sheet_468
+  - first:
+      213: 5480071277046677493
+    second: boss_scrap_king_sheet_469
+  - first:
+      213: -7723052721944791202
+    second: boss_scrap_king_sheet_470
+  - first:
+      213: -3036963138984318344
+    second: boss_scrap_king_sheet_471
+  - first:
+      213: 944183886480375403
+    second: boss_scrap_king_sheet_472
+  - first:
+      213: -7907846687724802316
+    second: boss_scrap_king_sheet_473
+  - first:
+      213: -3387617093416334831
+    second: boss_scrap_king_sheet_474
+  - first:
+      213: -6507514220919874089
+    second: boss_scrap_king_sheet_475
+  - first:
+      213: -8249810968199316525
+    second: boss_scrap_king_sheet_476
+  - first:
+      213: 3760235483497403141
+    second: boss_scrap_king_sheet_477
+  - first:
+      213: 3136409905181984403
+    second: boss_scrap_king_sheet_478
+  - first:
+      213: 1064508014788862848
+    second: boss_scrap_king_sheet_479
+  - first:
+      213: 9217149101123653171
+    second: boss_scrap_king_sheet_480
+  - first:
+      213: -908465071168770160
+    second: boss_scrap_king_sheet_481
+  - first:
+      213: -8747754172821167809
+    second: boss_scrap_king_sheet_482
+  - first:
+      213: 2713579851374744136
+    second: boss_scrap_king_sheet_483
+  - first:
+      213: -6677540188935631412
+    second: boss_scrap_king_sheet_484
+  - first:
+      213: -7866589864233446191
+    second: boss_scrap_king_sheet_485
+  - first:
+      213: -333887098072835522
+    second: boss_scrap_king_sheet_486
+  - first:
+      213: -83188025593064045
+    second: boss_scrap_king_sheet_487
+  - first:
+      213: 4114769412435008604
+    second: boss_scrap_king_sheet_488
+  - first:
+      213: 5866176779128056437
+    second: boss_scrap_king_sheet_489
+  - first:
+      213: -2884400559406013924
+    second: boss_scrap_king_sheet_490
+  - first:
+      213: -6635105189653483619
+    second: boss_scrap_king_sheet_491
+  - first:
+      213: -6711534448601889578
+    second: boss_scrap_king_sheet_492
+  - first:
+      213: 4429695058741156081
+    second: boss_scrap_king_sheet_493
+  - first:
+      213: -8302599233209213741
+    second: boss_scrap_king_sheet_494
+  - first:
+      213: 1881961016125317988
+    second: boss_scrap_king_sheet_495
+  - first:
+      213: 3087379882753531938
+    second: boss_scrap_king_sheet_496
+  - first:
+      213: 3164491673067624871
+    second: boss_scrap_king_sheet_497
+  - first:
+      213: -1030048501407855433
+    second: boss_scrap_king_sheet_498
+  - first:
+      213: -3389435315072063808
+    second: boss_scrap_king_sheet_499
+  - first:
+      213: -255917989112576047
+    second: boss_scrap_king_sheet_500
+  - first:
+      213: 5767409085578008858
+    second: boss_scrap_king_sheet_501
+  - first:
+      213: 2869564430572323375
+    second: boss_scrap_king_sheet_502
+  - first:
+      213: 8467702682036256567
+    second: boss_scrap_king_sheet_503
+  - first:
+      213: -386741317111210875
+    second: boss_scrap_king_sheet_0_0
+  - first:
+      213: -6758856168082347765
+    second: boss_scrap_king_sheet_0_1
+  - first:
+      213: -5968261625842283592
+    second: boss_scrap_king_sheet_0_2
+  - first:
+      213: -4169718085319066263
+    second: boss_scrap_king_sheet_0_3
+  - first:
+      213: 8216183092423228638
+    second: boss_scrap_king_sheet_0_4
+  - first:
+      213: 3238107496486405978
+    second: boss_scrap_king_sheet_0_5
+  - first:
+      213: 4281521034913451489
+    second: boss_scrap_king_sheet_0_6
+  - first:
+      213: -3631996481158253739
+    second: boss_scrap_king_sheet_0_7
+  - first:
+      213: 1505286387426448279
+    second: boss_scrap_king_sheet_0_8
+  - first:
+      213: -4632871856383124473
+    second: boss_scrap_king_sheet_0_9
+  - first:
+      213: 8034936541470677014
+    second: boss_scrap_king_sheet_0_10
+  - first:
+      213: -650477709895738859
+    second: boss_scrap_king_sheet_0_11
+  - first:
+      213: -6613439177347377765
+    second: boss_scrap_king_sheet_0_12
+  - first:
+      213: 5552862453955353072
+    second: boss_scrap_king_sheet_0_13
+  - first:
+      213: 8655702524755153004
+    second: boss_scrap_king_sheet_0_14
+  - first:
+      213: -668083720658959458
+    second: boss_scrap_king_sheet_0_15
+  - first:
+      213: -2547385647554961848
+    second: boss_scrap_king_sheet_0_16
+  - first:
+      213: -5143496816515506413
+    second: boss_scrap_king_sheet_0_17
+  - first:
+      213: 7402135571863606981
+    second: boss_scrap_king_sheet_0_18
+  - first:
+      213: 7678891298253376265
+    second: boss_scrap_king_sheet_0_19
+  - first:
+      213: 2089133823859549112
+    second: boss_scrap_king_sheet_0_20
+  - first:
+      213: 4607734268440742964
+    second: boss_scrap_king_sheet_1_0
+  - first:
+      213: 4793962744154919000
+    second: boss_scrap_king_sheet_1_1
+  - first:
+      213: 9076744072930408996
+    second: boss_scrap_king_sheet_1_2
+  - first:
+      213: -4367519538185261918
+    second: boss_scrap_king_sheet_1_3
+  - first:
+      213: 8628696270896656328
+    second: boss_scrap_king_sheet_1_4
+  - first:
+      213: -2176448021060482403
+    second: boss_scrap_king_sheet_1_5
+  - first:
+      213: 733289610070032398
+    second: boss_scrap_king_sheet_1_6
+  - first:
+      213: 4366021367804532839
+    second: boss_scrap_king_sheet_1_7
+  - first:
+      213: -8831711363341300590
+    second: boss_scrap_king_sheet_1_8
+  - first:
+      213: -5056159506794905903
+    second: boss_scrap_king_sheet_1_9
+  - first:
+      213: 3545272200693664882
+    second: boss_scrap_king_sheet_1_10
+  - first:
+      213: -3926041263246802925
+    second: boss_scrap_king_sheet_1_11
+  - first:
+      213: -6987938900311362425
+    second: boss_scrap_king_sheet_1_12
+  - first:
+      213: -9058518574781041381
+    second: boss_scrap_king_sheet_1_13
+  - first:
+      213: -8413377313175976349
+    second: boss_scrap_king_sheet_1_14
+  - first:
+      213: 4803321622505449010
+    second: boss_scrap_king_sheet_1_15
+  - first:
+      213: -4522584574958196753
+    second: boss_scrap_king_sheet_1_16
+  - first:
+      213: -47755642023897530
+    second: boss_scrap_king_sheet_1_17
+  - first:
+      213: 9036056607539761565
+    second: boss_scrap_king_sheet_1_18
+  - first:
+      213: -7729192594067245395
+    second: boss_scrap_king_sheet_1_19
+  - first:
+      213: -5458965495600171106
+    second: boss_scrap_king_sheet_1_20
+  - first:
+      213: -2006199603897172330
+    second: boss_scrap_king_sheet_2_0
+  - first:
+      213: 6612181355460420809
+    second: boss_scrap_king_sheet_2_1
+  - first:
+      213: -6505401577900693788
+    second: boss_scrap_king_sheet_2_2
+  - first:
+      213: -4741063187515995562
+    second: boss_scrap_king_sheet_2_3
+  - first:
+      213: 8308716845422328620
+    second: boss_scrap_king_sheet_2_4
+  - first:
+      213: 5191422608328498332
+    second: boss_scrap_king_sheet_2_5
+  - first:
+      213: -5088413315409809691
+    second: boss_scrap_king_sheet_2_6
+  - first:
+      213: -8554270138169461519
+    second: boss_scrap_king_sheet_2_7
+  - first:
+      213: 4151415995646504658
+    second: boss_scrap_king_sheet_2_8
+  - first:
+      213: -8200733105725981756
+    second: boss_scrap_king_sheet_2_9
+  - first:
+      213: -1672137390821943499
+    second: boss_scrap_king_sheet_2_10
+  - first:
+      213: -3472546502928843585
+    second: boss_scrap_king_sheet_2_11
+  - first:
+      213: 244367483168461724
+    second: boss_scrap_king_sheet_2_12
+  - first:
+      213: 5984028986742900863
+    second: boss_scrap_king_sheet_2_13
+  - first:
+      213: 8729426525536359756
+    second: boss_scrap_king_sheet_2_14
+  - first:
+      213: 8107565785140892264
+    second: boss_scrap_king_sheet_2_15
+  - first:
+      213: 8467549854581465166
+    second: boss_scrap_king_sheet_2_16
+  - first:
+      213: -3335953603495838413
+    second: boss_scrap_king_sheet_2_17
+  - first:
+      213: -995696886407931859
+    second: boss_scrap_king_sheet_2_18
+  - first:
+      213: -7630951319979631906
+    second: boss_scrap_king_sheet_2_19
+  - first:
+      213: 2514919011290134932
+    second: boss_scrap_king_sheet_2_20
+  - first:
+      213: 307739851250170709
+    second: boss_scrap_king_sheet_3_0
+  - first:
+      213: 8324429756986779943
+    second: boss_scrap_king_sheet_3_1
+  - first:
+      213: -6764222959792581526
+    second: boss_scrap_king_sheet_3_2
+  - first:
+      213: 3091081960710676608
+    second: boss_scrap_king_sheet_3_3
+  - first:
+      213: 3811826419689584802
+    second: boss_scrap_king_sheet_3_4
+  - first:
+      213: 1370001392993791971
+    second: boss_scrap_king_sheet_3_5
+  - first:
+      213: -463774858759244280
+    second: boss_scrap_king_sheet_3_6
+  - first:
+      213: 8468026459191548964
+    second: boss_scrap_king_sheet_3_7
+  - first:
+      213: -2249928299175969441
+    second: boss_scrap_king_sheet_3_8
+  - first:
+      213: 4012992722467935191
+    second: boss_scrap_king_sheet_3_9
+  - first:
+      213: 5493885175406970950
+    second: boss_scrap_king_sheet_3_10
+  - first:
+      213: 3518108398574797979
+    second: boss_scrap_king_sheet_3_11
+  - first:
+      213: 393673258446510359
+    second: boss_scrap_king_sheet_3_12
+  - first:
+      213: -1209744095220098264
+    second: boss_scrap_king_sheet_3_13
+  - first:
+      213: 4589997740876985072
+    second: boss_scrap_king_sheet_3_14
+  - first:
+      213: 8677025269570258265
+    second: boss_scrap_king_sheet_3_15
+  - first:
+      213: -6177801633592278834
+    second: boss_scrap_king_sheet_3_16
+  - first:
+      213: 978460914238346912
+    second: boss_scrap_king_sheet_3_17
+  - first:
+      213: 875889314712829654
+    second: boss_scrap_king_sheet_3_18
+  - first:
+      213: 2842798370246666054
+    second: boss_scrap_king_sheet_3_19
+  - first:
+      213: 7649819586589447028
+    second: boss_scrap_king_sheet_3_20
+  - first:
+      213: 4747184697982045881
+    second: boss_scrap_king_sheet_4_0
+  - first:
+      213: 8700959208350802915
+    second: boss_scrap_king_sheet_4_1
+  - first:
+      213: 1988532957561322570
+    second: boss_scrap_king_sheet_4_2
+  - first:
+      213: -8376664209585853213
+    second: boss_scrap_king_sheet_4_3
+  - first:
+      213: 5967455875163092550
+    second: boss_scrap_king_sheet_4_4
+  - first:
+      213: 3842208237633936915
+    second: boss_scrap_king_sheet_4_5
+  - first:
+      213: 2918981257101946545
+    second: boss_scrap_king_sheet_4_6
+  - first:
+      213: -1690148289512848704
+    second: boss_scrap_king_sheet_4_7
+  - first:
+      213: 7103119774925282624
+    second: boss_scrap_king_sheet_4_8
+  - first:
+      213: -5522995769877306378
+    second: boss_scrap_king_sheet_4_9
+  - first:
+      213: 4740054573414320748
+    second: boss_scrap_king_sheet_4_10
+  - first:
+      213: 2837684727911813317
+    second: boss_scrap_king_sheet_4_11
+  - first:
+      213: -376863218710971901
+    second: boss_scrap_king_sheet_4_12
+  - first:
+      213: -5589823356082401187
+    second: boss_scrap_king_sheet_4_13
+  - first:
+      213: -7651568111880071735
+    second: boss_scrap_king_sheet_4_14
+  - first:
+      213: 5310998025866825600
+    second: boss_scrap_king_sheet_4_15
+  - first:
+      213: -6855793254617708952
+    second: boss_scrap_king_sheet_4_16
+  - first:
+      213: -1502590409099112531
+    second: boss_scrap_king_sheet_4_17
+  - first:
+      213: 6342531257374858564
+    second: boss_scrap_king_sheet_4_18
+  - first:
+      213: 5866869341001520798
+    second: boss_scrap_king_sheet_4_19
+  - first:
+      213: -1952101036782784371
+    second: boss_scrap_king_sheet_4_20
+  - first:
+      213: 887765639909832779
+    second: boss_scrap_king_sheet_5_0
+  - first:
+      213: -1707790208463430158
+    second: boss_scrap_king_sheet_5_1
+  - first:
+      213: 5336620369046560042
+    second: boss_scrap_king_sheet_5_2
+  - first:
+      213: -7135773725087575814
+    second: boss_scrap_king_sheet_5_3
+  - first:
+      213: 8688114260632366515
+    second: boss_scrap_king_sheet_5_4
+  - first:
+      213: 4256019083156048462
+    second: boss_scrap_king_sheet_5_5
+  - first:
+      213: 5980020640732360448
+    second: boss_scrap_king_sheet_5_6
+  - first:
+      213: 4747243442636199361
+    second: boss_scrap_king_sheet_5_7
+  - first:
+      213: 249124386623253433
+    second: boss_scrap_king_sheet_5_8
+  - first:
+      213: 5771228504235961481
+    second: boss_scrap_king_sheet_5_9
+  - first:
+      213: 50708202380635830
+    second: boss_scrap_king_sheet_5_10
+  - first:
+      213: -6468536324361568507
+    second: boss_scrap_king_sheet_5_11
+  - first:
+      213: -2915033304609081458
+    second: boss_scrap_king_sheet_5_12
+  - first:
+      213: -3220295592146285335
+    second: boss_scrap_king_sheet_5_13
+  - first:
+      213: -6694658893282376375
+    second: boss_scrap_king_sheet_5_14
+  - first:
+      213: 5961819525644127420
+    second: boss_scrap_king_sheet_5_15
+  - first:
+      213: 842286427524643438
+    second: boss_scrap_king_sheet_5_16
+  - first:
+      213: 4852007640269599133
+    second: boss_scrap_king_sheet_5_17
+  - first:
+      213: -8902296238658910594
+    second: boss_scrap_king_sheet_5_18
+  - first:
+      213: -6560213133216631662
+    second: boss_scrap_king_sheet_5_19
+  - first:
+      213: 5537478301843291457
+    second: boss_scrap_king_sheet_5_20
+  - first:
+      213: -1006508249604490163
+    second: boss_scrap_king_sheet_6_0
+  - first:
+      213: -7064900610471638037
+    second: boss_scrap_king_sheet_6_1
+  - first:
+      213: 7478157418028067852
+    second: boss_scrap_king_sheet_6_2
+  - first:
+      213: -4542466939256597605
+    second: boss_scrap_king_sheet_6_3
+  - first:
+      213: 2869044206188435992
+    second: boss_scrap_king_sheet_6_4
+  - first:
+      213: 8144225446535941017
+    second: boss_scrap_king_sheet_6_5
+  - first:
+      213: 6761533183307499846
+    second: boss_scrap_king_sheet_6_6
+  - first:
+      213: 3394765601571185084
+    second: boss_scrap_king_sheet_6_7
+  - first:
+      213: -6836984405860935420
+    second: boss_scrap_king_sheet_6_8
+  - first:
+      213: -4856169825763630495
+    second: boss_scrap_king_sheet_6_9
+  - first:
+      213: 5210809095429864592
+    second: boss_scrap_king_sheet_6_10
+  - first:
+      213: -3349181912127383145
+    second: boss_scrap_king_sheet_6_11
+  - first:
+      213: -5480320194739934189
+    second: boss_scrap_king_sheet_6_12
+  - first:
+      213: -2768812300426751287
+    second: boss_scrap_king_sheet_6_13
+  - first:
+      213: -43806919416872127
+    second: boss_scrap_king_sheet_6_14
+  - first:
+      213: -5979482199272605693
+    second: boss_scrap_king_sheet_6_15
+  - first:
+      213: -8550546712516732191
+    second: boss_scrap_king_sheet_6_16
+  - first:
+      213: 7474300475989078732
+    second: boss_scrap_king_sheet_6_17
+  - first:
+      213: 4548583297478604284
+    second: boss_scrap_king_sheet_6_18
+  - first:
+      213: -8732850736309820202
+    second: boss_scrap_king_sheet_6_19
+  - first:
+      213: -2420934950570316760
+    second: boss_scrap_king_sheet_6_20
+  - first:
+      213: -544686923574027774
+    second: boss_scrap_king_sheet_7_0
+  - first:
+      213: 3736338140294359760
+    second: boss_scrap_king_sheet_7_1
+  - first:
+      213: 8810566351549708112
+    second: boss_scrap_king_sheet_7_2
+  - first:
+      213: -2130871491476708486
+    second: boss_scrap_king_sheet_7_3
+  - first:
+      213: -8667890215128925295
+    second: boss_scrap_king_sheet_7_4
+  - first:
+      213: -1750654063221718906
+    second: boss_scrap_king_sheet_7_5
+  - first:
+      213: 869229710131240957
+    second: boss_scrap_king_sheet_7_6
+  - first:
+      213: 3498657905501123316
+    second: boss_scrap_king_sheet_7_7
+  - first:
+      213: -6350148287500654291
+    second: boss_scrap_king_sheet_7_8
+  - first:
+      213: 5715442090636984247
+    second: boss_scrap_king_sheet_7_9
+  - first:
+      213: -1503595018733518356
+    second: boss_scrap_king_sheet_7_10
+  - first:
+      213: -851667004355384369
+    second: boss_scrap_king_sheet_7_11
+  - first:
+      213: 3908004882291723021
+    second: boss_scrap_king_sheet_7_12
+  - first:
+      213: 5449471642342829063
+    second: boss_scrap_king_sheet_7_13
+  - first:
+      213: -929872032860821225
+    second: boss_scrap_king_sheet_7_14
+  - first:
+      213: -4294416790401058167
+    second: boss_scrap_king_sheet_7_15
+  - first:
+      213: -3520010475917029049
+    second: boss_scrap_king_sheet_7_16
+  - first:
+      213: 5600252749929174966
+    second: boss_scrap_king_sheet_7_17
+  - first:
+      213: -1204064638043280962
+    second: boss_scrap_king_sheet_7_18
+  - first:
+      213: 4010361232788994094
+    second: boss_scrap_king_sheet_7_19
+  - first:
+      213: 4415218793242850589
+    second: boss_scrap_king_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58c9e9532d402aaf0800000000000000
+      internalID: -386741317111210875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b096e750028b332a0800000000000000
+      internalID: -6758856168082347765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8bb43192ca97c2da0800000000000000
+      internalID: -5968261625842283592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96df8075e7f2226c0800000000000000
+      internalID: -4169718085319066263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edcf479cdfeb50270800000000000000
+      internalID: 8216183092423228638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a570a90ac9110fc20800000000000000
+      internalID: 3238107496486405978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ed016062b40b6b30800000000000000
+      internalID: 4281521034913451489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 553f71b817e889dc0800000000000000
+      internalID: -3631996481158253739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 793d8c77ef9d3e410800000000000000
+      internalID: 1505286387426448279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c1166b79bb4bfb0800000000000000
+      internalID: -4632871856383124473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6185a2ba634d18f60800000000000000
+      internalID: 8034936541470677014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51ada5f18f909f6f0800000000000000
+      internalID: -650477709895738859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b95de829b185834a0800000000000000
+      internalID: -6613439177347377765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f9dc964bfabf0d40800000000000000
+      internalID: 5552862453955353072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c609b7d169b3f1870800000000000000
+      internalID: 8655702524755153004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e93c6ed456d7ab6f0800000000000000
+      internalID: -668083720658959458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84ede8b004ed5acd0800000000000000
+      internalID: -2547385647554961848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f9d3495e0ae98b0800000000000000
+      internalID: -5143496816515506413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c6963c951ba9b660800000000000000
+      internalID: 7402135571863606981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90b0b3583f6e09a60800000000000000
+      internalID: 7678891298253376265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 560
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b3e663e4281efc10800000000000000
+      internalID: 2089133823859549112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43c0ec187e5f1ff30800000000000000
+      internalID: 4607734268440742964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8509fcf57b3978240800000000000000
+      internalID: 4793962744154919000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42a3628c4a217fd70800000000000000
+      internalID: 9076744072930408996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aca3e0ce147363c0800000000000000
+      internalID: -4367519538185261918
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf6885aa894fb770800000000000000
+      internalID: 8628696270896656328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9a86906e04bbc1e0800000000000000
+      internalID: -2176448021060482403
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0085b5e30b2d2a00800000000000000
+      internalID: 733289610070032398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76811c54d49379c30800000000000000
+      internalID: 4366021367804532839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29cc245be457f6580800000000000000
+      internalID: -8831711363341300590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1de76cd97b9e4d9b0800000000000000
+      internalID: -5056159506794905903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27cc96a6846533130800000000000000
+      internalID: 3545272200693664882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31006aaa546e389c0800000000000000
+      internalID: -3926041263246802925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784bec6089ad50f90800000000000000
+      internalID: -6987938900311362425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b15f5eea95da94280800000000000000
+      internalID: -9058518574781041381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 366c0ded8edad3b80800000000000000
+      internalID: -8413377313175976349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 236e36b0193d8a240800000000000000
+      internalID: 4803321622505449010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7a4fe6a4d8c31c0800000000000000
+      internalID: -4522584574958196753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64615212f76565ff0800000000000000
+      internalID: -47755642023897530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d919ab60c95866d70800000000000000
+      internalID: 9036056607539761565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da6ba0669446cb490800000000000000
+      internalID: -7729192594067245395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 480
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9733a9fdcbdd34b0800000000000000
+      internalID: -5458965495600171106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69efd2de61c8824e0800000000000000
+      internalID: -2006199603897172330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c4eda2f8ef23cb50800000000000000
+      internalID: 6612181355460420809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e6a6f36bbb28b5a0800000000000000
+      internalID: -6505401577900693788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65a8d62762c543eb0800000000000000
+      internalID: -4741063187515995562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2bb3be03fd7e4370800000000000000
+      internalID: 8308716845422328620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9c1a506b53ab0840800000000000000
+      internalID: 5191422608328498332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ee61a89c035269b0800000000000000
+      internalID: -5088413315409809691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f47dadb1a0294980800000000000000
+      internalID: -8554270138169461519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2de62675adacc9930800000000000000
+      internalID: 4151415995646504658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cbba6f80b4213e80800000000000000
+      internalID: -8200733105725981756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 537d86407ef5bc8e0800000000000000
+      internalID: -1672137390821943499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcb6ea9a590fcfc0800000000000000
+      internalID: -3472546502928843585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9399e46eea246300800000000000000
+      internalID: 244367483168461724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f788370a8aa8b0350800000000000000
+      internalID: 5984028986742900863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c45977bac27252970800000000000000
+      internalID: 8729426525536359756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8621f68302cd38070800000000000000
+      internalID: 8107565785140892264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e402d30dab7c28570800000000000000
+      internalID: 8467549854581465166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33d327c4fdf44b1d0800000000000000
+      internalID: -3335953603495838413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d2851bd05f29e22f0800000000000000
+      internalID: -995696886407931859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edad05a743a691690800000000000000
+      internalID: -7630951319979631906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 400
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49933d22489c6e220800000000000000
+      internalID: 2514919011290134932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b7ff4a3cf454400800000000000000
+      internalID: 307739851250170709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72963ee52c0568370800000000000000
+      internalID: 8324429756986779943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6495047e07a022a0800000000000000
+      internalID: -6764222959792581526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08027cf7aaab5ea20800000000000000
+      internalID: 3091081960710676608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a8fb0bcee356e430800000000000000
+      internalID: 3811826419689584802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ef6f232209330310800000000000000
+      internalID: 1370001392993791971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 806f5ef19375099f0800000000000000
+      internalID: -463774858759244280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42c98b8f239748570800000000000000
+      internalID: 8468026459191548964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5d748de126a6c0e0800000000000000
+      internalID: -2249928299175969441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d3ddec8e9301b730800000000000000
+      internalID: 4012992722467935191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 648caec85733e3c40800000000000000
+      internalID: 5493885175406970950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b948e52e2f4d2d030800000000000000
+      internalID: 3518108398574797979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71956472ebb967500800000000000000
+      internalID: 393673258446510359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82b9747a720263fe0800000000000000
+      internalID: -1209744095220098264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f271d060a2f2bf30800000000000000
+      internalID: 4589997740876985072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 955c2d3828cfa6870800000000000000
+      internalID: 8677025269570258265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec087e8452a044aa0800000000000000
+      internalID: -6177801633592278834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a6d7c37401349d00800000000000000
+      internalID: 978460914238346912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6deb40ae0b8c72c00800000000000000
+      internalID: 875889314712829654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 647ac925e06a37720800000000000000
+      internalID: 2842798370246666054
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4735d7e226e992a60800000000000000
+      internalID: 7649819586589447028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bec366c45361e140800000000000000
+      internalID: 4747184697982045881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e3e9e2ec4400c870800000000000000
+      internalID: 8700959208350802915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4c799f6030b89b10800000000000000
+      internalID: 1988532957561322570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ec28e8684c10cb80800000000000000
+      internalID: -8376664209585853213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 646f9e36089a0d250800000000000000
+      internalID: 5967455875163092550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31e10450904425530800000000000000
+      internalID: 3842208237633936915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bea597ecfd428820800000000000000
+      internalID: 2918981257101946545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c24ad1e5136b88e0800000000000000
+      internalID: -1690148289512848704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04d59752dc9539260800000000000000
+      internalID: 7103119774925282624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f36a700c906a53b0800000000000000
+      internalID: -5522995769877306378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6a8358458e08c140800000000000000
+      internalID: 4740054573414320748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c01cbfa93b716720800000000000000
+      internalID: 2837684727911813317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a72d736ec15caf0800000000000000
+      internalID: -376863218710971901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d50d6871645fc62b0800000000000000
+      internalID: -5589823356082401187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c59eac875b20d590800000000000000
+      internalID: -7651568111880071735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08fc79ec09474b940800000000000000
+      internalID: 5310998025866825600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8660ef4cb545bd0a0800000000000000
+      internalID: -6855793254617708952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daf0db6ebf9b52be0800000000000000
+      internalID: -1502590409099112531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44dd3ac0392350850800000000000000
+      internalID: 6342531257374858564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e969606e49e4b6150800000000000000
+      internalID: 5866869341001520798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 240
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d80f3e0237eb8e4e0800000000000000
+      internalID: -1952101036782784371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b487f9a552af15c00800000000000000
+      internalID: 887765639909832779
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fd95a98ad5bc48e0800000000000000
+      internalID: -1707790208463430158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d522673fb7f0a40800000000000000
+      internalID: 5336620369046560042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af0d69e9a93a8fc90800000000000000
+      internalID: -7135773725087575814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd6ff073e1629870800000000000000
+      internalID: 8688114260632366515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4accc88eca601b30800000000000000
+      internalID: 4256019083156048462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00f2b58d61d4df250800000000000000
+      internalID: 5980020640732360448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c512a452c891e140800000000000000
+      internalID: 4747243442636199361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bbe0994f41157300800000000000000
+      internalID: 249124386623253433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98ce7905fb5871050800000000000000
+      internalID: 5771228504235961481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bea81667d624b000800000000000000
+      internalID: 50708202380635830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50fb7b91c742b36a0800000000000000
+      internalID: -6468536324361568507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e87b75a67a8bb87d0800000000000000
+      internalID: -2915033304609081458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ec4d5688363f43d0800000000000000
+      internalID: -3220295592146285335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9458e75d43bc713a0800000000000000
+      internalID: -6694658893282376375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbc81018543acb250800000000000000
+      internalID: 5961819525644127420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6a3dbf0b0760bb00800000000000000
+      internalID: 842286427524643438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9130c5ed3bc55340800000000000000
+      internalID: 4852007640269599133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e768071ccb0b47480800000000000000
+      internalID: -8902296238658910594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29435cfa9e075f4a0800000000000000
+      internalID: -6560213133216631662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 160
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14d7dcc3d2319dc40800000000000000
+      internalID: 5537478301843291457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4cf2d6641a2802f0800000000000000
+      internalID: -1006508249604490163
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bebc563835e64fd90800000000000000
+      internalID: -7064900610471638037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0ce30cfc80c7c760800000000000000
+      internalID: 7478157418028067852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9397a1c26ae5f0c0800000000000000
+      internalID: -4542466939256597605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81a11c23184e0d720800000000000000
+      internalID: 2869044206188435992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99bc877c4e9160170800000000000000
+      internalID: 8144225446535941017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6494f082b9ac5dd50800000000000000
+      internalID: 6761533183307499846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb1ad511451ac1f20800000000000000
+      internalID: 3394765601571185084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40916c128e62e11a0800000000000000
+      internalID: -6836984405860935420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1626366c54b6b9cb0800000000000000
+      internalID: -4856169825763630495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09cb875a343805840800000000000000
+      internalID: 5210809095429864592
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 799db7fabc05581d0800000000000000
+      internalID: -3349181912127383145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31c6021a1ddf1f3b0800000000000000
+      internalID: -5480320194739934189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c2d45fe1e33399d0800000000000000
+      internalID: -2768812300426751287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1430471c6dd546ff0800000000000000
+      internalID: -43806919416872127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 308b593de9c940da0800000000000000
+      internalID: -5979482199272605693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ea5e05511b565980800000000000000
+      internalID: -8550546712516732191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc2bcdfaeac0ab760800000000000000
+      internalID: 7474300475989078732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf5bc7dd860df1f30800000000000000
+      internalID: 4548583297478604284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d4aeb1268eaec680800000000000000
+      internalID: -8732850736309820202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 80
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82cade63d7c176ed0800000000000000
+      internalID: -2420934950570316760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ad19ef022e078f0800000000000000
+      internalID: -544686923574027774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0da2dfc1eb32ad330800000000000000
+      internalID: 3736338140294359760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05731269a6b654a70800000000000000
+      internalID: 8810566351549708112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7326881baf9d62e0800000000000000
+      internalID: -2130871491476708486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19bf72716c775b780800000000000000
+      internalID: -8667890215128925295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6804315a76d64b7e0800000000000000
+      internalID: -1750654063221718906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dff9694e0df101c00800000000000000
+      internalID: 869229710131240957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f2b10014dabd8030800000000000000
+      internalID: 3498657905501123316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29e77ce6cdbfd7a0800000000000000
+      internalID: -6350148287500654291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bfbbbabc44515f40800000000000000
+      internalID: 5715442090636984247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce1875efb48222be0800000000000000
+      internalID: -1503595018733518356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcbe9723f554e24f0800000000000000
+      internalID: -851667004355384369
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b8d752cb50c3630800000000000000
+      internalID: 3908004882291723021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ca86f069960ab40800000000000000
+      internalID: 5449471642342829063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 719a2c2105e6813f0800000000000000
+      internalID: -929872032860821225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98afba29eaa2764c0800000000000000
+      internalID: -4294416790401058167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741df493f19662fc0800000000000000
+      internalID: -3520010475917029049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b7dee3643818bd40800000000000000
+      internalID: 5600252749929174966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb922d2579d4a4fe0800000000000000
+      internalID: -1204064638043280962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e28b26d1b4aa7a730800000000000000
+      internalID: 4010361232788994094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_scrap_king_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 64
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d157ed08912064d30800000000000000
+      internalID: 4415218793242850589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      boss_scrap_king_sheet_0: -3084495500961769118
+      boss_scrap_king_sheet_0_0: -386741317111210875
+      boss_scrap_king_sheet_0_1: -6758856168082347765
+      boss_scrap_king_sheet_0_10: 8034936541470677014
+      boss_scrap_king_sheet_0_11: -650477709895738859
+      boss_scrap_king_sheet_0_12: -6613439177347377765
+      boss_scrap_king_sheet_0_13: 5552862453955353072
+      boss_scrap_king_sheet_0_14: 8655702524755153004
+      boss_scrap_king_sheet_0_15: -668083720658959458
+      boss_scrap_king_sheet_0_16: -2547385647554961848
+      boss_scrap_king_sheet_0_17: -5143496816515506413
+      boss_scrap_king_sheet_0_18: 7402135571863606981
+      boss_scrap_king_sheet_0_19: 7678891298253376265
+      boss_scrap_king_sheet_0_2: -5968261625842283592
+      boss_scrap_king_sheet_0_20: 2089133823859549112
+      boss_scrap_king_sheet_0_3: -4169718085319066263
+      boss_scrap_king_sheet_0_4: 8216183092423228638
+      boss_scrap_king_sheet_0_5: 3238107496486405978
+      boss_scrap_king_sheet_0_6: 4281521034913451489
+      boss_scrap_king_sheet_0_7: -3631996481158253739
+      boss_scrap_king_sheet_0_8: 1505286387426448279
+      boss_scrap_king_sheet_0_9: -4632871856383124473
+      boss_scrap_king_sheet_1: 1203774964110241284
+      boss_scrap_king_sheet_10: 1330066999706676968
+      boss_scrap_king_sheet_100: 3027975952053999654
+      boss_scrap_king_sheet_101: -985952358873858651
+      boss_scrap_king_sheet_102: 7176718567088337187
+      boss_scrap_king_sheet_103: 3645859575672587062
+      boss_scrap_king_sheet_104: -2642780152658901507
+      boss_scrap_king_sheet_105: 1924980816342292914
+      boss_scrap_king_sheet_106: -4063183759424963646
+      boss_scrap_king_sheet_107: 377332337027887245
+      boss_scrap_king_sheet_108: 5871509014432049138
+      boss_scrap_king_sheet_109: -4161458930887269447
+      boss_scrap_king_sheet_11: 634356355777117715
+      boss_scrap_king_sheet_110: 7331514689967292186
+      boss_scrap_king_sheet_111: 2278964091248387465
+      boss_scrap_king_sheet_112: -4149282134435100281
+      boss_scrap_king_sheet_113: -3815481008302718068
+      boss_scrap_king_sheet_114: -1475300111945598027
+      boss_scrap_king_sheet_115: 161274246617259408
+      boss_scrap_king_sheet_116: 6815388991664874332
+      boss_scrap_king_sheet_117: 8232275248078241447
+      boss_scrap_king_sheet_118: -7603452878975027893
+      boss_scrap_king_sheet_119: 426824694718337179
+      boss_scrap_king_sheet_12: 2652780446394561859
+      boss_scrap_king_sheet_120: 4767604141838761361
+      boss_scrap_king_sheet_121: 8507837553239102737
+      boss_scrap_king_sheet_122: -659130706423550620
+      boss_scrap_king_sheet_123: 4883972858031879019
+      boss_scrap_king_sheet_124: -8225733615480887501
+      boss_scrap_king_sheet_125: 685123084644481888
+      boss_scrap_king_sheet_126: -5408061669766858318
+      boss_scrap_king_sheet_127: -2917005654581108250
+      boss_scrap_king_sheet_128: -6495454505645714991
+      boss_scrap_king_sheet_129: 803548115816070737
+      boss_scrap_king_sheet_13: 8987513093408515833
+      boss_scrap_king_sheet_130: -5877867608726612794
+      boss_scrap_king_sheet_131: -260295833950941420
+      boss_scrap_king_sheet_132: 7063580274206242207
+      boss_scrap_king_sheet_133: -6003668758003048546
+      boss_scrap_king_sheet_134: -9042320753238932607
+      boss_scrap_king_sheet_135: 4183383751640609150
+      boss_scrap_king_sheet_136: 1646631718744649972
+      boss_scrap_king_sheet_137: 462539192898342796
+      boss_scrap_king_sheet_138: 254060194256075150
+      boss_scrap_king_sheet_139: 6683039788805324098
+      boss_scrap_king_sheet_14: 984853422836301976
+      boss_scrap_king_sheet_140: 2746042980847631697
+      boss_scrap_king_sheet_141: -7620236050530024464
+      boss_scrap_king_sheet_142: -4169967071543440082
+      boss_scrap_king_sheet_143: 3448078741939106583
+      boss_scrap_king_sheet_144: 519073184723277639
+      boss_scrap_king_sheet_145: -7127740366271810552
+      boss_scrap_king_sheet_146: 1376123933117883760
+      boss_scrap_king_sheet_147: -6131329198731982562
+      boss_scrap_king_sheet_148: -2616670569164899878
+      boss_scrap_king_sheet_149: -8234461351155459965
+      boss_scrap_king_sheet_15: -4156915754572847513
+      boss_scrap_king_sheet_150: 6404156260724508131
+      boss_scrap_king_sheet_151: 4433783768268855053
+      boss_scrap_king_sheet_152: 6314525598731527921
+      boss_scrap_king_sheet_153: 7383059247591224857
+      boss_scrap_king_sheet_154: 7565050380388590064
+      boss_scrap_king_sheet_155: 3804456732413751155
+      boss_scrap_king_sheet_156: 8536587615710664461
+      boss_scrap_king_sheet_157: 2935550717190153972
+      boss_scrap_king_sheet_158: 4774996090066242495
+      boss_scrap_king_sheet_159: 9149078293896725972
+      boss_scrap_king_sheet_16: -3066986119363348137
+      boss_scrap_king_sheet_160: -7847010514601671664
+      boss_scrap_king_sheet_161: 4785832781129738466
+      boss_scrap_king_sheet_162: 5754742886276825847
+      boss_scrap_king_sheet_163: -6165921443664325413
+      boss_scrap_king_sheet_164: -2515271686628135349
+      boss_scrap_king_sheet_165: 7352135843460492203
+      boss_scrap_king_sheet_166: 2635711051282916685
+      boss_scrap_king_sheet_167: -427705684183328980
+      boss_scrap_king_sheet_168: -5676477066687203779
+      boss_scrap_king_sheet_169: 6780514698335578995
+      boss_scrap_king_sheet_17: 8235780217364817415
+      boss_scrap_king_sheet_170: 857428000913133728
+      boss_scrap_king_sheet_171: -2778534184174919565
+      boss_scrap_king_sheet_172: 299333141371689293
+      boss_scrap_king_sheet_173: 415110233959260481
+      boss_scrap_king_sheet_174: 64578588096164674
+      boss_scrap_king_sheet_175: -2156905125192790583
+      boss_scrap_king_sheet_176: -9043423053930200570
+      boss_scrap_king_sheet_177: -2879769101131050485
+      boss_scrap_king_sheet_178: -6955081542091320059
+      boss_scrap_king_sheet_179: 7128659869759569213
+      boss_scrap_king_sheet_18: -3738224473008057519
+      boss_scrap_king_sheet_180: 5217774732409225784
+      boss_scrap_king_sheet_181: -5119168057243298868
+      boss_scrap_king_sheet_182: 3042739135167254656
+      boss_scrap_king_sheet_183: -8920195670014917601
+      boss_scrap_king_sheet_184: 3192612580783778518
+      boss_scrap_king_sheet_185: 1373529834474140910
+      boss_scrap_king_sheet_186: 5728625707719050174
+      boss_scrap_king_sheet_187: -3725767142867176566
+      boss_scrap_king_sheet_188: 7460652436159971280
+      boss_scrap_king_sheet_189: -5608092519789308577
+      boss_scrap_king_sheet_19: 7625803210979041907
+      boss_scrap_king_sheet_190: 3101097944196936343
+      boss_scrap_king_sheet_191: 6102142432207148183
+      boss_scrap_king_sheet_192: 7028423814762935761
+      boss_scrap_king_sheet_193: 1013945523213480341
+      boss_scrap_king_sheet_194: -2304950663701446723
+      boss_scrap_king_sheet_195: -5113125591188525601
+      boss_scrap_king_sheet_196: 3486188361888482975
+      boss_scrap_king_sheet_197: 863143474409894666
+      boss_scrap_king_sheet_198: 7276798143490702106
+      boss_scrap_king_sheet_199: -4151590519634687614
+      boss_scrap_king_sheet_1_0: 4607734268440742964
+      boss_scrap_king_sheet_1_1: 4793962744154919000
+      boss_scrap_king_sheet_1_10: 3545272200693664882
+      boss_scrap_king_sheet_1_11: -3926041263246802925
+      boss_scrap_king_sheet_1_12: -6987938900311362425
+      boss_scrap_king_sheet_1_13: -9058518574781041381
+      boss_scrap_king_sheet_1_14: -8413377313175976349
+      boss_scrap_king_sheet_1_15: 4803321622505449010
+      boss_scrap_king_sheet_1_16: -4522584574958196753
+      boss_scrap_king_sheet_1_17: -47755642023897530
+      boss_scrap_king_sheet_1_18: 9036056607539761565
+      boss_scrap_king_sheet_1_19: -7729192594067245395
+      boss_scrap_king_sheet_1_2: 9076744072930408996
+      boss_scrap_king_sheet_1_20: -5458965495600171106
+      boss_scrap_king_sheet_1_3: -4367519538185261918
+      boss_scrap_king_sheet_1_4: 8628696270896656328
+      boss_scrap_king_sheet_1_5: -2176448021060482403
+      boss_scrap_king_sheet_1_6: 733289610070032398
+      boss_scrap_king_sheet_1_7: 4366021367804532839
+      boss_scrap_king_sheet_1_8: -8831711363341300590
+      boss_scrap_king_sheet_1_9: -5056159506794905903
+      boss_scrap_king_sheet_2: 3002444070038780058
+      boss_scrap_king_sheet_20: -7164650275125008862
+      boss_scrap_king_sheet_200: 8439399052188225985
+      boss_scrap_king_sheet_201: -4777974018342594375
+      boss_scrap_king_sheet_202: 3823215817303834523
+      boss_scrap_king_sheet_203: 4209226618792901728
+      boss_scrap_king_sheet_204: 1046842527583398284
+      boss_scrap_king_sheet_205: 5167998529712386787
+      boss_scrap_king_sheet_206: 8068757552322486767
+      boss_scrap_king_sheet_207: -539073388773973735
+      boss_scrap_king_sheet_208: -2198479938397825517
+      boss_scrap_king_sheet_209: 4762936939770014117
+      boss_scrap_king_sheet_21: -4735678648376252883
+      boss_scrap_king_sheet_210: -4599390531702225246
+      boss_scrap_king_sheet_211: -9133013244570842524
+      boss_scrap_king_sheet_212: -8799840514262702241
+      boss_scrap_king_sheet_213: -1982473392871453295
+      boss_scrap_king_sheet_214: 611951551768367093
+      boss_scrap_king_sheet_215: -6312280921175219126
+      boss_scrap_king_sheet_216: 2022275754873200999
+      boss_scrap_king_sheet_217: 5826653082127100324
+      boss_scrap_king_sheet_218: -155783136145325751
+      boss_scrap_king_sheet_219: 6615300217773692223
+      boss_scrap_king_sheet_22: 8791062726866162414
+      boss_scrap_king_sheet_220: -5939412455457368041
+      boss_scrap_king_sheet_221: 6815521189780538805
+      boss_scrap_king_sheet_222: -6546890196515470988
+      boss_scrap_king_sheet_223: -4429005009883125064
+      boss_scrap_king_sheet_224: 1299635680658417090
+      boss_scrap_king_sheet_225: 6542773099182742575
+      boss_scrap_king_sheet_226: -4922188265332534728
+      boss_scrap_king_sheet_227: -6340645034197298962
+      boss_scrap_king_sheet_228: 6117622915228208230
+      boss_scrap_king_sheet_229: -1638937288569573862
+      boss_scrap_king_sheet_23: -4136525057841685531
+      boss_scrap_king_sheet_230: 1556217976340970115
+      boss_scrap_king_sheet_231: -9003902061529668266
+      boss_scrap_king_sheet_232: 4652694857850824772
+      boss_scrap_king_sheet_233: -6977794361177472983
+      boss_scrap_king_sheet_234: -8021077307946584105
+      boss_scrap_king_sheet_235: 4078473088854260144
+      boss_scrap_king_sheet_236: 1462878097209562246
+      boss_scrap_king_sheet_237: 3717965601368486453
+      boss_scrap_king_sheet_238: 562251481340316690
+      boss_scrap_king_sheet_239: 1639068053699561060
+      boss_scrap_king_sheet_24: 4809237354654758955
+      boss_scrap_king_sheet_240: 656206314438714116
+      boss_scrap_king_sheet_241: -3986190583181169442
+      boss_scrap_king_sheet_242: -2761453007775931691
+      boss_scrap_king_sheet_243: -1480147361650060989
+      boss_scrap_king_sheet_244: -6369709000095911042
+      boss_scrap_king_sheet_245: -5448537129999933985
+      boss_scrap_king_sheet_246: 3804204512782170073
+      boss_scrap_king_sheet_247: 4037003528211970739
+      boss_scrap_king_sheet_248: 4551825621433898605
+      boss_scrap_king_sheet_249: 3214345478776963034
+      boss_scrap_king_sheet_25: -4724029492769608290
+      boss_scrap_king_sheet_250: 7305305172572989126
+      boss_scrap_king_sheet_251: 7821361573058921754
+      boss_scrap_king_sheet_252: 7340728348202003299
+      boss_scrap_king_sheet_253: -4937912971510491542
+      boss_scrap_king_sheet_254: 8856380303391180599
+      boss_scrap_king_sheet_255: 1288237064943830033
+      boss_scrap_king_sheet_256: -5167516679483499327
+      boss_scrap_king_sheet_257: -7434089671424649229
+      boss_scrap_king_sheet_258: 6263889348054833986
+      boss_scrap_king_sheet_259: 178292040059244049
+      boss_scrap_king_sheet_26: 5166777424528283487
+      boss_scrap_king_sheet_260: 8101677443459226128
+      boss_scrap_king_sheet_261: 3468638554836574741
+      boss_scrap_king_sheet_262: 6747601967715048799
+      boss_scrap_king_sheet_263: -2113963315144404426
+      boss_scrap_king_sheet_264: -767200320348358408
+      boss_scrap_king_sheet_265: 3912728478797707898
+      boss_scrap_king_sheet_266: -670459421736465899
+      boss_scrap_king_sheet_267: 3840171012592402006
+      boss_scrap_king_sheet_268: -2004009372422215605
+      boss_scrap_king_sheet_269: -2570230367967408911
+      boss_scrap_king_sheet_27: -4521897459617781860
+      boss_scrap_king_sheet_270: -6579108478271098211
+      boss_scrap_king_sheet_271: -8826129775399383982
+      boss_scrap_king_sheet_272: -6251963497380211557
+      boss_scrap_king_sheet_273: -5743219757338787311
+      boss_scrap_king_sheet_274: 7063577634787026858
+      boss_scrap_king_sheet_275: -2757006369211420971
+      boss_scrap_king_sheet_276: 6849635643930931123
+      boss_scrap_king_sheet_277: -8206107078416259529
+      boss_scrap_king_sheet_278: 4035503696352446276
+      boss_scrap_king_sheet_279: 3918221449561034488
+      boss_scrap_king_sheet_28: -647184652933361126
+      boss_scrap_king_sheet_280: -1303308502072776591
+      boss_scrap_king_sheet_281: 2205851176682196799
+      boss_scrap_king_sheet_282: 7145849360633727923
+      boss_scrap_king_sheet_283: -7158934800774115949
+      boss_scrap_king_sheet_284: 6218740730603073064
+      boss_scrap_king_sheet_285: 5951024021925687354
+      boss_scrap_king_sheet_286: -4497012749450560464
+      boss_scrap_king_sheet_287: -8312040729984079587
+      boss_scrap_king_sheet_288: -3973075373943963173
+      boss_scrap_king_sheet_289: -3259390050886601696
+      boss_scrap_king_sheet_29: 8688101445719847658
+      boss_scrap_king_sheet_290: 2370060612332073905
+      boss_scrap_king_sheet_291: -1314524121541149073
+      boss_scrap_king_sheet_292: -189608681802372925
+      boss_scrap_king_sheet_293: 6169376462610143638
+      boss_scrap_king_sheet_294: -4260383496300781416
+      boss_scrap_king_sheet_295: -2204465347658386718
+      boss_scrap_king_sheet_296: -4304886537908093658
+      boss_scrap_king_sheet_297: -842342320116646089
+      boss_scrap_king_sheet_298: -5829772196687116963
+      boss_scrap_king_sheet_299: -6208284366444981988
+      boss_scrap_king_sheet_2_0: -2006199603897172330
+      boss_scrap_king_sheet_2_1: 6612181355460420809
+      boss_scrap_king_sheet_2_10: -1672137390821943499
+      boss_scrap_king_sheet_2_11: -3472546502928843585
+      boss_scrap_king_sheet_2_12: 244367483168461724
+      boss_scrap_king_sheet_2_13: 5984028986742900863
+      boss_scrap_king_sheet_2_14: 8729426525536359756
+      boss_scrap_king_sheet_2_15: 8107565785140892264
+      boss_scrap_king_sheet_2_16: 8467549854581465166
+      boss_scrap_king_sheet_2_17: -3335953603495838413
+      boss_scrap_king_sheet_2_18: -995696886407931859
+      boss_scrap_king_sheet_2_19: -7630951319979631906
+      boss_scrap_king_sheet_2_2: -6505401577900693788
+      boss_scrap_king_sheet_2_20: 2514919011290134932
+      boss_scrap_king_sheet_2_3: -4741063187515995562
+      boss_scrap_king_sheet_2_4: 8308716845422328620
+      boss_scrap_king_sheet_2_5: 5191422608328498332
+      boss_scrap_king_sheet_2_6: -5088413315409809691
+      boss_scrap_king_sheet_2_7: -8554270138169461519
+      boss_scrap_king_sheet_2_8: 4151415995646504658
+      boss_scrap_king_sheet_2_9: -8200733105725981756
+      boss_scrap_king_sheet_3: -4924866840670588660
+      boss_scrap_king_sheet_30: -5808997683758366191
+      boss_scrap_king_sheet_300: 7249579867684991969
+      boss_scrap_king_sheet_301: 6487340765645394213
+      boss_scrap_king_sheet_302: -8271775545402479018
+      boss_scrap_king_sheet_303: 6164491003240797049
+      boss_scrap_king_sheet_304: -3632979346294282686
+      boss_scrap_king_sheet_305: -1450487144480401787
+      boss_scrap_king_sheet_306: -4729992692423761644
+      boss_scrap_king_sheet_307: -6302430019584207819
+      boss_scrap_king_sheet_308: 3228764408376790488
+      boss_scrap_king_sheet_309: 8314307185500497804
+      boss_scrap_king_sheet_31: 3985672772171396805
+      boss_scrap_king_sheet_310: -1649263482762344971
+      boss_scrap_king_sheet_311: -1809280463077221772
+      boss_scrap_king_sheet_312: 8618378851377553958
+      boss_scrap_king_sheet_313: -4099456299136315357
+      boss_scrap_king_sheet_314: 446659758987893862
+      boss_scrap_king_sheet_315: -7452050554079960988
+      boss_scrap_king_sheet_316: 8841167135883305150
+      boss_scrap_king_sheet_317: 8840550344910628884
+      boss_scrap_king_sheet_318: -3853369839753226251
+      boss_scrap_king_sheet_319: -2785815189876000568
+      boss_scrap_king_sheet_32: 5820986759118186765
+      boss_scrap_king_sheet_320: -8227716532104100563
+      boss_scrap_king_sheet_321: -7262304722674034990
+      boss_scrap_king_sheet_322: 6624583526564557208
+      boss_scrap_king_sheet_323: -3602243701342764057
+      boss_scrap_king_sheet_324: -1471729643019237847
+      boss_scrap_king_sheet_325: -1273696570088011317
+      boss_scrap_king_sheet_326: -7679778745778404637
+      boss_scrap_king_sheet_327: 7857679364070628124
+      boss_scrap_king_sheet_328: 8348746753614433834
+      boss_scrap_king_sheet_329: -6315186529950410079
+      boss_scrap_king_sheet_33: 9128944124932847413
+      boss_scrap_king_sheet_330: -3668941837966198305
+      boss_scrap_king_sheet_331: 4532172125891201183
+      boss_scrap_king_sheet_332: 3384186933952164475
+      boss_scrap_king_sheet_333: 4885975791619960036
+      boss_scrap_king_sheet_334: -3977917634519074515
+      boss_scrap_king_sheet_335: 639725591246894290
+      boss_scrap_king_sheet_336: 1362158176301018837
+      boss_scrap_king_sheet_337: -6191273663153747458
+      boss_scrap_king_sheet_338: 3903548393192815364
+      boss_scrap_king_sheet_339: 2921090886345225603
+      boss_scrap_king_sheet_34: 4304918576689228349
+      boss_scrap_king_sheet_340: 1059093433912285970
+      boss_scrap_king_sheet_341: -1488841235918939398
+      boss_scrap_king_sheet_342: -7504623383653877597
+      boss_scrap_king_sheet_343: 6209956312210129321
+      boss_scrap_king_sheet_344: -5575556458520664798
+      boss_scrap_king_sheet_345: -8608509267820181072
+      boss_scrap_king_sheet_346: -3724673824381926918
+      boss_scrap_king_sheet_347: 5292930314647872661
+      boss_scrap_king_sheet_348: -5945824798171009291
+      boss_scrap_king_sheet_349: 4968139110303148038
+      boss_scrap_king_sheet_35: -5238883094842739401
+      boss_scrap_king_sheet_350: -8127237634782111530
+      boss_scrap_king_sheet_351: -421291585100782760
+      boss_scrap_king_sheet_352: 2399838803696812733
+      boss_scrap_king_sheet_353: -2147517829538888758
+      boss_scrap_king_sheet_354: -7058560915860285789
+      boss_scrap_king_sheet_355: -1227532861740781441
+      boss_scrap_king_sheet_356: 3995478294312545791
+      boss_scrap_king_sheet_357: -2448590001983930801
+      boss_scrap_king_sheet_358: 4215896480610172893
+      boss_scrap_king_sheet_359: 6929384553826344625
+      boss_scrap_king_sheet_36: -3777478476134955291
+      boss_scrap_king_sheet_360: 2859775611421980608
+      boss_scrap_king_sheet_361: -7453774361529230829
+      boss_scrap_king_sheet_362: -7649212869341849916
+      boss_scrap_king_sheet_363: 6327750799378200633
+      boss_scrap_king_sheet_364: -678116700454865480
+      boss_scrap_king_sheet_365: 2423292269133086681
+      boss_scrap_king_sheet_366: 4172999316644134659
+      boss_scrap_king_sheet_367: -7549205040308852145
+      boss_scrap_king_sheet_368: -5013197539831628423
+      boss_scrap_king_sheet_369: 1219460743772601827
+      boss_scrap_king_sheet_37: -3010715848039980087
+      boss_scrap_king_sheet_370: -6130994169519064274
+      boss_scrap_king_sheet_371: 3378761746422190607
+      boss_scrap_king_sheet_372: -9101475046663813587
+      boss_scrap_king_sheet_373: 7862909034938806879
+      boss_scrap_king_sheet_374: 53559253231682476
+      boss_scrap_king_sheet_375: 1996360068955243986
+      boss_scrap_king_sheet_376: 3865011628067666558
+      boss_scrap_king_sheet_377: 8105601490386267351
+      boss_scrap_king_sheet_378: -7786376359838994639
+      boss_scrap_king_sheet_379: -1942230487793280812
+      boss_scrap_king_sheet_38: 8242685816489374006
+      boss_scrap_king_sheet_380: 4672797015232610433
+      boss_scrap_king_sheet_381: 1276168130779279086
+      boss_scrap_king_sheet_382: -2337002164635270366
+      boss_scrap_king_sheet_383: -7390756923143560411
+      boss_scrap_king_sheet_384: -2374954201545330055
+      boss_scrap_king_sheet_385: -8305580731210670893
+      boss_scrap_king_sheet_386: 8178828976271309301
+      boss_scrap_king_sheet_387: 8610140905689982830
+      boss_scrap_king_sheet_388: -1160667587284773918
+      boss_scrap_king_sheet_389: -5770661887823786551
+      boss_scrap_king_sheet_39: -6616989331170627126
+      boss_scrap_king_sheet_390: 7494113949706276811
+      boss_scrap_king_sheet_391: 2435735009477233158
+      boss_scrap_king_sheet_392: 2481187445331331560
+      boss_scrap_king_sheet_393: 8550146752303965838
+      boss_scrap_king_sheet_394: -8662976533938240643
+      boss_scrap_king_sheet_395: 3899082020693132273
+      boss_scrap_king_sheet_396: 818551672062374846
+      boss_scrap_king_sheet_397: 4575057964382049833
+      boss_scrap_king_sheet_398: -1954803720573968293
+      boss_scrap_king_sheet_399: -398137168462451771
+      boss_scrap_king_sheet_3_0: 307739851250170709
+      boss_scrap_king_sheet_3_1: 8324429756986779943
+      boss_scrap_king_sheet_3_10: 5493885175406970950
+      boss_scrap_king_sheet_3_11: 3518108398574797979
+      boss_scrap_king_sheet_3_12: 393673258446510359
+      boss_scrap_king_sheet_3_13: -1209744095220098264
+      boss_scrap_king_sheet_3_14: 4589997740876985072
+      boss_scrap_king_sheet_3_15: 8677025269570258265
+      boss_scrap_king_sheet_3_16: -6177801633592278834
+      boss_scrap_king_sheet_3_17: 978460914238346912
+      boss_scrap_king_sheet_3_18: 875889314712829654
+      boss_scrap_king_sheet_3_19: 2842798370246666054
+      boss_scrap_king_sheet_3_2: -6764222959792581526
+      boss_scrap_king_sheet_3_20: 7649819586589447028
+      boss_scrap_king_sheet_3_3: 3091081960710676608
+      boss_scrap_king_sheet_3_4: 3811826419689584802
+      boss_scrap_king_sheet_3_5: 1370001392993791971
+      boss_scrap_king_sheet_3_6: -463774858759244280
+      boss_scrap_king_sheet_3_7: 8468026459191548964
+      boss_scrap_king_sheet_3_8: -2249928299175969441
+      boss_scrap_king_sheet_3_9: 4012992722467935191
+      boss_scrap_king_sheet_4: 4284421191367622291
+      boss_scrap_king_sheet_40: -2752803419283316018
+      boss_scrap_king_sheet_400: -5334676508509939922
+      boss_scrap_king_sheet_401: -6749950830739080172
+      boss_scrap_king_sheet_402: 5627733697024104514
+      boss_scrap_king_sheet_403: -2189439255089653297
+      boss_scrap_king_sheet_404: 3342648236884233985
+      boss_scrap_king_sheet_405: 6485342734600876035
+      boss_scrap_king_sheet_406: 7235256758854874111
+      boss_scrap_king_sheet_407: -4821565008470106326
+      boss_scrap_king_sheet_408: -1721305675051163199
+      boss_scrap_king_sheet_409: -1521159330159545553
+      boss_scrap_king_sheet_41: -399124879669709871
+      boss_scrap_king_sheet_410: 3461376337967067206
+      boss_scrap_king_sheet_411: 1008117053766639180
+      boss_scrap_king_sheet_412: -147756397875930239
+      boss_scrap_king_sheet_413: -4435379108996960109
+      boss_scrap_king_sheet_414: 5264560755948306776
+      boss_scrap_king_sheet_415: -8876379504059044887
+      boss_scrap_king_sheet_416: -5366081135232634375
+      boss_scrap_king_sheet_417: -1534092167749906078
+      boss_scrap_king_sheet_418: -6975287447830581585
+      boss_scrap_king_sheet_419: 1584522892396375200
+      boss_scrap_king_sheet_42: -6680462533292816743
+      boss_scrap_king_sheet_420: 4662741932956836676
+      boss_scrap_king_sheet_421: -217417117571242920
+      boss_scrap_king_sheet_422: 3263569697214996636
+      boss_scrap_king_sheet_423: 613213737573430871
+      boss_scrap_king_sheet_424: -226141127507061284
+      boss_scrap_king_sheet_425: 1240219283967730578
+      boss_scrap_king_sheet_426: 20698966457926230
+      boss_scrap_king_sheet_427: -7062981552821956393
+      boss_scrap_king_sheet_428: 8766616017411514011
+      boss_scrap_king_sheet_429: 2154138102495893358
+      boss_scrap_king_sheet_43: 278337315936970483
+      boss_scrap_king_sheet_430: 4506437882238727592
+      boss_scrap_king_sheet_431: -3658776357132272998
+      boss_scrap_king_sheet_432: 6170245902787808159
+      boss_scrap_king_sheet_433: -796785036407889497
+      boss_scrap_king_sheet_434: 7731807990876695973
+      boss_scrap_king_sheet_435: 6562646569561607483
+      boss_scrap_king_sheet_436: 6089618201592418971
+      boss_scrap_king_sheet_437: -5223326665603888077
+      boss_scrap_king_sheet_438: 4478549378435200976
+      boss_scrap_king_sheet_439: 5173010371045937177
+      boss_scrap_king_sheet_44: 2076025406796773360
+      boss_scrap_king_sheet_440: 8059167631213337994
+      boss_scrap_king_sheet_441: -1406259717870481052
+      boss_scrap_king_sheet_442: 3065425037127100501
+      boss_scrap_king_sheet_443: -7833034690660796704
+      boss_scrap_king_sheet_444: 6183447304996725182
+      boss_scrap_king_sheet_445: -1795995821991746266
+      boss_scrap_king_sheet_446: 8126584063300409390
+      boss_scrap_king_sheet_447: -7281317606848443676
+      boss_scrap_king_sheet_448: -3120710249215036017
+      boss_scrap_king_sheet_449: 7413482515790387177
+      boss_scrap_king_sheet_45: -4768538645752120876
+      boss_scrap_king_sheet_450: -1937607504533878457
+      boss_scrap_king_sheet_451: 2735861437427878443
+      boss_scrap_king_sheet_452: -6767252823574738983
+      boss_scrap_king_sheet_453: -5946693511735141574
+      boss_scrap_king_sheet_454: -1425626663825836238
+      boss_scrap_king_sheet_455: 7710311860005423946
+      boss_scrap_king_sheet_456: -6397450531281903774
+      boss_scrap_king_sheet_457: 529290900304006037
+      boss_scrap_king_sheet_458: -7465083201927281451
+      boss_scrap_king_sheet_459: 2695382282678851580
+      boss_scrap_king_sheet_46: -4751615302815289109
+      boss_scrap_king_sheet_460: -6914605979960929695
+      boss_scrap_king_sheet_461: -6455421427176133357
+      boss_scrap_king_sheet_462: -7385869514734095468
+      boss_scrap_king_sheet_463: 7041928232480658947
+      boss_scrap_king_sheet_464: -4895119006933915656
+      boss_scrap_king_sheet_465: 1748099265931148351
+      boss_scrap_king_sheet_466: -8992499743145626174
+      boss_scrap_king_sheet_467: 2324573481218853302
+      boss_scrap_king_sheet_468: -2775764227914771637
+      boss_scrap_king_sheet_469: 5480071277046677493
+      boss_scrap_king_sheet_47: -621631305485011714
+      boss_scrap_king_sheet_470: -7723052721944791202
+      boss_scrap_king_sheet_471: -3036963138984318344
+      boss_scrap_king_sheet_472: 944183886480375403
+      boss_scrap_king_sheet_473: -7907846687724802316
+      boss_scrap_king_sheet_474: -3387617093416334831
+      boss_scrap_king_sheet_475: -6507514220919874089
+      boss_scrap_king_sheet_476: -8249810968199316525
+      boss_scrap_king_sheet_477: 3760235483497403141
+      boss_scrap_king_sheet_478: 3136409905181984403
+      boss_scrap_king_sheet_479: 1064508014788862848
+      boss_scrap_king_sheet_48: 4457396622474554575
+      boss_scrap_king_sheet_480: 9217149101123653171
+      boss_scrap_king_sheet_481: -908465071168770160
+      boss_scrap_king_sheet_482: -8747754172821167809
+      boss_scrap_king_sheet_483: 2713579851374744136
+      boss_scrap_king_sheet_484: -6677540188935631412
+      boss_scrap_king_sheet_485: -7866589864233446191
+      boss_scrap_king_sheet_486: -333887098072835522
+      boss_scrap_king_sheet_487: -83188025593064045
+      boss_scrap_king_sheet_488: 4114769412435008604
+      boss_scrap_king_sheet_489: 5866176779128056437
+      boss_scrap_king_sheet_49: 3902236897724622309
+      boss_scrap_king_sheet_490: -2884400559406013924
+      boss_scrap_king_sheet_491: -6635105189653483619
+      boss_scrap_king_sheet_492: -6711534448601889578
+      boss_scrap_king_sheet_493: 4429695058741156081
+      boss_scrap_king_sheet_494: -8302599233209213741
+      boss_scrap_king_sheet_495: 1881961016125317988
+      boss_scrap_king_sheet_496: 3087379882753531938
+      boss_scrap_king_sheet_497: 3164491673067624871
+      boss_scrap_king_sheet_498: -1030048501407855433
+      boss_scrap_king_sheet_499: -3389435315072063808
+      boss_scrap_king_sheet_4_0: 4747184697982045881
+      boss_scrap_king_sheet_4_1: 8700959208350802915
+      boss_scrap_king_sheet_4_10: 4740054573414320748
+      boss_scrap_king_sheet_4_11: 2837684727911813317
+      boss_scrap_king_sheet_4_12: -376863218710971901
+      boss_scrap_king_sheet_4_13: -5589823356082401187
+      boss_scrap_king_sheet_4_14: -7651568111880071735
+      boss_scrap_king_sheet_4_15: 5310998025866825600
+      boss_scrap_king_sheet_4_16: -6855793254617708952
+      boss_scrap_king_sheet_4_17: -1502590409099112531
+      boss_scrap_king_sheet_4_18: 6342531257374858564
+      boss_scrap_king_sheet_4_19: 5866869341001520798
+      boss_scrap_king_sheet_4_2: 1988532957561322570
+      boss_scrap_king_sheet_4_20: -1952101036782784371
+      boss_scrap_king_sheet_4_3: -8376664209585853213
+      boss_scrap_king_sheet_4_4: 5967455875163092550
+      boss_scrap_king_sheet_4_5: 3842208237633936915
+      boss_scrap_king_sheet_4_6: 2918981257101946545
+      boss_scrap_king_sheet_4_7: -1690148289512848704
+      boss_scrap_king_sheet_4_8: 7103119774925282624
+      boss_scrap_king_sheet_4_9: -5522995769877306378
+      boss_scrap_king_sheet_5: 4910938127827027994
+      boss_scrap_king_sheet_50: 1102986430801050031
+      boss_scrap_king_sheet_500: -255917989112576047
+      boss_scrap_king_sheet_501: 5767409085578008858
+      boss_scrap_king_sheet_502: 2869564430572323375
+      boss_scrap_king_sheet_503: 8467702682036256567
+      boss_scrap_king_sheet_51: -5093461246163076701
+      boss_scrap_king_sheet_52: -7936931205507945233
+      boss_scrap_king_sheet_53: -7923960034988196217
+      boss_scrap_king_sheet_54: -8540917548443889994
+      boss_scrap_king_sheet_55: -1663123393943081390
+      boss_scrap_king_sheet_56: -588003502097555672
+      boss_scrap_king_sheet_57: 9079831950669803267
+      boss_scrap_king_sheet_58: 8029178777497703676
+      boss_scrap_king_sheet_59: 8429881797869494537
+      boss_scrap_king_sheet_5_0: 887765639909832779
+      boss_scrap_king_sheet_5_1: -1707790208463430158
+      boss_scrap_king_sheet_5_10: 50708202380635830
+      boss_scrap_king_sheet_5_11: -6468536324361568507
+      boss_scrap_king_sheet_5_12: -2915033304609081458
+      boss_scrap_king_sheet_5_13: -3220295592146285335
+      boss_scrap_king_sheet_5_14: -6694658893282376375
+      boss_scrap_king_sheet_5_15: 5961819525644127420
+      boss_scrap_king_sheet_5_16: 842286427524643438
+      boss_scrap_king_sheet_5_17: 4852007640269599133
+      boss_scrap_king_sheet_5_18: -8902296238658910594
+      boss_scrap_king_sheet_5_19: -6560213133216631662
+      boss_scrap_king_sheet_5_2: 5336620369046560042
+      boss_scrap_king_sheet_5_20: 5537478301843291457
+      boss_scrap_king_sheet_5_3: -7135773725087575814
+      boss_scrap_king_sheet_5_4: 8688114260632366515
+      boss_scrap_king_sheet_5_5: 4256019083156048462
+      boss_scrap_king_sheet_5_6: 5980020640732360448
+      boss_scrap_king_sheet_5_7: 4747243442636199361
+      boss_scrap_king_sheet_5_8: 249124386623253433
+      boss_scrap_king_sheet_5_9: 5771228504235961481
+      boss_scrap_king_sheet_6: -6312760012138999259
+      boss_scrap_king_sheet_60: 2964351776232872919
+      boss_scrap_king_sheet_61: 1838890368958516407
+      boss_scrap_king_sheet_62: 4391507290718656400
+      boss_scrap_king_sheet_63: 713125433009845960
+      boss_scrap_king_sheet_64: -8093185955395160018
+      boss_scrap_king_sheet_65: -3422081369525500912
+      boss_scrap_king_sheet_66: 1175022174467743907
+      boss_scrap_king_sheet_67: 8663288998003047340
+      boss_scrap_king_sheet_68: -5389841304472437812
+      boss_scrap_king_sheet_69: 3609442438362629919
+      boss_scrap_king_sheet_6_0: -1006508249604490163
+      boss_scrap_king_sheet_6_1: -7064900610471638037
+      boss_scrap_king_sheet_6_10: 5210809095429864592
+      boss_scrap_king_sheet_6_11: -3349181912127383145
+      boss_scrap_king_sheet_6_12: -5480320194739934189
+      boss_scrap_king_sheet_6_13: -2768812300426751287
+      boss_scrap_king_sheet_6_14: -43806919416872127
+      boss_scrap_king_sheet_6_15: -5979482199272605693
+      boss_scrap_king_sheet_6_16: -8550546712516732191
+      boss_scrap_king_sheet_6_17: 7474300475989078732
+      boss_scrap_king_sheet_6_18: 4548583297478604284
+      boss_scrap_king_sheet_6_19: -8732850736309820202
+      boss_scrap_king_sheet_6_2: 7478157418028067852
+      boss_scrap_king_sheet_6_20: -2420934950570316760
+      boss_scrap_king_sheet_6_3: -4542466939256597605
+      boss_scrap_king_sheet_6_4: 2869044206188435992
+      boss_scrap_king_sheet_6_5: 8144225446535941017
+      boss_scrap_king_sheet_6_6: 6761533183307499846
+      boss_scrap_king_sheet_6_7: 3394765601571185084
+      boss_scrap_king_sheet_6_8: -6836984405860935420
+      boss_scrap_king_sheet_6_9: -4856169825763630495
+      boss_scrap_king_sheet_7: -7047039414738853855
+      boss_scrap_king_sheet_70: -3316326435638744621
+      boss_scrap_king_sheet_71: -2347514253330007768
+      boss_scrap_king_sheet_72: -252259404043423972
+      boss_scrap_king_sheet_73: -3425011832552698584
+      boss_scrap_king_sheet_74: -7123046383616852267
+      boss_scrap_king_sheet_75: -677362679887751387
+      boss_scrap_king_sheet_76: 7044900200608875127
+      boss_scrap_king_sheet_77: -1748619870663223970
+      boss_scrap_king_sheet_78: 5792211585199532608
+      boss_scrap_king_sheet_79: 189697265265142407
+      boss_scrap_king_sheet_7_0: -544686923574027774
+      boss_scrap_king_sheet_7_1: 3736338140294359760
+      boss_scrap_king_sheet_7_10: -1503595018733518356
+      boss_scrap_king_sheet_7_11: -851667004355384369
+      boss_scrap_king_sheet_7_12: 3908004882291723021
+      boss_scrap_king_sheet_7_13: 5449471642342829063
+      boss_scrap_king_sheet_7_14: -929872032860821225
+      boss_scrap_king_sheet_7_15: -4294416790401058167
+      boss_scrap_king_sheet_7_16: -3520010475917029049
+      boss_scrap_king_sheet_7_17: 5600252749929174966
+      boss_scrap_king_sheet_7_18: -1204064638043280962
+      boss_scrap_king_sheet_7_19: 4010361232788994094
+      boss_scrap_king_sheet_7_2: 8810566351549708112
+      boss_scrap_king_sheet_7_20: 4415218793242850589
+      boss_scrap_king_sheet_7_3: -2130871491476708486
+      boss_scrap_king_sheet_7_4: -8667890215128925295
+      boss_scrap_king_sheet_7_5: -1750654063221718906
+      boss_scrap_king_sheet_7_6: 869229710131240957
+      boss_scrap_king_sheet_7_7: 3498657905501123316
+      boss_scrap_king_sheet_7_8: -6350148287500654291
+      boss_scrap_king_sheet_7_9: 5715442090636984247
+      boss_scrap_king_sheet_8: -6239030218442590501
+      boss_scrap_king_sheet_80: -7720471214343966762
+      boss_scrap_king_sheet_81: 2419356303374716438
+      boss_scrap_king_sheet_82: 5378997866732505231
+      boss_scrap_king_sheet_83: 6301460210544528959
+      boss_scrap_king_sheet_84: 857568628189797853
+      boss_scrap_king_sheet_85: 4104097361353720091
+      boss_scrap_king_sheet_86: -943340041306653967
+      boss_scrap_king_sheet_87: -9054038929764028454
+      boss_scrap_king_sheet_88: -6079029840038914277
+      boss_scrap_king_sheet_89: 5046321715211472823
+      boss_scrap_king_sheet_9: 7565092859255234241
+      boss_scrap_king_sheet_90: 3100453252971517199
+      boss_scrap_king_sheet_91: -1465554188923254981
+      boss_scrap_king_sheet_92: -4344829357980091739
+      boss_scrap_king_sheet_93: -8735121552186378836
+      boss_scrap_king_sheet_94: 4846919304329621592
+      boss_scrap_king_sheet_95: 1037635651100877616
+      boss_scrap_king_sheet_96: -1111445063312380646
+      boss_scrap_king_sheet_97: -950447263979798314
+      boss_scrap_king_sheet_98: -7276138723720052239
+      boss_scrap_king_sheet_99: 8941669056044400229
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,363 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5283578008757361220
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6490777795890764118}
+  - component: {fileID: 6475174373529735116}
+  - component: {fileID: 7900748704025852061}
+  - component: {fileID: 2411353307194720067}
+  - component: {fileID: 5937196856010977684}
+  - component: {fileID: 7723859934646887538}
+  - component: {fileID: 7541641004782048025}
+  - component: {fileID: 4007795413920686660}
+  - component: {fileID: 8750853248230049670}
+  - component: {fileID: 967062228609605266}
+  - component: {fileID: 5786642084030401193}
+  - component: {fileID: 6107399751729630771}
+  - component: {fileID: 2128378835467973724}
+  - component: {fileID: 7575373384036564021}
+  - component: {fileID: 4395714757104976224}
+  - component: {fileID: 6332598671469409581}
+  - component: {fileID: 1623878978838223523}
+  - component: {fileID: 260803367679897604}
+  - component: {fileID: 3023454923675732708}
+  - component: {fileID: 507296075245952738}
+  - component: {fileID: 4200342663926185697}
+  m_Layer: 0
+  m_Name: PlayerNetworkEntity
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6490777795890764118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &6475174373529735116
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &7900748704025852061
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.4
+--- !u!114 &2411353307194720067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07d150b85c19c654d8ce12282bb887b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.TeamMember
+  _team: 1
+--- !u!114 &5937196856010977684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9940ad982f0fee141b1e6ebd1e0c3113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.HealthComponent
+  _maxHealth: 100
+--- !u!114 &7723859934646887538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dca473e6f2e493d478b6f781c7e76a51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerMovement
+  _balanceConfig: {fileID: 0}
+--- !u!114 &7541641004782048025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff4c24f386dcc8b4bab49b5f26950538, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerAiming
+  _aimPivot: {fileID: 0}
+  _camera: {fileID: 0}
+--- !u!114 &4007795413920686660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6cef8d77d34c54585f24e4fe8bcd98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerDash
+  _balanceConfig: {fileID: 0}
+--- !u!114 &8750853248230049670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614ab5eb9b9a4275be1bae55eb374f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerImpactReceiver
+  _config: {fileID: 0}
+--- !u!114 &967062228609605266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c194c932444e8f48888b940920c86e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerLifeStateComponent
+  _balanceConfig: {fileID: 0}
+--- !u!114 &5786642084030401193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7211969bc61b46347a665ae3c0c3fbbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.ReviveProtection
+--- !u!114 &6107399751729630771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b9a32e0af327f649be33b7236225d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerReviver
+  _balanceConfig: {fileID: 0}
+--- !u!114 &2128378835467973724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c89555b15e1bb24cb466c5f0ab096a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.DeadSpectatorFollow
+--- !u!114 &7575373384036564021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdedf04b36c006d4da5960207fd5cb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerInteractor
+  _reach: 1.5
+--- !u!114 &4395714757104976224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4c9f8cee4990d46b15bbd9e182e0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerLootReceiver
+--- !u!114 &6332598671469409581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d96b712a4534c65807fb5a7931a1f2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PickupAttractor
+  _baseRadiusTiles: 0
+  _pullSpeedTilesPerSecond: 8
+  _collectDistance: 0.35
+--- !u!114 &1623878978838223523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773f6ae79c3e10844a43aaf54e535578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Stats.PlayerStatsBinder
+  _caps: {fileID: 0}
+  _balanceConfig: {fileID: 0}
+--- !u!114 &260803367679897604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 0
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 1
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
+--- !u!114 &3023454923675732708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3d62e4946a2d34cb6a7d162777d2d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Networking::RuinRail.Networking.NetworkPlayerObject
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &507296075245952738
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5adffdfa94170d4483388543de3a020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Networking::RuinRail.Networking.NetworkHealth
+  ShowTopMostFoldoutHeaderGroup: 1
+--- !u!114 &4200342663926185697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5283578008757361220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ef3f2cfb79da884aabb672489de3ce4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Game.Networking::RuinRail.Networking.NetworkPlayerCombat
+  ShowTopMostFoldoutHeaderGroup: 1

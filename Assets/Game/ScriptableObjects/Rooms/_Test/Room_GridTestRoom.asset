@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8054e1595d46b7e4cb1468698d841eef, type: 3}
+  m_Name: Room_GridTestRoom
+  m_EditorClassIdentifier: Game.Dungeon::RuinRail.Dungeon.Rooms.RoomDefinition
+  _id: test_grid_small_01
+  _biome: 0
+  _roomType: 1
+  _sizeClass: 0
+  _dimensions: {x: 16, y: 12}
+  _allowsAuthoredSizeVariation: 0
+  _difficulty: 1
+  _minDepth: 1
+  _maxDepth: 0
+  _supportsElite: 0
+  _selectionWeight: 0
+  _supportedDoors: 0000000002000000
+  _tags:
+  - test_fixture
+  _prefab: {fileID: 7537770298343068607, guid: ed153c8587442864c84875449e0d74fc, type: 3}

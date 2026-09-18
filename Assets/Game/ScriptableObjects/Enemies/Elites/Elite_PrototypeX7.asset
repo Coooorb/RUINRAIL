@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce398a5116b2482a83cc80229f788ef7, type: 3}
+  m_Name: Elite_PrototypeX7
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Elites.EliteDefinition
+  _id: elite_prototype_x7
+  _displayName: Prototype X-7
+  _biome: 2
+  _baseHealth: 375
+  _moveSpeed: 3.4
+  _baseXp: 300
+  _strongestAttackDamageMin: 8
+  _strongestAttackDamageMax: 10
+  _staggerResistancePercent: 80
+  _knockbackResistancePercent: 80
+  _moveset:
+  - {fileID: 11400000, guid: a63a6a2d0f3c4417b0be8c14c0a3108d, type: 2}
+  - {fileID: 11400000, guid: 06e74732ed6f4dc4ae5e1c320ac95e40, type: 2}
+  - {fileID: 11400000, guid: 7145bf141f2244bdaac90b8a5f596eb3, type: 2}
+  - {fileID: 11400000, guid: adc427854cfc4d5a8caddb116d1326fe, type: 2}

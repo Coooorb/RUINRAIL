@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1982337cd674142b1091836e189a6ac, type: 3}
+  m_Name: EconomyConfig
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Economy.EconomyConfig
+  _commonPercent: 100
+  _uncommonPercent: 135
+  _rarePercent: 190
+  _epicPercent: 300
+  _legendaryPercent: 500
+  _sellPercentOfBuyValue: 35
+  _roundingStep: 5
+  _weaponClassPrices:
+  - {Class: 0, BasePrice: 250}
+  - {Class: 1, BasePrice: 350}
+  - {Class: 2, BasePrice: 450}
+  - {Class: 3, BasePrice: 500}
+  - {Class: 4, BasePrice: 450}
+  - {Class: 5, BasePrice: 600}
+  - {Class: 6, BasePrice: 400}
+  - {Class: 7, BasePrice: 700}
+  - {Class: 8, BasePrice: 650}
+  - {Class: 9, BasePrice: 250}
+  - {Class: 10, BasePrice: 350}
+  _armorPrices:
+  - {ItemId: armor_scrap_vest, Price: 300}
+  - {ItemId: armor_scout_rig, Price: 350}
+  - {ItemId: armor_riot_armor, Price: 450}
+  - {ItemId: armor_heavy_plate, Price: 650}
+  - {ItemId: armor_blast_suit, Price: 500}
+  - {ItemId: armor_medic_harness, Price: 450}
+  - {ItemId: armor_combat_harness, Price: 400}
+  - {ItemId: armor_reinforced_exo_rig, Price: 600}
+  - {ItemId: armor_runner_suit, Price: 350}
+  _accessoryBasePrice: 300
+  _consumablePrices:
+  - {ItemId: consumable_bandage, Price: 60}
+  - {ItemId: consumable_frag_grenade, Price: 80}
+  - {ItemId: consumable_medkit, Price: 150}
+  - {ItemId: consumable_combat_stim, Price: 140}
+  - {ItemId: consumable_smoke_grenade, Price: 110}
+  - {ItemId: consumable_shock_grenade, Price: 220}
+  - {ItemId: consumable_damage_stim, Price: 250}
+  - {ItemId: consumable_armor_injector, Price: 250}
+  - {ItemId: consumable_incendiary_grenade, Price: 220}
+  - {ItemId: consumable_defibrillator, Price: 1500}
+  _ammoBundles:
+  - {Type: 0, Units: 60, Price: 60}
+  - {Type: 1, Units: 40, Price: 70}
+  - {Type: 2, Units: 20, Price: 90}
+  - {Type: 3, Units: 12, Price: 80}
+  _eventPrices:
+  - {Kind: 0, Base: 250, PerDepth: 25, Cap: 1000}
+  - {Kind: 1, Base: 100, PerDepth: 10, Cap: 400}
+  - {Kind: 2, Base: 150, PerDepth: 15, Cap: 600}
+  - {Kind: 3, Base: 500, PerDepth: 30, Cap: 1500}
+  _skillRespecPrice: 2500
+  _coinRewardPercentPerDepth: 0
+  _coinRewardCapPercent: 100

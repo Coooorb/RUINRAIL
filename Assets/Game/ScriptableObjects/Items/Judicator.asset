@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4385c80647fcd84ab38de1491aa9934, type: 3}
+  m_Name: Judicator
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.RangedWeaponDefinition
+  _id: weapon_judicator
+  _displayName: Judicator
+  _category: 0
+  _isStackable: 0
+  _maxStack: 1
+  _icon: {fileID: 21300000, guid: 42604abe855d9844aaba4e8c79facf9e, type: 3}
+  _affixPool: {fileID: 11400000, guid: 3c6c5255825643c281fb014020052625, type: 2}
+  _legendaryMechanicId: piercing_line
+  _weaponClass: 3
+  _knockback: 0
+  _staggerPower: 0
+  _damageMin: 20
+  _damageMax: 24
+  _fireRate: 2.8
+  _magazineSize: 10
+  _reloadTime: 2
+  _range: 16
+  _projectileSpeed: 26
+  _ammoType: 1
+  _ammoCostPerShot: 1
+  _projectilesPerShot: 1
+  _spreadDegrees: 0
+  _explosionRadiusTiles: 0

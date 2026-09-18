@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8054e1595d46b7e4cb1468698d841eef, type: 3}
+  m_Name: Room_Rust_Loot_01
+  m_EditorClassIdentifier: Game.Dungeon::RuinRail.Dungeon.Rooms.RoomDefinition
+  _id: rust_loot_01
+  _biome: 1
+  _roomType: 2
+  _sizeClass: 0
+  _dimensions: {x: 16, y: 12}
+  _allowsAuthoredSizeVariation: 0
+  _difficulty: 0
+  _minDepth: 1
+  _maxDepth: 0
+  _supportsElite: 0
+  _selectionWeight: 1
+  _supportedDoors: 00000000010000000200000003000000
+  _tags:
+  - rustworks
+  - loot
+  - parts_store
+  _prefab: {fileID: 8097704537391730636, guid: 2344a50ce0e8d554d9e2da51b6ef1a49, type: 3}

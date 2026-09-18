@@ -1,0 +1,507 @@
+fileFormatVersion: 2
+guid: 00127a4e0b1dd1c488a74e764d9cf237
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2319951509300195511
+    second: ui_glyphs_keyboard_0
+  - first:
+      213: -949143510574771165
+    second: ui_glyphs_keyboard_1
+  - first:
+      213: -6196903503615462353
+    second: ui_glyphs_keyboard_2
+  - first:
+      213: 1205161127969699914
+    second: ui_glyphs_keyboard_3
+  - first:
+      213: 6398605402881173818
+    second: ui_glyphs_keyboard_4
+  - first:
+      213: 297541846560758020
+    second: ui_glyphs_keyboard_5
+  - first:
+      213: 442074758485423341
+    second: ui_glyphs_keyboard_6
+  - first:
+      213: 3385834215887000335
+    second: ui_glyphs_keyboard_7
+  - first:
+      213: 4817035887008968384
+    second: ui_glyphs_keyboard_8
+  - first:
+      213: 1593452843734780596
+    second: ui_glyphs_keyboard_9
+  - first:
+      213: 7645537466767642785
+    second: ui_glyphs_keyboard_10
+  - first:
+      213: -98531952235183717
+    second: ui_glyphs_keyboard_11
+  - first:
+      213: 1076861082050455644
+    second: ui_glyphs_keyboard_12
+  - first:
+      213: -2119536864292679603
+    second: ui_glyphs_keyboard_0_0
+  - first:
+      213: 1281119831095346188
+    second: ui_glyphs_keyboard_0_1
+  - first:
+      213: 1523984831741240801
+    second: ui_glyphs_keyboard_0_2
+  - first:
+      213: -4410035549114565475
+    second: ui_glyphs_keyboard_0_3
+  - first:
+      213: 8031027071498691524
+    second: ui_glyphs_keyboard_0_4
+  - first:
+      213: 2478162591291851034
+    second: ui_glyphs_keyboard_0_5
+  - first:
+      213: -5385661458136498466
+    second: ui_glyphs_keyboard_0_6
+  - first:
+      213: 756508136986159186
+    second: ui_glyphs_keyboard_0_7
+  - first:
+      213: 495958092837080594
+    second: ui_glyphs_keyboard_0_8
+  - first:
+      213: -8958003415574246761
+    second: ui_glyphs_keyboard_0_9
+  - first:
+      213: -6899551610415925628
+    second: ui_glyphs_keyboard_0_10
+  - first:
+      213: 1614841861657763871
+    second: ui_glyphs_keyboard_0_11
+  - first:
+      213: 6472818074146697198
+    second: ui_glyphs_keyboard_0_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d405d73a374e592e0800000000000000
+      internalID: -2119536864292679603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_1
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c04852fd2b377c110800000000000000
+      internalID: 1281119831095346188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_2
+      rect:
+        serializedVersion: 2
+        x: 58
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e5250b4128462510800000000000000
+      internalID: 1523984831741240801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_3
+      rect:
+        serializedVersion: 2
+        x: 87
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9c7e2098086cc2c0800000000000000
+      internalID: -4410035549114565475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_4
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c3a9324290f37f60800000000000000
+      internalID: 8031027071498691524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_5
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a11cc953fb3346220800000000000000
+      internalID: 2478162591291851034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_6
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edef24330794245b0800000000000000
+      internalID: -5385661458136498466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_7
+      rect:
+        serializedVersion: 2
+        x: 203
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 258a0c67428af7a00800000000000000
+      internalID: 756508136986159186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_8
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21ec80bf14ff1e600800000000000000
+      internalID: 495958092837080594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_9
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a06f5ea57cea380800000000000000
+      internalID: -8958003415574246761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_10
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4863faf9d5edf30a0800000000000000
+      internalID: -6899551610415925628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_11
+      rect:
+        serializedVersion: 2
+        x: 319
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f10aa8c0e12196610800000000000000
+      internalID: 1614841861657763871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_keyboard_0_12
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 0
+        width: 29
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eefed357eb114d950800000000000000
+      internalID: 6472818074146697198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ui_glyphs_keyboard_0: -2319951509300195511
+      ui_glyphs_keyboard_0_0: -2119536864292679603
+      ui_glyphs_keyboard_0_1: 1281119831095346188
+      ui_glyphs_keyboard_0_10: -6899551610415925628
+      ui_glyphs_keyboard_0_11: 1614841861657763871
+      ui_glyphs_keyboard_0_12: 6472818074146697198
+      ui_glyphs_keyboard_0_2: 1523984831741240801
+      ui_glyphs_keyboard_0_3: -4410035549114565475
+      ui_glyphs_keyboard_0_4: 8031027071498691524
+      ui_glyphs_keyboard_0_5: 2478162591291851034
+      ui_glyphs_keyboard_0_6: -5385661458136498466
+      ui_glyphs_keyboard_0_7: 756508136986159186
+      ui_glyphs_keyboard_0_8: 495958092837080594
+      ui_glyphs_keyboard_0_9: -8958003415574246761
+      ui_glyphs_keyboard_1: -949143510574771165
+      ui_glyphs_keyboard_10: 7645537466767642785
+      ui_glyphs_keyboard_11: -98531952235183717
+      ui_glyphs_keyboard_12: 1076861082050455644
+      ui_glyphs_keyboard_2: -6196903503615462353
+      ui_glyphs_keyboard_3: 1205161127969699914
+      ui_glyphs_keyboard_4: 6398605402881173818
+      ui_glyphs_keyboard_5: 297541846560758020
+      ui_glyphs_keyboard_6: 442074758485423341
+      ui_glyphs_keyboard_7: 3385834215887000335
+      ui_glyphs_keyboard_8: 4817035887008968384
+      ui_glyphs_keyboard_9: 1593452843734780596
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

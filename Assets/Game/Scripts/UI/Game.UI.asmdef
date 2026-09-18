@@ -1,0 +1,21 @@
+{
+    "name": "Game.UI",
+    "rootNamespace": "RuinRail.UI",
+    "references": [
+        "Game.Core",
+        "Game.Gameplay",
+        "Game.Persistence",
+        "Game.Networking",
+        "UnityEngine.UI",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

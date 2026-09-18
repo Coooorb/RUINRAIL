@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b90167cdfe743658053cf28c2160785, type: 3}
+  m_Name: LootSourceCatalog
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Loot.LootSourceCatalog
+  _sources:
+  - Kind: 0
+    Table: {fileID: 11400000, guid: e275a214b03f46b79732c9fc3aea0809, type: 2}
+    Quality: 0
+  - Kind: 1
+    Table: {fileID: 11400000, guid: eacdd636b9384156b73a8212030b2879, type: 2}
+    Quality: 0
+  - Kind: 2
+    Table: {fileID: 11400000, guid: 953f1d925f424162acd26233c2bba413, type: 2}
+    Quality: 1
+  - Kind: 3
+    Table: {fileID: 11400000, guid: 7b9531e11ce44345801a1dd6a6bbb4c4, type: 2}
+    Quality: 2
+  _rarityTables:
+  - {fileID: 11400000, guid: 598795da0ec44ef7bbc1accbcc380209, type: 2}
+  - {fileID: 11400000, guid: 47a928c3cb934406ae0229e0f571f198, type: 2}
+  - {fileID: 11400000, guid: 6c7ee42ee7734ad98089936cbd43658c, type: 2}

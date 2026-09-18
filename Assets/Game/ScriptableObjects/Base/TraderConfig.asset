@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db933161595a49cabeba21f5c04dc848, type: 3}
+  m_Name: TraderConfig
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Base.TraderConfig
+  _levels:
+  - {Offers: 4, UpgradeCost: 0, CommonPermille: 500, UncommonPermille: 350, RarePermille: 130, EpicPermille: 19, LegendaryPermille: 1}
+  - {Offers: 5, UpgradeCost: 2500, CommonPermille: 350, UncommonPermille: 400, RarePermille: 200, EpicPermille: 47, LegendaryPermille: 3}
+  - {Offers: 6, UpgradeCost: 7000, CommonPermille: 250, UncommonPermille: 380, RarePermille: 280, EpicPermille: 84, LegendaryPermille: 6}
+  _equipmentWeight: 50
+  _consumableWeight: 30
+  _ammoWeight: 20

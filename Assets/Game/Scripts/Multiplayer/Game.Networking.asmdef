@@ -1,0 +1,23 @@
+{
+    "name": "Game.Networking",
+    "rootNamespace": "RuinRail.Networking",
+    "references": [
+        "Game.Core",
+        "Game.Gameplay",
+        "Game.Dungeon",
+        "Unity.Netcode.Runtime",
+        "Unity.Services.Multiplayer",
+        "Unity.Services.Core",
+        "Unity.Services.Authentication",
+        "Unity.Collections"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

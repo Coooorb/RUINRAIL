@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 9018217dded76ce43be18b3de029cf4e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2442617607958315536
+    second: summoner_sheet_0
+  - first:
+      213: -9173299232724763352
+    second: summoner_sheet_1
+  - first:
+      213: 6799538648945141451
+    second: summoner_sheet_2
+  - first:
+      213: 7971415574209801513
+    second: summoner_sheet_3
+  - first:
+      213: 341494135106228861
+    second: summoner_sheet_4
+  - first:
+      213: 7698517054637311070
+    second: summoner_sheet_5
+  - first:
+      213: 5298671143340712374
+    second: summoner_sheet_6
+  - first:
+      213: 8255812997840534784
+    second: summoner_sheet_7
+  - first:
+      213: 4152138495222303465
+    second: summoner_sheet_8
+  - first:
+      213: -1250971051441215942
+    second: summoner_sheet_9
+  - first:
+      213: 1802584586949226795
+    second: summoner_sheet_10
+  - first:
+      213: 1803912696455801496
+    second: summoner_sheet_11
+  - first:
+      213: 7716395728346296943
+    second: summoner_sheet_12
+  - first:
+      213: -928903023105174632
+    second: summoner_sheet_13
+  - first:
+      213: 4641751079487796120
+    second: summoner_sheet_14
+  - first:
+      213: 4472353059838700348
+    second: summoner_sheet_15
+  - first:
+      213: -2189858811985068999
+    second: summoner_sheet_16
+  - first:
+      213: 5644396469300709831
+    second: summoner_sheet_17
+  - first:
+      213: -151815568096546029
+    second: summoner_sheet_18
+  - first:
+      213: -1200966603901772615
+    second: summoner_sheet_19
+  - first:
+      213: -3118124162868177532
+    second: summoner_sheet_20
+  - first:
+      213: 305008283540929467
+    second: summoner_sheet_21
+  - first:
+      213: -7198692533699445354
+    second: summoner_sheet_22
+  - first:
+      213: -1685110963493525830
+    second: summoner_sheet_23
+  - first:
+      213: 1809779547185883604
+    second: summoner_sheet_24
+  - first:
+      213: -7528913243969512555
+    second: summoner_sheet_25
+  - first:
+      213: -209846632560461141
+    second: summoner_sheet_26
+  - first:
+      213: -4647473204853942709
+    second: summoner_sheet_27
+  - first:
+      213: 3044836601382448002
+    second: summoner_sheet_28
+  - first:
+      213: -5500414692496108702
+    second: summoner_sheet_29
+  - first:
+      213: 983104275049276057
+    second: summoner_sheet_30
+  - first:
+      213: 5281227963392547082
+    second: summoner_sheet_31
+  - first:
+      213: 3757828980917456522
+    second: summoner_sheet_32
+  - first:
+      213: -401267245486197972
+    second: summoner_sheet_33
+  - first:
+      213: -6043866753259797024
+    second: summoner_sheet_34
+  - first:
+      213: 8366786968021171315
+    second: summoner_sheet_35
+  - first:
+      213: -5643930810855712300
+    second: summoner_sheet_36
+  - first:
+      213: -8459890879723456214
+    second: summoner_sheet_37
+  - first:
+      213: -1022859277314682910
+    second: summoner_sheet_38
+  - first:
+      213: 1515800626124543462
+    second: summoner_sheet_39
+  - first:
+      213: 4520521234533976682
+    second: summoner_sheet_40
+  - first:
+      213: 1238715403964947388
+    second: summoner_sheet_41
+  - first:
+      213: 4253397363572846231
+    second: summoner_sheet_42
+  - first:
+      213: -3303760630231242289
+    second: summoner_sheet_43
+  - first:
+      213: 1243116130731732774
+    second: summoner_sheet_44
+  - first:
+      213: -8331810167849850036
+    second: summoner_sheet_45
+  - first:
+      213: -1919148590248538490
+    second: summoner_sheet_46
+  - first:
+      213: 4974396537044430834
+    second: summoner_sheet_47
+  - first:
+      213: 4546945533030981839
+    second: summoner_sheet_48
+  - first:
+      213: 4321279959739713050
+    second: summoner_sheet_49
+  - first:
+      213: 8035801007663737021
+    second: summoner_sheet_50
+  - first:
+      213: -1885979308058617116
+    second: summoner_sheet_51
+  - first:
+      213: 2637943420578484614
+    second: summoner_sheet_52
+  - first:
+      213: -5993343017058421097
+    second: summoner_sheet_53
+  - first:
+      213: -3164035241767672705
+    second: summoner_sheet_54
+  - first:
+      213: 8408921259415175025
+    second: summoner_sheet_55
+  - first:
+      213: -3386044954905759628
+    second: summoner_sheet_56
+  - first:
+      213: 375842761595535384
+    second: summoner_sheet_57
+  - first:
+      213: 5404103725308361721
+    second: summoner_sheet_58
+  - first:
+      213: 7053550234832330956
+    second: summoner_sheet_59
+  - first:
+      213: -7827757619167736013
+    second: summoner_sheet_60
+  - first:
+      213: -7862836176799041689
+    second: summoner_sheet_61
+  - first:
+      213: -2053246453689918461
+    second: summoner_sheet_62
+  - first:
+      213: 2359294927909391561
+    second: summoner_sheet_63
+  - first:
+      213: 3454607657257294530
+    second: summoner_sheet_64
+  - first:
+      213: 7317035791095316021
+    second: summoner_sheet_65
+  - first:
+      213: -296925802684267639
+    second: summoner_sheet_66
+  - first:
+      213: 7224735290517814033
+    second: summoner_sheet_67
+  - first:
+      213: 7174704963313349296
+    second: summoner_sheet_68
+  - first:
+      213: -2252549879657011277
+    second: summoner_sheet_69
+  - first:
+      213: 3116825598093954052
+    second: summoner_sheet_70
+  - first:
+      213: -1467857237298332299
+    second: summoner_sheet_71
+  - first:
+      213: 1100912750205602955
+    second: summoner_sheet_72
+  - first:
+      213: -1019734567869524513
+    second: summoner_sheet_73
+  - first:
+      213: 5501892805969861587
+    second: summoner_sheet_74
+  - first:
+      213: -8747009030029496492
+    second: summoner_sheet_75
+  - first:
+      213: -7100748929357767413
+    second: summoner_sheet_76
+  - first:
+      213: 8173093745911714003
+    second: summoner_sheet_77
+  - first:
+      213: -6075014298814019047
+    second: summoner_sheet_78
+  - first:
+      213: -8735518363242811729
+    second: summoner_sheet_79
+  - first:
+      213: -936813054572406380
+    second: summoner_sheet_80
+  - first:
+      213: 282388185254811800
+    second: summoner_sheet_81
+  - first:
+      213: 4114484469536245284
+    second: summoner_sheet_82
+  - first:
+      213: -5234215224245884983
+    second: summoner_sheet_83
+  - first:
+      213: 1829442534195574109
+    second: summoner_sheet_84
+  - first:
+      213: -1164079512172719261
+    second: summoner_sheet_85
+  - first:
+      213: -2222958695361754046
+    second: summoner_sheet_86
+  - first:
+      213: 6270832002351484464
+    second: summoner_sheet_87
+  - first:
+      213: 2538397226953973863
+    second: summoner_sheet_88
+  - first:
+      213: 342259408058672641
+    second: summoner_sheet_89
+  - first:
+      213: 5836820091028602455
+    second: summoner_sheet_90
+  - first:
+      213: -4178492065768241340
+    second: summoner_sheet_91
+  - first:
+      213: -459942997770283136
+    second: summoner_sheet_92
+  - first:
+      213: 2881787878351010320
+    second: summoner_sheet_93
+  - first:
+      213: 859939444177186191
+    second: summoner_sheet_94
+  - first:
+      213: -825004328581995332
+    second: summoner_sheet_95
+  - first:
+      213: 4019260206713293149
+    second: summoner_sheet_96
+  - first:
+      213: -140202743664416648
+    second: summoner_sheet_97
+  - first:
+      213: 7150165778022695636
+    second: summoner_sheet_98
+  - first:
+      213: 7017135490880595475
+    second: summoner_sheet_99
+  - first:
+      213: -7374731163880049396
+    second: summoner_sheet_100
+  - first:
+      213: 7467665232364597785
+    second: summoner_sheet_101
+  - first:
+      213: -1259161475298410102
+    second: summoner_sheet_102
+  - first:
+      213: 1349382212528978902
+    second: summoner_sheet_103
+  - first:
+      213: 6533344061499735959
+    second: summoner_sheet_104
+  - first:
+      213: 5600902089932107420
+    second: summoner_sheet_105
+  - first:
+      213: -7764326040705173686
+    second: summoner_sheet_106
+  - first:
+      213: 6037668883194420943
+    second: summoner_sheet_107
+  - first:
+      213: -713413846864230571
+    second: summoner_sheet_108
+  - first:
+      213: 3919348329372176820
+    second: summoner_sheet_109
+  - first:
+      213: -4744497196739867016
+    second: summoner_sheet_110
+  - first:
+      213: 2565261891225368396
+    second: summoner_sheet_111
+  - first:
+      213: 4763210522332985617
+    second: summoner_sheet_112
+  - first:
+      213: -3846074289980182664
+    second: summoner_sheet_113
+  - first:
+      213: -8515818685308279963
+    second: summoner_sheet_114
+  - first:
+      213: -1017306037098689863
+    second: summoner_sheet_115
+  - first:
+      213: 163628251206774351
+    second: summoner_sheet_116
+  - first:
+      213: -4770111942093713421
+    second: summoner_sheet_117
+  - first:
+      213: -64865200251992746
+    second: summoner_sheet_118
+  - first:
+      213: 3145642135993809195
+    second: summoner_sheet_119
+  - first:
+      213: -303076301696715372
+    second: summoner_sheet_120
+  - first:
+      213: 2590472706115999193
+    second: summoner_sheet_121
+  - first:
+      213: 438372810460627453
+    second: summoner_sheet_122
+  - first:
+      213: -1382250493193339503
+    second: summoner_sheet_123
+  - first:
+      213: 4552234289346563769
+    second: summoner_sheet_124
+  - first:
+      213: 8674247410661628689
+    second: summoner_sheet_125
+  - first:
+      213: 861779985057277314
+    second: summoner_sheet_126
+  - first:
+      213: 6266808122147190322
+    second: summoner_sheet_127
+  - first:
+      213: 4996561406876115288
+    second: summoner_sheet_128
+  - first:
+      213: -1954583481341714240
+    second: summoner_sheet_129
+  - first:
+      213: 3971655601338297284
+    second: summoner_sheet_130
+  - first:
+      213: 2668501029747090673
+    second: summoner_sheet_131
+  - first:
+      213: 4498830272991653468
+    second: summoner_sheet_132
+  - first:
+      213: -4940327547334843052
+    second: summoner_sheet_133
+  - first:
+      213: 385163963493101290
+    second: summoner_sheet_134
+  - first:
+      213: -3617870879777533339
+    second: summoner_sheet_135
+  - first:
+      213: -6561035015141951469
+    second: summoner_sheet_136
+  - first:
+      213: 649117177708381806
+    second: summoner_sheet_137
+  - first:
+      213: -2099258724409692724
+    second: summoner_sheet_138
+  - first:
+      213: -8946807532848639527
+    second: summoner_sheet_139
+  - first:
+      213: -6039069667960092878
+    second: summoner_sheet_140
+  - first:
+      213: -6511338001056295065
+    second: summoner_sheet_141
+  - first:
+      213: -8050364316323679020
+    second: summoner_sheet_142
+  - first:
+      213: 4290259098865074913
+    second: summoner_sheet_143
+  - first:
+      213: 4849773309909185074
+    second: summoner_sheet_144
+  - first:
+      213: 5466806202566101197
+    second: summoner_sheet_145
+  - first:
+      213: 3224230405529211630
+    second: summoner_sheet_146
+  - first:
+      213: -6062905974281392125
+    second: summoner_sheet_147
+  - first:
+      213: -3627875637061344131
+    second: summoner_sheet_148
+  - first:
+      213: 2919775911150486051
+    second: summoner_sheet_149
+  - first:
+      213: 1580171934184215899
+    second: summoner_sheet_150
+  - first:
+      213: 3493486052885488284
+    second: summoner_sheet_151
+  - first:
+      213: -6219795381241645225
+    second: summoner_sheet_152
+  - first:
+      213: -2847211163151897744
+    second: summoner_sheet_153
+  - first:
+      213: -5046631667288099954
+    second: summoner_sheet_154
+  - first:
+      213: -5714327589915723245
+    second: summoner_sheet_155
+  - first:
+      213: 8674737689170087614
+    second: summoner_sheet_156
+  - first:
+      213: -5348778259121703485
+    second: summoner_sheet_157
+  - first:
+      213: -3808256030941147899
+    second: summoner_sheet_158
+  - first:
+      213: 986237628496438802
+    second: summoner_sheet_159
+  - first:
+      213: -4033553893846549761
+    second: summoner_sheet_160
+  - first:
+      213: 7559272465426693630
+    second: summoner_sheet_161
+  - first:
+      213: 5579629012584807170
+    second: summoner_sheet_162
+  - first:
+      213: 301499080560922953
+    second: summoner_sheet_163
+  - first:
+      213: 1230373853215074220
+    second: summoner_sheet_164
+  - first:
+      213: -436870861550914423
+    second: summoner_sheet_165
+  - first:
+      213: -1059099122340230281
+    second: summoner_sheet_166
+  - first:
+      213: -287100181982011744
+    second: summoner_sheet_167
+  - first:
+      213: -8661865061197468073
+    second: summoner_sheet_0_0
+  - first:
+      213: 7006572661314092543
+    second: summoner_sheet_0_1
+  - first:
+      213: -3168458801452792897
+    second: summoner_sheet_0_2
+  - first:
+      213: 1245746234840596824
+    second: summoner_sheet_0_3
+  - first:
+      213: -297028142352498684
+    second: summoner_sheet_0_4
+  - first:
+      213: -466306227100873703
+    second: summoner_sheet_0_5
+  - first:
+      213: -2328866487690784891
+    second: summoner_sheet_0_6
+  - first:
+      213: 2423990186733114947
+    second: summoner_sheet_0_7
+  - first:
+      213: -4439995331191308901
+    second: summoner_sheet_0_8
+  - first:
+      213: 8075347117876385712
+    second: summoner_sheet_0_9
+  - first:
+      213: 2823951139225226757
+    second: summoner_sheet_0_10
+  - first:
+      213: 7232468782569298549
+    second: summoner_sheet_0_11
+  - first:
+      213: 8695208925048078055
+    second: summoner_sheet_0_12
+  - first:
+      213: -8941693672859380409
+    second: summoner_sheet_0_13
+  - first:
+      213: 7512952204553875786
+    second: summoner_sheet_0_14
+  - first:
+      213: 2919663890081046383
+    second: summoner_sheet_0_15
+  - first:
+      213: -4464188542623510095
+    second: summoner_sheet_0_16
+  - first:
+      213: 2982189428349916551
+    second: summoner_sheet_0_17
+  - first:
+      213: 7506905029642756019
+    second: summoner_sheet_0_18
+  - first:
+      213: -392585447557310577
+    second: summoner_sheet_0_19
+  - first:
+      213: -4735713461551050456
+    second: summoner_sheet_0_20
+  - first:
+      213: 9075794804712513444
+    second: summoner_sheet_1_0
+  - first:
+      213: -3052605751952298361
+    second: summoner_sheet_1_1
+  - first:
+      213: -7767476126862699078
+    second: summoner_sheet_1_2
+  - first:
+      213: -4616168547006540783
+    second: summoner_sheet_1_3
+  - first:
+      213: 7322759673924867582
+    second: summoner_sheet_1_4
+  - first:
+      213: -6743385661946952998
+    second: summoner_sheet_1_5
+  - first:
+      213: -7669858642526709191
+    second: summoner_sheet_1_6
+  - first:
+      213: 3400908411266893724
+    second: summoner_sheet_1_7
+  - first:
+      213: 1118453091801949590
+    second: summoner_sheet_1_8
+  - first:
+      213: 959950994809818731
+    second: summoner_sheet_1_9
+  - first:
+      213: -5221801317144413235
+    second: summoner_sheet_1_10
+  - first:
+      213: -3944607895866759950
+    second: summoner_sheet_1_11
+  - first:
+      213: 6877189843394299562
+    second: summoner_sheet_1_12
+  - first:
+      213: 3658809409491100968
+    second: summoner_sheet_1_13
+  - first:
+      213: -6423658488455485973
+    second: summoner_sheet_1_14
+  - first:
+      213: 1745885116170455068
+    second: summoner_sheet_1_15
+  - first:
+      213: 2774186712593960688
+    second: summoner_sheet_1_16
+  - first:
+      213: -1495593996894259897
+    second: summoner_sheet_1_17
+  - first:
+      213: -3487234687024165038
+    second: summoner_sheet_1_18
+  - first:
+      213: 7140558144528546934
+    second: summoner_sheet_1_19
+  - first:
+      213: 6596653553466084412
+    second: summoner_sheet_1_20
+  - first:
+      213: -7925380854376577635
+    second: summoner_sheet_2_0
+  - first:
+      213: 1255077707402530475
+    second: summoner_sheet_2_1
+  - first:
+      213: -1945896185444349680
+    second: summoner_sheet_2_2
+  - first:
+      213: 2872343669804608152
+    second: summoner_sheet_2_3
+  - first:
+      213: 3596225263596193646
+    second: summoner_sheet_2_4
+  - first:
+      213: 5736043934365134989
+    second: summoner_sheet_2_5
+  - first:
+      213: -7537876244619186569
+    second: summoner_sheet_2_6
+  - first:
+      213: -5283596761229701448
+    second: summoner_sheet_2_7
+  - first:
+      213: 5518922389279519818
+    second: summoner_sheet_2_8
+  - first:
+      213: 8718754754840527596
+    second: summoner_sheet_2_9
+  - first:
+      213: 4703997231061240270
+    second: summoner_sheet_2_10
+  - first:
+      213: -1448054588077784832
+    second: summoner_sheet_2_11
+  - first:
+      213: -5545478754407455923
+    second: summoner_sheet_2_12
+  - first:
+      213: 8006644082559690595
+    second: summoner_sheet_2_13
+  - first:
+      213: -47186609008097011
+    second: summoner_sheet_2_14
+  - first:
+      213: -6572004018965139997
+    second: summoner_sheet_2_15
+  - first:
+      213: 222429720382599154
+    second: summoner_sheet_2_16
+  - first:
+      213: 2158069920790701781
+    second: summoner_sheet_2_17
+  - first:
+      213: -6745554442430812831
+    second: summoner_sheet_2_18
+  - first:
+      213: -6071884453390464580
+    second: summoner_sheet_2_19
+  - first:
+      213: 4680443334673779599
+    second: summoner_sheet_2_20
+  - first:
+      213: 3462233148705566033
+    second: summoner_sheet_3_0
+  - first:
+      213: -5010836685657325679
+    second: summoner_sheet_3_1
+  - first:
+      213: 7624183677127051228
+    second: summoner_sheet_3_2
+  - first:
+      213: -2334653011093459910
+    second: summoner_sheet_3_3
+  - first:
+      213: -1543934719845950466
+    second: summoner_sheet_3_4
+  - first:
+      213: 6096113278497215285
+    second: summoner_sheet_3_5
+  - first:
+      213: 9076137692044599836
+    second: summoner_sheet_3_6
+  - first:
+      213: -4837052140784497643
+    second: summoner_sheet_3_7
+  - first:
+      213: 2248895834745840460
+    second: summoner_sheet_3_8
+  - first:
+      213: -4347359410692774929
+    second: summoner_sheet_3_9
+  - first:
+      213: 7203715595124080679
+    second: summoner_sheet_3_10
+  - first:
+      213: 375202343901418602
+    second: summoner_sheet_3_11
+  - first:
+      213: -7019755612603990596
+    second: summoner_sheet_3_12
+  - first:
+      213: -2130613618215750758
+    second: summoner_sheet_3_13
+  - first:
+      213: 4870576324438036406
+    second: summoner_sheet_3_14
+  - first:
+      213: -952316776077564077
+    second: summoner_sheet_3_15
+  - first:
+      213: -7767419401472464716
+    second: summoner_sheet_3_16
+  - first:
+      213: 7948439164058903307
+    second: summoner_sheet_3_17
+  - first:
+      213: -7587332331914570584
+    second: summoner_sheet_3_18
+  - first:
+      213: 5110961644264084556
+    second: summoner_sheet_3_19
+  - first:
+      213: -9006632326968648357
+    second: summoner_sheet_3_20
+  - first:
+      213: -8106136324057510291
+    second: summoner_sheet_4_0
+  - first:
+      213: -8389395760056444943
+    second: summoner_sheet_4_1
+  - first:
+      213: 5663772788825186389
+    second: summoner_sheet_4_2
+  - first:
+      213: -1368715943292810623
+    second: summoner_sheet_4_3
+  - first:
+      213: -1150957293954413536
+    second: summoner_sheet_4_4
+  - first:
+      213: 8660048235591018133
+    second: summoner_sheet_4_5
+  - first:
+      213: 8554380328139691116
+    second: summoner_sheet_4_6
+  - first:
+      213: -3660307599794332832
+    second: summoner_sheet_4_7
+  - first:
+      213: 2959875103681039588
+    second: summoner_sheet_4_8
+  - first:
+      213: 58240387579486614
+    second: summoner_sheet_4_9
+  - first:
+      213: -4159597547069274933
+    second: summoner_sheet_4_10
+  - first:
+      213: 4299901569740652146
+    second: summoner_sheet_4_11
+  - first:
+      213: 910673805430622446
+    second: summoner_sheet_4_12
+  - first:
+      213: 4213409098112193062
+    second: summoner_sheet_4_13
+  - first:
+      213: 6234124414072045431
+    second: summoner_sheet_4_14
+  - first:
+      213: -244746176309133286
+    second: summoner_sheet_4_15
+  - first:
+      213: 6742304479625569613
+    second: summoner_sheet_4_16
+  - first:
+      213: 5483952183526966831
+    second: summoner_sheet_4_17
+  - first:
+      213: -4489782763161322532
+    second: summoner_sheet_4_18
+  - first:
+      213: 5560186180359934060
+    second: summoner_sheet_4_19
+  - first:
+      213: 4887717825025062873
+    second: summoner_sheet_4_20
+  - first:
+      213: -3727457726606649452
+    second: summoner_sheet_5_0
+  - first:
+      213: -1336576936609655677
+    second: summoner_sheet_5_1
+  - first:
+      213: 9176729099579755363
+    second: summoner_sheet_5_2
+  - first:
+      213: 2687000616203597926
+    second: summoner_sheet_5_3
+  - first:
+      213: 4965254510600541312
+    second: summoner_sheet_5_4
+  - first:
+      213: 3983856600415566432
+    second: summoner_sheet_5_5
+  - first:
+      213: -8055803295288018120
+    second: summoner_sheet_5_6
+  - first:
+      213: -6603683887819030483
+    second: summoner_sheet_5_7
+  - first:
+      213: -4615534499358670103
+    second: summoner_sheet_5_8
+  - first:
+      213: 5565155447147359753
+    second: summoner_sheet_5_9
+  - first:
+      213: 4414360775610909034
+    second: summoner_sheet_5_10
+  - first:
+      213: -6760764120831686138
+    second: summoner_sheet_5_11
+  - first:
+      213: 7113267750043035803
+    second: summoner_sheet_5_12
+  - first:
+      213: 2776888929292983381
+    second: summoner_sheet_5_13
+  - first:
+      213: -5412653612034376046
+    second: summoner_sheet_5_14
+  - first:
+      213: 1156901621231202501
+    second: summoner_sheet_5_15
+  - first:
+      213: -5802946643090444741
+    second: summoner_sheet_5_16
+  - first:
+      213: 313952159491957837
+    second: summoner_sheet_5_17
+  - first:
+      213: 5669061200962045188
+    second: summoner_sheet_5_18
+  - first:
+      213: -717963794112264774
+    second: summoner_sheet_5_19
+  - first:
+      213: -7763378474304345220
+    second: summoner_sheet_5_20
+  - first:
+      213: -2191171868933315150
+    second: summoner_sheet_6_0
+  - first:
+      213: -994695166338270017
+    second: summoner_sheet_6_1
+  - first:
+      213: -5762323918574750988
+    second: summoner_sheet_6_2
+  - first:
+      213: -3715659304176930513
+    second: summoner_sheet_6_3
+  - first:
+      213: -4969701643103005903
+    second: summoner_sheet_6_4
+  - first:
+      213: -1734082069059819874
+    second: summoner_sheet_6_5
+  - first:
+      213: -8311086081650678408
+    second: summoner_sheet_6_6
+  - first:
+      213: -3495657458430680906
+    second: summoner_sheet_6_7
+  - first:
+      213: 2402164454576245501
+    second: summoner_sheet_6_8
+  - first:
+      213: 873395293540801520
+    second: summoner_sheet_6_9
+  - first:
+      213: -2452307758013200060
+    second: summoner_sheet_6_10
+  - first:
+      213: -1745877152268051582
+    second: summoner_sheet_6_11
+  - first:
+      213: 3750356322292066077
+    second: summoner_sheet_6_12
+  - first:
+      213: -8025106668589318343
+    second: summoner_sheet_6_13
+  - first:
+      213: -4604149410510359943
+    second: summoner_sheet_6_14
+  - first:
+      213: -6339181006466288145
+    second: summoner_sheet_6_15
+  - first:
+      213: -7943537666042465230
+    second: summoner_sheet_6_16
+  - first:
+      213: 4765356059294702807
+    second: summoner_sheet_6_17
+  - first:
+      213: -7901480354559329447
+    second: summoner_sheet_6_18
+  - first:
+      213: 3252992721838549085
+    second: summoner_sheet_6_19
+  - first:
+      213: -2212238778870297466
+    second: summoner_sheet_6_20
+  - first:
+      213: -2928298654863002007
+    second: summoner_sheet_7_0
+  - first:
+      213: 556176476199975869
+    second: summoner_sheet_7_1
+  - first:
+      213: -1906107420606413963
+    second: summoner_sheet_7_2
+  - first:
+      213: -5727895938466123817
+    second: summoner_sheet_7_3
+  - first:
+      213: -2974368328570079928
+    second: summoner_sheet_7_4
+  - first:
+      213: 9213011091783296796
+    second: summoner_sheet_7_5
+  - first:
+      213: -2823888693071094218
+    second: summoner_sheet_7_6
+  - first:
+      213: -7327655565956621793
+    second: summoner_sheet_7_7
+  - first:
+      213: 2719158839290916308
+    second: summoner_sheet_7_8
+  - first:
+      213: 751460172585441383
+    second: summoner_sheet_7_9
+  - first:
+      213: -8881275222507922
+    second: summoner_sheet_7_10
+  - first:
+      213: -5707939514841887621
+    second: summoner_sheet_7_11
+  - first:
+      213: 7611573586968361175
+    second: summoner_sheet_7_12
+  - first:
+      213: -6606325030076677187
+    second: summoner_sheet_7_13
+  - first:
+      213: -3440786066562683896
+    second: summoner_sheet_7_14
+  - first:
+      213: 8204705531833203265
+    second: summoner_sheet_7_15
+  - first:
+      213: -5810077821618707913
+    second: summoner_sheet_7_16
+  - first:
+      213: 6412884451454864795
+    second: summoner_sheet_7_17
+  - first:
+      213: -2785756413344694408
+    second: summoner_sheet_7_18
+  - first:
+      213: -5627207310177661959
+    second: summoner_sheet_7_19
+  - first:
+      213: -4736904942708792927
+    second: summoner_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: summoner_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e25fe8e9fdac780800000000000000
+      internalID: -8661865061197468073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffdf69a86b85c3160800000000000000
+      internalID: 7006572661314092543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb342fdd18f5704d0800000000000000
+      internalID: -3168458801452792897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85144ffa997c94110800000000000000
+      internalID: 1245746234840596824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40009ce6a7eb0ebf0800000000000000
+      internalID: -297028142352498684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91c891105f85789f0800000000000000
+      internalID: -466306227100873703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58f01efa4443eafd0800000000000000
+      internalID: -2328866487690784891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34692436b3eb3a120800000000000000
+      internalID: 2423990186733114947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9df2f735c7f162c0800000000000000
+      internalID: -4439995331191308901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b71ffe2b65611070800000000000000
+      internalID: 8075347117876385712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50e44946990b03720800000000000000
+      internalID: 2823951139225226757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57a152ad904ee5460800000000000000
+      internalID: 7232468782569298549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eefb49b2769ba870800000000000000
+      internalID: 8695208925048078055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 745dbdacaf8b8e380800000000000000
+      internalID: -8941693672859380409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a41fbe6893e534860800000000000000
+      internalID: 7512952204553875786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6fd0d7c6dab48820800000000000000
+      internalID: 2919663890081046383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b19e8a3c240c02c0800000000000000
+      internalID: -4464188542623510095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 785d8b91c7dd26920800000000000000
+      internalID: 2982189428349916551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bf1376e952ed2860800000000000000
+      internalID: 7506905029642756019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87db5e8d914d8af0800000000000000
+      internalID: -392585447557310577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821d63692bd574eb0800000000000000
+      internalID: -4735713461551050456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4af993d0a43b3fd70800000000000000
+      internalID: 9075794804712513444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78ea193fd37f2a5d0800000000000000
+      internalID: -3052605751952298361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab59501dd91643490800000000000000
+      internalID: -7767476126862699078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 114185cf92310ffb0800000000000000
+      internalID: -4616168547006540783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5d8d3302baf9560800000000000000
+      internalID: 7322759673924867582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2803ce77eaa62a0800000000000000
+      internalID: -6743385661946952998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a5cb683303f8590800000000000000
+      internalID: -7669858642526709191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9783376e24723f20800000000000000
+      internalID: 3400908411266893724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 695eac2492b858f00800000000000000
+      internalID: 1118453091801949590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6e0c6ff75e625d00800000000000000
+      internalID: 959950994809818731
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcbb0fb4e5f6887b0800000000000000
+      internalID: -5221801317144413235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f429a4a400f149c0800000000000000
+      internalID: -3944607895866759950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa60174c9bfa07f50800000000000000
+      internalID: 6877189843394299562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 825e291d5c3b6c230800000000000000
+      internalID: 3658809409491100968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be5203583a49ad6a0800000000000000
+      internalID: -6423658488455485973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c184bf75341aa3810800000000000000
+      internalID: 1745885116170455068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe85c8ed14ef7620800000000000000
+      internalID: 2774186712593960688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74539ee0f259e3be0800000000000000
+      internalID: -1495593996894259897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f018f378ada9fc0800000000000000
+      internalID: -3487234687024165038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67c75a6dccb581360800000000000000
+      internalID: 7140558144528546934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3c0aa0d4750c8b50800000000000000
+      internalID: 6596653553466084412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d95c3397a14630290800000000000000
+      internalID: -7925380854376577635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bae4d33768eea6110800000000000000
+      internalID: 1255077707402530475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0194dc8aab9cef4e0800000000000000
+      internalID: -1945896185444349680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89aab8f695d9cd720800000000000000
+      internalID: 2872343669804608152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e67cfe8d2db58e130800000000000000
+      internalID: 3596225263596193646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d803ed341958a9f40800000000000000
+      internalID: 5736043934365134989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77e2e9e2e75146790800000000000000
+      internalID: -7537876244619186569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8becf764db4eca6b0800000000000000
+      internalID: -5283596761229701448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a44b4fb2ca6279c40800000000000000
+      internalID: 5518922389279519818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce2840e614d3ff870800000000000000
+      internalID: 8718754754840527596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec983dd0f84f74140800000000000000
+      internalID: 4703997231061240270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 001cf36360a77ebe0800000000000000
+      internalID: -1448054588077784832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43611e34708a03b0800000000000000
+      internalID: -5545478754407455923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36724ff3f505d1f60800000000000000
+      internalID: 8006644082559690595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d09cae3770c585ff0800000000000000
+      internalID: -47186609008097011
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eda42b2a2d8bc4a0800000000000000
+      internalID: -6572004018965139997
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ffe4e6f6aa361300800000000000000
+      internalID: 222429720382599154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d66f25b82103fd10800000000000000
+      internalID: 2158069920790701781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16d6add59f9f262a0800000000000000
+      internalID: -6745554442430812831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb9c17682455cbba0800000000000000
+      internalID: -6071884453390464580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8b43923a6644f040800000000000000
+      internalID: 4680443334673779599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d6d2e74b25c0030800000000000000
+      internalID: 3462233148705566033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19f36eb359ee57ab0800000000000000
+      internalID: -5010836685657325679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd74d71e8aa8ec960800000000000000
+      internalID: 7624183677127051228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c6af7b475a99fd0800000000000000
+      internalID: -2334653011093459910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb903b6d87d29ae0800000000000000
+      internalID: -1543934719845950466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5335e5b6abeb99450800000000000000
+      internalID: 6096113278497215285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c122adab42be4fd70800000000000000
+      internalID: 9076137692044599836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51c4f7ca4b65fdcb0800000000000000
+      internalID: -4837052140784497643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c43a1e6b8dea53f10800000000000000
+      internalID: 2248895834745840460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe3a4b636a31ba3c0800000000000000
+      internalID: -4347359410692774929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7200056ba2db8f360800000000000000
+      internalID: 7203715595124080679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a64532b3b8cf43500800000000000000
+      internalID: 375202343901418602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd3fac6671d49e90800000000000000
+      internalID: -7019755612603990596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a93f3a4e33a8e62e0800000000000000
+      internalID: -2130613618215750758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bf8e859c53c79340800000000000000
+      internalID: 4870576324438036406
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 357604010f0b8c2f0800000000000000
+      internalID: -952316776077564077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b8a1c93535943490800000000000000
+      internalID: -7767419401472464716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b03a88c9e478e4e60800000000000000
+      internalID: 7948439164058903307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a4556b817164b690800000000000000
+      internalID: -7587332331914570584
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44d1035988cde640800000000000000
+      internalID: 5110961644264084556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5ddb782e93020380800000000000000
+      internalID: -9006632326968648357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6e49af16f7318f80800000000000000
+      internalID: -8106136324057510291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f7daa15101e29b80800000000000000
+      internalID: -8389395760056444943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 550e27ee753c99e40800000000000000
+      internalID: 5663772788825186389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18a4e91f918510de0800000000000000
+      internalID: -1368715943292810623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02cc33e607af600f0800000000000000
+      internalID: -1150957293954413536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 596a624ccfbae2870800000000000000
+      internalID: 8660048235591018133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c641b5cd59347b670800000000000000
+      internalID: 8554380328139691116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06b989191a9f33dc0800000000000000
+      internalID: -3660307599794332832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ec4e6689b6931920800000000000000
+      internalID: 2959875103681039588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 691a14de259eec000800000000000000
+      internalID: 58240387579486614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc48956c1142646c0800000000000000
+      internalID: -4159597547069274933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27e398122b15cab30800000000000000
+      internalID: 4299901569740652146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee802f6400d53ac00800000000000000
+      internalID: 910673805430622446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 622506a4049097a30800000000000000
+      internalID: 4213409098112193062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77fba52ff1f048650800000000000000
+      internalID: 6234124414072045431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1085fc36ac7a9cf0800000000000000
+      internalID: -244746176309133286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d456b93b33a719d50800000000000000
+      internalID: 6742304479625569613
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f264a58a479ea1c40800000000000000
+      internalID: 5483952183526966831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdbf8136d5611b1c0800000000000000
+      internalID: -4489782763161322532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60d3653fdfb92d40800000000000000
+      internalID: 5560186180359934060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d7b6f23779a4d340800000000000000
+      internalID: 4887717825025062873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 497535252f8654cc0800000000000000
+      internalID: -3727457726606649452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 384d66e8b56837de0800000000000000
+      internalID: -1336576936609655677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36b0174ee7a4a5f70800000000000000
+      internalID: 9176729099579755363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6683218f2d42a4520800000000000000
+      internalID: 2687000616203597926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08450cb9ba028e440800000000000000
+      internalID: 4965254510600541312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a7ddf7870894730800000000000000
+      internalID: 3983856600415566432
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83bbfeb9599043090800000000000000
+      internalID: -8055803295288018120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d208399ed700b54a0800000000000000
+      internalID: -6603683887819030483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e28a25b3d352ffb0800000000000000
+      internalID: -4615534499358670103
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e6c0bc4676b3d40800000000000000
+      internalID: 5565155447147359753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61c4b4bcb5f24d30800000000000000
+      internalID: 4414360775610909034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60a0f972ad0fc22a0800000000000000
+      internalID: -6760764120831686138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98ae89b45767b260800000000000000
+      internalID: 7113267750043035803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55c1933c4cd798620800000000000000
+      internalID: 2776888929292983381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29eb472a73462e4b0800000000000000
+      internalID: -5412653612034376046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c03f8d15e32e0010800000000000000
+      internalID: 1156901621231202501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3e6c0006cac77fa0800000000000000
+      internalID: -5802946643090444741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d442cfe53d16b5400800000000000000
+      internalID: 313952159491957837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 405ca45502d8cae40800000000000000
+      internalID: 5669061200962045188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab5c852bbb74906f0800000000000000
+      internalID: -717963794112264774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7bec26e860f24490800000000000000
+      internalID: -7763378474304345220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b5a6666bc46791e0800000000000000
+      internalID: -2191171868933315150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcfb9e24022232f0800000000000000
+      internalID: -994695166338270017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f27d981dec1800b0800000000000000
+      internalID: -5762323918574750988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f21b82c9c835f6cc0800000000000000
+      internalID: -3715659304176930513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1339b2bafa2180bb0800000000000000
+      internalID: -4969701643103005903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e96a056bb8d4fe7e0800000000000000
+      internalID: -1734082069059819874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 875a4852e3719ac80800000000000000
+      internalID: -8311086081650678408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b06bc5ff0eec7fc0800000000000000
+      internalID: -3495657458430680906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfa461f18d3365120800000000000000
+      internalID: 2402164454576245501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb5ffb546cee1c00800000000000000
+      internalID: 873395293540801520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44940b34617a7fdd0800000000000000
+      internalID: -2452307758013200060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28b9795eaf565c7e0800000000000000
+      internalID: -1745877152268051582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d17eb537431fb0430800000000000000
+      internalID: 3750356322292066077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f7d16f00811a090800000000000000
+      internalID: -8025106668589318343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972b4b54186ca10c0800000000000000
+      internalID: -4604149410510359943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe57ca60674b608a0800000000000000
+      internalID: -6339181006466288145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2347a935492e2c190800000000000000
+      internalID: -7943537666042465230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc14868612f12240800000000000000
+      internalID: 4765356059294702807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b73ca3b7d485290800000000000000
+      internalID: -7901480354559329447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d582e1a35a3f42d20800000000000000
+      internalID: 3252992721838549085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c87133d8c8c41e0800000000000000
+      internalID: -2212238778870297466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 966f2a063e79c57d0800000000000000
+      internalID: -2928298654863002007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbbf350fe8fe7b700800000000000000
+      internalID: 556176476199975869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 573c40366652c85e0800000000000000
+      internalID: -1906107420606413963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dfe25dddfc6280b0800000000000000
+      internalID: -5727895938466123817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 845786893cbe8b6d0800000000000000
+      internalID: -2974368328570079928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c172a7d76c03bdf70800000000000000
+      internalID: 9213011091783296796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63e514cf1388fc8d0800000000000000
+      internalID: -2823888693071094218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1addba1610fe4a90800000000000000
+      internalID: -7327655565956621793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dd6ccfbe846cb520800000000000000
+      internalID: 2719158839290916308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7681fc9ab09bd6a00800000000000000
+      internalID: 751460172585441383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6eb539f68270eff0800000000000000
+      internalID: -8881275222507922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7c0f62d04359c0b0800000000000000
+      internalID: -5707939514841887621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d8bef879ddb1a960800000000000000
+      internalID: 7611573586968361175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3028f036e9154a0800000000000000
+      internalID: -6606325030076677187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80cea627d4fdf30d0800000000000000
+      internalID: -3440786066562683896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14ab997f538fcd170800000000000000
+      internalID: 8204705531833203265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 732aa0d11057e5fa0800000000000000
+      internalID: -5810077821618707913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9dc7928e642ff850800000000000000
+      internalID: 6412884451454864795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87fb2d73d410759d0800000000000000
+      internalID: -2785756413344694408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fb016ff3c428e1b0800000000000000
+      internalID: -5627207310177661959
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: summoner_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a1ec034d02234eb0800000000000000
+      internalID: -4736904942708792927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      summoner_sheet_0: 2442617607958315536
+      summoner_sheet_0_0: -8661865061197468073
+      summoner_sheet_0_1: 7006572661314092543
+      summoner_sheet_0_10: 2823951139225226757
+      summoner_sheet_0_11: 7232468782569298549
+      summoner_sheet_0_12: 8695208925048078055
+      summoner_sheet_0_13: -8941693672859380409
+      summoner_sheet_0_14: 7512952204553875786
+      summoner_sheet_0_15: 2919663890081046383
+      summoner_sheet_0_16: -4464188542623510095
+      summoner_sheet_0_17: 2982189428349916551
+      summoner_sheet_0_18: 7506905029642756019
+      summoner_sheet_0_19: -392585447557310577
+      summoner_sheet_0_2: -3168458801452792897
+      summoner_sheet_0_20: -4735713461551050456
+      summoner_sheet_0_3: 1245746234840596824
+      summoner_sheet_0_4: -297028142352498684
+      summoner_sheet_0_5: -466306227100873703
+      summoner_sheet_0_6: -2328866487690784891
+      summoner_sheet_0_7: 2423990186733114947
+      summoner_sheet_0_8: -4439995331191308901
+      summoner_sheet_0_9: 8075347117876385712
+      summoner_sheet_1: -9173299232724763352
+      summoner_sheet_10: 1802584586949226795
+      summoner_sheet_100: -7374731163880049396
+      summoner_sheet_101: 7467665232364597785
+      summoner_sheet_102: -1259161475298410102
+      summoner_sheet_103: 1349382212528978902
+      summoner_sheet_104: 6533344061499735959
+      summoner_sheet_105: 5600902089932107420
+      summoner_sheet_106: -7764326040705173686
+      summoner_sheet_107: 6037668883194420943
+      summoner_sheet_108: -713413846864230571
+      summoner_sheet_109: 3919348329372176820
+      summoner_sheet_11: 1803912696455801496
+      summoner_sheet_110: -4744497196739867016
+      summoner_sheet_111: 2565261891225368396
+      summoner_sheet_112: 4763210522332985617
+      summoner_sheet_113: -3846074289980182664
+      summoner_sheet_114: -8515818685308279963
+      summoner_sheet_115: -1017306037098689863
+      summoner_sheet_116: 163628251206774351
+      summoner_sheet_117: -4770111942093713421
+      summoner_sheet_118: -64865200251992746
+      summoner_sheet_119: 3145642135993809195
+      summoner_sheet_12: 7716395728346296943
+      summoner_sheet_120: -303076301696715372
+      summoner_sheet_121: 2590472706115999193
+      summoner_sheet_122: 438372810460627453
+      summoner_sheet_123: -1382250493193339503
+      summoner_sheet_124: 4552234289346563769
+      summoner_sheet_125: 8674247410661628689
+      summoner_sheet_126: 861779985057277314
+      summoner_sheet_127: 6266808122147190322
+      summoner_sheet_128: 4996561406876115288
+      summoner_sheet_129: -1954583481341714240
+      summoner_sheet_13: -928903023105174632
+      summoner_sheet_130: 3971655601338297284
+      summoner_sheet_131: 2668501029747090673
+      summoner_sheet_132: 4498830272991653468
+      summoner_sheet_133: -4940327547334843052
+      summoner_sheet_134: 385163963493101290
+      summoner_sheet_135: -3617870879777533339
+      summoner_sheet_136: -6561035015141951469
+      summoner_sheet_137: 649117177708381806
+      summoner_sheet_138: -2099258724409692724
+      summoner_sheet_139: -8946807532848639527
+      summoner_sheet_14: 4641751079487796120
+      summoner_sheet_140: -6039069667960092878
+      summoner_sheet_141: -6511338001056295065
+      summoner_sheet_142: -8050364316323679020
+      summoner_sheet_143: 4290259098865074913
+      summoner_sheet_144: 4849773309909185074
+      summoner_sheet_145: 5466806202566101197
+      summoner_sheet_146: 3224230405529211630
+      summoner_sheet_147: -6062905974281392125
+      summoner_sheet_148: -3627875637061344131
+      summoner_sheet_149: 2919775911150486051
+      summoner_sheet_15: 4472353059838700348
+      summoner_sheet_150: 1580171934184215899
+      summoner_sheet_151: 3493486052885488284
+      summoner_sheet_152: -6219795381241645225
+      summoner_sheet_153: -2847211163151897744
+      summoner_sheet_154: -5046631667288099954
+      summoner_sheet_155: -5714327589915723245
+      summoner_sheet_156: 8674737689170087614
+      summoner_sheet_157: -5348778259121703485
+      summoner_sheet_158: -3808256030941147899
+      summoner_sheet_159: 986237628496438802
+      summoner_sheet_16: -2189858811985068999
+      summoner_sheet_160: -4033553893846549761
+      summoner_sheet_161: 7559272465426693630
+      summoner_sheet_162: 5579629012584807170
+      summoner_sheet_163: 301499080560922953
+      summoner_sheet_164: 1230373853215074220
+      summoner_sheet_165: -436870861550914423
+      summoner_sheet_166: -1059099122340230281
+      summoner_sheet_167: -287100181982011744
+      summoner_sheet_17: 5644396469300709831
+      summoner_sheet_18: -151815568096546029
+      summoner_sheet_19: -1200966603901772615
+      summoner_sheet_1_0: 9075794804712513444
+      summoner_sheet_1_1: -3052605751952298361
+      summoner_sheet_1_10: -5221801317144413235
+      summoner_sheet_1_11: -3944607895866759950
+      summoner_sheet_1_12: 6877189843394299562
+      summoner_sheet_1_13: 3658809409491100968
+      summoner_sheet_1_14: -6423658488455485973
+      summoner_sheet_1_15: 1745885116170455068
+      summoner_sheet_1_16: 2774186712593960688
+      summoner_sheet_1_17: -1495593996894259897
+      summoner_sheet_1_18: -3487234687024165038
+      summoner_sheet_1_19: 7140558144528546934
+      summoner_sheet_1_2: -7767476126862699078
+      summoner_sheet_1_20: 6596653553466084412
+      summoner_sheet_1_3: -4616168547006540783
+      summoner_sheet_1_4: 7322759673924867582
+      summoner_sheet_1_5: -6743385661946952998
+      summoner_sheet_1_6: -7669858642526709191
+      summoner_sheet_1_7: 3400908411266893724
+      summoner_sheet_1_8: 1118453091801949590
+      summoner_sheet_1_9: 959950994809818731
+      summoner_sheet_2: 6799538648945141451
+      summoner_sheet_20: -3118124162868177532
+      summoner_sheet_21: 305008283540929467
+      summoner_sheet_22: -7198692533699445354
+      summoner_sheet_23: -1685110963493525830
+      summoner_sheet_24: 1809779547185883604
+      summoner_sheet_25: -7528913243969512555
+      summoner_sheet_26: -209846632560461141
+      summoner_sheet_27: -4647473204853942709
+      summoner_sheet_28: 3044836601382448002
+      summoner_sheet_29: -5500414692496108702
+      summoner_sheet_2_0: -7925380854376577635
+      summoner_sheet_2_1: 1255077707402530475
+      summoner_sheet_2_10: 4703997231061240270
+      summoner_sheet_2_11: -1448054588077784832
+      summoner_sheet_2_12: -5545478754407455923
+      summoner_sheet_2_13: 8006644082559690595
+      summoner_sheet_2_14: -47186609008097011
+      summoner_sheet_2_15: -6572004018965139997
+      summoner_sheet_2_16: 222429720382599154
+      summoner_sheet_2_17: 2158069920790701781
+      summoner_sheet_2_18: -6745554442430812831
+      summoner_sheet_2_19: -6071884453390464580
+      summoner_sheet_2_2: -1945896185444349680
+      summoner_sheet_2_20: 4680443334673779599
+      summoner_sheet_2_3: 2872343669804608152
+      summoner_sheet_2_4: 3596225263596193646
+      summoner_sheet_2_5: 5736043934365134989
+      summoner_sheet_2_6: -7537876244619186569
+      summoner_sheet_2_7: -5283596761229701448
+      summoner_sheet_2_8: 5518922389279519818
+      summoner_sheet_2_9: 8718754754840527596
+      summoner_sheet_3: 7971415574209801513
+      summoner_sheet_30: 983104275049276057
+      summoner_sheet_31: 5281227963392547082
+      summoner_sheet_32: 3757828980917456522
+      summoner_sheet_33: -401267245486197972
+      summoner_sheet_34: -6043866753259797024
+      summoner_sheet_35: 8366786968021171315
+      summoner_sheet_36: -5643930810855712300
+      summoner_sheet_37: -8459890879723456214
+      summoner_sheet_38: -1022859277314682910
+      summoner_sheet_39: 1515800626124543462
+      summoner_sheet_3_0: 3462233148705566033
+      summoner_sheet_3_1: -5010836685657325679
+      summoner_sheet_3_10: 7203715595124080679
+      summoner_sheet_3_11: 375202343901418602
+      summoner_sheet_3_12: -7019755612603990596
+      summoner_sheet_3_13: -2130613618215750758
+      summoner_sheet_3_14: 4870576324438036406
+      summoner_sheet_3_15: -952316776077564077
+      summoner_sheet_3_16: -7767419401472464716
+      summoner_sheet_3_17: 7948439164058903307
+      summoner_sheet_3_18: -7587332331914570584
+      summoner_sheet_3_19: 5110961644264084556
+      summoner_sheet_3_2: 7624183677127051228
+      summoner_sheet_3_20: -9006632326968648357
+      summoner_sheet_3_3: -2334653011093459910
+      summoner_sheet_3_4: -1543934719845950466
+      summoner_sheet_3_5: 6096113278497215285
+      summoner_sheet_3_6: 9076137692044599836
+      summoner_sheet_3_7: -4837052140784497643
+      summoner_sheet_3_8: 2248895834745840460
+      summoner_sheet_3_9: -4347359410692774929
+      summoner_sheet_4: 341494135106228861
+      summoner_sheet_40: 4520521234533976682
+      summoner_sheet_41: 1238715403964947388
+      summoner_sheet_42: 4253397363572846231
+      summoner_sheet_43: -3303760630231242289
+      summoner_sheet_44: 1243116130731732774
+      summoner_sheet_45: -8331810167849850036
+      summoner_sheet_46: -1919148590248538490
+      summoner_sheet_47: 4974396537044430834
+      summoner_sheet_48: 4546945533030981839
+      summoner_sheet_49: 4321279959739713050
+      summoner_sheet_4_0: -8106136324057510291
+      summoner_sheet_4_1: -8389395760056444943
+      summoner_sheet_4_10: -4159597547069274933
+      summoner_sheet_4_11: 4299901569740652146
+      summoner_sheet_4_12: 910673805430622446
+      summoner_sheet_4_13: 4213409098112193062
+      summoner_sheet_4_14: 6234124414072045431
+      summoner_sheet_4_15: -244746176309133286
+      summoner_sheet_4_16: 6742304479625569613
+      summoner_sheet_4_17: 5483952183526966831
+      summoner_sheet_4_18: -4489782763161322532
+      summoner_sheet_4_19: 5560186180359934060
+      summoner_sheet_4_2: 5663772788825186389
+      summoner_sheet_4_20: 4887717825025062873
+      summoner_sheet_4_3: -1368715943292810623
+      summoner_sheet_4_4: -1150957293954413536
+      summoner_sheet_4_5: 8660048235591018133
+      summoner_sheet_4_6: 8554380328139691116
+      summoner_sheet_4_7: -3660307599794332832
+      summoner_sheet_4_8: 2959875103681039588
+      summoner_sheet_4_9: 58240387579486614
+      summoner_sheet_5: 7698517054637311070
+      summoner_sheet_50: 8035801007663737021
+      summoner_sheet_51: -1885979308058617116
+      summoner_sheet_52: 2637943420578484614
+      summoner_sheet_53: -5993343017058421097
+      summoner_sheet_54: -3164035241767672705
+      summoner_sheet_55: 8408921259415175025
+      summoner_sheet_56: -3386044954905759628
+      summoner_sheet_57: 375842761595535384
+      summoner_sheet_58: 5404103725308361721
+      summoner_sheet_59: 7053550234832330956
+      summoner_sheet_5_0: -3727457726606649452
+      summoner_sheet_5_1: -1336576936609655677
+      summoner_sheet_5_10: 4414360775610909034
+      summoner_sheet_5_11: -6760764120831686138
+      summoner_sheet_5_12: 7113267750043035803
+      summoner_sheet_5_13: 2776888929292983381
+      summoner_sheet_5_14: -5412653612034376046
+      summoner_sheet_5_15: 1156901621231202501
+      summoner_sheet_5_16: -5802946643090444741
+      summoner_sheet_5_17: 313952159491957837
+      summoner_sheet_5_18: 5669061200962045188
+      summoner_sheet_5_19: -717963794112264774
+      summoner_sheet_5_2: 9176729099579755363
+      summoner_sheet_5_20: -7763378474304345220
+      summoner_sheet_5_3: 2687000616203597926
+      summoner_sheet_5_4: 4965254510600541312
+      summoner_sheet_5_5: 3983856600415566432
+      summoner_sheet_5_6: -8055803295288018120
+      summoner_sheet_5_7: -6603683887819030483
+      summoner_sheet_5_8: -4615534499358670103
+      summoner_sheet_5_9: 5565155447147359753
+      summoner_sheet_6: 5298671143340712374
+      summoner_sheet_60: -7827757619167736013
+      summoner_sheet_61: -7862836176799041689
+      summoner_sheet_62: -2053246453689918461
+      summoner_sheet_63: 2359294927909391561
+      summoner_sheet_64: 3454607657257294530
+      summoner_sheet_65: 7317035791095316021
+      summoner_sheet_66: -296925802684267639
+      summoner_sheet_67: 7224735290517814033
+      summoner_sheet_68: 7174704963313349296
+      summoner_sheet_69: -2252549879657011277
+      summoner_sheet_6_0: -2191171868933315150
+      summoner_sheet_6_1: -994695166338270017
+      summoner_sheet_6_10: -2452307758013200060
+      summoner_sheet_6_11: -1745877152268051582
+      summoner_sheet_6_12: 3750356322292066077
+      summoner_sheet_6_13: -8025106668589318343
+      summoner_sheet_6_14: -4604149410510359943
+      summoner_sheet_6_15: -6339181006466288145
+      summoner_sheet_6_16: -7943537666042465230
+      summoner_sheet_6_17: 4765356059294702807
+      summoner_sheet_6_18: -7901480354559329447
+      summoner_sheet_6_19: 3252992721838549085
+      summoner_sheet_6_2: -5762323918574750988
+      summoner_sheet_6_20: -2212238778870297466
+      summoner_sheet_6_3: -3715659304176930513
+      summoner_sheet_6_4: -4969701643103005903
+      summoner_sheet_6_5: -1734082069059819874
+      summoner_sheet_6_6: -8311086081650678408
+      summoner_sheet_6_7: -3495657458430680906
+      summoner_sheet_6_8: 2402164454576245501
+      summoner_sheet_6_9: 873395293540801520
+      summoner_sheet_7: 8255812997840534784
+      summoner_sheet_70: 3116825598093954052
+      summoner_sheet_71: -1467857237298332299
+      summoner_sheet_72: 1100912750205602955
+      summoner_sheet_73: -1019734567869524513
+      summoner_sheet_74: 5501892805969861587
+      summoner_sheet_75: -8747009030029496492
+      summoner_sheet_76: -7100748929357767413
+      summoner_sheet_77: 8173093745911714003
+      summoner_sheet_78: -6075014298814019047
+      summoner_sheet_79: -8735518363242811729
+      summoner_sheet_7_0: -2928298654863002007
+      summoner_sheet_7_1: 556176476199975869
+      summoner_sheet_7_10: -8881275222507922
+      summoner_sheet_7_11: -5707939514841887621
+      summoner_sheet_7_12: 7611573586968361175
+      summoner_sheet_7_13: -6606325030076677187
+      summoner_sheet_7_14: -3440786066562683896
+      summoner_sheet_7_15: 8204705531833203265
+      summoner_sheet_7_16: -5810077821618707913
+      summoner_sheet_7_17: 6412884451454864795
+      summoner_sheet_7_18: -2785756413344694408
+      summoner_sheet_7_19: -5627207310177661959
+      summoner_sheet_7_2: -1906107420606413963
+      summoner_sheet_7_20: -4736904942708792927
+      summoner_sheet_7_3: -5727895938466123817
+      summoner_sheet_7_4: -2974368328570079928
+      summoner_sheet_7_5: 9213011091783296796
+      summoner_sheet_7_6: -2823888693071094218
+      summoner_sheet_7_7: -7327655565956621793
+      summoner_sheet_7_8: 2719158839290916308
+      summoner_sheet_7_9: 751460172585441383
+      summoner_sheet_8: 4152138495222303465
+      summoner_sheet_80: -936813054572406380
+      summoner_sheet_81: 282388185254811800
+      summoner_sheet_82: 4114484469536245284
+      summoner_sheet_83: -5234215224245884983
+      summoner_sheet_84: 1829442534195574109
+      summoner_sheet_85: -1164079512172719261
+      summoner_sheet_86: -2222958695361754046
+      summoner_sheet_87: 6270832002351484464
+      summoner_sheet_88: 2538397226953973863
+      summoner_sheet_89: 342259408058672641
+      summoner_sheet_9: -1250971051441215942
+      summoner_sheet_90: 5836820091028602455
+      summoner_sheet_91: -4178492065768241340
+      summoner_sheet_92: -459942997770283136
+      summoner_sheet_93: 2881787878351010320
+      summoner_sheet_94: 859939444177186191
+      summoner_sheet_95: -825004328581995332
+      summoner_sheet_96: 4019260206713293149
+      summoner_sheet_97: -140202743664416648
+      summoner_sheet_98: 7150165778022695636
+      summoner_sheet_99: 7017135490880595475
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc222852e4d4331bdbff0c2ae01737d, type: 3}
+  m_Name: Swarm
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.EnemyDefinition
+  _id: swarm
+  _displayName: Swarm
+  _baseHealth: 10
+  _damageMin: 3
+  _damageMax: 5
+  _moveSpeed: 4
+  _baseXp: 5
+  _attackRange: 0.9
+  _attackTelegraphSeconds: 0.3
+  _attackCooldownSeconds: 0.8
+  _staggerResistancePercent: 0
+  _knockbackResistancePercent: 0
+  _attackKind: 0
+  _projectileSpeed: 0
+  _projectileRange: 0
+  _burstCount: 1
+  _burstIntervalSeconds: 0
+  _preferredDistance: 0
+  _unlockDepth: 1
+  _threatCost: 0.5
+  _spawnTags:
+  - melee
+  - swarm
+  - normal

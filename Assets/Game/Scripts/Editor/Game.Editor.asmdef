@@ -1,0 +1,30 @@
+{
+    "name": "Game.Editor",
+    "rootNamespace": "RuinRail.EditorTools",
+    "references": [
+        "Game.Core",
+        "Game.Gameplay",
+        "Game.Dungeon",
+        "Game.Networking",
+        "Game.Persistence",
+        "Game.UI",
+        "Game.Presentation",
+        "Game.Audio",
+        "Game.App",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Universal.2D.Runtime",
+        "Unity.Netcode.Runtime",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

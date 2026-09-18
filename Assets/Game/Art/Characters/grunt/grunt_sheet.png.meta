@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 9d5805a0b7ea2fe4a8f08b78c056e5f1
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7052856187277816118
+    second: grunt_sheet_0
+  - first:
+      213: -1821298997150115548
+    second: grunt_sheet_1
+  - first:
+      213: 3877979548569379877
+    second: grunt_sheet_2
+  - first:
+      213: -4072101244485792882
+    second: grunt_sheet_3
+  - first:
+      213: 1847401722396855004
+    second: grunt_sheet_4
+  - first:
+      213: 8720997412124615246
+    second: grunt_sheet_5
+  - first:
+      213: -7201686266271318321
+    second: grunt_sheet_6
+  - first:
+      213: 1135795654532854495
+    second: grunt_sheet_7
+  - first:
+      213: 5248537082927618950
+    second: grunt_sheet_8
+  - first:
+      213: 4725149234682014174
+    second: grunt_sheet_9
+  - first:
+      213: 6877376453185508897
+    second: grunt_sheet_10
+  - first:
+      213: 8109515392254816619
+    second: grunt_sheet_11
+  - first:
+      213: -7676234492433962717
+    second: grunt_sheet_12
+  - first:
+      213: 9064374760892059538
+    second: grunt_sheet_13
+  - first:
+      213: 7701552044202668869
+    second: grunt_sheet_14
+  - first:
+      213: -4017803519174114185
+    second: grunt_sheet_15
+  - first:
+      213: -8025920510951297740
+    second: grunt_sheet_16
+  - first:
+      213: 823939900635924846
+    second: grunt_sheet_17
+  - first:
+      213: 5237587831269898989
+    second: grunt_sheet_18
+  - first:
+      213: -4843766536880537892
+    second: grunt_sheet_19
+  - first:
+      213: -6340778820104161721
+    second: grunt_sheet_20
+  - first:
+      213: 3088287070148388913
+    second: grunt_sheet_21
+  - first:
+      213: -1529330941117824479
+    second: grunt_sheet_22
+  - first:
+      213: -6443310608083920599
+    second: grunt_sheet_23
+  - first:
+      213: -9159908389987854065
+    second: grunt_sheet_24
+  - first:
+      213: -3531017005081786764
+    second: grunt_sheet_25
+  - first:
+      213: 7930273218550001319
+    second: grunt_sheet_26
+  - first:
+      213: 8239432544891715235
+    second: grunt_sheet_27
+  - first:
+      213: 6979302086796875874
+    second: grunt_sheet_28
+  - first:
+      213: 1312076827959177631
+    second: grunt_sheet_29
+  - first:
+      213: 2054459797089840834
+    second: grunt_sheet_30
+  - first:
+      213: 8489130424497849236
+    second: grunt_sheet_31
+  - first:
+      213: -7993712037366355685
+    second: grunt_sheet_32
+  - first:
+      213: 6404920991598323392
+    second: grunt_sheet_33
+  - first:
+      213: 5020690208178095303
+    second: grunt_sheet_34
+  - first:
+      213: -6057901654062871120
+    second: grunt_sheet_35
+  - first:
+      213: 4936096953149863193
+    second: grunt_sheet_36
+  - first:
+      213: -5653121849006154419
+    second: grunt_sheet_37
+  - first:
+      213: 5100281487700421133
+    second: grunt_sheet_38
+  - first:
+      213: 4740330550450385587
+    second: grunt_sheet_39
+  - first:
+      213: 1619882326460731534
+    second: grunt_sheet_40
+  - first:
+      213: -4293036121944860140
+    second: grunt_sheet_41
+  - first:
+      213: -3942614558717394166
+    second: grunt_sheet_42
+  - first:
+      213: -6493462186134145417
+    second: grunt_sheet_43
+  - first:
+      213: 8028964831547386389
+    second: grunt_sheet_44
+  - first:
+      213: 4287608542148330318
+    second: grunt_sheet_45
+  - first:
+      213: -1046385557803824883
+    second: grunt_sheet_46
+  - first:
+      213: 324726450239006104
+    second: grunt_sheet_47
+  - first:
+      213: -4161809190372003177
+    second: grunt_sheet_48
+  - first:
+      213: -3743535706277636045
+    second: grunt_sheet_49
+  - first:
+      213: -1307224776655443199
+    second: grunt_sheet_50
+  - first:
+      213: -8473291494314462976
+    second: grunt_sheet_51
+  - first:
+      213: -3651818979499299216
+    second: grunt_sheet_52
+  - first:
+      213: -104094600589282284
+    second: grunt_sheet_53
+  - first:
+      213: -3539177615330317278
+    second: grunt_sheet_54
+  - first:
+      213: 1424095458473410832
+    second: grunt_sheet_55
+  - first:
+      213: -3791929098185454540
+    second: grunt_sheet_56
+  - first:
+      213: 6702633572366067389
+    second: grunt_sheet_57
+  - first:
+      213: 9028511796214720102
+    second: grunt_sheet_58
+  - first:
+      213: -5277503161127509769
+    second: grunt_sheet_59
+  - first:
+      213: -6057910516863296972
+    second: grunt_sheet_60
+  - first:
+      213: -9121778904675674422
+    second: grunt_sheet_61
+  - first:
+      213: 4192666377397611552
+    second: grunt_sheet_62
+  - first:
+      213: -6257672126983331403
+    second: grunt_sheet_63
+  - first:
+      213: -3591675621897962648
+    second: grunt_sheet_64
+  - first:
+      213: 3396152685595797551
+    second: grunt_sheet_65
+  - first:
+      213: 8755555022157759687
+    second: grunt_sheet_66
+  - first:
+      213: 8088268808228548676
+    second: grunt_sheet_67
+  - first:
+      213: 5954630904810898300
+    second: grunt_sheet_68
+  - first:
+      213: 7021818844667754379
+    second: grunt_sheet_69
+  - first:
+      213: -7047661865182643692
+    second: grunt_sheet_70
+  - first:
+      213: 2064378783515501012
+    second: grunt_sheet_71
+  - first:
+      213: 3513873889823272280
+    second: grunt_sheet_72
+  - first:
+      213: 8746911361340498333
+    second: grunt_sheet_73
+  - first:
+      213: -6054482821233436589
+    second: grunt_sheet_74
+  - first:
+      213: -6069242620830269310
+    second: grunt_sheet_75
+  - first:
+      213: 8179121214506032757
+    second: grunt_sheet_76
+  - first:
+      213: 1451118264106878968
+    second: grunt_sheet_77
+  - first:
+      213: -6702980789282285744
+    second: grunt_sheet_78
+  - first:
+      213: 2048885388370143449
+    second: grunt_sheet_79
+  - first:
+      213: -8888539866144848116
+    second: grunt_sheet_80
+  - first:
+      213: 1467302369497262771
+    second: grunt_sheet_81
+  - first:
+      213: -2182854224547027469
+    second: grunt_sheet_82
+  - first:
+      213: -518170734444497175
+    second: grunt_sheet_83
+  - first:
+      213: -292790607543619314
+    second: grunt_sheet_84
+  - first:
+      213: -7494140082449289906
+    second: grunt_sheet_85
+  - first:
+      213: 4963405754085859878
+    second: grunt_sheet_86
+  - first:
+      213: 3470275142046587834
+    second: grunt_sheet_87
+  - first:
+      213: 1704220803074507026
+    second: grunt_sheet_88
+  - first:
+      213: 6454737516222033817
+    second: grunt_sheet_89
+  - first:
+      213: -8500232964670715430
+    second: grunt_sheet_90
+  - first:
+      213: -3484503736107338817
+    second: grunt_sheet_91
+  - first:
+      213: 3041877741331530968
+    second: grunt_sheet_92
+  - first:
+      213: 6316864591059564134
+    second: grunt_sheet_93
+  - first:
+      213: -5056350108517849797
+    second: grunt_sheet_94
+  - first:
+      213: 4954589939928510866
+    second: grunt_sheet_95
+  - first:
+      213: 8038933957753223119
+    second: grunt_sheet_96
+  - first:
+      213: 2659542791840937725
+    second: grunt_sheet_97
+  - first:
+      213: 7214246608771656316
+    second: grunt_sheet_98
+  - first:
+      213: 6504693151419383710
+    second: grunt_sheet_99
+  - first:
+      213: 3868731497719030220
+    second: grunt_sheet_100
+  - first:
+      213: -8062045404657190624
+    second: grunt_sheet_101
+  - first:
+      213: 1955379872941600616
+    second: grunt_sheet_102
+  - first:
+      213: 7821646711193686178
+    second: grunt_sheet_103
+  - first:
+      213: 274186293759886986
+    second: grunt_sheet_104
+  - first:
+      213: 7211277075512428181
+    second: grunt_sheet_105
+  - first:
+      213: 3772381748454545240
+    second: grunt_sheet_106
+  - first:
+      213: -8419714237494936037
+    second: grunt_sheet_107
+  - first:
+      213: 862319839827225136
+    second: grunt_sheet_108
+  - first:
+      213: -2185700255737827014
+    second: grunt_sheet_109
+  - first:
+      213: -7285858009932427603
+    second: grunt_sheet_110
+  - first:
+      213: -580127491085162559
+    second: grunt_sheet_111
+  - first:
+      213: 5930188436038085228
+    second: grunt_sheet_112
+  - first:
+      213: -7660141304350696315
+    second: grunt_sheet_113
+  - first:
+      213: 1369970996306338993
+    second: grunt_sheet_114
+  - first:
+      213: 8907720313553714363
+    second: grunt_sheet_115
+  - first:
+      213: -2698752011005298590
+    second: grunt_sheet_116
+  - first:
+      213: 8198497520984217739
+    second: grunt_sheet_117
+  - first:
+      213: -6775600104023996639
+    second: grunt_sheet_118
+  - first:
+      213: -8670286448702594130
+    second: grunt_sheet_119
+  - first:
+      213: -7575960906190513764
+    second: grunt_sheet_120
+  - first:
+      213: -4443806913970166254
+    second: grunt_sheet_121
+  - first:
+      213: -4184882858103512617
+    second: grunt_sheet_122
+  - first:
+      213: -2391641609060532797
+    second: grunt_sheet_123
+  - first:
+      213: 1255094882753502628
+    second: grunt_sheet_124
+  - first:
+      213: -6382074943912701113
+    second: grunt_sheet_125
+  - first:
+      213: -6977095375369777079
+    second: grunt_sheet_126
+  - first:
+      213: -7286985986544638790
+    second: grunt_sheet_127
+  - first:
+      213: 3921531576994307298
+    second: grunt_sheet_128
+  - first:
+      213: -1881140012147321412
+    second: grunt_sheet_129
+  - first:
+      213: -2383130645281033732
+    second: grunt_sheet_130
+  - first:
+      213: 8410066911064574339
+    second: grunt_sheet_131
+  - first:
+      213: -7730372279188766067
+    second: grunt_sheet_132
+  - first:
+      213: 944286107659011919
+    second: grunt_sheet_133
+  - first:
+      213: 4535317848036317862
+    second: grunt_sheet_134
+  - first:
+      213: -1506118370607664074
+    second: grunt_sheet_135
+  - first:
+      213: -6920848279712798177
+    second: grunt_sheet_136
+  - first:
+      213: 7509882628728962719
+    second: grunt_sheet_137
+  - first:
+      213: 16398832440241933
+    second: grunt_sheet_138
+  - first:
+      213: -3866705967045547147
+    second: grunt_sheet_139
+  - first:
+      213: -8512499511583229926
+    second: grunt_sheet_140
+  - first:
+      213: 5943562550401536018
+    second: grunt_sheet_141
+  - first:
+      213: 2061778743140401913
+    second: grunt_sheet_142
+  - first:
+      213: 6919093620163645909
+    second: grunt_sheet_143
+  - first:
+      213: -326411066509852113
+    second: grunt_sheet_144
+  - first:
+      213: -1722183498737525704
+    second: grunt_sheet_145
+  - first:
+      213: -9100477485807488490
+    second: grunt_sheet_146
+  - first:
+      213: 5485337990548144975
+    second: grunt_sheet_147
+  - first:
+      213: 1642151528782504815
+    second: grunt_sheet_148
+  - first:
+      213: -3799473193512923826
+    second: grunt_sheet_149
+  - first:
+      213: -3760745791890697957
+    second: grunt_sheet_150
+  - first:
+      213: -1352400851748649560
+    second: grunt_sheet_151
+  - first:
+      213: 2918140778979979785
+    second: grunt_sheet_152
+  - first:
+      213: -1179504296208059531
+    second: grunt_sheet_153
+  - first:
+      213: -8985772520919048023
+    second: grunt_sheet_154
+  - first:
+      213: -2537744683120704631
+    second: grunt_sheet_155
+  - first:
+      213: -1219424104600239660
+    second: grunt_sheet_156
+  - first:
+      213: 2276492833839495661
+    second: grunt_sheet_157
+  - first:
+      213: -8030134736364371804
+    second: grunt_sheet_158
+  - first:
+      213: -105417458881454765
+    second: grunt_sheet_159
+  - first:
+      213: 3006920997170642877
+    second: grunt_sheet_160
+  - first:
+      213: -7016232421981218312
+    second: grunt_sheet_161
+  - first:
+      213: -7654103956725369897
+    second: grunt_sheet_162
+  - first:
+      213: 5996940771222930692
+    second: grunt_sheet_163
+  - first:
+      213: -8235640185264750836
+    second: grunt_sheet_164
+  - first:
+      213: -6643069138693299245
+    second: grunt_sheet_165
+  - first:
+      213: 4792171347408505043
+    second: grunt_sheet_166
+  - first:
+      213: -7167532699383497393
+    second: grunt_sheet_167
+  - first:
+      213: 8189426207303495927
+    second: grunt_sheet_0_0
+  - first:
+      213: -7983972749980545955
+    second: grunt_sheet_0_1
+  - first:
+      213: -7096969547491185969
+    second: grunt_sheet_0_2
+  - first:
+      213: 5126516793953682395
+    second: grunt_sheet_0_3
+  - first:
+      213: -941867873899952340
+    second: grunt_sheet_0_4
+  - first:
+      213: -5119806017459898174
+    second: grunt_sheet_0_5
+  - first:
+      213: -537328169408871436
+    second: grunt_sheet_0_6
+  - first:
+      213: 3598365784500843594
+    second: grunt_sheet_0_7
+  - first:
+      213: 2390709160752918574
+    second: grunt_sheet_0_8
+  - first:
+      213: 8913922652051410424
+    second: grunt_sheet_0_9
+  - first:
+      213: -4050066906026424305
+    second: grunt_sheet_0_10
+  - first:
+      213: -7924844691511688516
+    second: grunt_sheet_0_11
+  - first:
+      213: -7869967041329072487
+    second: grunt_sheet_0_12
+  - first:
+      213: 8546580278918645794
+    second: grunt_sheet_0_13
+  - first:
+      213: 2182032200268235935
+    second: grunt_sheet_0_14
+  - first:
+      213: -2824717211081089939
+    second: grunt_sheet_0_15
+  - first:
+      213: -4476981201364506368
+    second: grunt_sheet_0_16
+  - first:
+      213: 3366188823496747732
+    second: grunt_sheet_0_17
+  - first:
+      213: 7437366191081508952
+    second: grunt_sheet_0_18
+  - first:
+      213: -3161287729285894480
+    second: grunt_sheet_0_19
+  - first:
+      213: 4590080046516591456
+    second: grunt_sheet_0_20
+  - first:
+      213: -7090357689443400536
+    second: grunt_sheet_1_0
+  - first:
+      213: -381919903219207329
+    second: grunt_sheet_1_1
+  - first:
+      213: 1392299967511429219
+    second: grunt_sheet_1_2
+  - first:
+      213: 7485576754022512720
+    second: grunt_sheet_1_3
+  - first:
+      213: -5890672339125587529
+    second: grunt_sheet_1_4
+  - first:
+      213: 8955826364856994777
+    second: grunt_sheet_1_5
+  - first:
+      213: 5195982852360184937
+    second: grunt_sheet_1_6
+  - first:
+      213: -4592849441149201332
+    second: grunt_sheet_1_7
+  - first:
+      213: 4912925464718889410
+    second: grunt_sheet_1_8
+  - first:
+      213: -4361265185988540937
+    second: grunt_sheet_1_9
+  - first:
+      213: -5837216537814540143
+    second: grunt_sheet_1_10
+  - first:
+      213: -7350210364964989364
+    second: grunt_sheet_1_11
+  - first:
+      213: 5659514507888602854
+    second: grunt_sheet_1_12
+  - first:
+      213: 6956929416127712478
+    second: grunt_sheet_1_13
+  - first:
+      213: 8635020041650647401
+    second: grunt_sheet_1_14
+  - first:
+      213: 5446053423309658418
+    second: grunt_sheet_1_15
+  - first:
+      213: -4799944772375262455
+    second: grunt_sheet_1_16
+  - first:
+      213: 4843290740731484192
+    second: grunt_sheet_1_17
+  - first:
+      213: 2045896581670613884
+    second: grunt_sheet_1_18
+  - first:
+      213: -4661441969450864269
+    second: grunt_sheet_1_19
+  - first:
+      213: -6759392156288131396
+    second: grunt_sheet_1_20
+  - first:
+      213: -5725753931084407906
+    second: grunt_sheet_2_0
+  - first:
+      213: 3190988838511523303
+    second: grunt_sheet_2_1
+  - first:
+      213: -9203385014288661407
+    second: grunt_sheet_2_2
+  - first:
+      213: 7208458130568137834
+    second: grunt_sheet_2_3
+  - first:
+      213: -3285646437256866796
+    second: grunt_sheet_2_4
+  - first:
+      213: -3174888593701944402
+    second: grunt_sheet_2_5
+  - first:
+      213: -9134744029561180799
+    second: grunt_sheet_2_6
+  - first:
+      213: -78189609457983068
+    second: grunt_sheet_2_7
+  - first:
+      213: 5485525944019255104
+    second: grunt_sheet_2_8
+  - first:
+      213: 5434468048278292233
+    second: grunt_sheet_2_9
+  - first:
+      213: 1156692767889160473
+    second: grunt_sheet_2_10
+  - first:
+      213: 6708158328171857156
+    second: grunt_sheet_2_11
+  - first:
+      213: -7992147036420528612
+    second: grunt_sheet_2_12
+  - first:
+      213: 4385770606866553209
+    second: grunt_sheet_2_13
+  - first:
+      213: 2411465274894919999
+    second: grunt_sheet_2_14
+  - first:
+      213: -6432492536540857096
+    second: grunt_sheet_2_15
+  - first:
+      213: -281525293100545454
+    second: grunt_sheet_2_16
+  - first:
+      213: 4877699279869904577
+    second: grunt_sheet_2_17
+  - first:
+      213: -2232810986010505578
+    second: grunt_sheet_2_18
+  - first:
+      213: 1055969158658261552
+    second: grunt_sheet_2_19
+  - first:
+      213: -7593084051585554828
+    second: grunt_sheet_2_20
+  - first:
+      213: -5988627235951982114
+    second: grunt_sheet_3_0
+  - first:
+      213: 6370353414398622500
+    second: grunt_sheet_3_1
+  - first:
+      213: 8535627953261621285
+    second: grunt_sheet_3_2
+  - first:
+      213: -5312437416112904917
+    second: grunt_sheet_3_3
+  - first:
+      213: 2391201934758122963
+    second: grunt_sheet_3_4
+  - first:
+      213: 4757648640927127244
+    second: grunt_sheet_3_5
+  - first:
+      213: -6566338673439409338
+    second: grunt_sheet_3_6
+  - first:
+      213: 6215601502829070419
+    second: grunt_sheet_3_7
+  - first:
+      213: 7771885700130859747
+    second: grunt_sheet_3_8
+  - first:
+      213: 7015201773163897277
+    second: grunt_sheet_3_9
+  - first:
+      213: 8190037980767751283
+    second: grunt_sheet_3_10
+  - first:
+      213: 7273308160706842434
+    second: grunt_sheet_3_11
+  - first:
+      213: -1491731993395465160
+    second: grunt_sheet_3_12
+  - first:
+      213: -8120967276032009077
+    second: grunt_sheet_3_13
+  - first:
+      213: 2602084678626562722
+    second: grunt_sheet_3_14
+  - first:
+      213: -8454561263839771228
+    second: grunt_sheet_3_15
+  - first:
+      213: -3182929947274667895
+    second: grunt_sheet_3_16
+  - first:
+      213: -4685536420574958604
+    second: grunt_sheet_3_17
+  - first:
+      213: -6606797332200387882
+    second: grunt_sheet_3_18
+  - first:
+      213: -8373899438193712893
+    second: grunt_sheet_3_19
+  - first:
+      213: 3536138770717841106
+    second: grunt_sheet_3_20
+  - first:
+      213: -4696686378159768018
+    second: grunt_sheet_4_0
+  - first:
+      213: -3397050164968521198
+    second: grunt_sheet_4_1
+  - first:
+      213: 1522422738461766314
+    second: grunt_sheet_4_2
+  - first:
+      213: 7382098636828693797
+    second: grunt_sheet_4_3
+  - first:
+      213: -7647686544675835885
+    second: grunt_sheet_4_4
+  - first:
+      213: -9213014132392512953
+    second: grunt_sheet_4_5
+  - first:
+      213: 8470981451208020300
+    second: grunt_sheet_4_6
+  - first:
+      213: 3662267178870914977
+    second: grunt_sheet_4_7
+  - first:
+      213: 26775246863080509
+    second: grunt_sheet_4_8
+  - first:
+      213: -1026770174518202335
+    second: grunt_sheet_4_9
+  - first:
+      213: 1912285953716342179
+    second: grunt_sheet_4_10
+  - first:
+      213: -5773750428701513377
+    second: grunt_sheet_4_11
+  - first:
+      213: -97814709450153484
+    second: grunt_sheet_4_12
+  - first:
+      213: 5931139023701619919
+    second: grunt_sheet_4_13
+  - first:
+      213: 4230631682727957558
+    second: grunt_sheet_4_14
+  - first:
+      213: 4530243927771850481
+    second: grunt_sheet_4_15
+  - first:
+      213: -2277650230828591868
+    second: grunt_sheet_4_16
+  - first:
+      213: 3691511061417500196
+    second: grunt_sheet_4_17
+  - first:
+      213: -5061635739437402868
+    second: grunt_sheet_4_18
+  - first:
+      213: -9144810039513006688
+    second: grunt_sheet_4_19
+  - first:
+      213: 6077743444092070200
+    second: grunt_sheet_4_20
+  - first:
+      213: -284644763202968546
+    second: grunt_sheet_5_0
+  - first:
+      213: -5313438552789037542
+    second: grunt_sheet_5_1
+  - first:
+      213: 2634905682117739964
+    second: grunt_sheet_5_2
+  - first:
+      213: -2960183310836358242
+    second: grunt_sheet_5_3
+  - first:
+      213: 4066973498132282290
+    second: grunt_sheet_5_4
+  - first:
+      213: 5660312872250387383
+    second: grunt_sheet_5_5
+  - first:
+      213: 5913748162196552702
+    second: grunt_sheet_5_6
+  - first:
+      213: -6420802169662016060
+    second: grunt_sheet_5_7
+  - first:
+      213: -6534586876560934461
+    second: grunt_sheet_5_8
+  - first:
+      213: -8138717765080902516
+    second: grunt_sheet_5_9
+  - first:
+      213: -9125414110233512838
+    second: grunt_sheet_5_10
+  - first:
+      213: -6053139268766701333
+    second: grunt_sheet_5_11
+  - first:
+      213: -5592497464286345064
+    second: grunt_sheet_5_12
+  - first:
+      213: 2532945070676666980
+    second: grunt_sheet_5_13
+  - first:
+      213: -4577351221932753076
+    second: grunt_sheet_5_14
+  - first:
+      213: -5066987209964817460
+    second: grunt_sheet_5_15
+  - first:
+      213: 8632585964225738795
+    second: grunt_sheet_5_16
+  - first:
+      213: -2723456335982344620
+    second: grunt_sheet_5_17
+  - first:
+      213: -2009329184879502538
+    second: grunt_sheet_5_18
+  - first:
+      213: 3933220375328263586
+    second: grunt_sheet_5_19
+  - first:
+      213: -5368587843925562253
+    second: grunt_sheet_5_20
+  - first:
+      213: -1599493569478284026
+    second: grunt_sheet_6_0
+  - first:
+      213: -4078172981825490440
+    second: grunt_sheet_6_1
+  - first:
+      213: -2208564008568309545
+    second: grunt_sheet_6_2
+  - first:
+      213: 2022204026466399005
+    second: grunt_sheet_6_3
+  - first:
+      213: -8094211968391444481
+    second: grunt_sheet_6_4
+  - first:
+      213: 1823766118154963860
+    second: grunt_sheet_6_5
+  - first:
+      213: 2119873662548444745
+    second: grunt_sheet_6_6
+  - first:
+      213: 5979060433895616609
+    second: grunt_sheet_6_7
+  - first:
+      213: -6056836273173474722
+    second: grunt_sheet_6_8
+  - first:
+      213: -3294014030138915318
+    second: grunt_sheet_6_9
+  - first:
+      213: -4138238362569684593
+    second: grunt_sheet_6_10
+  - first:
+      213: -1079838433158008846
+    second: grunt_sheet_6_11
+  - first:
+      213: -1508972162992067662
+    second: grunt_sheet_6_12
+  - first:
+      213: 5823479613791364471
+    second: grunt_sheet_6_13
+  - first:
+      213: 2562016639094797645
+    second: grunt_sheet_6_14
+  - first:
+      213: 7581105582466555365
+    second: grunt_sheet_6_15
+  - first:
+      213: -7673564547223175494
+    second: grunt_sheet_6_16
+  - first:
+      213: 8779225699510226942
+    second: grunt_sheet_6_17
+  - first:
+      213: -5167747563656211390
+    second: grunt_sheet_6_18
+  - first:
+      213: 1441422191076627762
+    second: grunt_sheet_6_19
+  - first:
+      213: 3444782031977246680
+    second: grunt_sheet_6_20
+  - first:
+      213: -6758012300254481546
+    second: grunt_sheet_7_0
+  - first:
+      213: 8306166935090458334
+    second: grunt_sheet_7_1
+  - first:
+      213: -8984266351913388931
+    second: grunt_sheet_7_2
+  - first:
+      213: -5054161827503393074
+    second: grunt_sheet_7_3
+  - first:
+      213: -884653133259117348
+    second: grunt_sheet_7_4
+  - first:
+      213: -4693773147445699378
+    second: grunt_sheet_7_5
+  - first:
+      213: -3181457272000702378
+    second: grunt_sheet_7_6
+  - first:
+      213: -5123792870950362996
+    second: grunt_sheet_7_7
+  - first:
+      213: 263662806583739911
+    second: grunt_sheet_7_8
+  - first:
+      213: 6888200271509615340
+    second: grunt_sheet_7_9
+  - first:
+      213: 6208622329850034596
+    second: grunt_sheet_7_10
+  - first:
+      213: 8773753853668551830
+    second: grunt_sheet_7_11
+  - first:
+      213: -6030098297427238538
+    second: grunt_sheet_7_12
+  - first:
+      213: 763185976781234546
+    second: grunt_sheet_7_13
+  - first:
+      213: -6387350212532624919
+    second: grunt_sheet_7_14
+  - first:
+      213: -8079165198354507076
+    second: grunt_sheet_7_15
+  - first:
+      213: -4552611449606812348
+    second: grunt_sheet_7_16
+  - first:
+      213: 3959609337105288462
+    second: grunt_sheet_7_17
+  - first:
+      213: 3208646591736871476
+    second: grunt_sheet_7_18
+  - first:
+      213: -6475669906351063965
+    second: grunt_sheet_7_19
+  - first:
+      213: -2063088744355275751
+    second: grunt_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: grunt_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f079900fbfa6a170800000000000000
+      internalID: 8189426207303495927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cc205b51b333190800000000000000
+      internalID: -7983972749980545955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcae5044ccf728d90800000000000000
+      internalID: -7096969547491185969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd30fa6dcdb052740800000000000000
+      internalID: 5126516793953682395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2747dea820dde2f0800000000000000
+      internalID: -941867873899952340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c835629d8bc2f8b0800000000000000
+      internalID: -5119806017459898174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3c29670e60b88f0800000000000000
+      internalID: -537328169408871436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a44b715bd96ffe130800000000000000
+      internalID: 3598365784500843594
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2033ffa0518d2120800000000000000
+      internalID: 2390709160752918574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fd05de8c6d94bb70800000000000000
+      internalID: 8913922652051410424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f08cabd6b954bc7c0800000000000000
+      internalID: -4050066906026424305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb24e4e9dbb450290800000000000000
+      internalID: -7924844691511688516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9967c8b3ca248c290800000000000000
+      internalID: -7869967041329072487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2280e416b7d8b9670800000000000000
+      internalID: 8546580278918645794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f94c379a9b2284e10800000000000000
+      internalID: 2182032200268235935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6c549a99a69cc8d0800000000000000
+      internalID: -2824717211081089939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 009219241519ed1c0800000000000000
+      internalID: -4476981201364506368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dae96f66ea17be20800000000000000
+      internalID: 3366188823496747732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 850d9eb5525d63760800000000000000
+      internalID: 7437366191081508952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0beec173f89d024d0800000000000000
+      internalID: -3161287729285894480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06bda37ab7d33bf30800000000000000
+      internalID: 4590080046516591456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a4444e6f3df99d90800000000000000
+      internalID: -7090357689443400536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f53b7fb1fd523baf0800000000000000
+      internalID: -381919903219207329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3608e489171725310800000000000000
+      internalID: 1392299967511429219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 058fe62c56c12e760800000000000000
+      internalID: 7485576754022512720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b1333ab7b0204ea0800000000000000
+      internalID: -5890672339125587529
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9db016bf0ac794c70800000000000000
+      internalID: 8955826364856994777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96423fdefd6db1840800000000000000
+      internalID: 5195982852360184937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c44537964cbe240c0800000000000000
+      internalID: -4592849441149201332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c15a8c2ea73e2440800000000000000
+      internalID: 4912925464718889410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f500e99b6ca973c0800000000000000
+      internalID: -4361265185988540937
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 190678a5c7a0efea0800000000000000
+      internalID: -5837216537814540143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c461edbbd9ecef990800000000000000
+      internalID: -7350210364964989364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6eeaed3a572aa8e40800000000000000
+      internalID: 5659514507888602854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edc02cfc17afb8060800000000000000
+      internalID: 6956929416127712478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96137f24af0c5d770800000000000000
+      internalID: 8635020041650647401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2391c2cebb4449b40800000000000000
+      internalID: 5446053423309658418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90b441529ab236db0800000000000000
+      internalID: -4799944772375262455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0281d319443d63340800000000000000
+      internalID: 4843290740731484192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73b9a5f91c746c10800000000000000
+      internalID: 2045896581670613884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371b8c5e93b3f4fb0800000000000000
+      internalID: -4661441969450864269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbe52ea85a0d132a0800000000000000
+      internalID: -6759392156288131396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9bda62d2290a80b0800000000000000
+      internalID: -5725753931084407906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e537b9217ba84c20800000000000000
+      internalID: 3190988838511523303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 164cb245712074080800000000000000
+      internalID: -9203385014288661407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6c4aca4a76990460800000000000000
+      internalID: 7208458130568137834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 414d6c139f90762d0800000000000000
+      internalID: -3285646437256866796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea3c4f235a780f3d0800000000000000
+      internalID: -3174888593701944402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18da2ebf3beda3180800000000000000
+      internalID: -9134744029561180799
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a16127e6f63aeef0800000000000000
+      internalID: -78189609457983068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ff47358c0802c40800000000000000
+      internalID: 5485525944019255104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90786d895eb1b6b40800000000000000
+      internalID: 5434468048278292233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 919fb48a1f56d0010800000000000000
+      internalID: 1156692767889160473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40503c7457a281d50800000000000000
+      internalID: 6708158328171857156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c16a6755d90361190800000000000000
+      internalID: -7992147036420528612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97951a051236ddc30800000000000000
+      internalID: 4385770606866553209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f392d4a14ee377120800000000000000
+      internalID: 2411465274894919999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fc712b6e123bb6a0800000000000000
+      internalID: -6432492536540857096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25a447dcc32d71cf0800000000000000
+      internalID: -281525293100545454
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c603d1e6a111b340800000000000000
+      internalID: 4877699279869904577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69e0148fc367301e0800000000000000
+      internalID: -2232810986010505578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0320893ea5e87ae00800000000000000
+      internalID: 1055969158658261552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4762f83f842ff9690800000000000000
+      internalID: -7593084051585554828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed94adc024f14eca0800000000000000
+      internalID: -5988627235951982114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42b3de6cdaa086850800000000000000
+      internalID: 6370353414398622500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 520bd095664a47670800000000000000
+      internalID: 8535627953261621285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b25a819015e6646b0800000000000000
+      internalID: -5312437416112904917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d51c739d714f2120800000000000000
+      internalID: 2391201934758122963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc6d4985b30960240800000000000000
+      internalID: 4757648640927127244
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64bfbb634cdafd4a0800000000000000
+      internalID: -6566338673439409338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 358c28992a0424650800000000000000
+      internalID: 6215601502829070419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3eaec37fdd84bdb60800000000000000
+      internalID: 7771885700130859747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db1ef1538d00b5160800000000000000
+      internalID: 7015201773163897277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c8e9c962cd8a170800000000000000
+      internalID: 8190037980767751283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24f81ec8c3bffe460800000000000000
+      internalID: 7273308160706842434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 834f391d7ad4c4be0800000000000000
+      internalID: -1491731993395465160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8c5a870a478c4f80800000000000000
+      internalID: -8120967276032009077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a2d5019a367c1420800000000000000
+      internalID: 2602084678626562722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a58d01235d5baa80800000000000000
+      internalID: -8454561263839771228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9889dbba316f3d3d0800000000000000
+      internalID: -3182929947274667895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fb69755371a9feb0800000000000000
+      internalID: -4685536420574958604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da8237a4d0ff44a0800000000000000
+      internalID: -6606797332200387882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 301ee99e3dee9cb80800000000000000
+      internalID: -8373899438193712893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d69f190a73e21130800000000000000
+      internalID: 3536138770717841106
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2efe588f9402deb0800000000000000
+      internalID: -4696686378159768018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2128ed09fd04bd0d0800000000000000
+      internalID: -3397050164968521198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa2bdfb1a6bb02510800000000000000
+      internalID: 1522422738461766314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 525d111299b727660800000000000000
+      internalID: 7382098636828693797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 310ff075b95fdd590800000000000000
+      internalID: -7647686544675835885
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7423710957cc42080800000000000000
+      internalID: -9213014132392512953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c415d2aafb8fe8570800000000000000
+      internalID: 8470981451208020300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af3c2d789cf2d230800000000000000
+      internalID: 3662267178870914977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3c1c06f1ff1f5000800000000000000
+      internalID: 26775246863080509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12070e167fd20c1f0800000000000000
+      internalID: -1026770174518202335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ad4b3471fdc98a10800000000000000
+      internalID: 1912285953716342179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59ac7363948fdfa0800000000000000
+      internalID: -5773750428701513377
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f16a6d3a0e74aef0800000000000000
+      internalID: -97814709450153484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc4313d7483af4250800000000000000
+      internalID: 5931139023701619919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6345380c91936ba30800000000000000
+      internalID: 4230631682727957558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f626bc99d8aede30800000000000000
+      internalID: 4530243927771850481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40510ecbe292460e0800000000000000
+      internalID: -2277650230828591868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e173c70c1ea3330800000000000000
+      internalID: 3691511061417500196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c057968dc1571c9b0800000000000000
+      internalID: -5061635739437402868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0adb66868bb171180800000000000000
+      internalID: -9144810039513006688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 839211d067b785450800000000000000
+      internalID: 6077743444092070200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e14ac12981dbc0cf0800000000000000
+      internalID: -284644763202968546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ec42db9cfd246b0800000000000000
+      internalID: -5313438552789037542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb5494fe1c0119420800000000000000
+      internalID: 2634905682117739964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e932f8766f05be6d0800000000000000
+      internalID: -2960183310836358242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb3a1b49dac07830800000000000000
+      internalID: 4066973498132282290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7bb2e0451987d8e40800000000000000
+      internalID: 5660312872250387383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efb38d20f9ad11250800000000000000
+      internalID: 5913748162196552702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c5fc30127ab4e6a0800000000000000
+      internalID: -6420802169662016060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c9f7a48bdb7055a0800000000000000
+      internalID: -6534586876560934461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84113d30577d0f80800000000000000
+      internalID: -8138717765080902516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a74b13b17340c5180800000000000000
+      internalID: -9125414110233512838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be8613de7edeefba0800000000000000
+      internalID: -6053139268766701333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89880f1cf257362b0800000000000000
+      internalID: -5592497464286345064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46a62452f14d62320800000000000000
+      internalID: 2532945070676666980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4f7f74c05bf970c0800000000000000
+      internalID: -4577351221932753076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc379948af17ea9b0800000000000000
+      internalID: -5066987209964817460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b28b2b2723b1dc770800000000000000
+      internalID: 8632585964225738795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4564c7454e6543ad0800000000000000
+      internalID: -2723456335982344620
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b9e6290cd6d14e0800000000000000
+      internalID: -2009329184879502538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ad05ce971b959630800000000000000
+      internalID: 3933220375328263586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37c2659ccc1fe75b0800000000000000
+      internalID: -5368587843925562253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60da9b2b2157dc9e0800000000000000
+      internalID: -1599493569478284026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f132b5b74b6767c0800000000000000
+      internalID: -4078172981825490440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d8b2955cba9951e0800000000000000
+      internalID: -2208564008568309545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d13f4e419df401c10800000000000000
+      internalID: 2022204026466399005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff7005789159baf80800000000000000
+      internalID: -8094211968391444481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49b050a2f915f4910800000000000000
+      internalID: 1823766118154963860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94608e05ddd4b6d10800000000000000
+      internalID: 2119873662548444745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160f0f449c3e9f250800000000000000
+      internalID: 5979060433895616609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e525bc2008bc1fba0800000000000000
+      internalID: -6056836273173474722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06ca6821bf4942d0800000000000000
+      internalID: -3294014030138915318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f89c32372260296c0800000000000000
+      internalID: -4138238362569684593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ff6dc09aa4a301f0800000000000000
+      internalID: -1079838433158008846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bba7e800dd0f0be0800000000000000
+      internalID: -1508972162992067662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77563c8cad721d050800000000000000
+      internalID: 5823479613791364471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d45b2e12f8c1e8320800000000000000
+      internalID: 2562016639094797645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ed56af5c5f753960800000000000000
+      internalID: 7581105582466555365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abe3bb953b5028590800000000000000
+      internalID: -7673564547223175494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eff8946624316d970800000000000000
+      internalID: 8779225699510226942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 244916388f87848b0800000000000000
+      internalID: -5167747563656211390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 235dc7688d5f00410800000000000000
+      internalID: 1441422191076627762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dfe6a0c1035ecf20800000000000000
+      internalID: 3444782031977246680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6737c9f4e97b632a0800000000000000
+      internalID: -6758012300254481546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ede692bc1de654370800000000000000
+      internalID: 8306166935090458334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7435b68a59715380800000000000000
+      internalID: -8984266351913388931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec6325298920cd9b0800000000000000
+      internalID: -5054161827503393074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdc67a299a419b3f0800000000000000
+      internalID: -884653133259117348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecc5b3ae03e5cdeb0800000000000000
+      internalID: -4693773147445699378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 658905a977139d3d0800000000000000
+      internalID: -3181457272000702378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c802358e781a4e8b0800000000000000
+      internalID: -5123792870950362996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70608e6fce7b8a300800000000000000
+      internalID: 263662806583739911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce27415d6adc79f50800000000000000
+      internalID: 6888200271509615340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a9f4434d15792650800000000000000
+      internalID: 6208622329850034596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69ce0a205a2a2c970800000000000000
+      internalID: 8773753853668551830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 671692d1c89c05ca0800000000000000
+      internalID: -6030098297427238538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 271ea933a91679a00800000000000000
+      internalID: 763185976781234546
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e12af5c2d29b57a0800000000000000
+      internalID: -6387350212532624919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cba916eae0a01ef80800000000000000
+      internalID: -8079165198354507076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44d4fc1e100e1d0c0800000000000000
+      internalID: -4552611449606812348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d0b7396bb53f630800000000000000
+      internalID: 3959609337105288462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43a7e363317678c20800000000000000
+      internalID: 3208646591736871476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36cf14d978cc126a0800000000000000
+      internalID: -6475669906351063965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: grunt_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91cd89cb7bf6e53e0800000000000000
+      internalID: -2063088744355275751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      grunt_sheet_0: 7052856187277816118
+      grunt_sheet_0_0: 8189426207303495927
+      grunt_sheet_0_1: -7983972749980545955
+      grunt_sheet_0_10: -4050066906026424305
+      grunt_sheet_0_11: -7924844691511688516
+      grunt_sheet_0_12: -7869967041329072487
+      grunt_sheet_0_13: 8546580278918645794
+      grunt_sheet_0_14: 2182032200268235935
+      grunt_sheet_0_15: -2824717211081089939
+      grunt_sheet_0_16: -4476981201364506368
+      grunt_sheet_0_17: 3366188823496747732
+      grunt_sheet_0_18: 7437366191081508952
+      grunt_sheet_0_19: -3161287729285894480
+      grunt_sheet_0_2: -7096969547491185969
+      grunt_sheet_0_20: 4590080046516591456
+      grunt_sheet_0_3: 5126516793953682395
+      grunt_sheet_0_4: -941867873899952340
+      grunt_sheet_0_5: -5119806017459898174
+      grunt_sheet_0_6: -537328169408871436
+      grunt_sheet_0_7: 3598365784500843594
+      grunt_sheet_0_8: 2390709160752918574
+      grunt_sheet_0_9: 8913922652051410424
+      grunt_sheet_1: -1821298997150115548
+      grunt_sheet_10: 6877376453185508897
+      grunt_sheet_100: 3868731497719030220
+      grunt_sheet_101: -8062045404657190624
+      grunt_sheet_102: 1955379872941600616
+      grunt_sheet_103: 7821646711193686178
+      grunt_sheet_104: 274186293759886986
+      grunt_sheet_105: 7211277075512428181
+      grunt_sheet_106: 3772381748454545240
+      grunt_sheet_107: -8419714237494936037
+      grunt_sheet_108: 862319839827225136
+      grunt_sheet_109: -2185700255737827014
+      grunt_sheet_11: 8109515392254816619
+      grunt_sheet_110: -7285858009932427603
+      grunt_sheet_111: -580127491085162559
+      grunt_sheet_112: 5930188436038085228
+      grunt_sheet_113: -7660141304350696315
+      grunt_sheet_114: 1369970996306338993
+      grunt_sheet_115: 8907720313553714363
+      grunt_sheet_116: -2698752011005298590
+      grunt_sheet_117: 8198497520984217739
+      grunt_sheet_118: -6775600104023996639
+      grunt_sheet_119: -8670286448702594130
+      grunt_sheet_12: -7676234492433962717
+      grunt_sheet_120: -7575960906190513764
+      grunt_sheet_121: -4443806913970166254
+      grunt_sheet_122: -4184882858103512617
+      grunt_sheet_123: -2391641609060532797
+      grunt_sheet_124: 1255094882753502628
+      grunt_sheet_125: -6382074943912701113
+      grunt_sheet_126: -6977095375369777079
+      grunt_sheet_127: -7286985986544638790
+      grunt_sheet_128: 3921531576994307298
+      grunt_sheet_129: -1881140012147321412
+      grunt_sheet_13: 9064374760892059538
+      grunt_sheet_130: -2383130645281033732
+      grunt_sheet_131: 8410066911064574339
+      grunt_sheet_132: -7730372279188766067
+      grunt_sheet_133: 944286107659011919
+      grunt_sheet_134: 4535317848036317862
+      grunt_sheet_135: -1506118370607664074
+      grunt_sheet_136: -6920848279712798177
+      grunt_sheet_137: 7509882628728962719
+      grunt_sheet_138: 16398832440241933
+      grunt_sheet_139: -3866705967045547147
+      grunt_sheet_14: 7701552044202668869
+      grunt_sheet_140: -8512499511583229926
+      grunt_sheet_141: 5943562550401536018
+      grunt_sheet_142: 2061778743140401913
+      grunt_sheet_143: 6919093620163645909
+      grunt_sheet_144: -326411066509852113
+      grunt_sheet_145: -1722183498737525704
+      grunt_sheet_146: -9100477485807488490
+      grunt_sheet_147: 5485337990548144975
+      grunt_sheet_148: 1642151528782504815
+      grunt_sheet_149: -3799473193512923826
+      grunt_sheet_15: -4017803519174114185
+      grunt_sheet_150: -3760745791890697957
+      grunt_sheet_151: -1352400851748649560
+      grunt_sheet_152: 2918140778979979785
+      grunt_sheet_153: -1179504296208059531
+      grunt_sheet_154: -8985772520919048023
+      grunt_sheet_155: -2537744683120704631
+      grunt_sheet_156: -1219424104600239660
+      grunt_sheet_157: 2276492833839495661
+      grunt_sheet_158: -8030134736364371804
+      grunt_sheet_159: -105417458881454765
+      grunt_sheet_16: -8025920510951297740
+      grunt_sheet_160: 3006920997170642877
+      grunt_sheet_161: -7016232421981218312
+      grunt_sheet_162: -7654103956725369897
+      grunt_sheet_163: 5996940771222930692
+      grunt_sheet_164: -8235640185264750836
+      grunt_sheet_165: -6643069138693299245
+      grunt_sheet_166: 4792171347408505043
+      grunt_sheet_167: -7167532699383497393
+      grunt_sheet_17: 823939900635924846
+      grunt_sheet_18: 5237587831269898989
+      grunt_sheet_19: -4843766536880537892
+      grunt_sheet_1_0: -7090357689443400536
+      grunt_sheet_1_1: -381919903219207329
+      grunt_sheet_1_10: -5837216537814540143
+      grunt_sheet_1_11: -7350210364964989364
+      grunt_sheet_1_12: 5659514507888602854
+      grunt_sheet_1_13: 6956929416127712478
+      grunt_sheet_1_14: 8635020041650647401
+      grunt_sheet_1_15: 5446053423309658418
+      grunt_sheet_1_16: -4799944772375262455
+      grunt_sheet_1_17: 4843290740731484192
+      grunt_sheet_1_18: 2045896581670613884
+      grunt_sheet_1_19: -4661441969450864269
+      grunt_sheet_1_2: 1392299967511429219
+      grunt_sheet_1_20: -6759392156288131396
+      grunt_sheet_1_3: 7485576754022512720
+      grunt_sheet_1_4: -5890672339125587529
+      grunt_sheet_1_5: 8955826364856994777
+      grunt_sheet_1_6: 5195982852360184937
+      grunt_sheet_1_7: -4592849441149201332
+      grunt_sheet_1_8: 4912925464718889410
+      grunt_sheet_1_9: -4361265185988540937
+      grunt_sheet_2: 3877979548569379877
+      grunt_sheet_20: -6340778820104161721
+      grunt_sheet_21: 3088287070148388913
+      grunt_sheet_22: -1529330941117824479
+      grunt_sheet_23: -6443310608083920599
+      grunt_sheet_24: -9159908389987854065
+      grunt_sheet_25: -3531017005081786764
+      grunt_sheet_26: 7930273218550001319
+      grunt_sheet_27: 8239432544891715235
+      grunt_sheet_28: 6979302086796875874
+      grunt_sheet_29: 1312076827959177631
+      grunt_sheet_2_0: -5725753931084407906
+      grunt_sheet_2_1: 3190988838511523303
+      grunt_sheet_2_10: 1156692767889160473
+      grunt_sheet_2_11: 6708158328171857156
+      grunt_sheet_2_12: -7992147036420528612
+      grunt_sheet_2_13: 4385770606866553209
+      grunt_sheet_2_14: 2411465274894919999
+      grunt_sheet_2_15: -6432492536540857096
+      grunt_sheet_2_16: -281525293100545454
+      grunt_sheet_2_17: 4877699279869904577
+      grunt_sheet_2_18: -2232810986010505578
+      grunt_sheet_2_19: 1055969158658261552
+      grunt_sheet_2_2: -9203385014288661407
+      grunt_sheet_2_20: -7593084051585554828
+      grunt_sheet_2_3: 7208458130568137834
+      grunt_sheet_2_4: -3285646437256866796
+      grunt_sheet_2_5: -3174888593701944402
+      grunt_sheet_2_6: -9134744029561180799
+      grunt_sheet_2_7: -78189609457983068
+      grunt_sheet_2_8: 5485525944019255104
+      grunt_sheet_2_9: 5434468048278292233
+      grunt_sheet_3: -4072101244485792882
+      grunt_sheet_30: 2054459797089840834
+      grunt_sheet_31: 8489130424497849236
+      grunt_sheet_32: -7993712037366355685
+      grunt_sheet_33: 6404920991598323392
+      grunt_sheet_34: 5020690208178095303
+      grunt_sheet_35: -6057901654062871120
+      grunt_sheet_36: 4936096953149863193
+      grunt_sheet_37: -5653121849006154419
+      grunt_sheet_38: 5100281487700421133
+      grunt_sheet_39: 4740330550450385587
+      grunt_sheet_3_0: -5988627235951982114
+      grunt_sheet_3_1: 6370353414398622500
+      grunt_sheet_3_10: 8190037980767751283
+      grunt_sheet_3_11: 7273308160706842434
+      grunt_sheet_3_12: -1491731993395465160
+      grunt_sheet_3_13: -8120967276032009077
+      grunt_sheet_3_14: 2602084678626562722
+      grunt_sheet_3_15: -8454561263839771228
+      grunt_sheet_3_16: -3182929947274667895
+      grunt_sheet_3_17: -4685536420574958604
+      grunt_sheet_3_18: -6606797332200387882
+      grunt_sheet_3_19: -8373899438193712893
+      grunt_sheet_3_2: 8535627953261621285
+      grunt_sheet_3_20: 3536138770717841106
+      grunt_sheet_3_3: -5312437416112904917
+      grunt_sheet_3_4: 2391201934758122963
+      grunt_sheet_3_5: 4757648640927127244
+      grunt_sheet_3_6: -6566338673439409338
+      grunt_sheet_3_7: 6215601502829070419
+      grunt_sheet_3_8: 7771885700130859747
+      grunt_sheet_3_9: 7015201773163897277
+      grunt_sheet_4: 1847401722396855004
+      grunt_sheet_40: 1619882326460731534
+      grunt_sheet_41: -4293036121944860140
+      grunt_sheet_42: -3942614558717394166
+      grunt_sheet_43: -6493462186134145417
+      grunt_sheet_44: 8028964831547386389
+      grunt_sheet_45: 4287608542148330318
+      grunt_sheet_46: -1046385557803824883
+      grunt_sheet_47: 324726450239006104
+      grunt_sheet_48: -4161809190372003177
+      grunt_sheet_49: -3743535706277636045
+      grunt_sheet_4_0: -4696686378159768018
+      grunt_sheet_4_1: -3397050164968521198
+      grunt_sheet_4_10: 1912285953716342179
+      grunt_sheet_4_11: -5773750428701513377
+      grunt_sheet_4_12: -97814709450153484
+      grunt_sheet_4_13: 5931139023701619919
+      grunt_sheet_4_14: 4230631682727957558
+      grunt_sheet_4_15: 4530243927771850481
+      grunt_sheet_4_16: -2277650230828591868
+      grunt_sheet_4_17: 3691511061417500196
+      grunt_sheet_4_18: -5061635739437402868
+      grunt_sheet_4_19: -9144810039513006688
+      grunt_sheet_4_2: 1522422738461766314
+      grunt_sheet_4_20: 6077743444092070200
+      grunt_sheet_4_3: 7382098636828693797
+      grunt_sheet_4_4: -7647686544675835885
+      grunt_sheet_4_5: -9213014132392512953
+      grunt_sheet_4_6: 8470981451208020300
+      grunt_sheet_4_7: 3662267178870914977
+      grunt_sheet_4_8: 26775246863080509
+      grunt_sheet_4_9: -1026770174518202335
+      grunt_sheet_5: 8720997412124615246
+      grunt_sheet_50: -1307224776655443199
+      grunt_sheet_51: -8473291494314462976
+      grunt_sheet_52: -3651818979499299216
+      grunt_sheet_53: -104094600589282284
+      grunt_sheet_54: -3539177615330317278
+      grunt_sheet_55: 1424095458473410832
+      grunt_sheet_56: -3791929098185454540
+      grunt_sheet_57: 6702633572366067389
+      grunt_sheet_58: 9028511796214720102
+      grunt_sheet_59: -5277503161127509769
+      grunt_sheet_5_0: -284644763202968546
+      grunt_sheet_5_1: -5313438552789037542
+      grunt_sheet_5_10: -9125414110233512838
+      grunt_sheet_5_11: -6053139268766701333
+      grunt_sheet_5_12: -5592497464286345064
+      grunt_sheet_5_13: 2532945070676666980
+      grunt_sheet_5_14: -4577351221932753076
+      grunt_sheet_5_15: -5066987209964817460
+      grunt_sheet_5_16: 8632585964225738795
+      grunt_sheet_5_17: -2723456335982344620
+      grunt_sheet_5_18: -2009329184879502538
+      grunt_sheet_5_19: 3933220375328263586
+      grunt_sheet_5_2: 2634905682117739964
+      grunt_sheet_5_20: -5368587843925562253
+      grunt_sheet_5_3: -2960183310836358242
+      grunt_sheet_5_4: 4066973498132282290
+      grunt_sheet_5_5: 5660312872250387383
+      grunt_sheet_5_6: 5913748162196552702
+      grunt_sheet_5_7: -6420802169662016060
+      grunt_sheet_5_8: -6534586876560934461
+      grunt_sheet_5_9: -8138717765080902516
+      grunt_sheet_6: -7201686266271318321
+      grunt_sheet_60: -6057910516863296972
+      grunt_sheet_61: -9121778904675674422
+      grunt_sheet_62: 4192666377397611552
+      grunt_sheet_63: -6257672126983331403
+      grunt_sheet_64: -3591675621897962648
+      grunt_sheet_65: 3396152685595797551
+      grunt_sheet_66: 8755555022157759687
+      grunt_sheet_67: 8088268808228548676
+      grunt_sheet_68: 5954630904810898300
+      grunt_sheet_69: 7021818844667754379
+      grunt_sheet_6_0: -1599493569478284026
+      grunt_sheet_6_1: -4078172981825490440
+      grunt_sheet_6_10: -4138238362569684593
+      grunt_sheet_6_11: -1079838433158008846
+      grunt_sheet_6_12: -1508972162992067662
+      grunt_sheet_6_13: 5823479613791364471
+      grunt_sheet_6_14: 2562016639094797645
+      grunt_sheet_6_15: 7581105582466555365
+      grunt_sheet_6_16: -7673564547223175494
+      grunt_sheet_6_17: 8779225699510226942
+      grunt_sheet_6_18: -5167747563656211390
+      grunt_sheet_6_19: 1441422191076627762
+      grunt_sheet_6_2: -2208564008568309545
+      grunt_sheet_6_20: 3444782031977246680
+      grunt_sheet_6_3: 2022204026466399005
+      grunt_sheet_6_4: -8094211968391444481
+      grunt_sheet_6_5: 1823766118154963860
+      grunt_sheet_6_6: 2119873662548444745
+      grunt_sheet_6_7: 5979060433895616609
+      grunt_sheet_6_8: -6056836273173474722
+      grunt_sheet_6_9: -3294014030138915318
+      grunt_sheet_7: 1135795654532854495
+      grunt_sheet_70: -7047661865182643692
+      grunt_sheet_71: 2064378783515501012
+      grunt_sheet_72: 3513873889823272280
+      grunt_sheet_73: 8746911361340498333
+      grunt_sheet_74: -6054482821233436589
+      grunt_sheet_75: -6069242620830269310
+      grunt_sheet_76: 8179121214506032757
+      grunt_sheet_77: 1451118264106878968
+      grunt_sheet_78: -6702980789282285744
+      grunt_sheet_79: 2048885388370143449
+      grunt_sheet_7_0: -6758012300254481546
+      grunt_sheet_7_1: 8306166935090458334
+      grunt_sheet_7_10: 6208622329850034596
+      grunt_sheet_7_11: 8773753853668551830
+      grunt_sheet_7_12: -6030098297427238538
+      grunt_sheet_7_13: 763185976781234546
+      grunt_sheet_7_14: -6387350212532624919
+      grunt_sheet_7_15: -8079165198354507076
+      grunt_sheet_7_16: -4552611449606812348
+      grunt_sheet_7_17: 3959609337105288462
+      grunt_sheet_7_18: 3208646591736871476
+      grunt_sheet_7_19: -6475669906351063965
+      grunt_sheet_7_2: -8984266351913388931
+      grunt_sheet_7_20: -2063088744355275751
+      grunt_sheet_7_3: -5054161827503393074
+      grunt_sheet_7_4: -884653133259117348
+      grunt_sheet_7_5: -4693773147445699378
+      grunt_sheet_7_6: -3181457272000702378
+      grunt_sheet_7_7: -5123792870950362996
+      grunt_sheet_7_8: 263662806583739911
+      grunt_sheet_7_9: 6888200271509615340
+      grunt_sheet_8: 5248537082927618950
+      grunt_sheet_80: -8888539866144848116
+      grunt_sheet_81: 1467302369497262771
+      grunt_sheet_82: -2182854224547027469
+      grunt_sheet_83: -518170734444497175
+      grunt_sheet_84: -292790607543619314
+      grunt_sheet_85: -7494140082449289906
+      grunt_sheet_86: 4963405754085859878
+      grunt_sheet_87: 3470275142046587834
+      grunt_sheet_88: 1704220803074507026
+      grunt_sheet_89: 6454737516222033817
+      grunt_sheet_9: 4725149234682014174
+      grunt_sheet_90: -8500232964670715430
+      grunt_sheet_91: -3484503736107338817
+      grunt_sheet_92: 3041877741331530968
+      grunt_sheet_93: 6316864591059564134
+      grunt_sheet_94: -5056350108517849797
+      grunt_sheet_95: 4954589939928510866
+      grunt_sheet_96: 8038933957753223119
+      grunt_sheet_97: 2659542791840937725
+      grunt_sheet_98: 7214246608771656316
+      grunt_sheet_99: 6504693151419383710
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

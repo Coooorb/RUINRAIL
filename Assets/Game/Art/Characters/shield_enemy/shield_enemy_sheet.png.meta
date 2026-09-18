@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 0ec69245dbebbab439e76b00bfaaeba3
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7870219462373938985
+    second: shield_enemy_sheet_0
+  - first:
+      213: 8678847403901894516
+    second: shield_enemy_sheet_1
+  - first:
+      213: 6194091556013595785
+    second: shield_enemy_sheet_2
+  - first:
+      213: -6467794716840464341
+    second: shield_enemy_sheet_3
+  - first:
+      213: -1047214902602975698
+    second: shield_enemy_sheet_4
+  - first:
+      213: 2797161284080474465
+    second: shield_enemy_sheet_5
+  - first:
+      213: 3740270425955698592
+    second: shield_enemy_sheet_6
+  - first:
+      213: 8281363957715836987
+    second: shield_enemy_sheet_7
+  - first:
+      213: 7604959515810518635
+    second: shield_enemy_sheet_8
+  - first:
+      213: 4862854808069834116
+    second: shield_enemy_sheet_9
+  - first:
+      213: -2806754865455480011
+    second: shield_enemy_sheet_10
+  - first:
+      213: -3393029561158480463
+    second: shield_enemy_sheet_11
+  - first:
+      213: -4793774958241020577
+    second: shield_enemy_sheet_12
+  - first:
+      213: -4572216268482060592
+    second: shield_enemy_sheet_13
+  - first:
+      213: 4128807475643880806
+    second: shield_enemy_sheet_14
+  - first:
+      213: -2742018382220961205
+    second: shield_enemy_sheet_15
+  - first:
+      213: -7123495273673377719
+    second: shield_enemy_sheet_16
+  - first:
+      213: -2462831332677802986
+    second: shield_enemy_sheet_17
+  - first:
+      213: 620095361241764505
+    second: shield_enemy_sheet_18
+  - first:
+      213: -7330644139623093272
+    second: shield_enemy_sheet_19
+  - first:
+      213: 2828859487159937251
+    second: shield_enemy_sheet_20
+  - first:
+      213: 2195423999706807462
+    second: shield_enemy_sheet_21
+  - first:
+      213: 2664998977592346890
+    second: shield_enemy_sheet_22
+  - first:
+      213: -149970525704442967
+    second: shield_enemy_sheet_23
+  - first:
+      213: -2323504349981191610
+    second: shield_enemy_sheet_24
+  - first:
+      213: -7768911558809296277
+    second: shield_enemy_sheet_25
+  - first:
+      213: -3970446520372397470
+    second: shield_enemy_sheet_26
+  - first:
+      213: -9043653307694030225
+    second: shield_enemy_sheet_27
+  - first:
+      213: -6113163729895738928
+    second: shield_enemy_sheet_28
+  - first:
+      213: 4999650948390921422
+    second: shield_enemy_sheet_29
+  - first:
+      213: -9096365380624126545
+    second: shield_enemy_sheet_30
+  - first:
+      213: -7889041424003032658
+    second: shield_enemy_sheet_31
+  - first:
+      213: -1567463480983498633
+    second: shield_enemy_sheet_32
+  - first:
+      213: -3244890168014386781
+    second: shield_enemy_sheet_33
+  - first:
+      213: -2347750179055932805
+    second: shield_enemy_sheet_34
+  - first:
+      213: 7649319439731185788
+    second: shield_enemy_sheet_35
+  - first:
+      213: -7185583533466451315
+    second: shield_enemy_sheet_36
+  - first:
+      213: -6077703127034169744
+    second: shield_enemy_sheet_37
+  - first:
+      213: -3430866132373812868
+    second: shield_enemy_sheet_38
+  - first:
+      213: -7211510635212850998
+    second: shield_enemy_sheet_39
+  - first:
+      213: -2467530346184379738
+    second: shield_enemy_sheet_40
+  - first:
+      213: -2480493152751741142
+    second: shield_enemy_sheet_41
+  - first:
+      213: 424319883692194783
+    second: shield_enemy_sheet_42
+  - first:
+      213: 3536724078502977415
+    second: shield_enemy_sheet_43
+  - first:
+      213: 9193966007339296646
+    second: shield_enemy_sheet_44
+  - first:
+      213: -1871415114819331069
+    second: shield_enemy_sheet_45
+  - first:
+      213: -5180193618462749781
+    second: shield_enemy_sheet_46
+  - first:
+      213: 6505258512969365309
+    second: shield_enemy_sheet_47
+  - first:
+      213: -5740537581675180332
+    second: shield_enemy_sheet_48
+  - first:
+      213: -6143054594239300678
+    second: shield_enemy_sheet_49
+  - first:
+      213: -314795480658275625
+    second: shield_enemy_sheet_50
+  - first:
+      213: -1588823928158037115
+    second: shield_enemy_sheet_51
+  - first:
+      213: -6496131608647187030
+    second: shield_enemy_sheet_52
+  - first:
+      213: 67187696135823337
+    second: shield_enemy_sheet_53
+  - first:
+      213: 1928529352729108161
+    second: shield_enemy_sheet_54
+  - first:
+      213: -3196585172701013648
+    second: shield_enemy_sheet_55
+  - first:
+      213: -3590862560342849471
+    second: shield_enemy_sheet_56
+  - first:
+      213: 5727152533165537016
+    second: shield_enemy_sheet_57
+  - first:
+      213: 5553523082439174599
+    second: shield_enemy_sheet_58
+  - first:
+      213: 7519748948578938389
+    second: shield_enemy_sheet_59
+  - first:
+      213: 665755448569756969
+    second: shield_enemy_sheet_60
+  - first:
+      213: 4060570782370260437
+    second: shield_enemy_sheet_61
+  - first:
+      213: -7538870339729366982
+    second: shield_enemy_sheet_62
+  - first:
+      213: 108873823350334105
+    second: shield_enemy_sheet_63
+  - first:
+      213: -4873670755137429396
+    second: shield_enemy_sheet_64
+  - first:
+      213: -2817230435252024292
+    second: shield_enemy_sheet_65
+  - first:
+      213: -8318606942217027177
+    second: shield_enemy_sheet_66
+  - first:
+      213: -9011097684810025651
+    second: shield_enemy_sheet_67
+  - first:
+      213: 1785448805026672771
+    second: shield_enemy_sheet_68
+  - first:
+      213: -4581116082973993689
+    second: shield_enemy_sheet_69
+  - first:
+      213: 6127648409597331196
+    second: shield_enemy_sheet_70
+  - first:
+      213: -3887585233525124198
+    second: shield_enemy_sheet_71
+  - first:
+      213: 9175207810854258885
+    second: shield_enemy_sheet_72
+  - first:
+      213: -6575062350656762051
+    second: shield_enemy_sheet_73
+  - first:
+      213: -4166336586017049634
+    second: shield_enemy_sheet_74
+  - first:
+      213: 1752836270541670974
+    second: shield_enemy_sheet_75
+  - first:
+      213: -2084586682224495887
+    second: shield_enemy_sheet_76
+  - first:
+      213: 4012830955584837231
+    second: shield_enemy_sheet_77
+  - first:
+      213: 1921110660970329660
+    second: shield_enemy_sheet_78
+  - first:
+      213: -2512341340420761582
+    second: shield_enemy_sheet_79
+  - first:
+      213: -6121512292446830039
+    second: shield_enemy_sheet_80
+  - first:
+      213: -2960675420769993161
+    second: shield_enemy_sheet_81
+  - first:
+      213: 3020510633487987098
+    second: shield_enemy_sheet_82
+  - first:
+      213: 1920000954966779631
+    second: shield_enemy_sheet_83
+  - first:
+      213: 9006000210946453274
+    second: shield_enemy_sheet_84
+  - first:
+      213: -955489386297892728
+    second: shield_enemy_sheet_85
+  - first:
+      213: 2497191543079803418
+    second: shield_enemy_sheet_86
+  - first:
+      213: 7302700658539979033
+    second: shield_enemy_sheet_87
+  - first:
+      213: 8457645489152290796
+    second: shield_enemy_sheet_88
+  - first:
+      213: 7540393974419583745
+    second: shield_enemy_sheet_89
+  - first:
+      213: -5830395759590765435
+    second: shield_enemy_sheet_90
+  - first:
+      213: 1302327859087245048
+    second: shield_enemy_sheet_91
+  - first:
+      213: 6856038958224549713
+    second: shield_enemy_sheet_92
+  - first:
+      213: -2540407998684306732
+    second: shield_enemy_sheet_93
+  - first:
+      213: 6197754610666199679
+    second: shield_enemy_sheet_94
+  - first:
+      213: -4464973426597172503
+    second: shield_enemy_sheet_95
+  - first:
+      213: -2668228274930329335
+    second: shield_enemy_sheet_96
+  - first:
+      213: -6218754596958043818
+    second: shield_enemy_sheet_97
+  - first:
+      213: 1751955160986892324
+    second: shield_enemy_sheet_98
+  - first:
+      213: 2365434271745409283
+    second: shield_enemy_sheet_99
+  - first:
+      213: -3767195219389040522
+    second: shield_enemy_sheet_100
+  - first:
+      213: 4688888176772877054
+    second: shield_enemy_sheet_101
+  - first:
+      213: 504374896285147698
+    second: shield_enemy_sheet_102
+  - first:
+      213: 6981626656396034659
+    second: shield_enemy_sheet_103
+  - first:
+      213: 8554707773937019188
+    second: shield_enemy_sheet_104
+  - first:
+      213: -4821418780260697718
+    second: shield_enemy_sheet_105
+  - first:
+      213: -3455012598147246822
+    second: shield_enemy_sheet_106
+  - first:
+      213: 3341423763617838459
+    second: shield_enemy_sheet_107
+  - first:
+      213: 6110412896956578328
+    second: shield_enemy_sheet_108
+  - first:
+      213: 8352783718314589078
+    second: shield_enemy_sheet_109
+  - first:
+      213: -2977626401903929421
+    second: shield_enemy_sheet_110
+  - first:
+      213: 5761298737093882468
+    second: shield_enemy_sheet_111
+  - first:
+      213: 5500016277747561335
+    second: shield_enemy_sheet_112
+  - first:
+      213: 2992688715604729638
+    second: shield_enemy_sheet_113
+  - first:
+      213: -7966526946757762629
+    second: shield_enemy_sheet_114
+  - first:
+      213: 3179234967775565469
+    second: shield_enemy_sheet_115
+  - first:
+      213: 9029247708158489896
+    second: shield_enemy_sheet_116
+  - first:
+      213: -7530686294183702087
+    second: shield_enemy_sheet_117
+  - first:
+      213: -7624359709320420663
+    second: shield_enemy_sheet_118
+  - first:
+      213: 3808638519165014956
+    second: shield_enemy_sheet_119
+  - first:
+      213: 8563232498667063638
+    second: shield_enemy_sheet_120
+  - first:
+      213: 8047384810179837788
+    second: shield_enemy_sheet_121
+  - first:
+      213: 4825840106191172216
+    second: shield_enemy_sheet_122
+  - first:
+      213: 7575940891625007582
+    second: shield_enemy_sheet_123
+  - first:
+      213: -8938103553051005206
+    second: shield_enemy_sheet_124
+  - first:
+      213: 6526848257132311274
+    second: shield_enemy_sheet_125
+  - first:
+      213: -185591591145230314
+    second: shield_enemy_sheet_126
+  - first:
+      213: -1636648060042952008
+    second: shield_enemy_sheet_127
+  - first:
+      213: -120183081349055933
+    second: shield_enemy_sheet_128
+  - first:
+      213: 6473264822243594534
+    second: shield_enemy_sheet_129
+  - first:
+      213: -9134766680591986627
+    second: shield_enemy_sheet_130
+  - first:
+      213: 2236725904109644488
+    second: shield_enemy_sheet_131
+  - first:
+      213: -1008558686477096936
+    second: shield_enemy_sheet_132
+  - first:
+      213: -7130253458173889462
+    second: shield_enemy_sheet_133
+  - first:
+      213: 6564866185949126250
+    second: shield_enemy_sheet_134
+  - first:
+      213: 1014062544811343362
+    second: shield_enemy_sheet_135
+  - first:
+      213: -5377084930042353148
+    second: shield_enemy_sheet_136
+  - first:
+      213: 9049072567708156638
+    second: shield_enemy_sheet_137
+  - first:
+      213: 1393945267596188821
+    second: shield_enemy_sheet_138
+  - first:
+      213: -1340046734097479879
+    second: shield_enemy_sheet_139
+  - first:
+      213: -3806846310329378356
+    second: shield_enemy_sheet_140
+  - first:
+      213: 5914334184633509484
+    second: shield_enemy_sheet_141
+  - first:
+      213: -3895555702397140358
+    second: shield_enemy_sheet_142
+  - first:
+      213: -8711288518635085354
+    second: shield_enemy_sheet_143
+  - first:
+      213: -1141686249763614235
+    second: shield_enemy_sheet_144
+  - first:
+      213: -3470757361175124651
+    second: shield_enemy_sheet_145
+  - first:
+      213: -2729612504736697718
+    second: shield_enemy_sheet_146
+  - first:
+      213: -7214928169550408086
+    second: shield_enemy_sheet_147
+  - first:
+      213: 4940741545780518569
+    second: shield_enemy_sheet_148
+  - first:
+      213: 8801946869517287927
+    second: shield_enemy_sheet_149
+  - first:
+      213: 7226375278484977842
+    second: shield_enemy_sheet_150
+  - first:
+      213: -3002791006709458385
+    second: shield_enemy_sheet_151
+  - first:
+      213: -5665753958468853579
+    second: shield_enemy_sheet_152
+  - first:
+      213: -1399047599170989472
+    second: shield_enemy_sheet_153
+  - first:
+      213: 4107522600749251723
+    second: shield_enemy_sheet_154
+  - first:
+      213: 192308812147731244
+    second: shield_enemy_sheet_155
+  - first:
+      213: -6950347810118298683
+    second: shield_enemy_sheet_156
+  - first:
+      213: 8604997273280178700
+    second: shield_enemy_sheet_157
+  - first:
+      213: 5551989854317767743
+    second: shield_enemy_sheet_158
+  - first:
+      213: 5810543248669316663
+    second: shield_enemy_sheet_159
+  - first:
+      213: 2684342341872421744
+    second: shield_enemy_sheet_160
+  - first:
+      213: -8407312918851829605
+    second: shield_enemy_sheet_161
+  - first:
+      213: 8736923586472936268
+    second: shield_enemy_sheet_162
+  - first:
+      213: 6356334397986521730
+    second: shield_enemy_sheet_163
+  - first:
+      213: -3519538334307222354
+    second: shield_enemy_sheet_164
+  - first:
+      213: -4300866183844491264
+    second: shield_enemy_sheet_165
+  - first:
+      213: 7270074273102253821
+    second: shield_enemy_sheet_166
+  - first:
+      213: -4614208661367103314
+    second: shield_enemy_sheet_167
+  - first:
+      213: 5914264497210634001
+    second: shield_enemy_sheet_0_0
+  - first:
+      213: -200700709670899483
+    second: shield_enemy_sheet_0_1
+  - first:
+      213: -5802932902261950247
+    second: shield_enemy_sheet_0_2
+  - first:
+      213: -4652727385521698287
+    second: shield_enemy_sheet_0_3
+  - first:
+      213: 1855366640493382757
+    second: shield_enemy_sheet_0_4
+  - first:
+      213: -3649569960426053249
+    second: shield_enemy_sheet_0_5
+  - first:
+      213: -5382683344001654445
+    second: shield_enemy_sheet_0_6
+  - first:
+      213: -1282993390689121752
+    second: shield_enemy_sheet_0_7
+  - first:
+      213: 8736554156109914220
+    second: shield_enemy_sheet_0_8
+  - first:
+      213: -6308319379037508907
+    second: shield_enemy_sheet_0_9
+  - first:
+      213: -3073854767393844615
+    second: shield_enemy_sheet_0_10
+  - first:
+      213: 19763239298155661
+    second: shield_enemy_sheet_0_11
+  - first:
+      213: 7617964167422079433
+    second: shield_enemy_sheet_0_12
+  - first:
+      213: -8933962671804925475
+    second: shield_enemy_sheet_0_13
+  - first:
+      213: -7426820266096574981
+    second: shield_enemy_sheet_0_14
+  - first:
+      213: 2285235209712408808
+    second: shield_enemy_sheet_0_15
+  - first:
+      213: -2280971162410979488
+    second: shield_enemy_sheet_0_16
+  - first:
+      213: 2797686935313300378
+    second: shield_enemy_sheet_0_17
+  - first:
+      213: -1502622644471362988
+    second: shield_enemy_sheet_0_18
+  - first:
+      213: -8968167500072148744
+    second: shield_enemy_sheet_0_19
+  - first:
+      213: 4549335954066260431
+    second: shield_enemy_sheet_0_20
+  - first:
+      213: 3899696841828430354
+    second: shield_enemy_sheet_1_0
+  - first:
+      213: 8478070501978004589
+    second: shield_enemy_sheet_1_1
+  - first:
+      213: 5128570072303682934
+    second: shield_enemy_sheet_1_2
+  - first:
+      213: -7413659792034731767
+    second: shield_enemy_sheet_1_3
+  - first:
+      213: 8084394480261234517
+    second: shield_enemy_sheet_1_4
+  - first:
+      213: 1782338422555353522
+    second: shield_enemy_sheet_1_5
+  - first:
+      213: -4589783175017390236
+    second: shield_enemy_sheet_1_6
+  - first:
+      213: 4702023920214115110
+    second: shield_enemy_sheet_1_7
+  - first:
+      213: -2804413333038586827
+    second: shield_enemy_sheet_1_8
+  - first:
+      213: -8109378112552143757
+    second: shield_enemy_sheet_1_9
+  - first:
+      213: 7176514411729502980
+    second: shield_enemy_sheet_1_10
+  - first:
+      213: -4554565577739339439
+    second: shield_enemy_sheet_1_11
+  - first:
+      213: 8970961597723666776
+    second: shield_enemy_sheet_1_12
+  - first:
+      213: -4276844318005816774
+    second: shield_enemy_sheet_1_13
+  - first:
+      213: 7440256456162769091
+    second: shield_enemy_sheet_1_14
+  - first:
+      213: 1404485994274560029
+    second: shield_enemy_sheet_1_15
+  - first:
+      213: 8049143746197021625
+    second: shield_enemy_sheet_1_16
+  - first:
+      213: 3773607993886128399
+    second: shield_enemy_sheet_1_17
+  - first:
+      213: 4884191286574772911
+    second: shield_enemy_sheet_1_18
+  - first:
+      213: -2588444680470554818
+    second: shield_enemy_sheet_1_19
+  - first:
+      213: -8814104450500210427
+    second: shield_enemy_sheet_1_20
+  - first:
+      213: 2837363289378861418
+    second: shield_enemy_sheet_2_0
+  - first:
+      213: -5229436131036740691
+    second: shield_enemy_sheet_2_1
+  - first:
+      213: 5940113800661851796
+    second: shield_enemy_sheet_2_2
+  - first:
+      213: 7202581248202917764
+    second: shield_enemy_sheet_2_3
+  - first:
+      213: 2389312796559892995
+    second: shield_enemy_sheet_2_4
+  - first:
+      213: -1145116786838259271
+    second: shield_enemy_sheet_2_5
+  - first:
+      213: 6690346113791562531
+    second: shield_enemy_sheet_2_6
+  - first:
+      213: -520106391549071966
+    second: shield_enemy_sheet_2_7
+  - first:
+      213: 5711018178242525485
+    second: shield_enemy_sheet_2_8
+  - first:
+      213: 503259587703818465
+    second: shield_enemy_sheet_2_9
+  - first:
+      213: -7246857456222823571
+    second: shield_enemy_sheet_2_10
+  - first:
+      213: -5953198635345704016
+    second: shield_enemy_sheet_2_11
+  - first:
+      213: 8159044680275424008
+    second: shield_enemy_sheet_2_12
+  - first:
+      213: -5412827888109468374
+    second: shield_enemy_sheet_2_13
+  - first:
+      213: 103547863769498703
+    second: shield_enemy_sheet_2_14
+  - first:
+      213: 8646431771927749764
+    second: shield_enemy_sheet_2_15
+  - first:
+      213: -5840115810662973339
+    second: shield_enemy_sheet_2_16
+  - first:
+      213: 2491676601583435617
+    second: shield_enemy_sheet_2_17
+  - first:
+      213: -4044658801954524611
+    second: shield_enemy_sheet_2_18
+  - first:
+      213: -8728712052182026317
+    second: shield_enemy_sheet_2_19
+  - first:
+      213: 62708489253481383
+    second: shield_enemy_sheet_2_20
+  - first:
+      213: 2867073357224359159
+    second: shield_enemy_sheet_3_0
+  - first:
+      213: 8367491636863669000
+    second: shield_enemy_sheet_3_1
+  - first:
+      213: 1477060824068718800
+    second: shield_enemy_sheet_3_2
+  - first:
+      213: 4971051525854600433
+    second: shield_enemy_sheet_3_3
+  - first:
+      213: 9209695150391792982
+    second: shield_enemy_sheet_3_4
+  - first:
+      213: -1616738934195408804
+    second: shield_enemy_sheet_3_5
+  - first:
+      213: 86984389910260829
+    second: shield_enemy_sheet_3_6
+  - first:
+      213: 2118965122089084165
+    second: shield_enemy_sheet_3_7
+  - first:
+      213: -8930351888735115597
+    second: shield_enemy_sheet_3_8
+  - first:
+      213: -1750947621002703703
+    second: shield_enemy_sheet_3_9
+  - first:
+      213: -2128126750524090881
+    second: shield_enemy_sheet_3_10
+  - first:
+      213: -5545979319749984383
+    second: shield_enemy_sheet_3_11
+  - first:
+      213: 2594620839132560380
+    second: shield_enemy_sheet_3_12
+  - first:
+      213: 6046532590744279504
+    second: shield_enemy_sheet_3_13
+  - first:
+      213: 3860932349348307345
+    second: shield_enemy_sheet_3_14
+  - first:
+      213: -8794629275396036999
+    second: shield_enemy_sheet_3_15
+  - first:
+      213: -9147123788287997562
+    second: shield_enemy_sheet_3_16
+  - first:
+      213: 7609815053070704013
+    second: shield_enemy_sheet_3_17
+  - first:
+      213: 8599377077924372503
+    second: shield_enemy_sheet_3_18
+  - first:
+      213: -6289941409696341728
+    second: shield_enemy_sheet_3_19
+  - first:
+      213: -8765613535959219257
+    second: shield_enemy_sheet_3_20
+  - first:
+      213: -427662958268903018
+    second: shield_enemy_sheet_4_0
+  - first:
+      213: -934664266014949994
+    second: shield_enemy_sheet_4_1
+  - first:
+      213: 843437221894323533
+    second: shield_enemy_sheet_4_2
+  - first:
+      213: -5936401429747438640
+    second: shield_enemy_sheet_4_3
+  - first:
+      213: -123899506149085871
+    second: shield_enemy_sheet_4_4
+  - first:
+      213: 1484873053269660203
+    second: shield_enemy_sheet_4_5
+  - first:
+      213: -930172215716806053
+    second: shield_enemy_sheet_4_6
+  - first:
+      213: -7526184096388949958
+    second: shield_enemy_sheet_4_7
+  - first:
+      213: 3731076101422476460
+    second: shield_enemy_sheet_4_8
+  - first:
+      213: -6355369635888916078
+    second: shield_enemy_sheet_4_9
+  - first:
+      213: -6697237312324944523
+    second: shield_enemy_sheet_4_10
+  - first:
+      213: -2646991528192380404
+    second: shield_enemy_sheet_4_11
+  - first:
+      213: 3908950059760996519
+    second: shield_enemy_sheet_4_12
+  - first:
+      213: -3086998300515726855
+    second: shield_enemy_sheet_4_13
+  - first:
+      213: -3284649461725435335
+    second: shield_enemy_sheet_4_14
+  - first:
+      213: 122341263419724888
+    second: shield_enemy_sheet_4_15
+  - first:
+      213: 3801090939269745866
+    second: shield_enemy_sheet_4_16
+  - first:
+      213: 9173571775362798351
+    second: shield_enemy_sheet_4_17
+  - first:
+      213: -5220381044215343268
+    second: shield_enemy_sheet_4_18
+  - first:
+      213: -41870973468550881
+    second: shield_enemy_sheet_4_19
+  - first:
+      213: 8165555778962467518
+    second: shield_enemy_sheet_4_20
+  - first:
+      213: -5490187628969275219
+    second: shield_enemy_sheet_5_0
+  - first:
+      213: 7907450409086742736
+    second: shield_enemy_sheet_5_1
+  - first:
+      213: -4317331028093696639
+    second: shield_enemy_sheet_5_2
+  - first:
+      213: 3208044504465621159
+    second: shield_enemy_sheet_5_3
+  - first:
+      213: -7048913225436254423
+    second: shield_enemy_sheet_5_4
+  - first:
+      213: -2296077766144557579
+    second: shield_enemy_sheet_5_5
+  - first:
+      213: 5290672993194828243
+    second: shield_enemy_sheet_5_6
+  - first:
+      213: 2323670754925340747
+    second: shield_enemy_sheet_5_7
+  - first:
+      213: 5594726076930178305
+    second: shield_enemy_sheet_5_8
+  - first:
+      213: -1151143946101329376
+    second: shield_enemy_sheet_5_9
+  - first:
+      213: -3465861065377169208
+    second: shield_enemy_sheet_5_10
+  - first:
+      213: -5579975563848854530
+    second: shield_enemy_sheet_5_11
+  - first:
+      213: 5702423270938640124
+    second: shield_enemy_sheet_5_12
+  - first:
+      213: -7490989384466529758
+    second: shield_enemy_sheet_5_13
+  - first:
+      213: -3902562423330186062
+    second: shield_enemy_sheet_5_14
+  - first:
+      213: -4548327437669827773
+    second: shield_enemy_sheet_5_15
+  - first:
+      213: 6026091125099752040
+    second: shield_enemy_sheet_5_16
+  - first:
+      213: -4627534052573762353
+    second: shield_enemy_sheet_5_17
+  - first:
+      213: -3623511199554517878
+    second: shield_enemy_sheet_5_18
+  - first:
+      213: -2079766914133465728
+    second: shield_enemy_sheet_5_19
+  - first:
+      213: 4400843025038105190
+    second: shield_enemy_sheet_5_20
+  - first:
+      213: 3484284923529632412
+    second: shield_enemy_sheet_6_0
+  - first:
+      213: -7382936808402398518
+    second: shield_enemy_sheet_6_1
+  - first:
+      213: 8202709449406380483
+    second: shield_enemy_sheet_6_2
+  - first:
+      213: -3990661964371374951
+    second: shield_enemy_sheet_6_3
+  - first:
+      213: 8648541528096664210
+    second: shield_enemy_sheet_6_4
+  - first:
+      213: -677041215530577043
+    second: shield_enemy_sheet_6_5
+  - first:
+      213: -4011719146587184024
+    second: shield_enemy_sheet_6_6
+  - first:
+      213: -8825062782617266891
+    second: shield_enemy_sheet_6_7
+  - first:
+      213: -143311773702473996
+    second: shield_enemy_sheet_6_8
+  - first:
+      213: -2150367920973101637
+    second: shield_enemy_sheet_6_9
+  - first:
+      213: -4429825376605566506
+    second: shield_enemy_sheet_6_10
+  - first:
+      213: -4667048250024531160
+    second: shield_enemy_sheet_6_11
+  - first:
+      213: 3342049995962084515
+    second: shield_enemy_sheet_6_12
+  - first:
+      213: 8082013064263880590
+    second: shield_enemy_sheet_6_13
+  - first:
+      213: -869755968784446583
+    second: shield_enemy_sheet_6_14
+  - first:
+      213: 6245023601217992559
+    second: shield_enemy_sheet_6_15
+  - first:
+      213: -8436040210134230277
+    second: shield_enemy_sheet_6_16
+  - first:
+      213: -6948796026153326978
+    second: shield_enemy_sheet_6_17
+  - first:
+      213: -6152924445490156418
+    second: shield_enemy_sheet_6_18
+  - first:
+      213: -8467208790290057507
+    second: shield_enemy_sheet_6_19
+  - first:
+      213: -6521918562837534091
+    second: shield_enemy_sheet_6_20
+  - first:
+      213: 7266167034484787463
+    second: shield_enemy_sheet_7_0
+  - first:
+      213: -892389768263347872
+    second: shield_enemy_sheet_7_1
+  - first:
+      213: 3412343737532762968
+    second: shield_enemy_sheet_7_2
+  - first:
+      213: 2318668278717390646
+    second: shield_enemy_sheet_7_3
+  - first:
+      213: 8300144698948281865
+    second: shield_enemy_sheet_7_4
+  - first:
+      213: -683249663656359943
+    second: shield_enemy_sheet_7_5
+  - first:
+      213: 6496716864971240558
+    second: shield_enemy_sheet_7_6
+  - first:
+      213: -3155999859217288853
+    second: shield_enemy_sheet_7_7
+  - first:
+      213: -6639425280029584416
+    second: shield_enemy_sheet_7_8
+  - first:
+      213: -6112756849714119977
+    second: shield_enemy_sheet_7_9
+  - first:
+      213: 5188579206557540227
+    second: shield_enemy_sheet_7_10
+  - first:
+      213: -3404362910143720401
+    second: shield_enemy_sheet_7_11
+  - first:
+      213: -5283693745718267284
+    second: shield_enemy_sheet_7_12
+  - first:
+      213: 53497567611258953
+    second: shield_enemy_sheet_7_13
+  - first:
+      213: 7338605125314173531
+    second: shield_enemy_sheet_7_14
+  - first:
+      213: 320219957406457465
+    second: shield_enemy_sheet_7_15
+  - first:
+      213: -5953572993428922807
+    second: shield_enemy_sheet_7_16
+  - first:
+      213: -5253718871795786713
+    second: shield_enemy_sheet_7_17
+  - first:
+      213: 3375784645236911289
+    second: shield_enemy_sheet_7_18
+  - first:
+      213: -3100053957433240743
+    second: shield_enemy_sheet_7_19
+  - first:
+      213: -2727060277171412066
+    second: shield_enemy_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11fa1ff9930b31250800000000000000
+      internalID: 5914264497210634001
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e0b5e594c7f63df0800000000000000
+      internalID: -200700709670899483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d8ff394547d77fa0800000000000000
+      internalID: -5802932902261950247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11a4f3518113e6fb0800000000000000
+      internalID: -4652727385521698287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56cc7be11269fb910800000000000000
+      internalID: 1855366640493382757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f716edd057f1a5dc0800000000000000
+      internalID: -3649569960426053249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 351ae5e640edc45b0800000000000000
+      internalID: -5382683344001654445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a0dca0f44e13ee0800000000000000
+      internalID: -1282993390689121752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60e4eb77b97e3970800000000000000
+      internalID: 8736554156109914220
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5daa1ca92f85478a0800000000000000
+      internalID: -6308319379037508907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972595200697755d0800000000000000
+      internalID: -3073854767393844615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d844af9bf86364000800000000000000
+      internalID: 19763239298155661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c1f8de6c0278b960800000000000000
+      internalID: 7617964167422079433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd9b77eb840340480800000000000000
+      internalID: -8933962671804925475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfd34a42152aee890800000000000000
+      internalID: -7426820266096574981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e89f17c059c6bf10800000000000000
+      internalID: 2285235209712408808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06f659910dc5850e0800000000000000
+      internalID: -2280971162410979488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9bb914e17163d620800000000000000
+      internalID: 2797686935313300378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45a83d48aac952be0800000000000000
+      internalID: -1502622644471362988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f02fff8c2baa8380800000000000000
+      internalID: -8968167500072148744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc1480262fc722f30800000000000000
+      internalID: 4549335954066260431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21275ecbd918e1630800000000000000
+      internalID: 3899696841828430354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6cdd1be33828a570800000000000000
+      internalID: 8478070501978004589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6754c55fe475c2740800000000000000
+      internalID: 5128570072303682934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9096c2ac2b36d1990800000000000000
+      internalID: -7413659792034731767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55f791462f9813070800000000000000
+      internalID: 8084394480261234517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b121f12a532cb810800000000000000
+      internalID: 1782338422555353522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46f16012580dd40c0800000000000000
+      internalID: -4589783175017390236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62380c1d7d1f04140800000000000000
+      internalID: 4702023920214115110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 534add89ee8b419d0800000000000000
+      internalID: -2804413333038586827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374700c6293b57f80800000000000000
+      internalID: -8109378112552143757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 403cb9ca5d9189360800000000000000
+      internalID: 7176514411729502980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159ff98fcbeeac0c0800000000000000
+      internalID: -4554565577739339439
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8596dfdfa024f7c70800000000000000
+      internalID: 8970961597723666776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a329d91a0c895a4c0800000000000000
+      internalID: -4276844318005816774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c87363a3d9114760800000000000000
+      internalID: 7440256456162769091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d181fbc029cbd7310800000000000000
+      internalID: 1404485994274560029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b3612a479d44bf60800000000000000
+      internalID: 8049143746197021625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f09382d1a7c8e5430800000000000000
+      internalID: 3773607993886128399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2f85bf81228c340800000000000000
+      internalID: 4884191286574772911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e379dcbf64ff31cd0800000000000000
+      internalID: -2588444680470554818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 501debe83b20ea580800000000000000
+      internalID: -8814104450500210427
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a613922f0e6506720800000000000000
+      internalID: 2837363289378861418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da346f9ab8f4d67b0800000000000000
+      internalID: -5229436131036740691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49e58d597068f6250800000000000000
+      internalID: 5940113800661851796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 487460dfb75b4f360800000000000000
+      internalID: 7202581248202917764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3026f30545b882120800000000000000
+      internalID: 2389312796559892995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b93b26795abb10f0800000000000000
+      internalID: -1145116786838259271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32316f0f752e8dc50800000000000000
+      internalID: 6690346113791562531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2adae461ef538c8f0800000000000000
+      internalID: -520106391549071966
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d29b1fb56cc914f40800000000000000
+      internalID: 5711018178242525485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e845eabdefebf600800000000000000
+      internalID: 503259587703818465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6b92fff98dfd6b90800000000000000
+      internalID: -7246857456222823571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bb01eee16df16da0800000000000000
+      internalID: -5953198635345704016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8037b5288efba3170800000000000000
+      internalID: 8159044680275424008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2548e2d6b5c1e4b0800000000000000
+      internalID: -5412827888109468374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f444b35cb30ef6100800000000000000
+      internalID: 103547863769498703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 484a764c2eb4ef770800000000000000
+      internalID: 8646431771927749764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5608a4acc9db3fea0800000000000000
+      internalID: -5840115810662973339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16f788ceaa6349220800000000000000
+      internalID: 2491676601583435617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32f7d7cf3c7ed7c0800000000000000
+      internalID: -4044658801954524611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b7f40f92a26dd680800000000000000
+      internalID: -8728712052182026317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7abea5ae909ced000800000000000000
+      internalID: 62708489253481383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f4385a2704e9c720800000000000000
+      internalID: 2867073357224359159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8039f449f4d4f1470800000000000000
+      internalID: 8367491636863669000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d003426ef29f7410800000000000000
+      internalID: 1477060824068718800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fc1ab66609bcf440800000000000000
+      internalID: 4971051525854600433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6559db8b1f86fcf70800000000000000
+      internalID: 9209695150391792982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c503db451803099e0800000000000000
+      internalID: -1616738934195408804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5cea9d77d7053100800000000000000
+      internalID: 86984389910260829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 505ef814d83186d10800000000000000
+      internalID: 2118965122089084165
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b664b0b544011480800000000000000
+      internalID: -8930351888735115597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ac81d56a6263b7e0800000000000000
+      internalID: -1750947621002703703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff55106eeff5772e0800000000000000
+      internalID: -2128126750524090881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18fb3aa4139b803b0800000000000000
+      internalID: -5545979319749984383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb725308e1f10420800000000000000
+      internalID: 2594620839132560380
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d9922afa5999e350800000000000000
+      internalID: 6046532590744279504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 19168b00489c49530800000000000000
+      internalID: 3860932349348307345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 976a4cc154333f580800000000000000
+      internalID: -8794629275396036999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689819ac063ee0180800000000000000
+      internalID: -9147123788287997562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8d13b4e87e7b9960800000000000000
+      internalID: 7609815053070704013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 710a15314ef175770800000000000000
+      internalID: 8599377077924372503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 021a7090d93a5b8a0800000000000000
+      internalID: -6289941409696341728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c38bc66ee84a5680800000000000000
+      internalID: -8765613535959219257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6911ac82ec2a01af0800000000000000
+      internalID: -427662958268903018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69d7de75dc76703f0800000000000000
+      internalID: -934664266014949994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4d7a514fad74bb00800000000000000
+      internalID: 843437221894323533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0db68cf1a5aad9da0800000000000000
+      internalID: -5936401429747438640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15d232c3e02d74ef0800000000000000
+      internalID: -123899506149085871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2210bcbc245b9410800000000000000
+      internalID: 1484873053269660203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b52034e4c4d5713f0800000000000000
+      internalID: -930172215716806053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a38da84907f9d8790800000000000000
+      internalID: -7526184096388949958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cac6c3732f177c330800000000000000
+      internalID: 3731076101422476460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29999840df03dc7a0800000000000000
+      internalID: -6355369635888916078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57d316ed522ae03a0800000000000000
+      internalID: -6697237312324944523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c02ff9eba3ff34bd0800000000000000
+      internalID: -2646991528192380404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a0dbcc6e516f3630800000000000000
+      internalID: 3908950059760996519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9868bb667c825d0800000000000000
+      internalID: -3086998300515726855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93a6d26a7b49a62d0800000000000000
+      internalID: -3284649461725435335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 854518b1bb4a2b100800000000000000
+      internalID: 122341263419724888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acc012af11030c430800000000000000
+      internalID: 3801090939269745866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f039c001de21f4f70800000000000000
+      internalID: 9173571775362798351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c579c5b591b7d87b0800000000000000
+      internalID: -5220381044215343268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f19d10c429e3b6ff0800000000000000
+      internalID: -41870973468550881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eba22bec7b1e15170800000000000000
+      internalID: 8165555778962467518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da0da01907feec3b0800000000000000
+      internalID: -5490187628969275219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0f1a86048ecbd60800000000000000
+      internalID: 7907450409086742736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18504bcdd42c514c0800000000000000
+      internalID: -4317331028093696639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a04158da73458c20800000000000000
+      internalID: 3208044504465621159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92fa159a4ca3d2e90800000000000000
+      internalID: -7048913225436254423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fdf744df61b220e0800000000000000
+      internalID: -2296077766144557579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d1612e5e0f3c6940800000000000000
+      internalID: 5290672993194828243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b48e9428d365f3020800000000000000
+      internalID: 2323670754925340747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10db90f89b574ad40800000000000000
+      internalID: 5594726076930178305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 022f9471ea05600f0800000000000000
+      internalID: -1151143946101329376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c0465559b9c6efc0800000000000000
+      internalID: -3465861065377169208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef3dd65e9c1ff82b0800000000000000
+      internalID: -5579975563848854530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfef73f80c3132f40800000000000000
+      internalID: 5702423270938640124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22286a208d8aa0890800000000000000
+      internalID: -7490989384466529758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bcdd93172057d9c0800000000000000
+      internalID: -3902562423330186062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34bf6832b4811e0c0800000000000000
+      internalID: -4548327437669827773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86a64bf53f9f0a350800000000000000
+      internalID: 6026091125099752040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcc21520c42b7cfb0800000000000000
+      internalID: -4627534052573762353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8447ee13c3b6bdc0800000000000000
+      internalID: -3623511199554517878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 085e67bb20f2323e0800000000000000
+      internalID: -2079766914133465728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ad6a32a6fe21d30800000000000000
+      internalID: 4400843025038105190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9a9b3b6daaaa5030800000000000000
+      internalID: 3484284923529632412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac2d408d61a8a8990800000000000000
+      internalID: -7382936808402398518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c97b9fc8c0e5d170800000000000000
+      internalID: 8202709449406380483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c4bfa36125e98c0800000000000000
+      internalID: -3990661964371374951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29a6a67a2bac50870800000000000000
+      internalID: 8648541528096664210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6350020a9aaa96f0800000000000000
+      internalID: -677041215530577043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 864a901f0b28358c0800000000000000
+      internalID: -4011719146587184024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535d3990824178580800000000000000
+      internalID: -8825062782617266891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f6355c73bad20ef0800000000000000
+      internalID: -143311773702473996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb5c00ed4cb5822e0800000000000000
+      internalID: -2150367920973101637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d90a6a4a491682c0800000000000000
+      internalID: -4429825376605566506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82bedabf7505b3fb0800000000000000
+      internalID: -4667048250024531160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac6aeea3c8516e20800000000000000
+      internalID: 3342049995962084515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8fc385cf04192070800000000000000
+      internalID: 8082013064263880590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98bc357fd810ee3f0800000000000000
+      internalID: -869755968784446583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f677784b0e7caa650800000000000000
+      internalID: 6245023601217992559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa990cff1a2dea80800000000000000
+      internalID: -8436040210134230277
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e762c7c94dae09f90800000000000000
+      internalID: -6948796026153326978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7cedb001db6c9aa0800000000000000
+      internalID: -6152924445490156418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd632b7677e6e7a80800000000000000
+      internalID: -8467208790290057507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57aea082f9d7d75a0800000000000000
+      internalID: -6521918562837534091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7098e198b6c96d460800000000000000
+      internalID: 7266167034484787463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 061587ddb389d93f0800000000000000
+      internalID: -892389768263347872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85b4b27cc841b5f20800000000000000
+      internalID: 3412343737532762968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63f9ae0c3809d2020800000000000000
+      internalID: 2318668278717390646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 906672da0a9003370800000000000000
+      internalID: 8300144698948281865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f78bd80d0c9486f0800000000000000
+      internalID: -683249663656359943
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6476ee4199f82a50800000000000000
+      internalID: 6496716864971240558
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61bb2869d2a334d0800000000000000
+      internalID: -3155999859217288853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e3961f82e50cd3a0800000000000000
+      internalID: -6639425280029584416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7da347e28002b2ba0800000000000000
+      internalID: -6112756849714119977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f17df4c49810840800000000000000
+      internalID: 5188579206557540227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f245e5668f541c0d0800000000000000
+      internalID: -3404362910143720401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c627280588c8ca6b0800000000000000
+      internalID: -5283693745718267284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94801d911cf0eb000800000000000000
+      internalID: 53497567611258953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a5639da76f7d560800000000000000
+      internalID: 7338605125314173531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97ed33bca56a17400800000000000000
+      internalID: 320219957406457465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94e5f46e7e8a06da0800000000000000
+      internalID: -5953572993428922807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72c98d0858a0717b0800000000000000
+      internalID: -5253718871795786713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bc6099cf3239de20800000000000000
+      internalID: 3375784645236911289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953d5aab9556af4d0800000000000000
+      internalID: -3100053957433240743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shield_enemy_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e93ae126029872ad0800000000000000
+      internalID: -2727060277171412066
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      shield_enemy_sheet_0: 7870219462373938985
+      shield_enemy_sheet_0_0: 5914264497210634001
+      shield_enemy_sheet_0_1: -200700709670899483
+      shield_enemy_sheet_0_10: -3073854767393844615
+      shield_enemy_sheet_0_11: 19763239298155661
+      shield_enemy_sheet_0_12: 7617964167422079433
+      shield_enemy_sheet_0_13: -8933962671804925475
+      shield_enemy_sheet_0_14: -7426820266096574981
+      shield_enemy_sheet_0_15: 2285235209712408808
+      shield_enemy_sheet_0_16: -2280971162410979488
+      shield_enemy_sheet_0_17: 2797686935313300378
+      shield_enemy_sheet_0_18: -1502622644471362988
+      shield_enemy_sheet_0_19: -8968167500072148744
+      shield_enemy_sheet_0_2: -5802932902261950247
+      shield_enemy_sheet_0_20: 4549335954066260431
+      shield_enemy_sheet_0_3: -4652727385521698287
+      shield_enemy_sheet_0_4: 1855366640493382757
+      shield_enemy_sheet_0_5: -3649569960426053249
+      shield_enemy_sheet_0_6: -5382683344001654445
+      shield_enemy_sheet_0_7: -1282993390689121752
+      shield_enemy_sheet_0_8: 8736554156109914220
+      shield_enemy_sheet_0_9: -6308319379037508907
+      shield_enemy_sheet_1: 8678847403901894516
+      shield_enemy_sheet_10: -2806754865455480011
+      shield_enemy_sheet_100: -3767195219389040522
+      shield_enemy_sheet_101: 4688888176772877054
+      shield_enemy_sheet_102: 504374896285147698
+      shield_enemy_sheet_103: 6981626656396034659
+      shield_enemy_sheet_104: 8554707773937019188
+      shield_enemy_sheet_105: -4821418780260697718
+      shield_enemy_sheet_106: -3455012598147246822
+      shield_enemy_sheet_107: 3341423763617838459
+      shield_enemy_sheet_108: 6110412896956578328
+      shield_enemy_sheet_109: 8352783718314589078
+      shield_enemy_sheet_11: -3393029561158480463
+      shield_enemy_sheet_110: -2977626401903929421
+      shield_enemy_sheet_111: 5761298737093882468
+      shield_enemy_sheet_112: 5500016277747561335
+      shield_enemy_sheet_113: 2992688715604729638
+      shield_enemy_sheet_114: -7966526946757762629
+      shield_enemy_sheet_115: 3179234967775565469
+      shield_enemy_sheet_116: 9029247708158489896
+      shield_enemy_sheet_117: -7530686294183702087
+      shield_enemy_sheet_118: -7624359709320420663
+      shield_enemy_sheet_119: 3808638519165014956
+      shield_enemy_sheet_12: -4793774958241020577
+      shield_enemy_sheet_120: 8563232498667063638
+      shield_enemy_sheet_121: 8047384810179837788
+      shield_enemy_sheet_122: 4825840106191172216
+      shield_enemy_sheet_123: 7575940891625007582
+      shield_enemy_sheet_124: -8938103553051005206
+      shield_enemy_sheet_125: 6526848257132311274
+      shield_enemy_sheet_126: -185591591145230314
+      shield_enemy_sheet_127: -1636648060042952008
+      shield_enemy_sheet_128: -120183081349055933
+      shield_enemy_sheet_129: 6473264822243594534
+      shield_enemy_sheet_13: -4572216268482060592
+      shield_enemy_sheet_130: -9134766680591986627
+      shield_enemy_sheet_131: 2236725904109644488
+      shield_enemy_sheet_132: -1008558686477096936
+      shield_enemy_sheet_133: -7130253458173889462
+      shield_enemy_sheet_134: 6564866185949126250
+      shield_enemy_sheet_135: 1014062544811343362
+      shield_enemy_sheet_136: -5377084930042353148
+      shield_enemy_sheet_137: 9049072567708156638
+      shield_enemy_sheet_138: 1393945267596188821
+      shield_enemy_sheet_139: -1340046734097479879
+      shield_enemy_sheet_14: 4128807475643880806
+      shield_enemy_sheet_140: -3806846310329378356
+      shield_enemy_sheet_141: 5914334184633509484
+      shield_enemy_sheet_142: -3895555702397140358
+      shield_enemy_sheet_143: -8711288518635085354
+      shield_enemy_sheet_144: -1141686249763614235
+      shield_enemy_sheet_145: -3470757361175124651
+      shield_enemy_sheet_146: -2729612504736697718
+      shield_enemy_sheet_147: -7214928169550408086
+      shield_enemy_sheet_148: 4940741545780518569
+      shield_enemy_sheet_149: 8801946869517287927
+      shield_enemy_sheet_15: -2742018382220961205
+      shield_enemy_sheet_150: 7226375278484977842
+      shield_enemy_sheet_151: -3002791006709458385
+      shield_enemy_sheet_152: -5665753958468853579
+      shield_enemy_sheet_153: -1399047599170989472
+      shield_enemy_sheet_154: 4107522600749251723
+      shield_enemy_sheet_155: 192308812147731244
+      shield_enemy_sheet_156: -6950347810118298683
+      shield_enemy_sheet_157: 8604997273280178700
+      shield_enemy_sheet_158: 5551989854317767743
+      shield_enemy_sheet_159: 5810543248669316663
+      shield_enemy_sheet_16: -7123495273673377719
+      shield_enemy_sheet_160: 2684342341872421744
+      shield_enemy_sheet_161: -8407312918851829605
+      shield_enemy_sheet_162: 8736923586472936268
+      shield_enemy_sheet_163: 6356334397986521730
+      shield_enemy_sheet_164: -3519538334307222354
+      shield_enemy_sheet_165: -4300866183844491264
+      shield_enemy_sheet_166: 7270074273102253821
+      shield_enemy_sheet_167: -4614208661367103314
+      shield_enemy_sheet_17: -2462831332677802986
+      shield_enemy_sheet_18: 620095361241764505
+      shield_enemy_sheet_19: -7330644139623093272
+      shield_enemy_sheet_1_0: 3899696841828430354
+      shield_enemy_sheet_1_1: 8478070501978004589
+      shield_enemy_sheet_1_10: 7176514411729502980
+      shield_enemy_sheet_1_11: -4554565577739339439
+      shield_enemy_sheet_1_12: 8970961597723666776
+      shield_enemy_sheet_1_13: -4276844318005816774
+      shield_enemy_sheet_1_14: 7440256456162769091
+      shield_enemy_sheet_1_15: 1404485994274560029
+      shield_enemy_sheet_1_16: 8049143746197021625
+      shield_enemy_sheet_1_17: 3773607993886128399
+      shield_enemy_sheet_1_18: 4884191286574772911
+      shield_enemy_sheet_1_19: -2588444680470554818
+      shield_enemy_sheet_1_2: 5128570072303682934
+      shield_enemy_sheet_1_20: -8814104450500210427
+      shield_enemy_sheet_1_3: -7413659792034731767
+      shield_enemy_sheet_1_4: 8084394480261234517
+      shield_enemy_sheet_1_5: 1782338422555353522
+      shield_enemy_sheet_1_6: -4589783175017390236
+      shield_enemy_sheet_1_7: 4702023920214115110
+      shield_enemy_sheet_1_8: -2804413333038586827
+      shield_enemy_sheet_1_9: -8109378112552143757
+      shield_enemy_sheet_2: 6194091556013595785
+      shield_enemy_sheet_20: 2828859487159937251
+      shield_enemy_sheet_21: 2195423999706807462
+      shield_enemy_sheet_22: 2664998977592346890
+      shield_enemy_sheet_23: -149970525704442967
+      shield_enemy_sheet_24: -2323504349981191610
+      shield_enemy_sheet_25: -7768911558809296277
+      shield_enemy_sheet_26: -3970446520372397470
+      shield_enemy_sheet_27: -9043653307694030225
+      shield_enemy_sheet_28: -6113163729895738928
+      shield_enemy_sheet_29: 4999650948390921422
+      shield_enemy_sheet_2_0: 2837363289378861418
+      shield_enemy_sheet_2_1: -5229436131036740691
+      shield_enemy_sheet_2_10: -7246857456222823571
+      shield_enemy_sheet_2_11: -5953198635345704016
+      shield_enemy_sheet_2_12: 8159044680275424008
+      shield_enemy_sheet_2_13: -5412827888109468374
+      shield_enemy_sheet_2_14: 103547863769498703
+      shield_enemy_sheet_2_15: 8646431771927749764
+      shield_enemy_sheet_2_16: -5840115810662973339
+      shield_enemy_sheet_2_17: 2491676601583435617
+      shield_enemy_sheet_2_18: -4044658801954524611
+      shield_enemy_sheet_2_19: -8728712052182026317
+      shield_enemy_sheet_2_2: 5940113800661851796
+      shield_enemy_sheet_2_20: 62708489253481383
+      shield_enemy_sheet_2_3: 7202581248202917764
+      shield_enemy_sheet_2_4: 2389312796559892995
+      shield_enemy_sheet_2_5: -1145116786838259271
+      shield_enemy_sheet_2_6: 6690346113791562531
+      shield_enemy_sheet_2_7: -520106391549071966
+      shield_enemy_sheet_2_8: 5711018178242525485
+      shield_enemy_sheet_2_9: 503259587703818465
+      shield_enemy_sheet_3: -6467794716840464341
+      shield_enemy_sheet_30: -9096365380624126545
+      shield_enemy_sheet_31: -7889041424003032658
+      shield_enemy_sheet_32: -1567463480983498633
+      shield_enemy_sheet_33: -3244890168014386781
+      shield_enemy_sheet_34: -2347750179055932805
+      shield_enemy_sheet_35: 7649319439731185788
+      shield_enemy_sheet_36: -7185583533466451315
+      shield_enemy_sheet_37: -6077703127034169744
+      shield_enemy_sheet_38: -3430866132373812868
+      shield_enemy_sheet_39: -7211510635212850998
+      shield_enemy_sheet_3_0: 2867073357224359159
+      shield_enemy_sheet_3_1: 8367491636863669000
+      shield_enemy_sheet_3_10: -2128126750524090881
+      shield_enemy_sheet_3_11: -5545979319749984383
+      shield_enemy_sheet_3_12: 2594620839132560380
+      shield_enemy_sheet_3_13: 6046532590744279504
+      shield_enemy_sheet_3_14: 3860932349348307345
+      shield_enemy_sheet_3_15: -8794629275396036999
+      shield_enemy_sheet_3_16: -9147123788287997562
+      shield_enemy_sheet_3_17: 7609815053070704013
+      shield_enemy_sheet_3_18: 8599377077924372503
+      shield_enemy_sheet_3_19: -6289941409696341728
+      shield_enemy_sheet_3_2: 1477060824068718800
+      shield_enemy_sheet_3_20: -8765613535959219257
+      shield_enemy_sheet_3_3: 4971051525854600433
+      shield_enemy_sheet_3_4: 9209695150391792982
+      shield_enemy_sheet_3_5: -1616738934195408804
+      shield_enemy_sheet_3_6: 86984389910260829
+      shield_enemy_sheet_3_7: 2118965122089084165
+      shield_enemy_sheet_3_8: -8930351888735115597
+      shield_enemy_sheet_3_9: -1750947621002703703
+      shield_enemy_sheet_4: -1047214902602975698
+      shield_enemy_sheet_40: -2467530346184379738
+      shield_enemy_sheet_41: -2480493152751741142
+      shield_enemy_sheet_42: 424319883692194783
+      shield_enemy_sheet_43: 3536724078502977415
+      shield_enemy_sheet_44: 9193966007339296646
+      shield_enemy_sheet_45: -1871415114819331069
+      shield_enemy_sheet_46: -5180193618462749781
+      shield_enemy_sheet_47: 6505258512969365309
+      shield_enemy_sheet_48: -5740537581675180332
+      shield_enemy_sheet_49: -6143054594239300678
+      shield_enemy_sheet_4_0: -427662958268903018
+      shield_enemy_sheet_4_1: -934664266014949994
+      shield_enemy_sheet_4_10: -6697237312324944523
+      shield_enemy_sheet_4_11: -2646991528192380404
+      shield_enemy_sheet_4_12: 3908950059760996519
+      shield_enemy_sheet_4_13: -3086998300515726855
+      shield_enemy_sheet_4_14: -3284649461725435335
+      shield_enemy_sheet_4_15: 122341263419724888
+      shield_enemy_sheet_4_16: 3801090939269745866
+      shield_enemy_sheet_4_17: 9173571775362798351
+      shield_enemy_sheet_4_18: -5220381044215343268
+      shield_enemy_sheet_4_19: -41870973468550881
+      shield_enemy_sheet_4_2: 843437221894323533
+      shield_enemy_sheet_4_20: 8165555778962467518
+      shield_enemy_sheet_4_3: -5936401429747438640
+      shield_enemy_sheet_4_4: -123899506149085871
+      shield_enemy_sheet_4_5: 1484873053269660203
+      shield_enemy_sheet_4_6: -930172215716806053
+      shield_enemy_sheet_4_7: -7526184096388949958
+      shield_enemy_sheet_4_8: 3731076101422476460
+      shield_enemy_sheet_4_9: -6355369635888916078
+      shield_enemy_sheet_5: 2797161284080474465
+      shield_enemy_sheet_50: -314795480658275625
+      shield_enemy_sheet_51: -1588823928158037115
+      shield_enemy_sheet_52: -6496131608647187030
+      shield_enemy_sheet_53: 67187696135823337
+      shield_enemy_sheet_54: 1928529352729108161
+      shield_enemy_sheet_55: -3196585172701013648
+      shield_enemy_sheet_56: -3590862560342849471
+      shield_enemy_sheet_57: 5727152533165537016
+      shield_enemy_sheet_58: 5553523082439174599
+      shield_enemy_sheet_59: 7519748948578938389
+      shield_enemy_sheet_5_0: -5490187628969275219
+      shield_enemy_sheet_5_1: 7907450409086742736
+      shield_enemy_sheet_5_10: -3465861065377169208
+      shield_enemy_sheet_5_11: -5579975563848854530
+      shield_enemy_sheet_5_12: 5702423270938640124
+      shield_enemy_sheet_5_13: -7490989384466529758
+      shield_enemy_sheet_5_14: -3902562423330186062
+      shield_enemy_sheet_5_15: -4548327437669827773
+      shield_enemy_sheet_5_16: 6026091125099752040
+      shield_enemy_sheet_5_17: -4627534052573762353
+      shield_enemy_sheet_5_18: -3623511199554517878
+      shield_enemy_sheet_5_19: -2079766914133465728
+      shield_enemy_sheet_5_2: -4317331028093696639
+      shield_enemy_sheet_5_20: 4400843025038105190
+      shield_enemy_sheet_5_3: 3208044504465621159
+      shield_enemy_sheet_5_4: -7048913225436254423
+      shield_enemy_sheet_5_5: -2296077766144557579
+      shield_enemy_sheet_5_6: 5290672993194828243
+      shield_enemy_sheet_5_7: 2323670754925340747
+      shield_enemy_sheet_5_8: 5594726076930178305
+      shield_enemy_sheet_5_9: -1151143946101329376
+      shield_enemy_sheet_6: 3740270425955698592
+      shield_enemy_sheet_60: 665755448569756969
+      shield_enemy_sheet_61: 4060570782370260437
+      shield_enemy_sheet_62: -7538870339729366982
+      shield_enemy_sheet_63: 108873823350334105
+      shield_enemy_sheet_64: -4873670755137429396
+      shield_enemy_sheet_65: -2817230435252024292
+      shield_enemy_sheet_66: -8318606942217027177
+      shield_enemy_sheet_67: -9011097684810025651
+      shield_enemy_sheet_68: 1785448805026672771
+      shield_enemy_sheet_69: -4581116082973993689
+      shield_enemy_sheet_6_0: 3484284923529632412
+      shield_enemy_sheet_6_1: -7382936808402398518
+      shield_enemy_sheet_6_10: -4429825376605566506
+      shield_enemy_sheet_6_11: -4667048250024531160
+      shield_enemy_sheet_6_12: 3342049995962084515
+      shield_enemy_sheet_6_13: 8082013064263880590
+      shield_enemy_sheet_6_14: -869755968784446583
+      shield_enemy_sheet_6_15: 6245023601217992559
+      shield_enemy_sheet_6_16: -8436040210134230277
+      shield_enemy_sheet_6_17: -6948796026153326978
+      shield_enemy_sheet_6_18: -6152924445490156418
+      shield_enemy_sheet_6_19: -8467208790290057507
+      shield_enemy_sheet_6_2: 8202709449406380483
+      shield_enemy_sheet_6_20: -6521918562837534091
+      shield_enemy_sheet_6_3: -3990661964371374951
+      shield_enemy_sheet_6_4: 8648541528096664210
+      shield_enemy_sheet_6_5: -677041215530577043
+      shield_enemy_sheet_6_6: -4011719146587184024
+      shield_enemy_sheet_6_7: -8825062782617266891
+      shield_enemy_sheet_6_8: -143311773702473996
+      shield_enemy_sheet_6_9: -2150367920973101637
+      shield_enemy_sheet_7: 8281363957715836987
+      shield_enemy_sheet_70: 6127648409597331196
+      shield_enemy_sheet_71: -3887585233525124198
+      shield_enemy_sheet_72: 9175207810854258885
+      shield_enemy_sheet_73: -6575062350656762051
+      shield_enemy_sheet_74: -4166336586017049634
+      shield_enemy_sheet_75: 1752836270541670974
+      shield_enemy_sheet_76: -2084586682224495887
+      shield_enemy_sheet_77: 4012830955584837231
+      shield_enemy_sheet_78: 1921110660970329660
+      shield_enemy_sheet_79: -2512341340420761582
+      shield_enemy_sheet_7_0: 7266167034484787463
+      shield_enemy_sheet_7_1: -892389768263347872
+      shield_enemy_sheet_7_10: 5188579206557540227
+      shield_enemy_sheet_7_11: -3404362910143720401
+      shield_enemy_sheet_7_12: -5283693745718267284
+      shield_enemy_sheet_7_13: 53497567611258953
+      shield_enemy_sheet_7_14: 7338605125314173531
+      shield_enemy_sheet_7_15: 320219957406457465
+      shield_enemy_sheet_7_16: -5953572993428922807
+      shield_enemy_sheet_7_17: -5253718871795786713
+      shield_enemy_sheet_7_18: 3375784645236911289
+      shield_enemy_sheet_7_19: -3100053957433240743
+      shield_enemy_sheet_7_2: 3412343737532762968
+      shield_enemy_sheet_7_20: -2727060277171412066
+      shield_enemy_sheet_7_3: 2318668278717390646
+      shield_enemy_sheet_7_4: 8300144698948281865
+      shield_enemy_sheet_7_5: -683249663656359943
+      shield_enemy_sheet_7_6: 6496716864971240558
+      shield_enemy_sheet_7_7: -3155999859217288853
+      shield_enemy_sheet_7_8: -6639425280029584416
+      shield_enemy_sheet_7_9: -6112756849714119977
+      shield_enemy_sheet_8: 7604959515810518635
+      shield_enemy_sheet_80: -6121512292446830039
+      shield_enemy_sheet_81: -2960675420769993161
+      shield_enemy_sheet_82: 3020510633487987098
+      shield_enemy_sheet_83: 1920000954966779631
+      shield_enemy_sheet_84: 9006000210946453274
+      shield_enemy_sheet_85: -955489386297892728
+      shield_enemy_sheet_86: 2497191543079803418
+      shield_enemy_sheet_87: 7302700658539979033
+      shield_enemy_sheet_88: 8457645489152290796
+      shield_enemy_sheet_89: 7540393974419583745
+      shield_enemy_sheet_9: 4862854808069834116
+      shield_enemy_sheet_90: -5830395759590765435
+      shield_enemy_sheet_91: 1302327859087245048
+      shield_enemy_sheet_92: 6856038958224549713
+      shield_enemy_sheet_93: -2540407998684306732
+      shield_enemy_sheet_94: 6197754610666199679
+      shield_enemy_sheet_95: -4464973426597172503
+      shield_enemy_sheet_96: -2668228274930329335
+      shield_enemy_sheet_97: -6218754596958043818
+      shield_enemy_sheet_98: 1751955160986892324
+      shield_enemy_sheet_99: 2365434271745409283
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

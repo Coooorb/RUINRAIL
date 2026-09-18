@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4385c80647fcd84ab38de1491aa9934, type: 3}
+  m_Name: NeedleM7
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.RangedWeaponDefinition
+  _id: weapon_needle_m7
+  _displayName: Needle M7
+  _category: 0
+  _isStackable: 0
+  _maxStack: 1
+  _icon: {fileID: 21300000, guid: 46feb5dc9a9720f40a6a42dfd778dbd8, type: 3}
+  _affixPool: {fileID: 11400000, guid: 3c6c5255825643c281fb014020052625, type: 2}
+  _legendaryMechanicId: 
+  _weaponClass: 5
+  _knockback: 0
+  _staggerPower: 0
+  _damageMin: 34
+  _damageMax: 40
+  _fireRate: 1.5
+  _magazineSize: 7
+  _reloadTime: 2.2
+  _range: 18
+  _projectileSpeed: 34
+  _ammoType: 2
+  _ammoCostPerShot: 1
+  _projectilesPerShot: 1
+  _spreadDegrees: 0
+  _explosionRadiusTiles: 0

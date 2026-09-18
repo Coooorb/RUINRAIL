@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da16c0d4e415473db5e963ec0abe3e53, type: 3}
+  m_Name: Attack_TunnelStalker_ClawCombo
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Attacks.EnemyAttackDefinition
+  _id: tunnel_stalker_claw_combo
+  _displayName: Claw Combo
+  _motion: 0
+  _damageMin: 8
+  _damageMax: 10
+  _minTriggerRange: 0
+  _maxTriggerRange: 1.8
+  _telegraphSeconds: 0.35
+  _recoverySeconds: 0.7
+  _hitCount: 3
+  _hitIntervalSeconds: 0.25
+  _hitRadius: 1.3
+  _dashDistance: 0
+  _dashSpeed: 0
+  _knockback: 2
+  _staggerPower: 2
+  _cooldownSeconds: 1.5

@@ -1,0 +1,779 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using RuinRail.Core;
+using RuinRail.Dungeon.Generation;
+using RuinRail.Dungeon.Rooms;
+using RuinRail.Dungeon.Runtime;
+using RuinRail.Gameplay.Combat;
+using RuinRail.Gameplay.Combat.Weapons;
+using RuinRail.Dungeon.Grid;
+using RuinRail.Gameplay.Economy;
+using RuinRail.Gameplay.Enemies;
+using RuinRail.Gameplay.Enemies.Attacks;
+using RuinRail.Gameplay.Enemies.Bosses;
+using RuinRail.Gameplay.Enemies.Elites;
+using RuinRail.Gameplay.Events;
+using RuinRail.Gameplay.Expedition;
+using RuinRail.Gameplay.Items;
+using RuinRail.Gameplay.Loot;
+using RuinRail.Gameplay.Player;
+using RuinRail.Core.Input;
+using RuinRail.Presentation;
+using RuinRail.Presentation.Animation;
+using RuinRail.Presentation.Vfx;
+using RuinRail.UI.Hud;
+using RuinRail.UI.Inventory;
+using RuinRail.UI.Merchant;
+using RuinRail.UI.Multiplayer;
+using RuinRail.UI.Navigation;
+using RuinRail.UI.Onboarding;
+using RuinRail.UI.Pause;
+using RuinRail.UI.Theme;
+using RuinRail.UI.WeaponCache;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace RuinRail.App
+{
+    /// <summary>
+    /// The solo expedition run composed from code (host-authoritative locally): per depth the seeded dungeon is
+    /// generated from the biome's pool, prefabs instantiated, room runtimes attached; the local player is built from the
+    /// at-risk inventory; camera, HUD, inventory, pause, tutorial, VFX and audio binders observe. Descend rebuilds the
+    /// depth; Return/Fail hand back to the Shelter scene. Every decision is the existing services'.
+    /// </summary>
+    public sealed class ExpeditionScene : MonoBehaviour
+    {
+        /// <summary>
+        /// The contextual tutorial prompt's band on the 640×360 frame. It sits below the HUD's top band — the boss bar
+        /// owns y 6..23 and the room-title reveal y 28..48 — so a prompt can never be drawn over the name of the room
+        /// the player has just walked into (asserted by <c>RoomHudQolTests</c>).
+        /// </summary>
+        public static readonly UiRect TutorialPromptRect = new(120, 52, 400, 40);
+
+        private GameApp _app;
+        private ExpeditionService _expedition;
+        private DungeonRuntimeServices _services;
+        private GroundLootLifetime _groundLifetime;
+        private PlayerRig _rig;
+        private PartyLifeRoster _roster;
+        private GameObject _dungeonRoot;
+        private CameraRig _camera;
+        private DungeonHudViewModel _hud;
+        private InventoryViewModel _inventory;
+        private MerchantViewModel _merchant;
+        private DungeonMerchantInteractable _openMerchant;
+        private WeaponCacheViewModel _weaponCache;
+        private DungeonEventInteractable _openCache;
+        private MinimapModel _minimap;
+        private int? _revealedRoom;
+        private PauseMenuViewModel _pause;
+        private TutorialPromptService _prompts;
+        private ExpeditionTutorialBinder _tutorial;
+        private TransitVoteViewModel _vote;
+        private Text _promptText;
+        private Text _voteText;
+        private Canvas _canvas;
+        private FocusList _voteList;
+        private MenuInput _menuInput;
+        private readonly List<IDisposable> _disposables = new();
+        private readonly HashSet<AmmoType> _usefulAmmo = new();
+        private Text _interactText;
+        private PlayerInteractor _interactor;
+        private IInputGlyphs _glyphs;
+        private bool _ended;
+
+        public ExpeditionService Expedition => _expedition;
+        public PlayerRig Rig => _rig;
+        public IReadOnlyDictionary<int, RoomRuntime> Rooms { get; private set; }
+        public DungeonGenerationResult Generation { get; private set; }
+        public int DepthsBuilt { get; private set; }
+        /// <summary>Scene-level exit validation of the depth that was built (empty on success; the build fails otherwise).</summary>
+        public IReadOnlyList<string> ExitProblems { get; private set; } = System.Array.Empty<string>();
+        public CameraRig Camera => _camera;
+        public DungeonHudViewModel Hud => _hud;
+        public DungeonHudView HudView { get; private set; }
+        public TransitVoteViewModel Vote => _vote;
+        public PauseMenuViewModel Pause => _pause;
+        public PauseMenuScreen PauseScreen { get; private set; }
+        public InventoryViewModel Inventory => _inventory;
+        public InventoryView InventoryView { get; private set; }
+        /// <summary>The merchant trade screen (dungeon/58); bound to the merchant the player opened, closed with the room left behind.</summary>
+        public MerchantViewModel Merchant => _merchant;
+        public MerchantView MerchantView { get; private set; }
+        /// <summary>The Weapon Cache selection screen (57.6); bound to the cache the player pressed Interact on.</summary>
+        public WeaponCacheViewModel WeaponCache => _weaponCache;
+        public WeaponCacheView WeaponCacheView { get; private set; }
+        /// <summary>The run's room-graph minimap model; the HUD renders it, the room-entry events feed it.</summary>
+        public MinimapModel Minimap => _minimap;
+        /// <summary>The room the local player is standing in, or null before the first entry of the depth.</summary>
+        public RoomRuntime CurrentRoom { get; private set; }
+        /// <summary>Set once RETURN TO MAIN MENU was confirmed: the expedition end hands over to the Main Menu instead of the Shelter.</summary>
+        public bool LeavingToMainMenu { get; private set; }
+
+        public static ExpeditionScene Create(GameApp app)
+        {
+            var go = new GameObject("ExpeditionScene");
+            var scene = go.AddComponent<ExpeditionScene>();
+            scene.Build(app);
+            return scene;
+        }
+
+        private void Build(GameApp app)
+        {
+            _app = app;
+            var session = app.Menu.Session;
+            if (session == null || !session.Expedition.IsExpeditionActive)
+            {
+                Debug.LogWarning("Dungeon scene loaded without an active expedition: returning to the Shelter.");
+                app.LoadScene(SceneNames.Base);
+                return;
+            }
+
+            _expedition = session.Expedition;
+            _roster = new PartyLifeRoster();
+            var content = app.Content;
+            var state = _expedition.State;
+            var spawner = new DefaultEnemySpawner(content.Stagger);
+            _services = new DungeonRuntimeServices
+            {
+                LootCatalog = content.Loot,
+                GroundLoot = new GroundLootRegistry(),
+                ResolveDefinition = app.Configs.Resolve,
+                ItemCatalog = content.Items,
+                Prices = new PriceService(content.Economy),
+                MerchantConfig = content.Merchant,
+                CarriedWallet = state.CarriedWallet,
+                EventConfig = content.Events,
+                BossSpawner = new RosterBossSpawner(new DefaultBossSpawner(content.Bosses, content.Stagger, spawner)),
+                Expedition = _expedition,
+                ReviveAuthority = new PartyReviveAuthority(_roster)
+            };
+            _groundLifetime = new GroundLootLifetime(_services.GroundLoot, _expedition);
+            _disposables.Add(_groundLifetime);
+
+            // Camera + lighting.
+            var camGo = new GameObject("MainCamera") { tag = "MainCamera" };
+            camGo.transform.position = new Vector3(0f, 0f, -10f);
+            var cam = camGo.AddComponent<UnityEngine.Camera>();
+            cam.backgroundColor = Color.black;
+            cam.clearFlags = CameraClearFlags.SolidColor;
+            // No AudioListener here: the process listener (AudioListenerRig on GameApp) follows this camera.
+            _camera = camGo.AddComponent<CameraRig>();
+            _camera.SetConfig(content.CameraRig);
+            var shake = camGo.AddComponent<CameraShake>();
+            shake.Configure(content.Feedback, null, _camera);
+            var lighting = camGo.AddComponent<BiomeLightingApplier>();
+            lighting.SetCamera(cam);
+
+            // Combat doors draw in the biome's skin (open housing / locked shutter) from the content catalog.
+            RoomDoorLock.SkinResolver = biome => { var skin = content.DoorSkinFor(biome); return skin != null ? new DoorSkinSprites(skin.Open, skin.Locked) : default; };
+            // Chests, pickups, coins, the merchant, event objects and the transit car draw the final world art from the catalog.
+            WorldObjectArt.Resolver = content.WorldSpriteFor;
+            // 58/26 ammo usefulness: chest and event rolls prefer the ammo the carried firearms consume; refreshed on every loadout change.
+            _services.UsefulAmmoTypes = _usefulAmmo;
+            RefreshUsefulAmmo();
+            state.Inventory.EquippedChanged += OnEquippedChangedForAmmo;
+            // Every pickup that lands on the ground (chest loot, event rewards, drops) gets its sound, prompt hooks and stinger.
+            _services.GroundLoot.PickupTracked += OnPickupTracked;
+
+            // Player from the at-risk inventory.
+            _rig = new PlayerRig(content, app.Registry, app.Specials);
+            _disposables.Add(_rig);
+            var player = _rig.Build(state, _roster, _expedition.State.TransactionId, Vector2.zero);
+            player.GetComponent<PlayerAiming>().SetCamera(cam);
+            _camera.SetFollow(() => player.GetComponent<DeadSpectatorFollow>().FollowPosition);
+            _camera.SetAim(() => (Vector2)player.transform.position + player.GetComponent<PlayerAiming>().AimDirection * 3f);
+            var binding = new PartyExpeditionBinding(_expedition, _roster, player.GetComponent<PlayerLifeStateComponent>());
+            _disposables.Add(binding);
+
+            // Player presentation: body (sprite + animator the animation driver draws into) and the held weapon on the
+            // 360° pivot — the same composition every networked player object receives.
+            PlayerVisualComposer.Compose(player, content, _rig.Reader);
+
+            // Presentation + audio observers.
+            var effects = new GameObject("Effects").AddComponent<EffectPool>();
+            effects.Configure(64);
+            effects.SetSpriteResolver(content.VfxFramesFor); // the accepted effect art, never the placeholder quad
+            var feedback = effects.gameObject.AddComponent<CombatFeedback>();
+            feedback.Configure(content.Feedback, effects, shake);
+            var numbers = effects.gameObject.AddComponent<DamageNumberPool>();
+            numbers.Configure(content.Feedback);
+            numbers.Bind(player.GetComponent<HealthComponent>());
+            feedback.Attach(player.GetComponent<HealthComponent>());
+            feedback.Attach(player.GetComponent<WeaponVisualDriver>());
+            app.AudioBinder.Attach(_rig.Loadout.GetComponent<WeaponVisualDriver>()).Attach(player.GetComponent<HealthComponent>(), true).Attach(player.GetComponent<PlayerDash>()).Attach(_roster).Attach(_expedition).Attach(_rig.Special);
+            AttachFirearmAudio();
+            state.Inventory.EquippedChanged += (_, _) => AttachFirearmAudio();
+            // The expedition started in the Shelter, before this scene existed: enter the biome bed explicitly (track + ambience).
+            app.MusicBinder.Attach(_expedition);
+            app.MusicBinder.EnterExpedition(state);
+
+            // HUD, inventory, pause, tutorial.
+            _canvas = UiKit.Canvas("RunUi", 20);
+            _hud = new DungeonHudViewModel();
+            _hud.BindPlayer(player.GetComponent<HealthComponent>(), player.GetComponent<PlayerDash>(), player.GetComponent<PlayerLifeStateComponent>());
+            _hud.BindWeapons(_rig.Loadout, _rig.Loadout.GetSlot(WeaponSlot.Primary), _rig.Loadout.GetSlot(WeaponSlot.Secondary), t => state.Inventory.Get(t), _rig.Special);
+            _hud.BindInventory(state.Inventory);
+            _hud.BindExpedition(_expedition);
+            _hud.BindParty(_roster);
+            _hud.SetDisplayName(_expedition.State.TransactionId, session.Profile.DisplayName);
+            HudView = DungeonHudView.Create(_hud);
+            // One map model for the run; BuildDepth fills it from the generated layout and the room-entry events feed it.
+            _minimap = new MinimapModel();
+            HudView.BindMinimap(_minimap);
+            _inventory = new InventoryViewModel();
+            _inventory.Bind(state.Inventory, player.GetComponent<PlayerLootReceiver>(), () => state.CarriedCoins, app.Specials);
+            var worldPause = new TimeScalePause();
+            _inventory.ConfigurePause(worldPause, isCoop: false);
+            _disposables.Add(_inventory);
+            _inventory.Changed += RefreshInventoryUi;
+            InventoryView = InventoryView.Create(_inventory);
+            // The survivor portrait is the player's own idle sprite, handed over by the composition root (the view never loads art).
+            var playerSet = content.AnimationSetFor(CharacterVisual.PlayerActorId);
+            if (playerSet != null && playerSet.TryGet("Idle", BodyFacing8.S, out var idle) && idle.Frames.Length > 0) InventoryView.SetPortrait(idle.Frames[0]);
+            _merchant = new MerchantViewModel();
+            _merchant.ConfigurePause(worldPause, isCoop: false);
+            _disposables.Add(_merchant);
+            _merchant.Changed += RefreshMerchantUi;
+            MerchantView = MerchantView.Create(_merchant);
+            _weaponCache = new WeaponCacheViewModel();
+            _weaponCache.ConfigurePause(worldPause, isCoop: false);
+            _disposables.Add(_weaponCache);
+            _weaponCache.Changed += RefreshWeaponCacheUi;
+            WeaponCacheView = WeaponCacheView.Create(_weaponCache);
+            _pause = new PauseMenuViewModel(_rig.Reader, worldPause, isCoop: false, app.SettingsScreen, app.Quit, ReturnToMainMenu, () => _expedition != null && _expedition.IsExpeditionActive);
+            _disposables.Add(_pause);
+            // Tab never opens the inventory under the pause menu; Esc with the inventory open closes the inventory instead of pausing.
+            _rig.Reader.InventoryToggled += () => { if (!_pause.IsOpen && !_merchant.IsOpen && !_weaponCache.IsOpen) _inventory.Toggle(); };
+            _pause.BeforePauseToggle = () =>
+            {
+                if (_weaponCache.IsOpen) { _weaponCache.Close(); return true; }
+                if (_merchant.IsOpen) { _merchant.Close(); return true; }
+                if (!_inventory.IsOpen) return false;
+                _inventory.Close();
+                return true;
+            };
+            _menuInput = _canvas.gameObject.AddComponent<MenuInput>();
+            // Esc is the Pause action here (owned by the player input reader); the menu input keeps B / pad Back only.
+            _menuInput.KeyboardBackEnabled = false;
+            _menuInput.Back += () =>
+            {
+                if (_pause.IsOpen) { _pause.Back(); return; }
+                if (_weaponCache.IsOpen) { _weaponCache.Close(); return; }
+                if (_merchant.IsOpen) { _merchant.Close(); return; }
+                if (_inventory.IsOpen) { if (_inventory.Selected.HasValue) _inventory.CancelSelection(); else _inventory.Close(); }
+            };
+            _menuInput.InputBlocked = () => app.InputBlocked;
+            PauseScreen = PauseMenuScreen.Create(_canvas.transform, _menuInput, _pause);
+            _pause.Changed += RefreshPauseUi;
+            _prompts = new TutorialPromptService(new SaveSlotTutorialProgress(session.Slot, session.Autosave, () => app.Settings.Current.Tutorial.ShowPrompts), new SchemeGlyphs(InputScheme.KeyboardMouse));
+            _tutorial = new ExpeditionTutorialBinder(_prompts, _rig.Reader).Attach(_expedition).Attach(player.GetComponent<HealthComponent>(), state.Inventory).Attach(_rig.Loadout);
+            _disposables.Add(_tutorial);
+            _promptText = UiKit.Label(_canvas.transform, string.Empty, TutorialPromptRect, 1, TextAnchor.UpperCenter, wrap: true);
+            _voteText = UiKit.Label(_canvas.transform, string.Empty, new UiRect(120, 150, 400, 80), 1, TextAnchor.UpperCenter, wrap: true);
+            _prompts.Changed += () => _promptText.text = _prompts.ActiveText;
+            _tutorial.ObserveExpeditionStarted();
+            // The one interaction prompt (ui/90): what the Interact press would do to the nearest usable world object.
+            _glyphs = new SchemeGlyphs(InputScheme.KeyboardMouse);
+            _interactor = player.GetComponent<PlayerInteractor>();
+            _interactText = UiKit.Label(_canvas.transform, string.Empty, new UiRect(170, 250, 300, 24), 1, TextAnchor.MiddleCenter);
+
+            _expedition.DepthEntered += OnDepthEntered;
+            _expedition.TransitOpened += OnTransitOpened;
+            _expedition.ExpeditionEnded += OnExpeditionEnded;
+            BuildDepth();
+        }
+
+        private void BuildDepth()
+        {
+            if (_dungeonRoot != null) Destroy(_dungeonRoot);
+            var content = _app.Content;
+            var state = _expedition.State;
+            var pools = BiomeRoomPools.Build(content.Rooms);
+            var rules = DungeonGraphRules.CreateDefault();
+            var generator = new DungeonGraphGenerator(rules);
+            var pool = pools.PoolFor(state.Biome);
+            Dictionary<int, RoomRoot> rooms = null;
+            var exitProblems = new List<string>();
+            // 53 "Generation Failure": a layout that instantiates with an open doorway onto the void is discarded and
+            // the next deterministic round is rolled; it is never patched in place.
+            for (var firstRound = 1; firstRound <= DungeonGenerationPipeline.DefaultMaxRounds; firstRound = Generation.Rounds + 1)
+            {
+                Generation = DungeonGenerationPipeline.Generate(generator, pool, state.RunSeed, state.Depth, firstRound: firstRound);
+                if (!Generation.Success) break;
+                _dungeonRoot = new GameObject($"Dungeon_D{state.Depth}_{state.Biome}");
+                rooms = DungeonLayoutInstantiator.Instantiate(Generation.Layout, _dungeonRoot.transform);
+                exitProblems = DungeonExitValidator.Validate(Generation.Layout, rooms);
+                if (exitProblems.Count == 0) break;
+                Debug.LogWarning($"Dungeon round {Generation.Rounds} discarded: " + string.Join(" | ", exitProblems));
+                Destroy(_dungeonRoot);
+                _dungeonRoot = null;
+                rooms = null;
+            }
+
+            Destroy(rules);
+            if (!Generation.Success || rooms == null)
+            {
+                Debug.LogError("Dungeon generation failed: " + (Generation.Error ?? "no round produced a dungeon without an open exit into the void"));
+                _expedition.Fail();
+                return;
+            }
+
+            ExitProblems = exitProblems;
+            var context = new DungeonRuntimeContext(state.RunSeed, state.Depth, state.StartingPartySize, content.Enemies, new DefaultEnemySpawner(content.Stagger), content.DepthScaling, content.Elites, new DefaultEliteSpawner(content.Stagger));
+            Rooms = DungeonRoomRuntimeComposer.Attach(Generation.Layout, rooms, context, _services);
+            foreach (var runtime in Rooms.Values)
+            {
+                runtime.EnemySpawned += (_, enemy) => BindEnemyPresentation(enemy);
+                var isBossRoom = runtime.State.RoomType == RoomType.Boss;
+                runtime.Activated += _ => { if (isBossRoom) _app.MusicBinder.ObserveBossRoomEntered(); else _app.MusicBinder.ObserveCombatStarted(); };
+                runtime.Cleared += (_, _) => { if (!isBossRoom) _app.MusicBinder.ObserveCombatEnded(); if (_expedition.IsExpeditionActive) _expedition.RecordRoomCleared(); };
+                var content2 = runtime.GetComponent<RoomContentBinding>();
+                if (content2 != null && content2.Boss != null)
+                {
+                    _app.MusicBinder.Attach(content2.Boss);
+                    if (content2.Boss.Boss != null)
+                    {
+                        var boss = content2.Boss;
+                        BindActorPresentation(boss.Boss, boss.Boss.Definition != null ? boss.Boss.Definition.Id : null, isElite: false);
+                        // Boss health is a dedicated screen bar (no small world bar): name + authoritative HP while the fight is on.
+                        // "Active encounter" is the boss room being entered and unresolved (the boss actor itself acquires its target at spawn).
+                        var bossRoom = runtime;
+                        _hud.BindBoss(boss.Boss.Definition != null ? boss.Boss.Definition.DisplayName : "BOSS", boss.Boss.Health, () => bossRoom.Lifecycle == RoomLifecycleState.Active && !boss.IsDefeated);
+                    }
+                }
+
+                if (runtime.Engagement is EliteEngagement elite) elite.Spawned += (_, encounter) => { if (encounter.Elite != null) BindActorPresentation(encounter.Elite, encounter.Elite.Definition != null ? encounter.Elite.Definition.Id : null, isElite: true); };
+                AttachRoomAudio(runtime);
+                AttachMerchant(runtime);
+                AttachWeaponCache(runtime);
+                AttachRoomPresence(runtime);
+            }
+
+            BuildMinimapForDepth();
+
+            var startRoot = rooms[Generation.Graph.StartId];
+            var spawn = startRoot.GetMarkers(RoomMarkerRole.PlayerSpawn).FirstOrDefault();
+            var position = spawn != null ? (Vector2)startRoot.transform.TransformPoint(spawn.WorldCenter) : (Vector2)startRoot.transform.position;
+            _rig.Player.transform.position = position;
+            _rig.Player.GetComponent<Rigidbody2D>().position = position;
+            _camera.SetFollow(() => _rig.Player.GetComponent<DeadSpectatorFollow>().FollowPosition);
+            var bounds = Generation.Layout.Placements.Aggregate(new Rect(position, Vector2.zero), (r, p) => { var b = p.Bounds; var pr = new Rect((Vector2)b.min * GridConstants.TileWorldSize, (Vector2)b.size * GridConstants.TileWorldSize); return Rect.MinMaxRect(Mathf.Min(r.xMin, pr.xMin), Mathf.Min(r.yMin, pr.yMin), Mathf.Max(r.xMax, pr.xMax), Mathf.Max(r.yMax, pr.yMax)); });
+            _camera.SetVisibleBounds(bounds);
+            _camera.GetComponent<BiomeLightingApplier>().Apply(content.LightingFor(state.Biome));
+            // The depth objective is contextual, not a permanent text block: it rides the room-title reveal of the
+            // Start room the player is standing in, and disappears with it.
+            var startPlacement = Generation.Layout.GetPlacement(Generation.Graph.StartId);
+            var startName = startPlacement != null ? RoomDisplayNames.NameOf(startPlacement.Definition) : RoomDisplayNames.FallbackName(RoomType.Start);
+            HudView?.RoomTitle?.Reveal(startName, $"DEPTH {state.Depth} — REACH THE BOSS");
+            _revealedRoom = Generation.Graph.StartId;
+            _minimap?.MarkEntered(Generation.Graph.StartId);
+            CurrentRoom = Rooms != null && Rooms.TryGetValue(Generation.Graph.StartId, out var startRuntime) ? startRuntime : null;
+            DepthsBuilt++;
+        }
+
+        /// <summary>Elite / Boss body: the same seam as every other character, driven by the moveset actor state.</summary>
+        public void BindActorPresentation(MovesetActorController actor, string actorId, bool isElite)
+        {
+            var body = CharacterVisual.Attach(actor.gameObject, _app.Content.AnimationSetFor(actorId));
+            if (actor.GetComponent<EnemyAnimationDriver>() == null) actor.gameObject.AddComponent<EnemyAnimationDriver>().Configure(body, null, actor, actor.GetComponent<Rigidbody2D>());
+            // Elites carry the stronger world bar in the Elite accent; bosses use the screen bar instead.
+            if (isElite && actor.GetComponent<WorldHealthBar>() == null)
+                actor.gameObject.AddComponent<WorldHealthBar>().Configure(actor.Health, WorldHealthBar.Style.Elite, 1.7f, _app.Content.Feedback != null ? _app.Content.Feedback.EliteBossTelegraphColor : (Color?)null);
+            // Audio: telegraph / death / phase cues and the hit cue for Elites and Bosses; the Elite encounter stinger.
+            _app.AudioBinder.Attach(actor).Attach(actor.Health, false);
+            if (actor is EliteController eliteActor) _app.MusicBinder.Attach(eliteActor);
+        }
+
+        /// <summary>The presentation of one normal enemy (body, bar, flash, telegraph marker, animation, audio); public for the proof tests that spawn extra enemies into a live run.</summary>
+        public void BindEnemyPresentation(EnemyController enemy)
+        {
+            if (enemy == null) return;
+            var effects = FindFirstObjectByType<EffectPool>();
+            var feedback = effects != null ? effects.GetComponent<CombatFeedback>() : null;
+            var numbers = effects != null ? effects.GetComponent<DamageNumberPool>() : null;
+            numbers?.Bind(enemy.GetComponent<HealthComponent>());
+            var body = CharacterVisual.Attach(enemy.gameObject, _app.Content.AnimationSetFor(enemy.Definition != null ? enemy.Definition.Id : null));
+            enemy.gameObject.AddComponent<WorldHealthBar>().Configure(enemy.GetComponent<HealthComponent>(), WorldHealthBar.Style.Normal);
+            var flash = enemy.gameObject.AddComponent<HitFlash>();
+            flash.Configure(_app.Content.Feedback, enemy.GetComponent<HealthComponent>(), enemy.GetComponent<RuinRail.Gameplay.Combat.Impact.ImpactReceiver>(), body != null ? body.Renderer : null);
+            var indicator = enemy.gameObject.AddComponent<TelegraphIndicator>();
+            indicator.Configure(_app.Content.Feedback, effects, enemy, null);
+            enemy.gameObject.AddComponent<EnemyAnimationDriver>().Configure(body, enemy, null, enemy.GetComponent<Rigidbody2D>());
+            _app.AudioBinder.Attach(enemy).Attach(enemy.GetComponent<HealthComponent>(), false);
+            feedback?.Attach(enemy.GetComponent<RuinRail.Gameplay.Combat.Impact.ImpactReceiver>());
+            _tutorial.ObserveEnemySpawned();
+        }
+
+        /// <summary>The ammo types the carried firearms consume (Primary + Secondary), for the 70/30 usefulness rule; melee/heat/charge weapons add none.</summary>
+        public IReadOnlyCollection<AmmoType> UsefulAmmoTypes => _usefulAmmo;
+
+        private void RefreshUsefulAmmo()
+        {
+            _usefulAmmo.Clear();
+            var inventory = _expedition?.State?.Inventory;
+            if (inventory == null) return;
+            foreach (var slot in new[] { EquippedSlot.PrimaryWeapon, EquippedSlot.SecondaryWeapon })
+            {
+                var item = inventory.GetEquipped(slot);
+                if (item != null && _app.Configs.Resolve(item.DefinitionId) is RangedWeaponDefinition ranged) _usefulAmmo.Add(ranged.AmmoType);
+            }
+        }
+
+        private void OnEquippedChangedForAmmo(EquippedSlot slot, ItemInstance item)
+        {
+            if (slot == EquippedSlot.PrimaryWeapon || slot == EquippedSlot.SecondaryWeapon) RefreshUsefulAmmo();
+        }
+
+        /// <summary>Dry-fire cue for every mounted firearm (re-run after a remount; stale subscriptions die with their components).</summary>
+        private void AttachFirearmAudio()
+        {
+            if (_rig?.Player == null) return;
+            foreach (var weapon in _rig.Player.GetComponents<RangedWeapon>()) _app.AudioBinder.Attach(weapon);
+        }
+
+        /// <summary>A pickup landed on the ground: drop/pickup sounds, the Legendary stinger and the tutorial pickup prompt.</summary>
+        private void OnPickupTracked(GameObject pickup)
+        {
+            if (pickup == null) return;
+            var item = pickup.GetComponent<WorldItemPickup>();
+            if (item != null)
+            {
+                _app.AudioBinder.Attach(item);
+                _app.MusicBinder.Attach(item);
+                _tutorial?.Attach(item);
+                _tutorial?.ObserveLootSpawned();
+            }
+
+            var coins = pickup.GetComponent<CoinPickup>();
+            if (coins != null) _app.AudioBinder.Attach(coins);
+        }
+
+        /// <summary>Per-room audio hooks the binders cannot reach on their own: chests, the merchant and the combat doors.</summary>
+        private void AttachRoomAudio(RoomRuntime runtime)
+        {
+            var binding = runtime.GetComponent<RoomContentBinding>();
+            if (binding != null)
+            {
+                foreach (var chest in binding.Chests) _app.AudioBinder.Attach(chest);
+                if (binding.BossCache != null) _app.AudioBinder.Attach(binding.BossCache);
+                _app.AudioBinder.Attach(binding.Merchant);
+            }
+
+            foreach (var door in runtime.Doors)
+            {
+                if (door == null) continue;
+                door.LockChanged += (d, _) => _app.AudioBinder.PlayDoor(d.BlockerArea().center);
+            }
+        }
+
+        /// <summary>
+        /// The merchant interactable's Opened event is the one seam from the world into the trade screen: E on the
+        /// prompt opens the window exactly once (the input gate swallows repeats while it is up), bound to that room's
+        /// merchant service and the run's inventory/wallet.
+        /// </summary>
+        private void AttachMerchant(RoomRuntime runtime)
+        {
+            var binding = runtime.GetComponent<RoomContentBinding>();
+            if (binding == null || binding.Merchant == null) return;
+            binding.Merchant.Opened += OnMerchantOpened;
+        }
+
+        /// <summary>
+        /// The Weapon Cache's one seam into its selection screen. The event answers the Interact press with
+        /// "a choice is required" and hands over the acting player; the screen opens once, bound to that cache, and
+        /// the event's own Choose stays the authority for the reward.
+        /// </summary>
+        private void AttachWeaponCache(RoomRuntime runtime)
+        {
+            var binding = runtime.GetComponent<RoomContentBinding>();
+            if (binding == null || binding.Event == null || binding.EventInstance is not WeaponCacheEvent) return;
+            binding.Event.ChoiceRequested += OnWeaponCacheChoiceRequested;
+        }
+
+        private void OnWeaponCacheChoiceRequested(DungeonEventInteractable interactable, EventActor actor)
+        {
+            if (_weaponCache == null || interactable == null || actor == null) return;
+            if (interactable.Event is not WeaponCacheEvent cache) return;
+            if (_weaponCache.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false) || (_merchant?.IsOpen ?? false)) return;
+            if (_openCache != interactable)
+            {
+                _openCache = interactable;
+                _weaponCache.Bind(cache, actor, _expedition?.State?.Inventory, _app.Specials);
+            }
+
+            _weaponCache.Open();
+        }
+
+        /// <summary>
+        /// The one room-entry seam (the same inset trigger that activates a combat room) feeding both presentations:
+        /// the minimap's current room and discovery, and the room-title reveal. There is no second room detector.
+        /// </summary>
+        private void AttachRoomPresence(RoomRuntime runtime)
+        {
+            runtime.PlayerEntered += OnRoomEntered;
+        }
+
+        private void OnRoomEntered(RoomRuntime room, GameObject player)
+        {
+            if (room == null || _rig?.Player == null || player != _rig.Player) return; // local player only (13: no remote reveal)
+            CurrentRoom = room;
+            var nodeId = room.State.NodeId;
+            _minimap?.SetKind(nodeId, MinimapKindOf(room));
+            _minimap?.MarkEntered(nodeId);
+            if (_revealedRoom == nodeId) return; // still the same room: the reveal never repeats
+            _revealedRoom = nodeId;
+            var definition = room.Root != null ? room.Root.Definition : null;
+            var type = definition != null ? definition.RoomType : room.State.RoomType;
+            HudView?.RoomTitle?.Reveal(RoomDisplayNames.NameOf(room.State.RoomId, type), RoleLineOf(room, type));
+        }
+
+        /// <summary>The role line under a room's name: the actual event kind for an Event room, the room type otherwise.</summary>
+        private static string RoleLineOf(RoomRuntime room, RoomType type)
+        {
+            var binding = room.GetComponent<RoomContentBinding>();
+            if (type == RoomType.Event && binding != null && binding.EventInstance != null)
+                return EventPromptBuilder.TitleOf(binding.EventInstance.Kind).ToUpperInvariant();
+            return RoomDisplayNames.RoleOf(type);
+        }
+
+        /// <summary>The minimap symbol a room earns once the player has been inside it.</summary>
+        private static MinimapRoomKind MinimapKindOf(RoomRuntime room)
+        {
+            var type = room.Root != null && room.Root.Definition != null ? room.Root.Definition.RoomType : room.State.RoomType;
+            if (type == RoomType.Event)
+            {
+                var binding = room.GetComponent<RoomContentBinding>();
+                var kind = binding != null && binding.EventInstance != null ? binding.EventInstance.Kind : (DungeonEventKind?)null;
+                return kind == DungeonEventKind.WeaponCache ? MinimapRoomKind.WeaponCache
+                    : kind == DungeonEventKind.MedicalStation ? MinimapRoomKind.Medical
+                    : MinimapRoomKind.Event;
+            }
+
+            return MinimapKindOf(type);
+        }
+
+        /// <summary>Room type to map symbol; the UI layer never sees the dungeon's own enum.</summary>
+        public static MinimapRoomKind MinimapKindOf(RoomType type) => type switch
+        {
+            RoomType.Start => MinimapRoomKind.Start,
+            RoomType.Loot => MinimapRoomKind.Loot,
+            RoomType.Treasure => MinimapRoomKind.Treasure,
+            RoomType.Merchant => MinimapRoomKind.Merchant,
+            RoomType.Event => MinimapRoomKind.Event,
+            RoomType.MedicalRecovery => MinimapRoomKind.Medical,
+            RoomType.Boss => MinimapRoomKind.Boss,
+            _ => MinimapRoomKind.Normal
+        };
+
+        /// <summary>
+        /// Loads the depth's room graph into the map: every room's centre in layout tiles and every realised door
+        /// connection. Nothing is discovered yet — the entry events decide what the player gets to see.
+        /// </summary>
+        private void BuildMinimapForDepth()
+        {
+            if (_minimap == null || Generation?.Layout == null) return;
+            var state = _expedition.State;
+            _minimap.BeginDepth(state.Depth, RoomDisplayNames.BiomeName(state.Biome));
+            foreach (var placement in Generation.Layout.Placements.OrderBy(p => p.NodeId))
+            {
+                var bounds = placement.Bounds;
+                var centre = new Vector2(bounds.xMin + bounds.width * 0.5f, bounds.yMin + bounds.height * 0.5f);
+                // Before a room is entered the map shows only its outline, so the kind it carries here is the room's
+                // architecture — the event a room actually holds is revealed when the player walks into it.
+                _minimap.AddRoom(placement.NodeId, centre, MinimapKindOf(placement.Definition.RoomType));
+            }
+
+            foreach (var connection in Generation.Layout.Connections) _minimap.AddLink(connection.NodeA, connection.NodeB);
+        }
+
+        private void OnMerchantOpened(DungeonMerchantInteractable merchant, GameObject interactor)
+        {
+            if (_merchant == null || merchant == null || merchant.Merchant == null || _expedition?.State == null) return;
+            if (_merchant.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false)) return;
+            var state = _expedition.State;
+            if (_openMerchant != merchant)
+            {
+                _openMerchant = merchant;
+                _merchant.Bind(merchant.Merchant, state.Inventory, () => state.CarriedCoins, _app.Specials);
+            }
+
+            _merchant.Open();
+        }
+
+        /// <summary>The nearest usable interactable's prompt, or nothing (also nothing while a menu layer is open).</summary>
+        public string CurrentInteractionPrompt { get; private set; } = string.Empty;
+
+        private void RefreshInteractionPrompt()
+        {
+            if (_interactText == null) return;
+            var text = string.Empty;
+            if (_interactor != null && !(_pause?.IsOpen ?? false) && !(_inventory?.IsOpen ?? false) && !(_merchant?.IsOpen ?? false) && !(_weaponCache?.IsOpen ?? false))
+            {
+                var target = _interactor.FindNearestInteractable();
+                if (target is IInteractionPrompt prompt)
+                {
+                    var line = prompt.PromptFor(_interactor.gameObject);
+                    if (!string.IsNullOrEmpty(line)) text = "[" + _glyphs.For("Interact") + "] " + line;
+                }
+            }
+
+            if (text != CurrentInteractionPrompt)
+            {
+                CurrentInteractionPrompt = text;
+                _interactText.text = text;
+            }
+        }
+
+        private void OnDepthEntered(ExpeditionState state)
+        {
+            // The merchant and the cache of the depth left behind are gone with their rooms: close their windows and
+            // forget the bindings, and clear the room-title reveal so it never carries over into the new depth.
+            if (_merchant != null && _merchant.IsOpen) _merchant.Close();
+            _openMerchant = null;
+            if (_weaponCache != null && _weaponCache.IsOpen) _weaponCache.Close();
+            _openCache = null;
+            CurrentRoom = null;
+            _revealedRoom = null;
+            HudView?.RoomTitle?.Clear();
+            HudView?.Vignette?.Reset();
+            _vote?.Dispose();
+            _vote = null;
+            _voteText.text = string.Empty;
+            BuildDepth();
+        }
+
+        private void OnTransitOpened(TransitDecision decision)
+        {
+            _vote = new TransitVoteViewModel(decision, _expedition.State.TransactionId);
+            _voteList = ScreenNavigation.TransitVote(_vote);
+            _vote.Changed += _ => _voteText.text = _vote.StatusText + (_vote.AwaitingReturnConfirmation ? "\n" + _vote.ReturnWarningText : string.Empty);
+            _voteText.text = "Transit ready — RETURN TO SHELTER or DESCEND DEEPER (1 / 2)";
+            _menuInput.Stack.Push(_voteList);
+            _tutorial.ObserveTransitOpened(decision);
+        }
+
+        private bool _pauseOverlay;
+        private bool _inventoryOverlay;
+        private bool _merchantOverlay;
+        private bool _weaponCacheOverlay;
+
+        private void RefreshPauseUi()
+        {
+            SyncOverlay(ref _pauseOverlay, _pause.IsOpen);
+        }
+
+        private void RefreshInventoryUi()
+        {
+            SyncOverlay(ref _inventoryOverlay, _inventory.IsOpen);
+            // The inventory's focus list owns keyboard/controller navigation while the window is up, exactly like a pause panel.
+            if (_menuInput == null || InventoryView == null) return;
+            var list = InventoryView.FocusList;
+            if (_inventory.IsOpen) { if (!_menuInput.Stack.Contains(list)) _menuInput.Stack.Push(list); }
+            else _menuInput.Stack.Remove(list);
+        }
+
+        private void RefreshMerchantUi()
+        {
+            SyncOverlay(ref _merchantOverlay, _merchant.IsOpen);
+            if (_menuInput == null || MerchantView == null) return;
+            var list = MerchantView.FocusList;
+            if (_merchant.IsOpen) { if (!_menuInput.Stack.Contains(list)) _menuInput.Stack.Push(list); }
+            else _menuInput.Stack.Remove(list);
+        }
+
+        private void RefreshWeaponCacheUi()
+        {
+            SyncOverlay(ref _weaponCacheOverlay, _weaponCache.IsOpen);
+            if (_menuInput == null || WeaponCacheView == null) return;
+            var list = WeaponCacheView.FocusList;
+            if (_weaponCache.IsOpen) { if (!_menuInput.Stack.Contains(list)) _menuInput.Stack.Push(list); }
+            else _menuInput.Stack.Remove(list);
+        }
+
+        /// <summary>A menu layer over gameplay owns the pointer cursor while it is open; the aim cursor returns when the last one closes.</summary>
+        private void SyncOverlay(ref bool tracked, bool open)
+        {
+            if (tracked == open) return;
+            tracked = open;
+            if (open) CursorService.PushOverlay(); else CursorService.PopOverlay();
+            // While any window owns the screen the low-HP frame stands down (it must never tint a menu).
+            _hud?.SetOverlayOpen(_pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay);
+        }
+
+        private void Update()
+        {
+            if (_vote != null && !_vote.IsResolved && _rig?.Reader != null)
+            {
+                var kb = UnityEngine.InputSystem.Keyboard.current;
+                if (kb != null && kb.digit1Key.wasPressedThisFrame) _vote.Vote(TransitChoice.ReturnToShelter);
+                if (kb != null && kb.digit2Key.wasPressedThisFrame) _vote.Vote(TransitChoice.DescendDeeper);
+                if (kb != null && kb.enterKey.wasPressedThisFrame && _vote.AwaitingReturnConfirmation) _vote.ConfirmReturn();
+            }
+
+            _tutorial?.Tick();
+            RefreshInteractionPrompt();
+        }
+
+        /// <summary>
+        /// Pause → RETURN TO MAIN MENU, confirmed. An active expedition ends through the one failure transaction
+        /// (85 Solo Quit: carried loot and coins are lost, XP commits, the run is not resumable); the expedition-ended
+        /// handler then saves and, because of the flag, leaves the session for the Main Menu rather than the Shelter.
+        /// Nothing about the loss is decided here.
+        /// </summary>
+        public void ReturnToMainMenu()
+        {
+            if (LeavingToMainMenu) return;
+            LeavingToMainMenu = true;
+            if (_expedition != null && _expedition.IsExpeditionActive)
+            {
+                _expedition.Fail();
+                return;
+            }
+
+            LeaveForMainMenu();
+        }
+
+        private void LeaveForMainMenu()
+        {
+            _app.Audio.StopAllLoops();
+            _app.Menu.Session?.SaveNow("return_to_menu");
+            var controller = _app.Network != null ? _app.Network.Controller : null;
+            if (controller != null && !controller.IsOffline) _ = controller.LeaveAsync();
+            _app.Menu.LeaveBase();
+            _app.LoadScene(SceneNames.MainMenu);
+        }
+
+        private void OnExpeditionEnded(ExpeditionSummary summary)
+        {
+            if (_ended) return;
+            _ended = true;
+            // No danger frame and no room banner survive the end of the run.
+            HudView?.Vignette?.Reset();
+            HudView?.RoomTitle?.Clear();
+            _app.Audio.StopAllLoops();
+            _app.Menu.Session?.SaveNow("expedition_end");
+            if (LeavingToMainMenu) { LeaveForMainMenu(); return; }
+            _app.LoadScene(SceneNames.Base);
+        }
+
+        private void OnDestroy()
+        {
+            if (_expedition != null)
+            {
+                _expedition.DepthEntered -= OnDepthEntered;
+                _expedition.TransitOpened -= OnTransitOpened;
+                _expedition.ExpeditionEnded -= OnExpeditionEnded;
+                if (_expedition.State?.Inventory != null) _expedition.State.Inventory.EquippedChanged -= OnEquippedChangedForAmmo;
+            }
+
+            if (_services?.GroundLoot != null) _services.GroundLoot.PickupTracked -= OnPickupTracked;
+
+            _vote?.Dispose();
+            foreach (var d in _disposables) d.Dispose();
+            _disposables.Clear();
+            if (_rig?.Reader is IDisposable reader) reader.Dispose();
+        }
+    }
+}

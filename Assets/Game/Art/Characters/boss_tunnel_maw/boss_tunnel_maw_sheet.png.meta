@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 6e3cc9bc43506dd4eba912218db3178e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2082855634963187837
+    second: boss_tunnel_maw_sheet_0
+  - first:
+      213: -5907603468801270877
+    second: boss_tunnel_maw_sheet_1
+  - first:
+      213: -2733711539631127680
+    second: boss_tunnel_maw_sheet_2
+  - first:
+      213: -4143251289920623108
+    second: boss_tunnel_maw_sheet_3
+  - first:
+      213: 2774627631656059488
+    second: boss_tunnel_maw_sheet_4
+  - first:
+      213: 5136171022744559643
+    second: boss_tunnel_maw_sheet_5
+  - first:
+      213: -7184216459662344481
+    second: boss_tunnel_maw_sheet_6
+  - first:
+      213: -5203802859092627349
+    second: boss_tunnel_maw_sheet_7
+  - first:
+      213: -3176165043167092572
+    second: boss_tunnel_maw_sheet_8
+  - first:
+      213: -5062259641472926773
+    second: boss_tunnel_maw_sheet_9
+  - first:
+      213: 7547951341112199578
+    second: boss_tunnel_maw_sheet_10
+  - first:
+      213: -8880036097688082670
+    second: boss_tunnel_maw_sheet_11
+  - first:
+      213: -5387069512295211301
+    second: boss_tunnel_maw_sheet_12
+  - first:
+      213: 4098685962333565227
+    second: boss_tunnel_maw_sheet_13
+  - first:
+      213: 2377612738796701260
+    second: boss_tunnel_maw_sheet_14
+  - first:
+      213: 5991780735845761490
+    second: boss_tunnel_maw_sheet_15
+  - first:
+      213: 2391187907921109352
+    second: boss_tunnel_maw_sheet_16
+  - first:
+      213: 2687670593702012613
+    second: boss_tunnel_maw_sheet_17
+  - first:
+      213: 8807916139385775136
+    second: boss_tunnel_maw_sheet_18
+  - first:
+      213: -4617250880397503401
+    second: boss_tunnel_maw_sheet_19
+  - first:
+      213: -1598112568595605110
+    second: boss_tunnel_maw_sheet_20
+  - first:
+      213: 509101721267644004
+    second: boss_tunnel_maw_sheet_21
+  - first:
+      213: 3388785246464748816
+    second: boss_tunnel_maw_sheet_22
+  - first:
+      213: 8021943676104650635
+    second: boss_tunnel_maw_sheet_23
+  - first:
+      213: -2426479555918177624
+    second: boss_tunnel_maw_sheet_24
+  - first:
+      213: -1992285672996710813
+    second: boss_tunnel_maw_sheet_25
+  - first:
+      213: 679163543408370700
+    second: boss_tunnel_maw_sheet_26
+  - first:
+      213: -917976533153284673
+    second: boss_tunnel_maw_sheet_27
+  - first:
+      213: -537079442004248597
+    second: boss_tunnel_maw_sheet_28
+  - first:
+      213: 7523853964177545815
+    second: boss_tunnel_maw_sheet_29
+  - first:
+      213: -6579520745648611906
+    second: boss_tunnel_maw_sheet_30
+  - first:
+      213: 6766441474056734303
+    second: boss_tunnel_maw_sheet_31
+  - first:
+      213: 2742937166166165938
+    second: boss_tunnel_maw_sheet_32
+  - first:
+      213: 6848581664517867955
+    second: boss_tunnel_maw_sheet_33
+  - first:
+      213: -7139416786366152173
+    second: boss_tunnel_maw_sheet_34
+  - first:
+      213: 2276931894572490306
+    second: boss_tunnel_maw_sheet_35
+  - first:
+      213: -4679062682574629109
+    second: boss_tunnel_maw_sheet_36
+  - first:
+      213: -4053593938368770343
+    second: boss_tunnel_maw_sheet_37
+  - first:
+      213: -2928534212008790894
+    second: boss_tunnel_maw_sheet_38
+  - first:
+      213: -6422051502901501076
+    second: boss_tunnel_maw_sheet_39
+  - first:
+      213: 3037580247102068377
+    second: boss_tunnel_maw_sheet_40
+  - first:
+      213: -4374441198276569728
+    second: boss_tunnel_maw_sheet_41
+  - first:
+      213: 6627175582715831028
+    second: boss_tunnel_maw_sheet_42
+  - first:
+      213: 726718731963978964
+    second: boss_tunnel_maw_sheet_43
+  - first:
+      213: 3328380496720631205
+    second: boss_tunnel_maw_sheet_44
+  - first:
+      213: -2416362881054411966
+    second: boss_tunnel_maw_sheet_45
+  - first:
+      213: 2219542366990290856
+    second: boss_tunnel_maw_sheet_46
+  - first:
+      213: -7285999121538099155
+    second: boss_tunnel_maw_sheet_47
+  - first:
+      213: -2738899240618678955
+    second: boss_tunnel_maw_sheet_48
+  - first:
+      213: -1566580392857785013
+    second: boss_tunnel_maw_sheet_49
+  - first:
+      213: -6998827230080018098
+    second: boss_tunnel_maw_sheet_50
+  - first:
+      213: 8208223810221400250
+    second: boss_tunnel_maw_sheet_51
+  - first:
+      213: 5086070446543783708
+    second: boss_tunnel_maw_sheet_52
+  - first:
+      213: 7236138831484365113
+    second: boss_tunnel_maw_sheet_53
+  - first:
+      213: -5474381903368062868
+    second: boss_tunnel_maw_sheet_54
+  - first:
+      213: -404400823212441129
+    second: boss_tunnel_maw_sheet_55
+  - first:
+      213: -3276791762564070523
+    second: boss_tunnel_maw_sheet_56
+  - first:
+      213: 9106337372505329323
+    second: boss_tunnel_maw_sheet_57
+  - first:
+      213: 4390571484717025617
+    second: boss_tunnel_maw_sheet_58
+  - first:
+      213: 8606463946451296542
+    second: boss_tunnel_maw_sheet_59
+  - first:
+      213: -5992345743966355500
+    second: boss_tunnel_maw_sheet_60
+  - first:
+      213: -3533509540250770915
+    second: boss_tunnel_maw_sheet_61
+  - first:
+      213: -7908643102702352902
+    second: boss_tunnel_maw_sheet_62
+  - first:
+      213: -5005280782745193903
+    second: boss_tunnel_maw_sheet_63
+  - first:
+      213: 2737353018048202434
+    second: boss_tunnel_maw_sheet_64
+  - first:
+      213: 3663413440502195676
+    second: boss_tunnel_maw_sheet_65
+  - first:
+      213: -3924925382068600676
+    second: boss_tunnel_maw_sheet_66
+  - first:
+      213: 5011636657703469086
+    second: boss_tunnel_maw_sheet_67
+  - first:
+      213: -5579376145658365928
+    second: boss_tunnel_maw_sheet_68
+  - first:
+      213: 5608659768803713482
+    second: boss_tunnel_maw_sheet_69
+  - first:
+      213: -684033368039826254
+    second: boss_tunnel_maw_sheet_70
+  - first:
+      213: 614655247280388415
+    second: boss_tunnel_maw_sheet_71
+  - first:
+      213: -7944090231336037858
+    second: boss_tunnel_maw_sheet_72
+  - first:
+      213: -2777758759885697588
+    second: boss_tunnel_maw_sheet_73
+  - first:
+      213: 897703709184234386
+    second: boss_tunnel_maw_sheet_74
+  - first:
+      213: 7931486869061476543
+    second: boss_tunnel_maw_sheet_75
+  - first:
+      213: -7930488212899228138
+    second: boss_tunnel_maw_sheet_76
+  - first:
+      213: 6295015195660485159
+    second: boss_tunnel_maw_sheet_77
+  - first:
+      213: -8998973258308588926
+    second: boss_tunnel_maw_sheet_78
+  - first:
+      213: -8335234816709710381
+    second: boss_tunnel_maw_sheet_79
+  - first:
+      213: 7954461271221831784
+    second: boss_tunnel_maw_sheet_80
+  - first:
+      213: -2922356171891839873
+    second: boss_tunnel_maw_sheet_81
+  - first:
+      213: 4906797179443294560
+    second: boss_tunnel_maw_sheet_82
+  - first:
+      213: 6818362437315620230
+    second: boss_tunnel_maw_sheet_83
+  - first:
+      213: 4088445743854910738
+    second: boss_tunnel_maw_sheet_84
+  - first:
+      213: -2170183099831659735
+    second: boss_tunnel_maw_sheet_85
+  - first:
+      213: -3311122145208987719
+    second: boss_tunnel_maw_sheet_86
+  - first:
+      213: -6537387117882012068
+    second: boss_tunnel_maw_sheet_87
+  - first:
+      213: 1362744619972359530
+    second: boss_tunnel_maw_sheet_88
+  - first:
+      213: -4041553158662115192
+    second: boss_tunnel_maw_sheet_89
+  - first:
+      213: -5849511083232955229
+    second: boss_tunnel_maw_sheet_90
+  - first:
+      213: 3106752060313663325
+    second: boss_tunnel_maw_sheet_91
+  - first:
+      213: -5823716386807955014
+    second: boss_tunnel_maw_sheet_92
+  - first:
+      213: 5285031753525663675
+    second: boss_tunnel_maw_sheet_93
+  - first:
+      213: -8087025246433539833
+    second: boss_tunnel_maw_sheet_94
+  - first:
+      213: 4219059020691547345
+    second: boss_tunnel_maw_sheet_95
+  - first:
+      213: 3653912801643133213
+    second: boss_tunnel_maw_sheet_96
+  - first:
+      213: 7549105348156106301
+    second: boss_tunnel_maw_sheet_97
+  - first:
+      213: 4129074286096186270
+    second: boss_tunnel_maw_sheet_98
+  - first:
+      213: 3810177678072373359
+    second: boss_tunnel_maw_sheet_99
+  - first:
+      213: 727650754849917095
+    second: boss_tunnel_maw_sheet_100
+  - first:
+      213: 3693494845739255954
+    second: boss_tunnel_maw_sheet_101
+  - first:
+      213: -368026939304938086
+    second: boss_tunnel_maw_sheet_102
+  - first:
+      213: -5805595335691581654
+    second: boss_tunnel_maw_sheet_103
+  - first:
+      213: -8312096966589617024
+    second: boss_tunnel_maw_sheet_104
+  - first:
+      213: 2274386590375560056
+    second: boss_tunnel_maw_sheet_105
+  - first:
+      213: -97134360672216069
+    second: boss_tunnel_maw_sheet_106
+  - first:
+      213: 766135454429609059
+    second: boss_tunnel_maw_sheet_107
+  - first:
+      213: 1065936609666727571
+    second: boss_tunnel_maw_sheet_108
+  - first:
+      213: 6163098644558809172
+    second: boss_tunnel_maw_sheet_109
+  - first:
+      213: 6171530533165842381
+    second: boss_tunnel_maw_sheet_110
+  - first:
+      213: -2683545557377076424
+    second: boss_tunnel_maw_sheet_111
+  - first:
+      213: -1471576768454258754
+    second: boss_tunnel_maw_sheet_112
+  - first:
+      213: 2595172838462675909
+    second: boss_tunnel_maw_sheet_113
+  - first:
+      213: -7369632646326504963
+    second: boss_tunnel_maw_sheet_114
+  - first:
+      213: 8504609189437917059
+    second: boss_tunnel_maw_sheet_115
+  - first:
+      213: -3419893702397460694
+    second: boss_tunnel_maw_sheet_116
+  - first:
+      213: 9134774863241343401
+    second: boss_tunnel_maw_sheet_117
+  - first:
+      213: -6838185095686609294
+    second: boss_tunnel_maw_sheet_118
+  - first:
+      213: -32476842315774451
+    second: boss_tunnel_maw_sheet_119
+  - first:
+      213: -4063805529148843594
+    second: boss_tunnel_maw_sheet_120
+  - first:
+      213: -1914473270894901889
+    second: boss_tunnel_maw_sheet_121
+  - first:
+      213: 6328220204016570654
+    second: boss_tunnel_maw_sheet_122
+  - first:
+      213: -4158968598540470154
+    second: boss_tunnel_maw_sheet_123
+  - first:
+      213: -9044325955196733914
+    second: boss_tunnel_maw_sheet_124
+  - first:
+      213: 4545520453590294549
+    second: boss_tunnel_maw_sheet_125
+  - first:
+      213: -4825812086575103873
+    second: boss_tunnel_maw_sheet_126
+  - first:
+      213: 474876053115739494
+    second: boss_tunnel_maw_sheet_127
+  - first:
+      213: 9138121299605315971
+    second: boss_tunnel_maw_sheet_128
+  - first:
+      213: 7516223917372584494
+    second: boss_tunnel_maw_sheet_129
+  - first:
+      213: -2906962283830862259
+    second: boss_tunnel_maw_sheet_130
+  - first:
+      213: 70606455502201521
+    second: boss_tunnel_maw_sheet_131
+  - first:
+      213: 1956911148579638263
+    second: boss_tunnel_maw_sheet_132
+  - first:
+      213: -5246430986626583938
+    second: boss_tunnel_maw_sheet_133
+  - first:
+      213: 1589678924654575813
+    second: boss_tunnel_maw_sheet_134
+  - first:
+      213: -3586121607999074771
+    second: boss_tunnel_maw_sheet_135
+  - first:
+      213: -3996247256383258616
+    second: boss_tunnel_maw_sheet_136
+  - first:
+      213: -2492877278971192001
+    second: boss_tunnel_maw_sheet_137
+  - first:
+      213: 4773370572555468792
+    second: boss_tunnel_maw_sheet_138
+  - first:
+      213: -3662216275904914560
+    second: boss_tunnel_maw_sheet_139
+  - first:
+      213: -8798088977962196282
+    second: boss_tunnel_maw_sheet_140
+  - first:
+      213: 8581751169202033707
+    second: boss_tunnel_maw_sheet_141
+  - first:
+      213: -4501348318087259903
+    second: boss_tunnel_maw_sheet_142
+  - first:
+      213: 1708946941297576733
+    second: boss_tunnel_maw_sheet_143
+  - first:
+      213: -8205038391385096719
+    second: boss_tunnel_maw_sheet_144
+  - first:
+      213: 5353300924222049076
+    second: boss_tunnel_maw_sheet_145
+  - first:
+      213: -6984804225044741504
+    second: boss_tunnel_maw_sheet_146
+  - first:
+      213: 2654102858974405640
+    second: boss_tunnel_maw_sheet_147
+  - first:
+      213: 373843329259697426
+    second: boss_tunnel_maw_sheet_148
+  - first:
+      213: -1417265239998820927
+    second: boss_tunnel_maw_sheet_149
+  - first:
+      213: 8554807188130386502
+    second: boss_tunnel_maw_sheet_150
+  - first:
+      213: 2394019746342601082
+    second: boss_tunnel_maw_sheet_151
+  - first:
+      213: 8700418960053985837
+    second: boss_tunnel_maw_sheet_152
+  - first:
+      213: 8385983416960358837
+    second: boss_tunnel_maw_sheet_153
+  - first:
+      213: 7763210258131055048
+    second: boss_tunnel_maw_sheet_154
+  - first:
+      213: 3524288525240177859
+    second: boss_tunnel_maw_sheet_155
+  - first:
+      213: 7161071117263092027
+    second: boss_tunnel_maw_sheet_156
+  - first:
+      213: -1283254829425931519
+    second: boss_tunnel_maw_sheet_157
+  - first:
+      213: -206200233309067345
+    second: boss_tunnel_maw_sheet_158
+  - first:
+      213: 8710036558100391772
+    second: boss_tunnel_maw_sheet_159
+  - first:
+      213: -5772558603126931016
+    second: boss_tunnel_maw_sheet_160
+  - first:
+      213: -7015292542230385090
+    second: boss_tunnel_maw_sheet_161
+  - first:
+      213: 8623546590156970283
+    second: boss_tunnel_maw_sheet_162
+  - first:
+      213: -2441963711965182025
+    second: boss_tunnel_maw_sheet_163
+  - first:
+      213: 388129605686600653
+    second: boss_tunnel_maw_sheet_164
+  - first:
+      213: -1448194004954455286
+    second: boss_tunnel_maw_sheet_165
+  - first:
+      213: -1496232942025854117
+    second: boss_tunnel_maw_sheet_166
+  - first:
+      213: 1077329542044222087
+    second: boss_tunnel_maw_sheet_167
+  - first:
+      213: 4354529936067956572
+    second: boss_tunnel_maw_sheet_0_0
+  - first:
+      213: 5453060856682013267
+    second: boss_tunnel_maw_sheet_0_1
+  - first:
+      213: -1141674773325270339
+    second: boss_tunnel_maw_sheet_0_2
+  - first:
+      213: -3823529566486870467
+    second: boss_tunnel_maw_sheet_0_3
+  - first:
+      213: -9099097740398530788
+    second: boss_tunnel_maw_sheet_0_4
+  - first:
+      213: 6312965169113713172
+    second: boss_tunnel_maw_sheet_0_5
+  - first:
+      213: 3270693056383093976
+    second: boss_tunnel_maw_sheet_0_6
+  - first:
+      213: -596978760738010476
+    second: boss_tunnel_maw_sheet_0_7
+  - first:
+      213: -1892124358137966545
+    second: boss_tunnel_maw_sheet_0_8
+  - first:
+      213: 7420127518404427119
+    second: boss_tunnel_maw_sheet_0_9
+  - first:
+      213: 8844499230870151633
+    second: boss_tunnel_maw_sheet_0_10
+  - first:
+      213: 8908068619776711801
+    second: boss_tunnel_maw_sheet_0_11
+  - first:
+      213: 1868490085590903416
+    second: boss_tunnel_maw_sheet_0_12
+  - first:
+      213: 6703434179952057000
+    second: boss_tunnel_maw_sheet_0_13
+  - first:
+      213: 5671990404705515090
+    second: boss_tunnel_maw_sheet_0_14
+  - first:
+      213: -732923061296727550
+    second: boss_tunnel_maw_sheet_0_15
+  - first:
+      213: -4718880706582341672
+    second: boss_tunnel_maw_sheet_0_16
+  - first:
+      213: -7802040491784516250
+    second: boss_tunnel_maw_sheet_0_17
+  - first:
+      213: -3144112257276470452
+    second: boss_tunnel_maw_sheet_0_18
+  - first:
+      213: 1122214304772373027
+    second: boss_tunnel_maw_sheet_0_19
+  - first:
+      213: 4308538843201079016
+    second: boss_tunnel_maw_sheet_0_20
+  - first:
+      213: -443221274334838983
+    second: boss_tunnel_maw_sheet_1_0
+  - first:
+      213: 8218171454924661018
+    second: boss_tunnel_maw_sheet_1_1
+  - first:
+      213: 262924705313363451
+    second: boss_tunnel_maw_sheet_1_2
+  - first:
+      213: 1251661886529517291
+    second: boss_tunnel_maw_sheet_1_3
+  - first:
+      213: -625737944682128243
+    second: boss_tunnel_maw_sheet_1_4
+  - first:
+      213: 8048906794354133214
+    second: boss_tunnel_maw_sheet_1_5
+  - first:
+      213: -4758025090355666407
+    second: boss_tunnel_maw_sheet_1_6
+  - first:
+      213: 2357410423816627037
+    second: boss_tunnel_maw_sheet_1_7
+  - first:
+      213: 7275515653408124873
+    second: boss_tunnel_maw_sheet_1_8
+  - first:
+      213: -856069598225171719
+    second: boss_tunnel_maw_sheet_1_9
+  - first:
+      213: -3558102713545572160
+    second: boss_tunnel_maw_sheet_1_10
+  - first:
+      213: -1746426341438599784
+    second: boss_tunnel_maw_sheet_1_11
+  - first:
+      213: -84350478312954567
+    second: boss_tunnel_maw_sheet_1_12
+  - first:
+      213: -858784897836325422
+    second: boss_tunnel_maw_sheet_1_13
+  - first:
+      213: -672402507410684516
+    second: boss_tunnel_maw_sheet_1_14
+  - first:
+      213: 1310266842108157609
+    second: boss_tunnel_maw_sheet_1_15
+  - first:
+      213: 3337368055471270010
+    second: boss_tunnel_maw_sheet_1_16
+  - first:
+      213: -28323737569924084
+    second: boss_tunnel_maw_sheet_1_17
+  - first:
+      213: 5712791898529866053
+    second: boss_tunnel_maw_sheet_1_18
+  - first:
+      213: 427369497747798557
+    second: boss_tunnel_maw_sheet_1_19
+  - first:
+      213: -6592698543307700088
+    second: boss_tunnel_maw_sheet_1_20
+  - first:
+      213: -8433651909499152068
+    second: boss_tunnel_maw_sheet_2_0
+  - first:
+      213: -2010452346638143131
+    second: boss_tunnel_maw_sheet_2_1
+  - first:
+      213: -2965131002800813786
+    second: boss_tunnel_maw_sheet_2_2
+  - first:
+      213: 5080392633483068537
+    second: boss_tunnel_maw_sheet_2_3
+  - first:
+      213: 4379625518029118682
+    second: boss_tunnel_maw_sheet_2_4
+  - first:
+      213: 6308125571281830151
+    second: boss_tunnel_maw_sheet_2_5
+  - first:
+      213: 472983305734029191
+    second: boss_tunnel_maw_sheet_2_6
+  - first:
+      213: -7111276305329148254
+    second: boss_tunnel_maw_sheet_2_7
+  - first:
+      213: 8329763790408668482
+    second: boss_tunnel_maw_sheet_2_8
+  - first:
+      213: 571480843640568472
+    second: boss_tunnel_maw_sheet_2_9
+  - first:
+      213: 2980524978814976477
+    second: boss_tunnel_maw_sheet_2_10
+  - first:
+      213: -953056123514011640
+    second: boss_tunnel_maw_sheet_2_11
+  - first:
+      213: 6905568184793971247
+    second: boss_tunnel_maw_sheet_2_12
+  - first:
+      213: -4780901788395117981
+    second: boss_tunnel_maw_sheet_2_13
+  - first:
+      213: 6763385568686523061
+    second: boss_tunnel_maw_sheet_2_14
+  - first:
+      213: -1341780273372767023
+    second: boss_tunnel_maw_sheet_2_15
+  - first:
+      213: -1903174942483826087
+    second: boss_tunnel_maw_sheet_2_16
+  - first:
+      213: -7056116074962219156
+    second: boss_tunnel_maw_sheet_2_17
+  - first:
+      213: -5938007474801094024
+    second: boss_tunnel_maw_sheet_2_18
+  - first:
+      213: -9004195603798506827
+    second: boss_tunnel_maw_sheet_2_19
+  - first:
+      213: 6535530499492919058
+    second: boss_tunnel_maw_sheet_2_20
+  - first:
+      213: 1035938385048533426
+    second: boss_tunnel_maw_sheet_3_0
+  - first:
+      213: 6795349144798908734
+    second: boss_tunnel_maw_sheet_3_1
+  - first:
+      213: 3573445704140076133
+    second: boss_tunnel_maw_sheet_3_2
+  - first:
+      213: 6610261221871079786
+    second: boss_tunnel_maw_sheet_3_3
+  - first:
+      213: 5670697348323678656
+    second: boss_tunnel_maw_sheet_3_4
+  - first:
+      213: 2703547269439587929
+    second: boss_tunnel_maw_sheet_3_5
+  - first:
+      213: 6358363382905974428
+    second: boss_tunnel_maw_sheet_3_6
+  - first:
+      213: 654729985716733702
+    second: boss_tunnel_maw_sheet_3_7
+  - first:
+      213: 5654286869911943936
+    second: boss_tunnel_maw_sheet_3_8
+  - first:
+      213: 168263731177819184
+    second: boss_tunnel_maw_sheet_3_9
+  - first:
+      213: 3758740185539877004
+    second: boss_tunnel_maw_sheet_3_10
+  - first:
+      213: 6551825109165275435
+    second: boss_tunnel_maw_sheet_3_11
+  - first:
+      213: -3333508427186371182
+    second: boss_tunnel_maw_sheet_3_12
+  - first:
+      213: -619615960532940626
+    second: boss_tunnel_maw_sheet_3_13
+  - first:
+      213: 5236466094947019483
+    second: boss_tunnel_maw_sheet_3_14
+  - first:
+      213: -5509915434751744835
+    second: boss_tunnel_maw_sheet_3_15
+  - first:
+      213: -3255163718547312513
+    second: boss_tunnel_maw_sheet_3_16
+  - first:
+      213: 1387509046387974462
+    second: boss_tunnel_maw_sheet_3_17
+  - first:
+      213: -6001277930118551818
+    second: boss_tunnel_maw_sheet_3_18
+  - first:
+      213: -4473856443609208226
+    second: boss_tunnel_maw_sheet_3_19
+  - first:
+      213: 385316793549019383
+    second: boss_tunnel_maw_sheet_3_20
+  - first:
+      213: -6071361679735201644
+    second: boss_tunnel_maw_sheet_4_0
+  - first:
+      213: -5284288642255636321
+    second: boss_tunnel_maw_sheet_4_1
+  - first:
+      213: -6304216376502221336
+    second: boss_tunnel_maw_sheet_4_2
+  - first:
+      213: 2700192689363546516
+    second: boss_tunnel_maw_sheet_4_3
+  - first:
+      213: -3797162478901786521
+    second: boss_tunnel_maw_sheet_4_4
+  - first:
+      213: 1249354879018009749
+    second: boss_tunnel_maw_sheet_4_5
+  - first:
+      213: -2921200618672605296
+    second: boss_tunnel_maw_sheet_4_6
+  - first:
+      213: -835069778768478527
+    second: boss_tunnel_maw_sheet_4_7
+  - first:
+      213: 7502746738031366351
+    second: boss_tunnel_maw_sheet_4_8
+  - first:
+      213: -8425006946680733363
+    second: boss_tunnel_maw_sheet_4_9
+  - first:
+      213: -7568396967888360806
+    second: boss_tunnel_maw_sheet_4_10
+  - first:
+      213: -6173802554834640774
+    second: boss_tunnel_maw_sheet_4_11
+  - first:
+      213: -2101966493973281994
+    second: boss_tunnel_maw_sheet_4_12
+  - first:
+      213: 4209839807316280297
+    second: boss_tunnel_maw_sheet_4_13
+  - first:
+      213: 654564600234611349
+    second: boss_tunnel_maw_sheet_4_14
+  - first:
+      213: -5882877847611879462
+    second: boss_tunnel_maw_sheet_4_15
+  - first:
+      213: 8357210741455658771
+    second: boss_tunnel_maw_sheet_4_16
+  - first:
+      213: 4417342479293932659
+    second: boss_tunnel_maw_sheet_4_17
+  - first:
+      213: -1555311154032616781
+    second: boss_tunnel_maw_sheet_4_18
+  - first:
+      213: 6726297386609896034
+    second: boss_tunnel_maw_sheet_4_19
+  - first:
+      213: -8863298340459758104
+    second: boss_tunnel_maw_sheet_4_20
+  - first:
+      213: 6945050528105590610
+    second: boss_tunnel_maw_sheet_5_0
+  - first:
+      213: 8645510237263702786
+    second: boss_tunnel_maw_sheet_5_1
+  - first:
+      213: -5050278845507108623
+    second: boss_tunnel_maw_sheet_5_2
+  - first:
+      213: 1400356186725473503
+    second: boss_tunnel_maw_sheet_5_3
+  - first:
+      213: 4414549945118159267
+    second: boss_tunnel_maw_sheet_5_4
+  - first:
+      213: 7579475272586358481
+    second: boss_tunnel_maw_sheet_5_5
+  - first:
+      213: 2890754523925311759
+    second: boss_tunnel_maw_sheet_5_6
+  - first:
+      213: 3477322966757458571
+    second: boss_tunnel_maw_sheet_5_7
+  - first:
+      213: -6942401815136390304
+    second: boss_tunnel_maw_sheet_5_8
+  - first:
+      213: 3194455882180018993
+    second: boss_tunnel_maw_sheet_5_9
+  - first:
+      213: -7382521004214150711
+    second: boss_tunnel_maw_sheet_5_10
+  - first:
+      213: -1678533537512666759
+    second: boss_tunnel_maw_sheet_5_11
+  - first:
+      213: 4497456498181093831
+    second: boss_tunnel_maw_sheet_5_12
+  - first:
+      213: 4053853255786295453
+    second: boss_tunnel_maw_sheet_5_13
+  - first:
+      213: -5977318969641033895
+    second: boss_tunnel_maw_sheet_5_14
+  - first:
+      213: -9026393559508147100
+    second: boss_tunnel_maw_sheet_5_15
+  - first:
+      213: 3537863878014772327
+    second: boss_tunnel_maw_sheet_5_16
+  - first:
+      213: -1126732103811481038
+    second: boss_tunnel_maw_sheet_5_17
+  - first:
+      213: -1391114029378227415
+    second: boss_tunnel_maw_sheet_5_18
+  - first:
+      213: -6897408285738035401
+    second: boss_tunnel_maw_sheet_5_19
+  - first:
+      213: 6870843080085941434
+    second: boss_tunnel_maw_sheet_5_20
+  - first:
+      213: 229850759650970512
+    second: boss_tunnel_maw_sheet_6_0
+  - first:
+      213: -3273774786040699433
+    second: boss_tunnel_maw_sheet_6_1
+  - first:
+      213: 6823055848904776758
+    second: boss_tunnel_maw_sheet_6_2
+  - first:
+      213: -7927660162474889152
+    second: boss_tunnel_maw_sheet_6_3
+  - first:
+      213: -186863505599594971
+    second: boss_tunnel_maw_sheet_6_4
+  - first:
+      213: 69406425933840349
+    second: boss_tunnel_maw_sheet_6_5
+  - first:
+      213: -4356538199614781303
+    second: boss_tunnel_maw_sheet_6_6
+  - first:
+      213: 7029299821052494623
+    second: boss_tunnel_maw_sheet_6_7
+  - first:
+      213: -1362635031770397637
+    second: boss_tunnel_maw_sheet_6_8
+  - first:
+      213: -278722010314503125
+    second: boss_tunnel_maw_sheet_6_9
+  - first:
+      213: 6395469957453628970
+    second: boss_tunnel_maw_sheet_6_10
+  - first:
+      213: 5817112827343702219
+    second: boss_tunnel_maw_sheet_6_11
+  - first:
+      213: 2359184486573634043
+    second: boss_tunnel_maw_sheet_6_12
+  - first:
+      213: -3301939931289064953
+    second: boss_tunnel_maw_sheet_6_13
+  - first:
+      213: 4631812838527709899
+    second: boss_tunnel_maw_sheet_6_14
+  - first:
+      213: -5676043660945782379
+    second: boss_tunnel_maw_sheet_6_15
+  - first:
+      213: 1772788312730649463
+    second: boss_tunnel_maw_sheet_6_16
+  - first:
+      213: 2212844577875249939
+    second: boss_tunnel_maw_sheet_6_17
+  - first:
+      213: 1979873221232743328
+    second: boss_tunnel_maw_sheet_6_18
+  - first:
+      213: 8056401271706268398
+    second: boss_tunnel_maw_sheet_6_19
+  - first:
+      213: -3240429958763668495
+    second: boss_tunnel_maw_sheet_6_20
+  - first:
+      213: -904314278437096159
+    second: boss_tunnel_maw_sheet_7_0
+  - first:
+      213: -4603728638627227411
+    second: boss_tunnel_maw_sheet_7_1
+  - first:
+      213: 4883497756649164710
+    second: boss_tunnel_maw_sheet_7_2
+  - first:
+      213: -5987371252171703405
+    second: boss_tunnel_maw_sheet_7_3
+  - first:
+      213: 3817618882661706334
+    second: boss_tunnel_maw_sheet_7_4
+  - first:
+      213: 3051038066329097607
+    second: boss_tunnel_maw_sheet_7_5
+  - first:
+      213: 6638644268531831957
+    second: boss_tunnel_maw_sheet_7_6
+  - first:
+      213: -1817627902762456702
+    second: boss_tunnel_maw_sheet_7_7
+  - first:
+      213: 7999415198926457253
+    second: boss_tunnel_maw_sheet_7_8
+  - first:
+      213: 8585225105051611356
+    second: boss_tunnel_maw_sheet_7_9
+  - first:
+      213: 2179945259989981178
+    second: boss_tunnel_maw_sheet_7_10
+  - first:
+      213: -5327457236045790037
+    second: boss_tunnel_maw_sheet_7_11
+  - first:
+      213: 453799595123927915
+    second: boss_tunnel_maw_sheet_7_12
+  - first:
+      213: -6646832727000995965
+    second: boss_tunnel_maw_sheet_7_13
+  - first:
+      213: -4173823173788468842
+    second: boss_tunnel_maw_sheet_7_14
+  - first:
+      213: -3370745051941683582
+    second: boss_tunnel_maw_sheet_7_15
+  - first:
+      213: 8755674514224177889
+    second: boss_tunnel_maw_sheet_7_16
+  - first:
+      213: -1967883243379068112
+    second: boss_tunnel_maw_sheet_7_17
+  - first:
+      213: 9092252951397744859
+    second: boss_tunnel_maw_sheet_7_18
+  - first:
+      213: -7051709985338886713
+    second: boss_tunnel_maw_sheet_7_19
+  - first:
+      213: -7037369188186723506
+    second: boss_tunnel_maw_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5f8223d7e56e6c30800000000000000
+      internalID: 4354529936067956572
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3526e1525f92dab40800000000000000
+      internalID: 5453060856682013267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db23ceea7d4f720f0800000000000000
+      internalID: -1141674773325270339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36c8510e1810fac0800000000000000
+      internalID: -3823529566486870467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1f6cfe60d289b180800000000000000
+      internalID: -9099097740398530788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41acf60bf582c9750800000000000000
+      internalID: 6312965169113713172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dc0d038106d36d20800000000000000
+      internalID: 3270693056383093976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49a02c3eafa17b7f0800000000000000
+      internalID: -596978760738010476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f209252dbe2ddb5e0800000000000000
+      internalID: -1892124358137966545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6db89a1aa699f660800000000000000
+      internalID: 7420127518404427119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d12b38b039fdba70800000000000000
+      internalID: 8844499230870151633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97c58947631df9b70800000000000000
+      internalID: 8908068619776711801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87a2cf945d53ee910800000000000000
+      internalID: 1868490085590903416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aa114fced1670d50800000000000000
+      internalID: 6703434179952057000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25675e9b835f6be40800000000000000
+      internalID: 5671990404705515090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20a77b3eb5224d5f0800000000000000
+      internalID: -732923061296727550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d717b2cffa238eb0800000000000000
+      internalID: -4718880706582341672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66d48fb728599b390800000000000000
+      internalID: -7802040491784516250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4b951b6f8edd54d0800000000000000
+      internalID: -3144112257276470452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32ab1d5e6f7e29f00800000000000000
+      internalID: 1122214304772373027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 448
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e609f110410bcb30800000000000000
+      internalID: 4308538843201079016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93f306a699c59d9f0800000000000000
+      internalID: -443221274334838983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a112a02856fcc0270800000000000000
+      internalID: 8218171454924661018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf590ee50a816a300800000000000000
+      internalID: 262924705313363451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be6bc7daadbce5110800000000000000
+      internalID: 1251661886529517291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8c1db497aee057f0800000000000000
+      internalID: -625737944682128243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed8c4b3a51673bf60800000000000000
+      internalID: 8048906794354133214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91264f0b36918fdb0800000000000000
+      internalID: -4758025090355666407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d53a4655a4437b020800000000000000
+      internalID: 2357410423816627037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cf6f2f70f2d7f460800000000000000
+      internalID: 7275515653408124873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9faf6ce6c31ae14f0800000000000000
+      internalID: -856069598225171719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c043c40f641f9ec0800000000000000
+      internalID: -3558102713545572160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89dca24de7273c7e0800000000000000
+      internalID: -1746426341438599784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 935a587dfa354def0800000000000000
+      internalID: -84350478312954567
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d5eef97fabf414f0800000000000000
+      internalID: -858784897836325422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9544b76b752ba6f0800000000000000
+      internalID: -672402507410684516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ae54d430c00f2210800000000000000
+      internalID: 1310266842108157609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a78e9177096b05e20800000000000000
+      internalID: 3337368055471270010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0cee63f5bf5b9ff0800000000000000
+      internalID: -28323737569924084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5412a9bc6f9e74f40800000000000000
+      internalID: 5712791898529866053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1a381d3b425ee500800000000000000
+      internalID: 427369497747798557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 384
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 888c8eeba970284a0800000000000000
+      internalID: -6592698543307700088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c39120f8546a5fa80800000000000000
+      internalID: -8433651909499152068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56178c81e307914e0800000000000000
+      internalID: -2010452346638143131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6294f89101db9d6d0800000000000000
+      internalID: -2965131002800813786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974054ede2e218640800000000000000
+      internalID: 5080392633483068537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adc9c53543e87cc30800000000000000
+      internalID: 4379625518029118682
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 701cfc209c6fa8750800000000000000
+      internalID: 6308125571281830151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78f77f28fcf509600800000000000000
+      internalID: 472983305734029191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ae2431a0ebaf4d90800000000000000
+      internalID: -7111276305329148254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 245583ec804499370800000000000000
+      internalID: 8329763790408668482
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89af229acce4ee700800000000000000
+      internalID: 571480843640568472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1027e3da3fc5920800000000000000
+      internalID: 2980524978814976477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 800cfe2518016c2f0800000000000000
+      internalID: -953056123514011640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2a32e24da185df50800000000000000
+      internalID: 6905568184793971247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 362edac5723d6adb0800000000000000
+      internalID: -4780901788395117981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2409c375f5cdd50800000000000000
+      internalID: 6763385568686523061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1dc5dfe43f9016de0800000000000000
+      internalID: -1341780273372767023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95ab3d729709695e0800000000000000
+      internalID: -1903174942483826087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6f04f190d3a31e90800000000000000
+      internalID: -7056116074962219156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872ddde99a5f79da0800000000000000
+      internalID: -5938007474801094024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2c47bfdcbaa0380800000000000000
+      internalID: -9004195603798506827
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 320
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217b101dc5ed2ba50800000000000000
+      internalID: 6535530499492919058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9720af874606e00800000000000000
+      internalID: 1035938385048533426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e315e7c3b0eed4e50800000000000000
+      internalID: 6795349144798908734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5643a6b5fed679130800000000000000
+      internalID: 3573445704140076133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a615a220f8d5cbb50800000000000000
+      internalID: 6610261221871079786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c91593913d52be40800000000000000
+      internalID: 5670697348323678656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9568c64eaede48520800000000000000
+      internalID: 2703547269439587929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c9e26f60fc17d3850800000000000000
+      internalID: 6358363382905974428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 607417ef371161900800000000000000
+      internalID: 654729985716733702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bb14353ff087e40800000000000000
+      internalID: 5654286869911943936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03c8f65d8fac55200800000000000000
+      internalID: 168263731177819184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c88171ab84ab92430800000000000000
+      internalID: 3758740185539877004
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b29f7464932ccea50800000000000000
+      internalID: 6551825109165275435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29509c54fbffcb1d0800000000000000
+      internalID: -3333508427186371182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea88547119ea667f0800000000000000
+      internalID: -619615960532940626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bdaa1bb5b2aaba840800000000000000
+      internalID: 5236466094947019483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db42e29da19d883b0800000000000000
+      internalID: -5509915434751744835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f707f3638d553d2d0800000000000000
+      internalID: -3255163718547312513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e31a898502c614310800000000000000
+      internalID: 1387509046387974462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f664e8c48d27bca0800000000000000
+      internalID: -6001277930118551818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5aa49e944ba9e1c0800000000000000
+      internalID: -4473856443609208226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 256
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f85b7d059be85500800000000000000
+      internalID: 385316793549019383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 490e67048b03ebba0800000000000000
+      internalID: -6071361679735201644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f98b8bb2a7f6aa6b0800000000000000
+      internalID: -5284288642255636321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e582635b9ce288a0800000000000000
+      internalID: -6304216376502221336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 491fe9ad1f2097520800000000000000
+      internalID: 2700192689363546516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7680e9af7d4cd4bc0800000000000000
+      internalID: -3797162478901786521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5940542a4a9965110800000000000000
+      internalID: 1249354879018009749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0973e56b38fc577d0800000000000000
+      internalID: -2921200618672605296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ce37d9e57c3964f0800000000000000
+      internalID: -835069778768478527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc09410386c1f1860800000000000000
+      internalID: 7502746738031366351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4185e0d1dc541b80800000000000000
+      internalID: -8425006946680733363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9aeed98e07a7f690800000000000000
+      internalID: -7568396967888360806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a70aead594f325aa0800000000000000
+      internalID: -6173802554834640774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63303f44c9054d2e0800000000000000
+      internalID: -2101966493973281994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e3c264000b5c6a30800000000000000
+      internalID: 4209839807316280297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 592978f290b751900800000000000000
+      internalID: 654564600234611349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adf441434c1db5ea0800000000000000
+      internalID: -5882877847611879462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f1b8514e6caf370800000000000000
+      internalID: 8357210741455658771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 374ee81b49d8d4d30800000000000000
+      internalID: 4417342479293932659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3badeaceebc6a6ae0800000000000000
+      internalID: -1555311154032616781
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26a658ee5db985d50800000000000000
+      internalID: 6726297386609896034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 192
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ed369e7e1d3ff480800000000000000
+      internalID: -8863298340459758104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25f6fdaa8a6c16060800000000000000
+      internalID: 6945050528105590610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20b2b1241c50bf770800000000000000
+      internalID: 8645510237263702786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f001e4c52ec9e9b0800000000000000
+      internalID: -5050278845507108623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdcdacc48801f6310800000000000000
+      internalID: 1400356186725473503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a1fcf929c1a34d30800000000000000
+      internalID: 4414549945118159267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1deed564a94bf2960800000000000000
+      internalID: 7579475272586358481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f01fb637ce50e1820800000000000000
+      internalID: 2890754523925311759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82c2ea80dee14030800000000000000
+      internalID: 3477322966757458571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 063b4c0e452a7af90800000000000000
+      internalID: -6942401815136390304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1334ffb23bcf45c20800000000000000
+      internalID: 3194455882180018993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c994fcc2440c8990800000000000000
+      internalID: -7382521004214150711
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9794af014a6a4b8e0800000000000000
+      internalID: -1678533537512666759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c93bd64bdc2a6e30800000000000000
+      internalID: 4497456498181093831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90f3b2de0e224830800000000000000
+      internalID: 4053853255786295453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95f9759f01c4c0da0800000000000000
+      internalID: -5977318969641033895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 464a4aaa1eecbb280800000000000000
+      internalID: -9026393559508147100
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764a1c0e374091130800000000000000
+      internalID: 3537863878014772327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232c94b0f1b0d50f0800000000000000
+      internalID: -1126732103811481038
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92339d42925c1bce0800000000000000
+      internalID: -1391114029378227415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7379fb945bb7740a0800000000000000
+      internalID: -6897408285738035401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 128
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abc29f7c0632a5f50800000000000000
+      internalID: 6870843080085941434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b89505c08903300800000000000000
+      internalID: 229850759650970512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d5e9636d273192d0800000000000000
+      internalID: -3273774786040699433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63cde9cf42d50be50800000000000000
+      internalID: 6823055848904776758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0403ba3b51b4bf190800000000000000
+      internalID: -7927660162474889152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52e7047b1a0286df0800000000000000
+      internalID: -186863505599594971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddf7ae2d6c496f000800000000000000
+      internalID: 69406425933840349
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9888a81e6977a83c0800000000000000
+      internalID: -4356538199614781303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f130d85c1f61d8160800000000000000
+      internalID: 7029299821052494623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3482dc78a2f61de0800000000000000
+      internalID: -1362635031770397637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c0f10fec7c12cf0800000000000000
+      internalID: -278722010314503125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26c4b9aa0641c850800000000000000
+      internalID: 6395469957453628970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc8803ccb498ab050800000000000000
+      internalID: 5817112827343702219
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf175d18ac18db020800000000000000
+      internalID: 2359184486573634043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70a66dd70272d22d0800000000000000
+      internalID: -3301939931289064953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2b98a7c31874040800000000000000
+      internalID: 4631812838527709899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59908b30d54aa31b0800000000000000
+      internalID: -5676043660945782379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 773464ae3953a9810800000000000000
+      internalID: 1772788312730649463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31b476f5b6a95be10800000000000000
+      internalID: 2212844577875249939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3d2e3743ce97b10800000000000000
+      internalID: 1979873221232743328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee2be00a5461ecf60800000000000000
+      internalID: 8056401271706268398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 64
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fb9b5cfe1ea703d0800000000000000
+      internalID: -3240429958763668495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 125717c74fa3373f0800000000000000
+      internalID: -904314278437096159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de8d45cd1354c10c0800000000000000
+      internalID: -4603728638627227411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6af8d76f55ba5c340800000000000000
+      internalID: 4883497756649164710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39b7bef819598eca0800000000000000
+      internalID: -5987371252171703405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5aefdca528eaf430800000000000000
+      internalID: 3817618882661706334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7859dbbc4f6775a20800000000000000
+      internalID: 3051038066329097607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 594d5080ac3312c50800000000000000
+      internalID: 6638644268531831957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 289610a7d0d76c6e0800000000000000
+      internalID: -1817627902762456702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a94fde9db1a30f60800000000000000
+      internalID: 7999415198926457253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0fd5f1fb8d42770800000000000000
+      internalID: 8585225105051611356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af7df730aa8b04e10800000000000000
+      internalID: 2179945259989981178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba40861bed11116b0800000000000000
+      internalID: -5327457236045790037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6be392d3583c4600800000000000000
+      internalID: 453799595123927915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 1040
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3872aa9e9d4b1c3a0800000000000000
+      internalID: -6646832727000995965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6997b03ffe99316c0800000000000000
+      internalID: -4173823173788468842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 1200
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28e3c96fb35b831d0800000000000000
+      internalID: -3370745051941683582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1e2e545c497628970800000000000000
+      internalID: 8755674514224177889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 1360
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03372fecd9ca0b4e0800000000000000
+      internalID: -1967883243379068112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd04f00f2eb2e2e70800000000000000
+      internalID: 9092252951397744859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c5fcc0412b432e90800000000000000
+      internalID: -7051709985338886713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_tunnel_maw_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 0
+        width: 80
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4be9d8420e365e90800000000000000
+      internalID: -7037369188186723506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      boss_tunnel_maw_sheet_0: 2082855634963187837
+      boss_tunnel_maw_sheet_0_0: 4354529936067956572
+      boss_tunnel_maw_sheet_0_1: 5453060856682013267
+      boss_tunnel_maw_sheet_0_10: 8844499230870151633
+      boss_tunnel_maw_sheet_0_11: 8908068619776711801
+      boss_tunnel_maw_sheet_0_12: 1868490085590903416
+      boss_tunnel_maw_sheet_0_13: 6703434179952057000
+      boss_tunnel_maw_sheet_0_14: 5671990404705515090
+      boss_tunnel_maw_sheet_0_15: -732923061296727550
+      boss_tunnel_maw_sheet_0_16: -4718880706582341672
+      boss_tunnel_maw_sheet_0_17: -7802040491784516250
+      boss_tunnel_maw_sheet_0_18: -3144112257276470452
+      boss_tunnel_maw_sheet_0_19: 1122214304772373027
+      boss_tunnel_maw_sheet_0_2: -1141674773325270339
+      boss_tunnel_maw_sheet_0_20: 4308538843201079016
+      boss_tunnel_maw_sheet_0_3: -3823529566486870467
+      boss_tunnel_maw_sheet_0_4: -9099097740398530788
+      boss_tunnel_maw_sheet_0_5: 6312965169113713172
+      boss_tunnel_maw_sheet_0_6: 3270693056383093976
+      boss_tunnel_maw_sheet_0_7: -596978760738010476
+      boss_tunnel_maw_sheet_0_8: -1892124358137966545
+      boss_tunnel_maw_sheet_0_9: 7420127518404427119
+      boss_tunnel_maw_sheet_1: -5907603468801270877
+      boss_tunnel_maw_sheet_10: 7547951341112199578
+      boss_tunnel_maw_sheet_100: 727650754849917095
+      boss_tunnel_maw_sheet_101: 3693494845739255954
+      boss_tunnel_maw_sheet_102: -368026939304938086
+      boss_tunnel_maw_sheet_103: -5805595335691581654
+      boss_tunnel_maw_sheet_104: -8312096966589617024
+      boss_tunnel_maw_sheet_105: 2274386590375560056
+      boss_tunnel_maw_sheet_106: -97134360672216069
+      boss_tunnel_maw_sheet_107: 766135454429609059
+      boss_tunnel_maw_sheet_108: 1065936609666727571
+      boss_tunnel_maw_sheet_109: 6163098644558809172
+      boss_tunnel_maw_sheet_11: -8880036097688082670
+      boss_tunnel_maw_sheet_110: 6171530533165842381
+      boss_tunnel_maw_sheet_111: -2683545557377076424
+      boss_tunnel_maw_sheet_112: -1471576768454258754
+      boss_tunnel_maw_sheet_113: 2595172838462675909
+      boss_tunnel_maw_sheet_114: -7369632646326504963
+      boss_tunnel_maw_sheet_115: 8504609189437917059
+      boss_tunnel_maw_sheet_116: -3419893702397460694
+      boss_tunnel_maw_sheet_117: 9134774863241343401
+      boss_tunnel_maw_sheet_118: -6838185095686609294
+      boss_tunnel_maw_sheet_119: -32476842315774451
+      boss_tunnel_maw_sheet_12: -5387069512295211301
+      boss_tunnel_maw_sheet_120: -4063805529148843594
+      boss_tunnel_maw_sheet_121: -1914473270894901889
+      boss_tunnel_maw_sheet_122: 6328220204016570654
+      boss_tunnel_maw_sheet_123: -4158968598540470154
+      boss_tunnel_maw_sheet_124: -9044325955196733914
+      boss_tunnel_maw_sheet_125: 4545520453590294549
+      boss_tunnel_maw_sheet_126: -4825812086575103873
+      boss_tunnel_maw_sheet_127: 474876053115739494
+      boss_tunnel_maw_sheet_128: 9138121299605315971
+      boss_tunnel_maw_sheet_129: 7516223917372584494
+      boss_tunnel_maw_sheet_13: 4098685962333565227
+      boss_tunnel_maw_sheet_130: -2906962283830862259
+      boss_tunnel_maw_sheet_131: 70606455502201521
+      boss_tunnel_maw_sheet_132: 1956911148579638263
+      boss_tunnel_maw_sheet_133: -5246430986626583938
+      boss_tunnel_maw_sheet_134: 1589678924654575813
+      boss_tunnel_maw_sheet_135: -3586121607999074771
+      boss_tunnel_maw_sheet_136: -3996247256383258616
+      boss_tunnel_maw_sheet_137: -2492877278971192001
+      boss_tunnel_maw_sheet_138: 4773370572555468792
+      boss_tunnel_maw_sheet_139: -3662216275904914560
+      boss_tunnel_maw_sheet_14: 2377612738796701260
+      boss_tunnel_maw_sheet_140: -8798088977962196282
+      boss_tunnel_maw_sheet_141: 8581751169202033707
+      boss_tunnel_maw_sheet_142: -4501348318087259903
+      boss_tunnel_maw_sheet_143: 1708946941297576733
+      boss_tunnel_maw_sheet_144: -8205038391385096719
+      boss_tunnel_maw_sheet_145: 5353300924222049076
+      boss_tunnel_maw_sheet_146: -6984804225044741504
+      boss_tunnel_maw_sheet_147: 2654102858974405640
+      boss_tunnel_maw_sheet_148: 373843329259697426
+      boss_tunnel_maw_sheet_149: -1417265239998820927
+      boss_tunnel_maw_sheet_15: 5991780735845761490
+      boss_tunnel_maw_sheet_150: 8554807188130386502
+      boss_tunnel_maw_sheet_151: 2394019746342601082
+      boss_tunnel_maw_sheet_152: 8700418960053985837
+      boss_tunnel_maw_sheet_153: 8385983416960358837
+      boss_tunnel_maw_sheet_154: 7763210258131055048
+      boss_tunnel_maw_sheet_155: 3524288525240177859
+      boss_tunnel_maw_sheet_156: 7161071117263092027
+      boss_tunnel_maw_sheet_157: -1283254829425931519
+      boss_tunnel_maw_sheet_158: -206200233309067345
+      boss_tunnel_maw_sheet_159: 8710036558100391772
+      boss_tunnel_maw_sheet_16: 2391187907921109352
+      boss_tunnel_maw_sheet_160: -5772558603126931016
+      boss_tunnel_maw_sheet_161: -7015292542230385090
+      boss_tunnel_maw_sheet_162: 8623546590156970283
+      boss_tunnel_maw_sheet_163: -2441963711965182025
+      boss_tunnel_maw_sheet_164: 388129605686600653
+      boss_tunnel_maw_sheet_165: -1448194004954455286
+      boss_tunnel_maw_sheet_166: -1496232942025854117
+      boss_tunnel_maw_sheet_167: 1077329542044222087
+      boss_tunnel_maw_sheet_17: 2687670593702012613
+      boss_tunnel_maw_sheet_18: 8807916139385775136
+      boss_tunnel_maw_sheet_19: -4617250880397503401
+      boss_tunnel_maw_sheet_1_0: -443221274334838983
+      boss_tunnel_maw_sheet_1_1: 8218171454924661018
+      boss_tunnel_maw_sheet_1_10: -3558102713545572160
+      boss_tunnel_maw_sheet_1_11: -1746426341438599784
+      boss_tunnel_maw_sheet_1_12: -84350478312954567
+      boss_tunnel_maw_sheet_1_13: -858784897836325422
+      boss_tunnel_maw_sheet_1_14: -672402507410684516
+      boss_tunnel_maw_sheet_1_15: 1310266842108157609
+      boss_tunnel_maw_sheet_1_16: 3337368055471270010
+      boss_tunnel_maw_sheet_1_17: -28323737569924084
+      boss_tunnel_maw_sheet_1_18: 5712791898529866053
+      boss_tunnel_maw_sheet_1_19: 427369497747798557
+      boss_tunnel_maw_sheet_1_2: 262924705313363451
+      boss_tunnel_maw_sheet_1_20: -6592698543307700088
+      boss_tunnel_maw_sheet_1_3: 1251661886529517291
+      boss_tunnel_maw_sheet_1_4: -625737944682128243
+      boss_tunnel_maw_sheet_1_5: 8048906794354133214
+      boss_tunnel_maw_sheet_1_6: -4758025090355666407
+      boss_tunnel_maw_sheet_1_7: 2357410423816627037
+      boss_tunnel_maw_sheet_1_8: 7275515653408124873
+      boss_tunnel_maw_sheet_1_9: -856069598225171719
+      boss_tunnel_maw_sheet_2: -2733711539631127680
+      boss_tunnel_maw_sheet_20: -1598112568595605110
+      boss_tunnel_maw_sheet_21: 509101721267644004
+      boss_tunnel_maw_sheet_22: 3388785246464748816
+      boss_tunnel_maw_sheet_23: 8021943676104650635
+      boss_tunnel_maw_sheet_24: -2426479555918177624
+      boss_tunnel_maw_sheet_25: -1992285672996710813
+      boss_tunnel_maw_sheet_26: 679163543408370700
+      boss_tunnel_maw_sheet_27: -917976533153284673
+      boss_tunnel_maw_sheet_28: -537079442004248597
+      boss_tunnel_maw_sheet_29: 7523853964177545815
+      boss_tunnel_maw_sheet_2_0: -8433651909499152068
+      boss_tunnel_maw_sheet_2_1: -2010452346638143131
+      boss_tunnel_maw_sheet_2_10: 2980524978814976477
+      boss_tunnel_maw_sheet_2_11: -953056123514011640
+      boss_tunnel_maw_sheet_2_12: 6905568184793971247
+      boss_tunnel_maw_sheet_2_13: -4780901788395117981
+      boss_tunnel_maw_sheet_2_14: 6763385568686523061
+      boss_tunnel_maw_sheet_2_15: -1341780273372767023
+      boss_tunnel_maw_sheet_2_16: -1903174942483826087
+      boss_tunnel_maw_sheet_2_17: -7056116074962219156
+      boss_tunnel_maw_sheet_2_18: -5938007474801094024
+      boss_tunnel_maw_sheet_2_19: -9004195603798506827
+      boss_tunnel_maw_sheet_2_2: -2965131002800813786
+      boss_tunnel_maw_sheet_2_20: 6535530499492919058
+      boss_tunnel_maw_sheet_2_3: 5080392633483068537
+      boss_tunnel_maw_sheet_2_4: 4379625518029118682
+      boss_tunnel_maw_sheet_2_5: 6308125571281830151
+      boss_tunnel_maw_sheet_2_6: 472983305734029191
+      boss_tunnel_maw_sheet_2_7: -7111276305329148254
+      boss_tunnel_maw_sheet_2_8: 8329763790408668482
+      boss_tunnel_maw_sheet_2_9: 571480843640568472
+      boss_tunnel_maw_sheet_3: -4143251289920623108
+      boss_tunnel_maw_sheet_30: -6579520745648611906
+      boss_tunnel_maw_sheet_31: 6766441474056734303
+      boss_tunnel_maw_sheet_32: 2742937166166165938
+      boss_tunnel_maw_sheet_33: 6848581664517867955
+      boss_tunnel_maw_sheet_34: -7139416786366152173
+      boss_tunnel_maw_sheet_35: 2276931894572490306
+      boss_tunnel_maw_sheet_36: -4679062682574629109
+      boss_tunnel_maw_sheet_37: -4053593938368770343
+      boss_tunnel_maw_sheet_38: -2928534212008790894
+      boss_tunnel_maw_sheet_39: -6422051502901501076
+      boss_tunnel_maw_sheet_3_0: 1035938385048533426
+      boss_tunnel_maw_sheet_3_1: 6795349144798908734
+      boss_tunnel_maw_sheet_3_10: 3758740185539877004
+      boss_tunnel_maw_sheet_3_11: 6551825109165275435
+      boss_tunnel_maw_sheet_3_12: -3333508427186371182
+      boss_tunnel_maw_sheet_3_13: -619615960532940626
+      boss_tunnel_maw_sheet_3_14: 5236466094947019483
+      boss_tunnel_maw_sheet_3_15: -5509915434751744835
+      boss_tunnel_maw_sheet_3_16: -3255163718547312513
+      boss_tunnel_maw_sheet_3_17: 1387509046387974462
+      boss_tunnel_maw_sheet_3_18: -6001277930118551818
+      boss_tunnel_maw_sheet_3_19: -4473856443609208226
+      boss_tunnel_maw_sheet_3_2: 3573445704140076133
+      boss_tunnel_maw_sheet_3_20: 385316793549019383
+      boss_tunnel_maw_sheet_3_3: 6610261221871079786
+      boss_tunnel_maw_sheet_3_4: 5670697348323678656
+      boss_tunnel_maw_sheet_3_5: 2703547269439587929
+      boss_tunnel_maw_sheet_3_6: 6358363382905974428
+      boss_tunnel_maw_sheet_3_7: 654729985716733702
+      boss_tunnel_maw_sheet_3_8: 5654286869911943936
+      boss_tunnel_maw_sheet_3_9: 168263731177819184
+      boss_tunnel_maw_sheet_4: 2774627631656059488
+      boss_tunnel_maw_sheet_40: 3037580247102068377
+      boss_tunnel_maw_sheet_41: -4374441198276569728
+      boss_tunnel_maw_sheet_42: 6627175582715831028
+      boss_tunnel_maw_sheet_43: 726718731963978964
+      boss_tunnel_maw_sheet_44: 3328380496720631205
+      boss_tunnel_maw_sheet_45: -2416362881054411966
+      boss_tunnel_maw_sheet_46: 2219542366990290856
+      boss_tunnel_maw_sheet_47: -7285999121538099155
+      boss_tunnel_maw_sheet_48: -2738899240618678955
+      boss_tunnel_maw_sheet_49: -1566580392857785013
+      boss_tunnel_maw_sheet_4_0: -6071361679735201644
+      boss_tunnel_maw_sheet_4_1: -5284288642255636321
+      boss_tunnel_maw_sheet_4_10: -7568396967888360806
+      boss_tunnel_maw_sheet_4_11: -6173802554834640774
+      boss_tunnel_maw_sheet_4_12: -2101966493973281994
+      boss_tunnel_maw_sheet_4_13: 4209839807316280297
+      boss_tunnel_maw_sheet_4_14: 654564600234611349
+      boss_tunnel_maw_sheet_4_15: -5882877847611879462
+      boss_tunnel_maw_sheet_4_16: 8357210741455658771
+      boss_tunnel_maw_sheet_4_17: 4417342479293932659
+      boss_tunnel_maw_sheet_4_18: -1555311154032616781
+      boss_tunnel_maw_sheet_4_19: 6726297386609896034
+      boss_tunnel_maw_sheet_4_2: -6304216376502221336
+      boss_tunnel_maw_sheet_4_20: -8863298340459758104
+      boss_tunnel_maw_sheet_4_3: 2700192689363546516
+      boss_tunnel_maw_sheet_4_4: -3797162478901786521
+      boss_tunnel_maw_sheet_4_5: 1249354879018009749
+      boss_tunnel_maw_sheet_4_6: -2921200618672605296
+      boss_tunnel_maw_sheet_4_7: -835069778768478527
+      boss_tunnel_maw_sheet_4_8: 7502746738031366351
+      boss_tunnel_maw_sheet_4_9: -8425006946680733363
+      boss_tunnel_maw_sheet_5: 5136171022744559643
+      boss_tunnel_maw_sheet_50: -6998827230080018098
+      boss_tunnel_maw_sheet_51: 8208223810221400250
+      boss_tunnel_maw_sheet_52: 5086070446543783708
+      boss_tunnel_maw_sheet_53: 7236138831484365113
+      boss_tunnel_maw_sheet_54: -5474381903368062868
+      boss_tunnel_maw_sheet_55: -404400823212441129
+      boss_tunnel_maw_sheet_56: -3276791762564070523
+      boss_tunnel_maw_sheet_57: 9106337372505329323
+      boss_tunnel_maw_sheet_58: 4390571484717025617
+      boss_tunnel_maw_sheet_59: 8606463946451296542
+      boss_tunnel_maw_sheet_5_0: 6945050528105590610
+      boss_tunnel_maw_sheet_5_1: 8645510237263702786
+      boss_tunnel_maw_sheet_5_10: -7382521004214150711
+      boss_tunnel_maw_sheet_5_11: -1678533537512666759
+      boss_tunnel_maw_sheet_5_12: 4497456498181093831
+      boss_tunnel_maw_sheet_5_13: 4053853255786295453
+      boss_tunnel_maw_sheet_5_14: -5977318969641033895
+      boss_tunnel_maw_sheet_5_15: -9026393559508147100
+      boss_tunnel_maw_sheet_5_16: 3537863878014772327
+      boss_tunnel_maw_sheet_5_17: -1126732103811481038
+      boss_tunnel_maw_sheet_5_18: -1391114029378227415
+      boss_tunnel_maw_sheet_5_19: -6897408285738035401
+      boss_tunnel_maw_sheet_5_2: -5050278845507108623
+      boss_tunnel_maw_sheet_5_20: 6870843080085941434
+      boss_tunnel_maw_sheet_5_3: 1400356186725473503
+      boss_tunnel_maw_sheet_5_4: 4414549945118159267
+      boss_tunnel_maw_sheet_5_5: 7579475272586358481
+      boss_tunnel_maw_sheet_5_6: 2890754523925311759
+      boss_tunnel_maw_sheet_5_7: 3477322966757458571
+      boss_tunnel_maw_sheet_5_8: -6942401815136390304
+      boss_tunnel_maw_sheet_5_9: 3194455882180018993
+      boss_tunnel_maw_sheet_6: -7184216459662344481
+      boss_tunnel_maw_sheet_60: -5992345743966355500
+      boss_tunnel_maw_sheet_61: -3533509540250770915
+      boss_tunnel_maw_sheet_62: -7908643102702352902
+      boss_tunnel_maw_sheet_63: -5005280782745193903
+      boss_tunnel_maw_sheet_64: 2737353018048202434
+      boss_tunnel_maw_sheet_65: 3663413440502195676
+      boss_tunnel_maw_sheet_66: -3924925382068600676
+      boss_tunnel_maw_sheet_67: 5011636657703469086
+      boss_tunnel_maw_sheet_68: -5579376145658365928
+      boss_tunnel_maw_sheet_69: 5608659768803713482
+      boss_tunnel_maw_sheet_6_0: 229850759650970512
+      boss_tunnel_maw_sheet_6_1: -3273774786040699433
+      boss_tunnel_maw_sheet_6_10: 6395469957453628970
+      boss_tunnel_maw_sheet_6_11: 5817112827343702219
+      boss_tunnel_maw_sheet_6_12: 2359184486573634043
+      boss_tunnel_maw_sheet_6_13: -3301939931289064953
+      boss_tunnel_maw_sheet_6_14: 4631812838527709899
+      boss_tunnel_maw_sheet_6_15: -5676043660945782379
+      boss_tunnel_maw_sheet_6_16: 1772788312730649463
+      boss_tunnel_maw_sheet_6_17: 2212844577875249939
+      boss_tunnel_maw_sheet_6_18: 1979873221232743328
+      boss_tunnel_maw_sheet_6_19: 8056401271706268398
+      boss_tunnel_maw_sheet_6_2: 6823055848904776758
+      boss_tunnel_maw_sheet_6_20: -3240429958763668495
+      boss_tunnel_maw_sheet_6_3: -7927660162474889152
+      boss_tunnel_maw_sheet_6_4: -186863505599594971
+      boss_tunnel_maw_sheet_6_5: 69406425933840349
+      boss_tunnel_maw_sheet_6_6: -4356538199614781303
+      boss_tunnel_maw_sheet_6_7: 7029299821052494623
+      boss_tunnel_maw_sheet_6_8: -1362635031770397637
+      boss_tunnel_maw_sheet_6_9: -278722010314503125
+      boss_tunnel_maw_sheet_7: -5203802859092627349
+      boss_tunnel_maw_sheet_70: -684033368039826254
+      boss_tunnel_maw_sheet_71: 614655247280388415
+      boss_tunnel_maw_sheet_72: -7944090231336037858
+      boss_tunnel_maw_sheet_73: -2777758759885697588
+      boss_tunnel_maw_sheet_74: 897703709184234386
+      boss_tunnel_maw_sheet_75: 7931486869061476543
+      boss_tunnel_maw_sheet_76: -7930488212899228138
+      boss_tunnel_maw_sheet_77: 6295015195660485159
+      boss_tunnel_maw_sheet_78: -8998973258308588926
+      boss_tunnel_maw_sheet_79: -8335234816709710381
+      boss_tunnel_maw_sheet_7_0: -904314278437096159
+      boss_tunnel_maw_sheet_7_1: -4603728638627227411
+      boss_tunnel_maw_sheet_7_10: 2179945259989981178
+      boss_tunnel_maw_sheet_7_11: -5327457236045790037
+      boss_tunnel_maw_sheet_7_12: 453799595123927915
+      boss_tunnel_maw_sheet_7_13: -6646832727000995965
+      boss_tunnel_maw_sheet_7_14: -4173823173788468842
+      boss_tunnel_maw_sheet_7_15: -3370745051941683582
+      boss_tunnel_maw_sheet_7_16: 8755674514224177889
+      boss_tunnel_maw_sheet_7_17: -1967883243379068112
+      boss_tunnel_maw_sheet_7_18: 9092252951397744859
+      boss_tunnel_maw_sheet_7_19: -7051709985338886713
+      boss_tunnel_maw_sheet_7_2: 4883497756649164710
+      boss_tunnel_maw_sheet_7_20: -7037369188186723506
+      boss_tunnel_maw_sheet_7_3: -5987371252171703405
+      boss_tunnel_maw_sheet_7_4: 3817618882661706334
+      boss_tunnel_maw_sheet_7_5: 3051038066329097607
+      boss_tunnel_maw_sheet_7_6: 6638644268531831957
+      boss_tunnel_maw_sheet_7_7: -1817627902762456702
+      boss_tunnel_maw_sheet_7_8: 7999415198926457253
+      boss_tunnel_maw_sheet_7_9: 8585225105051611356
+      boss_tunnel_maw_sheet_8: -3176165043167092572
+      boss_tunnel_maw_sheet_80: 7954461271221831784
+      boss_tunnel_maw_sheet_81: -2922356171891839873
+      boss_tunnel_maw_sheet_82: 4906797179443294560
+      boss_tunnel_maw_sheet_83: 6818362437315620230
+      boss_tunnel_maw_sheet_84: 4088445743854910738
+      boss_tunnel_maw_sheet_85: -2170183099831659735
+      boss_tunnel_maw_sheet_86: -3311122145208987719
+      boss_tunnel_maw_sheet_87: -6537387117882012068
+      boss_tunnel_maw_sheet_88: 1362744619972359530
+      boss_tunnel_maw_sheet_89: -4041553158662115192
+      boss_tunnel_maw_sheet_9: -5062259641472926773
+      boss_tunnel_maw_sheet_90: -5849511083232955229
+      boss_tunnel_maw_sheet_91: 3106752060313663325
+      boss_tunnel_maw_sheet_92: -5823716386807955014
+      boss_tunnel_maw_sheet_93: 5285031753525663675
+      boss_tunnel_maw_sheet_94: -8087025246433539833
+      boss_tunnel_maw_sheet_95: 4219059020691547345
+      boss_tunnel_maw_sheet_96: 3653912801643133213
+      boss_tunnel_maw_sheet_97: 7549105348156106301
+      boss_tunnel_maw_sheet_98: 4129074286096186270
+      boss_tunnel_maw_sheet_99: 3810177678072373359
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce398a5116b2482a83cc80229f788ef7, type: 3}
+  m_Name: Elite_ScrapExecutioner
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Elites.EliteDefinition
+  _id: elite_scrap_executioner
+  _displayName: Scrap Executioner
+  _biome: 1
+  _baseHealth: 500
+  _moveSpeed: 2.2
+  _baseXp: 325
+  _strongestAttackDamageMin: 28
+  _strongestAttackDamageMax: 34
+  _staggerResistancePercent: 90
+  _knockbackResistancePercent: 90
+  _moveset:
+  - {fileID: 11400000, guid: c3cda911b14044d2b077e3bec52bbb7d, type: 2}
+  - {fileID: 11400000, guid: 6511aec5c1204e0fb3d06f83dff414fd, type: 2}
+  - {fileID: 11400000, guid: 68b2bb2fffae4a11bcaa569672803228, type: 2}

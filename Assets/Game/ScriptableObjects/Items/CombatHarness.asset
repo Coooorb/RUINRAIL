@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2da5b2de074aaaa125d18a93eb233a, type: 3}
+  m_Name: CombatHarness
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.ArmorDefinition
+  _id: armor_combat_harness
+  _displayName: Combat Harness
+  _category: 1
+  _isStackable: 0
+  _maxStack: 1
+  _icon: {fileID: 21300000, guid: 5bfea0372c7677142a36ed4d5075a0a8, type: 3}
+  _affixPool: {fileID: 11400000, guid: 7b7bbcd8f40d4b4e9cb4d2d12d187427, type: 2}
+  _legendaryMechanicId: adrenaline
+  _baseMaxHealth: 16
+  _baseDamageReductionPercent: 3
+  _additionalBaseProperties:
+  - Stat: 4
+    Kind: 1
+    Value: 4

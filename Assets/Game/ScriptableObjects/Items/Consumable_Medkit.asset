@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9d2b191fa34edd8617063fdd8a8d0f, type: 3}
+  m_Name: Consumable_Medkit
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.Consumables.ConsumableDefinition
+  _id: consumable_medkit
+  _displayName: Medkit
+  _category: 3
+  _isStackable: 1
+  _maxStack: 3
+  _icon: {fileID: 21300000, guid: 847c30f03eb105b45b238279dee37855, type: 3}
+  _fixedRarity: 1
+  _useTimeSeconds: 3
+  _consumptionPoint: 0
+  _effectKind: 0
+  _healAmount: 60
+  _buffStat: 0
+  _buffPercent: 0
+  _buffDurationSeconds: 0
+  _activatesArmorInjectorCap: 0
+  _grenade:
+    Kind: 0
+    RadiusTiles: 0
+    DamageMin: 0
+    DamageMax: 0
+    StaggerPower: 0
+    BurnDamagePerSecond: 0
+    BurnDurationSeconds: 0
+    SmokeDurationSeconds: 0
+    ThrowRangeTiles: 0
+    ThrowSpeed: 0
+  _reviveHealthPercent: 30
+  _dropEligibility: 0

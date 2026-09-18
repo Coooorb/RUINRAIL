@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b94a5db3877414c8b6cb42205c81ac7, type: 3}
+  m_Name: Special_BlinkStrike
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.Weapons.Specials.LegendarySpecialDefinition
+  _id: blink_strike
+  _displayName: Blink Strike
+  _kind: 5
+  _cooldownSeconds: 10
+  _damageMin: 40
+  _damageMax: 50
+  _shots: 1
+  _intervalSeconds: 0
+  _arcDegrees: 0
+  _projectileSpeed: 0
+  _rangeTiles: 0
+  _knockback: 0
+  _staggerPower: 0
+  _radiusTiles: 0
+  _firstDistanceTiles: 0
+  _spacingTiles: 0
+  _distanceTiles: 4
+  _durationSeconds: 0.2
+  _hitRadiusTiles: 0.6

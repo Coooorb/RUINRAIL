@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce398a5116b2482a83cc80229f788ef7, type: 3}
+  m_Name: Elite_CrusherUnit
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Elites.EliteDefinition
+  _id: elite_crusher_unit
+  _displayName: Crusher Unit
+  _biome: 1
+  _baseHealth: 475
+  _moveSpeed: 2.5
+  _baseXp: 325
+  _strongestAttackDamageMin: 26
+  _strongestAttackDamageMax: 32
+  _staggerResistancePercent: 95
+  _knockbackResistancePercent: 95
+  _moveset:
+  - {fileID: 11400000, guid: 615bfe5f69ee4828927a0d236cbac6bd, type: 2}
+  - {fileID: 11400000, guid: 3f3dc59b402746158165db8a6c91ed6e, type: 2}
+  - {fileID: 11400000, guid: bee65aeac77b4e8d9be1b1f7d2a44116, type: 2}

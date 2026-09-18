@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1906dce41f141c3b844fed647b047e4, type: 3}
+  m_Name: Boss_TunnelMaw
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Bosses.BossDefinition
+  _id: boss_tunnel_maw
+  _displayName: Tunnel Maw
+  _biome: 0
+  _baseHealth: 1150
+  _moveSpeed: 2.8
+  _baseXp: 700
+  _strongestAttackDamageMin: 28
+  _strongestAttackDamageMax: 34
+  _phaseTwoHealthFraction: 0.5
+  _phaseTwoTimingMultiplier: 0.8
+  _staggerResistancePercent: 95
+  _moveset:
+  - {fileID: 11400000, guid: d979f428ba59440da6d54d3ac2a3c448, type: 2}
+  - {fileID: 11400000, guid: 01ce7ee901bc4f298a246d759b451c68, type: 2}
+  - {fileID: 11400000, guid: 1dbb2a2308ad481e8faddc7ca2aa3be1, type: 2}
+  - {fileID: 11400000, guid: ade80565557546549af0ec2949cbbd3c, type: 2}
+  _phaseTwoArenaHazards:
+  - {fileID: 11400000, guid: 5f1f47c6c5df450c802a1597ea8af024, type: 2}
+  _summonAttack: {fileID: 11400000, guid: 1dbb2a2308ad481e8faddc7ca2aa3be1, type: 2}
+  _summonDefinition: {fileID: 11400000, guid: fa88f4eb50504d4da28e54df6fdae144, type: 2}
+  _summonCount: 2
+  _maxLivingSummons: 4
+  _summonRadiusTiles: 2

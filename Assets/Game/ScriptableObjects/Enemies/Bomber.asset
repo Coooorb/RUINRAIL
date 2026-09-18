@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc222852e4d4331bdbff0c2ae01737d, type: 3}
+  m_Name: Bomber
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.EnemyDefinition
+  _id: bomber
+  _displayName: Bomber
+  _baseHealth: 40
+  _damageMin: 16
+  _damageMax: 20
+  _moveSpeed: 2.5
+  _baseXp: 28
+  _attackRange: 7
+  _attackTelegraphSeconds: 0.5
+  _attackCooldownSeconds: 2.5
+  _staggerResistancePercent: 10
+  _knockbackResistancePercent: 10
+  _attackKind: 4
+  _projectileSpeed: 6
+  _projectileRange: 0
+  _burstCount: 1
+  _burstIntervalSeconds: 0
+  _preferredDistance: 4
+  _chargeAttack: {fileID: 0}
+  _bombRadiusTiles: 2
+  _bombStaggerPower: 4
+  _moveset: []
+  _unlockDepth: 7
+  _threatCost: 2
+  _spawnTags:
+  - ranged
+  - explosive
+  - normal

@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b94a5db3877414c8b6cb42205c81ac7, type: 3}
+  m_Name: Special_Overrun
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.Weapons.Specials.LegendarySpecialDefinition
+  _id: overrun
+  _displayName: Overrun
+  _kind: 0
+  _cooldownSeconds: 13
+  _damageMin: 10
+  _damageMax: 12
+  _shots: 12
+  _intervalSeconds: 0.05
+  _arcDegrees: 0
+  _projectileSpeed: 22
+  _rangeTiles: 12
+  _knockback: 0
+  _staggerPower: 0
+  _radiusTiles: 0
+  _firstDistanceTiles: 0
+  _spacingTiles: 0
+  _distanceTiles: 0
+  _durationSeconds: 0.2
+  _hitRadiusTiles: 0.6

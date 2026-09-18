@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74756d25e6223184abb438f495e07db5, type: 3}
+  m_Name: UiSkin
+  m_EditorClassIdentifier: Game.UI::RuinRail.UI.Theme.UiSkin
+  shelterBackdrop: {fileID: 21300000, guid: b8165103a0caa7f43b87f52b368bb7de, type: 3}
+  menuBackdrop: {fileID: 21300000, guid: 9152fbdd1e5c958409a6c39ed3dfe4e2, type: 3}
+  stationIcons:
+  - {fileID: 5898684477973692863, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: 3219409781293003655, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: -380800655411570610, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: -2716382427869700586, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: 2376536187130375028, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: -6850986573070352401, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  - {fileID: -5695192652919421375, guid: b6b5c31ef2fa1cb4796b728acb0b687e, type: 3}
+  cursorPointer: {fileID: 2800000, guid: 4c28e586fc811704bb15c8615af1f9bd, type: 3}
+  cursorPointerHotspot: {x: 2, y: 0}
+  cursorHover: {fileID: 2800000, guid: f8b368f0ff6c3f540b14ef657d5f775a, type: 3}
+  cursorHoverHotspot: {x: 2, y: 0}
+  cursorAim: {fileID: 2800000, guid: 43d2d2707c933e845aeb6bdf10cebb4d, type: 3}
+  cursorAimHotspot: {x: 17, y: 17}
+  panelFrame: {fileID: 21300000, guid: 0cc9aca68235dee40beadd4b7a44d9fb, type: 3}
+  panelEmphasis: {fileID: 21300000, guid: c042b939866923e48a0dfc8a65b925d3, type: 3}
+  inventorySlot: {fileID: 21300000, guid: 14cc897449c7db14b97d7db77eb862c9, type: 3}
+  rarityFrames:
+  - {fileID: 21300000, guid: 3ee0772d992236a498e53f0a6e37572c, type: 3}
+  - {fileID: 21300000, guid: 57df5f71b3a58274bbd224dc5cd45b12, type: 3}
+  - {fileID: 21300000, guid: dcaf0ed8e40e6e34693a6f75d0eac3a4, type: 3}
+  - {fileID: 21300000, guid: 25da4b4c96a10324584bc3245efe75a2, type: 3}
+  - {fileID: 21300000, guid: af474d0846462af4bb2b37cda5b212ee, type: 3}
+  dashIcon: {fileID: 21300000, guid: 90c86a9d4545f17489ee6ecf0e00a60a, type: 3}
+  coinIcon: {fileID: 21300000, guid: 1f647862e5a28e9498b337b07ecf9635, type: 3}
+  lowHealthVignette: {fileID: 21300000, guid: fcf84241af2a1c94990cbfbbe47ab672, type: 3}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8701ee2d14abd6741ae57f58cd8370ae, type: 3}
+  m_Name: PlayerBalanceConfig
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Player.PlayerBalanceConfig
+  _moveSpeed: 5
+  _dashSpeed: 17
+  _dashDuration: 0.18
+  _dashCooldown: 1.4706
+  _dashIFrameDuration: 0.1
+  _maxHealth: 100
+  _downedBleedoutSeconds: 20
+  _downedCrawlSpeedMultiplier: 0.35
+  _reviveChannelSeconds: 4
+  _reviveHealthPercent: 30
+  _reviveProtectionSeconds: 1.5
+  _reviveRangeTiles: 1.5

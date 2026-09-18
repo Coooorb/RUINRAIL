@@ -1,0 +1,5997 @@
+fileFormatVersion: 2
+guid: df1cd7c10c8f4a446b97abd33b5567f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6305624645585283877
+    second: brute_sheet_0
+  - first:
+      213: -2894851156349293720
+    second: brute_sheet_1
+  - first:
+      213: -4706210065088657764
+    second: brute_sheet_2
+  - first:
+      213: -993665866561127085
+    second: brute_sheet_3
+  - first:
+      213: -1711319946551378026
+    second: brute_sheet_4
+  - first:
+      213: 9012693904631855576
+    second: brute_sheet_5
+  - first:
+      213: -3449670255774767781
+    second: brute_sheet_6
+  - first:
+      213: 5613997435969253728
+    second: brute_sheet_7
+  - first:
+      213: 3352700464676846683
+    second: brute_sheet_8
+  - first:
+      213: 3690738975685541024
+    second: brute_sheet_9
+  - first:
+      213: -2578249806755212519
+    second: brute_sheet_10
+  - first:
+      213: 3474186254901912724
+    second: brute_sheet_11
+  - first:
+      213: 3407721073245258426
+    second: brute_sheet_12
+  - first:
+      213: 2083524138227384782
+    second: brute_sheet_13
+  - first:
+      213: 1670944379264939531
+    second: brute_sheet_14
+  - first:
+      213: -3503786263993290077
+    second: brute_sheet_15
+  - first:
+      213: -6172275701150143776
+    second: brute_sheet_16
+  - first:
+      213: 1073546577758302316
+    second: brute_sheet_17
+  - first:
+      213: -4089637834244433706
+    second: brute_sheet_18
+  - first:
+      213: -820412550641854181
+    second: brute_sheet_19
+  - first:
+      213: -8647319557640364722
+    second: brute_sheet_20
+  - first:
+      213: -3677965005756288160
+    second: brute_sheet_21
+  - first:
+      213: 2560279691683303225
+    second: brute_sheet_22
+  - first:
+      213: -936778605010785667
+    second: brute_sheet_23
+  - first:
+      213: -5777765764163444649
+    second: brute_sheet_24
+  - first:
+      213: 2728874137573006968
+    second: brute_sheet_25
+  - first:
+      213: -350038416435904177
+    second: brute_sheet_26
+  - first:
+      213: -1134874470020574513
+    second: brute_sheet_27
+  - first:
+      213: -7413270414244809765
+    second: brute_sheet_28
+  - first:
+      213: -9109099601856208817
+    second: brute_sheet_29
+  - first:
+      213: 1894416873960494267
+    second: brute_sheet_30
+  - first:
+      213: -526877636337279173
+    second: brute_sheet_31
+  - first:
+      213: 7988674664609133561
+    second: brute_sheet_32
+  - first:
+      213: -6729170269890662839
+    second: brute_sheet_33
+  - first:
+      213: -2668612560753935198
+    second: brute_sheet_34
+  - first:
+      213: -7128508272124337189
+    second: brute_sheet_35
+  - first:
+      213: 5656486591649908056
+    second: brute_sheet_36
+  - first:
+      213: 4083481309238911882
+    second: brute_sheet_37
+  - first:
+      213: 8418792551537808694
+    second: brute_sheet_38
+  - first:
+      213: 5105925758354262017
+    second: brute_sheet_39
+  - first:
+      213: -442333992570770045
+    second: brute_sheet_40
+  - first:
+      213: -9012856443794240617
+    second: brute_sheet_41
+  - first:
+      213: -4985538092121840833
+    second: brute_sheet_42
+  - first:
+      213: 5052696122743912619
+    second: brute_sheet_43
+  - first:
+      213: -7264951606837517347
+    second: brute_sheet_44
+  - first:
+      213: -7403129219363174329
+    second: brute_sheet_45
+  - first:
+      213: -8613560439787171064
+    second: brute_sheet_46
+  - first:
+      213: 3951923924537200339
+    second: brute_sheet_47
+  - first:
+      213: 5849381401272456616
+    second: brute_sheet_48
+  - first:
+      213: -5054249342700828955
+    second: brute_sheet_49
+  - first:
+      213: -5690349404087428178
+    second: brute_sheet_50
+  - first:
+      213: 1197081505534956430
+    second: brute_sheet_51
+  - first:
+      213: 5420642071760207344
+    second: brute_sheet_52
+  - first:
+      213: -5233235643700622528
+    second: brute_sheet_53
+  - first:
+      213: 4186840980438648408
+    second: brute_sheet_54
+  - first:
+      213: -7227741785577718502
+    second: brute_sheet_55
+  - first:
+      213: 6558596368309795509
+    second: brute_sheet_56
+  - first:
+      213: 6910348278943196851
+    second: brute_sheet_57
+  - first:
+      213: 2211056762210384568
+    second: brute_sheet_58
+  - first:
+      213: -1807360859284515765
+    second: brute_sheet_59
+  - first:
+      213: 3263167659873912631
+    second: brute_sheet_60
+  - first:
+      213: -4312675799337152359
+    second: brute_sheet_61
+  - first:
+      213: 6257511728545058794
+    second: brute_sheet_62
+  - first:
+      213: 703063949046620542
+    second: brute_sheet_63
+  - first:
+      213: -2421819490806072938
+    second: brute_sheet_64
+  - first:
+      213: -8056923587414849526
+    second: brute_sheet_65
+  - first:
+      213: -5620556888650421877
+    second: brute_sheet_66
+  - first:
+      213: 380449700220069466
+    second: brute_sheet_67
+  - first:
+      213: 369355474046401429
+    second: brute_sheet_68
+  - first:
+      213: 5894016279901613950
+    second: brute_sheet_69
+  - first:
+      213: -5037827518015862
+    second: brute_sheet_70
+  - first:
+      213: -2552415639110941186
+    second: brute_sheet_71
+  - first:
+      213: -2744199441297494046
+    second: brute_sheet_72
+  - first:
+      213: -1510611437702662542
+    second: brute_sheet_73
+  - first:
+      213: 4759861427924722123
+    second: brute_sheet_74
+  - first:
+      213: 5751049220529602122
+    second: brute_sheet_75
+  - first:
+      213: 4067999100179774053
+    second: brute_sheet_76
+  - first:
+      213: -8194485891888738240
+    second: brute_sheet_77
+  - first:
+      213: 4080794671921862138
+    second: brute_sheet_78
+  - first:
+      213: -6443945019980500655
+    second: brute_sheet_79
+  - first:
+      213: -7171334672847540293
+    second: brute_sheet_80
+  - first:
+      213: 5155787686916113267
+    second: brute_sheet_81
+  - first:
+      213: -2206587468998491905
+    second: brute_sheet_82
+  - first:
+      213: 8035801061579486277
+    second: brute_sheet_83
+  - first:
+      213: -3220399107219080350
+    second: brute_sheet_84
+  - first:
+      213: -4050648594749389585
+    second: brute_sheet_85
+  - first:
+      213: 3953837150015254068
+    second: brute_sheet_86
+  - first:
+      213: -808637883112785236
+    second: brute_sheet_87
+  - first:
+      213: -920518058030419955
+    second: brute_sheet_88
+  - first:
+      213: 7316250642850590642
+    second: brute_sheet_89
+  - first:
+      213: 797740185422013477
+    second: brute_sheet_90
+  - first:
+      213: -6170195130667522770
+    second: brute_sheet_91
+  - first:
+      213: -5708880927726050156
+    second: brute_sheet_92
+  - first:
+      213: -2671634751039871566
+    second: brute_sheet_93
+  - first:
+      213: 3917915603764741904
+    second: brute_sheet_94
+  - first:
+      213: -6359082323943518678
+    second: brute_sheet_95
+  - first:
+      213: 42660208097158658
+    second: brute_sheet_96
+  - first:
+      213: -2121002698991104529
+    second: brute_sheet_97
+  - first:
+      213: 6816823363104504623
+    second: brute_sheet_98
+  - first:
+      213: -1381481722909347162
+    second: brute_sheet_99
+  - first:
+      213: 8081791071184627569
+    second: brute_sheet_100
+  - first:
+      213: -1353704084696667608
+    second: brute_sheet_101
+  - first:
+      213: 6251734283194791371
+    second: brute_sheet_102
+  - first:
+      213: 576587914530925083
+    second: brute_sheet_103
+  - first:
+      213: 2668705262242099461
+    second: brute_sheet_104
+  - first:
+      213: 3809327263852809101
+    second: brute_sheet_105
+  - first:
+      213: -3005695416901024314
+    second: brute_sheet_106
+  - first:
+      213: -2704427636430360381
+    second: brute_sheet_107
+  - first:
+      213: 5264996962294054887
+    second: brute_sheet_108
+  - first:
+      213: -3039541880376971389
+    second: brute_sheet_109
+  - first:
+      213: -554994491253024163
+    second: brute_sheet_110
+  - first:
+      213: -1476075261655513516
+    second: brute_sheet_111
+  - first:
+      213: -6969794143691390995
+    second: brute_sheet_112
+  - first:
+      213: 4378844037892661475
+    second: brute_sheet_113
+  - first:
+      213: 9122018590862120607
+    second: brute_sheet_114
+  - first:
+      213: 8050914521836880530
+    second: brute_sheet_115
+  - first:
+      213: 2514537181517417089
+    second: brute_sheet_116
+  - first:
+      213: 6290388361363067837
+    second: brute_sheet_117
+  - first:
+      213: -101461965783302262
+    second: brute_sheet_118
+  - first:
+      213: -6782232433102863947
+    second: brute_sheet_119
+  - first:
+      213: 7674084039184849346
+    second: brute_sheet_120
+  - first:
+      213: 4202481890865612083
+    second: brute_sheet_121
+  - first:
+      213: -5463095761271497494
+    second: brute_sheet_122
+  - first:
+      213: 520090408533933352
+    second: brute_sheet_123
+  - first:
+      213: 8498245695755266659
+    second: brute_sheet_124
+  - first:
+      213: -6297637078133215729
+    second: brute_sheet_125
+  - first:
+      213: -2532820911305298021
+    second: brute_sheet_126
+  - first:
+      213: 1711750511747074725
+    second: brute_sheet_127
+  - first:
+      213: 638975580430936486
+    second: brute_sheet_128
+  - first:
+      213: -5490958890978944170
+    second: brute_sheet_129
+  - first:
+      213: 7722589751018576061
+    second: brute_sheet_130
+  - first:
+      213: 7344024792485905475
+    second: brute_sheet_131
+  - first:
+      213: 8239043896347420239
+    second: brute_sheet_132
+  - first:
+      213: -1318205530043085212
+    second: brute_sheet_133
+  - first:
+      213: 5794272385039728841
+    second: brute_sheet_134
+  - first:
+      213: -5236700538572295631
+    second: brute_sheet_135
+  - first:
+      213: -7926854542734946275
+    second: brute_sheet_136
+  - first:
+      213: -1815143055469811955
+    second: brute_sheet_137
+  - first:
+      213: -6408714084457229891
+    second: brute_sheet_138
+  - first:
+      213: 2780287896853608114
+    second: brute_sheet_139
+  - first:
+      213: -2715824044421123153
+    second: brute_sheet_140
+  - first:
+      213: -6888563069969813208
+    second: brute_sheet_141
+  - first:
+      213: 6463393106708910821
+    second: brute_sheet_142
+  - first:
+      213: -497204343109549128
+    second: brute_sheet_143
+  - first:
+      213: -3034018086846885057
+    second: brute_sheet_144
+  - first:
+      213: -8557882311190343566
+    second: brute_sheet_145
+  - first:
+      213: -5109339653233146929
+    second: brute_sheet_146
+  - first:
+      213: -7823901223929077024
+    second: brute_sheet_147
+  - first:
+      213: -7747903513135796603
+    second: brute_sheet_148
+  - first:
+      213: -3524296693766259206
+    second: brute_sheet_149
+  - first:
+      213: 2992239939390224132
+    second: brute_sheet_150
+  - first:
+      213: 7729144149138722538
+    second: brute_sheet_151
+  - first:
+      213: 1687203584599315500
+    second: brute_sheet_152
+  - first:
+      213: 4559242964786428671
+    second: brute_sheet_153
+  - first:
+      213: -6889972704076792043
+    second: brute_sheet_154
+  - first:
+      213: 5244924134217094620
+    second: brute_sheet_155
+  - first:
+      213: 7644486046343494698
+    second: brute_sheet_156
+  - first:
+      213: 7018011583298998846
+    second: brute_sheet_157
+  - first:
+      213: -4292171264564489296
+    second: brute_sheet_158
+  - first:
+      213: 8646286299010796239
+    second: brute_sheet_159
+  - first:
+      213: 260935225670741839
+    second: brute_sheet_160
+  - first:
+      213: 698759375879131167
+    second: brute_sheet_161
+  - first:
+      213: 7251859188068727316
+    second: brute_sheet_162
+  - first:
+      213: 4221247502056833531
+    second: brute_sheet_163
+  - first:
+      213: -5085646213272974328
+    second: brute_sheet_164
+  - first:
+      213: 3972547554801586138
+    second: brute_sheet_165
+  - first:
+      213: -1494605600195420140
+    second: brute_sheet_166
+  - first:
+      213: 6363768669450527104
+    second: brute_sheet_167
+  - first:
+      213: 3222945154278857404
+    second: brute_sheet_168
+  - first:
+      213: 7745039666024128337
+    second: brute_sheet_169
+  - first:
+      213: 7201650534601658853
+    second: brute_sheet_170
+  - first:
+      213: -1093974891602231809
+    second: brute_sheet_171
+  - first:
+      213: 7309917571430160670
+    second: brute_sheet_172
+  - first:
+      213: -211012121454535316
+    second: brute_sheet_173
+  - first:
+      213: 4339776023295641699
+    second: brute_sheet_174
+  - first:
+      213: -8886212900655097045
+    second: brute_sheet_175
+  - first:
+      213: 6703058075855855611
+    second: brute_sheet_176
+  - first:
+      213: -623450112808512609
+    second: brute_sheet_177
+  - first:
+      213: -3665386649758020616
+    second: brute_sheet_178
+  - first:
+      213: 5099609070519290480
+    second: brute_sheet_179
+  - first:
+      213: 3480542788664181976
+    second: brute_sheet_180
+  - first:
+      213: 495034621394083266
+    second: brute_sheet_181
+  - first:
+      213: -8930970737262693264
+    second: brute_sheet_182
+  - first:
+      213: -1017834136223956104
+    second: brute_sheet_183
+  - first:
+      213: -7600052123109071522
+    second: brute_sheet_184
+  - first:
+      213: 6376883809936615071
+    second: brute_sheet_185
+  - first:
+      213: -8903940496284248958
+    second: brute_sheet_186
+  - first:
+      213: -5370979490493461959
+    second: brute_sheet_187
+  - first:
+      213: 3256611322662615153
+    second: brute_sheet_188
+  - first:
+      213: -2044699097832336153
+    second: brute_sheet_189
+  - first:
+      213: -8152604211891359658
+    second: brute_sheet_190
+  - first:
+      213: 3807919045577540111
+    second: brute_sheet_191
+  - first:
+      213: 3590575157811949868
+    second: brute_sheet_192
+  - first:
+      213: 2732596052919754504
+    second: brute_sheet_193
+  - first:
+      213: 5441400061464558407
+    second: brute_sheet_194
+  - first:
+      213: 7738955403231628222
+    second: brute_sheet_195
+  - first:
+      213: 8137136138204724872
+    second: brute_sheet_196
+  - first:
+      213: -5643422359222457703
+    second: brute_sheet_197
+  - first:
+      213: -7154137764481801695
+    second: brute_sheet_198
+  - first:
+      213: -3408245697020869573
+    second: brute_sheet_199
+  - first:
+      213: -2544672789463425461
+    second: brute_sheet_200
+  - first:
+      213: 6840434664746032361
+    second: brute_sheet_201
+  - first:
+      213: 2181581810258911749
+    second: brute_sheet_202
+  - first:
+      213: 2408560293663503919
+    second: brute_sheet_203
+  - first:
+      213: 7281355109488290916
+    second: brute_sheet_204
+  - first:
+      213: -5719318802655114731
+    second: brute_sheet_205
+  - first:
+      213: 8525344648330293044
+    second: brute_sheet_206
+  - first:
+      213: -3988027593784830909
+    second: brute_sheet_207
+  - first:
+      213: 4535115685986433477
+    second: brute_sheet_208
+  - first:
+      213: 5895350990315870323
+    second: brute_sheet_209
+  - first:
+      213: -1636637709287990907
+    second: brute_sheet_210
+  - first:
+      213: 8223351164777239874
+    second: brute_sheet_211
+  - first:
+      213: -5013962508618151764
+    second: brute_sheet_212
+  - first:
+      213: 4621447349362284691
+    second: brute_sheet_213
+  - first:
+      213: -5774964618033923078
+    second: brute_sheet_214
+  - first:
+      213: -1194066243271909341
+    second: brute_sheet_215
+  - first:
+      213: 2500501016670200832
+    second: brute_sheet_216
+  - first:
+      213: 398008367046913964
+    second: brute_sheet_217
+  - first:
+      213: 2521066144178955060
+    second: brute_sheet_218
+  - first:
+      213: -6505808643408941507
+    second: brute_sheet_219
+  - first:
+      213: -56791111423050470
+    second: brute_sheet_220
+  - first:
+      213: -8531159070270437999
+    second: brute_sheet_221
+  - first:
+      213: 689556112897820535
+    second: brute_sheet_222
+  - first:
+      213: -497936847398423776
+    second: brute_sheet_223
+  - first:
+      213: 1443069097587061678
+    second: brute_sheet_224
+  - first:
+      213: 3266266548803747074
+    second: brute_sheet_225
+  - first:
+      213: -2320138919049417986
+    second: brute_sheet_226
+  - first:
+      213: 8069040241365323528
+    second: brute_sheet_227
+  - first:
+      213: -8378579650434414032
+    second: brute_sheet_228
+  - first:
+      213: 7611518190011502850
+    second: brute_sheet_229
+  - first:
+      213: 1034446464301027874
+    second: brute_sheet_230
+  - first:
+      213: 6253706290431056279
+    second: brute_sheet_231
+  - first:
+      213: 2213914884942579853
+    second: brute_sheet_232
+  - first:
+      213: -3100748992644968915
+    second: brute_sheet_233
+  - first:
+      213: 4253119828415358352
+    second: brute_sheet_234
+  - first:
+      213: 73562186616639991
+    second: brute_sheet_235
+  - first:
+      213: -2568632064179518762
+    second: brute_sheet_236
+  - first:
+      213: -762326861784909204
+    second: brute_sheet_237
+  - first:
+      213: 4663333037076764230
+    second: brute_sheet_238
+  - first:
+      213: 1355718440067938975
+    second: brute_sheet_239
+  - first:
+      213: 924131223004334152
+    second: brute_sheet_240
+  - first:
+      213: -1629187408647925616
+    second: brute_sheet_241
+  - first:
+      213: 3393116072008245799
+    second: brute_sheet_242
+  - first:
+      213: -4686775568732564344
+    second: brute_sheet_243
+  - first:
+      213: -3196549789106569512
+    second: brute_sheet_244
+  - first:
+      213: -7443712735193336259
+    second: brute_sheet_245
+  - first:
+      213: 8031660968625614029
+    second: brute_sheet_246
+  - first:
+      213: 3074652551299524175
+    second: brute_sheet_247
+  - first:
+      213: 7638971582052773859
+    second: brute_sheet_248
+  - first:
+      213: 7931588939843414076
+    second: brute_sheet_249
+  - first:
+      213: -4440045701298511528
+    second: brute_sheet_250
+  - first:
+      213: -4157426156440244978
+    second: brute_sheet_251
+  - first:
+      213: -5759887893759996474
+    second: brute_sheet_252
+  - first:
+      213: 9169239948699978720
+    second: brute_sheet_253
+  - first:
+      213: 4481905519006756927
+    second: brute_sheet_254
+  - first:
+      213: 3853043927518982585
+    second: brute_sheet_255
+  - first:
+      213: 2514085338871454669
+    second: brute_sheet_256
+  - first:
+      213: 2342332890288437658
+    second: brute_sheet_257
+  - first:
+      213: 5433384516737232555
+    second: brute_sheet_258
+  - first:
+      213: 3183180099712055494
+    second: brute_sheet_259
+  - first:
+      213: -8700258759318914878
+    second: brute_sheet_260
+  - first:
+      213: 882626594915403427
+    second: brute_sheet_261
+  - first:
+      213: -3815475416845410123
+    second: brute_sheet_262
+  - first:
+      213: 3976373699345065436
+    second: brute_sheet_263
+  - first:
+      213: -4461081882660604114
+    second: brute_sheet_264
+  - first:
+      213: -2435327759920672583
+    second: brute_sheet_265
+  - first:
+      213: -2855188039377538385
+    second: brute_sheet_266
+  - first:
+      213: 1420066426023829113
+    second: brute_sheet_267
+  - first:
+      213: -2730432449798211274
+    second: brute_sheet_268
+  - first:
+      213: -7653568705703990706
+    second: brute_sheet_269
+  - first:
+      213: -9065348334043967061
+    second: brute_sheet_270
+  - first:
+      213: 2614702064876763929
+    second: brute_sheet_271
+  - first:
+      213: -367915083905360973
+    second: brute_sheet_272
+  - first:
+      213: 5917373526929779062
+    second: brute_sheet_273
+  - first:
+      213: 2443456450261475201
+    second: brute_sheet_274
+  - first:
+      213: -2667424104981715882
+    second: brute_sheet_275
+  - first:
+      213: -4811372597158347088
+    second: brute_sheet_276
+  - first:
+      213: -2773441729119542657
+    second: brute_sheet_277
+  - first:
+      213: -6590003706674794218
+    second: brute_sheet_278
+  - first:
+      213: 1978343355857335389
+    second: brute_sheet_279
+  - first:
+      213: -4404769637262001981
+    second: brute_sheet_280
+  - first:
+      213: 211683704563556686
+    second: brute_sheet_281
+  - first:
+      213: -1742930156353680913
+    second: brute_sheet_282
+  - first:
+      213: -1677148956659950206
+    second: brute_sheet_283
+  - first:
+      213: 1125581074500726027
+    second: brute_sheet_284
+  - first:
+      213: -1472601062520390899
+    second: brute_sheet_285
+  - first:
+      213: 1248610439576190340
+    second: brute_sheet_286
+  - first:
+      213: -470894120342349699
+    second: brute_sheet_287
+  - first:
+      213: 4770071717994285974
+    second: brute_sheet_288
+  - first:
+      213: 6899595003605066871
+    second: brute_sheet_289
+  - first:
+      213: -8631073293070362669
+    second: brute_sheet_290
+  - first:
+      213: -1951220442632836558
+    second: brute_sheet_291
+  - first:
+      213: 8427214944869420563
+    second: brute_sheet_292
+  - first:
+      213: 4838565442006853591
+    second: brute_sheet_293
+  - first:
+      213: -4285908072784936440
+    second: brute_sheet_294
+  - first:
+      213: -5161175971116139439
+    second: brute_sheet_295
+  - first:
+      213: -6078421718312515902
+    second: brute_sheet_296
+  - first:
+      213: 6586541362004138399
+    second: brute_sheet_297
+  - first:
+      213: -3749887450363735355
+    second: brute_sheet_298
+  - first:
+      213: -1614337440445825763
+    second: brute_sheet_299
+  - first:
+      213: -1266118700762383090
+    second: brute_sheet_300
+  - first:
+      213: 7840048561416566242
+    second: brute_sheet_301
+  - first:
+      213: 7492847970916658880
+    second: brute_sheet_302
+  - first:
+      213: -6492399786886702689
+    second: brute_sheet_303
+  - first:
+      213: -2605240354842721693
+    second: brute_sheet_304
+  - first:
+      213: -8618613270614447797
+    second: brute_sheet_305
+  - first:
+      213: 1188986795170421373
+    second: brute_sheet_306
+  - first:
+      213: 609408163130020557
+    second: brute_sheet_307
+  - first:
+      213: 7076903412446164613
+    second: brute_sheet_308
+  - first:
+      213: -5549845796657222343
+    second: brute_sheet_309
+  - first:
+      213: 1204803945986866109
+    second: brute_sheet_310
+  - first:
+      213: 9024351393697549635
+    second: brute_sheet_311
+  - first:
+      213: 2050293147978912971
+    second: brute_sheet_312
+  - first:
+      213: -2221337877269435253
+    second: brute_sheet_313
+  - first:
+      213: -9016954554703489457
+    second: brute_sheet_314
+  - first:
+      213: 825862138925288273
+    second: brute_sheet_315
+  - first:
+      213: -4154603022333549231
+    second: brute_sheet_316
+  - first:
+      213: -2427018892611804609
+    second: brute_sheet_317
+  - first:
+      213: -611934834660830146
+    second: brute_sheet_318
+  - first:
+      213: -4216415578613488862
+    second: brute_sheet_319
+  - first:
+      213: -7099894709569625092
+    second: brute_sheet_320
+  - first:
+      213: 2278304379534394299
+    second: brute_sheet_321
+  - first:
+      213: 2307316117509369846
+    second: brute_sheet_322
+  - first:
+      213: 7986299469752011078
+    second: brute_sheet_323
+  - first:
+      213: -5703417657115493547
+    second: brute_sheet_324
+  - first:
+      213: -8720350801951334593
+    second: brute_sheet_325
+  - first:
+      213: -2453011835650003657
+    second: brute_sheet_326
+  - first:
+      213: 2048084363572469571
+    second: brute_sheet_327
+  - first:
+      213: -7319522120454511131
+    second: brute_sheet_328
+  - first:
+      213: 8942831916802497402
+    second: brute_sheet_329
+  - first:
+      213: -4361941474414234295
+    second: brute_sheet_330
+  - first:
+      213: -6653099194250189911
+    second: brute_sheet_331
+  - first:
+      213: 7262368461114164247
+    second: brute_sheet_332
+  - first:
+      213: -2226723841924566899
+    second: brute_sheet_333
+  - first:
+      213: -8169259029338055462
+    second: brute_sheet_334
+  - first:
+      213: 2891583603021114961
+    second: brute_sheet_335
+  - first:
+      213: -36902210239891353
+    second: brute_sheet_336
+  - first:
+      213: -50811401074014943
+    second: brute_sheet_337
+  - first:
+      213: -7035399730430565076
+    second: brute_sheet_338
+  - first:
+      213: -1453712605038171096
+    second: brute_sheet_339
+  - first:
+      213: -4356642604487218882
+    second: brute_sheet_340
+  - first:
+      213: -8541273819254811685
+    second: brute_sheet_341
+  - first:
+      213: 4071793223543299110
+    second: brute_sheet_342
+  - first:
+      213: -4724756129983236648
+    second: brute_sheet_343
+  - first:
+      213: 6661959572500998314
+    second: brute_sheet_344
+  - first:
+      213: -9202343702625294297
+    second: brute_sheet_345
+  - first:
+      213: 3700465653230080890
+    second: brute_sheet_346
+  - first:
+      213: -6575507229493767089
+    second: brute_sheet_347
+  - first:
+      213: 821375877202486973
+    second: brute_sheet_348
+  - first:
+      213: -6479122474923151074
+    second: brute_sheet_349
+  - first:
+      213: 4268147940435093422
+    second: brute_sheet_350
+  - first:
+      213: 2193826606379254488
+    second: brute_sheet_351
+  - first:
+      213: -5287612075018327932
+    second: brute_sheet_352
+  - first:
+      213: 5228023523075424638
+    second: brute_sheet_353
+  - first:
+      213: -3087563397158190531
+    second: brute_sheet_354
+  - first:
+      213: -6789117256626793133
+    second: brute_sheet_355
+  - first:
+      213: -202696738009820525
+    second: brute_sheet_356
+  - first:
+      213: -6102518155883553437
+    second: brute_sheet_357
+  - first:
+      213: 6856573033940987867
+    second: brute_sheet_358
+  - first:
+      213: -5107281091554595671
+    second: brute_sheet_359
+  - first:
+      213: -1169773230696185920
+    second: brute_sheet_360
+  - first:
+      213: 7683070219532265396
+    second: brute_sheet_361
+  - first:
+      213: -6537691904462068767
+    second: brute_sheet_362
+  - first:
+      213: -8995329354387875594
+    second: brute_sheet_363
+  - first:
+      213: 8424234926097541410
+    second: brute_sheet_364
+  - first:
+      213: 976101113526667664
+    second: brute_sheet_365
+  - first:
+      213: -1941981100800519210
+    second: brute_sheet_366
+  - first:
+      213: 657595761544788339
+    second: brute_sheet_367
+  - first:
+      213: -2703683702563120855
+    second: brute_sheet_368
+  - first:
+      213: -888707588551605411
+    second: brute_sheet_369
+  - first:
+      213: -6427955368008096346
+    second: brute_sheet_370
+  - first:
+      213: 2193633282849356867
+    second: brute_sheet_371
+  - first:
+      213: 3468389999905459779
+    second: brute_sheet_372
+  - first:
+      213: -6938455208864439584
+    second: brute_sheet_373
+  - first:
+      213: -4764665096218790038
+    second: brute_sheet_374
+  - first:
+      213: 7861332619943168231
+    second: brute_sheet_375
+  - first:
+      213: -8027103145345864050
+    second: brute_sheet_376
+  - first:
+      213: -7139952295977845785
+    second: brute_sheet_377
+  - first:
+      213: 4889363453744684302
+    second: brute_sheet_0_0
+  - first:
+      213: 7583403090199793980
+    second: brute_sheet_0_1
+  - first:
+      213: 2599844351037592330
+    second: brute_sheet_0_2
+  - first:
+      213: 5831752911757032445
+    second: brute_sheet_0_3
+  - first:
+      213: 4311966827617899207
+    second: brute_sheet_0_4
+  - first:
+      213: 7220064490973978960
+    second: brute_sheet_0_5
+  - first:
+      213: -5400537707110118098
+    second: brute_sheet_0_6
+  - first:
+      213: 851654538645385180
+    second: brute_sheet_0_7
+  - first:
+      213: 1436277189965991397
+    second: brute_sheet_0_8
+  - first:
+      213: 4932859112985548299
+    second: brute_sheet_0_9
+  - first:
+      213: -7519141061279751983
+    second: brute_sheet_0_10
+  - first:
+      213: -152010532841205595
+    second: brute_sheet_0_11
+  - first:
+      213: -1385915111256096986
+    second: brute_sheet_0_12
+  - first:
+      213: -6539221686204188472
+    second: brute_sheet_0_13
+  - first:
+      213: -4965987471854140269
+    second: brute_sheet_0_14
+  - first:
+      213: 33788714177204641
+    second: brute_sheet_0_15
+  - first:
+      213: 4101701003405643630
+    second: brute_sheet_0_16
+  - first:
+      213: -6373755320938469878
+    second: brute_sheet_0_17
+  - first:
+      213: 5825325552025899603
+    second: brute_sheet_0_18
+  - first:
+      213: 938533195968716161
+    second: brute_sheet_0_19
+  - first:
+      213: -3003318515323715027
+    second: brute_sheet_0_20
+  - first:
+      213: 6084793192311725985
+    second: brute_sheet_1_0
+  - first:
+      213: -7863130284720612471
+    second: brute_sheet_1_1
+  - first:
+      213: -281078788982503770
+    second: brute_sheet_1_2
+  - first:
+      213: 8701845795264282148
+    second: brute_sheet_1_3
+  - first:
+      213: 4971783024517385791
+    second: brute_sheet_1_4
+  - first:
+      213: -7322713696350400809
+    second: brute_sheet_1_5
+  - first:
+      213: -6357940584376120017
+    second: brute_sheet_1_6
+  - first:
+      213: -3469156628769462052
+    second: brute_sheet_1_7
+  - first:
+      213: -5754334536601118762
+    second: brute_sheet_1_8
+  - first:
+      213: 2883023391987149998
+    second: brute_sheet_1_9
+  - first:
+      213: -691412823621396790
+    second: brute_sheet_1_10
+  - first:
+      213: -4842795875145554523
+    second: brute_sheet_1_11
+  - first:
+      213: 2766256435638749471
+    second: brute_sheet_1_12
+  - first:
+      213: -6535095854455584440
+    second: brute_sheet_1_13
+  - first:
+      213: -5776762674785146626
+    second: brute_sheet_1_14
+  - first:
+      213: -704639389135504603
+    second: brute_sheet_1_15
+  - first:
+      213: -8072254013434344585
+    second: brute_sheet_1_16
+  - first:
+      213: 2647109449298842955
+    second: brute_sheet_1_17
+  - first:
+      213: -7883440318255667178
+    second: brute_sheet_1_18
+  - first:
+      213: -4466436188238342374
+    second: brute_sheet_1_19
+  - first:
+      213: 5772207288460318622
+    second: brute_sheet_1_20
+  - first:
+      213: -8184637449033769693
+    second: brute_sheet_2_0
+  - first:
+      213: -7768114540439322692
+    second: brute_sheet_2_1
+  - first:
+      213: 5615808470298421595
+    second: brute_sheet_2_2
+  - first:
+      213: -9026419454445205642
+    second: brute_sheet_2_3
+  - first:
+      213: -6348198229975489159
+    second: brute_sheet_2_4
+  - first:
+      213: 6038729708354564120
+    second: brute_sheet_2_5
+  - first:
+      213: -8121785510716510955
+    second: brute_sheet_2_6
+  - first:
+      213: 2099641448965524615
+    second: brute_sheet_2_7
+  - first:
+      213: 714881011403419483
+    second: brute_sheet_2_8
+  - first:
+      213: 4938940383319871993
+    second: brute_sheet_2_9
+  - first:
+      213: -7400047236687928911
+    second: brute_sheet_2_10
+  - first:
+      213: -7370206534923073183
+    second: brute_sheet_2_11
+  - first:
+      213: -3129627905686318410
+    second: brute_sheet_2_12
+  - first:
+      213: 6284958531300672867
+    second: brute_sheet_2_13
+  - first:
+      213: -1934419585439496509
+    second: brute_sheet_2_14
+  - first:
+      213: 3914717260233041626
+    second: brute_sheet_2_15
+  - first:
+      213: 5832669919550696338
+    second: brute_sheet_2_16
+  - first:
+      213: -5040661157156811378
+    second: brute_sheet_2_17
+  - first:
+      213: -3539801482253561372
+    second: brute_sheet_2_18
+  - first:
+      213: -7754350108379726847
+    second: brute_sheet_2_19
+  - first:
+      213: -301629290309856086
+    second: brute_sheet_2_20
+  - first:
+      213: -2154812754525283194
+    second: brute_sheet_3_0
+  - first:
+      213: -1445773031461493581
+    second: brute_sheet_3_1
+  - first:
+      213: -7677611101274436808
+    second: brute_sheet_3_2
+  - first:
+      213: -6152458598288142802
+    second: brute_sheet_3_3
+  - first:
+      213: -7761665064197732744
+    second: brute_sheet_3_4
+  - first:
+      213: -5663564121688072920
+    second: brute_sheet_3_5
+  - first:
+      213: 786300692892223096
+    second: brute_sheet_3_6
+  - first:
+      213: -6416138928191694607
+    second: brute_sheet_3_7
+  - first:
+      213: 6073258177709501366
+    second: brute_sheet_3_8
+  - first:
+      213: -4097908806516162580
+    second: brute_sheet_3_9
+  - first:
+      213: 3245068913092316753
+    second: brute_sheet_3_10
+  - first:
+      213: 1247124145427640785
+    second: brute_sheet_3_11
+  - first:
+      213: 8475781494449965909
+    second: brute_sheet_3_12
+  - first:
+      213: -8171290863802392626
+    second: brute_sheet_3_13
+  - first:
+      213: 946884332606293266
+    second: brute_sheet_3_14
+  - first:
+      213: 2693757167775741761
+    second: brute_sheet_3_15
+  - first:
+      213: -7076780200422381914
+    second: brute_sheet_3_16
+  - first:
+      213: -1205051588350521975
+    second: brute_sheet_3_17
+  - first:
+      213: 3229205445682651976
+    second: brute_sheet_3_18
+  - first:
+      213: 6755127681526685580
+    second: brute_sheet_3_19
+  - first:
+      213: 1955098153577283536
+    second: brute_sheet_3_20
+  - first:
+      213: -6319577622045596750
+    second: brute_sheet_4_0
+  - first:
+      213: 672911671473322115
+    second: brute_sheet_4_1
+  - first:
+      213: 2408309021853552433
+    second: brute_sheet_4_2
+  - first:
+      213: 6298810105485741658
+    second: brute_sheet_4_3
+  - first:
+      213: -785014390913255666
+    second: brute_sheet_4_4
+  - first:
+      213: 6957950453977897205
+    second: brute_sheet_4_5
+  - first:
+      213: 1083568925194325630
+    second: brute_sheet_4_6
+  - first:
+      213: -7483009703964671853
+    second: brute_sheet_4_7
+  - first:
+      213: 3899509456357012686
+    second: brute_sheet_4_8
+  - first:
+      213: 7888698924184967472
+    second: brute_sheet_4_9
+  - first:
+      213: -4344071017223240179
+    second: brute_sheet_4_10
+  - first:
+      213: -2746727200570294759
+    second: brute_sheet_4_11
+  - first:
+      213: -2876816134619581500
+    second: brute_sheet_4_12
+  - first:
+      213: -971192504293129565
+    second: brute_sheet_4_13
+  - first:
+      213: 7232849951624376747
+    second: brute_sheet_4_14
+  - first:
+      213: -7821569670841218018
+    second: brute_sheet_4_15
+  - first:
+      213: 4186624586689625095
+    second: brute_sheet_4_16
+  - first:
+      213: 8364102133932599662
+    second: brute_sheet_4_17
+  - first:
+      213: -4305627365956542137
+    second: brute_sheet_4_18
+  - first:
+      213: -2467960387134108446
+    second: brute_sheet_4_19
+  - first:
+      213: 7160147177593547695
+    second: brute_sheet_4_20
+  - first:
+      213: -4240925650992112144
+    second: brute_sheet_5_0
+  - first:
+      213: 2515437273345160954
+    second: brute_sheet_5_1
+  - first:
+      213: -3838686411232173116
+    second: brute_sheet_5_2
+  - first:
+      213: -8158820271209393446
+    second: brute_sheet_5_3
+  - first:
+      213: -9154330696354444976
+    second: brute_sheet_5_4
+  - first:
+      213: -9150313070333346280
+    second: brute_sheet_5_5
+  - first:
+      213: 7074030031362503909
+    second: brute_sheet_5_6
+  - first:
+      213: -7477134620495406426
+    second: brute_sheet_5_7
+  - first:
+      213: -1342707706260679678
+    second: brute_sheet_5_8
+  - first:
+      213: 8887260558599987179
+    second: brute_sheet_5_9
+  - first:
+      213: 8644218278183411302
+    second: brute_sheet_5_10
+  - first:
+      213: -1426827039786560609
+    second: brute_sheet_5_11
+  - first:
+      213: 9142225242425701003
+    second: brute_sheet_5_12
+  - first:
+      213: 5883627678831914083
+    second: brute_sheet_5_13
+  - first:
+      213: 8734566942503870659
+    second: brute_sheet_5_14
+  - first:
+      213: 7296398224279558689
+    second: brute_sheet_5_15
+  - first:
+      213: 6580065927917266651
+    second: brute_sheet_5_16
+  - first:
+      213: 4718001515704027111
+    second: brute_sheet_5_17
+  - first:
+      213: 5756712013280751175
+    second: brute_sheet_5_18
+  - first:
+      213: 1169055246540190315
+    second: brute_sheet_5_19
+  - first:
+      213: -446971027899843938
+    second: brute_sheet_5_20
+  - first:
+      213: -4584957014439119088
+    second: brute_sheet_6_0
+  - first:
+      213: -2924026435734368381
+    second: brute_sheet_6_1
+  - first:
+      213: -4374623896735562639
+    second: brute_sheet_6_2
+  - first:
+      213: -5447086964828400778
+    second: brute_sheet_6_3
+  - first:
+      213: 4905116220953280924
+    second: brute_sheet_6_4
+  - first:
+      213: 7898449141780825465
+    second: brute_sheet_6_5
+  - first:
+      213: -5049534228614941299
+    second: brute_sheet_6_6
+  - first:
+      213: -424530786395467046
+    second: brute_sheet_6_7
+  - first:
+      213: 5449623943653342019
+    second: brute_sheet_6_8
+  - first:
+      213: -8795035301735035287
+    second: brute_sheet_6_9
+  - first:
+      213: -1034579792339064151
+    second: brute_sheet_6_10
+  - first:
+      213: 8119854793490264770
+    second: brute_sheet_6_11
+  - first:
+      213: 2040037528487273415
+    second: brute_sheet_6_12
+  - first:
+      213: 2158740232208115198
+    second: brute_sheet_6_13
+  - first:
+      213: 5533800307317540746
+    second: brute_sheet_6_14
+  - first:
+      213: -4884856216110346760
+    second: brute_sheet_6_15
+  - first:
+      213: 2625880658114848960
+    second: brute_sheet_6_16
+  - first:
+      213: -8872222788235586028
+    second: brute_sheet_6_17
+  - first:
+      213: -4750831676012551209
+    second: brute_sheet_6_18
+  - first:
+      213: -4159473881363354528
+    second: brute_sheet_6_19
+  - first:
+      213: 5072793949427886124
+    second: brute_sheet_6_20
+  - first:
+      213: -3357822090732306317
+    second: brute_sheet_7_0
+  - first:
+      213: 8305901530825708633
+    second: brute_sheet_7_1
+  - first:
+      213: 7792029971585894612
+    second: brute_sheet_7_2
+  - first:
+      213: -3803208205912614000
+    second: brute_sheet_7_3
+  - first:
+      213: -2270124226775619908
+    second: brute_sheet_7_4
+  - first:
+      213: 4638417931202421105
+    second: brute_sheet_7_5
+  - first:
+      213: 7990822860772808570
+    second: brute_sheet_7_6
+  - first:
+      213: -581635392741190462
+    second: brute_sheet_7_7
+  - first:
+      213: -2631193840816331654
+    second: brute_sheet_7_8
+  - first:
+      213: 1862136429067813690
+    second: brute_sheet_7_9
+  - first:
+      213: -3033596293059400190
+    second: brute_sheet_7_10
+  - first:
+      213: -9043654298269740098
+    second: brute_sheet_7_11
+  - first:
+      213: 4240515679623366051
+    second: brute_sheet_7_12
+  - first:
+      213: -1183813968787266543
+    second: brute_sheet_7_13
+  - first:
+      213: -4185400676205263022
+    second: brute_sheet_7_14
+  - first:
+      213: 524325603072170743
+    second: brute_sheet_7_15
+  - first:
+      213: -5762730163663641245
+    second: brute_sheet_7_16
+  - first:
+      213: -3828616618021771668
+    second: brute_sheet_7_17
+  - first:
+      213: 311641813154893920
+    second: brute_sheet_7_18
+  - first:
+      213: -1080877641223719707
+    second: brute_sheet_7_19
+  - first:
+      213: -8244228945741794706
+    second: brute_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: brute_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d9a3ef7228ad340800000000000000
+      internalID: 4889363453744684302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3155f39ee8ad3960800000000000000
+      internalID: 7583403090199793980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a03d6e6a9a0841420800000000000000
+      internalID: 2599844351037592330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfbb023106c8ee050800000000000000
+      internalID: 5831752911757032445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c2de63ebfe27db30800000000000000
+      internalID: 4311966827617899207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0516ae7a662d23460800000000000000
+      internalID: 7220064490973978960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2d4993919f6d05b0800000000000000
+      internalID: -5400537707110118098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdfae476a4fa1db00800000000000000
+      internalID: 851654538645385180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ed4bea9e7eaee310800000000000000
+      internalID: 1436277189965991397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b065d845a39057440800000000000000
+      internalID: 4932859112985548299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d0ed5afa05a6a790800000000000000
+      internalID: -7519141061279751983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a0d1ebc933f3edf0800000000000000
+      internalID: -152010532841205595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62ffbb89c8d34cce0800000000000000
+      internalID: -1385915111256096986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8b44ec5840045a0800000000000000
+      internalID: -6539221686204188472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 394081d84b4451bb0800000000000000
+      internalID: -4965987471854140269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a113f118aa087000800000000000000
+      internalID: 33788714177204641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6f4bd2b45b2ce830800000000000000
+      internalID: 4101701003405643630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a06e4322e4fdb87a0800000000000000
+      internalID: -6373755320938469878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3529285c9b6b7d050800000000000000
+      internalID: 5825325552025899603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18d90ab18f6560d00800000000000000
+      internalID: 938533195968716161
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 448
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d22c6caf8b11256d0800000000000000
+      internalID: -3003318515323715027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1af94777b27817450800000000000000
+      internalID: 6084793192311725985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98b9c9caaac80e290800000000000000
+      internalID: -7863130284720612471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a60dc4a458691cf0800000000000000
+      internalID: -281078788982503770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42e34fc75aa23c870800000000000000
+      internalID: 8701845795264282148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3e0da4b1525ff440800000000000000
+      internalID: 4971783024517385791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7de8529c0be706a90800000000000000
+      internalID: -7322713696350400809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2dc83d69be04c7a0800000000000000
+      internalID: -6357940584376120017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd821003d641bdfc0800000000000000
+      internalID: -3469156628769462052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d7d02b0a3f7420b0800000000000000
+      internalID: -5754334536601118762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eac2986008e820820800000000000000
+      internalID: 2883023391987149998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac695ee33bb9766f0800000000000000
+      internalID: -691412823621396790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a5e83e4fceeaccb0800000000000000
+      internalID: -4842795875145554523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f19c2eb6297b36620800000000000000
+      internalID: 2766256435638749471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8490c0ed1fcae45a0800000000000000
+      internalID: -6535095854455584440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef822b134f0d4dfa0800000000000000
+      internalID: -5776762674785146626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52b74db753e9836f0800000000000000
+      internalID: -704639389135504603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77b46805eb799ff80800000000000000
+      internalID: -8072254013434344585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b459907e40c6cb420800000000000000
+      internalID: 2647109449298842955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 618e06e7cc4689290800000000000000
+      internalID: -7883440318255667178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a179a1473f70402c0800000000000000
+      internalID: -4466436188238342374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e97199642fffa1050800000000000000
+      internalID: 5772207288460318622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32d9bfaaa935a6e80800000000000000
+      internalID: -8184637449033769693
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf31929bfc123490800000000000000
+      internalID: -7768114540439322692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5964c6cc0c5fed40800000000000000
+      internalID: 5615808470298421595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6774e188457bbb280800000000000000
+      internalID: -9026419454445205642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9752c82185ba6e7a0800000000000000
+      internalID: -6348198229975489159
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8107219dca0edc350800000000000000
+      internalID: 6038729708354564120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51de3dbeb1f994f80800000000000000
+      internalID: -8121785510716510955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78cc64106cc632d10800000000000000
+      internalID: 2099641448965524615
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5f6f550e74cbe900800000000000000
+      internalID: 714881011403419483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f1dc9a6c14aa8440800000000000000
+      internalID: 4938940383319871993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1ea10de30cd4990800000000000000
+      internalID: -7400047236687928911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 169c5ac9434c7b990800000000000000
+      internalID: -7370206534923073183
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b2da6250045194d0800000000000000
+      internalID: -3129627905686318410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365cc3e2c78a83750800000000000000
+      internalID: 6284958531300672867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c60253d2af8725e0800000000000000
+      internalID: -1934419585439496509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad6e74c6b9ed35630800000000000000
+      internalID: 3914717260233041626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29bece6936ec1f050800000000000000
+      internalID: 5832669919550696338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8d0f865269fb0ab0800000000000000
+      internalID: -5040661157156811378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e110ea7e4910eec0800000000000000
+      internalID: -3539801482253561372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10cb30629a3036490800000000000000
+      internalID: -7754350108379726847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa45a3132c560dbf0800000000000000
+      internalID: -301629290309856086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68c1a0967319812e0800000000000000
+      internalID: -2154812754525283194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b4e5e186159febe0800000000000000
+      internalID: -1445773031461493581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83b01f09165a37590800000000000000
+      internalID: -7677611101274436808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2eccb180831e9aa0800000000000000
+      internalID: -6152458598288142802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8764fe64fb6094490800000000000000
+      internalID: -7761665064197732744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82d922c207af661b0800000000000000
+      internalID: -5663564121688072920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8760c7e605089ea00800000000000000
+      internalID: 786300692892223096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f8149393ab45f6a0800000000000000
+      internalID: -6416138928191694607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bb6c97922c884450800000000000000
+      internalID: 6073258177709501366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cefb8a1f6ad4127c0800000000000000
+      internalID: -4097908806516162580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15ec78cbbfcc80d20800000000000000
+      internalID: 3245068913092316753
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d1f60f7dccae4110800000000000000
+      internalID: 1247124145427640785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55b0582dc5600a570800000000000000
+      internalID: 8475781494449965909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecfd9a2b04eb99e80800000000000000
+      internalID: -8171290863802392626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2158160a842042d00800000000000000
+      internalID: 946884332606293266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1477f683fd5226520800000000000000
+      internalID: 2693757167775741761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a66e40f6e93acd90800000000000000
+      internalID: -7076780200422381914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98dc85c07fbc64fe0800000000000000
+      internalID: -1205051588350521975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 843eba86e3170dc20800000000000000
+      internalID: 3229205445682651976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8f5ecd06d80fbd50800000000000000
+      internalID: 6755127681526685580
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 256
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dffef08967e12b10800000000000000
+      internalID: 1955098153577283536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b3e673a2a95c48a0800000000000000
+      internalID: -6319577622045596750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 388b1679999a65900800000000000000
+      internalID: 672911671473322115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13f03fcab480c6120800000000000000
+      internalID: 2408309021853552433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5e4e1d1b6ed96750800000000000000
+      internalID: 6298810105485741658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e07bb0612911b15f0800000000000000
+      internalID: -785014390913255666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8de16b21b9f8060800000000000000
+      internalID: 6957950453977897205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7e0cdb423c990f00800000000000000
+      internalID: 1083568925194325630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39082682252072890800000000000000
+      internalID: -7483009703964671853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec4bf68a037dd1630800000000000000
+      internalID: 3899509456357012686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0391d0c10e94a7d60800000000000000
+      internalID: 7888698924184967472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d06c65bfc62c6b3c0800000000000000
+      internalID: -4344071017223240179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91eba13f92aa1e9d0800000000000000
+      internalID: -2746727200570294759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c333e3b7fe7318d0800000000000000
+      internalID: -2876816134619581500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a2061d1091a582f0800000000000000
+      internalID: -971192504293129565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba1b540b5be306460800000000000000
+      internalID: 7232849951624376747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c4a8723d3347390800000000000000
+      internalID: -7821569670841218018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70c3d8141e0e91a30800000000000000
+      internalID: 4186624586689625095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e69a32e6392431470800000000000000
+      internalID: 8364102133932599662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741a5fc09b65f34c0800000000000000
+      internalID: -4305627365956542137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ecc22d8a1b00cdd0800000000000000
+      internalID: -2467960387134108446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fabaaf30ce3fd5360800000000000000
+      internalID: 7160147177593547695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fdd5cdf6943525c0800000000000000
+      internalID: -4240925650992112144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af6f38c6fd0a8e220800000000000000
+      internalID: 2515437273345160954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c323661c0f3abac0800000000000000
+      internalID: -3838686411232173116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2de4cc03c06ce80800000000000000
+      internalID: -8158820271209393446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 059c65fbbb845f080800000000000000
+      internalID: -9154330696354444976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81eba233ebe830180800000000000000
+      internalID: -9150313070333346280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e4becd65d00c2260800000000000000
+      internalID: 7074030031362503909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6aa989f9da1eb3890800000000000000
+      internalID: -7477134620495406426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2041723847ebd5de0800000000000000
+      internalID: -1342707706260679678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bef11bd2464e55b70800000000000000
+      internalID: 8887260558599987179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66e9f0899be66f770800000000000000
+      internalID: 8644218278183411302
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f939991fd54e23ce0800000000000000
+      internalID: -1426827039786560609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b82b46f9b65bfde70800000000000000
+      internalID: 9142225242425701003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36cae6b7338d6a150800000000000000
+      internalID: 5883627678831914083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c020d24b5a673970800000000000000
+      internalID: 8734566942503870659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12a59f9e683024560800000000000000
+      internalID: 7296398224279558689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd6e8284917115b50800000000000000
+      internalID: 6580065927917266651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e70b49a165b97140800000000000000
+      internalID: 4718001515704027111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74ea2d16313f3ef40800000000000000
+      internalID: 5756712013280751175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b62b5d48d81593010800000000000000
+      internalID: 1169055246540190315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 128
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a7321e73a0cc9f0800000000000000
+      internalID: -446971027899843938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 017bbe333e5fe50c0800000000000000
+      internalID: -4584957014439119088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38f8338e275cb67d0800000000000000
+      internalID: -2924026435734368381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17444216eb63a43c0800000000000000
+      internalID: -4374623896735562639
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6731eb0f34f0864b0800000000000000
+      internalID: -5447086964828400778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c914debe639721440800000000000000
+      internalID: 4905116220953280924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 975c55c85adec9d60800000000000000
+      internalID: 7898449141780825465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d85fa366f537ce9b0800000000000000
+      internalID: -5049534228614941299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad25ea0cf73cb1af0800000000000000
+      internalID: -424530786395467046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34bbbe87a14f0ab40800000000000000
+      internalID: 5449623943653342019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96e001dbdf1c1f580800000000000000
+      internalID: -8795035301735035287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa25d9092f64a1f0800000000000000
+      internalID: -1034579792339064151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c27db1f9e48fa070800000000000000
+      internalID: 8119854793490264770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c323f5d25baf4c10800000000000000
+      internalID: 2040037528487273415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5eb1fbdc265fd10800000000000000
+      internalID: 2158740232208115198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a870c976f020ccc40800000000000000
+      internalID: 5533800307317540746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fd42eb0721853cb0800000000000000
+      internalID: -4884856216110346760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c82189cb80017420800000000000000
+      internalID: 2625880658114848960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 416971391688fd480800000000000000
+      internalID: -8872222788235586028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d3299bf2c7a11eb0800000000000000
+      internalID: -4750831676012551209
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06c62d0fa849646c0800000000000000
+      internalID: -4159473881363354528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 64
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c28666e583f266640800000000000000
+      internalID: 5072793949427886124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37001f6599e9661d0800000000000000
+      internalID: -3357822090732306317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9545d3c8f6d744370800000000000000
+      internalID: 8305901530825708633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d80397a9f9d22c60800000000000000
+      internalID: 7792029971585894612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09b5ab7794a483bc0800000000000000
+      internalID: -3803208205912614000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb6e70b1b06ee70e0800000000000000
+      internalID: -2270124226775619908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1716f157888fe5040800000000000000
+      internalID: 4638417931202421105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a771f6ffd0b15ee60800000000000000
+      internalID: 7990822860772808570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4ddd221bd9de7f0800000000000000
+      internalID: -581635392741190462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7462f6742f1c7bd0800000000000000
+      internalID: -2631193840816331654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a33c6e95733a7d910800000000000000
+      internalID: 1862136429067813690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20ea0408e3086e5d0800000000000000
+      internalID: -3033596293059400190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb39230c45c7e7280800000000000000
+      internalID: -9043654298269740098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a5cc6c1b8659da30800000000000000
+      internalID: 4240515679623366051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1142a4ea77f329fe0800000000000000
+      internalID: -1183813968787266543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 672
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2570b1c92487ae5c0800000000000000
+      internalID: -4185400676205263022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa52c5ab57c64700800000000000000
+      internalID: 524325603072170743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 365666ac27ba600b0800000000000000
+      internalID: -5762730163663641245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 816
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c66a7a588750edac0800000000000000
+      internalID: -3828616618021771668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0609142f39c235400800000000000000
+      internalID: 311641813154893920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 912
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e4b2351383fff0f0800000000000000
+      internalID: -1080877641223719707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: brute_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 48
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e623112247d969d80800000000000000
+      internalID: -8244228945741794706
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      brute_sheet_0: 6305624645585283877
+      brute_sheet_0_0: 4889363453744684302
+      brute_sheet_0_1: 7583403090199793980
+      brute_sheet_0_10: -7519141061279751983
+      brute_sheet_0_11: -152010532841205595
+      brute_sheet_0_12: -1385915111256096986
+      brute_sheet_0_13: -6539221686204188472
+      brute_sheet_0_14: -4965987471854140269
+      brute_sheet_0_15: 33788714177204641
+      brute_sheet_0_16: 4101701003405643630
+      brute_sheet_0_17: -6373755320938469878
+      brute_sheet_0_18: 5825325552025899603
+      brute_sheet_0_19: 938533195968716161
+      brute_sheet_0_2: 2599844351037592330
+      brute_sheet_0_20: -3003318515323715027
+      brute_sheet_0_3: 5831752911757032445
+      brute_sheet_0_4: 4311966827617899207
+      brute_sheet_0_5: 7220064490973978960
+      brute_sheet_0_6: -5400537707110118098
+      brute_sheet_0_7: 851654538645385180
+      brute_sheet_0_8: 1436277189965991397
+      brute_sheet_0_9: 4932859112985548299
+      brute_sheet_1: -2894851156349293720
+      brute_sheet_10: -2578249806755212519
+      brute_sheet_100: 8081791071184627569
+      brute_sheet_101: -1353704084696667608
+      brute_sheet_102: 6251734283194791371
+      brute_sheet_103: 576587914530925083
+      brute_sheet_104: 2668705262242099461
+      brute_sheet_105: 3809327263852809101
+      brute_sheet_106: -3005695416901024314
+      brute_sheet_107: -2704427636430360381
+      brute_sheet_108: 5264996962294054887
+      brute_sheet_109: -3039541880376971389
+      brute_sheet_11: 3474186254901912724
+      brute_sheet_110: -554994491253024163
+      brute_sheet_111: -1476075261655513516
+      brute_sheet_112: -6969794143691390995
+      brute_sheet_113: 4378844037892661475
+      brute_sheet_114: 9122018590862120607
+      brute_sheet_115: 8050914521836880530
+      brute_sheet_116: 2514537181517417089
+      brute_sheet_117: 6290388361363067837
+      brute_sheet_118: -101461965783302262
+      brute_sheet_119: -6782232433102863947
+      brute_sheet_12: 3407721073245258426
+      brute_sheet_120: 7674084039184849346
+      brute_sheet_121: 4202481890865612083
+      brute_sheet_122: -5463095761271497494
+      brute_sheet_123: 520090408533933352
+      brute_sheet_124: 8498245695755266659
+      brute_sheet_125: -6297637078133215729
+      brute_sheet_126: -2532820911305298021
+      brute_sheet_127: 1711750511747074725
+      brute_sheet_128: 638975580430936486
+      brute_sheet_129: -5490958890978944170
+      brute_sheet_13: 2083524138227384782
+      brute_sheet_130: 7722589751018576061
+      brute_sheet_131: 7344024792485905475
+      brute_sheet_132: 8239043896347420239
+      brute_sheet_133: -1318205530043085212
+      brute_sheet_134: 5794272385039728841
+      brute_sheet_135: -5236700538572295631
+      brute_sheet_136: -7926854542734946275
+      brute_sheet_137: -1815143055469811955
+      brute_sheet_138: -6408714084457229891
+      brute_sheet_139: 2780287896853608114
+      brute_sheet_14: 1670944379264939531
+      brute_sheet_140: -2715824044421123153
+      brute_sheet_141: -6888563069969813208
+      brute_sheet_142: 6463393106708910821
+      brute_sheet_143: -497204343109549128
+      brute_sheet_144: -3034018086846885057
+      brute_sheet_145: -8557882311190343566
+      brute_sheet_146: -5109339653233146929
+      brute_sheet_147: -7823901223929077024
+      brute_sheet_148: -7747903513135796603
+      brute_sheet_149: -3524296693766259206
+      brute_sheet_15: -3503786263993290077
+      brute_sheet_150: 2992239939390224132
+      brute_sheet_151: 7729144149138722538
+      brute_sheet_152: 1687203584599315500
+      brute_sheet_153: 4559242964786428671
+      brute_sheet_154: -6889972704076792043
+      brute_sheet_155: 5244924134217094620
+      brute_sheet_156: 7644486046343494698
+      brute_sheet_157: 7018011583298998846
+      brute_sheet_158: -4292171264564489296
+      brute_sheet_159: 8646286299010796239
+      brute_sheet_16: -6172275701150143776
+      brute_sheet_160: 260935225670741839
+      brute_sheet_161: 698759375879131167
+      brute_sheet_162: 7251859188068727316
+      brute_sheet_163: 4221247502056833531
+      brute_sheet_164: -5085646213272974328
+      brute_sheet_165: 3972547554801586138
+      brute_sheet_166: -1494605600195420140
+      brute_sheet_167: 6363768669450527104
+      brute_sheet_168: 3222945154278857404
+      brute_sheet_169: 7745039666024128337
+      brute_sheet_17: 1073546577758302316
+      brute_sheet_170: 7201650534601658853
+      brute_sheet_171: -1093974891602231809
+      brute_sheet_172: 7309917571430160670
+      brute_sheet_173: -211012121454535316
+      brute_sheet_174: 4339776023295641699
+      brute_sheet_175: -8886212900655097045
+      brute_sheet_176: 6703058075855855611
+      brute_sheet_177: -623450112808512609
+      brute_sheet_178: -3665386649758020616
+      brute_sheet_179: 5099609070519290480
+      brute_sheet_18: -4089637834244433706
+      brute_sheet_180: 3480542788664181976
+      brute_sheet_181: 495034621394083266
+      brute_sheet_182: -8930970737262693264
+      brute_sheet_183: -1017834136223956104
+      brute_sheet_184: -7600052123109071522
+      brute_sheet_185: 6376883809936615071
+      brute_sheet_186: -8903940496284248958
+      brute_sheet_187: -5370979490493461959
+      brute_sheet_188: 3256611322662615153
+      brute_sheet_189: -2044699097832336153
+      brute_sheet_19: -820412550641854181
+      brute_sheet_190: -8152604211891359658
+      brute_sheet_191: 3807919045577540111
+      brute_sheet_192: 3590575157811949868
+      brute_sheet_193: 2732596052919754504
+      brute_sheet_194: 5441400061464558407
+      brute_sheet_195: 7738955403231628222
+      brute_sheet_196: 8137136138204724872
+      brute_sheet_197: -5643422359222457703
+      brute_sheet_198: -7154137764481801695
+      brute_sheet_199: -3408245697020869573
+      brute_sheet_1_0: 6084793192311725985
+      brute_sheet_1_1: -7863130284720612471
+      brute_sheet_1_10: -691412823621396790
+      brute_sheet_1_11: -4842795875145554523
+      brute_sheet_1_12: 2766256435638749471
+      brute_sheet_1_13: -6535095854455584440
+      brute_sheet_1_14: -5776762674785146626
+      brute_sheet_1_15: -704639389135504603
+      brute_sheet_1_16: -8072254013434344585
+      brute_sheet_1_17: 2647109449298842955
+      brute_sheet_1_18: -7883440318255667178
+      brute_sheet_1_19: -4466436188238342374
+      brute_sheet_1_2: -281078788982503770
+      brute_sheet_1_20: 5772207288460318622
+      brute_sheet_1_3: 8701845795264282148
+      brute_sheet_1_4: 4971783024517385791
+      brute_sheet_1_5: -7322713696350400809
+      brute_sheet_1_6: -6357940584376120017
+      brute_sheet_1_7: -3469156628769462052
+      brute_sheet_1_8: -5754334536601118762
+      brute_sheet_1_9: 2883023391987149998
+      brute_sheet_2: -4706210065088657764
+      brute_sheet_20: -8647319557640364722
+      brute_sheet_200: -2544672789463425461
+      brute_sheet_201: 6840434664746032361
+      brute_sheet_202: 2181581810258911749
+      brute_sheet_203: 2408560293663503919
+      brute_sheet_204: 7281355109488290916
+      brute_sheet_205: -5719318802655114731
+      brute_sheet_206: 8525344648330293044
+      brute_sheet_207: -3988027593784830909
+      brute_sheet_208: 4535115685986433477
+      brute_sheet_209: 5895350990315870323
+      brute_sheet_21: -3677965005756288160
+      brute_sheet_210: -1636637709287990907
+      brute_sheet_211: 8223351164777239874
+      brute_sheet_212: -5013962508618151764
+      brute_sheet_213: 4621447349362284691
+      brute_sheet_214: -5774964618033923078
+      brute_sheet_215: -1194066243271909341
+      brute_sheet_216: 2500501016670200832
+      brute_sheet_217: 398008367046913964
+      brute_sheet_218: 2521066144178955060
+      brute_sheet_219: -6505808643408941507
+      brute_sheet_22: 2560279691683303225
+      brute_sheet_220: -56791111423050470
+      brute_sheet_221: -8531159070270437999
+      brute_sheet_222: 689556112897820535
+      brute_sheet_223: -497936847398423776
+      brute_sheet_224: 1443069097587061678
+      brute_sheet_225: 3266266548803747074
+      brute_sheet_226: -2320138919049417986
+      brute_sheet_227: 8069040241365323528
+      brute_sheet_228: -8378579650434414032
+      brute_sheet_229: 7611518190011502850
+      brute_sheet_23: -936778605010785667
+      brute_sheet_230: 1034446464301027874
+      brute_sheet_231: 6253706290431056279
+      brute_sheet_232: 2213914884942579853
+      brute_sheet_233: -3100748992644968915
+      brute_sheet_234: 4253119828415358352
+      brute_sheet_235: 73562186616639991
+      brute_sheet_236: -2568632064179518762
+      brute_sheet_237: -762326861784909204
+      brute_sheet_238: 4663333037076764230
+      brute_sheet_239: 1355718440067938975
+      brute_sheet_24: -5777765764163444649
+      brute_sheet_240: 924131223004334152
+      brute_sheet_241: -1629187408647925616
+      brute_sheet_242: 3393116072008245799
+      brute_sheet_243: -4686775568732564344
+      brute_sheet_244: -3196549789106569512
+      brute_sheet_245: -7443712735193336259
+      brute_sheet_246: 8031660968625614029
+      brute_sheet_247: 3074652551299524175
+      brute_sheet_248: 7638971582052773859
+      brute_sheet_249: 7931588939843414076
+      brute_sheet_25: 2728874137573006968
+      brute_sheet_250: -4440045701298511528
+      brute_sheet_251: -4157426156440244978
+      brute_sheet_252: -5759887893759996474
+      brute_sheet_253: 9169239948699978720
+      brute_sheet_254: 4481905519006756927
+      brute_sheet_255: 3853043927518982585
+      brute_sheet_256: 2514085338871454669
+      brute_sheet_257: 2342332890288437658
+      brute_sheet_258: 5433384516737232555
+      brute_sheet_259: 3183180099712055494
+      brute_sheet_26: -350038416435904177
+      brute_sheet_260: -8700258759318914878
+      brute_sheet_261: 882626594915403427
+      brute_sheet_262: -3815475416845410123
+      brute_sheet_263: 3976373699345065436
+      brute_sheet_264: -4461081882660604114
+      brute_sheet_265: -2435327759920672583
+      brute_sheet_266: -2855188039377538385
+      brute_sheet_267: 1420066426023829113
+      brute_sheet_268: -2730432449798211274
+      brute_sheet_269: -7653568705703990706
+      brute_sheet_27: -1134874470020574513
+      brute_sheet_270: -9065348334043967061
+      brute_sheet_271: 2614702064876763929
+      brute_sheet_272: -367915083905360973
+      brute_sheet_273: 5917373526929779062
+      brute_sheet_274: 2443456450261475201
+      brute_sheet_275: -2667424104981715882
+      brute_sheet_276: -4811372597158347088
+      brute_sheet_277: -2773441729119542657
+      brute_sheet_278: -6590003706674794218
+      brute_sheet_279: 1978343355857335389
+      brute_sheet_28: -7413270414244809765
+      brute_sheet_280: -4404769637262001981
+      brute_sheet_281: 211683704563556686
+      brute_sheet_282: -1742930156353680913
+      brute_sheet_283: -1677148956659950206
+      brute_sheet_284: 1125581074500726027
+      brute_sheet_285: -1472601062520390899
+      brute_sheet_286: 1248610439576190340
+      brute_sheet_287: -470894120342349699
+      brute_sheet_288: 4770071717994285974
+      brute_sheet_289: 6899595003605066871
+      brute_sheet_29: -9109099601856208817
+      brute_sheet_290: -8631073293070362669
+      brute_sheet_291: -1951220442632836558
+      brute_sheet_292: 8427214944869420563
+      brute_sheet_293: 4838565442006853591
+      brute_sheet_294: -4285908072784936440
+      brute_sheet_295: -5161175971116139439
+      brute_sheet_296: -6078421718312515902
+      brute_sheet_297: 6586541362004138399
+      brute_sheet_298: -3749887450363735355
+      brute_sheet_299: -1614337440445825763
+      brute_sheet_2_0: -8184637449033769693
+      brute_sheet_2_1: -7768114540439322692
+      brute_sheet_2_10: -7400047236687928911
+      brute_sheet_2_11: -7370206534923073183
+      brute_sheet_2_12: -3129627905686318410
+      brute_sheet_2_13: 6284958531300672867
+      brute_sheet_2_14: -1934419585439496509
+      brute_sheet_2_15: 3914717260233041626
+      brute_sheet_2_16: 5832669919550696338
+      brute_sheet_2_17: -5040661157156811378
+      brute_sheet_2_18: -3539801482253561372
+      brute_sheet_2_19: -7754350108379726847
+      brute_sheet_2_2: 5615808470298421595
+      brute_sheet_2_20: -301629290309856086
+      brute_sheet_2_3: -9026419454445205642
+      brute_sheet_2_4: -6348198229975489159
+      brute_sheet_2_5: 6038729708354564120
+      brute_sheet_2_6: -8121785510716510955
+      brute_sheet_2_7: 2099641448965524615
+      brute_sheet_2_8: 714881011403419483
+      brute_sheet_2_9: 4938940383319871993
+      brute_sheet_3: -993665866561127085
+      brute_sheet_30: 1894416873960494267
+      brute_sheet_300: -1266118700762383090
+      brute_sheet_301: 7840048561416566242
+      brute_sheet_302: 7492847970916658880
+      brute_sheet_303: -6492399786886702689
+      brute_sheet_304: -2605240354842721693
+      brute_sheet_305: -8618613270614447797
+      brute_sheet_306: 1188986795170421373
+      brute_sheet_307: 609408163130020557
+      brute_sheet_308: 7076903412446164613
+      brute_sheet_309: -5549845796657222343
+      brute_sheet_31: -526877636337279173
+      brute_sheet_310: 1204803945986866109
+      brute_sheet_311: 9024351393697549635
+      brute_sheet_312: 2050293147978912971
+      brute_sheet_313: -2221337877269435253
+      brute_sheet_314: -9016954554703489457
+      brute_sheet_315: 825862138925288273
+      brute_sheet_316: -4154603022333549231
+      brute_sheet_317: -2427018892611804609
+      brute_sheet_318: -611934834660830146
+      brute_sheet_319: -4216415578613488862
+      brute_sheet_32: 7988674664609133561
+      brute_sheet_320: -7099894709569625092
+      brute_sheet_321: 2278304379534394299
+      brute_sheet_322: 2307316117509369846
+      brute_sheet_323: 7986299469752011078
+      brute_sheet_324: -5703417657115493547
+      brute_sheet_325: -8720350801951334593
+      brute_sheet_326: -2453011835650003657
+      brute_sheet_327: 2048084363572469571
+      brute_sheet_328: -7319522120454511131
+      brute_sheet_329: 8942831916802497402
+      brute_sheet_33: -6729170269890662839
+      brute_sheet_330: -4361941474414234295
+      brute_sheet_331: -6653099194250189911
+      brute_sheet_332: 7262368461114164247
+      brute_sheet_333: -2226723841924566899
+      brute_sheet_334: -8169259029338055462
+      brute_sheet_335: 2891583603021114961
+      brute_sheet_336: -36902210239891353
+      brute_sheet_337: -50811401074014943
+      brute_sheet_338: -7035399730430565076
+      brute_sheet_339: -1453712605038171096
+      brute_sheet_34: -2668612560753935198
+      brute_sheet_340: -4356642604487218882
+      brute_sheet_341: -8541273819254811685
+      brute_sheet_342: 4071793223543299110
+      brute_sheet_343: -4724756129983236648
+      brute_sheet_344: 6661959572500998314
+      brute_sheet_345: -9202343702625294297
+      brute_sheet_346: 3700465653230080890
+      brute_sheet_347: -6575507229493767089
+      brute_sheet_348: 821375877202486973
+      brute_sheet_349: -6479122474923151074
+      brute_sheet_35: -7128508272124337189
+      brute_sheet_350: 4268147940435093422
+      brute_sheet_351: 2193826606379254488
+      brute_sheet_352: -5287612075018327932
+      brute_sheet_353: 5228023523075424638
+      brute_sheet_354: -3087563397158190531
+      brute_sheet_355: -6789117256626793133
+      brute_sheet_356: -202696738009820525
+      brute_sheet_357: -6102518155883553437
+      brute_sheet_358: 6856573033940987867
+      brute_sheet_359: -5107281091554595671
+      brute_sheet_36: 5656486591649908056
+      brute_sheet_360: -1169773230696185920
+      brute_sheet_361: 7683070219532265396
+      brute_sheet_362: -6537691904462068767
+      brute_sheet_363: -8995329354387875594
+      brute_sheet_364: 8424234926097541410
+      brute_sheet_365: 976101113526667664
+      brute_sheet_366: -1941981100800519210
+      brute_sheet_367: 657595761544788339
+      brute_sheet_368: -2703683702563120855
+      brute_sheet_369: -888707588551605411
+      brute_sheet_37: 4083481309238911882
+      brute_sheet_370: -6427955368008096346
+      brute_sheet_371: 2193633282849356867
+      brute_sheet_372: 3468389999905459779
+      brute_sheet_373: -6938455208864439584
+      brute_sheet_374: -4764665096218790038
+      brute_sheet_375: 7861332619943168231
+      brute_sheet_376: -8027103145345864050
+      brute_sheet_377: -7139952295977845785
+      brute_sheet_38: 8418792551537808694
+      brute_sheet_39: 5105925758354262017
+      brute_sheet_3_0: -2154812754525283194
+      brute_sheet_3_1: -1445773031461493581
+      brute_sheet_3_10: 3245068913092316753
+      brute_sheet_3_11: 1247124145427640785
+      brute_sheet_3_12: 8475781494449965909
+      brute_sheet_3_13: -8171290863802392626
+      brute_sheet_3_14: 946884332606293266
+      brute_sheet_3_15: 2693757167775741761
+      brute_sheet_3_16: -7076780200422381914
+      brute_sheet_3_17: -1205051588350521975
+      brute_sheet_3_18: 3229205445682651976
+      brute_sheet_3_19: 6755127681526685580
+      brute_sheet_3_2: -7677611101274436808
+      brute_sheet_3_20: 1955098153577283536
+      brute_sheet_3_3: -6152458598288142802
+      brute_sheet_3_4: -7761665064197732744
+      brute_sheet_3_5: -5663564121688072920
+      brute_sheet_3_6: 786300692892223096
+      brute_sheet_3_7: -6416138928191694607
+      brute_sheet_3_8: 6073258177709501366
+      brute_sheet_3_9: -4097908806516162580
+      brute_sheet_4: -1711319946551378026
+      brute_sheet_40: -442333992570770045
+      brute_sheet_41: -9012856443794240617
+      brute_sheet_42: -4985538092121840833
+      brute_sheet_43: 5052696122743912619
+      brute_sheet_44: -7264951606837517347
+      brute_sheet_45: -7403129219363174329
+      brute_sheet_46: -8613560439787171064
+      brute_sheet_47: 3951923924537200339
+      brute_sheet_48: 5849381401272456616
+      brute_sheet_49: -5054249342700828955
+      brute_sheet_4_0: -6319577622045596750
+      brute_sheet_4_1: 672911671473322115
+      brute_sheet_4_10: -4344071017223240179
+      brute_sheet_4_11: -2746727200570294759
+      brute_sheet_4_12: -2876816134619581500
+      brute_sheet_4_13: -971192504293129565
+      brute_sheet_4_14: 7232849951624376747
+      brute_sheet_4_15: -7821569670841218018
+      brute_sheet_4_16: 4186624586689625095
+      brute_sheet_4_17: 8364102133932599662
+      brute_sheet_4_18: -4305627365956542137
+      brute_sheet_4_19: -2467960387134108446
+      brute_sheet_4_2: 2408309021853552433
+      brute_sheet_4_20: 7160147177593547695
+      brute_sheet_4_3: 6298810105485741658
+      brute_sheet_4_4: -785014390913255666
+      brute_sheet_4_5: 6957950453977897205
+      brute_sheet_4_6: 1083568925194325630
+      brute_sheet_4_7: -7483009703964671853
+      brute_sheet_4_8: 3899509456357012686
+      brute_sheet_4_9: 7888698924184967472
+      brute_sheet_5: 9012693904631855576
+      brute_sheet_50: -5690349404087428178
+      brute_sheet_51: 1197081505534956430
+      brute_sheet_52: 5420642071760207344
+      brute_sheet_53: -5233235643700622528
+      brute_sheet_54: 4186840980438648408
+      brute_sheet_55: -7227741785577718502
+      brute_sheet_56: 6558596368309795509
+      brute_sheet_57: 6910348278943196851
+      brute_sheet_58: 2211056762210384568
+      brute_sheet_59: -1807360859284515765
+      brute_sheet_5_0: -4240925650992112144
+      brute_sheet_5_1: 2515437273345160954
+      brute_sheet_5_10: 8644218278183411302
+      brute_sheet_5_11: -1426827039786560609
+      brute_sheet_5_12: 9142225242425701003
+      brute_sheet_5_13: 5883627678831914083
+      brute_sheet_5_14: 8734566942503870659
+      brute_sheet_5_15: 7296398224279558689
+      brute_sheet_5_16: 6580065927917266651
+      brute_sheet_5_17: 4718001515704027111
+      brute_sheet_5_18: 5756712013280751175
+      brute_sheet_5_19: 1169055246540190315
+      brute_sheet_5_2: -3838686411232173116
+      brute_sheet_5_20: -446971027899843938
+      brute_sheet_5_3: -8158820271209393446
+      brute_sheet_5_4: -9154330696354444976
+      brute_sheet_5_5: -9150313070333346280
+      brute_sheet_5_6: 7074030031362503909
+      brute_sheet_5_7: -7477134620495406426
+      brute_sheet_5_8: -1342707706260679678
+      brute_sheet_5_9: 8887260558599987179
+      brute_sheet_6: -3449670255774767781
+      brute_sheet_60: 3263167659873912631
+      brute_sheet_61: -4312675799337152359
+      brute_sheet_62: 6257511728545058794
+      brute_sheet_63: 703063949046620542
+      brute_sheet_64: -2421819490806072938
+      brute_sheet_65: -8056923587414849526
+      brute_sheet_66: -5620556888650421877
+      brute_sheet_67: 380449700220069466
+      brute_sheet_68: 369355474046401429
+      brute_sheet_69: 5894016279901613950
+      brute_sheet_6_0: -4584957014439119088
+      brute_sheet_6_1: -2924026435734368381
+      brute_sheet_6_10: -1034579792339064151
+      brute_sheet_6_11: 8119854793490264770
+      brute_sheet_6_12: 2040037528487273415
+      brute_sheet_6_13: 2158740232208115198
+      brute_sheet_6_14: 5533800307317540746
+      brute_sheet_6_15: -4884856216110346760
+      brute_sheet_6_16: 2625880658114848960
+      brute_sheet_6_17: -8872222788235586028
+      brute_sheet_6_18: -4750831676012551209
+      brute_sheet_6_19: -4159473881363354528
+      brute_sheet_6_2: -4374623896735562639
+      brute_sheet_6_20: 5072793949427886124
+      brute_sheet_6_3: -5447086964828400778
+      brute_sheet_6_4: 4905116220953280924
+      brute_sheet_6_5: 7898449141780825465
+      brute_sheet_6_6: -5049534228614941299
+      brute_sheet_6_7: -424530786395467046
+      brute_sheet_6_8: 5449623943653342019
+      brute_sheet_6_9: -8795035301735035287
+      brute_sheet_7: 5613997435969253728
+      brute_sheet_70: -5037827518015862
+      brute_sheet_71: -2552415639110941186
+      brute_sheet_72: -2744199441297494046
+      brute_sheet_73: -1510611437702662542
+      brute_sheet_74: 4759861427924722123
+      brute_sheet_75: 5751049220529602122
+      brute_sheet_76: 4067999100179774053
+      brute_sheet_77: -8194485891888738240
+      brute_sheet_78: 4080794671921862138
+      brute_sheet_79: -6443945019980500655
+      brute_sheet_7_0: -3357822090732306317
+      brute_sheet_7_1: 8305901530825708633
+      brute_sheet_7_10: -3033596293059400190
+      brute_sheet_7_11: -9043654298269740098
+      brute_sheet_7_12: 4240515679623366051
+      brute_sheet_7_13: -1183813968787266543
+      brute_sheet_7_14: -4185400676205263022
+      brute_sheet_7_15: 524325603072170743
+      brute_sheet_7_16: -5762730163663641245
+      brute_sheet_7_17: -3828616618021771668
+      brute_sheet_7_18: 311641813154893920
+      brute_sheet_7_19: -1080877641223719707
+      brute_sheet_7_2: 7792029971585894612
+      brute_sheet_7_20: -8244228945741794706
+      brute_sheet_7_3: -3803208205912614000
+      brute_sheet_7_4: -2270124226775619908
+      brute_sheet_7_5: 4638417931202421105
+      brute_sheet_7_6: 7990822860772808570
+      brute_sheet_7_7: -581635392741190462
+      brute_sheet_7_8: -2631193840816331654
+      brute_sheet_7_9: 1862136429067813690
+      brute_sheet_8: 3352700464676846683
+      brute_sheet_80: -7171334672847540293
+      brute_sheet_81: 5155787686916113267
+      brute_sheet_82: -2206587468998491905
+      brute_sheet_83: 8035801061579486277
+      brute_sheet_84: -3220399107219080350
+      brute_sheet_85: -4050648594749389585
+      brute_sheet_86: 3953837150015254068
+      brute_sheet_87: -808637883112785236
+      brute_sheet_88: -920518058030419955
+      brute_sheet_89: 7316250642850590642
+      brute_sheet_9: 3690738975685541024
+      brute_sheet_90: 797740185422013477
+      brute_sheet_91: -6170195130667522770
+      brute_sheet_92: -5708880927726050156
+      brute_sheet_93: -2671634751039871566
+      brute_sheet_94: 3917915603764741904
+      brute_sheet_95: -6359082323943518678
+      brute_sheet_96: 42660208097158658
+      brute_sheet_97: -2121002698991104529
+      brute_sheet_98: 6816823363104504623
+      brute_sheet_99: -1381481722909347162
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

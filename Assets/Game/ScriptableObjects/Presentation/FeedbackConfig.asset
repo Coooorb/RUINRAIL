@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d71bc0d1927796547bcaa0527e8297d3, type: 3}
+  m_Name: FeedbackConfig
+  m_EditorClassIdentifier: Game.Presentation::RuinRail.Presentation.Vfx.FeedbackConfig
+  _smallGunShakePixels: 0.5
+  _smallGunShakeSeconds: 0.05
+  _shotgunShakePixels: 2
+  _shotgunShakeSeconds: 0.12
+  _explosionShakePixels: 3
+  _explosionShakeSeconds: 0.2
+  _bossSlamShakePixels: 4
+  _bossSlamShakeSeconds: 0.25
+  _hitFlashSeconds: 0.06
+  _hitFlashColor: {r: 1, g: 1, b: 1, a: 1}
+  _staggerFlashColor: {r: 1, g: 0.85, b: 0.4, a: 1}
+  _muzzleFlashSeconds: 0.05
+  _impactSeconds: 0.12
+  _explosionSeconds: 0.35
+  _meleeArcSeconds: 0.15
+  _staggerSeconds: 0.25
+  _healSeconds: 0.5
+  _statusSeconds: 0.4
+  _damageNumberSeconds: 0.7
+  _damageNumberRisePixels: 12
+  _damageNumberCapacity: 48
+  _enemyTelegraphColor: {r: 1, g: 0.45, b: 0.1, a: 0.55}
+  _eliteBossTelegraphColor: {r: 1, g: 0.1, b: 0.1, a: 0.7}
+  _legendaryGlowScale: 2.5
+  _rareGlowScale: 1.4

@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc222852e4d4331bdbff0c2ae01737d, type: 3}
+  m_Name: Summoner
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.EnemyDefinition
+  _id: summoner
+  _displayName: Summoner
+  _baseHealth: 65
+  _damageMin: 4
+  _damageMax: 6
+  _moveSpeed: 2
+  _baseXp: 45
+  _attackRange: 8
+  _attackTelegraphSeconds: 0.5
+  _attackCooldownSeconds: 1.8
+  _staggerResistancePercent: 20
+  _knockbackResistancePercent: 20
+  _attackKind: 1
+  _projectileSpeed: 10
+  _projectileRange: 10
+  _burstCount: 1
+  _burstIntervalSeconds: 0
+  _aimLockSeconds: 0
+  _preferredDistance: 5
+  _chargeAttack: {fileID: 0}
+  _bombRadiusTiles: 0
+  _bombStaggerPower: 0
+  _moveset: []
+  _summonDefinition: {fileID: 11400000, guid: fa88f4eb50504d4da28e54df6fdae144, type: 2}
+  _summonIntervalSeconds: 9
+  _summonCountMin: 2
+  _summonCountMax: 3
+  _maxLivingSummons: 6
+  _summonRadiusTiles: 1.5
+  _frontalShieldPercent: 0
+  _frontalShieldArcDegrees: 120
+  _unlockDepth: 14
+  _threatCost: 3
+  _spawnTags:
+  - ranged
+  - summoner
+  - normal

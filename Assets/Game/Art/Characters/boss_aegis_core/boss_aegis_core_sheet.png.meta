@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: f2b11c265887ae04c8a9f6b931162c83
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4946706851034672028
+    second: boss_aegis_core_sheet_0
+  - first:
+      213: 8212708959679883764
+    second: boss_aegis_core_sheet_1
+  - first:
+      213: 7480124608813771566
+    second: boss_aegis_core_sheet_2
+  - first:
+      213: -6745243630931308701
+    second: boss_aegis_core_sheet_3
+  - first:
+      213: -5694415939976266605
+    second: boss_aegis_core_sheet_4
+  - first:
+      213: 210455718421481266
+    second: boss_aegis_core_sheet_5
+  - first:
+      213: -2078655890050045240
+    second: boss_aegis_core_sheet_6
+  - first:
+      213: -4542219886334003875
+    second: boss_aegis_core_sheet_7
+  - first:
+      213: 7854397173179462591
+    second: boss_aegis_core_sheet_8
+  - first:
+      213: -5838112848155171934
+    second: boss_aegis_core_sheet_9
+  - first:
+      213: 276377643901106732
+    second: boss_aegis_core_sheet_10
+  - first:
+      213: -4995998221945307109
+    second: boss_aegis_core_sheet_11
+  - first:
+      213: 6014925156633697827
+    second: boss_aegis_core_sheet_12
+  - first:
+      213: 8185042226366362030
+    second: boss_aegis_core_sheet_13
+  - first:
+      213: -8879378436375553814
+    second: boss_aegis_core_sheet_14
+  - first:
+      213: 1639359071446282952
+    second: boss_aegis_core_sheet_15
+  - first:
+      213: 7003112262946957020
+    second: boss_aegis_core_sheet_16
+  - first:
+      213: 1196346979714043124
+    second: boss_aegis_core_sheet_17
+  - first:
+      213: 3693555211747854164
+    second: boss_aegis_core_sheet_18
+  - first:
+      213: 3691503937375982317
+    second: boss_aegis_core_sheet_19
+  - first:
+      213: -5787240332231624340
+    second: boss_aegis_core_sheet_20
+  - first:
+      213: -6076211103395314937
+    second: boss_aegis_core_sheet_21
+  - first:
+      213: -1379283495973821782
+    second: boss_aegis_core_sheet_22
+  - first:
+      213: -6914230668893456689
+    second: boss_aegis_core_sheet_23
+  - first:
+      213: -558498665901310399
+    second: boss_aegis_core_sheet_24
+  - first:
+      213: -715191754133108311
+    second: boss_aegis_core_sheet_25
+  - first:
+      213: -1311102046338054105
+    second: boss_aegis_core_sheet_26
+  - first:
+      213: -3763807180956852658
+    second: boss_aegis_core_sheet_27
+  - first:
+      213: 6789400711030602814
+    second: boss_aegis_core_sheet_28
+  - first:
+      213: 7552870302791460095
+    second: boss_aegis_core_sheet_29
+  - first:
+      213: 8804212515655204661
+    second: boss_aegis_core_sheet_30
+  - first:
+      213: -2104233490843808937
+    second: boss_aegis_core_sheet_31
+  - first:
+      213: -5347874018878851427
+    second: boss_aegis_core_sheet_32
+  - first:
+      213: -207589158318866494
+    second: boss_aegis_core_sheet_33
+  - first:
+      213: -5730679453566649440
+    second: boss_aegis_core_sheet_34
+  - first:
+      213: -6387558472087641897
+    second: boss_aegis_core_sheet_35
+  - first:
+      213: -3549618570052182956
+    second: boss_aegis_core_sheet_36
+  - first:
+      213: 8384354827951746645
+    second: boss_aegis_core_sheet_37
+  - first:
+      213: -3423149838120727525
+    second: boss_aegis_core_sheet_38
+  - first:
+      213: -390735692978107627
+    second: boss_aegis_core_sheet_39
+  - first:
+      213: -4464459541195343325
+    second: boss_aegis_core_sheet_40
+  - first:
+      213: 1516399104267027959
+    second: boss_aegis_core_sheet_41
+  - first:
+      213: -690987506289286250
+    second: boss_aegis_core_sheet_42
+  - first:
+      213: -2068575994697286988
+    second: boss_aegis_core_sheet_43
+  - first:
+      213: 4082439488093776674
+    second: boss_aegis_core_sheet_44
+  - first:
+      213: -5884022448289356904
+    second: boss_aegis_core_sheet_45
+  - first:
+      213: 6317084931553779859
+    second: boss_aegis_core_sheet_46
+  - first:
+      213: -52427803217004839
+    second: boss_aegis_core_sheet_47
+  - first:
+      213: 298604615962660130
+    second: boss_aegis_core_sheet_48
+  - first:
+      213: -8306695752850815461
+    second: boss_aegis_core_sheet_49
+  - first:
+      213: -3828501300161023881
+    second: boss_aegis_core_sheet_50
+  - first:
+      213: -7407175990760040363
+    second: boss_aegis_core_sheet_51
+  - first:
+      213: -3855720365817064082
+    second: boss_aegis_core_sheet_52
+  - first:
+      213: 833614024296042306
+    second: boss_aegis_core_sheet_53
+  - first:
+      213: -634938154894556329
+    second: boss_aegis_core_sheet_54
+  - first:
+      213: -5958517791904890397
+    second: boss_aegis_core_sheet_55
+  - first:
+      213: 7430748489896845120
+    second: boss_aegis_core_sheet_56
+  - first:
+      213: -517871667746413975
+    second: boss_aegis_core_sheet_57
+  - first:
+      213: -4529826492937682675
+    second: boss_aegis_core_sheet_58
+  - first:
+      213: 1214371040747275836
+    second: boss_aegis_core_sheet_59
+  - first:
+      213: 3079099273021304155
+    second: boss_aegis_core_sheet_60
+  - first:
+      213: 2841652329505739335
+    second: boss_aegis_core_sheet_61
+  - first:
+      213: -6395834781243715696
+    second: boss_aegis_core_sheet_62
+  - first:
+      213: 3992605524413919109
+    second: boss_aegis_core_sheet_63
+  - first:
+      213: -2202968657377413828
+    second: boss_aegis_core_sheet_64
+  - first:
+      213: 3368192108767406436
+    second: boss_aegis_core_sheet_65
+  - first:
+      213: 2025985393147149778
+    second: boss_aegis_core_sheet_66
+  - first:
+      213: -737609459602566007
+    second: boss_aegis_core_sheet_67
+  - first:
+      213: -3446053468252301404
+    second: boss_aegis_core_sheet_68
+  - first:
+      213: 2756579121139915912
+    second: boss_aegis_core_sheet_69
+  - first:
+      213: 6775695077837029749
+    second: boss_aegis_core_sheet_70
+  - first:
+      213: -8032832832170387936
+    second: boss_aegis_core_sheet_71
+  - first:
+      213: 4240708698935967811
+    second: boss_aegis_core_sheet_72
+  - first:
+      213: -7209534599762235541
+    second: boss_aegis_core_sheet_73
+  - first:
+      213: -3345622464881594994
+    second: boss_aegis_core_sheet_74
+  - first:
+      213: -5182372644906256067
+    second: boss_aegis_core_sheet_75
+  - first:
+      213: 5187470099569765763
+    second: boss_aegis_core_sheet_76
+  - first:
+      213: -157162671331809721
+    second: boss_aegis_core_sheet_77
+  - first:
+      213: -4433783355082880401
+    second: boss_aegis_core_sheet_78
+  - first:
+      213: 629627777749212903
+    second: boss_aegis_core_sheet_79
+  - first:
+      213: -3909390620421797513
+    second: boss_aegis_core_sheet_80
+  - first:
+      213: -3019341860272203339
+    second: boss_aegis_core_sheet_81
+  - first:
+      213: -705323678648450597
+    second: boss_aegis_core_sheet_82
+  - first:
+      213: 4428636360237870990
+    second: boss_aegis_core_sheet_83
+  - first:
+      213: 2375401563742760994
+    second: boss_aegis_core_sheet_84
+  - first:
+      213: 6631244086972689810
+    second: boss_aegis_core_sheet_85
+  - first:
+      213: -1502742743028945003
+    second: boss_aegis_core_sheet_86
+  - first:
+      213: -4311929946884186712
+    second: boss_aegis_core_sheet_87
+  - first:
+      213: -7401560114435598917
+    second: boss_aegis_core_sheet_88
+  - first:
+      213: 7414785202362702113
+    second: boss_aegis_core_sheet_89
+  - first:
+      213: 7341092790969233198
+    second: boss_aegis_core_sheet_90
+  - first:
+      213: 1347325842665805941
+    second: boss_aegis_core_sheet_91
+  - first:
+      213: -3723078380936428812
+    second: boss_aegis_core_sheet_92
+  - first:
+      213: -6771283649699050716
+    second: boss_aegis_core_sheet_93
+  - first:
+      213: -6433578594864619558
+    second: boss_aegis_core_sheet_94
+  - first:
+      213: -2721433384080036023
+    second: boss_aegis_core_sheet_95
+  - first:
+      213: -7817346415949913286
+    second: boss_aegis_core_sheet_96
+  - first:
+      213: 8229915234019622027
+    second: boss_aegis_core_sheet_97
+  - first:
+      213: 5730099997758236650
+    second: boss_aegis_core_sheet_98
+  - first:
+      213: 8956906230655992332
+    second: boss_aegis_core_sheet_99
+  - first:
+      213: -3156214031392512775
+    second: boss_aegis_core_sheet_100
+  - first:
+      213: 1872242657065127242
+    second: boss_aegis_core_sheet_101
+  - first:
+      213: -6517271247317904326
+    second: boss_aegis_core_sheet_102
+  - first:
+      213: 6128792451695062426
+    second: boss_aegis_core_sheet_103
+  - first:
+      213: 3768927705615635038
+    second: boss_aegis_core_sheet_104
+  - first:
+      213: 4716086159863203871
+    second: boss_aegis_core_sheet_105
+  - first:
+      213: 3479656410514999470
+    second: boss_aegis_core_sheet_106
+  - first:
+      213: -6507860893120195168
+    second: boss_aegis_core_sheet_107
+  - first:
+      213: -8468581987824870689
+    second: boss_aegis_core_sheet_108
+  - first:
+      213: -4598799679374396030
+    second: boss_aegis_core_sheet_109
+  - first:
+      213: -173810769600868052
+    second: boss_aegis_core_sheet_110
+  - first:
+      213: 6164396219444740787
+    second: boss_aegis_core_sheet_111
+  - first:
+      213: 2905498186733177902
+    second: boss_aegis_core_sheet_112
+  - first:
+      213: -5444108785728106871
+    second: boss_aegis_core_sheet_113
+  - first:
+      213: -4243929553165315145
+    second: boss_aegis_core_sheet_114
+  - first:
+      213: 8795879893957243253
+    second: boss_aegis_core_sheet_115
+  - first:
+      213: -1716168128987136074
+    second: boss_aegis_core_sheet_116
+  - first:
+      213: 8851856413184331158
+    second: boss_aegis_core_sheet_117
+  - first:
+      213: -2277194862030222577
+    second: boss_aegis_core_sheet_118
+  - first:
+      213: 6190978537635012055
+    second: boss_aegis_core_sheet_119
+  - first:
+      213: 3930715654547389139
+    second: boss_aegis_core_sheet_120
+  - first:
+      213: -2912207082895537257
+    second: boss_aegis_core_sheet_121
+  - first:
+      213: -1833712705989165328
+    second: boss_aegis_core_sheet_122
+  - first:
+      213: 1252064388305214468
+    second: boss_aegis_core_sheet_123
+  - first:
+      213: 2287367354326198060
+    second: boss_aegis_core_sheet_124
+  - first:
+      213: 1337078764749873033
+    second: boss_aegis_core_sheet_125
+  - first:
+      213: -7129256894398733389
+    second: boss_aegis_core_sheet_126
+  - first:
+      213: -7767962781216941937
+    second: boss_aegis_core_sheet_127
+  - first:
+      213: 8938672000981837920
+    second: boss_aegis_core_sheet_128
+  - first:
+      213: 1895746378936111789
+    second: boss_aegis_core_sheet_129
+  - first:
+      213: -1390516452343942672
+    second: boss_aegis_core_sheet_130
+  - first:
+      213: -3728464631254399397
+    second: boss_aegis_core_sheet_131
+  - first:
+      213: 3682003260321869456
+    second: boss_aegis_core_sheet_132
+  - first:
+      213: 6831787069050496326
+    second: boss_aegis_core_sheet_133
+  - first:
+      213: -3918175888788436445
+    second: boss_aegis_core_sheet_134
+  - first:
+      213: -5761324018065180815
+    second: boss_aegis_core_sheet_135
+  - first:
+      213: -3437999489019143491
+    second: boss_aegis_core_sheet_136
+  - first:
+      213: -4003376431635292458
+    second: boss_aegis_core_sheet_137
+  - first:
+      213: 711204294656166857
+    second: boss_aegis_core_sheet_138
+  - first:
+      213: 8835101094469496262
+    second: boss_aegis_core_sheet_139
+  - first:
+      213: 3636228157447477218
+    second: boss_aegis_core_sheet_140
+  - first:
+      213: 501816013953641701
+    second: boss_aegis_core_sheet_141
+  - first:
+      213: 639773197616606841
+    second: boss_aegis_core_sheet_142
+  - first:
+      213: 7116848730780511097
+    second: boss_aegis_core_sheet_143
+  - first:
+      213: 5757557191157692417
+    second: boss_aegis_core_sheet_144
+  - first:
+      213: 4891255772766706379
+    second: boss_aegis_core_sheet_145
+  - first:
+      213: 4555332708985022489
+    second: boss_aegis_core_sheet_146
+  - first:
+      213: -6896567495401433199
+    second: boss_aegis_core_sheet_147
+  - first:
+      213: 5791984609320305916
+    second: boss_aegis_core_sheet_148
+  - first:
+      213: -6309391586158757763
+    second: boss_aegis_core_sheet_149
+  - first:
+      213: 8801446649957455149
+    second: boss_aegis_core_sheet_150
+  - first:
+      213: -1282040461564511027
+    second: boss_aegis_core_sheet_151
+  - first:
+      213: 3335371000255656500
+    second: boss_aegis_core_sheet_152
+  - first:
+      213: 2524247761628864499
+    second: boss_aegis_core_sheet_153
+  - first:
+      213: 8393531622265863122
+    second: boss_aegis_core_sheet_154
+  - first:
+      213: -2812333364217417994
+    second: boss_aegis_core_sheet_155
+  - first:
+      213: -4708099158281734573
+    second: boss_aegis_core_sheet_156
+  - first:
+      213: 7389738896886744092
+    second: boss_aegis_core_sheet_157
+  - first:
+      213: -3180695631915150815
+    second: boss_aegis_core_sheet_158
+  - first:
+      213: -88629535775505492
+    second: boss_aegis_core_sheet_159
+  - first:
+      213: 4655476830952641005
+    second: boss_aegis_core_sheet_160
+  - first:
+      213: 3955546362549483255
+    second: boss_aegis_core_sheet_161
+  - first:
+      213: 2220851016671363191
+    second: boss_aegis_core_sheet_162
+  - first:
+      213: 1570736901781383353
+    second: boss_aegis_core_sheet_163
+  - first:
+      213: -1511704250257950708
+    second: boss_aegis_core_sheet_164
+  - first:
+      213: -605607793867580883
+    second: boss_aegis_core_sheet_165
+  - first:
+      213: 6434061868595148007
+    second: boss_aegis_core_sheet_166
+  - first:
+      213: -2551149508415061776
+    second: boss_aegis_core_sheet_167
+  - first:
+      213: -3599729716178893409
+    second: boss_aegis_core_sheet_0_0
+  - first:
+      213: -8251422449452945855
+    second: boss_aegis_core_sheet_0_1
+  - first:
+      213: 205709415464047310
+    second: boss_aegis_core_sheet_0_2
+  - first:
+      213: 8310112343743851875
+    second: boss_aegis_core_sheet_0_3
+  - first:
+      213: -6940055714874029083
+    second: boss_aegis_core_sheet_0_4
+  - first:
+      213: 7192871758496366833
+    second: boss_aegis_core_sheet_0_5
+  - first:
+      213: -4105572056029195014
+    second: boss_aegis_core_sheet_0_6
+  - first:
+      213: -3846264823831086698
+    second: boss_aegis_core_sheet_0_7
+  - first:
+      213: 8030490039513073146
+    second: boss_aegis_core_sheet_0_8
+  - first:
+      213: -6505459723215962192
+    second: boss_aegis_core_sheet_0_9
+  - first:
+      213: -7853733144953442240
+    second: boss_aegis_core_sheet_0_10
+  - first:
+      213: -1485022085368969497
+    second: boss_aegis_core_sheet_0_11
+  - first:
+      213: -3600021105523494221
+    second: boss_aegis_core_sheet_0_12
+  - first:
+      213: -6465899496917881940
+    second: boss_aegis_core_sheet_0_13
+  - first:
+      213: 7486179758800021556
+    second: boss_aegis_core_sheet_0_14
+  - first:
+      213: -3526261326675082020
+    second: boss_aegis_core_sheet_0_15
+  - first:
+      213: -1693522940020600530
+    second: boss_aegis_core_sheet_0_16
+  - first:
+      213: 1972469005653549026
+    second: boss_aegis_core_sheet_0_17
+  - first:
+      213: -6672497508232256180
+    second: boss_aegis_core_sheet_0_18
+  - first:
+      213: -3244170291733888849
+    second: boss_aegis_core_sheet_0_19
+  - first:
+      213: -2985560234499405506
+    second: boss_aegis_core_sheet_0_20
+  - first:
+      213: 3011552416371916744
+    second: boss_aegis_core_sheet_1_0
+  - first:
+      213: 3118636558320945862
+    second: boss_aegis_core_sheet_1_1
+  - first:
+      213: -4661311409501114014
+    second: boss_aegis_core_sheet_1_2
+  - first:
+      213: -1032851919526256587
+    second: boss_aegis_core_sheet_1_3
+  - first:
+      213: 2616421140361655946
+    second: boss_aegis_core_sheet_1_4
+  - first:
+      213: -1292709935595131853
+    second: boss_aegis_core_sheet_1_5
+  - first:
+      213: -290815617144697370
+    second: boss_aegis_core_sheet_1_6
+  - first:
+      213: -5681918764903011350
+    second: boss_aegis_core_sheet_1_7
+  - first:
+      213: 3098147262139388591
+    second: boss_aegis_core_sheet_1_8
+  - first:
+      213: -5483644401687818284
+    second: boss_aegis_core_sheet_1_9
+  - first:
+      213: -549784594880027569
+    second: boss_aegis_core_sheet_1_10
+  - first:
+      213: 8160287940068369911
+    second: boss_aegis_core_sheet_1_11
+  - first:
+      213: -4513094885404048892
+    second: boss_aegis_core_sheet_1_12
+  - first:
+      213: -3591481607183943932
+    second: boss_aegis_core_sheet_1_13
+  - first:
+      213: 5483484881328140829
+    second: boss_aegis_core_sheet_1_14
+  - first:
+      213: 8171837090416675806
+    second: boss_aegis_core_sheet_1_15
+  - first:
+      213: -5019490693624189458
+    second: boss_aegis_core_sheet_1_16
+  - first:
+      213: -6694063353102909472
+    second: boss_aegis_core_sheet_1_17
+  - first:
+      213: -1420356309262535647
+    second: boss_aegis_core_sheet_1_18
+  - first:
+      213: -582270507434763064
+    second: boss_aegis_core_sheet_1_19
+  - first:
+      213: -1473764339762131332
+    second: boss_aegis_core_sheet_1_20
+  - first:
+      213: 367619863478300328
+    second: boss_aegis_core_sheet_2_0
+  - first:
+      213: -8108319037037912607
+    second: boss_aegis_core_sheet_2_1
+  - first:
+      213: 7539098881710283728
+    second: boss_aegis_core_sheet_2_2
+  - first:
+      213: -2761981493137774563
+    second: boss_aegis_core_sheet_2_3
+  - first:
+      213: -8131814659694062888
+    second: boss_aegis_core_sheet_2_4
+  - first:
+      213: -1977803420786683027
+    second: boss_aegis_core_sheet_2_5
+  - first:
+      213: 6767016729068904955
+    second: boss_aegis_core_sheet_2_6
+  - first:
+      213: 4089560566037521382
+    second: boss_aegis_core_sheet_2_7
+  - first:
+      213: -7544720657633745638
+    second: boss_aegis_core_sheet_2_8
+  - first:
+      213: 1306626215575481982
+    second: boss_aegis_core_sheet_2_9
+  - first:
+      213: -4681138748827219805
+    second: boss_aegis_core_sheet_2_10
+  - first:
+      213: 7605263187135679679
+    second: boss_aegis_core_sheet_2_11
+  - first:
+      213: -4756880466906842941
+    second: boss_aegis_core_sheet_2_12
+  - first:
+      213: -5591765194990895452
+    second: boss_aegis_core_sheet_2_13
+  - first:
+      213: 5669894617590659767
+    second: boss_aegis_core_sheet_2_14
+  - first:
+      213: -7945305446133480634
+    second: boss_aegis_core_sheet_2_15
+  - first:
+      213: -3907577266827860509
+    second: boss_aegis_core_sheet_2_16
+  - first:
+      213: 5743340772447607495
+    second: boss_aegis_core_sheet_2_17
+  - first:
+      213: 3466751363301946199
+    second: boss_aegis_core_sheet_2_18
+  - first:
+      213: -1378807176630364082
+    second: boss_aegis_core_sheet_2_19
+  - first:
+      213: 4202768696708582126
+    second: boss_aegis_core_sheet_2_20
+  - first:
+      213: -646629329129016716
+    second: boss_aegis_core_sheet_3_0
+  - first:
+      213: -8799599365289025358
+    second: boss_aegis_core_sheet_3_1
+  - first:
+      213: 3230327338150873047
+    second: boss_aegis_core_sheet_3_2
+  - first:
+      213: 4297175214191341207
+    second: boss_aegis_core_sheet_3_3
+  - first:
+      213: -4661146144732907773
+    second: boss_aegis_core_sheet_3_4
+  - first:
+      213: -3865786243106286659
+    second: boss_aegis_core_sheet_3_5
+  - first:
+      213: -7776423761210639257
+    second: boss_aegis_core_sheet_3_6
+  - first:
+      213: 5133368063466028029
+    second: boss_aegis_core_sheet_3_7
+  - first:
+      213: -4359628033051123138
+    second: boss_aegis_core_sheet_3_8
+  - first:
+      213: -9123207010938239664
+    second: boss_aegis_core_sheet_3_9
+  - first:
+      213: -7266080400069655022
+    second: boss_aegis_core_sheet_3_10
+  - first:
+      213: -526758905298057062
+    second: boss_aegis_core_sheet_3_11
+  - first:
+      213: -1973976132752106810
+    second: boss_aegis_core_sheet_3_12
+  - first:
+      213: -3965177862210973996
+    second: boss_aegis_core_sheet_3_13
+  - first:
+      213: 8989476223709742025
+    second: boss_aegis_core_sheet_3_14
+  - first:
+      213: -3513492257133440528
+    second: boss_aegis_core_sheet_3_15
+  - first:
+      213: -7376630806474798476
+    second: boss_aegis_core_sheet_3_16
+  - first:
+      213: 829320287981648767
+    second: boss_aegis_core_sheet_3_17
+  - first:
+      213: 7524934041369009451
+    second: boss_aegis_core_sheet_3_18
+  - first:
+      213: -7348431611379863009
+    second: boss_aegis_core_sheet_3_19
+  - first:
+      213: -8854365972836486876
+    second: boss_aegis_core_sheet_3_20
+  - first:
+      213: -4122162790824767651
+    second: boss_aegis_core_sheet_4_0
+  - first:
+      213: 2043565385304742834
+    second: boss_aegis_core_sheet_4_1
+  - first:
+      213: 3013064468926020820
+    second: boss_aegis_core_sheet_4_2
+  - first:
+      213: -877278973788071479
+    second: boss_aegis_core_sheet_4_3
+  - first:
+      213: -1109158049077049506
+    second: boss_aegis_core_sheet_4_4
+  - first:
+      213: 3054809780712673179
+    second: boss_aegis_core_sheet_4_5
+  - first:
+      213: -563082117067097725
+    second: boss_aegis_core_sheet_4_6
+  - first:
+      213: 6544162778854649305
+    second: boss_aegis_core_sheet_4_7
+  - first:
+      213: -3542952712245561564
+    second: boss_aegis_core_sheet_4_8
+  - first:
+      213: 1541738352503286166
+    second: boss_aegis_core_sheet_4_9
+  - first:
+      213: -175311425651327696
+    second: boss_aegis_core_sheet_4_10
+  - first:
+      213: 8447967965863045961
+    second: boss_aegis_core_sheet_4_11
+  - first:
+      213: 8687717154925899446
+    second: boss_aegis_core_sheet_4_12
+  - first:
+      213: -2177907067643362874
+    second: boss_aegis_core_sheet_4_13
+  - first:
+      213: -8526093885815098698
+    second: boss_aegis_core_sheet_4_14
+  - first:
+      213: -471105432745348181
+    second: boss_aegis_core_sheet_4_15
+  - first:
+      213: 7106759482629149014
+    second: boss_aegis_core_sheet_4_16
+  - first:
+      213: 5991906089505990096
+    second: boss_aegis_core_sheet_4_17
+  - first:
+      213: -6274559641336018021
+    second: boss_aegis_core_sheet_4_18
+  - first:
+      213: 4682853720763152411
+    second: boss_aegis_core_sheet_4_19
+  - first:
+      213: -4446159613755479879
+    second: boss_aegis_core_sheet_4_20
+  - first:
+      213: 7364473009685046586
+    second: boss_aegis_core_sheet_5_0
+  - first:
+      213: -1543467410797588371
+    second: boss_aegis_core_sheet_5_1
+  - first:
+      213: 1218351160468463309
+    second: boss_aegis_core_sheet_5_2
+  - first:
+      213: 6235247132294505018
+    second: boss_aegis_core_sheet_5_3
+  - first:
+      213: -265459549778509096
+    second: boss_aegis_core_sheet_5_4
+  - first:
+      213: 2227926905987507510
+    second: boss_aegis_core_sheet_5_5
+  - first:
+      213: 394147062637070202
+    second: boss_aegis_core_sheet_5_6
+  - first:
+      213: 7879168221883190468
+    second: boss_aegis_core_sheet_5_7
+  - first:
+      213: -8500460327873666320
+    second: boss_aegis_core_sheet_5_8
+  - first:
+      213: 152194988489473254
+    second: boss_aegis_core_sheet_5_9
+  - first:
+      213: 797929929536083667
+    second: boss_aegis_core_sheet_5_10
+  - first:
+      213: -4598643297763891793
+    second: boss_aegis_core_sheet_5_11
+  - first:
+      213: -6132284542388935631
+    second: boss_aegis_core_sheet_5_12
+  - first:
+      213: 203666436902001124
+    second: boss_aegis_core_sheet_5_13
+  - first:
+      213: -172657670217825381
+    second: boss_aegis_core_sheet_5_14
+  - first:
+      213: -8308248544130542845
+    second: boss_aegis_core_sheet_5_15
+  - first:
+      213: -5067530643681627892
+    second: boss_aegis_core_sheet_5_16
+  - first:
+      213: 3880418320655595468
+    second: boss_aegis_core_sheet_5_17
+  - first:
+      213: 8090330863086527305
+    second: boss_aegis_core_sheet_5_18
+  - first:
+      213: -6568833652334487648
+    second: boss_aegis_core_sheet_5_19
+  - first:
+      213: 3853250931349172552
+    second: boss_aegis_core_sheet_5_20
+  - first:
+      213: -7255933823360583456
+    second: boss_aegis_core_sheet_6_0
+  - first:
+      213: -6786740530477635393
+    second: boss_aegis_core_sheet_6_1
+  - first:
+      213: 1134072241024971325
+    second: boss_aegis_core_sheet_6_2
+  - first:
+      213: -5577408085324553095
+    second: boss_aegis_core_sheet_6_3
+  - first:
+      213: 3167403810409081681
+    second: boss_aegis_core_sheet_6_4
+  - first:
+      213: -3918355546554055336
+    second: boss_aegis_core_sheet_6_5
+  - first:
+      213: -634573768589696416
+    second: boss_aegis_core_sheet_6_6
+  - first:
+      213: -2456042349479058450
+    second: boss_aegis_core_sheet_6_7
+  - first:
+      213: -2714163841110292338
+    second: boss_aegis_core_sheet_6_8
+  - first:
+      213: 617495432163644730
+    second: boss_aegis_core_sheet_6_9
+  - first:
+      213: -3688606035449248132
+    second: boss_aegis_core_sheet_6_10
+  - first:
+      213: -8622339073373721695
+    second: boss_aegis_core_sheet_6_11
+  - first:
+      213: 112368836149540934
+    second: boss_aegis_core_sheet_6_12
+  - first:
+      213: -1460495152005516936
+    second: boss_aegis_core_sheet_6_13
+  - first:
+      213: 2589571260936600257
+    second: boss_aegis_core_sheet_6_14
+  - first:
+      213: 6798425842605000525
+    second: boss_aegis_core_sheet_6_15
+  - first:
+      213: 8026673653973364341
+    second: boss_aegis_core_sheet_6_16
+  - first:
+      213: 8554028797183723608
+    second: boss_aegis_core_sheet_6_17
+  - first:
+      213: -5002216974967889540
+    second: boss_aegis_core_sheet_6_18
+  - first:
+      213: 2349330164358650136
+    second: boss_aegis_core_sheet_6_19
+  - first:
+      213: -3841656372999626028
+    second: boss_aegis_core_sheet_6_20
+  - first:
+      213: 5093442599466205208
+    second: boss_aegis_core_sheet_7_0
+  - first:
+      213: 844739788555731033
+    second: boss_aegis_core_sheet_7_1
+  - first:
+      213: 5876134951785635461
+    second: boss_aegis_core_sheet_7_2
+  - first:
+      213: -236533646115940759
+    second: boss_aegis_core_sheet_7_3
+  - first:
+      213: -4975110856874037570
+    second: boss_aegis_core_sheet_7_4
+  - first:
+      213: -5695123729974200029
+    second: boss_aegis_core_sheet_7_5
+  - first:
+      213: -5188219775887439440
+    second: boss_aegis_core_sheet_7_6
+  - first:
+      213: -123156018553576201
+    second: boss_aegis_core_sheet_7_7
+  - first:
+      213: 6225679643502372771
+    second: boss_aegis_core_sheet_7_8
+  - first:
+      213: 315249693636711550
+    second: boss_aegis_core_sheet_7_9
+  - first:
+      213: -261351507265687384
+    second: boss_aegis_core_sheet_7_10
+  - first:
+      213: -844613751339153449
+    second: boss_aegis_core_sheet_7_11
+  - first:
+      213: -2057069732844123924
+    second: boss_aegis_core_sheet_7_12
+  - first:
+      213: 6207719810183640069
+    second: boss_aegis_core_sheet_7_13
+  - first:
+      213: 4170751092436903538
+    second: boss_aegis_core_sheet_7_14
+  - first:
+      213: 9150387640032451356
+    second: boss_aegis_core_sheet_7_15
+  - first:
+      213: 11775440190922816
+    second: boss_aegis_core_sheet_7_16
+  - first:
+      213: 8461800189865393568
+    second: boss_aegis_core_sheet_7_17
+  - first:
+      213: 8599658724227008080
+    second: boss_aegis_core_sheet_7_18
+  - first:
+      213: 5270828050806958334
+    second: boss_aegis_core_sheet_7_19
+  - first:
+      213: 9171855434437933896
+    second: boss_aegis_core_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f954db335e03b0ec0800000000000000
+      internalID: -3599729716178893409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14e6ca8000f0d7d80800000000000000
+      internalID: -8251422449452945855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec210bb9f93dad200800000000000000
+      internalID: 205709415464047310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36de074d523735370800000000000000
+      internalID: 8310112343743851875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb8389e818ffaf90800000000000000
+      internalID: -6940055714874029083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f08d1041c632d360800000000000000
+      internalID: 7192871758496366833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af41c90a7f31607c0800000000000000
+      internalID: -4105572056029195014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 699b77765825f9ac0800000000000000
+      internalID: -3846264823831086698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af54d71c428027f60800000000000000
+      internalID: 8030490039513073146
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bff91169d6f7b5a0800000000000000
+      internalID: -6505459723215962192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 040b656c05fe10390800000000000000
+      internalID: -7853733144953442240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e609f50844246be0800000000000000
+      internalID: -1485022085368969497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2fc55d0e72a0ec0800000000000000
+      internalID: -3600021105523494221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cab25d45aa28446a0800000000000000
+      internalID: -6465899496917881940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 438aeffb3d044e760800000000000000
+      internalID: 7486179758800021556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd4855e9104301fc0800000000000000
+      internalID: -3526261326675082020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e21d815dbd56f78e0800000000000000
+      internalID: -1693522940020600530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef927c2c1e9f5b10800000000000000
+      internalID: 1972469005653549026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4523216ed68663a0800000000000000
+      internalID: -6672497508232256180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa0835ade446af2d0800000000000000
+      internalID: -3244170291733888849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 448
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e39812fe8c82196d0800000000000000
+      internalID: -2985560234499405506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf315087fe2bc920800000000000000
+      internalID: 3011552416371916744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca44423d6f974b20800000000000000
+      internalID: 3118636558320945862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 261f53148f1bf4fb0800000000000000
+      internalID: -4661311409501114014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 530ae07c6a29aa1f0800000000000000
+      internalID: -1032851919526256587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a86341e2a256f4420800000000000000
+      internalID: 2616421140361655946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 33ceb33a92f5f0ee0800000000000000
+      internalID: -1292709935595131853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ed44fcacb0d6fbf0800000000000000
+      internalID: -290815617144697370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aeb6457ccf4c521b0800000000000000
+      internalID: -5681918764903011350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa2daad2584defa20800000000000000
+      internalID: 3098147262139388591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df86d2687e26e3b0800000000000000
+      internalID: -5483644401687818284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f44a137e2d5ce58f0800000000000000
+      internalID: -549784594880027569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f5edac75aa2f3170800000000000000
+      internalID: 8160287940068369911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4020cd5fc144e51c0800000000000000
+      internalID: -4513094885404048892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 407b37ab18e782ec0800000000000000
+      internalID: -3591481607183943932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d12f9c26270491c40800000000000000
+      internalID: 5483484881328140829
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edbc5a89982386170800000000000000
+      internalID: 8171837090416675806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeda62dfecf275ab0800000000000000
+      internalID: -5019490693624189458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ef3756d8d8e913a0800000000000000
+      internalID: -6694063353102909472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 124fbeb4671e94ce0800000000000000
+      internalID: -1420356309262535647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cc1a29fe0c5be7f0800000000000000
+      internalID: -582270507434763064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 384
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7e07dd24232c8be0800000000000000
+      internalID: -1473764339762131332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ae600f615c0a1500800000000000000
+      internalID: 367619863478300328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ed51d7abc6797f80800000000000000
+      internalID: -8108319037037912607
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dbd2e23d7240a860800000000000000
+      internalID: 7539098881710283728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d18e15137787ba9d0800000000000000
+      internalID: -2761981493137774563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d21f95b6adf52f80800000000000000
+      internalID: -8131814659694062888
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d631574844e6d84e0800000000000000
+      internalID: -1977803420786683027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf12745acd549ed50800000000000000
+      internalID: 6767016729068904955
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e3ac1adaa901c830800000000000000
+      internalID: 4089560566037521382
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1560381984cb4790800000000000000
+      internalID: -7544720657633745638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7ee699ce91122210800000000000000
+      internalID: 1306626215575481982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a846d31c11490fb0800000000000000
+      internalID: -4681138748827219805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbcc39403925b8960800000000000000
+      internalID: 7605263187135679679
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c8f50b1b6a2cfdb0800000000000000
+      internalID: -4756880466906842941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aebc2d7e2f0662b0800000000000000
+      internalID: -5591765194990895452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7baf3634d138fae40800000000000000
+      internalID: 5669894617590659767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 643cc33faca9cb190800000000000000
+      internalID: -7945305446133480634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e56556dd2f75c9c0800000000000000
+      internalID: -3907577266827860509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cad1c5c00274bf40800000000000000
+      internalID: 5743340772447607495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 753b63e4fff5c1030800000000000000
+      internalID: 3466751363301946199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4810379d2e7ddce0800000000000000
+      internalID: -1378807176630364082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 320
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea4278ccdb335a30800000000000000
+      internalID: 4202768696708582126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4727ae71d06b607f0800000000000000
+      internalID: -646629329129016716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b0e132effa81e580800000000000000
+      internalID: -8799599365289025358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d747ba599d64dc20800000000000000
+      internalID: 3230327338150873047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79eec730712a2ab30800000000000000
+      internalID: 4297175214191341207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3077305f648405fb0800000000000000
+      internalID: -4661146144732907773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db3de0ac4e7f95ac0800000000000000
+      internalID: -3865786243106286659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76cf12a5ac7941490800000000000000
+      internalID: -7776423761210639257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfb3a345e036d3740800000000000000
+      internalID: 5133368063466028029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e322729f66d7f73c0800000000000000
+      internalID: -4359628033051123138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0554ca47f8bd36180800000000000000
+      internalID: -9123207010938239664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2168b6c9f52b92b90800000000000000
+      internalID: -7266080400069655022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a988f67019390b8f0800000000000000
+      internalID: -526758905298057062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ca16347a270b94e0800000000000000
+      internalID: -1973976132752106810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4de0ca32ebbd8f8c0800000000000000
+      internalID: -3965177862210973996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c30a074ff801cc70800000000000000
+      internalID: 8989476223709742025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f1d97c48619d3fc0800000000000000
+      internalID: -3513492257133440528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47acdd45d51f0a990800000000000000
+      internalID: -7376630806474798476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7bbb227866528b00800000000000000
+      internalID: 829320287981648767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2d5b0e44afed6860800000000000000
+      internalID: 7524934041369009451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f12b3731260250a90800000000000000
+      internalID: -7348431611379863009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 256
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42176c56f09fe1580800000000000000
+      internalID: -8854365972836486876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5f8e8a28c22bc6c0800000000000000
+      internalID: -4122162790824767651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb9f5204e33c5c10800000000000000
+      internalID: 2043565385304742834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dcbfabab2e80d920800000000000000
+      internalID: 3013064468926020820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c9517edb6743d3f0800000000000000
+      internalID: -877278973788071479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e574ff481aa7b90f0800000000000000
+      internalID: -1109158049077049506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9f84cb7f4dd46a20800000000000000
+      internalID: 3054809780712673179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38937d04cc78f28f0800000000000000
+      internalID: -563082117067097725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9dde6f9ff5981da50800000000000000
+      internalID: 6544162778854649305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 427b8929747e4dec0800000000000000
+      internalID: -3542952712245561564
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 699ed85fcda556510800000000000000
+      internalID: 1541738352503286166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03d3cfcef2b219df0800000000000000
+      internalID: -175311425651327696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b652f0b163d3570800000000000000
+      internalID: 8447967965863045961
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6beec6019b8f09870800000000000000
+      internalID: 8687717154925899446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c10e4f9f0586c1e0800000000000000
+      internalID: -2177907067643362874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b27c56b8ca3da980800000000000000
+      internalID: -8526093885815098698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba3f47dda1c4679f0800000000000000
+      internalID: -471105432745348181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 651df32a81840a260800000000000000
+      internalID: 7106759482629149014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d5218887d6872350800000000000000
+      internalID: 5991906089505990096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9b0a2010494ce8a0800000000000000
+      internalID: -6274559641336018021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b183431f5a6dcf040800000000000000
+      internalID: 4682853720763152411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 192
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b8aa6753611c42c0800000000000000
+      internalID: -4446159613755479879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a35aa340f2dd33660800000000000000
+      internalID: 7364473009685046586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6094094190849ae0800000000000000
+      internalID: -1543467410797588371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dce5863ece378e010800000000000000
+      internalID: 1218351160468463309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32ef272b3c088650800000000000000
+      internalID: 6235247132294505018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d2873922f5e05cf0800000000000000
+      internalID: -265459549778509096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635abe887bf2bee10800000000000000
+      internalID: 2227926905987507510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a770fb94aaa487500800000000000000
+      internalID: 394147062637070202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ccc4ee80cd685d60800000000000000
+      internalID: 7879168221883190468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f22ac18e5c480a80800000000000000
+      internalID: -8500460327873666320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ec72812984bc1200800000000000000
+      internalID: 152194988489473254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d696a51b01d21b00800000000000000
+      internalID: 797929929536083667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa56d0c09465e20c0800000000000000
+      internalID: -4598643297763891793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 134e94de2bfb5eaa0800000000000000
+      internalID: -6132284542388935631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e996389b8193d200800000000000000
+      internalID: 203666436902001124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b938be283c89a9df0800000000000000
+      internalID: -172657670217825381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3035175d7fb23bc80800000000000000
+      internalID: -8308248544130542845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0133fe7ab38ca9b0800000000000000
+      internalID: -5067530643681627892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc7389e37e30ad530800000000000000
+      internalID: 3880418320655595468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 943e6a93e01a64070800000000000000
+      internalID: 8090330863086527305
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a798fba890d6d4a0800000000000000
+      internalID: -6568833652334487648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 128
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841b2818e4f797530800000000000000
+      internalID: 3853250931349172552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e8b9d891aebd4b90800000000000000
+      internalID: -7255933823360583456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb8622af177a0d1a0800000000000000
+      internalID: -6786740530477635393
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d32bce3d1b80dbf00800000000000000
+      internalID: 1134072241024971325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 974a6d295e01992b0800000000000000
+      internalID: -5577408085324553095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 15be6a3ebf0e4fb20800000000000000
+      internalID: 3167403810409081681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 855c6f704643f99c0800000000000000
+      internalID: -3918355546554055336
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0622e63058a8137f0800000000000000
+      internalID: -634573768589696416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee32cfdee726aedd0800000000000000
+      internalID: -2456042349479058450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e884964ed5a555ad0800000000000000
+      internalID: -2714163841110292338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a355a8ce2d8c19800800000000000000
+      internalID: 617495432163644730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c768fa49a507fccc0800000000000000
+      internalID: -3688606035449248132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1aba69ebb4c475880800000000000000
+      internalID: -8622339073373721695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64874827cd63f8100800000000000000
+      internalID: 112368836149540934
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 871f784b5674bbbe0800000000000000
+      internalID: -1460495152005516936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1cabfa8775100f320800000000000000
+      internalID: 2589571260936600257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d478e44c84cd85e50800000000000000
+      internalID: 6798425842605000525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ea1114929746f60800000000000000
+      internalID: 8026673653973364341
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 858099eaed306b670800000000000000
+      internalID: 8554028797183723608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c712c950a2e849ab0800000000000000
+      internalID: -5002216974967889540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81915b2565f7a9020800000000000000
+      internalID: 2349330164358650136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 64
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2ed3af1e1bfaac0800000000000000
+      internalID: -3841656372999626028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8108609de0b8fa640800000000000000
+      internalID: 5093442599466205208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 950c080bc5e19bb00800000000000000
+      internalID: 844739788555731033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58e90750b993c8150800000000000000
+      internalID: 5876134951785635461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 966d4dde6e9a7bcf0800000000000000
+      internalID: -236533646115940759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe65d1f80bd4fab0800000000000000
+      internalID: -4975110856874037570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3297df2442bd6f0b0800000000000000
+      internalID: -5695123729974200029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b982992a9dbff7b0800000000000000
+      internalID: -5188219775887439440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f4a92ee0467a4ef0800000000000000
+      internalID: -123156018553576201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a7e65496ae066650800000000000000
+      internalID: 6225679643502372771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7454c41dedff5400800000000000000
+      internalID: 315249693636711550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a07ae7503e7f5cf0800000000000000
+      internalID: -261351507265687384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d70503a4445744f0800000000000000
+      internalID: -844613751339153449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 768
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce84e9f0af1d373e0800000000000000
+      internalID: -2057069732844123924
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 504b6270740462650800000000000000
+      internalID: 6207719810183640069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 896
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 276264f550c71e930800000000000000
+      internalID: 4170751092436903538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1b5249e315bcfe70800000000000000
+      internalID: 9150387640032451356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04067a153b5d92000800000000000000
+      internalID: 11775440190922816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 1088
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ad724da07a5e6570800000000000000
+      internalID: 8461800189865393568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 056c327fb00285770800000000000000
+      internalID: 8599658724227008080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 1216
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef86388af2eb52940800000000000000
+      internalID: 5270828050806958334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_aegis_core_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 1280
+        y: 0
+        width: 64
+        height: 64
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84bb8ec4ce9f84f70800000000000000
+      internalID: 9171855434437933896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      boss_aegis_core_sheet_0: -4946706851034672028
+      boss_aegis_core_sheet_0_0: -3599729716178893409
+      boss_aegis_core_sheet_0_1: -8251422449452945855
+      boss_aegis_core_sheet_0_10: -7853733144953442240
+      boss_aegis_core_sheet_0_11: -1485022085368969497
+      boss_aegis_core_sheet_0_12: -3600021105523494221
+      boss_aegis_core_sheet_0_13: -6465899496917881940
+      boss_aegis_core_sheet_0_14: 7486179758800021556
+      boss_aegis_core_sheet_0_15: -3526261326675082020
+      boss_aegis_core_sheet_0_16: -1693522940020600530
+      boss_aegis_core_sheet_0_17: 1972469005653549026
+      boss_aegis_core_sheet_0_18: -6672497508232256180
+      boss_aegis_core_sheet_0_19: -3244170291733888849
+      boss_aegis_core_sheet_0_2: 205709415464047310
+      boss_aegis_core_sheet_0_20: -2985560234499405506
+      boss_aegis_core_sheet_0_3: 8310112343743851875
+      boss_aegis_core_sheet_0_4: -6940055714874029083
+      boss_aegis_core_sheet_0_5: 7192871758496366833
+      boss_aegis_core_sheet_0_6: -4105572056029195014
+      boss_aegis_core_sheet_0_7: -3846264823831086698
+      boss_aegis_core_sheet_0_8: 8030490039513073146
+      boss_aegis_core_sheet_0_9: -6505459723215962192
+      boss_aegis_core_sheet_1: 8212708959679883764
+      boss_aegis_core_sheet_10: 276377643901106732
+      boss_aegis_core_sheet_100: -3156214031392512775
+      boss_aegis_core_sheet_101: 1872242657065127242
+      boss_aegis_core_sheet_102: -6517271247317904326
+      boss_aegis_core_sheet_103: 6128792451695062426
+      boss_aegis_core_sheet_104: 3768927705615635038
+      boss_aegis_core_sheet_105: 4716086159863203871
+      boss_aegis_core_sheet_106: 3479656410514999470
+      boss_aegis_core_sheet_107: -6507860893120195168
+      boss_aegis_core_sheet_108: -8468581987824870689
+      boss_aegis_core_sheet_109: -4598799679374396030
+      boss_aegis_core_sheet_11: -4995998221945307109
+      boss_aegis_core_sheet_110: -173810769600868052
+      boss_aegis_core_sheet_111: 6164396219444740787
+      boss_aegis_core_sheet_112: 2905498186733177902
+      boss_aegis_core_sheet_113: -5444108785728106871
+      boss_aegis_core_sheet_114: -4243929553165315145
+      boss_aegis_core_sheet_115: 8795879893957243253
+      boss_aegis_core_sheet_116: -1716168128987136074
+      boss_aegis_core_sheet_117: 8851856413184331158
+      boss_aegis_core_sheet_118: -2277194862030222577
+      boss_aegis_core_sheet_119: 6190978537635012055
+      boss_aegis_core_sheet_12: 6014925156633697827
+      boss_aegis_core_sheet_120: 3930715654547389139
+      boss_aegis_core_sheet_121: -2912207082895537257
+      boss_aegis_core_sheet_122: -1833712705989165328
+      boss_aegis_core_sheet_123: 1252064388305214468
+      boss_aegis_core_sheet_124: 2287367354326198060
+      boss_aegis_core_sheet_125: 1337078764749873033
+      boss_aegis_core_sheet_126: -7129256894398733389
+      boss_aegis_core_sheet_127: -7767962781216941937
+      boss_aegis_core_sheet_128: 8938672000981837920
+      boss_aegis_core_sheet_129: 1895746378936111789
+      boss_aegis_core_sheet_13: 8185042226366362030
+      boss_aegis_core_sheet_130: -1390516452343942672
+      boss_aegis_core_sheet_131: -3728464631254399397
+      boss_aegis_core_sheet_132: 3682003260321869456
+      boss_aegis_core_sheet_133: 6831787069050496326
+      boss_aegis_core_sheet_134: -3918175888788436445
+      boss_aegis_core_sheet_135: -5761324018065180815
+      boss_aegis_core_sheet_136: -3437999489019143491
+      boss_aegis_core_sheet_137: -4003376431635292458
+      boss_aegis_core_sheet_138: 711204294656166857
+      boss_aegis_core_sheet_139: 8835101094469496262
+      boss_aegis_core_sheet_14: -8879378436375553814
+      boss_aegis_core_sheet_140: 3636228157447477218
+      boss_aegis_core_sheet_141: 501816013953641701
+      boss_aegis_core_sheet_142: 639773197616606841
+      boss_aegis_core_sheet_143: 7116848730780511097
+      boss_aegis_core_sheet_144: 5757557191157692417
+      boss_aegis_core_sheet_145: 4891255772766706379
+      boss_aegis_core_sheet_146: 4555332708985022489
+      boss_aegis_core_sheet_147: -6896567495401433199
+      boss_aegis_core_sheet_148: 5791984609320305916
+      boss_aegis_core_sheet_149: -6309391586158757763
+      boss_aegis_core_sheet_15: 1639359071446282952
+      boss_aegis_core_sheet_150: 8801446649957455149
+      boss_aegis_core_sheet_151: -1282040461564511027
+      boss_aegis_core_sheet_152: 3335371000255656500
+      boss_aegis_core_sheet_153: 2524247761628864499
+      boss_aegis_core_sheet_154: 8393531622265863122
+      boss_aegis_core_sheet_155: -2812333364217417994
+      boss_aegis_core_sheet_156: -4708099158281734573
+      boss_aegis_core_sheet_157: 7389738896886744092
+      boss_aegis_core_sheet_158: -3180695631915150815
+      boss_aegis_core_sheet_159: -88629535775505492
+      boss_aegis_core_sheet_16: 7003112262946957020
+      boss_aegis_core_sheet_160: 4655476830952641005
+      boss_aegis_core_sheet_161: 3955546362549483255
+      boss_aegis_core_sheet_162: 2220851016671363191
+      boss_aegis_core_sheet_163: 1570736901781383353
+      boss_aegis_core_sheet_164: -1511704250257950708
+      boss_aegis_core_sheet_165: -605607793867580883
+      boss_aegis_core_sheet_166: 6434061868595148007
+      boss_aegis_core_sheet_167: -2551149508415061776
+      boss_aegis_core_sheet_17: 1196346979714043124
+      boss_aegis_core_sheet_18: 3693555211747854164
+      boss_aegis_core_sheet_19: 3691503937375982317
+      boss_aegis_core_sheet_1_0: 3011552416371916744
+      boss_aegis_core_sheet_1_1: 3118636558320945862
+      boss_aegis_core_sheet_1_10: -549784594880027569
+      boss_aegis_core_sheet_1_11: 8160287940068369911
+      boss_aegis_core_sheet_1_12: -4513094885404048892
+      boss_aegis_core_sheet_1_13: -3591481607183943932
+      boss_aegis_core_sheet_1_14: 5483484881328140829
+      boss_aegis_core_sheet_1_15: 8171837090416675806
+      boss_aegis_core_sheet_1_16: -5019490693624189458
+      boss_aegis_core_sheet_1_17: -6694063353102909472
+      boss_aegis_core_sheet_1_18: -1420356309262535647
+      boss_aegis_core_sheet_1_19: -582270507434763064
+      boss_aegis_core_sheet_1_2: -4661311409501114014
+      boss_aegis_core_sheet_1_20: -1473764339762131332
+      boss_aegis_core_sheet_1_3: -1032851919526256587
+      boss_aegis_core_sheet_1_4: 2616421140361655946
+      boss_aegis_core_sheet_1_5: -1292709935595131853
+      boss_aegis_core_sheet_1_6: -290815617144697370
+      boss_aegis_core_sheet_1_7: -5681918764903011350
+      boss_aegis_core_sheet_1_8: 3098147262139388591
+      boss_aegis_core_sheet_1_9: -5483644401687818284
+      boss_aegis_core_sheet_2: 7480124608813771566
+      boss_aegis_core_sheet_20: -5787240332231624340
+      boss_aegis_core_sheet_21: -6076211103395314937
+      boss_aegis_core_sheet_22: -1379283495973821782
+      boss_aegis_core_sheet_23: -6914230668893456689
+      boss_aegis_core_sheet_24: -558498665901310399
+      boss_aegis_core_sheet_25: -715191754133108311
+      boss_aegis_core_sheet_26: -1311102046338054105
+      boss_aegis_core_sheet_27: -3763807180956852658
+      boss_aegis_core_sheet_28: 6789400711030602814
+      boss_aegis_core_sheet_29: 7552870302791460095
+      boss_aegis_core_sheet_2_0: 367619863478300328
+      boss_aegis_core_sheet_2_1: -8108319037037912607
+      boss_aegis_core_sheet_2_10: -4681138748827219805
+      boss_aegis_core_sheet_2_11: 7605263187135679679
+      boss_aegis_core_sheet_2_12: -4756880466906842941
+      boss_aegis_core_sheet_2_13: -5591765194990895452
+      boss_aegis_core_sheet_2_14: 5669894617590659767
+      boss_aegis_core_sheet_2_15: -7945305446133480634
+      boss_aegis_core_sheet_2_16: -3907577266827860509
+      boss_aegis_core_sheet_2_17: 5743340772447607495
+      boss_aegis_core_sheet_2_18: 3466751363301946199
+      boss_aegis_core_sheet_2_19: -1378807176630364082
+      boss_aegis_core_sheet_2_2: 7539098881710283728
+      boss_aegis_core_sheet_2_20: 4202768696708582126
+      boss_aegis_core_sheet_2_3: -2761981493137774563
+      boss_aegis_core_sheet_2_4: -8131814659694062888
+      boss_aegis_core_sheet_2_5: -1977803420786683027
+      boss_aegis_core_sheet_2_6: 6767016729068904955
+      boss_aegis_core_sheet_2_7: 4089560566037521382
+      boss_aegis_core_sheet_2_8: -7544720657633745638
+      boss_aegis_core_sheet_2_9: 1306626215575481982
+      boss_aegis_core_sheet_3: -6745243630931308701
+      boss_aegis_core_sheet_30: 8804212515655204661
+      boss_aegis_core_sheet_31: -2104233490843808937
+      boss_aegis_core_sheet_32: -5347874018878851427
+      boss_aegis_core_sheet_33: -207589158318866494
+      boss_aegis_core_sheet_34: -5730679453566649440
+      boss_aegis_core_sheet_35: -6387558472087641897
+      boss_aegis_core_sheet_36: -3549618570052182956
+      boss_aegis_core_sheet_37: 8384354827951746645
+      boss_aegis_core_sheet_38: -3423149838120727525
+      boss_aegis_core_sheet_39: -390735692978107627
+      boss_aegis_core_sheet_3_0: -646629329129016716
+      boss_aegis_core_sheet_3_1: -8799599365289025358
+      boss_aegis_core_sheet_3_10: -7266080400069655022
+      boss_aegis_core_sheet_3_11: -526758905298057062
+      boss_aegis_core_sheet_3_12: -1973976132752106810
+      boss_aegis_core_sheet_3_13: -3965177862210973996
+      boss_aegis_core_sheet_3_14: 8989476223709742025
+      boss_aegis_core_sheet_3_15: -3513492257133440528
+      boss_aegis_core_sheet_3_16: -7376630806474798476
+      boss_aegis_core_sheet_3_17: 829320287981648767
+      boss_aegis_core_sheet_3_18: 7524934041369009451
+      boss_aegis_core_sheet_3_19: -7348431611379863009
+      boss_aegis_core_sheet_3_2: 3230327338150873047
+      boss_aegis_core_sheet_3_20: -8854365972836486876
+      boss_aegis_core_sheet_3_3: 4297175214191341207
+      boss_aegis_core_sheet_3_4: -4661146144732907773
+      boss_aegis_core_sheet_3_5: -3865786243106286659
+      boss_aegis_core_sheet_3_6: -7776423761210639257
+      boss_aegis_core_sheet_3_7: 5133368063466028029
+      boss_aegis_core_sheet_3_8: -4359628033051123138
+      boss_aegis_core_sheet_3_9: -9123207010938239664
+      boss_aegis_core_sheet_4: -5694415939976266605
+      boss_aegis_core_sheet_40: -4464459541195343325
+      boss_aegis_core_sheet_41: 1516399104267027959
+      boss_aegis_core_sheet_42: -690987506289286250
+      boss_aegis_core_sheet_43: -2068575994697286988
+      boss_aegis_core_sheet_44: 4082439488093776674
+      boss_aegis_core_sheet_45: -5884022448289356904
+      boss_aegis_core_sheet_46: 6317084931553779859
+      boss_aegis_core_sheet_47: -52427803217004839
+      boss_aegis_core_sheet_48: 298604615962660130
+      boss_aegis_core_sheet_49: -8306695752850815461
+      boss_aegis_core_sheet_4_0: -4122162790824767651
+      boss_aegis_core_sheet_4_1: 2043565385304742834
+      boss_aegis_core_sheet_4_10: -175311425651327696
+      boss_aegis_core_sheet_4_11: 8447967965863045961
+      boss_aegis_core_sheet_4_12: 8687717154925899446
+      boss_aegis_core_sheet_4_13: -2177907067643362874
+      boss_aegis_core_sheet_4_14: -8526093885815098698
+      boss_aegis_core_sheet_4_15: -471105432745348181
+      boss_aegis_core_sheet_4_16: 7106759482629149014
+      boss_aegis_core_sheet_4_17: 5991906089505990096
+      boss_aegis_core_sheet_4_18: -6274559641336018021
+      boss_aegis_core_sheet_4_19: 4682853720763152411
+      boss_aegis_core_sheet_4_2: 3013064468926020820
+      boss_aegis_core_sheet_4_20: -4446159613755479879
+      boss_aegis_core_sheet_4_3: -877278973788071479
+      boss_aegis_core_sheet_4_4: -1109158049077049506
+      boss_aegis_core_sheet_4_5: 3054809780712673179
+      boss_aegis_core_sheet_4_6: -563082117067097725
+      boss_aegis_core_sheet_4_7: 6544162778854649305
+      boss_aegis_core_sheet_4_8: -3542952712245561564
+      boss_aegis_core_sheet_4_9: 1541738352503286166
+      boss_aegis_core_sheet_5: 210455718421481266
+      boss_aegis_core_sheet_50: -3828501300161023881
+      boss_aegis_core_sheet_51: -7407175990760040363
+      boss_aegis_core_sheet_52: -3855720365817064082
+      boss_aegis_core_sheet_53: 833614024296042306
+      boss_aegis_core_sheet_54: -634938154894556329
+      boss_aegis_core_sheet_55: -5958517791904890397
+      boss_aegis_core_sheet_56: 7430748489896845120
+      boss_aegis_core_sheet_57: -517871667746413975
+      boss_aegis_core_sheet_58: -4529826492937682675
+      boss_aegis_core_sheet_59: 1214371040747275836
+      boss_aegis_core_sheet_5_0: 7364473009685046586
+      boss_aegis_core_sheet_5_1: -1543467410797588371
+      boss_aegis_core_sheet_5_10: 797929929536083667
+      boss_aegis_core_sheet_5_11: -4598643297763891793
+      boss_aegis_core_sheet_5_12: -6132284542388935631
+      boss_aegis_core_sheet_5_13: 203666436902001124
+      boss_aegis_core_sheet_5_14: -172657670217825381
+      boss_aegis_core_sheet_5_15: -8308248544130542845
+      boss_aegis_core_sheet_5_16: -5067530643681627892
+      boss_aegis_core_sheet_5_17: 3880418320655595468
+      boss_aegis_core_sheet_5_18: 8090330863086527305
+      boss_aegis_core_sheet_5_19: -6568833652334487648
+      boss_aegis_core_sheet_5_2: 1218351160468463309
+      boss_aegis_core_sheet_5_20: 3853250931349172552
+      boss_aegis_core_sheet_5_3: 6235247132294505018
+      boss_aegis_core_sheet_5_4: -265459549778509096
+      boss_aegis_core_sheet_5_5: 2227926905987507510
+      boss_aegis_core_sheet_5_6: 394147062637070202
+      boss_aegis_core_sheet_5_7: 7879168221883190468
+      boss_aegis_core_sheet_5_8: -8500460327873666320
+      boss_aegis_core_sheet_5_9: 152194988489473254
+      boss_aegis_core_sheet_6: -2078655890050045240
+      boss_aegis_core_sheet_60: 3079099273021304155
+      boss_aegis_core_sheet_61: 2841652329505739335
+      boss_aegis_core_sheet_62: -6395834781243715696
+      boss_aegis_core_sheet_63: 3992605524413919109
+      boss_aegis_core_sheet_64: -2202968657377413828
+      boss_aegis_core_sheet_65: 3368192108767406436
+      boss_aegis_core_sheet_66: 2025985393147149778
+      boss_aegis_core_sheet_67: -737609459602566007
+      boss_aegis_core_sheet_68: -3446053468252301404
+      boss_aegis_core_sheet_69: 2756579121139915912
+      boss_aegis_core_sheet_6_0: -7255933823360583456
+      boss_aegis_core_sheet_6_1: -6786740530477635393
+      boss_aegis_core_sheet_6_10: -3688606035449248132
+      boss_aegis_core_sheet_6_11: -8622339073373721695
+      boss_aegis_core_sheet_6_12: 112368836149540934
+      boss_aegis_core_sheet_6_13: -1460495152005516936
+      boss_aegis_core_sheet_6_14: 2589571260936600257
+      boss_aegis_core_sheet_6_15: 6798425842605000525
+      boss_aegis_core_sheet_6_16: 8026673653973364341
+      boss_aegis_core_sheet_6_17: 8554028797183723608
+      boss_aegis_core_sheet_6_18: -5002216974967889540
+      boss_aegis_core_sheet_6_19: 2349330164358650136
+      boss_aegis_core_sheet_6_2: 1134072241024971325
+      boss_aegis_core_sheet_6_20: -3841656372999626028
+      boss_aegis_core_sheet_6_3: -5577408085324553095
+      boss_aegis_core_sheet_6_4: 3167403810409081681
+      boss_aegis_core_sheet_6_5: -3918355546554055336
+      boss_aegis_core_sheet_6_6: -634573768589696416
+      boss_aegis_core_sheet_6_7: -2456042349479058450
+      boss_aegis_core_sheet_6_8: -2714163841110292338
+      boss_aegis_core_sheet_6_9: 617495432163644730
+      boss_aegis_core_sheet_7: -4542219886334003875
+      boss_aegis_core_sheet_70: 6775695077837029749
+      boss_aegis_core_sheet_71: -8032832832170387936
+      boss_aegis_core_sheet_72: 4240708698935967811
+      boss_aegis_core_sheet_73: -7209534599762235541
+      boss_aegis_core_sheet_74: -3345622464881594994
+      boss_aegis_core_sheet_75: -5182372644906256067
+      boss_aegis_core_sheet_76: 5187470099569765763
+      boss_aegis_core_sheet_77: -157162671331809721
+      boss_aegis_core_sheet_78: -4433783355082880401
+      boss_aegis_core_sheet_79: 629627777749212903
+      boss_aegis_core_sheet_7_0: 5093442599466205208
+      boss_aegis_core_sheet_7_1: 844739788555731033
+      boss_aegis_core_sheet_7_10: -261351507265687384
+      boss_aegis_core_sheet_7_11: -844613751339153449
+      boss_aegis_core_sheet_7_12: -2057069732844123924
+      boss_aegis_core_sheet_7_13: 6207719810183640069
+      boss_aegis_core_sheet_7_14: 4170751092436903538
+      boss_aegis_core_sheet_7_15: 9150387640032451356
+      boss_aegis_core_sheet_7_16: 11775440190922816
+      boss_aegis_core_sheet_7_17: 8461800189865393568
+      boss_aegis_core_sheet_7_18: 8599658724227008080
+      boss_aegis_core_sheet_7_19: 5270828050806958334
+      boss_aegis_core_sheet_7_2: 5876134951785635461
+      boss_aegis_core_sheet_7_20: 9171855434437933896
+      boss_aegis_core_sheet_7_3: -236533646115940759
+      boss_aegis_core_sheet_7_4: -4975110856874037570
+      boss_aegis_core_sheet_7_5: -5695123729974200029
+      boss_aegis_core_sheet_7_6: -5188219775887439440
+      boss_aegis_core_sheet_7_7: -123156018553576201
+      boss_aegis_core_sheet_7_8: 6225679643502372771
+      boss_aegis_core_sheet_7_9: 315249693636711550
+      boss_aegis_core_sheet_8: 7854397173179462591
+      boss_aegis_core_sheet_80: -3909390620421797513
+      boss_aegis_core_sheet_81: -3019341860272203339
+      boss_aegis_core_sheet_82: -705323678648450597
+      boss_aegis_core_sheet_83: 4428636360237870990
+      boss_aegis_core_sheet_84: 2375401563742760994
+      boss_aegis_core_sheet_85: 6631244086972689810
+      boss_aegis_core_sheet_86: -1502742743028945003
+      boss_aegis_core_sheet_87: -4311929946884186712
+      boss_aegis_core_sheet_88: -7401560114435598917
+      boss_aegis_core_sheet_89: 7414785202362702113
+      boss_aegis_core_sheet_9: -5838112848155171934
+      boss_aegis_core_sheet_90: 7341092790969233198
+      boss_aegis_core_sheet_91: 1347325842665805941
+      boss_aegis_core_sheet_92: -3723078380936428812
+      boss_aegis_core_sheet_93: -6771283649699050716
+      boss_aegis_core_sheet_94: -6433578594864619558
+      boss_aegis_core_sheet_95: -2721433384080036023
+      boss_aegis_core_sheet_96: -7817346415949913286
+      boss_aegis_core_sheet_97: 8229915234019622027
+      boss_aegis_core_sheet_98: 5730099997758236650
+      boss_aegis_core_sheet_99: 8956906230655992332
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

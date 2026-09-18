@@ -1,0 +1,5709 @@
+fileFormatVersion: 2
+guid: bb76bb6f69f09394bad4eb994b6681e9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8301000965583110543
+    second: elite_railguard_sheet_0
+  - first:
+      213: -8392929201361196188
+    second: elite_railguard_sheet_1
+  - first:
+      213: 8301003869128512178
+    second: elite_railguard_sheet_2
+  - first:
+      213: -6039071077652592794
+    second: elite_railguard_sheet_3
+  - first:
+      213: -2503790905321747507
+    second: elite_railguard_sheet_4
+  - first:
+      213: -2824045872207771018
+    second: elite_railguard_sheet_5
+  - first:
+      213: -8888724946416926935
+    second: elite_railguard_sheet_6
+  - first:
+      213: 5789799555041096450
+    second: elite_railguard_sheet_7
+  - first:
+      213: -7146206438409863648
+    second: elite_railguard_sheet_8
+  - first:
+      213: 9053778336730200340
+    second: elite_railguard_sheet_9
+  - first:
+      213: -7721252282678150369
+    second: elite_railguard_sheet_10
+  - first:
+      213: 6283039250474251687
+    second: elite_railguard_sheet_11
+  - first:
+      213: -9165524444330549272
+    second: elite_railguard_sheet_12
+  - first:
+      213: 8152723703453353834
+    second: elite_railguard_sheet_13
+  - first:
+      213: -6504309219563880333
+    second: elite_railguard_sheet_14
+  - first:
+      213: -3167892680748385447
+    second: elite_railguard_sheet_15
+  - first:
+      213: 1516892894861583337
+    second: elite_railguard_sheet_16
+  - first:
+      213: 5190031816071045298
+    second: elite_railguard_sheet_17
+  - first:
+      213: 4279045459755060126
+    second: elite_railguard_sheet_18
+  - first:
+      213: -1328237665339118402
+    second: elite_railguard_sheet_19
+  - first:
+      213: -4233788667265298960
+    second: elite_railguard_sheet_20
+  - first:
+      213: 3841892588159978327
+    second: elite_railguard_sheet_21
+  - first:
+      213: -1269067204026550162
+    second: elite_railguard_sheet_22
+  - first:
+      213: 365425627523101295
+    second: elite_railguard_sheet_23
+  - first:
+      213: -635461452277387276
+    second: elite_railguard_sheet_24
+  - first:
+      213: 3846906069652010142
+    second: elite_railguard_sheet_25
+  - first:
+      213: 409249093597053387
+    second: elite_railguard_sheet_26
+  - first:
+      213: -5432703284536856955
+    second: elite_railguard_sheet_27
+  - first:
+      213: 2965770213992789417
+    second: elite_railguard_sheet_28
+  - first:
+      213: -9079477064164813492
+    second: elite_railguard_sheet_29
+  - first:
+      213: 1523791181398185238
+    second: elite_railguard_sheet_30
+  - first:
+      213: 4973833107488031220
+    second: elite_railguard_sheet_31
+  - first:
+      213: 3981410086811100698
+    second: elite_railguard_sheet_32
+  - first:
+      213: -2360672053314615398
+    second: elite_railguard_sheet_33
+  - first:
+      213: 8904552547105566871
+    second: elite_railguard_sheet_34
+  - first:
+      213: 5737705759917126420
+    second: elite_railguard_sheet_35
+  - first:
+      213: -9046578151616659232
+    second: elite_railguard_sheet_36
+  - first:
+      213: 3148504565103779864
+    second: elite_railguard_sheet_37
+  - first:
+      213: -3704140999700873824
+    second: elite_railguard_sheet_38
+  - first:
+      213: -4787419925545423814
+    second: elite_railguard_sheet_39
+  - first:
+      213: -3518750522857472727
+    second: elite_railguard_sheet_40
+  - first:
+      213: 6753653555597293294
+    second: elite_railguard_sheet_41
+  - first:
+      213: 7807009885363098760
+    second: elite_railguard_sheet_42
+  - first:
+      213: -2593749536016732609
+    second: elite_railguard_sheet_43
+  - first:
+      213: -2530559080561073512
+    second: elite_railguard_sheet_44
+  - first:
+      213: -7757035832648067498
+    second: elite_railguard_sheet_45
+  - first:
+      213: 6236214488809826425
+    second: elite_railguard_sheet_46
+  - first:
+      213: -2584477426517731890
+    second: elite_railguard_sheet_47
+  - first:
+      213: 81733876967069943
+    second: elite_railguard_sheet_48
+  - first:
+      213: 2055366259314718800
+    second: elite_railguard_sheet_49
+  - first:
+      213: 1291207939799877478
+    second: elite_railguard_sheet_50
+  - first:
+      213: -6543275206560344765
+    second: elite_railguard_sheet_51
+  - first:
+      213: 436704463293106411
+    second: elite_railguard_sheet_52
+  - first:
+      213: 4219104304362295231
+    second: elite_railguard_sheet_53
+  - first:
+      213: -7113288844984944800
+    second: elite_railguard_sheet_54
+  - first:
+      213: 3847329676748227409
+    second: elite_railguard_sheet_55
+  - first:
+      213: -4621727894989856864
+    second: elite_railguard_sheet_56
+  - first:
+      213: 6255986923018692160
+    second: elite_railguard_sheet_57
+  - first:
+      213: 7621167877728273216
+    second: elite_railguard_sheet_58
+  - first:
+      213: -5193446726346617185
+    second: elite_railguard_sheet_59
+  - first:
+      213: 5923939539235599054
+    second: elite_railguard_sheet_60
+  - first:
+      213: -3064558982201829102
+    second: elite_railguard_sheet_61
+  - first:
+      213: -3211910172979152348
+    second: elite_railguard_sheet_62
+  - first:
+      213: -5007176686639368031
+    second: elite_railguard_sheet_63
+  - first:
+      213: -576071273131008429
+    second: elite_railguard_sheet_64
+  - first:
+      213: 2587581222423437355
+    second: elite_railguard_sheet_65
+  - first:
+      213: -224300485006627631
+    second: elite_railguard_sheet_66
+  - first:
+      213: 1123116267453702801
+    second: elite_railguard_sheet_67
+  - first:
+      213: -4347652966103045267
+    second: elite_railguard_sheet_68
+  - first:
+      213: 1757417100352536239
+    second: elite_railguard_sheet_69
+  - first:
+      213: -7385896594899725969
+    second: elite_railguard_sheet_70
+  - first:
+      213: -9027012140547526661
+    second: elite_railguard_sheet_71
+  - first:
+      213: -174245036732745803
+    second: elite_railguard_sheet_72
+  - first:
+      213: 43786055723713331
+    second: elite_railguard_sheet_73
+  - first:
+      213: -3313833677458393615
+    second: elite_railguard_sheet_74
+  - first:
+      213: 5891951947391036060
+    second: elite_railguard_sheet_75
+  - first:
+      213: 9047567755037692538
+    second: elite_railguard_sheet_76
+  - first:
+      213: -7103276354431617507
+    second: elite_railguard_sheet_77
+  - first:
+      213: -7056654157754439691
+    second: elite_railguard_sheet_78
+  - first:
+      213: 8368278351410375319
+    second: elite_railguard_sheet_79
+  - first:
+      213: -7176742338920677118
+    second: elite_railguard_sheet_80
+  - first:
+      213: 8773613939181226689
+    second: elite_railguard_sheet_81
+  - first:
+      213: 6289734081332092424
+    second: elite_railguard_sheet_82
+  - first:
+      213: 6845944912916403571
+    second: elite_railguard_sheet_83
+  - first:
+      213: 4515749419486558106
+    second: elite_railguard_sheet_84
+  - first:
+      213: -9186091098475338641
+    second: elite_railguard_sheet_85
+  - first:
+      213: 3329868311431511348
+    second: elite_railguard_sheet_86
+  - first:
+      213: 552066636841969507
+    second: elite_railguard_sheet_87
+  - first:
+      213: -1082478349161958457
+    second: elite_railguard_sheet_88
+  - first:
+      213: -4021833070776093250
+    second: elite_railguard_sheet_89
+  - first:
+      213: 7668093311675179590
+    second: elite_railguard_sheet_90
+  - first:
+      213: 720193543556775430
+    second: elite_railguard_sheet_91
+  - first:
+      213: -6148537342642514569
+    second: elite_railguard_sheet_92
+  - first:
+      213: 4672627120564683567
+    second: elite_railguard_sheet_93
+  - first:
+      213: -5963848451440069080
+    second: elite_railguard_sheet_94
+  - first:
+      213: -3628451678223542517
+    second: elite_railguard_sheet_95
+  - first:
+      213: -3140851056742831955
+    second: elite_railguard_sheet_96
+  - first:
+      213: 542694760553071374
+    second: elite_railguard_sheet_97
+  - first:
+      213: 3570579810215353498
+    second: elite_railguard_sheet_98
+  - first:
+      213: -5013208711395582695
+    second: elite_railguard_sheet_99
+  - first:
+      213: 2565052372237375666
+    second: elite_railguard_sheet_100
+  - first:
+      213: -7698313008782330347
+    second: elite_railguard_sheet_101
+  - first:
+      213: -7867185327926176523
+    second: elite_railguard_sheet_102
+  - first:
+      213: 1519950399781608014
+    second: elite_railguard_sheet_103
+  - first:
+      213: -1059590270248088324
+    second: elite_railguard_sheet_104
+  - first:
+      213: 8510622877652446698
+    second: elite_railguard_sheet_105
+  - first:
+      213: -5556048580024646864
+    second: elite_railguard_sheet_106
+  - first:
+      213: 7039446614650958729
+    second: elite_railguard_sheet_107
+  - first:
+      213: 5334062647154982082
+    second: elite_railguard_sheet_108
+  - first:
+      213: 5817207949867008189
+    second: elite_railguard_sheet_109
+  - first:
+      213: 955156178642944100
+    second: elite_railguard_sheet_110
+  - first:
+      213: 949552173841123250
+    second: elite_railguard_sheet_111
+  - first:
+      213: -6308731745224484366
+    second: elite_railguard_sheet_112
+  - first:
+      213: 2916634341438844048
+    second: elite_railguard_sheet_113
+  - first:
+      213: -1843708809037284146
+    second: elite_railguard_sheet_114
+  - first:
+      213: -2093117501997727340
+    second: elite_railguard_sheet_115
+  - first:
+      213: -4129061422971565621
+    second: elite_railguard_sheet_116
+  - first:
+      213: -4746711845199370807
+    second: elite_railguard_sheet_117
+  - first:
+      213: -9130619880577630539
+    second: elite_railguard_sheet_118
+  - first:
+      213: 8363207989381228309
+    second: elite_railguard_sheet_119
+  - first:
+      213: -3530385569683207783
+    second: elite_railguard_sheet_120
+  - first:
+      213: -2825820080008059032
+    second: elite_railguard_sheet_121
+  - first:
+      213: 3228313397791563168
+    second: elite_railguard_sheet_122
+  - first:
+      213: -3830828819293185845
+    second: elite_railguard_sheet_123
+  - first:
+      213: -4202980717139227421
+    second: elite_railguard_sheet_124
+  - first:
+      213: 4345630747394299975
+    second: elite_railguard_sheet_125
+  - first:
+      213: -3831758503897704246
+    second: elite_railguard_sheet_126
+  - first:
+      213: -4489118328283429655
+    second: elite_railguard_sheet_127
+  - first:
+      213: -5065641685114610580
+    second: elite_railguard_sheet_128
+  - first:
+      213: 904944863901273504
+    second: elite_railguard_sheet_129
+  - first:
+      213: -964673943824051068
+    second: elite_railguard_sheet_130
+  - first:
+      213: 3893008890370605050
+    second: elite_railguard_sheet_131
+  - first:
+      213: -6983405956781047229
+    second: elite_railguard_sheet_132
+  - first:
+      213: 5456085373595008375
+    second: elite_railguard_sheet_133
+  - first:
+      213: -1910945137281917059
+    second: elite_railguard_sheet_134
+  - first:
+      213: -7957418039449116177
+    second: elite_railguard_sheet_135
+  - first:
+      213: -3796340809815338511
+    second: elite_railguard_sheet_136
+  - first:
+      213: -8840445710202102090
+    second: elite_railguard_sheet_137
+  - first:
+      213: -3310153629994567025
+    second: elite_railguard_sheet_138
+  - first:
+      213: 8828168225830752148
+    second: elite_railguard_sheet_139
+  - first:
+      213: -2858718960596807940
+    second: elite_railguard_sheet_140
+  - first:
+      213: 1256528288509483081
+    second: elite_railguard_sheet_141
+  - first:
+      213: 6280923673710144754
+    second: elite_railguard_sheet_142
+  - first:
+      213: -8331229808692269536
+    second: elite_railguard_sheet_143
+  - first:
+      213: -3742972766251079575
+    second: elite_railguard_sheet_144
+  - first:
+      213: -8722237510820028113
+    second: elite_railguard_sheet_145
+  - first:
+      213: -2642730306478705889
+    second: elite_railguard_sheet_146
+  - first:
+      213: -6336216499736111524
+    second: elite_railguard_sheet_147
+  - first:
+      213: -6326956971675644738
+    second: elite_railguard_sheet_148
+  - first:
+      213: 3162248425090289314
+    second: elite_railguard_sheet_149
+  - first:
+      213: 3479120083083476024
+    second: elite_railguard_sheet_150
+  - first:
+      213: 3637767406762862845
+    second: elite_railguard_sheet_151
+  - first:
+      213: 4166445592396268309
+    second: elite_railguard_sheet_152
+  - first:
+      213: 766654469687029706
+    second: elite_railguard_sheet_153
+  - first:
+      213: 8716153793320238477
+    second: elite_railguard_sheet_154
+  - first:
+      213: 1451891790197034089
+    second: elite_railguard_sheet_155
+  - first:
+      213: -732469357872860830
+    second: elite_railguard_sheet_156
+  - first:
+      213: -3034051871712387051
+    second: elite_railguard_sheet_157
+  - first:
+      213: 418008383111922350
+    second: elite_railguard_sheet_158
+  - first:
+      213: -7846046050525061793
+    second: elite_railguard_sheet_159
+  - first:
+      213: 4622635810352069959
+    second: elite_railguard_sheet_160
+  - first:
+      213: -7352489954337777347
+    second: elite_railguard_sheet_161
+  - first:
+      213: 951136940651804022
+    second: elite_railguard_sheet_162
+  - first:
+      213: 6624625824234003072
+    second: elite_railguard_sheet_163
+  - first:
+      213: 7834231753373692178
+    second: elite_railguard_sheet_164
+  - first:
+      213: 7411317646635553744
+    second: elite_railguard_sheet_165
+  - first:
+      213: 6453278075945480557
+    second: elite_railguard_sheet_166
+  - first:
+      213: 7827099183817792675
+    second: elite_railguard_sheet_167
+  - first:
+      213: 6292117397614630538
+    second: elite_railguard_sheet_168
+  - first:
+      213: 3158613557655082059
+    second: elite_railguard_sheet_169
+  - first:
+      213: -7430006242483461125
+    second: elite_railguard_sheet_170
+  - first:
+      213: -1404274890001870185
+    second: elite_railguard_sheet_171
+  - first:
+      213: 859214132805217697
+    second: elite_railguard_sheet_172
+  - first:
+      213: -2842103432044059889
+    second: elite_railguard_sheet_173
+  - first:
+      213: -8770329138234431241
+    second: elite_railguard_sheet_174
+  - first:
+      213: -7053467221416185430
+    second: elite_railguard_sheet_175
+  - first:
+      213: -4315122749975004996
+    second: elite_railguard_sheet_176
+  - first:
+      213: -1337084604554199865
+    second: elite_railguard_sheet_177
+  - first:
+      213: -6247083253928300868
+    second: elite_railguard_sheet_178
+  - first:
+      213: 8800129577207561853
+    second: elite_railguard_sheet_179
+  - first:
+      213: -2206272432905446207
+    second: elite_railguard_sheet_180
+  - first:
+      213: -2645438738127309470
+    second: elite_railguard_sheet_181
+  - first:
+      213: 7898094639132878282
+    second: elite_railguard_sheet_182
+  - first:
+      213: -4159629948587451232
+    second: elite_railguard_sheet_183
+  - first:
+      213: -6107646968312551655
+    second: elite_railguard_sheet_184
+  - first:
+      213: -7967184519806377889
+    second: elite_railguard_sheet_185
+  - first:
+      213: -1385114098222411644
+    second: elite_railguard_sheet_186
+  - first:
+      213: -1893063154669583296
+    second: elite_railguard_sheet_187
+  - first:
+      213: -1409411917281698085
+    second: elite_railguard_sheet_188
+  - first:
+      213: -2649221378941412979
+    second: elite_railguard_sheet_189
+  - first:
+      213: -5462318402159524626
+    second: elite_railguard_sheet_190
+  - first:
+      213: 5729298742581121337
+    second: elite_railguard_sheet_191
+  - first:
+      213: 1230561018142397766
+    second: elite_railguard_sheet_192
+  - first:
+      213: -8701788148385579226
+    second: elite_railguard_sheet_193
+  - first:
+      213: 7377747160015890550
+    second: elite_railguard_sheet_194
+  - first:
+      213: 3001727824538857741
+    second: elite_railguard_sheet_195
+  - first:
+      213: -6545440290643021866
+    second: elite_railguard_sheet_196
+  - first:
+      213: 6257873223042520243
+    second: elite_railguard_sheet_197
+  - first:
+      213: 1022017977441672584
+    second: elite_railguard_sheet_198
+  - first:
+      213: -1532963507531218058
+    second: elite_railguard_sheet_199
+  - first:
+      213: -6062915672137124071
+    second: elite_railguard_sheet_200
+  - first:
+      213: 6891243636349859239
+    second: elite_railguard_sheet_201
+  - first:
+      213: 2599821955658651788
+    second: elite_railguard_sheet_202
+  - first:
+      213: -8274267795637487705
+    second: elite_railguard_sheet_203
+  - first:
+      213: -2752491788875530230
+    second: elite_railguard_sheet_204
+  - first:
+      213: -5970235457482527542
+    second: elite_railguard_sheet_205
+  - first:
+      213: 977792895489911426
+    second: elite_railguard_sheet_206
+  - first:
+      213: 8679624089159529717
+    second: elite_railguard_sheet_207
+  - first:
+      213: 3342454553602602512
+    second: elite_railguard_sheet_208
+  - first:
+      213: 5729385122371500415
+    second: elite_railguard_sheet_209
+  - first:
+      213: 730307365293304704
+    second: elite_railguard_sheet_210
+  - first:
+      213: -6435014010646629862
+    second: elite_railguard_sheet_211
+  - first:
+      213: 1717692184620513908
+    second: elite_railguard_sheet_212
+  - first:
+      213: 1987303558792218287
+    second: elite_railguard_sheet_213
+  - first:
+      213: -5661999496398826190
+    second: elite_railguard_sheet_214
+  - first:
+      213: -156714450988132988
+    second: elite_railguard_sheet_215
+  - first:
+      213: 6179636525544945272
+    second: elite_railguard_sheet_216
+  - first:
+      213: 2430835292398372658
+    second: elite_railguard_sheet_217
+  - first:
+      213: 2693817308261013674
+    second: elite_railguard_sheet_218
+  - first:
+      213: -1006036190894918930
+    second: elite_railguard_sheet_219
+  - first:
+      213: -5180396082888957755
+    second: elite_railguard_sheet_220
+  - first:
+      213: 7399917287919036728
+    second: elite_railguard_sheet_221
+  - first:
+      213: 1837558969642398852
+    second: elite_railguard_sheet_222
+  - first:
+      213: -792600230142926515
+    second: elite_railguard_sheet_223
+  - first:
+      213: -4303743667876997125
+    second: elite_railguard_sheet_224
+  - first:
+      213: 1176451439891775327
+    second: elite_railguard_sheet_225
+  - first:
+      213: -7360472778136346087
+    second: elite_railguard_sheet_226
+  - first:
+      213: 8059740505594885873
+    second: elite_railguard_sheet_227
+  - first:
+      213: 2021570549449613858
+    second: elite_railguard_sheet_228
+  - first:
+      213: 8444164472505177694
+    second: elite_railguard_sheet_229
+  - first:
+      213: -5055386515234225439
+    second: elite_railguard_sheet_230
+  - first:
+      213: 2776736379499597444
+    second: elite_railguard_sheet_231
+  - first:
+      213: 5276777353423048888
+    second: elite_railguard_sheet_232
+  - first:
+      213: 5034469461798146980
+    second: elite_railguard_sheet_233
+  - first:
+      213: 2713849496932662022
+    second: elite_railguard_sheet_234
+  - first:
+      213: 6910913171918630261
+    second: elite_railguard_sheet_235
+  - first:
+      213: -8991978659220100295
+    second: elite_railguard_sheet_236
+  - first:
+      213: 1268416711614164761
+    second: elite_railguard_sheet_237
+  - first:
+      213: 7772075405973049526
+    second: elite_railguard_sheet_238
+  - first:
+      213: 1685386024775090538
+    second: elite_railguard_sheet_239
+  - first:
+      213: 2894955163829306775
+    second: elite_railguard_sheet_240
+  - first:
+      213: 1354092232253391000
+    second: elite_railguard_sheet_241
+  - first:
+      213: -2047953465981355969
+    second: elite_railguard_sheet_242
+  - first:
+      213: 4770245309803921791
+    second: elite_railguard_sheet_243
+  - first:
+      213: -1230233669605184601
+    second: elite_railguard_sheet_244
+  - first:
+      213: -332164597589531522
+    second: elite_railguard_sheet_245
+  - first:
+      213: 310360155398202900
+    second: elite_railguard_sheet_246
+  - first:
+      213: 715995049728143922
+    second: elite_railguard_sheet_247
+  - first:
+      213: 684870279760199051
+    second: elite_railguard_sheet_248
+  - first:
+      213: -8983562754081547908
+    second: elite_railguard_sheet_249
+  - first:
+      213: 5043314387098422927
+    second: elite_railguard_sheet_250
+  - first:
+      213: 1122470622461596826
+    second: elite_railguard_sheet_251
+  - first:
+      213: -2158854884574435817
+    second: elite_railguard_sheet_252
+  - first:
+      213: 2653647706548712134
+    second: elite_railguard_sheet_253
+  - first:
+      213: 1312365945495027747
+    second: elite_railguard_sheet_254
+  - first:
+      213: -7006205449115235471
+    second: elite_railguard_sheet_255
+  - first:
+      213: -4055286212663577238
+    second: elite_railguard_sheet_256
+  - first:
+      213: -3379734696591007250
+    second: elite_railguard_sheet_257
+  - first:
+      213: -4303960206674374207
+    second: elite_railguard_sheet_258
+  - first:
+      213: 7454779968818913063
+    second: elite_railguard_sheet_259
+  - first:
+      213: 4077348471905630161
+    second: elite_railguard_sheet_260
+  - first:
+      213: -9190157996155046441
+    second: elite_railguard_sheet_261
+  - first:
+      213: 8980771611198155740
+    second: elite_railguard_sheet_262
+  - first:
+      213: -4710207643809231738
+    second: elite_railguard_sheet_263
+  - first:
+      213: -7310175005323627569
+    second: elite_railguard_sheet_264
+  - first:
+      213: 7556224011384057057
+    second: elite_railguard_sheet_265
+  - first:
+      213: 5495046748287626722
+    second: elite_railguard_sheet_266
+  - first:
+      213: -588457823824927582
+    second: elite_railguard_sheet_267
+  - first:
+      213: 2248329350098939442
+    second: elite_railguard_sheet_268
+  - first:
+      213: 4305081514969580295
+    second: elite_railguard_sheet_269
+  - first:
+      213: -3502829944404257007
+    second: elite_railguard_sheet_270
+  - first:
+      213: 4381498847241980893
+    second: elite_railguard_sheet_271
+  - first:
+      213: -7717477491437182502
+    second: elite_railguard_sheet_272
+  - first:
+      213: 3651307827421704046
+    second: elite_railguard_sheet_273
+  - first:
+      213: -7307106407755903956
+    second: elite_railguard_sheet_274
+  - first:
+      213: 829052644529905385
+    second: elite_railguard_sheet_275
+  - first:
+      213: 3735802192838314962
+    second: elite_railguard_sheet_276
+  - first:
+      213: 4294899017159568855
+    second: elite_railguard_sheet_277
+  - first:
+      213: 7891599803026167033
+    second: elite_railguard_sheet_278
+  - first:
+      213: -3693223884870713234
+    second: elite_railguard_sheet_279
+  - first:
+      213: -871566472991599355
+    second: elite_railguard_sheet_280
+  - first:
+      213: -4288334324345402774
+    second: elite_railguard_sheet_281
+  - first:
+      213: -6655181125720657175
+    second: elite_railguard_sheet_282
+  - first:
+      213: 2928895277191134112
+    second: elite_railguard_sheet_283
+  - first:
+      213: -8447573684013593015
+    second: elite_railguard_sheet_284
+  - first:
+      213: -2296423660857826838
+    second: elite_railguard_sheet_285
+  - first:
+      213: 1066233379860353546
+    second: elite_railguard_sheet_286
+  - first:
+      213: 7317330469638760198
+    second: elite_railguard_sheet_287
+  - first:
+      213: -4718717125900651561
+    second: elite_railguard_sheet_288
+  - first:
+      213: -9021209303959917825
+    second: elite_railguard_sheet_289
+  - first:
+      213: -552299477564167330
+    second: elite_railguard_sheet_290
+  - first:
+      213: -310902534583134737
+    second: elite_railguard_sheet_291
+  - first:
+      213: -6436705239174259803
+    second: elite_railguard_sheet_292
+  - first:
+      213: -4841033499164872392
+    second: elite_railguard_sheet_293
+  - first:
+      213: -701113303489994831
+    second: elite_railguard_sheet_294
+  - first:
+      213: 3067053769357891524
+    second: elite_railguard_sheet_295
+  - first:
+      213: 1418099048470884696
+    second: elite_railguard_sheet_296
+  - first:
+      213: -2659053832020356614
+    second: elite_railguard_sheet_297
+  - first:
+      213: -4152414599892411239
+    second: elite_railguard_sheet_298
+  - first:
+      213: 8920197158484855910
+    second: elite_railguard_sheet_299
+  - first:
+      213: 508076548485985196
+    second: elite_railguard_sheet_300
+  - first:
+      213: 2201004851365665940
+    second: elite_railguard_sheet_301
+  - first:
+      213: -8198539999175622087
+    second: elite_railguard_sheet_302
+  - first:
+      213: -3359954047317500859
+    second: elite_railguard_sheet_303
+  - first:
+      213: 9075558533778472134
+    second: elite_railguard_sheet_304
+  - first:
+      213: -1349818954558538445
+    second: elite_railguard_sheet_305
+  - first:
+      213: -3255287112710244964
+    second: elite_railguard_sheet_0_0
+  - first:
+      213: -1673966951299187886
+    second: elite_railguard_sheet_0_1
+  - first:
+      213: 5996765494759853764
+    second: elite_railguard_sheet_0_2
+  - first:
+      213: 8956319739098035157
+    second: elite_railguard_sheet_0_3
+  - first:
+      213: -1951477021691868638
+    second: elite_railguard_sheet_0_4
+  - first:
+      213: -4031119414423014178
+    second: elite_railguard_sheet_0_5
+  - first:
+      213: -2816267182257937020
+    second: elite_railguard_sheet_0_6
+  - first:
+      213: 7208501214918561205
+    second: elite_railguard_sheet_0_7
+  - first:
+      213: 244500820592685973
+    second: elite_railguard_sheet_0_8
+  - first:
+      213: 8465299119433202452
+    second: elite_railguard_sheet_0_9
+  - first:
+      213: -1425845868450453112
+    second: elite_railguard_sheet_0_10
+  - first:
+      213: -7134424124488905284
+    second: elite_railguard_sheet_0_11
+  - first:
+      213: -153095364484091590
+    second: elite_railguard_sheet_0_12
+  - first:
+      213: -2225565408392679508
+    second: elite_railguard_sheet_0_13
+  - first:
+      213: -5205120331422824995
+    second: elite_railguard_sheet_0_14
+  - first:
+      213: 2782742833219679333
+    second: elite_railguard_sheet_0_15
+  - first:
+      213: -5392607209598484623
+    second: elite_railguard_sheet_0_16
+  - first:
+      213: -2722246397965695217
+    second: elite_railguard_sheet_0_17
+  - first:
+      213: 3518712767233042920
+    second: elite_railguard_sheet_0_18
+  - first:
+      213: -6875720151490243763
+    second: elite_railguard_sheet_0_19
+  - first:
+      213: -2935951911359555345
+    second: elite_railguard_sheet_0_20
+  - first:
+      213: -6976207233492558793
+    second: elite_railguard_sheet_1_0
+  - first:
+      213: -518988141533321089
+    second: elite_railguard_sheet_1_1
+  - first:
+      213: -7245513679039740981
+    second: elite_railguard_sheet_1_2
+  - first:
+      213: 2325037315180734055
+    second: elite_railguard_sheet_1_3
+  - first:
+      213: -5408786246202601843
+    second: elite_railguard_sheet_1_4
+  - first:
+      213: 9205458351460501231
+    second: elite_railguard_sheet_1_5
+  - first:
+      213: 6364658841617821240
+    second: elite_railguard_sheet_1_6
+  - first:
+      213: -2441468583004888773
+    second: elite_railguard_sheet_1_7
+  - first:
+      213: -8668498970066242500
+    second: elite_railguard_sheet_1_8
+  - first:
+      213: 2239212879528263280
+    second: elite_railguard_sheet_1_9
+  - first:
+      213: -1023510583824348806
+    second: elite_railguard_sheet_1_10
+  - first:
+      213: -8279832759364117542
+    second: elite_railguard_sheet_1_11
+  - first:
+      213: 4814757094724253215
+    second: elite_railguard_sheet_1_12
+  - first:
+      213: 1108008832956697025
+    second: elite_railguard_sheet_1_13
+  - first:
+      213: 4512039471180903077
+    second: elite_railguard_sheet_1_14
+  - first:
+      213: 1074204728476291709
+    second: elite_railguard_sheet_1_15
+  - first:
+      213: -1123905694939584946
+    second: elite_railguard_sheet_1_16
+  - first:
+      213: -5330409764836717528
+    second: elite_railguard_sheet_1_17
+  - first:
+      213: -8099571099523347186
+    second: elite_railguard_sheet_1_18
+  - first:
+      213: -6430853234401031492
+    second: elite_railguard_sheet_1_19
+  - first:
+      213: -7546363779298451786
+    second: elite_railguard_sheet_1_20
+  - first:
+      213: 4899455673713666884
+    second: elite_railguard_sheet_2_0
+  - first:
+      213: 6476409416072693368
+    second: elite_railguard_sheet_2_1
+  - first:
+      213: -236716310056949435
+    second: elite_railguard_sheet_2_2
+  - first:
+      213: -4284764975726518692
+    second: elite_railguard_sheet_2_3
+  - first:
+      213: 6318640657203011637
+    second: elite_railguard_sheet_2_4
+  - first:
+      213: 9058275210761727469
+    second: elite_railguard_sheet_2_5
+  - first:
+      213: -187502304212422926
+    second: elite_railguard_sheet_2_6
+  - first:
+      213: 7558342798867051269
+    second: elite_railguard_sheet_2_7
+  - first:
+      213: -6715313314454523022
+    second: elite_railguard_sheet_2_8
+  - first:
+      213: 6965152725081560245
+    second: elite_railguard_sheet_2_9
+  - first:
+      213: -8537829159072805621
+    second: elite_railguard_sheet_2_10
+  - first:
+      213: -360479284657066732
+    second: elite_railguard_sheet_2_11
+  - first:
+      213: -8080965839892029069
+    second: elite_railguard_sheet_2_12
+  - first:
+      213: 4721387295603067494
+    second: elite_railguard_sheet_2_13
+  - first:
+      213: -585550254978638945
+    second: elite_railguard_sheet_2_14
+  - first:
+      213: -2957321042394487060
+    second: elite_railguard_sheet_2_15
+  - first:
+      213: -7438448236243163265
+    second: elite_railguard_sheet_2_16
+  - first:
+      213: 5849196156638428936
+    second: elite_railguard_sheet_2_17
+  - first:
+      213: -6631889745854979863
+    second: elite_railguard_sheet_2_18
+  - first:
+      213: 3775444627347290644
+    second: elite_railguard_sheet_2_19
+  - first:
+      213: 4161567285830855484
+    second: elite_railguard_sheet_2_20
+  - first:
+      213: -757741326663890317
+    second: elite_railguard_sheet_3_0
+  - first:
+      213: 7455564187749883050
+    second: elite_railguard_sheet_3_1
+  - first:
+      213: 3577387654867203396
+    second: elite_railguard_sheet_3_2
+  - first:
+      213: 2636031979276216374
+    second: elite_railguard_sheet_3_3
+  - first:
+      213: 4866986766536042773
+    second: elite_railguard_sheet_3_4
+  - first:
+      213: -7571918804983089291
+    second: elite_railguard_sheet_3_5
+  - first:
+      213: -2390388430459282695
+    second: elite_railguard_sheet_3_6
+  - first:
+      213: -5587634805190947099
+    second: elite_railguard_sheet_3_7
+  - first:
+      213: 1230735483961487396
+    second: elite_railguard_sheet_3_8
+  - first:
+      213: 3026918595501442194
+    second: elite_railguard_sheet_3_9
+  - first:
+      213: -296463206780842603
+    second: elite_railguard_sheet_3_10
+  - first:
+      213: -4395169711728184929
+    second: elite_railguard_sheet_3_11
+  - first:
+      213: -6266992798822118008
+    second: elite_railguard_sheet_3_12
+  - first:
+      213: 5946086298393973364
+    second: elite_railguard_sheet_3_13
+  - first:
+      213: -2913663739369425757
+    second: elite_railguard_sheet_3_14
+  - first:
+      213: 2953772656298768895
+    second: elite_railguard_sheet_3_15
+  - first:
+      213: 7950703452500768619
+    second: elite_railguard_sheet_3_16
+  - first:
+      213: 1443444337092833561
+    second: elite_railguard_sheet_3_17
+  - first:
+      213: -5262006264029323969
+    second: elite_railguard_sheet_3_18
+  - first:
+      213: -3898865550953197890
+    second: elite_railguard_sheet_3_19
+  - first:
+      213: 2561409584187507404
+    second: elite_railguard_sheet_3_20
+  - first:
+      213: -9069052194428264556
+    second: elite_railguard_sheet_4_0
+  - first:
+      213: 2403671170664526719
+    second: elite_railguard_sheet_4_1
+  - first:
+      213: 6280357420541023363
+    second: elite_railguard_sheet_4_2
+  - first:
+      213: -7581387708978036303
+    second: elite_railguard_sheet_4_3
+  - first:
+      213: 8545117519921614063
+    second: elite_railguard_sheet_4_4
+  - first:
+      213: 8084162174428849541
+    second: elite_railguard_sheet_4_5
+  - first:
+      213: 4074916517603993789
+    second: elite_railguard_sheet_4_6
+  - first:
+      213: 3812444118771965418
+    second: elite_railguard_sheet_4_7
+  - first:
+      213: -8195683891977312904
+    second: elite_railguard_sheet_4_8
+  - first:
+      213: -4621653047819173162
+    second: elite_railguard_sheet_4_9
+  - first:
+      213: -2858069669393299723
+    second: elite_railguard_sheet_4_10
+  - first:
+      213: 5563260740242960441
+    second: elite_railguard_sheet_4_11
+  - first:
+      213: -4323034560229746532
+    second: elite_railguard_sheet_4_12
+  - first:
+      213: -3337929618583736582
+    second: elite_railguard_sheet_4_13
+  - first:
+      213: 857719266600323612
+    second: elite_railguard_sheet_4_14
+  - first:
+      213: 7970242046335669720
+    second: elite_railguard_sheet_4_15
+  - first:
+      213: 5440090298253819343
+    second: elite_railguard_sheet_4_16
+  - first:
+      213: 5277821454868399136
+    second: elite_railguard_sheet_4_17
+  - first:
+      213: -2089737761767582964
+    second: elite_railguard_sheet_4_18
+  - first:
+      213: 763766081209545266
+    second: elite_railguard_sheet_4_19
+  - first:
+      213: -4306178436841862413
+    second: elite_railguard_sheet_4_20
+  - first:
+      213: 640857984556692068
+    second: elite_railguard_sheet_5_0
+  - first:
+      213: 6765152400423382575
+    second: elite_railguard_sheet_5_1
+  - first:
+      213: 3683073442902681845
+    second: elite_railguard_sheet_5_2
+  - first:
+      213: -1668735243202473728
+    second: elite_railguard_sheet_5_3
+  - first:
+      213: 3636341245391780210
+    second: elite_railguard_sheet_5_4
+  - first:
+      213: 8127099825402574887
+    second: elite_railguard_sheet_5_5
+  - first:
+      213: -8766890980421218552
+    second: elite_railguard_sheet_5_6
+  - first:
+      213: -1170432982754370352
+    second: elite_railguard_sheet_5_7
+  - first:
+      213: -6096885928576739765
+    second: elite_railguard_sheet_5_8
+  - first:
+      213: -5841542095571538657
+    second: elite_railguard_sheet_5_9
+  - first:
+      213: -48708796481514064
+    second: elite_railguard_sheet_5_10
+  - first:
+      213: 2304936509320746890
+    second: elite_railguard_sheet_5_11
+  - first:
+      213: 4400018790287990793
+    second: elite_railguard_sheet_5_12
+  - first:
+      213: 8495503980548591418
+    second: elite_railguard_sheet_5_13
+  - first:
+      213: 3495435641323537921
+    second: elite_railguard_sheet_5_14
+  - first:
+      213: -9121528326953482184
+    second: elite_railguard_sheet_5_15
+  - first:
+      213: 3078720292090044877
+    second: elite_railguard_sheet_5_16
+  - first:
+      213: -9092146133265718505
+    second: elite_railguard_sheet_5_17
+  - first:
+      213: 2317503572698106604
+    second: elite_railguard_sheet_5_18
+  - first:
+      213: 1649061291358892262
+    second: elite_railguard_sheet_5_19
+  - first:
+      213: 5257924860653554734
+    second: elite_railguard_sheet_5_20
+  - first:
+      213: -273464865962159525
+    second: elite_railguard_sheet_6_0
+  - first:
+      213: -2520112792050889995
+    second: elite_railguard_sheet_6_1
+  - first:
+      213: 1372390420821468525
+    second: elite_railguard_sheet_6_2
+  - first:
+      213: 7875634140903648533
+    second: elite_railguard_sheet_6_3
+  - first:
+      213: -1486540501533157631
+    second: elite_railguard_sheet_6_4
+  - first:
+      213: 7468175869978854935
+    second: elite_railguard_sheet_6_5
+  - first:
+      213: -9020693533816200185
+    second: elite_railguard_sheet_6_6
+  - first:
+      213: 2613578365718019559
+    second: elite_railguard_sheet_6_7
+  - first:
+      213: 4064514495220527272
+    second: elite_railguard_sheet_6_8
+  - first:
+      213: 3864642171342751555
+    second: elite_railguard_sheet_6_9
+  - first:
+      213: -7184282521757129435
+    second: elite_railguard_sheet_6_10
+  - first:
+      213: 6511919023442874735
+    second: elite_railguard_sheet_6_11
+  - first:
+      213: -5780148863991465672
+    second: elite_railguard_sheet_6_12
+  - first:
+      213: -2052281066887715037
+    second: elite_railguard_sheet_6_13
+  - first:
+      213: -6117521392767462385
+    second: elite_railguard_sheet_6_14
+  - first:
+      213: 6836439207446593506
+    second: elite_railguard_sheet_6_15
+  - first:
+      213: -5620530675811462070
+    second: elite_railguard_sheet_6_16
+  - first:
+      213: -6650429043827533890
+    second: elite_railguard_sheet_6_17
+  - first:
+      213: 3784045463632501593
+    second: elite_railguard_sheet_6_18
+  - first:
+      213: 3311856054765276322
+    second: elite_railguard_sheet_6_19
+  - first:
+      213: 9000938961502375896
+    second: elite_railguard_sheet_6_20
+  - first:
+      213: 3709759722704175238
+    second: elite_railguard_sheet_7_0
+  - first:
+      213: 4134246742985279175
+    second: elite_railguard_sheet_7_1
+  - first:
+      213: 9066824006324465694
+    second: elite_railguard_sheet_7_2
+  - first:
+      213: 8839789076243536893
+    second: elite_railguard_sheet_7_3
+  - first:
+      213: 5828422521759767576
+    second: elite_railguard_sheet_7_4
+  - first:
+      213: -8348343164179500115
+    second: elite_railguard_sheet_7_5
+  - first:
+      213: -5465134428225306623
+    second: elite_railguard_sheet_7_6
+  - first:
+      213: -8411055184296552992
+    second: elite_railguard_sheet_7_7
+  - first:
+      213: 6606805258647090216
+    second: elite_railguard_sheet_7_8
+  - first:
+      213: 5976731324548289534
+    second: elite_railguard_sheet_7_9
+  - first:
+      213: 4976936412749040207
+    second: elite_railguard_sheet_7_10
+  - first:
+      213: 1230112951562680030
+    second: elite_railguard_sheet_7_11
+  - first:
+      213: -8649081536292123929
+    second: elite_railguard_sheet_7_12
+  - first:
+      213: 1807806961033482079
+    second: elite_railguard_sheet_7_13
+  - first:
+      213: 2014117363010279561
+    second: elite_railguard_sheet_7_14
+  - first:
+      213: 8368243515672945973
+    second: elite_railguard_sheet_7_15
+  - first:
+      213: 8452482966489234771
+    second: elite_railguard_sheet_7_16
+  - first:
+      213: 6488799444300054140
+    second: elite_railguard_sheet_7_17
+  - first:
+      213: 555758119378219985
+    second: elite_railguard_sheet_7_18
+  - first:
+      213: 3616970868371308176
+    second: elite_railguard_sheet_7_19
+  - first:
+      213: 5415019360607553131
+    second: elite_railguard_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95bff44e95e2d2d0800000000000000
+      internalID: -3255287112710244964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b71164defd4c8e0800000000000000
+      internalID: -1673966951299187886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ce0b7cf17ac83350800000000000000
+      internalID: 5996765494759853764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d3f1cf995d3b4c70800000000000000
+      internalID: 8956319739098035157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a08b6fcf5fae4e0800000000000000
+      internalID: -1951477021691868638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed4b22810469e08c0800000000000000
+      internalID: -4031119414423014178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 485ece04beb9ae8d0800000000000000
+      internalID: -2816267182257937020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5bd4136a9adb90460800000000000000
+      internalID: 7208501214918561205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 593f7be6334a46300800000000000000
+      internalID: 244500820592685973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41b3e33b2b8ca7570800000000000000
+      internalID: 8465299119433202452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8896d82bcb0663ce0800000000000000
+      internalID: -1425845868450453112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbd8cdefe0f6dfc90800000000000000
+      internalID: -7134424124488905284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a31ba2fb39810edf0800000000000000
+      internalID: -153095364484091590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: caf6b587d043d11e0800000000000000
+      internalID: -2225565408392679508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd50160f2a2b3c7b0800000000000000
+      internalID: -5205120331422824995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564b25bfcd94e9620800000000000000
+      internalID: 2782742833219679333
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17ffbaa605c9925b0800000000000000
+      internalID: -5392607209598484623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f070b2af253a83ad0800000000000000
+      internalID: -2722246397965695217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e9ae8d6e9af4d030800000000000000
+      internalID: 3518712767233042920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d43dd6b83f88490a0800000000000000
+      internalID: -6875720151490243763
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 392
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe8d8cdba476147d0800000000000000
+      internalID: -2935951911359555345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73c5a209b788f2f90800000000000000
+      internalID: -6976207233492558793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f782445f80f2cc8f0800000000000000
+      internalID: -518988141533321089
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc34a9182b3c27b90800000000000000
+      internalID: -7245513679039740981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 76620ec9e11344020800000000000000
+      internalID: 2325037315180734055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8e4319e09120f4b0800000000000000
+      internalID: -5408786246202601843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe6c479199b50cf70800000000000000
+      internalID: 9205458351460501231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83eed2bbe7fc35850800000000000000
+      internalID: 6364658841617821240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b31a7bb52492e1ed0800000000000000
+      internalID: -2441468583004888773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c34bc594d1e43b780800000000000000
+      internalID: -8668498970066242500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ef2c40048431f10800000000000000
+      internalID: 2239212879528263280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a790c4bfb82cbc1f0800000000000000
+      internalID: -1023510583824348806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb957a49ff181d80800000000000000
+      internalID: -8279832759364117542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f16b4d6611471d240800000000000000
+      internalID: 4814757094724253215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1c90160c920706f00800000000000000
+      internalID: 1108008832956697025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a277444efbfd9e30800000000000000
+      internalID: 4512039471180903077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d72dfd8528758ee00800000000000000
+      internalID: 1074204728476291709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e466614a9b51760f0800000000000000
+      internalID: -1123905694939584946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82c42a38f849606b0800000000000000
+      internalID: -5330409764836717528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0d04e39ffa889f80800000000000000
+      internalID: -8099571099523347186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbacad03e0501c6a0800000000000000
+      internalID: -6430853234401031492
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 336
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6be9a05002ee54790800000000000000
+      internalID: -7546363779298451786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44ba9701afc5ef340800000000000000
+      internalID: 4899455673713666884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8760209ec04d0e950800000000000000
+      internalID: 6476409416072693368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 549a38a25c307bcf0800000000000000
+      internalID: -236716310056949435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5e19cbc4f47984c0800000000000000
+      internalID: -4284764975726518692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5302deb333250b750800000000000000
+      internalID: 6318640657203011637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: deded27bf4575bd70800000000000000
+      internalID: 9058275210761727469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fee9d2d5abd56df0800000000000000
+      internalID: -187502304212422926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5033a11dab0a4e860800000000000000
+      internalID: 7558342798867051269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 273bc78ae1a6ec2a0800000000000000
+      internalID: -6715313314454523022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b494d0208139a060800000000000000
+      internalID: 6965152725081560245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0d4e7c7d99838980800000000000000
+      internalID: -8537829159072805621
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41de02120025ffaf0800000000000000
+      internalID: -360479284657066732
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3716b272264aadf80800000000000000
+      internalID: -8080965839892029069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66a8679fabcb58140800000000000000
+      internalID: 4721387295603067494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9bdbdd3525bfd7f0800000000000000
+      internalID: -585550254978638945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce6e9453e2c75f6d0800000000000000
+      internalID: -2957321042394487060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f77689e5db255c890800000000000000
+      internalID: -7438448236243163265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80f73020ae48c2150800000000000000
+      internalID: 5849196156638428936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e022c4d96bc6f3a0800000000000000
+      internalID: -6631889745854979863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41a313aa2e2156430800000000000000
+      internalID: 3775444627347290644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 280
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c3ba5d4c56bd0c930800000000000000
+      internalID: 4161567285830855484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ac0903746fb75f0800000000000000
+      internalID: -757741326663890317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aac94f2a02c777760800000000000000
+      internalID: 7455564187749883050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4453a384e1f65a130800000000000000
+      internalID: 3577387654867203396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 638245d6e11159420800000000000000
+      internalID: 2636031979276216374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51968e18da20b8340800000000000000
+      internalID: 4866986766536042773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577f1e0f6f32be690800000000000000
+      internalID: -7571918804983089291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9fa55472362a3ded0800000000000000
+      internalID: -2390388430459282695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ee0cfdcfbbb472b0800000000000000
+      internalID: -5587634805190947099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4203ef5e663741110800000000000000
+      internalID: 1230735483961487396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29443e0ec66c10a20800000000000000
+      internalID: 3026918595501442194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59dcadeb840c2ebf0800000000000000
+      internalID: -296463206780842603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f91b2ec0f683103c0800000000000000
+      internalID: -4395169711728184929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88dc640e04b2709a0800000000000000
+      internalID: -6266992798822118008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47217931cfdb48250800000000000000
+      internalID: 5946086298393973364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a4f2fb24469097d0800000000000000
+      internalID: -2913663739369425757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff933f5c498edf820800000000000000
+      internalID: 2953772656298768895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67b7c85aa2965e60800000000000000
+      internalID: 7950703452500768619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 911b7751af4280410800000000000000
+      internalID: 1443444337092833561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3dd6a2ae2999f6b0800000000000000
+      internalID: -5262006264029323969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ebe4d60407274e9c0800000000000000
+      internalID: -3898865550953197890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 224
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc207c52274fb8320800000000000000
+      internalID: 2561409584187507404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49f50ad3411442280800000000000000
+      internalID: -9069052194428264556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f737e4cc13e8b5120800000000000000
+      internalID: 2403671170664526719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38416d99ccf482750800000000000000
+      internalID: 6280357420541023363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b10addeb0089c690800000000000000
+      internalID: -7581387708978036303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fec05e24c1b569670800000000000000
+      internalID: 8545117519921614063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5852b797aa6b03070800000000000000
+      internalID: 8084162174428849541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db86821abf20d8830800000000000000
+      internalID: 4074916517603993789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aed1e611ab588e430800000000000000
+      internalID: 3812444118771965418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8752d4f3ce4134e80800000000000000
+      internalID: -8195683891977312904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d203a12a079cdfb0800000000000000
+      internalID: -4621653047819173162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f68e7447c81658d0800000000000000
+      internalID: -2858069669393299723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 930fe07fa2ca43d40800000000000000
+      internalID: 5563260740242960441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c98d4cdc8fe7104c0800000000000000
+      internalID: -4323034560229746532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afeaf0f62ba4da1d0800000000000000
+      internalID: -3337929618583736582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1a88bae02b37eb00800000000000000
+      internalID: 857719266600323612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d558b9b9ecfb9e60800000000000000
+      internalID: 7970242046335669720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcdb77dad451f7b40800000000000000
+      internalID: 5440090298253819343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 024cd5d66a69e3940800000000000000
+      internalID: 5277821454868399136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c039f1cd392cff2e0800000000000000
+      internalID: -2089737761767582964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 232bcf94431799a00800000000000000
+      internalID: 763766081209545266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 168
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa089cd6816d34c0800000000000000
+      internalID: -4306178436841862413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46279f801f8c4e800800000000000000
+      internalID: 640857984556692068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2eed9ec346a2ed50800000000000000
+      internalID: 6765152400423382575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f8a3e558c7ec1330800000000000000
+      internalID: 3683073442902681845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 001ddbc332677d8e0800000000000000
+      internalID: -1668735243202473728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 279bda5b811e67230800000000000000
+      internalID: 3636341245391780210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72872436b3249c070800000000000000
+      internalID: 8127099825402574887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80fca6f2a1fb55680800000000000000
+      internalID: -8766890980421218552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dc56854769c1cfe0800000000000000
+      internalID: -1170432982754370352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b461b17fc82836ba0800000000000000
+      internalID: -6096885928576739765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1da7f4f96caeeea0800000000000000
+      internalID: -5841542095571538657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b558409b93f25ff0800000000000000
+      internalID: -48708796481514064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8754eb0b87ccff10800000000000000
+      internalID: 2304936509320746890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 900e82807c1001d30800000000000000
+      internalID: 4400018790287990793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3f0484fbd716e570800000000000000
+      internalID: 8495503980548591418
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10644583238428030800000000000000
+      internalID: 3495435641323537921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83846478052d96180800000000000000
+      internalID: -9121528326953482184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc160dc3bcfc9ba20800000000000000
+      internalID: 3078720292090044877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71361c8934532d180800000000000000
+      internalID: -9092146133265718505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cea8e50883d692020800000000000000
+      internalID: 2317503572698106604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e03b44e184a2e610800000000000000
+      internalID: 1649061291358892262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 112
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c43f69dc6e7f840800000000000000
+      internalID: 5257924860653554734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5296cd3725743cf0800000000000000
+      internalID: -273464865962159525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fa83eb84c2c60dd0800000000000000
+      internalID: -2520112792050889995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d65663601d5bb0310800000000000000
+      internalID: 1372390420821468525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51d2085368fdb4d60800000000000000
+      internalID: 7875634140903648533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10792e53a4fbe5be0800000000000000
+      internalID: -1486540501533157631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 716cb3ab26a44a760800000000000000
+      internalID: 7468175869978854935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 704e831560f00d280800000000000000
+      internalID: -9020693533816200185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7edb4412dab454420800000000000000
+      internalID: 2613578365718019559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a0bb00166e086830800000000000000
+      internalID: 4064514495220527272
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34701ee3497f1a530800000000000000
+      internalID: 3864642171342751555
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5256e944c1d4c4c90800000000000000
+      internalID: -7184282521757129435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f61db66a9dbfe5a50800000000000000
+      internalID: 6511919023442874735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83939e49b39c8cfa0800000000000000
+      internalID: -5780148863991465672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327e5ec3e35d483e0800000000000000
+      internalID: -2052281066887715037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f041e3e84b23a1ba0800000000000000
+      internalID: -6117521392767462385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ef3868fc39efde50800000000000000
+      internalID: 6836439207446593506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a445213112ddff1b0800000000000000
+      internalID: -5620530675811462070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb718b6250ee4b3a0800000000000000
+      internalID: -6650429043827533890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95b5eb9ec41a38430800000000000000
+      internalID: 3784045463632501593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2acc28be88316fd20800000000000000
+      internalID: 3311856054765276322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 56
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8df8255eb42c9ec70800000000000000
+      internalID: 9000938961502375896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68085d900d6bb7330800000000000000
+      internalID: 3709759722704175238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 44
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c60471328bcf5930800000000000000
+      internalID: 4134246742985279175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1034f94564d3dd70800000000000000
+      internalID: 9066824006324465694
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 132
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfbdfd2645d3daa70800000000000000
+      internalID: 8839789076243536893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 176
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81c906a3767b2e050800000000000000
+      internalID: 5828422521759767576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da33504af1ab42c80800000000000000
+      internalID: -8348343164179500115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1008fdb6131f724b0800000000000000
+      internalID: -5465134428225306623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 308
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e5dbc1afdde54b80800000000000000
+      internalID: -8411055184296552992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 824b7ddd06610bb50800000000000000
+      internalID: 6606805258647090216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef396ad397d91f250800000000000000
+      internalID: 5976731324548289534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4a0d976c41a11540800000000000000
+      internalID: 4976936412749040207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed63087463d321110800000000000000
+      internalID: 1230112951562680030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 528
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ea0be3ea2a48f780800000000000000
+      internalID: -8649081536292123929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 572
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f5f01e65ade961910800000000000000
+      internalID: 1807806961033482079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 616
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9889c26021593fb10800000000000000
+      internalID: 2014117363010279561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 660
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 535e6a10429f12470800000000000000
+      internalID: 8368243515672945973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35d71af89704d4570800000000000000
+      internalID: 8452482966489234771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 748
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7eb14827b8dc0a50800000000000000
+      internalID: 6488799444300054140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d3f396a01376b700800000000000000
+      internalID: 555758119378219985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 836
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09e353c57df023230800000000000000
+      internalID: 3616970868371308176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_railguard_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 880
+        y: 0
+        width: 44
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6640e02b63062b40800000000000000
+      internalID: 5415019360607553131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      elite_railguard_sheet_0: -8301000965583110543
+      elite_railguard_sheet_0_0: -3255287112710244964
+      elite_railguard_sheet_0_1: -1673966951299187886
+      elite_railguard_sheet_0_10: -1425845868450453112
+      elite_railguard_sheet_0_11: -7134424124488905284
+      elite_railguard_sheet_0_12: -153095364484091590
+      elite_railguard_sheet_0_13: -2225565408392679508
+      elite_railguard_sheet_0_14: -5205120331422824995
+      elite_railguard_sheet_0_15: 2782742833219679333
+      elite_railguard_sheet_0_16: -5392607209598484623
+      elite_railguard_sheet_0_17: -2722246397965695217
+      elite_railguard_sheet_0_18: 3518712767233042920
+      elite_railguard_sheet_0_19: -6875720151490243763
+      elite_railguard_sheet_0_2: 5996765494759853764
+      elite_railguard_sheet_0_20: -2935951911359555345
+      elite_railguard_sheet_0_3: 8956319739098035157
+      elite_railguard_sheet_0_4: -1951477021691868638
+      elite_railguard_sheet_0_5: -4031119414423014178
+      elite_railguard_sheet_0_6: -2816267182257937020
+      elite_railguard_sheet_0_7: 7208501214918561205
+      elite_railguard_sheet_0_8: 244500820592685973
+      elite_railguard_sheet_0_9: 8465299119433202452
+      elite_railguard_sheet_1: -8392929201361196188
+      elite_railguard_sheet_10: -7721252282678150369
+      elite_railguard_sheet_100: 2565052372237375666
+      elite_railguard_sheet_101: -7698313008782330347
+      elite_railguard_sheet_102: -7867185327926176523
+      elite_railguard_sheet_103: 1519950399781608014
+      elite_railguard_sheet_104: -1059590270248088324
+      elite_railguard_sheet_105: 8510622877652446698
+      elite_railguard_sheet_106: -5556048580024646864
+      elite_railguard_sheet_107: 7039446614650958729
+      elite_railguard_sheet_108: 5334062647154982082
+      elite_railguard_sheet_109: 5817207949867008189
+      elite_railguard_sheet_11: 6283039250474251687
+      elite_railguard_sheet_110: 955156178642944100
+      elite_railguard_sheet_111: 949552173841123250
+      elite_railguard_sheet_112: -6308731745224484366
+      elite_railguard_sheet_113: 2916634341438844048
+      elite_railguard_sheet_114: -1843708809037284146
+      elite_railguard_sheet_115: -2093117501997727340
+      elite_railguard_sheet_116: -4129061422971565621
+      elite_railguard_sheet_117: -4746711845199370807
+      elite_railguard_sheet_118: -9130619880577630539
+      elite_railguard_sheet_119: 8363207989381228309
+      elite_railguard_sheet_12: -9165524444330549272
+      elite_railguard_sheet_120: -3530385569683207783
+      elite_railguard_sheet_121: -2825820080008059032
+      elite_railguard_sheet_122: 3228313397791563168
+      elite_railguard_sheet_123: -3830828819293185845
+      elite_railguard_sheet_124: -4202980717139227421
+      elite_railguard_sheet_125: 4345630747394299975
+      elite_railguard_sheet_126: -3831758503897704246
+      elite_railguard_sheet_127: -4489118328283429655
+      elite_railguard_sheet_128: -5065641685114610580
+      elite_railguard_sheet_129: 904944863901273504
+      elite_railguard_sheet_13: 8152723703453353834
+      elite_railguard_sheet_130: -964673943824051068
+      elite_railguard_sheet_131: 3893008890370605050
+      elite_railguard_sheet_132: -6983405956781047229
+      elite_railguard_sheet_133: 5456085373595008375
+      elite_railguard_sheet_134: -1910945137281917059
+      elite_railguard_sheet_135: -7957418039449116177
+      elite_railguard_sheet_136: -3796340809815338511
+      elite_railguard_sheet_137: -8840445710202102090
+      elite_railguard_sheet_138: -3310153629994567025
+      elite_railguard_sheet_139: 8828168225830752148
+      elite_railguard_sheet_14: -6504309219563880333
+      elite_railguard_sheet_140: -2858718960596807940
+      elite_railguard_sheet_141: 1256528288509483081
+      elite_railguard_sheet_142: 6280923673710144754
+      elite_railguard_sheet_143: -8331229808692269536
+      elite_railguard_sheet_144: -3742972766251079575
+      elite_railguard_sheet_145: -8722237510820028113
+      elite_railguard_sheet_146: -2642730306478705889
+      elite_railguard_sheet_147: -6336216499736111524
+      elite_railguard_sheet_148: -6326956971675644738
+      elite_railguard_sheet_149: 3162248425090289314
+      elite_railguard_sheet_15: -3167892680748385447
+      elite_railguard_sheet_150: 3479120083083476024
+      elite_railguard_sheet_151: 3637767406762862845
+      elite_railguard_sheet_152: 4166445592396268309
+      elite_railguard_sheet_153: 766654469687029706
+      elite_railguard_sheet_154: 8716153793320238477
+      elite_railguard_sheet_155: 1451891790197034089
+      elite_railguard_sheet_156: -732469357872860830
+      elite_railguard_sheet_157: -3034051871712387051
+      elite_railguard_sheet_158: 418008383111922350
+      elite_railguard_sheet_159: -7846046050525061793
+      elite_railguard_sheet_16: 1516892894861583337
+      elite_railguard_sheet_160: 4622635810352069959
+      elite_railguard_sheet_161: -7352489954337777347
+      elite_railguard_sheet_162: 951136940651804022
+      elite_railguard_sheet_163: 6624625824234003072
+      elite_railguard_sheet_164: 7834231753373692178
+      elite_railguard_sheet_165: 7411317646635553744
+      elite_railguard_sheet_166: 6453278075945480557
+      elite_railguard_sheet_167: 7827099183817792675
+      elite_railguard_sheet_168: 6292117397614630538
+      elite_railguard_sheet_169: 3158613557655082059
+      elite_railguard_sheet_17: 5190031816071045298
+      elite_railguard_sheet_170: -7430006242483461125
+      elite_railguard_sheet_171: -1404274890001870185
+      elite_railguard_sheet_172: 859214132805217697
+      elite_railguard_sheet_173: -2842103432044059889
+      elite_railguard_sheet_174: -8770329138234431241
+      elite_railguard_sheet_175: -7053467221416185430
+      elite_railguard_sheet_176: -4315122749975004996
+      elite_railguard_sheet_177: -1337084604554199865
+      elite_railguard_sheet_178: -6247083253928300868
+      elite_railguard_sheet_179: 8800129577207561853
+      elite_railguard_sheet_18: 4279045459755060126
+      elite_railguard_sheet_180: -2206272432905446207
+      elite_railguard_sheet_181: -2645438738127309470
+      elite_railguard_sheet_182: 7898094639132878282
+      elite_railguard_sheet_183: -4159629948587451232
+      elite_railguard_sheet_184: -6107646968312551655
+      elite_railguard_sheet_185: -7967184519806377889
+      elite_railguard_sheet_186: -1385114098222411644
+      elite_railguard_sheet_187: -1893063154669583296
+      elite_railguard_sheet_188: -1409411917281698085
+      elite_railguard_sheet_189: -2649221378941412979
+      elite_railguard_sheet_19: -1328237665339118402
+      elite_railguard_sheet_190: -5462318402159524626
+      elite_railguard_sheet_191: 5729298742581121337
+      elite_railguard_sheet_192: 1230561018142397766
+      elite_railguard_sheet_193: -8701788148385579226
+      elite_railguard_sheet_194: 7377747160015890550
+      elite_railguard_sheet_195: 3001727824538857741
+      elite_railguard_sheet_196: -6545440290643021866
+      elite_railguard_sheet_197: 6257873223042520243
+      elite_railguard_sheet_198: 1022017977441672584
+      elite_railguard_sheet_199: -1532963507531218058
+      elite_railguard_sheet_1_0: -6976207233492558793
+      elite_railguard_sheet_1_1: -518988141533321089
+      elite_railguard_sheet_1_10: -1023510583824348806
+      elite_railguard_sheet_1_11: -8279832759364117542
+      elite_railguard_sheet_1_12: 4814757094724253215
+      elite_railguard_sheet_1_13: 1108008832956697025
+      elite_railguard_sheet_1_14: 4512039471180903077
+      elite_railguard_sheet_1_15: 1074204728476291709
+      elite_railguard_sheet_1_16: -1123905694939584946
+      elite_railguard_sheet_1_17: -5330409764836717528
+      elite_railguard_sheet_1_18: -8099571099523347186
+      elite_railguard_sheet_1_19: -6430853234401031492
+      elite_railguard_sheet_1_2: -7245513679039740981
+      elite_railguard_sheet_1_20: -7546363779298451786
+      elite_railguard_sheet_1_3: 2325037315180734055
+      elite_railguard_sheet_1_4: -5408786246202601843
+      elite_railguard_sheet_1_5: 9205458351460501231
+      elite_railguard_sheet_1_6: 6364658841617821240
+      elite_railguard_sheet_1_7: -2441468583004888773
+      elite_railguard_sheet_1_8: -8668498970066242500
+      elite_railguard_sheet_1_9: 2239212879528263280
+      elite_railguard_sheet_2: 8301003869128512178
+      elite_railguard_sheet_20: -4233788667265298960
+      elite_railguard_sheet_200: -6062915672137124071
+      elite_railguard_sheet_201: 6891243636349859239
+      elite_railguard_sheet_202: 2599821955658651788
+      elite_railguard_sheet_203: -8274267795637487705
+      elite_railguard_sheet_204: -2752491788875530230
+      elite_railguard_sheet_205: -5970235457482527542
+      elite_railguard_sheet_206: 977792895489911426
+      elite_railguard_sheet_207: 8679624089159529717
+      elite_railguard_sheet_208: 3342454553602602512
+      elite_railguard_sheet_209: 5729385122371500415
+      elite_railguard_sheet_21: 3841892588159978327
+      elite_railguard_sheet_210: 730307365293304704
+      elite_railguard_sheet_211: -6435014010646629862
+      elite_railguard_sheet_212: 1717692184620513908
+      elite_railguard_sheet_213: 1987303558792218287
+      elite_railguard_sheet_214: -5661999496398826190
+      elite_railguard_sheet_215: -156714450988132988
+      elite_railguard_sheet_216: 6179636525544945272
+      elite_railguard_sheet_217: 2430835292398372658
+      elite_railguard_sheet_218: 2693817308261013674
+      elite_railguard_sheet_219: -1006036190894918930
+      elite_railguard_sheet_22: -1269067204026550162
+      elite_railguard_sheet_220: -5180396082888957755
+      elite_railguard_sheet_221: 7399917287919036728
+      elite_railguard_sheet_222: 1837558969642398852
+      elite_railguard_sheet_223: -792600230142926515
+      elite_railguard_sheet_224: -4303743667876997125
+      elite_railguard_sheet_225: 1176451439891775327
+      elite_railguard_sheet_226: -7360472778136346087
+      elite_railguard_sheet_227: 8059740505594885873
+      elite_railguard_sheet_228: 2021570549449613858
+      elite_railguard_sheet_229: 8444164472505177694
+      elite_railguard_sheet_23: 365425627523101295
+      elite_railguard_sheet_230: -5055386515234225439
+      elite_railguard_sheet_231: 2776736379499597444
+      elite_railguard_sheet_232: 5276777353423048888
+      elite_railguard_sheet_233: 5034469461798146980
+      elite_railguard_sheet_234: 2713849496932662022
+      elite_railguard_sheet_235: 6910913171918630261
+      elite_railguard_sheet_236: -8991978659220100295
+      elite_railguard_sheet_237: 1268416711614164761
+      elite_railguard_sheet_238: 7772075405973049526
+      elite_railguard_sheet_239: 1685386024775090538
+      elite_railguard_sheet_24: -635461452277387276
+      elite_railguard_sheet_240: 2894955163829306775
+      elite_railguard_sheet_241: 1354092232253391000
+      elite_railguard_sheet_242: -2047953465981355969
+      elite_railguard_sheet_243: 4770245309803921791
+      elite_railguard_sheet_244: -1230233669605184601
+      elite_railguard_sheet_245: -332164597589531522
+      elite_railguard_sheet_246: 310360155398202900
+      elite_railguard_sheet_247: 715995049728143922
+      elite_railguard_sheet_248: 684870279760199051
+      elite_railguard_sheet_249: -8983562754081547908
+      elite_railguard_sheet_25: 3846906069652010142
+      elite_railguard_sheet_250: 5043314387098422927
+      elite_railguard_sheet_251: 1122470622461596826
+      elite_railguard_sheet_252: -2158854884574435817
+      elite_railguard_sheet_253: 2653647706548712134
+      elite_railguard_sheet_254: 1312365945495027747
+      elite_railguard_sheet_255: -7006205449115235471
+      elite_railguard_sheet_256: -4055286212663577238
+      elite_railguard_sheet_257: -3379734696591007250
+      elite_railguard_sheet_258: -4303960206674374207
+      elite_railguard_sheet_259: 7454779968818913063
+      elite_railguard_sheet_26: 409249093597053387
+      elite_railguard_sheet_260: 4077348471905630161
+      elite_railguard_sheet_261: -9190157996155046441
+      elite_railguard_sheet_262: 8980771611198155740
+      elite_railguard_sheet_263: -4710207643809231738
+      elite_railguard_sheet_264: -7310175005323627569
+      elite_railguard_sheet_265: 7556224011384057057
+      elite_railguard_sheet_266: 5495046748287626722
+      elite_railguard_sheet_267: -588457823824927582
+      elite_railguard_sheet_268: 2248329350098939442
+      elite_railguard_sheet_269: 4305081514969580295
+      elite_railguard_sheet_27: -5432703284536856955
+      elite_railguard_sheet_270: -3502829944404257007
+      elite_railguard_sheet_271: 4381498847241980893
+      elite_railguard_sheet_272: -7717477491437182502
+      elite_railguard_sheet_273: 3651307827421704046
+      elite_railguard_sheet_274: -7307106407755903956
+      elite_railguard_sheet_275: 829052644529905385
+      elite_railguard_sheet_276: 3735802192838314962
+      elite_railguard_sheet_277: 4294899017159568855
+      elite_railguard_sheet_278: 7891599803026167033
+      elite_railguard_sheet_279: -3693223884870713234
+      elite_railguard_sheet_28: 2965770213992789417
+      elite_railguard_sheet_280: -871566472991599355
+      elite_railguard_sheet_281: -4288334324345402774
+      elite_railguard_sheet_282: -6655181125720657175
+      elite_railguard_sheet_283: 2928895277191134112
+      elite_railguard_sheet_284: -8447573684013593015
+      elite_railguard_sheet_285: -2296423660857826838
+      elite_railguard_sheet_286: 1066233379860353546
+      elite_railguard_sheet_287: 7317330469638760198
+      elite_railguard_sheet_288: -4718717125900651561
+      elite_railguard_sheet_289: -9021209303959917825
+      elite_railguard_sheet_29: -9079477064164813492
+      elite_railguard_sheet_290: -552299477564167330
+      elite_railguard_sheet_291: -310902534583134737
+      elite_railguard_sheet_292: -6436705239174259803
+      elite_railguard_sheet_293: -4841033499164872392
+      elite_railguard_sheet_294: -701113303489994831
+      elite_railguard_sheet_295: 3067053769357891524
+      elite_railguard_sheet_296: 1418099048470884696
+      elite_railguard_sheet_297: -2659053832020356614
+      elite_railguard_sheet_298: -4152414599892411239
+      elite_railguard_sheet_299: 8920197158484855910
+      elite_railguard_sheet_2_0: 4899455673713666884
+      elite_railguard_sheet_2_1: 6476409416072693368
+      elite_railguard_sheet_2_10: -8537829159072805621
+      elite_railguard_sheet_2_11: -360479284657066732
+      elite_railguard_sheet_2_12: -8080965839892029069
+      elite_railguard_sheet_2_13: 4721387295603067494
+      elite_railguard_sheet_2_14: -585550254978638945
+      elite_railguard_sheet_2_15: -2957321042394487060
+      elite_railguard_sheet_2_16: -7438448236243163265
+      elite_railguard_sheet_2_17: 5849196156638428936
+      elite_railguard_sheet_2_18: -6631889745854979863
+      elite_railguard_sheet_2_19: 3775444627347290644
+      elite_railguard_sheet_2_2: -236716310056949435
+      elite_railguard_sheet_2_20: 4161567285830855484
+      elite_railguard_sheet_2_3: -4284764975726518692
+      elite_railguard_sheet_2_4: 6318640657203011637
+      elite_railguard_sheet_2_5: 9058275210761727469
+      elite_railguard_sheet_2_6: -187502304212422926
+      elite_railguard_sheet_2_7: 7558342798867051269
+      elite_railguard_sheet_2_8: -6715313314454523022
+      elite_railguard_sheet_2_9: 6965152725081560245
+      elite_railguard_sheet_3: -6039071077652592794
+      elite_railguard_sheet_30: 1523791181398185238
+      elite_railguard_sheet_300: 508076548485985196
+      elite_railguard_sheet_301: 2201004851365665940
+      elite_railguard_sheet_302: -8198539999175622087
+      elite_railguard_sheet_303: -3359954047317500859
+      elite_railguard_sheet_304: 9075558533778472134
+      elite_railguard_sheet_305: -1349818954558538445
+      elite_railguard_sheet_31: 4973833107488031220
+      elite_railguard_sheet_32: 3981410086811100698
+      elite_railguard_sheet_33: -2360672053314615398
+      elite_railguard_sheet_34: 8904552547105566871
+      elite_railguard_sheet_35: 5737705759917126420
+      elite_railguard_sheet_36: -9046578151616659232
+      elite_railguard_sheet_37: 3148504565103779864
+      elite_railguard_sheet_38: -3704140999700873824
+      elite_railguard_sheet_39: -4787419925545423814
+      elite_railguard_sheet_3_0: -757741326663890317
+      elite_railguard_sheet_3_1: 7455564187749883050
+      elite_railguard_sheet_3_10: -296463206780842603
+      elite_railguard_sheet_3_11: -4395169711728184929
+      elite_railguard_sheet_3_12: -6266992798822118008
+      elite_railguard_sheet_3_13: 5946086298393973364
+      elite_railguard_sheet_3_14: -2913663739369425757
+      elite_railguard_sheet_3_15: 2953772656298768895
+      elite_railguard_sheet_3_16: 7950703452500768619
+      elite_railguard_sheet_3_17: 1443444337092833561
+      elite_railguard_sheet_3_18: -5262006264029323969
+      elite_railguard_sheet_3_19: -3898865550953197890
+      elite_railguard_sheet_3_2: 3577387654867203396
+      elite_railguard_sheet_3_20: 2561409584187507404
+      elite_railguard_sheet_3_3: 2636031979276216374
+      elite_railguard_sheet_3_4: 4866986766536042773
+      elite_railguard_sheet_3_5: -7571918804983089291
+      elite_railguard_sheet_3_6: -2390388430459282695
+      elite_railguard_sheet_3_7: -5587634805190947099
+      elite_railguard_sheet_3_8: 1230735483961487396
+      elite_railguard_sheet_3_9: 3026918595501442194
+      elite_railguard_sheet_4: -2503790905321747507
+      elite_railguard_sheet_40: -3518750522857472727
+      elite_railguard_sheet_41: 6753653555597293294
+      elite_railguard_sheet_42: 7807009885363098760
+      elite_railguard_sheet_43: -2593749536016732609
+      elite_railguard_sheet_44: -2530559080561073512
+      elite_railguard_sheet_45: -7757035832648067498
+      elite_railguard_sheet_46: 6236214488809826425
+      elite_railguard_sheet_47: -2584477426517731890
+      elite_railguard_sheet_48: 81733876967069943
+      elite_railguard_sheet_49: 2055366259314718800
+      elite_railguard_sheet_4_0: -9069052194428264556
+      elite_railguard_sheet_4_1: 2403671170664526719
+      elite_railguard_sheet_4_10: -2858069669393299723
+      elite_railguard_sheet_4_11: 5563260740242960441
+      elite_railguard_sheet_4_12: -4323034560229746532
+      elite_railguard_sheet_4_13: -3337929618583736582
+      elite_railguard_sheet_4_14: 857719266600323612
+      elite_railguard_sheet_4_15: 7970242046335669720
+      elite_railguard_sheet_4_16: 5440090298253819343
+      elite_railguard_sheet_4_17: 5277821454868399136
+      elite_railguard_sheet_4_18: -2089737761767582964
+      elite_railguard_sheet_4_19: 763766081209545266
+      elite_railguard_sheet_4_2: 6280357420541023363
+      elite_railguard_sheet_4_20: -4306178436841862413
+      elite_railguard_sheet_4_3: -7581387708978036303
+      elite_railguard_sheet_4_4: 8545117519921614063
+      elite_railguard_sheet_4_5: 8084162174428849541
+      elite_railguard_sheet_4_6: 4074916517603993789
+      elite_railguard_sheet_4_7: 3812444118771965418
+      elite_railguard_sheet_4_8: -8195683891977312904
+      elite_railguard_sheet_4_9: -4621653047819173162
+      elite_railguard_sheet_5: -2824045872207771018
+      elite_railguard_sheet_50: 1291207939799877478
+      elite_railguard_sheet_51: -6543275206560344765
+      elite_railguard_sheet_52: 436704463293106411
+      elite_railguard_sheet_53: 4219104304362295231
+      elite_railguard_sheet_54: -7113288844984944800
+      elite_railguard_sheet_55: 3847329676748227409
+      elite_railguard_sheet_56: -4621727894989856864
+      elite_railguard_sheet_57: 6255986923018692160
+      elite_railguard_sheet_58: 7621167877728273216
+      elite_railguard_sheet_59: -5193446726346617185
+      elite_railguard_sheet_5_0: 640857984556692068
+      elite_railguard_sheet_5_1: 6765152400423382575
+      elite_railguard_sheet_5_10: -48708796481514064
+      elite_railguard_sheet_5_11: 2304936509320746890
+      elite_railguard_sheet_5_12: 4400018790287990793
+      elite_railguard_sheet_5_13: 8495503980548591418
+      elite_railguard_sheet_5_14: 3495435641323537921
+      elite_railguard_sheet_5_15: -9121528326953482184
+      elite_railguard_sheet_5_16: 3078720292090044877
+      elite_railguard_sheet_5_17: -9092146133265718505
+      elite_railguard_sheet_5_18: 2317503572698106604
+      elite_railguard_sheet_5_19: 1649061291358892262
+      elite_railguard_sheet_5_2: 3683073442902681845
+      elite_railguard_sheet_5_20: 5257924860653554734
+      elite_railguard_sheet_5_3: -1668735243202473728
+      elite_railguard_sheet_5_4: 3636341245391780210
+      elite_railguard_sheet_5_5: 8127099825402574887
+      elite_railguard_sheet_5_6: -8766890980421218552
+      elite_railguard_sheet_5_7: -1170432982754370352
+      elite_railguard_sheet_5_8: -6096885928576739765
+      elite_railguard_sheet_5_9: -5841542095571538657
+      elite_railguard_sheet_6: -8888724946416926935
+      elite_railguard_sheet_60: 5923939539235599054
+      elite_railguard_sheet_61: -3064558982201829102
+      elite_railguard_sheet_62: -3211910172979152348
+      elite_railguard_sheet_63: -5007176686639368031
+      elite_railguard_sheet_64: -576071273131008429
+      elite_railguard_sheet_65: 2587581222423437355
+      elite_railguard_sheet_66: -224300485006627631
+      elite_railguard_sheet_67: 1123116267453702801
+      elite_railguard_sheet_68: -4347652966103045267
+      elite_railguard_sheet_69: 1757417100352536239
+      elite_railguard_sheet_6_0: -273464865962159525
+      elite_railguard_sheet_6_1: -2520112792050889995
+      elite_railguard_sheet_6_10: -7184282521757129435
+      elite_railguard_sheet_6_11: 6511919023442874735
+      elite_railguard_sheet_6_12: -5780148863991465672
+      elite_railguard_sheet_6_13: -2052281066887715037
+      elite_railguard_sheet_6_14: -6117521392767462385
+      elite_railguard_sheet_6_15: 6836439207446593506
+      elite_railguard_sheet_6_16: -5620530675811462070
+      elite_railguard_sheet_6_17: -6650429043827533890
+      elite_railguard_sheet_6_18: 3784045463632501593
+      elite_railguard_sheet_6_19: 3311856054765276322
+      elite_railguard_sheet_6_2: 1372390420821468525
+      elite_railguard_sheet_6_20: 9000938961502375896
+      elite_railguard_sheet_6_3: 7875634140903648533
+      elite_railguard_sheet_6_4: -1486540501533157631
+      elite_railguard_sheet_6_5: 7468175869978854935
+      elite_railguard_sheet_6_6: -9020693533816200185
+      elite_railguard_sheet_6_7: 2613578365718019559
+      elite_railguard_sheet_6_8: 4064514495220527272
+      elite_railguard_sheet_6_9: 3864642171342751555
+      elite_railguard_sheet_7: 5789799555041096450
+      elite_railguard_sheet_70: -7385896594899725969
+      elite_railguard_sheet_71: -9027012140547526661
+      elite_railguard_sheet_72: -174245036732745803
+      elite_railguard_sheet_73: 43786055723713331
+      elite_railguard_sheet_74: -3313833677458393615
+      elite_railguard_sheet_75: 5891951947391036060
+      elite_railguard_sheet_76: 9047567755037692538
+      elite_railguard_sheet_77: -7103276354431617507
+      elite_railguard_sheet_78: -7056654157754439691
+      elite_railguard_sheet_79: 8368278351410375319
+      elite_railguard_sheet_7_0: 3709759722704175238
+      elite_railguard_sheet_7_1: 4134246742985279175
+      elite_railguard_sheet_7_10: 4976936412749040207
+      elite_railguard_sheet_7_11: 1230112951562680030
+      elite_railguard_sheet_7_12: -8649081536292123929
+      elite_railguard_sheet_7_13: 1807806961033482079
+      elite_railguard_sheet_7_14: 2014117363010279561
+      elite_railguard_sheet_7_15: 8368243515672945973
+      elite_railguard_sheet_7_16: 8452482966489234771
+      elite_railguard_sheet_7_17: 6488799444300054140
+      elite_railguard_sheet_7_18: 555758119378219985
+      elite_railguard_sheet_7_19: 3616970868371308176
+      elite_railguard_sheet_7_2: 9066824006324465694
+      elite_railguard_sheet_7_20: 5415019360607553131
+      elite_railguard_sheet_7_3: 8839789076243536893
+      elite_railguard_sheet_7_4: 5828422521759767576
+      elite_railguard_sheet_7_5: -8348343164179500115
+      elite_railguard_sheet_7_6: -5465134428225306623
+      elite_railguard_sheet_7_7: -8411055184296552992
+      elite_railguard_sheet_7_8: 6606805258647090216
+      elite_railguard_sheet_7_9: 5976731324548289534
+      elite_railguard_sheet_8: -7146206438409863648
+      elite_railguard_sheet_80: -7176742338920677118
+      elite_railguard_sheet_81: 8773613939181226689
+      elite_railguard_sheet_82: 6289734081332092424
+      elite_railguard_sheet_83: 6845944912916403571
+      elite_railguard_sheet_84: 4515749419486558106
+      elite_railguard_sheet_85: -9186091098475338641
+      elite_railguard_sheet_86: 3329868311431511348
+      elite_railguard_sheet_87: 552066636841969507
+      elite_railguard_sheet_88: -1082478349161958457
+      elite_railguard_sheet_89: -4021833070776093250
+      elite_railguard_sheet_9: 9053778336730200340
+      elite_railguard_sheet_90: 7668093311675179590
+      elite_railguard_sheet_91: 720193543556775430
+      elite_railguard_sheet_92: -6148537342642514569
+      elite_railguard_sheet_93: 4672627120564683567
+      elite_railguard_sheet_94: -5963848451440069080
+      elite_railguard_sheet_95: -3628451678223542517
+      elite_railguard_sheet_96: -3140851056742831955
+      elite_railguard_sheet_97: 542694760553071374
+      elite_railguard_sheet_98: 3570579810215353498
+      elite_railguard_sheet_99: -5013208711395582695
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

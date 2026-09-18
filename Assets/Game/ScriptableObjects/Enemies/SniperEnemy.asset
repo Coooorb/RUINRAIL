@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc222852e4d4331bdbff0c2ae01737d, type: 3}
+  m_Name: SniperEnemy
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.EnemyDefinition
+  _id: sniper_enemy
+  _displayName: Sniper
+  _baseHealth: 30
+  _damageMin: 28
+  _damageMax: 34
+  _moveSpeed: 2.2
+  _baseXp: 35
+  _attackRange: 12
+  _attackTelegraphSeconds: 1.4
+  _attackCooldownSeconds: 3
+  _staggerResistancePercent: 0
+  _knockbackResistancePercent: 0
+  _attackKind: 1
+  _projectileSpeed: 30
+  _projectileRange: 14
+  _burstCount: 1
+  _burstIntervalSeconds: 0
+  _aimLockSeconds: 0.4
+  _preferredDistance: 8
+  _chargeAttack: {fileID: 0}
+  _bombRadiusTiles: 0
+  _bombStaggerPower: 0
+  _moveset: []
+  _frontalShieldPercent: 0
+  _frontalShieldArcDegrees: 120
+  _unlockDepth: 11
+  _threatCost: 2.5
+  _spawnTags:
+  - ranged
+  - sniper
+  - normal

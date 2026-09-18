@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1906dce41f141c3b844fed647b047e4, type: 3}
+  m_Name: Boss_TheConductor
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Bosses.BossDefinition
+  _id: boss_the_conductor
+  _displayName: The Conductor
+  _biome: 0
+  _baseHealth: 1050
+  _moveSpeed: 2
+  _baseXp: 650
+  _strongestAttackDamageMin: 30
+  _strongestAttackDamageMax: 36
+  _phaseTwoHealthFraction: 0.5
+  _phaseTwoTimingMultiplier: 0.8
+  _staggerResistancePercent: 95
+  _moveset:
+  - {fileID: 11400000, guid: 82a370648168445fb9045d8ed62833be, type: 2}
+  - {fileID: 11400000, guid: 73b412c31b2b41f991153334ca707438, type: 2}
+  - {fileID: 11400000, guid: 894d02e128d242d1ac19062bdccf012e, type: 2}
+  - {fileID: 11400000, guid: ffdc9aa8131c4555bf5cc7dab6d11ea1, type: 2}
+  _phaseTwoArenaHazards:
+  - {fileID: 11400000, guid: 74a3ec7e62ae40a5833bc8d1d2466477, type: 2}

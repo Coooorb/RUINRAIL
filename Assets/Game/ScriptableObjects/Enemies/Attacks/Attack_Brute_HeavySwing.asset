@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da16c0d4e415473db5e963ec0abe3e53, type: 3}
+  m_Name: Attack_Brute_HeavySwing
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Attacks.EnemyAttackDefinition
+  _id: brute_heavy_swing
+  _displayName: Heavy Swing
+  _motion: 0
+  _damageMin: 18
+  _damageMax: 22
+  _minTriggerRange: 0
+  _maxTriggerRange: 1.6
+  _telegraphSeconds: 0.8
+  _recoverySeconds: 1
+  _hitCount: 1
+  _hitIntervalSeconds: 0
+  _hitRadius: 1.4
+  _dashDistance: 0
+  _dashSpeed: 0
+  _knockback: 5
+  _staggerPower: 5
+  _cooldownSeconds: 1.5

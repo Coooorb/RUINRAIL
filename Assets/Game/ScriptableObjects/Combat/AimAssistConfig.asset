@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 805dd0eee01907b429d9f254fe8cd54d, type: 3}
+  m_Name: AimAssistConfig
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.Weapons.AimAssistConfig
+  _mouseHalfAngleDegrees: 18
+  _controllerHalfAngleDegrees: 24
+  _crosshairProximityPixels: 28
+  _pixelsPerUnit: 32
+  _classMultipliers:
+  - WeaponClass: 5
+    Multiplier: 0.75
+  - WeaponClass: 7
+    Multiplier: 0.65

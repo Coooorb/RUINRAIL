@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: c13893e4b8b210045a5716dd3924bf7a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 2252691721166248367
+    second: elite_prototype_x7_sheet_0
+  - first:
+      213: -6501979030030576184
+    second: elite_prototype_x7_sheet_1
+  - first:
+      213: 1528111930635723786
+    second: elite_prototype_x7_sheet_2
+  - first:
+      213: -5847227282107102661
+    second: elite_prototype_x7_sheet_3
+  - first:
+      213: -2025015883949236025
+    second: elite_prototype_x7_sheet_4
+  - first:
+      213: 8119753911263940652
+    second: elite_prototype_x7_sheet_5
+  - first:
+      213: -416636446064615795
+    second: elite_prototype_x7_sheet_6
+  - first:
+      213: 2785308170804459411
+    second: elite_prototype_x7_sheet_7
+  - first:
+      213: 208073900607674702
+    second: elite_prototype_x7_sheet_8
+  - first:
+      213: 3413930964823127407
+    second: elite_prototype_x7_sheet_9
+  - first:
+      213: 6061926279603348711
+    second: elite_prototype_x7_sheet_10
+  - first:
+      213: 548423413331862633
+    second: elite_prototype_x7_sheet_11
+  - first:
+      213: 662167595757284759
+    second: elite_prototype_x7_sheet_12
+  - first:
+      213: -471734170734324416
+    second: elite_prototype_x7_sheet_13
+  - first:
+      213: -7627769500393751912
+    second: elite_prototype_x7_sheet_14
+  - first:
+      213: -7743417911853946431
+    second: elite_prototype_x7_sheet_15
+  - first:
+      213: -4615875910079834921
+    second: elite_prototype_x7_sheet_16
+  - first:
+      213: 2942138621109094158
+    second: elite_prototype_x7_sheet_17
+  - first:
+      213: 3453271908469222472
+    second: elite_prototype_x7_sheet_18
+  - first:
+      213: 6790227666864973676
+    second: elite_prototype_x7_sheet_19
+  - first:
+      213: -492947165889309261
+    second: elite_prototype_x7_sheet_20
+  - first:
+      213: -5968363253555695587
+    second: elite_prototype_x7_sheet_21
+  - first:
+      213: -7811574154505279529
+    second: elite_prototype_x7_sheet_22
+  - first:
+      213: -6944162059521460581
+    second: elite_prototype_x7_sheet_23
+  - first:
+      213: 6025038270843090079
+    second: elite_prototype_x7_sheet_24
+  - first:
+      213: 1091408510195857604
+    second: elite_prototype_x7_sheet_25
+  - first:
+      213: -6176136205749132067
+    second: elite_prototype_x7_sheet_26
+  - first:
+      213: -9205451270686030413
+    second: elite_prototype_x7_sheet_27
+  - first:
+      213: -3411387792902007555
+    second: elite_prototype_x7_sheet_28
+  - first:
+      213: 1625598313192125058
+    second: elite_prototype_x7_sheet_29
+  - first:
+      213: -6741567892967436827
+    second: elite_prototype_x7_sheet_30
+  - first:
+      213: 4743253222429843432
+    second: elite_prototype_x7_sheet_31
+  - first:
+      213: 515970158983473710
+    second: elite_prototype_x7_sheet_32
+  - first:
+      213: 6489840822045726581
+    second: elite_prototype_x7_sheet_33
+  - first:
+      213: 4626990356263143502
+    second: elite_prototype_x7_sheet_34
+  - first:
+      213: -7289701729029444777
+    second: elite_prototype_x7_sheet_35
+  - first:
+      213: -1683348267366236591
+    second: elite_prototype_x7_sheet_36
+  - first:
+      213: 3775944424165774170
+    second: elite_prototype_x7_sheet_37
+  - first:
+      213: -6097265616561954057
+    second: elite_prototype_x7_sheet_38
+  - first:
+      213: -6671050033612748501
+    second: elite_prototype_x7_sheet_39
+  - first:
+      213: 26207396887702008
+    second: elite_prototype_x7_sheet_40
+  - first:
+      213: 3271973543508204665
+    second: elite_prototype_x7_sheet_41
+  - first:
+      213: -4989403235481734497
+    second: elite_prototype_x7_sheet_42
+  - first:
+      213: -5564501672355353867
+    second: elite_prototype_x7_sheet_43
+  - first:
+      213: 9087323050377080020
+    second: elite_prototype_x7_sheet_44
+  - first:
+      213: -1076620993009065739
+    second: elite_prototype_x7_sheet_45
+  - first:
+      213: -8795871918689773049
+    second: elite_prototype_x7_sheet_46
+  - first:
+      213: 7965346442196868141
+    second: elite_prototype_x7_sheet_47
+  - first:
+      213: -6714226861530783321
+    second: elite_prototype_x7_sheet_48
+  - first:
+      213: 3497555697708558893
+    second: elite_prototype_x7_sheet_49
+  - first:
+      213: -3297533432854817490
+    second: elite_prototype_x7_sheet_50
+  - first:
+      213: -2307792288586915398
+    second: elite_prototype_x7_sheet_51
+  - first:
+      213: 4501232532650218012
+    second: elite_prototype_x7_sheet_52
+  - first:
+      213: -1356914864393728716
+    second: elite_prototype_x7_sheet_53
+  - first:
+      213: -1808864531379275942
+    second: elite_prototype_x7_sheet_54
+  - first:
+      213: -6624774477282955698
+    second: elite_prototype_x7_sheet_55
+  - first:
+      213: -3973489170791981736
+    second: elite_prototype_x7_sheet_56
+  - first:
+      213: 3743166198282013139
+    second: elite_prototype_x7_sheet_57
+  - first:
+      213: 4548984963953875667
+    second: elite_prototype_x7_sheet_58
+  - first:
+      213: 6379131900742268964
+    second: elite_prototype_x7_sheet_59
+  - first:
+      213: 6674712344152434323
+    second: elite_prototype_x7_sheet_60
+  - first:
+      213: -6562053284902319167
+    second: elite_prototype_x7_sheet_61
+  - first:
+      213: 8436702536331203391
+    second: elite_prototype_x7_sheet_62
+  - first:
+      213: 8478656573702496258
+    second: elite_prototype_x7_sheet_63
+  - first:
+      213: -2011158061563212244
+    second: elite_prototype_x7_sheet_64
+  - first:
+      213: 2428069355481083994
+    second: elite_prototype_x7_sheet_65
+  - first:
+      213: -371238955523316532
+    second: elite_prototype_x7_sheet_66
+  - first:
+      213: 8481433570275354733
+    second: elite_prototype_x7_sheet_67
+  - first:
+      213: 4862600601311339204
+    second: elite_prototype_x7_sheet_68
+  - first:
+      213: -2689699138634469907
+    second: elite_prototype_x7_sheet_69
+  - first:
+      213: 8634852308049196122
+    second: elite_prototype_x7_sheet_70
+  - first:
+      213: -9024749688804726952
+    second: elite_prototype_x7_sheet_71
+  - first:
+      213: 9089258057243898961
+    second: elite_prototype_x7_sheet_72
+  - first:
+      213: -5215387111039387962
+    second: elite_prototype_x7_sheet_73
+  - first:
+      213: 6475978741375127495
+    second: elite_prototype_x7_sheet_74
+  - first:
+      213: -4196142087057171503
+    second: elite_prototype_x7_sheet_75
+  - first:
+      213: 2354667909095103839
+    second: elite_prototype_x7_sheet_76
+  - first:
+      213: -5896312783339789592
+    second: elite_prototype_x7_sheet_77
+  - first:
+      213: 2634513970675213756
+    second: elite_prototype_x7_sheet_78
+  - first:
+      213: 3565897386123010832
+    second: elite_prototype_x7_sheet_79
+  - first:
+      213: -3476695215036375738
+    second: elite_prototype_x7_sheet_80
+  - first:
+      213: 4528627803925427891
+    second: elite_prototype_x7_sheet_81
+  - first:
+      213: 5897388292469799943
+    second: elite_prototype_x7_sheet_82
+  - first:
+      213: -6391477875454255036
+    second: elite_prototype_x7_sheet_83
+  - first:
+      213: -729678474962925869
+    second: elite_prototype_x7_sheet_84
+  - first:
+      213: 2780718541487208387
+    second: elite_prototype_x7_sheet_85
+  - first:
+      213: -2643228290660403705
+    second: elite_prototype_x7_sheet_86
+  - first:
+      213: -3029233957817519567
+    second: elite_prototype_x7_sheet_87
+  - first:
+      213: -5971814273330196668
+    second: elite_prototype_x7_sheet_88
+  - first:
+      213: 381494777283367817
+    second: elite_prototype_x7_sheet_89
+  - first:
+      213: 1138078048600247468
+    second: elite_prototype_x7_sheet_90
+  - first:
+      213: 2461191261424361454
+    second: elite_prototype_x7_sheet_91
+  - first:
+      213: 4003716156039485409
+    second: elite_prototype_x7_sheet_92
+  - first:
+      213: -2427518250196115520
+    second: elite_prototype_x7_sheet_93
+  - first:
+      213: -1734996238890764231
+    second: elite_prototype_x7_sheet_94
+  - first:
+      213: -2114774695723706281
+    second: elite_prototype_x7_sheet_95
+  - first:
+      213: -201361957387206141
+    second: elite_prototype_x7_sheet_96
+  - first:
+      213: 728725364909741414
+    second: elite_prototype_x7_sheet_97
+  - first:
+      213: 4533800930346950542
+    second: elite_prototype_x7_sheet_98
+  - first:
+      213: -4893263973010201031
+    second: elite_prototype_x7_sheet_99
+  - first:
+      213: 5654016970804967065
+    second: elite_prototype_x7_sheet_100
+  - first:
+      213: 1615051262834309437
+    second: elite_prototype_x7_sheet_101
+  - first:
+      213: 954278979945134354
+    second: elite_prototype_x7_sheet_102
+  - first:
+      213: 1013088760848603307
+    second: elite_prototype_x7_sheet_103
+  - first:
+      213: 391142618143013061
+    second: elite_prototype_x7_sheet_104
+  - first:
+      213: -6199051836675555012
+    second: elite_prototype_x7_sheet_105
+  - first:
+      213: -2057748992112140029
+    second: elite_prototype_x7_sheet_106
+  - first:
+      213: -2822349885512352128
+    second: elite_prototype_x7_sheet_107
+  - first:
+      213: 3988907749465844525
+    second: elite_prototype_x7_sheet_108
+  - first:
+      213: 4714618893396681595
+    second: elite_prototype_x7_sheet_109
+  - first:
+      213: -7317358016860403135
+    second: elite_prototype_x7_sheet_110
+  - first:
+      213: -4460597046429717801
+    second: elite_prototype_x7_sheet_111
+  - first:
+      213: 9093461570214915741
+    second: elite_prototype_x7_sheet_112
+  - first:
+      213: -1721830915940800988
+    second: elite_prototype_x7_sheet_113
+  - first:
+      213: 5949438517324825226
+    second: elite_prototype_x7_sheet_114
+  - first:
+      213: 1319459425651018488
+    second: elite_prototype_x7_sheet_115
+  - first:
+      213: 2678838357635044633
+    second: elite_prototype_x7_sheet_116
+  - first:
+      213: 4159979486184474066
+    second: elite_prototype_x7_sheet_117
+  - first:
+      213: 3194616046271934028
+    second: elite_prototype_x7_sheet_118
+  - first:
+      213: -7772674732876513805
+    second: elite_prototype_x7_sheet_119
+  - first:
+      213: -8474568772010769027
+    second: elite_prototype_x7_sheet_120
+  - first:
+      213: -7049358708720940543
+    second: elite_prototype_x7_sheet_121
+  - first:
+      213: -6419345680385653656
+    second: elite_prototype_x7_sheet_122
+  - first:
+      213: -3612164244811813500
+    second: elite_prototype_x7_sheet_123
+  - first:
+      213: 4701707481941798623
+    second: elite_prototype_x7_sheet_124
+  - first:
+      213: -7091678149443373936
+    second: elite_prototype_x7_sheet_125
+  - first:
+      213: -9017286371369276634
+    second: elite_prototype_x7_sheet_126
+  - first:
+      213: 2225692456848692573
+    second: elite_prototype_x7_sheet_127
+  - first:
+      213: -7699325965715493563
+    second: elite_prototype_x7_sheet_128
+  - first:
+      213: -1127885961005867434
+    second: elite_prototype_x7_sheet_129
+  - first:
+      213: 6833227269707154172
+    second: elite_prototype_x7_sheet_130
+  - first:
+      213: -4406049313771537253
+    second: elite_prototype_x7_sheet_131
+  - first:
+      213: 1178949417702489339
+    second: elite_prototype_x7_sheet_132
+  - first:
+      213: 3503299581169175437
+    second: elite_prototype_x7_sheet_133
+  - first:
+      213: 2528663117184370070
+    second: elite_prototype_x7_sheet_134
+  - first:
+      213: -4935615479259231278
+    second: elite_prototype_x7_sheet_135
+  - first:
+      213: -5375366735041346543
+    second: elite_prototype_x7_sheet_136
+  - first:
+      213: 157395405602377039
+    second: elite_prototype_x7_sheet_137
+  - first:
+      213: -3011157486539883658
+    second: elite_prototype_x7_sheet_138
+  - first:
+      213: 9046080584940798151
+    second: elite_prototype_x7_sheet_139
+  - first:
+      213: 8383224700328800612
+    second: elite_prototype_x7_sheet_140
+  - first:
+      213: 6360321094271410354
+    second: elite_prototype_x7_sheet_141
+  - first:
+      213: -9115075876398532283
+    second: elite_prototype_x7_sheet_142
+  - first:
+      213: 8871356776914239117
+    second: elite_prototype_x7_sheet_143
+  - first:
+      213: -6507492142887946530
+    second: elite_prototype_x7_sheet_144
+  - first:
+      213: 6636772931225408269
+    second: elite_prototype_x7_sheet_145
+  - first:
+      213: 2401791064735974479
+    second: elite_prototype_x7_sheet_146
+  - first:
+      213: 4857343969927402701
+    second: elite_prototype_x7_sheet_147
+  - first:
+      213: -5235759040593382022
+    second: elite_prototype_x7_sheet_148
+  - first:
+      213: -46828568010369216
+    second: elite_prototype_x7_sheet_149
+  - first:
+      213: -1253959261808591212
+    second: elite_prototype_x7_sheet_150
+  - first:
+      213: -7221213799250903942
+    second: elite_prototype_x7_sheet_151
+  - first:
+      213: -756524755221176043
+    second: elite_prototype_x7_sheet_152
+  - first:
+      213: -5983523385449230487
+    second: elite_prototype_x7_sheet_153
+  - first:
+      213: 5363133799674876381
+    second: elite_prototype_x7_sheet_154
+  - first:
+      213: -3421732338077941706
+    second: elite_prototype_x7_sheet_155
+  - first:
+      213: 6574408350526837090
+    second: elite_prototype_x7_sheet_156
+  - first:
+      213: 2659165515362022991
+    second: elite_prototype_x7_sheet_157
+  - first:
+      213: -5984601609014323955
+    second: elite_prototype_x7_sheet_158
+  - first:
+      213: 933844847598788141
+    second: elite_prototype_x7_sheet_159
+  - first:
+      213: 7412324374667607007
+    second: elite_prototype_x7_sheet_160
+  - first:
+      213: 7135432195104434965
+    second: elite_prototype_x7_sheet_161
+  - first:
+      213: 2811900627312487561
+    second: elite_prototype_x7_sheet_162
+  - first:
+      213: -3438615677373548755
+    second: elite_prototype_x7_sheet_163
+  - first:
+      213: 94512286436978624
+    second: elite_prototype_x7_sheet_164
+  - first:
+      213: -3324392290977751942
+    second: elite_prototype_x7_sheet_165
+  - first:
+      213: 4877718420810918809
+    second: elite_prototype_x7_sheet_166
+  - first:
+      213: -6159127223404855471
+    second: elite_prototype_x7_sheet_167
+  - first:
+      213: -25811939511099271
+    second: elite_prototype_x7_sheet_0_0
+  - first:
+      213: 2796635692993341923
+    second: elite_prototype_x7_sheet_0_1
+  - first:
+      213: 4323327426526691587
+    second: elite_prototype_x7_sheet_0_2
+  - first:
+      213: 9151785457476454476
+    second: elite_prototype_x7_sheet_0_3
+  - first:
+      213: 7135294031592113985
+    second: elite_prototype_x7_sheet_0_4
+  - first:
+      213: -8212377928819442542
+    second: elite_prototype_x7_sheet_0_5
+  - first:
+      213: -7111094079180420428
+    second: elite_prototype_x7_sheet_0_6
+  - first:
+      213: -610626244000625028
+    second: elite_prototype_x7_sheet_0_7
+  - first:
+      213: 4427282141421755602
+    second: elite_prototype_x7_sheet_0_8
+  - first:
+      213: -2471230507234881132
+    second: elite_prototype_x7_sheet_0_9
+  - first:
+      213: -7749097890181349708
+    second: elite_prototype_x7_sheet_0_10
+  - first:
+      213: -9035058462419672611
+    second: elite_prototype_x7_sheet_0_11
+  - first:
+      213: 7596556633444037983
+    second: elite_prototype_x7_sheet_0_12
+  - first:
+      213: 714384010063150865
+    second: elite_prototype_x7_sheet_0_13
+  - first:
+      213: -1252735089809791091
+    second: elite_prototype_x7_sheet_0_14
+  - first:
+      213: -2027291299993515013
+    second: elite_prototype_x7_sheet_0_15
+  - first:
+      213: 1994542698145020523
+    second: elite_prototype_x7_sheet_0_16
+  - first:
+      213: 6951410143506171625
+    second: elite_prototype_x7_sheet_0_17
+  - first:
+      213: -1373088418315380297
+    second: elite_prototype_x7_sheet_0_18
+  - first:
+      213: 2154033825518953364
+    second: elite_prototype_x7_sheet_0_19
+  - first:
+      213: -4339734574041527582
+    second: elite_prototype_x7_sheet_0_20
+  - first:
+      213: -7020716068438843248
+    second: elite_prototype_x7_sheet_1_0
+  - first:
+      213: -7857989931342722849
+    second: elite_prototype_x7_sheet_1_1
+  - first:
+      213: 7927147255170489822
+    second: elite_prototype_x7_sheet_1_2
+  - first:
+      213: 5270432215738856136
+    second: elite_prototype_x7_sheet_1_3
+  - first:
+      213: 3041095533365020563
+    second: elite_prototype_x7_sheet_1_4
+  - first:
+      213: -7096290051291109442
+    second: elite_prototype_x7_sheet_1_5
+  - first:
+      213: -771768103719113361
+    second: elite_prototype_x7_sheet_1_6
+  - first:
+      213: -4687153030997482921
+    second: elite_prototype_x7_sheet_1_7
+  - first:
+      213: -7646196328854938429
+    second: elite_prototype_x7_sheet_1_8
+  - first:
+      213: -6938939675623502206
+    second: elite_prototype_x7_sheet_1_9
+  - first:
+      213: -4685761808667632826
+    second: elite_prototype_x7_sheet_1_10
+  - first:
+      213: 6090387562591782651
+    second: elite_prototype_x7_sheet_1_11
+  - first:
+      213: 4161810260936815335
+    second: elite_prototype_x7_sheet_1_12
+  - first:
+      213: 3063825331517243223
+    second: elite_prototype_x7_sheet_1_13
+  - first:
+      213: -4565798219850188295
+    second: elite_prototype_x7_sheet_1_14
+  - first:
+      213: 6500619380103893816
+    second: elite_prototype_x7_sheet_1_15
+  - first:
+      213: -816866211748608026
+    second: elite_prototype_x7_sheet_1_16
+  - first:
+      213: -8962250897241712518
+    second: elite_prototype_x7_sheet_1_17
+  - first:
+      213: -7536470630534888129
+    second: elite_prototype_x7_sheet_1_18
+  - first:
+      213: -2323242686394774474
+    second: elite_prototype_x7_sheet_1_19
+  - first:
+      213: 7656062126441081129
+    second: elite_prototype_x7_sheet_1_20
+  - first:
+      213: -8855171012309287033
+    second: elite_prototype_x7_sheet_2_0
+  - first:
+      213: -4296689265115899917
+    second: elite_prototype_x7_sheet_2_1
+  - first:
+      213: 6543526784627692908
+    second: elite_prototype_x7_sheet_2_2
+  - first:
+      213: 7240154838086706661
+    second: elite_prototype_x7_sheet_2_3
+  - first:
+      213: 3553214950063282889
+    second: elite_prototype_x7_sheet_2_4
+  - first:
+      213: 7667205663489800964
+    second: elite_prototype_x7_sheet_2_5
+  - first:
+      213: -6592657697154032718
+    second: elite_prototype_x7_sheet_2_6
+  - first:
+      213: -6018639467431722790
+    second: elite_prototype_x7_sheet_2_7
+  - first:
+      213: 4749848267160076927
+    second: elite_prototype_x7_sheet_2_8
+  - first:
+      213: -2376100219579010143
+    second: elite_prototype_x7_sheet_2_9
+  - first:
+      213: 8953995650454242751
+    second: elite_prototype_x7_sheet_2_10
+  - first:
+      213: 6010389732148887324
+    second: elite_prototype_x7_sheet_2_11
+  - first:
+      213: -5236404559930161646
+    second: elite_prototype_x7_sheet_2_12
+  - first:
+      213: -7990769391330506081
+    second: elite_prototype_x7_sheet_2_13
+  - first:
+      213: 7077308347005652008
+    second: elite_prototype_x7_sheet_2_14
+  - first:
+      213: 9203295059100421279
+    second: elite_prototype_x7_sheet_2_15
+  - first:
+      213: 940613902674439415
+    second: elite_prototype_x7_sheet_2_16
+  - first:
+      213: -1545104598863307478
+    second: elite_prototype_x7_sheet_2_17
+  - first:
+      213: -3979029202439897399
+    second: elite_prototype_x7_sheet_2_18
+  - first:
+      213: -6798857217604787407
+    second: elite_prototype_x7_sheet_2_19
+  - first:
+      213: -723428965761272949
+    second: elite_prototype_x7_sheet_2_20
+  - first:
+      213: 1184605291911044759
+    second: elite_prototype_x7_sheet_3_0
+  - first:
+      213: -8547419017765401005
+    second: elite_prototype_x7_sheet_3_1
+  - first:
+      213: 469746879421972048
+    second: elite_prototype_x7_sheet_3_2
+  - first:
+      213: 6162129651815950536
+    second: elite_prototype_x7_sheet_3_3
+  - first:
+      213: -4730142394136870425
+    second: elite_prototype_x7_sheet_3_4
+  - first:
+      213: 5451158212033633573
+    second: elite_prototype_x7_sheet_3_5
+  - first:
+      213: 314201476293301035
+    second: elite_prototype_x7_sheet_3_6
+  - first:
+      213: -4410176361460897195
+    second: elite_prototype_x7_sheet_3_7
+  - first:
+      213: 962318634601723690
+    second: elite_prototype_x7_sheet_3_8
+  - first:
+      213: -5514378032796800832
+    second: elite_prototype_x7_sheet_3_9
+  - first:
+      213: -2481723238837221206
+    second: elite_prototype_x7_sheet_3_10
+  - first:
+      213: 1135615731432183407
+    second: elite_prototype_x7_sheet_3_11
+  - first:
+      213: -3868093174103305683
+    second: elite_prototype_x7_sheet_3_12
+  - first:
+      213: -1606638817269234376
+    second: elite_prototype_x7_sheet_3_13
+  - first:
+      213: -1215604625160238777
+    second: elite_prototype_x7_sheet_3_14
+  - first:
+      213: 8952705974017503757
+    second: elite_prototype_x7_sheet_3_15
+  - first:
+      213: -1506612000347692072
+    second: elite_prototype_x7_sheet_3_16
+  - first:
+      213: 2268588754853802189
+    second: elite_prototype_x7_sheet_3_17
+  - first:
+      213: -4285817361375395863
+    second: elite_prototype_x7_sheet_3_18
+  - first:
+      213: 3394593481239816164
+    second: elite_prototype_x7_sheet_3_19
+  - first:
+      213: 7735010099405336078
+    second: elite_prototype_x7_sheet_3_20
+  - first:
+      213: -4099666065474655855
+    second: elite_prototype_x7_sheet_4_0
+  - first:
+      213: -4067417278572671128
+    second: elite_prototype_x7_sheet_4_1
+  - first:
+      213: -2867778507611888478
+    second: elite_prototype_x7_sheet_4_2
+  - first:
+      213: 4257084742005659276
+    second: elite_prototype_x7_sheet_4_3
+  - first:
+      213: -2230854389482740738
+    second: elite_prototype_x7_sheet_4_4
+  - first:
+      213: -6276904543987564760
+    second: elite_prototype_x7_sheet_4_5
+  - first:
+      213: -4624433900398976188
+    second: elite_prototype_x7_sheet_4_6
+  - first:
+      213: -1384085386921223526
+    second: elite_prototype_x7_sheet_4_7
+  - first:
+      213: -3426313242654023734
+    second: elite_prototype_x7_sheet_4_8
+  - first:
+      213: -3959570214046915339
+    second: elite_prototype_x7_sheet_4_9
+  - first:
+      213: -3081050529594674692
+    second: elite_prototype_x7_sheet_4_10
+  - first:
+      213: -3177981759802144404
+    second: elite_prototype_x7_sheet_4_11
+  - first:
+      213: 50944292362381551
+    second: elite_prototype_x7_sheet_4_12
+  - first:
+      213: -3629263013932884281
+    second: elite_prototype_x7_sheet_4_13
+  - first:
+      213: -4166458420927217526
+    second: elite_prototype_x7_sheet_4_14
+  - first:
+      213: -3060494584802960148
+    second: elite_prototype_x7_sheet_4_15
+  - first:
+      213: -4999156919582700912
+    second: elite_prototype_x7_sheet_4_16
+  - first:
+      213: -6838916648606856136
+    second: elite_prototype_x7_sheet_4_17
+  - first:
+      213: -9091213933089094818
+    second: elite_prototype_x7_sheet_4_18
+  - first:
+      213: 2163575055212818134
+    second: elite_prototype_x7_sheet_4_19
+  - first:
+      213: 9084404227008479913
+    second: elite_prototype_x7_sheet_4_20
+  - first:
+      213: -6437771118589481468
+    second: elite_prototype_x7_sheet_5_0
+  - first:
+      213: 1992539111276015512
+    second: elite_prototype_x7_sheet_5_1
+  - first:
+      213: -802744130580403445
+    second: elite_prototype_x7_sheet_5_2
+  - first:
+      213: 4009046500617539189
+    second: elite_prototype_x7_sheet_5_3
+  - first:
+      213: -4686144438722238009
+    second: elite_prototype_x7_sheet_5_4
+  - first:
+      213: -1949245731275774021
+    second: elite_prototype_x7_sheet_5_5
+  - first:
+      213: -2938111769288910565
+    second: elite_prototype_x7_sheet_5_6
+  - first:
+      213: -3077042383331778139
+    second: elite_prototype_x7_sheet_5_7
+  - first:
+      213: 1036276058549133091
+    second: elite_prototype_x7_sheet_5_8
+  - first:
+      213: 728624098591490068
+    second: elite_prototype_x7_sheet_5_9
+  - first:
+      213: 6238344759542381438
+    second: elite_prototype_x7_sheet_5_10
+  - first:
+      213: 969142276485211455
+    second: elite_prototype_x7_sheet_5_11
+  - first:
+      213: 9046115342973465925
+    second: elite_prototype_x7_sheet_5_12
+  - first:
+      213: -7681592512138204022
+    second: elite_prototype_x7_sheet_5_13
+  - first:
+      213: 5758882755829787446
+    second: elite_prototype_x7_sheet_5_14
+  - first:
+      213: 7808320100928005235
+    second: elite_prototype_x7_sheet_5_15
+  - first:
+      213: -6735656518809012765
+    second: elite_prototype_x7_sheet_5_16
+  - first:
+      213: -8117167420877201647
+    second: elite_prototype_x7_sheet_5_17
+  - first:
+      213: 5771898530735097843
+    second: elite_prototype_x7_sheet_5_18
+  - first:
+      213: -1604636042121088414
+    second: elite_prototype_x7_sheet_5_19
+  - first:
+      213: 6705345099752497789
+    second: elite_prototype_x7_sheet_5_20
+  - first:
+      213: 7801749161017304860
+    second: elite_prototype_x7_sheet_6_0
+  - first:
+      213: 1725992627055613148
+    second: elite_prototype_x7_sheet_6_1
+  - first:
+      213: 8806897700241109832
+    second: elite_prototype_x7_sheet_6_2
+  - first:
+      213: 9028124525494214578
+    second: elite_prototype_x7_sheet_6_3
+  - first:
+      213: 7951488677802466702
+    second: elite_prototype_x7_sheet_6_4
+  - first:
+      213: 6041393026113500702
+    second: elite_prototype_x7_sheet_6_5
+  - first:
+      213: 2656532929464732642
+    second: elite_prototype_x7_sheet_6_6
+  - first:
+      213: -6693723829247853047
+    second: elite_prototype_x7_sheet_6_7
+  - first:
+      213: -6412040456432977124
+    second: elite_prototype_x7_sheet_6_8
+  - first:
+      213: -5508936698340219631
+    second: elite_prototype_x7_sheet_6_9
+  - first:
+      213: -7266726736454072512
+    second: elite_prototype_x7_sheet_6_10
+  - first:
+      213: 3196642268245698749
+    second: elite_prototype_x7_sheet_6_11
+  - first:
+      213: -8092212040303494442
+    second: elite_prototype_x7_sheet_6_12
+  - first:
+      213: 6606655657947697174
+    second: elite_prototype_x7_sheet_6_13
+  - first:
+      213: -4147866005061020000
+    second: elite_prototype_x7_sheet_6_14
+  - first:
+      213: 4303081377671683417
+    second: elite_prototype_x7_sheet_6_15
+  - first:
+      213: 113686989709621612
+    second: elite_prototype_x7_sheet_6_16
+  - first:
+      213: 5349776011953538245
+    second: elite_prototype_x7_sheet_6_17
+  - first:
+      213: -5858784771418495335
+    second: elite_prototype_x7_sheet_6_18
+  - first:
+      213: -6395197939867592554
+    second: elite_prototype_x7_sheet_6_19
+  - first:
+      213: -7294373008321202306
+    second: elite_prototype_x7_sheet_6_20
+  - first:
+      213: 1333929152471389182
+    second: elite_prototype_x7_sheet_7_0
+  - first:
+      213: -9061724139216766707
+    second: elite_prototype_x7_sheet_7_1
+  - first:
+      213: -625683054259172950
+    second: elite_prototype_x7_sheet_7_2
+  - first:
+      213: 4699828861103096415
+    second: elite_prototype_x7_sheet_7_3
+  - first:
+      213: -8859826928787826344
+    second: elite_prototype_x7_sheet_7_4
+  - first:
+      213: -2581925437757576144
+    second: elite_prototype_x7_sheet_7_5
+  - first:
+      213: -6536024990488370044
+    second: elite_prototype_x7_sheet_7_6
+  - first:
+      213: 2427334779570071903
+    second: elite_prototype_x7_sheet_7_7
+  - first:
+      213: 9082032500779133819
+    second: elite_prototype_x7_sheet_7_8
+  - first:
+      213: -1030658647319385769
+    second: elite_prototype_x7_sheet_7_9
+  - first:
+      213: -8452063951830027160
+    second: elite_prototype_x7_sheet_7_10
+  - first:
+      213: 7001806336859769191
+    second: elite_prototype_x7_sheet_7_11
+  - first:
+      213: 8709519258061185211
+    second: elite_prototype_x7_sheet_7_12
+  - first:
+      213: 5474962395918435832
+    second: elite_prototype_x7_sheet_7_13
+  - first:
+      213: -2155383720743910125
+    second: elite_prototype_x7_sheet_7_14
+  - first:
+      213: 3422119835101752770
+    second: elite_prototype_x7_sheet_7_15
+  - first:
+      213: -2603067898954687857
+    second: elite_prototype_x7_sheet_7_16
+  - first:
+      213: 3309644108334255899
+    second: elite_prototype_x7_sheet_7_17
+  - first:
+      213: 8173825057614870273
+    second: elite_prototype_x7_sheet_7_18
+  - first:
+      213: -6844083772591289314
+    second: elite_prototype_x7_sheet_7_19
+  - first:
+      213: 4798167106339298120
+    second: elite_prototype_x7_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9702a728d2c44aff0800000000000000
+      internalID: -25811939511099271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e9eb077855afc620800000000000000
+      internalID: 2796635692993341923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 301c3d1736b8ffb30800000000000000
+      internalID: 4323327426526691587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c484875a26ca10f70800000000000000
+      internalID: 9151785457476454476
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14743090e18a50360800000000000000
+      internalID: 7135294031592113985
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29c7577e8c5c70e80800000000000000
+      internalID: -8212377928819442542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ba41167c91505d90800000000000000
+      internalID: -7111094079180420428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7ecfc39aae9687f0800000000000000
+      internalID: -610626244000625028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2dcdfdf96add07d30800000000000000
+      internalID: 4427282141421755602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 491182262fc64bdd0800000000000000
+      internalID: -2471230507234881132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bef20e768ca57490800000000000000
+      internalID: -7749097890181349708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd1a69eb2360d9280800000000000000
+      internalID: -9035058462419672611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f55b19482046c6960800000000000000
+      internalID: 7596556633444037983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11f7801e8700ae900800000000000000
+      internalID: 714384010063150865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d876836b2146d9ee0800000000000000
+      internalID: -1252735089809791091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfb85afbd4d9dd3e0800000000000000
+      internalID: -2027291299993515013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6a7844340a0eab10800000000000000
+      internalID: 1994542698145020523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9e68bb302be587060800000000000000
+      internalID: 6951410143506171625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b9db15cb5fc1fce0800000000000000
+      internalID: -1373088418315380297
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 493ab3c0a5aa4ed10800000000000000
+      internalID: 2154033825518953364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ea06c6d56a26c3c0800000000000000
+      internalID: -4339734574041527582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09063dfdee7619e90800000000000000
+      internalID: -7020716068438843248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd888b57acfc2f290800000000000000
+      internalID: -7857989931342722849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: edd56a2cd62e20e60800000000000000
+      internalID: 7927147255170489822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c2b3ef1d26542940800000000000000
+      internalID: 5270432215738856136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397cf327644243a20800000000000000
+      internalID: 3041095533365020563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7a7adcbc9e48d90800000000000000
+      internalID: -7096290051291109442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6d68d8aff02a45f0800000000000000
+      internalID: -771768103719113361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 752ef73e623e3feb0800000000000000
+      internalID: -4687153030997482921
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc94bf33f043e590800000000000000
+      internalID: -7646196328854938429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ec89c012fe3bf90800000000000000
+      internalID: -6938939675623502206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64b16441674d8feb0800000000000000
+      internalID: -4685761808667632826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf68dbc4837658450800000000000000
+      internalID: 6090387562591782651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e2f6b1d168b1c930800000000000000
+      internalID: 4161810260936815335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75fbdeaf7e4e48a20800000000000000
+      internalID: 3063825331517243223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f9f7bda5b603a0c0800000000000000
+      internalID: -4565798219850188295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 833dc1b62e6d63a50800000000000000
+      internalID: 6500619380103893816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e784b32288e9a4f0800000000000000
+      internalID: -816866211748608026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a785bf10b40bf9380800000000000000
+      internalID: -8962250897241712518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35cdc634e3196790800000000000000
+      internalID: -7536470630534888129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63c4a66f51f22cfd0800000000000000
+      internalID: -2323242686394774474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 929a7d0c0fbcf3a60800000000000000
+      internalID: 7656062126441081129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78ff7f981ec1c1580800000000000000
+      internalID: -8855171012309287033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f75882d0e71f54c0800000000000000
+      internalID: -4296689265115899917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c65dcf701f64fca50800000000000000
+      internalID: 6543526784627692908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e5ebfa17723a7460800000000000000
+      internalID: 7240154838086706661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca112ddb2e8f4130800000000000000
+      internalID: 3553214950063282889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40b3c28ade2676a60800000000000000
+      internalID: 7667205663489800964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bb936bf0cc2284a0800000000000000
+      internalID: -6592657697154032718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad00690ea4f797ca0800000000000000
+      internalID: -6018639467431722790
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f72c41d45d9dae140800000000000000
+      internalID: 4749848267160076927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a3f34d7075660fd0800000000000000
+      internalID: -2376100219579010143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb5c7b19a9bf24c70800000000000000
+      internalID: 8953995650454242751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1fb362fd91396350800000000000000
+      internalID: 6010389732148887324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2168021ebcd8457b0800000000000000
+      internalID: -5236404559930161646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9a4ea353951b1190800000000000000
+      internalID: -7990769391330506081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ccd25c176a73260800000000000000
+      internalID: 7077308347005652008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9cc9c8581ca8bf70800000000000000
+      internalID: 9203295059100421279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc24b36c5bbd0d00800000000000000
+      internalID: 940613902674439415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2d1eebbd8fae8ae0800000000000000
+      internalID: -1545104598863307478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cef9ada506a7c8c0800000000000000
+      internalID: -3979029202439897399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 133e01ae16b95a1a0800000000000000
+      internalID: -6798857217604787407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b833293403dd5f5f0800000000000000
+      internalID: -723428965761272949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79ed7679c30907010800000000000000
+      internalID: 1184605291911044759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35ecca380b7716980800000000000000
+      internalID: -8547419017765401005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05e7b4a4c40e48600800000000000000
+      internalID: 469746879421972048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c8246c1548448550800000000000000
+      internalID: 6162129651815950536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e1c47ccd882b5eb0800000000000000
+      internalID: -4730142394136870425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52dd7ba238766ab40800000000000000
+      internalID: 5451158212033633573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b239d56f3944c5400800000000000000
+      internalID: 314201476293301035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 55a6c4227f7ebc2c0800000000000000
+      internalID: -4410176361460897195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a27bc2813b7da5d00800000000000000
+      internalID: 962318634601723690
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c8ede5456ef873b0800000000000000
+      internalID: -5514378032796800832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa8864eecd52f8dd0800000000000000
+      internalID: -2481723238837221206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f665c51bd7482cf00800000000000000
+      internalID: 1135615731432183407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d22957f80c5c15ac0800000000000000
+      internalID: -3868093174103305683
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 835405e028214b9e0800000000000000
+      internalID: -1606638817269234376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7498002b80e412fe0800000000000000
+      internalID: -1215604625160238777
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d02b4df56a66e3c70800000000000000
+      internalID: 8952705974017503757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d36fe83e50771be0800000000000000
+      internalID: -1506612000347692072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc0b18af375ab7f10800000000000000
+      internalID: 2268588754853802189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ef740b21d7b584c0800000000000000
+      internalID: -4285817361375395863
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e7e72e29c40c1f20800000000000000
+      internalID: 3394593481239816164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0e2d1d14b6485b60800000000000000
+      internalID: 7735010099405336078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 199e8a53f6f0b17c0800000000000000
+      internalID: -4099666065474655855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 86fc3650981ad87c0800000000000000
+      internalID: -4067417278572671128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a42b4734aa9338d0800000000000000
+      internalID: -2867778507611888478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c869bf19404341b30800000000000000
+      internalID: 4257084742005659276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef3a24990c96a01e0800000000000000
+      internalID: -2230854389482740738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82ff59ed294f3e8a0800000000000000
+      internalID: -6276904543987564760
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 443e17f6ed5b2dfb0800000000000000
+      internalID: -4624433900398976188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9a50cd7cadbacce0800000000000000
+      internalID: -1384085386921223526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acfd36a524a4370d0800000000000000
+      internalID: -3426313242654023734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f424887ed7cc09c0800000000000000
+      internalID: -3959570214046915339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf1fa701ed8ed35d0800000000000000
+      internalID: -3081050529594674692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6982585d6a85e3d0800000000000000
+      internalID: -3177981759802144404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe8e791609df4b000800000000000000
+      internalID: 50944292362381551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ce111a748442adc0800000000000000
+      internalID: -3629263013932884281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a80c2391424cd26c0800000000000000
+      internalID: -4166458420927217526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cec10dbe360f685d0800000000000000
+      internalID: -3060494584802960148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09a46dfa44d6f9ab0800000000000000
+      internalID: -4999156919582700912
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83c884fca894711a0800000000000000
+      internalID: -6838916648606856136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e53842d581585d180800000000000000
+      internalID: -9091213933089094818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6de2bd2bc00960e10800000000000000
+      internalID: 2163575055212818134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a2c5e26389421e70800000000000000
+      internalID: 9084404227008479913
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40e6433c64178a6a0800000000000000
+      internalID: -6437771118589481468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89feda8c3cbe6ab10800000000000000
+      internalID: 1992539111276015512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0ba93367741cd4f0800000000000000
+      internalID: -802744130580403445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57ec45d2d8ef2a730800000000000000
+      internalID: 4009046500617539189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c9e9c3167877feb0800000000000000
+      internalID: -4686144438722238009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb76c5fb553e2f4e0800000000000000
+      internalID: -1949245731275774021
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b19d321a9eab937d0800000000000000
+      internalID: -2938111769288910565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a120b651462c45d0800000000000000
+      internalID: -3077042383331778139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 32f1017b597916e00800000000000000
+      internalID: 1036276058549133091
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 410c55bd1c79c1a00800000000000000
+      internalID: 728624098591490068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7b71f2b18d039650800000000000000
+      internalID: 6238344759542381438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f35e6b604c5137d00800000000000000
+      internalID: 969142276485211455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 545f42fd9f14a8d70800000000000000
+      internalID: 9046115342973465925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8ca3bc1f40856590800000000000000
+      internalID: -7681592512138204022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63b6b54ca59abef40800000000000000
+      internalID: 5758882755829787446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3742b54f2c9bc5c60800000000000000
+      internalID: 7808320100928005235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e5385b45142682a0800000000000000
+      internalID: -6735656518809012765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11f9d30cc370a5f80800000000000000
+      internalID: -8117167420877201647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f780140227e91050800000000000000
+      internalID: 5771898530735097843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 262759b75003bb9e0800000000000000
+      internalID: -1604636042121088414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d72672f77db2e0d50800000000000000
+      internalID: 6705345099752497789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c176329c681654c60800000000000000
+      internalID: 7801749161017304860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd4d79c4625f3f710800000000000000
+      internalID: 1725992627055613148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84373142cc2683a70800000000000000
+      internalID: 8806897700241109832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf13124c675a4d70800000000000000
+      internalID: 9028124525494214578
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8dd4fbd2dc595e60800000000000000
+      internalID: 7951488677802466702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e167406d2f657d350800000000000000
+      internalID: 6041393026113500702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2eb8fdadf96edd420800000000000000
+      internalID: 2656532929464732642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90e3d1564ad1b13a0800000000000000
+      internalID: -6693723829247853047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1bf0e46d2bd307a0800000000000000
+      internalID: -6412040456432977124
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 115615da2435c83b0800000000000000
+      internalID: -5508936698340219631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04742d1b886672b90800000000000000
+      internalID: -7266726736454072512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db8a8c8d431cc5c20800000000000000
+      internalID: 3196642268245698749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6da32921600b2bf80800000000000000
+      internalID: -8092212040303494442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6101c4d315e8fab50800000000000000
+      internalID: 6606655657947697174
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a65b6048d1df66c0800000000000000
+      internalID: -4147866005061020000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95d18bbd6bd97bb30800000000000000
+      internalID: 4303081377671683417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c69b93df6b5e39100800000000000000
+      internalID: 113686989709621612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c4856440f83e3a40800000000000000
+      internalID: 5349776011953538245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 996e124aa4a61bea0800000000000000
+      internalID: -5858784771418495335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 698d1ed5b51bf37a0800000000000000
+      internalID: -6395197939867592554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7731db656e25ca90800000000000000
+      internalID: -7294373008321202306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef358982f71138210800000000000000
+      internalID: 1333929152471389182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d09f66d08e94e3280800000000000000
+      internalID: -9061724139216766707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa986e0c3902157f0800000000000000
+      internalID: -625683054259172950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f52cd2bc275293140800000000000000
+      internalID: 4699828861103096415
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 859592289529b0580800000000000000
+      internalID: -8859826928787826344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 03c2ae57e782b2cd0800000000000000
+      internalID: -2581925437757576144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4846dd686ef5b45a0800000000000000
+      internalID: -6536024990488370044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f59a9371f10afa120800000000000000
+      internalID: 2427334779570071903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7b2e77d07cd90e70800000000000000
+      internalID: 9082032500779133819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 759e7d1cb6d52b1f0800000000000000
+      internalID: -1030658647319385769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8647944ed9c34ba80800000000000000
+      internalID: -8452063951830027160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7690b9624c96b2160800000000000000
+      internalID: 7001806336859769191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb02925ce9d6ed870800000000000000
+      internalID: 8709519258061185211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f5075f9a49fafb40800000000000000
+      internalID: 5474962395918435832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 315466afce98612e0800000000000000
+      internalID: -2155383720743910125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cdee0edbdfcd7f20800000000000000
+      internalID: 3422119835101752770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8a559c998b00ebd0800000000000000
+      internalID: -2603067898954687857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1f4a3208c73eed20800000000000000
+      internalID: 3309644108334255899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 107325745924f6170800000000000000
+      internalID: 8173825057614870273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1c4ea1021ee401a0800000000000000
+      internalID: -6844083772591289314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_prototype_x7_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84b515abf83869240800000000000000
+      internalID: 4798167106339298120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      elite_prototype_x7_sheet_0: 2252691721166248367
+      elite_prototype_x7_sheet_0_0: -25811939511099271
+      elite_prototype_x7_sheet_0_1: 2796635692993341923
+      elite_prototype_x7_sheet_0_10: -7749097890181349708
+      elite_prototype_x7_sheet_0_11: -9035058462419672611
+      elite_prototype_x7_sheet_0_12: 7596556633444037983
+      elite_prototype_x7_sheet_0_13: 714384010063150865
+      elite_prototype_x7_sheet_0_14: -1252735089809791091
+      elite_prototype_x7_sheet_0_15: -2027291299993515013
+      elite_prototype_x7_sheet_0_16: 1994542698145020523
+      elite_prototype_x7_sheet_0_17: 6951410143506171625
+      elite_prototype_x7_sheet_0_18: -1373088418315380297
+      elite_prototype_x7_sheet_0_19: 2154033825518953364
+      elite_prototype_x7_sheet_0_2: 4323327426526691587
+      elite_prototype_x7_sheet_0_20: -4339734574041527582
+      elite_prototype_x7_sheet_0_3: 9151785457476454476
+      elite_prototype_x7_sheet_0_4: 7135294031592113985
+      elite_prototype_x7_sheet_0_5: -8212377928819442542
+      elite_prototype_x7_sheet_0_6: -7111094079180420428
+      elite_prototype_x7_sheet_0_7: -610626244000625028
+      elite_prototype_x7_sheet_0_8: 4427282141421755602
+      elite_prototype_x7_sheet_0_9: -2471230507234881132
+      elite_prototype_x7_sheet_1: -6501979030030576184
+      elite_prototype_x7_sheet_10: 6061926279603348711
+      elite_prototype_x7_sheet_100: 5654016970804967065
+      elite_prototype_x7_sheet_101: 1615051262834309437
+      elite_prototype_x7_sheet_102: 954278979945134354
+      elite_prototype_x7_sheet_103: 1013088760848603307
+      elite_prototype_x7_sheet_104: 391142618143013061
+      elite_prototype_x7_sheet_105: -6199051836675555012
+      elite_prototype_x7_sheet_106: -2057748992112140029
+      elite_prototype_x7_sheet_107: -2822349885512352128
+      elite_prototype_x7_sheet_108: 3988907749465844525
+      elite_prototype_x7_sheet_109: 4714618893396681595
+      elite_prototype_x7_sheet_11: 548423413331862633
+      elite_prototype_x7_sheet_110: -7317358016860403135
+      elite_prototype_x7_sheet_111: -4460597046429717801
+      elite_prototype_x7_sheet_112: 9093461570214915741
+      elite_prototype_x7_sheet_113: -1721830915940800988
+      elite_prototype_x7_sheet_114: 5949438517324825226
+      elite_prototype_x7_sheet_115: 1319459425651018488
+      elite_prototype_x7_sheet_116: 2678838357635044633
+      elite_prototype_x7_sheet_117: 4159979486184474066
+      elite_prototype_x7_sheet_118: 3194616046271934028
+      elite_prototype_x7_sheet_119: -7772674732876513805
+      elite_prototype_x7_sheet_12: 662167595757284759
+      elite_prototype_x7_sheet_120: -8474568772010769027
+      elite_prototype_x7_sheet_121: -7049358708720940543
+      elite_prototype_x7_sheet_122: -6419345680385653656
+      elite_prototype_x7_sheet_123: -3612164244811813500
+      elite_prototype_x7_sheet_124: 4701707481941798623
+      elite_prototype_x7_sheet_125: -7091678149443373936
+      elite_prototype_x7_sheet_126: -9017286371369276634
+      elite_prototype_x7_sheet_127: 2225692456848692573
+      elite_prototype_x7_sheet_128: -7699325965715493563
+      elite_prototype_x7_sheet_129: -1127885961005867434
+      elite_prototype_x7_sheet_13: -471734170734324416
+      elite_prototype_x7_sheet_130: 6833227269707154172
+      elite_prototype_x7_sheet_131: -4406049313771537253
+      elite_prototype_x7_sheet_132: 1178949417702489339
+      elite_prototype_x7_sheet_133: 3503299581169175437
+      elite_prototype_x7_sheet_134: 2528663117184370070
+      elite_prototype_x7_sheet_135: -4935615479259231278
+      elite_prototype_x7_sheet_136: -5375366735041346543
+      elite_prototype_x7_sheet_137: 157395405602377039
+      elite_prototype_x7_sheet_138: -3011157486539883658
+      elite_prototype_x7_sheet_139: 9046080584940798151
+      elite_prototype_x7_sheet_14: -7627769500393751912
+      elite_prototype_x7_sheet_140: 8383224700328800612
+      elite_prototype_x7_sheet_141: 6360321094271410354
+      elite_prototype_x7_sheet_142: -9115075876398532283
+      elite_prototype_x7_sheet_143: 8871356776914239117
+      elite_prototype_x7_sheet_144: -6507492142887946530
+      elite_prototype_x7_sheet_145: 6636772931225408269
+      elite_prototype_x7_sheet_146: 2401791064735974479
+      elite_prototype_x7_sheet_147: 4857343969927402701
+      elite_prototype_x7_sheet_148: -5235759040593382022
+      elite_prototype_x7_sheet_149: -46828568010369216
+      elite_prototype_x7_sheet_15: -7743417911853946431
+      elite_prototype_x7_sheet_150: -1253959261808591212
+      elite_prototype_x7_sheet_151: -7221213799250903942
+      elite_prototype_x7_sheet_152: -756524755221176043
+      elite_prototype_x7_sheet_153: -5983523385449230487
+      elite_prototype_x7_sheet_154: 5363133799674876381
+      elite_prototype_x7_sheet_155: -3421732338077941706
+      elite_prototype_x7_sheet_156: 6574408350526837090
+      elite_prototype_x7_sheet_157: 2659165515362022991
+      elite_prototype_x7_sheet_158: -5984601609014323955
+      elite_prototype_x7_sheet_159: 933844847598788141
+      elite_prototype_x7_sheet_16: -4615875910079834921
+      elite_prototype_x7_sheet_160: 7412324374667607007
+      elite_prototype_x7_sheet_161: 7135432195104434965
+      elite_prototype_x7_sheet_162: 2811900627312487561
+      elite_prototype_x7_sheet_163: -3438615677373548755
+      elite_prototype_x7_sheet_164: 94512286436978624
+      elite_prototype_x7_sheet_165: -3324392290977751942
+      elite_prototype_x7_sheet_166: 4877718420810918809
+      elite_prototype_x7_sheet_167: -6159127223404855471
+      elite_prototype_x7_sheet_17: 2942138621109094158
+      elite_prototype_x7_sheet_18: 3453271908469222472
+      elite_prototype_x7_sheet_19: 6790227666864973676
+      elite_prototype_x7_sheet_1_0: -7020716068438843248
+      elite_prototype_x7_sheet_1_1: -7857989931342722849
+      elite_prototype_x7_sheet_1_10: -4685761808667632826
+      elite_prototype_x7_sheet_1_11: 6090387562591782651
+      elite_prototype_x7_sheet_1_12: 4161810260936815335
+      elite_prototype_x7_sheet_1_13: 3063825331517243223
+      elite_prototype_x7_sheet_1_14: -4565798219850188295
+      elite_prototype_x7_sheet_1_15: 6500619380103893816
+      elite_prototype_x7_sheet_1_16: -816866211748608026
+      elite_prototype_x7_sheet_1_17: -8962250897241712518
+      elite_prototype_x7_sheet_1_18: -7536470630534888129
+      elite_prototype_x7_sheet_1_19: -2323242686394774474
+      elite_prototype_x7_sheet_1_2: 7927147255170489822
+      elite_prototype_x7_sheet_1_20: 7656062126441081129
+      elite_prototype_x7_sheet_1_3: 5270432215738856136
+      elite_prototype_x7_sheet_1_4: 3041095533365020563
+      elite_prototype_x7_sheet_1_5: -7096290051291109442
+      elite_prototype_x7_sheet_1_6: -771768103719113361
+      elite_prototype_x7_sheet_1_7: -4687153030997482921
+      elite_prototype_x7_sheet_1_8: -7646196328854938429
+      elite_prototype_x7_sheet_1_9: -6938939675623502206
+      elite_prototype_x7_sheet_2: 1528111930635723786
+      elite_prototype_x7_sheet_20: -492947165889309261
+      elite_prototype_x7_sheet_21: -5968363253555695587
+      elite_prototype_x7_sheet_22: -7811574154505279529
+      elite_prototype_x7_sheet_23: -6944162059521460581
+      elite_prototype_x7_sheet_24: 6025038270843090079
+      elite_prototype_x7_sheet_25: 1091408510195857604
+      elite_prototype_x7_sheet_26: -6176136205749132067
+      elite_prototype_x7_sheet_27: -9205451270686030413
+      elite_prototype_x7_sheet_28: -3411387792902007555
+      elite_prototype_x7_sheet_29: 1625598313192125058
+      elite_prototype_x7_sheet_2_0: -8855171012309287033
+      elite_prototype_x7_sheet_2_1: -4296689265115899917
+      elite_prototype_x7_sheet_2_10: 8953995650454242751
+      elite_prototype_x7_sheet_2_11: 6010389732148887324
+      elite_prototype_x7_sheet_2_12: -5236404559930161646
+      elite_prototype_x7_sheet_2_13: -7990769391330506081
+      elite_prototype_x7_sheet_2_14: 7077308347005652008
+      elite_prototype_x7_sheet_2_15: 9203295059100421279
+      elite_prototype_x7_sheet_2_16: 940613902674439415
+      elite_prototype_x7_sheet_2_17: -1545104598863307478
+      elite_prototype_x7_sheet_2_18: -3979029202439897399
+      elite_prototype_x7_sheet_2_19: -6798857217604787407
+      elite_prototype_x7_sheet_2_2: 6543526784627692908
+      elite_prototype_x7_sheet_2_20: -723428965761272949
+      elite_prototype_x7_sheet_2_3: 7240154838086706661
+      elite_prototype_x7_sheet_2_4: 3553214950063282889
+      elite_prototype_x7_sheet_2_5: 7667205663489800964
+      elite_prototype_x7_sheet_2_6: -6592657697154032718
+      elite_prototype_x7_sheet_2_7: -6018639467431722790
+      elite_prototype_x7_sheet_2_8: 4749848267160076927
+      elite_prototype_x7_sheet_2_9: -2376100219579010143
+      elite_prototype_x7_sheet_3: -5847227282107102661
+      elite_prototype_x7_sheet_30: -6741567892967436827
+      elite_prototype_x7_sheet_31: 4743253222429843432
+      elite_prototype_x7_sheet_32: 515970158983473710
+      elite_prototype_x7_sheet_33: 6489840822045726581
+      elite_prototype_x7_sheet_34: 4626990356263143502
+      elite_prototype_x7_sheet_35: -7289701729029444777
+      elite_prototype_x7_sheet_36: -1683348267366236591
+      elite_prototype_x7_sheet_37: 3775944424165774170
+      elite_prototype_x7_sheet_38: -6097265616561954057
+      elite_prototype_x7_sheet_39: -6671050033612748501
+      elite_prototype_x7_sheet_3_0: 1184605291911044759
+      elite_prototype_x7_sheet_3_1: -8547419017765401005
+      elite_prototype_x7_sheet_3_10: -2481723238837221206
+      elite_prototype_x7_sheet_3_11: 1135615731432183407
+      elite_prototype_x7_sheet_3_12: -3868093174103305683
+      elite_prototype_x7_sheet_3_13: -1606638817269234376
+      elite_prototype_x7_sheet_3_14: -1215604625160238777
+      elite_prototype_x7_sheet_3_15: 8952705974017503757
+      elite_prototype_x7_sheet_3_16: -1506612000347692072
+      elite_prototype_x7_sheet_3_17: 2268588754853802189
+      elite_prototype_x7_sheet_3_18: -4285817361375395863
+      elite_prototype_x7_sheet_3_19: 3394593481239816164
+      elite_prototype_x7_sheet_3_2: 469746879421972048
+      elite_prototype_x7_sheet_3_20: 7735010099405336078
+      elite_prototype_x7_sheet_3_3: 6162129651815950536
+      elite_prototype_x7_sheet_3_4: -4730142394136870425
+      elite_prototype_x7_sheet_3_5: 5451158212033633573
+      elite_prototype_x7_sheet_3_6: 314201476293301035
+      elite_prototype_x7_sheet_3_7: -4410176361460897195
+      elite_prototype_x7_sheet_3_8: 962318634601723690
+      elite_prototype_x7_sheet_3_9: -5514378032796800832
+      elite_prototype_x7_sheet_4: -2025015883949236025
+      elite_prototype_x7_sheet_40: 26207396887702008
+      elite_prototype_x7_sheet_41: 3271973543508204665
+      elite_prototype_x7_sheet_42: -4989403235481734497
+      elite_prototype_x7_sheet_43: -5564501672355353867
+      elite_prototype_x7_sheet_44: 9087323050377080020
+      elite_prototype_x7_sheet_45: -1076620993009065739
+      elite_prototype_x7_sheet_46: -8795871918689773049
+      elite_prototype_x7_sheet_47: 7965346442196868141
+      elite_prototype_x7_sheet_48: -6714226861530783321
+      elite_prototype_x7_sheet_49: 3497555697708558893
+      elite_prototype_x7_sheet_4_0: -4099666065474655855
+      elite_prototype_x7_sheet_4_1: -4067417278572671128
+      elite_prototype_x7_sheet_4_10: -3081050529594674692
+      elite_prototype_x7_sheet_4_11: -3177981759802144404
+      elite_prototype_x7_sheet_4_12: 50944292362381551
+      elite_prototype_x7_sheet_4_13: -3629263013932884281
+      elite_prototype_x7_sheet_4_14: -4166458420927217526
+      elite_prototype_x7_sheet_4_15: -3060494584802960148
+      elite_prototype_x7_sheet_4_16: -4999156919582700912
+      elite_prototype_x7_sheet_4_17: -6838916648606856136
+      elite_prototype_x7_sheet_4_18: -9091213933089094818
+      elite_prototype_x7_sheet_4_19: 2163575055212818134
+      elite_prototype_x7_sheet_4_2: -2867778507611888478
+      elite_prototype_x7_sheet_4_20: 9084404227008479913
+      elite_prototype_x7_sheet_4_3: 4257084742005659276
+      elite_prototype_x7_sheet_4_4: -2230854389482740738
+      elite_prototype_x7_sheet_4_5: -6276904543987564760
+      elite_prototype_x7_sheet_4_6: -4624433900398976188
+      elite_prototype_x7_sheet_4_7: -1384085386921223526
+      elite_prototype_x7_sheet_4_8: -3426313242654023734
+      elite_prototype_x7_sheet_4_9: -3959570214046915339
+      elite_prototype_x7_sheet_5: 8119753911263940652
+      elite_prototype_x7_sheet_50: -3297533432854817490
+      elite_prototype_x7_sheet_51: -2307792288586915398
+      elite_prototype_x7_sheet_52: 4501232532650218012
+      elite_prototype_x7_sheet_53: -1356914864393728716
+      elite_prototype_x7_sheet_54: -1808864531379275942
+      elite_prototype_x7_sheet_55: -6624774477282955698
+      elite_prototype_x7_sheet_56: -3973489170791981736
+      elite_prototype_x7_sheet_57: 3743166198282013139
+      elite_prototype_x7_sheet_58: 4548984963953875667
+      elite_prototype_x7_sheet_59: 6379131900742268964
+      elite_prototype_x7_sheet_5_0: -6437771118589481468
+      elite_prototype_x7_sheet_5_1: 1992539111276015512
+      elite_prototype_x7_sheet_5_10: 6238344759542381438
+      elite_prototype_x7_sheet_5_11: 969142276485211455
+      elite_prototype_x7_sheet_5_12: 9046115342973465925
+      elite_prototype_x7_sheet_5_13: -7681592512138204022
+      elite_prototype_x7_sheet_5_14: 5758882755829787446
+      elite_prototype_x7_sheet_5_15: 7808320100928005235
+      elite_prototype_x7_sheet_5_16: -6735656518809012765
+      elite_prototype_x7_sheet_5_17: -8117167420877201647
+      elite_prototype_x7_sheet_5_18: 5771898530735097843
+      elite_prototype_x7_sheet_5_19: -1604636042121088414
+      elite_prototype_x7_sheet_5_2: -802744130580403445
+      elite_prototype_x7_sheet_5_20: 6705345099752497789
+      elite_prototype_x7_sheet_5_3: 4009046500617539189
+      elite_prototype_x7_sheet_5_4: -4686144438722238009
+      elite_prototype_x7_sheet_5_5: -1949245731275774021
+      elite_prototype_x7_sheet_5_6: -2938111769288910565
+      elite_prototype_x7_sheet_5_7: -3077042383331778139
+      elite_prototype_x7_sheet_5_8: 1036276058549133091
+      elite_prototype_x7_sheet_5_9: 728624098591490068
+      elite_prototype_x7_sheet_6: -416636446064615795
+      elite_prototype_x7_sheet_60: 6674712344152434323
+      elite_prototype_x7_sheet_61: -6562053284902319167
+      elite_prototype_x7_sheet_62: 8436702536331203391
+      elite_prototype_x7_sheet_63: 8478656573702496258
+      elite_prototype_x7_sheet_64: -2011158061563212244
+      elite_prototype_x7_sheet_65: 2428069355481083994
+      elite_prototype_x7_sheet_66: -371238955523316532
+      elite_prototype_x7_sheet_67: 8481433570275354733
+      elite_prototype_x7_sheet_68: 4862600601311339204
+      elite_prototype_x7_sheet_69: -2689699138634469907
+      elite_prototype_x7_sheet_6_0: 7801749161017304860
+      elite_prototype_x7_sheet_6_1: 1725992627055613148
+      elite_prototype_x7_sheet_6_10: -7266726736454072512
+      elite_prototype_x7_sheet_6_11: 3196642268245698749
+      elite_prototype_x7_sheet_6_12: -8092212040303494442
+      elite_prototype_x7_sheet_6_13: 6606655657947697174
+      elite_prototype_x7_sheet_6_14: -4147866005061020000
+      elite_prototype_x7_sheet_6_15: 4303081377671683417
+      elite_prototype_x7_sheet_6_16: 113686989709621612
+      elite_prototype_x7_sheet_6_17: 5349776011953538245
+      elite_prototype_x7_sheet_6_18: -5858784771418495335
+      elite_prototype_x7_sheet_6_19: -6395197939867592554
+      elite_prototype_x7_sheet_6_2: 8806897700241109832
+      elite_prototype_x7_sheet_6_20: -7294373008321202306
+      elite_prototype_x7_sheet_6_3: 9028124525494214578
+      elite_prototype_x7_sheet_6_4: 7951488677802466702
+      elite_prototype_x7_sheet_6_5: 6041393026113500702
+      elite_prototype_x7_sheet_6_6: 2656532929464732642
+      elite_prototype_x7_sheet_6_7: -6693723829247853047
+      elite_prototype_x7_sheet_6_8: -6412040456432977124
+      elite_prototype_x7_sheet_6_9: -5508936698340219631
+      elite_prototype_x7_sheet_7: 2785308170804459411
+      elite_prototype_x7_sheet_70: 8634852308049196122
+      elite_prototype_x7_sheet_71: -9024749688804726952
+      elite_prototype_x7_sheet_72: 9089258057243898961
+      elite_prototype_x7_sheet_73: -5215387111039387962
+      elite_prototype_x7_sheet_74: 6475978741375127495
+      elite_prototype_x7_sheet_75: -4196142087057171503
+      elite_prototype_x7_sheet_76: 2354667909095103839
+      elite_prototype_x7_sheet_77: -5896312783339789592
+      elite_prototype_x7_sheet_78: 2634513970675213756
+      elite_prototype_x7_sheet_79: 3565897386123010832
+      elite_prototype_x7_sheet_7_0: 1333929152471389182
+      elite_prototype_x7_sheet_7_1: -9061724139216766707
+      elite_prototype_x7_sheet_7_10: -8452063951830027160
+      elite_prototype_x7_sheet_7_11: 7001806336859769191
+      elite_prototype_x7_sheet_7_12: 8709519258061185211
+      elite_prototype_x7_sheet_7_13: 5474962395918435832
+      elite_prototype_x7_sheet_7_14: -2155383720743910125
+      elite_prototype_x7_sheet_7_15: 3422119835101752770
+      elite_prototype_x7_sheet_7_16: -2603067898954687857
+      elite_prototype_x7_sheet_7_17: 3309644108334255899
+      elite_prototype_x7_sheet_7_18: 8173825057614870273
+      elite_prototype_x7_sheet_7_19: -6844083772591289314
+      elite_prototype_x7_sheet_7_2: -625683054259172950
+      elite_prototype_x7_sheet_7_20: 4798167106339298120
+      elite_prototype_x7_sheet_7_3: 4699828861103096415
+      elite_prototype_x7_sheet_7_4: -8859826928787826344
+      elite_prototype_x7_sheet_7_5: -2581925437757576144
+      elite_prototype_x7_sheet_7_6: -6536024990488370044
+      elite_prototype_x7_sheet_7_7: 2427334779570071903
+      elite_prototype_x7_sheet_7_8: 9082032500779133819
+      elite_prototype_x7_sheet_7_9: -1030658647319385769
+      elite_prototype_x7_sheet_8: 208073900607674702
+      elite_prototype_x7_sheet_80: -3476695215036375738
+      elite_prototype_x7_sheet_81: 4528627803925427891
+      elite_prototype_x7_sheet_82: 5897388292469799943
+      elite_prototype_x7_sheet_83: -6391477875454255036
+      elite_prototype_x7_sheet_84: -729678474962925869
+      elite_prototype_x7_sheet_85: 2780718541487208387
+      elite_prototype_x7_sheet_86: -2643228290660403705
+      elite_prototype_x7_sheet_87: -3029233957817519567
+      elite_prototype_x7_sheet_88: -5971814273330196668
+      elite_prototype_x7_sheet_89: 381494777283367817
+      elite_prototype_x7_sheet_9: 3413930964823127407
+      elite_prototype_x7_sheet_90: 1138078048600247468
+      elite_prototype_x7_sheet_91: 2461191261424361454
+      elite_prototype_x7_sheet_92: 4003716156039485409
+      elite_prototype_x7_sheet_93: -2427518250196115520
+      elite_prototype_x7_sheet_94: -1734996238890764231
+      elite_prototype_x7_sheet_95: -2114774695723706281
+      elite_prototype_x7_sheet_96: -201361957387206141
+      elite_prototype_x7_sheet_97: 728725364909741414
+      elite_prototype_x7_sheet_98: 4533800930346950542
+      elite_prototype_x7_sheet_99: -4893263973010201031
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

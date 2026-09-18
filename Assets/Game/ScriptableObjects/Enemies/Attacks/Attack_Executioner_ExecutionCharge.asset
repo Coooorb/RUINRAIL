@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da16c0d4e415473db5e963ec0abe3e53, type: 3}
+  m_Name: Attack_Executioner_ExecutionCharge
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Attacks.EnemyAttackDefinition
+  _id: executioner_execution_charge
+  _displayName: Execution Charge
+  _motion: 1
+  _damageMin: 28
+  _damageMax: 34
+  _minTriggerRange: 2
+  _maxTriggerRange: 7
+  _telegraphSeconds: 0.9
+  _recoverySeconds: 1.5
+  _hitCount: 1
+  _hitIntervalSeconds: 0
+  _hitRadius: 0.9
+  _dashDistance: 6
+  _dashSpeed: 13
+  _knockback: 8
+  _staggerPower: 8
+  _cooldownSeconds: 7
+  _projectileCount: 1
+  _spreadDegrees: 0
+  _projectileSpeed: 10
+  _projectileRange: 12
+  _zoneLength: 6
+  _zoneWidth: 1.5

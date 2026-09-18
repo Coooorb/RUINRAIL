@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c49f73dae024fd6aaab7dd0cb3cd247, type: 3}
+  m_Name: Hazard_AcidPool
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Combat.Hazards.HazardDefinition
+  _id: hazard_acid_pool
+  _displayName: Acid Pool
+  _kind: 3
+  _damageMin: 5
+  _damageMax: 8
+  _tickIntervalSeconds: 1
+  _initialDelaySeconds: 0
+  _affectsPlayers: 1
+  _affectsEnemies: 1
+  _knockback: 0
+  _staggerPower: 0

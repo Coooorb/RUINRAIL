@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744d0a64f1e4b99b28627e43245690d, type: 3}
+  m_Name: AffixPool_Melee
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.AffixPool
+  _id: pool_melee
+  _affixes:
+  - {fileID: 11400000, guid: 43eaa0a15f084c758ad153f7f1bf9ad3, type: 2}
+  - {fileID: 11400000, guid: e7962bfd7d244161975843864714be2d, type: 2}
+  - {fileID: 11400000, guid: d8f01d8d12da46f2a724a0a430e239dc, type: 2}

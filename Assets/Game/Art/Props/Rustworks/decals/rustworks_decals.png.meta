@@ -1,0 +1,317 @@
+fileFormatVersion: 2
+guid: fc58562dcf7fb5c4a9d1e36cc1cee74c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2075020481067883912
+    second: rustworks_decals_0
+  - first:
+      213: -4927675767155579670
+    second: rustworks_decals_1
+  - first:
+      213: 6038089813954970222
+    second: rustworks_decals_2
+  - first:
+      213: 8995515063388424182
+    second: rustworks_decals_3
+  - first:
+      213: 2325461933338057020
+    second: rustworks_decals_4
+  - first:
+      213: -6572998915158416674
+    second: rustworks_decals_5
+  - first:
+      213: 3140042258268859739
+    second: rustworks_decals_6
+  - first:
+      213: 8498225476990498389
+    second: rustworks_decals_7
+  - first:
+      213: -5670539849913248904
+    second: rustworks_decals_8
+  - first:
+      213: 5244884177608266705
+    second: rustworks_decals_9
+  - first:
+      213: -526137690908489311
+    second: rustworks_decals_10
+  - first:
+      213: 687641588901834041
+    second: rustworks_decals_0_0
+  - first:
+      213: 8503484556820550528
+    second: rustworks_decals_0_1
+  - first:
+      213: 2057141861849952944
+    second: rustworks_decals_0_2
+  - first:
+      213: 453651176861158213
+    second: rustworks_decals_0_3
+  - first:
+      213: 5422858964050671625
+    second: rustworks_decals_0_4
+  - first:
+      213: 7098262798110447757
+    second: rustworks_decals_0_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: rustworks_decals_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93d674fb16efa8900800000000000000
+      internalID: 687641588901834041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rustworks_decals_0_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0831f4aa622720670800000000000000
+      internalID: 8503484556820550528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rustworks_decals_0_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2f628cf9f6c8c10800000000000000
+      internalID: 2057141861849952944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rustworks_decals_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54b4fb08751bb4600800000000000000
+      internalID: 453651176861158213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rustworks_decals_0_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 908784b0f7dd14b40800000000000000
+      internalID: 5422858964050671625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rustworks_decals_0_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d885ebb1868128260800000000000000
+      internalID: 7098262798110447757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      rustworks_decals_0: -2075020481067883912
+      rustworks_decals_0_0: 687641588901834041
+      rustworks_decals_0_1: 8503484556820550528
+      rustworks_decals_0_2: 2057141861849952944
+      rustworks_decals_0_3: 453651176861158213
+      rustworks_decals_0_4: 5422858964050671625
+      rustworks_decals_0_5: 7098262798110447757
+      rustworks_decals_1: -4927675767155579670
+      rustworks_decals_10: -526137690908489311
+      rustworks_decals_2: 6038089813954970222
+      rustworks_decals_3: 8995515063388424182
+      rustworks_decals_4: 2325461933338057020
+      rustworks_decals_5: -6572998915158416674
+      rustworks_decals_6: 3140042258268859739
+      rustworks_decals_7: 8498225476990498389
+      rustworks_decals_8: -5670539849913248904
+      rustworks_decals_9: 5244884177608266705
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

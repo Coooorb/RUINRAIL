@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 30adffade22774d40b70fe4a2db99b7d
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -152412331038011018
+    second: sniper_enemy_sheet_0
+  - first:
+      213: 1240663098014855524
+    second: sniper_enemy_sheet_1
+  - first:
+      213: -7382425713449198706
+    second: sniper_enemy_sheet_2
+  - first:
+      213: -765152698947670582
+    second: sniper_enemy_sheet_3
+  - first:
+      213: -2914598508635214677
+    second: sniper_enemy_sheet_4
+  - first:
+      213: -1505333598568335616
+    second: sniper_enemy_sheet_5
+  - first:
+      213: -4169481248365544034
+    second: sniper_enemy_sheet_6
+  - first:
+      213: 7237476812447141427
+    second: sniper_enemy_sheet_7
+  - first:
+      213: -7046044347750391272
+    second: sniper_enemy_sheet_8
+  - first:
+      213: -4649098332867556527
+    second: sniper_enemy_sheet_9
+  - first:
+      213: -5960030172132378657
+    second: sniper_enemy_sheet_10
+  - first:
+      213: 1749523817980775790
+    second: sniper_enemy_sheet_11
+  - first:
+      213: -3595111125962046503
+    second: sniper_enemy_sheet_12
+  - first:
+      213: -153044102802285095
+    second: sniper_enemy_sheet_13
+  - first:
+      213: 989308514891547194
+    second: sniper_enemy_sheet_14
+  - first:
+      213: -1482085749082268567
+    second: sniper_enemy_sheet_15
+  - first:
+      213: 2014634828335952159
+    second: sniper_enemy_sheet_16
+  - first:
+      213: 8935973308319709367
+    second: sniper_enemy_sheet_17
+  - first:
+      213: -8856426695360070016
+    second: sniper_enemy_sheet_18
+  - first:
+      213: 4818411983402169042
+    second: sniper_enemy_sheet_19
+  - first:
+      213: -3657484094409551311
+    second: sniper_enemy_sheet_20
+  - first:
+      213: -1004664057905773700
+    second: sniper_enemy_sheet_21
+  - first:
+      213: 1202166854544986134
+    second: sniper_enemy_sheet_22
+  - first:
+      213: -1068850682029512545
+    second: sniper_enemy_sheet_23
+  - first:
+      213: -7822602152099063306
+    second: sniper_enemy_sheet_24
+  - first:
+      213: -6784009099396956185
+    second: sniper_enemy_sheet_25
+  - first:
+      213: 8364143638532555846
+    second: sniper_enemy_sheet_26
+  - first:
+      213: -4259714399900837200
+    second: sniper_enemy_sheet_27
+  - first:
+      213: 2428279367465341955
+    second: sniper_enemy_sheet_28
+  - first:
+      213: 8270089309604773008
+    second: sniper_enemy_sheet_29
+  - first:
+      213: 6038436243388322943
+    second: sniper_enemy_sheet_30
+  - first:
+      213: -493168509696520502
+    second: sniper_enemy_sheet_31
+  - first:
+      213: -106694213596108230
+    second: sniper_enemy_sheet_32
+  - first:
+      213: 7904063005821509930
+    second: sniper_enemy_sheet_33
+  - first:
+      213: -4121020578706217634
+    second: sniper_enemy_sheet_34
+  - first:
+      213: 8249143369025639127
+    second: sniper_enemy_sheet_35
+  - first:
+      213: 8928144369464793673
+    second: sniper_enemy_sheet_36
+  - first:
+      213: -8235228172615351515
+    second: sniper_enemy_sheet_37
+  - first:
+      213: 7202827617789254292
+    second: sniper_enemy_sheet_38
+  - first:
+      213: 7904951416787077297
+    second: sniper_enemy_sheet_39
+  - first:
+      213: 5482479485149401786
+    second: sniper_enemy_sheet_40
+  - first:
+      213: -2371755926509346522
+    second: sniper_enemy_sheet_41
+  - first:
+      213: 3448687038332302007
+    second: sniper_enemy_sheet_42
+  - first:
+      213: 5764662631061239403
+    second: sniper_enemy_sheet_43
+  - first:
+      213: 7617028399756903860
+    second: sniper_enemy_sheet_44
+  - first:
+      213: 4684047034266461496
+    second: sniper_enemy_sheet_45
+  - first:
+      213: 8057365896963215146
+    second: sniper_enemy_sheet_46
+  - first:
+      213: 5909212132219108491
+    second: sniper_enemy_sheet_47
+  - first:
+      213: 6263178300116858167
+    second: sniper_enemy_sheet_48
+  - first:
+      213: -9107409780871793664
+    second: sniper_enemy_sheet_49
+  - first:
+      213: 4562344310921378427
+    second: sniper_enemy_sheet_50
+  - first:
+      213: 8614459070859840127
+    second: sniper_enemy_sheet_51
+  - first:
+      213: -3063709705897489726
+    second: sniper_enemy_sheet_52
+  - first:
+      213: -4768825757827402863
+    second: sniper_enemy_sheet_53
+  - first:
+      213: 7550946273851526937
+    second: sniper_enemy_sheet_54
+  - first:
+      213: 7689034244806530267
+    second: sniper_enemy_sheet_55
+  - first:
+      213: 6747337883260546689
+    second: sniper_enemy_sheet_56
+  - first:
+      213: 575655935558752544
+    second: sniper_enemy_sheet_57
+  - first:
+      213: 8378171873039210357
+    second: sniper_enemy_sheet_58
+  - first:
+      213: 5828256513241894862
+    second: sniper_enemy_sheet_59
+  - first:
+      213: 466270169926962933
+    second: sniper_enemy_sheet_60
+  - first:
+      213: 9063635111002429852
+    second: sniper_enemy_sheet_61
+  - first:
+      213: -4871502844944256234
+    second: sniper_enemy_sheet_62
+  - first:
+      213: -2834325942302401161
+    second: sniper_enemy_sheet_63
+  - first:
+      213: 6849689617938476612
+    second: sniper_enemy_sheet_64
+  - first:
+      213: 8721067085635724890
+    second: sniper_enemy_sheet_65
+  - first:
+      213: 6146978414651562331
+    second: sniper_enemy_sheet_66
+  - first:
+      213: -1186931031900933704
+    second: sniper_enemy_sheet_67
+  - first:
+      213: -6109942179010366396
+    second: sniper_enemy_sheet_68
+  - first:
+      213: 1207984990322316878
+    second: sniper_enemy_sheet_69
+  - first:
+      213: 7100106658947277718
+    second: sniper_enemy_sheet_70
+  - first:
+      213: -735483364403195874
+    second: sniper_enemy_sheet_71
+  - first:
+      213: 222621013823020880
+    second: sniper_enemy_sheet_72
+  - first:
+      213: -8974893179427591518
+    second: sniper_enemy_sheet_73
+  - first:
+      213: -4235983323519485070
+    second: sniper_enemy_sheet_74
+  - first:
+      213: 1368605464196230695
+    second: sniper_enemy_sheet_75
+  - first:
+      213: -5596347257834855799
+    second: sniper_enemy_sheet_76
+  - first:
+      213: 8448821642024564334
+    second: sniper_enemy_sheet_77
+  - first:
+      213: 9046707167055457629
+    second: sniper_enemy_sheet_78
+  - first:
+      213: 1692824423005852493
+    second: sniper_enemy_sheet_79
+  - first:
+      213: 2027617561117682466
+    second: sniper_enemy_sheet_80
+  - first:
+      213: 5870207549739722247
+    second: sniper_enemy_sheet_81
+  - first:
+      213: 2579665041927342796
+    second: sniper_enemy_sheet_82
+  - first:
+      213: 5328016595990457051
+    second: sniper_enemy_sheet_83
+  - first:
+      213: -2509854196556547709
+    second: sniper_enemy_sheet_84
+  - first:
+      213: 1718853226491546061
+    second: sniper_enemy_sheet_85
+  - first:
+      213: -1301366274998164528
+    second: sniper_enemy_sheet_86
+  - first:
+      213: -7371336499364898156
+    second: sniper_enemy_sheet_87
+  - first:
+      213: -5341197476359855132
+    second: sniper_enemy_sheet_88
+  - first:
+      213: -2733285043814839110
+    second: sniper_enemy_sheet_89
+  - first:
+      213: -5442157246023573543
+    second: sniper_enemy_sheet_90
+  - first:
+      213: -5703620093951281756
+    second: sniper_enemy_sheet_91
+  - first:
+      213: -6965011477553234572
+    second: sniper_enemy_sheet_92
+  - first:
+      213: 7446882429680268012
+    second: sniper_enemy_sheet_93
+  - first:
+      213: 3490060900870114534
+    second: sniper_enemy_sheet_94
+  - first:
+      213: 7595137972333907939
+    second: sniper_enemy_sheet_95
+  - first:
+      213: -3104575322332981668
+    second: sniper_enemy_sheet_96
+  - first:
+      213: -3566819025692838600
+    second: sniper_enemy_sheet_97
+  - first:
+      213: 6953705726560624414
+    second: sniper_enemy_sheet_98
+  - first:
+      213: -8049526929884252332
+    second: sniper_enemy_sheet_99
+  - first:
+      213: 4108349806031041941
+    second: sniper_enemy_sheet_100
+  - first:
+      213: 4780983938293991575
+    second: sniper_enemy_sheet_101
+  - first:
+      213: -5477779132091857110
+    second: sniper_enemy_sheet_102
+  - first:
+      213: 298666127069237974
+    second: sniper_enemy_sheet_103
+  - first:
+      213: 4998174420558842300
+    second: sniper_enemy_sheet_104
+  - first:
+      213: -6091407071222705329
+    second: sniper_enemy_sheet_105
+  - first:
+      213: -2416224960703065390
+    second: sniper_enemy_sheet_106
+  - first:
+      213: -8762389286843861760
+    second: sniper_enemy_sheet_107
+  - first:
+      213: -1534283655002838096
+    second: sniper_enemy_sheet_108
+  - first:
+      213: 81033485915428048
+    second: sniper_enemy_sheet_109
+  - first:
+      213: 8009816609827811019
+    second: sniper_enemy_sheet_110
+  - first:
+      213: 16855313883342653
+    second: sniper_enemy_sheet_111
+  - first:
+      213: -4358402953009451528
+    second: sniper_enemy_sheet_112
+  - first:
+      213: -1431778425134520675
+    second: sniper_enemy_sheet_113
+  - first:
+      213: 1033079958930856947
+    second: sniper_enemy_sheet_114
+  - first:
+      213: -7324643862150769352
+    second: sniper_enemy_sheet_115
+  - first:
+      213: -5260801128997873253
+    second: sniper_enemy_sheet_116
+  - first:
+      213: -17117843411973407
+    second: sniper_enemy_sheet_117
+  - first:
+      213: 6030016910297017108
+    second: sniper_enemy_sheet_118
+  - first:
+      213: -9116537138343097040
+    second: sniper_enemy_sheet_119
+  - first:
+      213: -8119305951545447770
+    second: sniper_enemy_sheet_120
+  - first:
+      213: -690926150141658481
+    second: sniper_enemy_sheet_121
+  - first:
+      213: -4591269743001147442
+    second: sniper_enemy_sheet_122
+  - first:
+      213: -7448376602913104596
+    second: sniper_enemy_sheet_123
+  - first:
+      213: -3759200298592141413
+    second: sniper_enemy_sheet_124
+  - first:
+      213: -6017911591920609974
+    second: sniper_enemy_sheet_125
+  - first:
+      213: 7450362694230200005
+    second: sniper_enemy_sheet_126
+  - first:
+      213: -4947408278350653691
+    second: sniper_enemy_sheet_127
+  - first:
+      213: 4635512945030819938
+    second: sniper_enemy_sheet_128
+  - first:
+      213: 4207400930477831143
+    second: sniper_enemy_sheet_129
+  - first:
+      213: 1802910523212273945
+    second: sniper_enemy_sheet_130
+  - first:
+      213: 7477371289532981748
+    second: sniper_enemy_sheet_131
+  - first:
+      213: -3712377757587878658
+    second: sniper_enemy_sheet_132
+  - first:
+      213: 8156888271425278866
+    second: sniper_enemy_sheet_133
+  - first:
+      213: 7132732083350614686
+    second: sniper_enemy_sheet_134
+  - first:
+      213: -6004035877903958359
+    second: sniper_enemy_sheet_135
+  - first:
+      213: -3589495735902360898
+    second: sniper_enemy_sheet_136
+  - first:
+      213: 7566454438106677081
+    second: sniper_enemy_sheet_137
+  - first:
+      213: 3804058900872953809
+    second: sniper_enemy_sheet_138
+  - first:
+      213: 9124338235658134286
+    second: sniper_enemy_sheet_139
+  - first:
+      213: -1736323678889800551
+    second: sniper_enemy_sheet_140
+  - first:
+      213: 2451579907723288522
+    second: sniper_enemy_sheet_141
+  - first:
+      213: 3558515049325911093
+    second: sniper_enemy_sheet_142
+  - first:
+      213: -1575162433736645632
+    second: sniper_enemy_sheet_143
+  - first:
+      213: 864334068098725155
+    second: sniper_enemy_sheet_144
+  - first:
+      213: 2454106187199717000
+    second: sniper_enemy_sheet_145
+  - first:
+      213: 7868520720209928957
+    second: sniper_enemy_sheet_146
+  - first:
+      213: 3369967451335998438
+    second: sniper_enemy_sheet_147
+  - first:
+      213: -8695518293337442152
+    second: sniper_enemy_sheet_148
+  - first:
+      213: -1126949969760571197
+    second: sniper_enemy_sheet_149
+  - first:
+      213: -3791367808184805432
+    second: sniper_enemy_sheet_150
+  - first:
+      213: -4754700575427456791
+    second: sniper_enemy_sheet_151
+  - first:
+      213: 2573471126142515164
+    second: sniper_enemy_sheet_152
+  - first:
+      213: -616923187251108873
+    second: sniper_enemy_sheet_153
+  - first:
+      213: -2132893684348179391
+    second: sniper_enemy_sheet_154
+  - first:
+      213: -9095825237747145643
+    second: sniper_enemy_sheet_155
+  - first:
+      213: -8081144511034712747
+    second: sniper_enemy_sheet_156
+  - first:
+      213: 6017920663425603632
+    second: sniper_enemy_sheet_157
+  - first:
+      213: -5167273823396540249
+    second: sniper_enemy_sheet_158
+  - first:
+      213: -3598742659269850495
+    second: sniper_enemy_sheet_159
+  - first:
+      213: -126718157651566530
+    second: sniper_enemy_sheet_160
+  - first:
+      213: 2393042060637758344
+    second: sniper_enemy_sheet_161
+  - first:
+      213: 8038643537513482649
+    second: sniper_enemy_sheet_162
+  - first:
+      213: -7882328222041952367
+    second: sniper_enemy_sheet_163
+  - first:
+      213: 5010141783661405111
+    second: sniper_enemy_sheet_164
+  - first:
+      213: 7067173444836859180
+    second: sniper_enemy_sheet_165
+  - first:
+      213: 3555297220515748589
+    second: sniper_enemy_sheet_166
+  - first:
+      213: 1676022811292372889
+    second: sniper_enemy_sheet_167
+  - first:
+      213: 1477399557614633473
+    second: sniper_enemy_sheet_0_0
+  - first:
+      213: 8280525555111203801
+    second: sniper_enemy_sheet_0_1
+  - first:
+      213: 1063753482564138162
+    second: sniper_enemy_sheet_0_2
+  - first:
+      213: 1148977041674915016
+    second: sniper_enemy_sheet_0_3
+  - first:
+      213: -6683210600448643881
+    second: sniper_enemy_sheet_0_4
+  - first:
+      213: -2917561356594416384
+    second: sniper_enemy_sheet_0_5
+  - first:
+      213: -8000977500543471039
+    second: sniper_enemy_sheet_0_6
+  - first:
+      213: 6590239564287976979
+    second: sniper_enemy_sheet_0_7
+  - first:
+      213: 1307495916513234805
+    second: sniper_enemy_sheet_0_8
+  - first:
+      213: -1501017678823003543
+    second: sniper_enemy_sheet_0_9
+  - first:
+      213: -7937904689170236923
+    second: sniper_enemy_sheet_0_10
+  - first:
+      213: 2932886800500038520
+    second: sniper_enemy_sheet_0_11
+  - first:
+      213: -3332519440885578429
+    second: sniper_enemy_sheet_0_12
+  - first:
+      213: 415922906312241391
+    second: sniper_enemy_sheet_0_13
+  - first:
+      213: 8650007144682466071
+    second: sniper_enemy_sheet_0_14
+  - first:
+      213: -2671738635661322480
+    second: sniper_enemy_sheet_0_15
+  - first:
+      213: -2025103480583107275
+    second: sniper_enemy_sheet_0_16
+  - first:
+      213: 2163250282549536858
+    second: sniper_enemy_sheet_0_17
+  - first:
+      213: -1000253048323840614
+    second: sniper_enemy_sheet_0_18
+  - first:
+      213: -3066544269632202581
+    second: sniper_enemy_sheet_0_19
+  - first:
+      213: -539275541996846157
+    second: sniper_enemy_sheet_0_20
+  - first:
+      213: 4286172703995223435
+    second: sniper_enemy_sheet_1_0
+  - first:
+      213: 8770856672572319506
+    second: sniper_enemy_sheet_1_1
+  - first:
+      213: 5752105733577898136
+    second: sniper_enemy_sheet_1_2
+  - first:
+      213: 7086742718956571739
+    second: sniper_enemy_sheet_1_3
+  - first:
+      213: 7437294524713313095
+    second: sniper_enemy_sheet_1_4
+  - first:
+      213: -4164359095145509264
+    second: sniper_enemy_sheet_1_5
+  - first:
+      213: 7132778029615189761
+    second: sniper_enemy_sheet_1_6
+  - first:
+      213: -9076635095571403837
+    second: sniper_enemy_sheet_1_7
+  - first:
+      213: 6749657689230448974
+    second: sniper_enemy_sheet_1_8
+  - first:
+      213: -3962169009720958974
+    second: sniper_enemy_sheet_1_9
+  - first:
+      213: -7887475467826545370
+    second: sniper_enemy_sheet_1_10
+  - first:
+      213: -5909459758198752176
+    second: sniper_enemy_sheet_1_11
+  - first:
+      213: -2715796994003135818
+    second: sniper_enemy_sheet_1_12
+  - first:
+      213: 4852012945681039657
+    second: sniper_enemy_sheet_1_13
+  - first:
+      213: 2367799275464303131
+    second: sniper_enemy_sheet_1_14
+  - first:
+      213: 7326697643543321444
+    second: sniper_enemy_sheet_1_15
+  - first:
+      213: 6076866354045433111
+    second: sniper_enemy_sheet_1_16
+  - first:
+      213: 4603144718783104672
+    second: sniper_enemy_sheet_1_17
+  - first:
+      213: -3006311030043012321
+    second: sniper_enemy_sheet_1_18
+  - first:
+      213: -7234601255155278062
+    second: sniper_enemy_sheet_1_19
+  - first:
+      213: -2523290293664456197
+    second: sniper_enemy_sheet_1_20
+  - first:
+      213: -3750654313533073518
+    second: sniper_enemy_sheet_2_0
+  - first:
+      213: -3285415346132975728
+    second: sniper_enemy_sheet_2_1
+  - first:
+      213: 2522591459576837467
+    second: sniper_enemy_sheet_2_2
+  - first:
+      213: -3599968310009972049
+    second: sniper_enemy_sheet_2_3
+  - first:
+      213: -2383706762248921378
+    second: sniper_enemy_sheet_2_4
+  - first:
+      213: 636513455349773196
+    second: sniper_enemy_sheet_2_5
+  - first:
+      213: -6451959989593420135
+    second: sniper_enemy_sheet_2_6
+  - first:
+      213: -6295093344840135295
+    second: sniper_enemy_sheet_2_7
+  - first:
+      213: 4410257228470748025
+    second: sniper_enemy_sheet_2_8
+  - first:
+      213: 2875727962249250355
+    second: sniper_enemy_sheet_2_9
+  - first:
+      213: 4182849781975227249
+    second: sniper_enemy_sheet_2_10
+  - first:
+      213: -4149735389211864891
+    second: sniper_enemy_sheet_2_11
+  - first:
+      213: -5479617626435025213
+    second: sniper_enemy_sheet_2_12
+  - first:
+      213: -5109155595750703533
+    second: sniper_enemy_sheet_2_13
+  - first:
+      213: -7103239168617911319
+    second: sniper_enemy_sheet_2_14
+  - first:
+      213: -3116015158146427604
+    second: sniper_enemy_sheet_2_15
+  - first:
+      213: 5828917648903258710
+    second: sniper_enemy_sheet_2_16
+  - first:
+      213: -3355453379981433713
+    second: sniper_enemy_sheet_2_17
+  - first:
+      213: -4037596842541631822
+    second: sniper_enemy_sheet_2_18
+  - first:
+      213: -2541657962151202931
+    second: sniper_enemy_sheet_2_19
+  - first:
+      213: -3619131489559309957
+    second: sniper_enemy_sheet_2_20
+  - first:
+      213: 5777888223755898173
+    second: sniper_enemy_sheet_3_0
+  - first:
+      213: -6523109608870532876
+    second: sniper_enemy_sheet_3_1
+  - first:
+      213: 4735745313266285367
+    second: sniper_enemy_sheet_3_2
+  - first:
+      213: -7902332708529862285
+    second: sniper_enemy_sheet_3_3
+  - first:
+      213: 443257083162824371
+    second: sniper_enemy_sheet_3_4
+  - first:
+      213: -6647932317827149917
+    second: sniper_enemy_sheet_3_5
+  - first:
+      213: 3406073238629846577
+    second: sniper_enemy_sheet_3_6
+  - first:
+      213: 8846887802352991205
+    second: sniper_enemy_sheet_3_7
+  - first:
+      213: -2912754758812062447
+    second: sniper_enemy_sheet_3_8
+  - first:
+      213: 5284751362574505767
+    second: sniper_enemy_sheet_3_9
+  - first:
+      213: -44630040484754762
+    second: sniper_enemy_sheet_3_10
+  - first:
+      213: -2186892462351989250
+    second: sniper_enemy_sheet_3_11
+  - first:
+      213: -615840929243891074
+    second: sniper_enemy_sheet_3_12
+  - first:
+      213: -1919649790958520459
+    second: sniper_enemy_sheet_3_13
+  - first:
+      213: 5904256643310249052
+    second: sniper_enemy_sheet_3_14
+  - first:
+      213: -8629317095383552510
+    second: sniper_enemy_sheet_3_15
+  - first:
+      213: -3046085090814336506
+    second: sniper_enemy_sheet_3_16
+  - first:
+      213: -8495888025957712617
+    second: sniper_enemy_sheet_3_17
+  - first:
+      213: -9028547695101195967
+    second: sniper_enemy_sheet_3_18
+  - first:
+      213: 3857300211127574450
+    second: sniper_enemy_sheet_3_19
+  - first:
+      213: -5353481934992205596
+    second: sniper_enemy_sheet_3_20
+  - first:
+      213: 3245968474230622610
+    second: sniper_enemy_sheet_4_0
+  - first:
+      213: -6280146188783019017
+    second: sniper_enemy_sheet_4_1
+  - first:
+      213: -8652802710849772926
+    second: sniper_enemy_sheet_4_2
+  - first:
+      213: 1105656474080044286
+    second: sniper_enemy_sheet_4_3
+  - first:
+      213: 267617047333071638
+    second: sniper_enemy_sheet_4_4
+  - first:
+      213: -2965539226466723186
+    second: sniper_enemy_sheet_4_5
+  - first:
+      213: -8198343312921729347
+    second: sniper_enemy_sheet_4_6
+  - first:
+      213: -6941024642182916773
+    second: sniper_enemy_sheet_4_7
+  - first:
+      213: -3590205017687205689
+    second: sniper_enemy_sheet_4_8
+  - first:
+      213: -744336782917398389
+    second: sniper_enemy_sheet_4_9
+  - first:
+      213: -7489582189665275978
+    second: sniper_enemy_sheet_4_10
+  - first:
+      213: -3382438917893388144
+    second: sniper_enemy_sheet_4_11
+  - first:
+      213: 2471925443324157872
+    second: sniper_enemy_sheet_4_12
+  - first:
+      213: 1029315526608898117
+    second: sniper_enemy_sheet_4_13
+  - first:
+      213: 1169747753976754743
+    second: sniper_enemy_sheet_4_14
+  - first:
+      213: 582582824858386251
+    second: sniper_enemy_sheet_4_15
+  - first:
+      213: 3276271270419526170
+    second: sniper_enemy_sheet_4_16
+  - first:
+      213: 5412290471883294235
+    second: sniper_enemy_sheet_4_17
+  - first:
+      213: -3137129566328640740
+    second: sniper_enemy_sheet_4_18
+  - first:
+      213: 8329864729336558563
+    second: sniper_enemy_sheet_4_19
+  - first:
+      213: 6653662594735867150
+    second: sniper_enemy_sheet_4_20
+  - first:
+      213: -1981368333167043371
+    second: sniper_enemy_sheet_5_0
+  - first:
+      213: -7979157596505102072
+    second: sniper_enemy_sheet_5_1
+  - first:
+      213: 5982211969754918464
+    second: sniper_enemy_sheet_5_2
+  - first:
+      213: -4781024655479332960
+    second: sniper_enemy_sheet_5_3
+  - first:
+      213: -4294169232926479609
+    second: sniper_enemy_sheet_5_4
+  - first:
+      213: -4746114341195532980
+    second: sniper_enemy_sheet_5_5
+  - first:
+      213: 760136450567140487
+    second: sniper_enemy_sheet_5_6
+  - first:
+      213: -7177078248568141532
+    second: sniper_enemy_sheet_5_7
+  - first:
+      213: -1372788300197443898
+    second: sniper_enemy_sheet_5_8
+  - first:
+      213: -1644299177361369478
+    second: sniper_enemy_sheet_5_9
+  - first:
+      213: 2865032597792824190
+    second: sniper_enemy_sheet_5_10
+  - first:
+      213: -5697179519493351015
+    second: sniper_enemy_sheet_5_11
+  - first:
+      213: -4904195268256403013
+    second: sniper_enemy_sheet_5_12
+  - first:
+      213: -1963986860006326490
+    second: sniper_enemy_sheet_5_13
+  - first:
+      213: -2986184659244374860
+    second: sniper_enemy_sheet_5_14
+  - first:
+      213: 4598901298291065015
+    second: sniper_enemy_sheet_5_15
+  - first:
+      213: 4145948502617143909
+    second: sniper_enemy_sheet_5_16
+  - first:
+      213: -1848937459541672308
+    second: sniper_enemy_sheet_5_17
+  - first:
+      213: -3923729217747995905
+    second: sniper_enemy_sheet_5_18
+  - first:
+      213: 2956667951657873565
+    second: sniper_enemy_sheet_5_19
+  - first:
+      213: 5464930089075128581
+    second: sniper_enemy_sheet_5_20
+  - first:
+      213: -496857003066098965
+    second: sniper_enemy_sheet_6_0
+  - first:
+      213: 4492454551486208051
+    second: sniper_enemy_sheet_6_1
+  - first:
+      213: 6796274770938495523
+    second: sniper_enemy_sheet_6_2
+  - first:
+      213: -5974390835224846412
+    second: sniper_enemy_sheet_6_3
+  - first:
+      213: 8496303495728549445
+    second: sniper_enemy_sheet_6_4
+  - first:
+      213: 7563963085040961200
+    second: sniper_enemy_sheet_6_5
+  - first:
+      213: -3360182474795895085
+    second: sniper_enemy_sheet_6_6
+  - first:
+      213: -4254107159306636887
+    second: sniper_enemy_sheet_6_7
+  - first:
+      213: 6415080363483250094
+    second: sniper_enemy_sheet_6_8
+  - first:
+      213: -2489802359610391472
+    second: sniper_enemy_sheet_6_9
+  - first:
+      213: -2302781610670220195
+    second: sniper_enemy_sheet_6_10
+  - first:
+      213: 6666222073403934205
+    second: sniper_enemy_sheet_6_11
+  - first:
+      213: 3328028748996196450
+    second: sniper_enemy_sheet_6_12
+  - first:
+      213: 3502326729458057631
+    second: sniper_enemy_sheet_6_13
+  - first:
+      213: 8991296861647011525
+    second: sniper_enemy_sheet_6_14
+  - first:
+      213: -6912601669084520472
+    second: sniper_enemy_sheet_6_15
+  - first:
+      213: -6677463008235511412
+    second: sniper_enemy_sheet_6_16
+  - first:
+      213: 4324934348185109776
+    second: sniper_enemy_sheet_6_17
+  - first:
+      213: 3465741809214961357
+    second: sniper_enemy_sheet_6_18
+  - first:
+      213: 8718834034265853473
+    second: sniper_enemy_sheet_6_19
+  - first:
+      213: -5411564867179641782
+    second: sniper_enemy_sheet_6_20
+  - first:
+      213: 2904165309782831547
+    second: sniper_enemy_sheet_7_0
+  - first:
+      213: -4917947924552444213
+    second: sniper_enemy_sheet_7_1
+  - first:
+      213: 2278536397990435331
+    second: sniper_enemy_sheet_7_2
+  - first:
+      213: 2838642092120980216
+    second: sniper_enemy_sheet_7_3
+  - first:
+      213: 850313333326717866
+    second: sniper_enemy_sheet_7_4
+  - first:
+      213: 1708559674845935899
+    second: sniper_enemy_sheet_7_5
+  - first:
+      213: -4595407636110517030
+    second: sniper_enemy_sheet_7_6
+  - first:
+      213: 6018214209771929967
+    second: sniper_enemy_sheet_7_7
+  - first:
+      213: 9187088462332438539
+    second: sniper_enemy_sheet_7_8
+  - first:
+      213: 8991686351906901140
+    second: sniper_enemy_sheet_7_9
+  - first:
+      213: 1037750233637688112
+    second: sniper_enemy_sheet_7_10
+  - first:
+      213: -5201561943804767058
+    second: sniper_enemy_sheet_7_11
+  - first:
+      213: 1708345724799832408
+    second: sniper_enemy_sheet_7_12
+  - first:
+      213: 8756939653441210330
+    second: sniper_enemy_sheet_7_13
+  - first:
+      213: 6491356501794645247
+    second: sniper_enemy_sheet_7_14
+  - first:
+      213: 4451980339586931122
+    second: sniper_enemy_sheet_7_15
+  - first:
+      213: 366890702357837491
+    second: sniper_enemy_sheet_7_16
+  - first:
+      213: 1292860202040343670
+    second: sniper_enemy_sheet_7_17
+  - first:
+      213: 4989178868900517321
+    second: sniper_enemy_sheet_7_18
+  - first:
+      213: -7378997057416031343
+    second: sniper_enemy_sheet_7_19
+  - first:
+      213: 7852732466886417787
+    second: sniper_enemy_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10280fee117c08410800000000000000
+      internalID: 1477399557614633473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d392f9ce165ae270800000000000000
+      internalID: 8280525555111203801
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b4f1d8082633ce00800000000000000
+      internalID: 1063753482564138162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cccc18288cf1ff00800000000000000
+      internalID: 1148977041674915016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7dc22293e577043a0800000000000000
+      internalID: -6683210600448643881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00578c1776db287d0800000000000000
+      internalID: -2917561356594416384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 142b630ba51d6f090800000000000000
+      internalID: -8000977500543471039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3162c1697fb357b50800000000000000
+      internalID: 6590239564287976979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57f8b01db98252210800000000000000
+      internalID: 1307495916513234805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96a6c24bf505b2be0800000000000000
+      internalID: -1501017678823003543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ab915fdb5e6d190800000000000000
+      internalID: -7937904689170236923
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87b9c368105b3b820800000000000000
+      internalID: 2932886800500038520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3458ee6993380c1d0800000000000000
+      internalID: -3332519440885578429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe070bcfda7a5c500800000000000000
+      internalID: 415922906312241391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71ba36b1baffa0870800000000000000
+      internalID: 8650007144682466071
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01758b8cdd31cead0800000000000000
+      internalID: -2671738635661322480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53dcf662d1365e3e0800000000000000
+      internalID: -2025103480583107275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a58e0ababa8650e10800000000000000
+      internalID: 2163250282549536858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a95e721f6236e12f0800000000000000
+      internalID: -1000253048323840614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba81098eb327175d0800000000000000
+      internalID: -3066544269632202581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 336
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b3c83370cb1488f0800000000000000
+      internalID: -539275541996846157
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8d5c9b7d5b8b7b30800000000000000
+      internalID: 4286172703995223435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 217a9887ca758b970800000000000000
+      internalID: 8770856672572319506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 898f56050b593df40800000000000000
+      internalID: 5752105733577898136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5c0ef9a4fa295260800000000000000
+      internalID: 7086742718956571739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743ae7b37f3963760800000000000000
+      internalID: 7437294524713313095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07e4fa877793536c0800000000000000
+      internalID: -4164359095145509264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 10f8ceca3d7bcf260800000000000000
+      internalID: 7132778029615189761
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cb6f9c7870590280800000000000000
+      internalID: -9076635095571403837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49901a38e99bad50800000000000000
+      internalID: 6749657689230448974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2006583374c8309c0800000000000000
+      internalID: -3962169009720958974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62d37950ade0a8290800000000000000
+      internalID: -7887475467826545370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05cf81ad8a16dfda0800000000000000
+      internalID: -5909459758198752176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b29e5ad50d8f4ad0800000000000000
+      internalID: -2715796994003135818
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9214ae82110d55340800000000000000
+      internalID: 4852012945681039657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b122a7955ec1cd020800000000000000
+      internalID: 2367799275464303131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46b571430b8ada560800000000000000
+      internalID: 7326697643543321444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 715b66c90cd555450800000000000000
+      internalID: 6076866354045433111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a648c4bbb7a1ef30800000000000000
+      internalID: 4603144718783104672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1392f9db007746d0800000000000000
+      internalID: -3006311030043012321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21fdfde2d78899b90800000000000000
+      internalID: -7234601255155278062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 288
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf160fcc8d87bfcd0800000000000000
+      internalID: -2523290293664456197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 297139e06cff2fbc0800000000000000
+      internalID: -3750654313533073518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 09f702a462cd762d0800000000000000
+      internalID: -3285415346132975728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55f285319b020320800000000000000
+      internalID: 2522591459576837467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: faa313f35e75a0ec0800000000000000
+      internalID: -3599968310009972049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eded473445f5beed0800000000000000
+      internalID: -2383706762248921378
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8331e08d9955d800800000000000000
+      internalID: 636513455349773196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e404bc2980676a0800000000000000
+      internalID: -6451959989593420135
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18dc0e8a4f553a8a0800000000000000
+      internalID: -6295093344840135295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 973091f2591643d30800000000000000
+      internalID: 4410257228470748025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 336468c6853a8e720800000000000000
+      internalID: 2875727962249250355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17b147b07b77c0a30800000000000000
+      internalID: 4182849781975227249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c0d82656ad2966c0800000000000000
+      internalID: -4149735389211864891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c60f5f0dcc74f3b0800000000000000
+      internalID: -5479617626435025213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35e741d1e02a819b0800000000000000
+      internalID: -5109155595750703533
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9eb63e75c993c6d90800000000000000
+      internalID: -7103239168617911319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2513f719b0b1c4d0800000000000000
+      internalID: -3116015158146427604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65242eff7b974e050800000000000000
+      internalID: 5828917648903258710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f84a2d9cde80f61d0800000000000000
+      internalID: -3355453379981433713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b63116501397f7c0800000000000000
+      internalID: -4037596842541631822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8f2f69bc873abcd0800000000000000
+      internalID: -2541657962151202931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 240
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b711361d51346cdc0800000000000000
+      internalID: -3619131489559309957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3d02e81abe2f2050800000000000000
+      internalID: 5777888223755898173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f8a5542f524975a0800000000000000
+      internalID: -6523109608870532876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73b35f7754fb8b140800000000000000
+      internalID: 4735745313266285367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 379802b1546455290800000000000000
+      internalID: -7902332708529862285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3be881af7f3c62600800000000000000
+      internalID: 443257083162824371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3afc21977cccdb3a0800000000000000
+      internalID: -6647932317827149917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 13e0f7b709dc44f20800000000000000
+      internalID: 3406073238629846577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eb7cfa559576ca70800000000000000
+      internalID: 8846887802352991205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11dad23baf0d397d0800000000000000
+      internalID: -2912754758812062447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727d38c4d55375940800000000000000
+      internalID: 5284751362574505767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ba4892f631716ff0800000000000000
+      internalID: -44630040484754762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef5c78364e896a1e0800000000000000
+      internalID: -2186892462351989250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a754e00f71477f0800000000000000
+      internalID: -615840929243891074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 577b3c49fa80c55e0800000000000000
+      internalID: -1919649790958520459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c546f3f822220f150800000000000000
+      internalID: 5904256643310249052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20e257362d18e3880800000000000000
+      internalID: -8629317095383552510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 602e56eafb12ab5d0800000000000000
+      internalID: -3046085090814336506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71dbb418ada881a80800000000000000
+      internalID: -8495888025957712617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14942d3e4b724b280800000000000000
+      internalID: -9028547695101195967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2bf5c4cea12e78530800000000000000
+      internalID: 3857300211127574450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 192
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e891594b8c94b5b0800000000000000
+      internalID: -5353481934992205596
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29902a2212ffb0d20800000000000000
+      internalID: 3245968474230622610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fb9010a05078d8a0800000000000000
+      internalID: -6280146188783019017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 282234c67c11be780800000000000000
+      internalID: -8652802710849772926
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef4e62584b4185f00800000000000000
+      internalID: 1105656474080044286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61b60226944c6b300800000000000000
+      internalID: 267617047333071638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8ad6fe19c948d6d0800000000000000
+      internalID: -2965539226466723186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db6e99e8132a93e80800000000000000
+      internalID: -8198343312921729347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b555471fcd68caf90800000000000000
+      internalID: -6941024642182916773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c8dde1ee870d2ec0800000000000000
+      internalID: -3590205017687205689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b8093fcb3a59ba5f0800000000000000
+      internalID: -744336782917398389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6bfa8e41ea8af0890800000000000000
+      internalID: -7489582189665275978
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0980280a9b92f01d0800000000000000
+      internalID: -3382438917893388144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bf1698081b0e4220800000000000000
+      internalID: 2471925443324157872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5484155940dd84e00800000000000000
+      internalID: 1029315526608898117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73278987267cb3010800000000000000
+      internalID: 1169747753976754743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4f7de71effb51800800000000000000
+      internalID: 582582824858386251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a127c2dac57a77d20800000000000000
+      internalID: 3276271270419526170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b16c5d532815c1b40800000000000000
+      internalID: 5412290471883294235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1b2b98d74da674d0800000000000000
+      internalID: -3137129566328640740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e3392b76df999370800000000000000
+      internalID: 8329864729336558563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 144
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e05098690ee865c50800000000000000
+      internalID: 6653662594735867150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dcde5caff3c084e0800000000000000
+      internalID: -1981368333167043371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809247df076544190800000000000000
+      internalID: -7979157596505102072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04ee4546716150350800000000000000
+      internalID: 5982211969754918464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0af15c3286366adb0800000000000000
+      internalID: -4781024655479332960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70b610a85db0864c0800000000000000
+      internalID: -4294169232926479609
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4537a5172a622eb0800000000000000
+      internalID: -4746114341195532980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78471ec031c8c8a00800000000000000
+      internalID: 760136450567140487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 429c9e4db55e56c90800000000000000
+      internalID: -7177078248568141532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c64be67050e2fce0800000000000000
+      internalID: -1372788300197443898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7698ec2c964e29e0800000000000000
+      internalID: -1644299177361369478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7b1b55d7f3a2c720800000000000000
+      internalID: 2865032597792824190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 999d7f6796d8fe0b0800000000000000
+      internalID: -5697179519493351015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1fc66136cc0fbb0800000000000000
+      internalID: -4904195268256403013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62fb9c14b548eb4e0800000000000000
+      internalID: -1963986860006326490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b4a408bfd0fe86d0800000000000000
+      internalID: -2986184659244374860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b0c8b16d5492df30800000000000000
+      internalID: 4598901298291065015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 56abe8b623e598930800000000000000
+      internalID: 4145948502617143909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8efa183d214756e0800000000000000
+      internalID: -1848937459541672308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff23f45b01d1c89c0800000000000000
+      internalID: -3923729217747995905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d90795146d1380920800000000000000
+      internalID: 2956667951657873565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 96
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 509baa926f457db40800000000000000
+      internalID: 5464930089075128581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bea741c203fca19f0800000000000000
+      internalID: -496857003066098965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3381ceecc97685e30800000000000000
+      internalID: 4492454551486208051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3220dbd55e7315e50800000000000000
+      internalID: 6796274770938495523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4bfd2156033b61da0800000000000000
+      internalID: -5974390835224846412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54e4fc6930fe8e570800000000000000
+      internalID: 8496303495728549445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b6c80aa95898f860800000000000000
+      internalID: 7563963085040961200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d63c4997db3e51d0800000000000000
+      internalID: -3360182474795895085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a1f41de31066f4c0800000000000000
+      internalID: -4254107159306636887
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eadb00f1a91f60950800000000000000
+      internalID: 6415080363483250094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0544e7a02f1727dd0800000000000000
+      internalID: -2489802359610391472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5c13b46350ea00e0800000000000000
+      internalID: -2302781610670220195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df50c1718ad238c50800000000000000
+      internalID: 6666222073403934205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 268b43ab3888f2e20800000000000000
+      internalID: 3328028748996196450
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9104b4ba93ca9030800000000000000
+      internalID: 3502326729458057631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cefd849bd087cc70800000000000000
+      internalID: 8991296861647011525
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8efd17018618110a0800000000000000
+      internalID: -6912601669084520472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c81af41d5c2e453a0800000000000000
+      internalID: -6677463008235511412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 015857c00e0450c30800000000000000
+      internalID: 4324934348185109776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc63a7d20d9c81030800000000000000
+      internalID: 3465741809214961357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12e800c1c558ff870800000000000000
+      internalID: 8718834034265853473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 48
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4406cccc6246e4b0800000000000000
+      internalID: -5411564867179641782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb13e9a56faad4820800000000000000
+      internalID: 2904165309782831547
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc69e254b60ffbbb0800000000000000
+      internalID: -4917947924552444213
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30a940228ccfe9f10800000000000000
+      internalID: 2278536397990435331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fab75961f1e46720800000000000000
+      internalID: 2838642092120980216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa3a7b4b87beccb00800000000000000
+      internalID: 850313333326717866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b19bfb0d8f506b710800000000000000
+      internalID: 1708559674845935899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adcd38b3a15d930c0800000000000000
+      internalID: -4595407636110517030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 252
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f610aab10fdf48350800000000000000
+      internalID: 6018214209771929967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b082a6df7481f7f70800000000000000
+      internalID: 9187088462332438539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 49c8329d813e8cc70800000000000000
+      internalID: 8991686351906901140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0339d89d654d66e00800000000000000
+      internalID: 1037750233637688112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 396
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea4935e98f650d7b0800000000000000
+      internalID: -5201561943804767058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8515040b26345b710800000000000000
+      internalID: 1708345724799832408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 468
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad745e2f736e68970800000000000000
+      internalID: 8756939653441210330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff464ef785ee51a50800000000000000
+      internalID: 6491356501794645247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b91a10088c98cd30800000000000000
+      internalID: 4451980339586931122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b6be616625771500800000000000000
+      internalID: 366890702357837491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 612
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67cbadef08921f110800000000000000
+      internalID: 1292860202040343670
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c553b95fbf1d3540800000000000000
+      internalID: 4989178868900517321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 684
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 193901a9549889990800000000000000
+      internalID: -7378997057416031343
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sniper_enemy_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 36
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b7d11f4b2928afc60800000000000000
+      internalID: 7852732466886417787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      sniper_enemy_sheet_0: -152412331038011018
+      sniper_enemy_sheet_0_0: 1477399557614633473
+      sniper_enemy_sheet_0_1: 8280525555111203801
+      sniper_enemy_sheet_0_10: -7937904689170236923
+      sniper_enemy_sheet_0_11: 2932886800500038520
+      sniper_enemy_sheet_0_12: -3332519440885578429
+      sniper_enemy_sheet_0_13: 415922906312241391
+      sniper_enemy_sheet_0_14: 8650007144682466071
+      sniper_enemy_sheet_0_15: -2671738635661322480
+      sniper_enemy_sheet_0_16: -2025103480583107275
+      sniper_enemy_sheet_0_17: 2163250282549536858
+      sniper_enemy_sheet_0_18: -1000253048323840614
+      sniper_enemy_sheet_0_19: -3066544269632202581
+      sniper_enemy_sheet_0_2: 1063753482564138162
+      sniper_enemy_sheet_0_20: -539275541996846157
+      sniper_enemy_sheet_0_3: 1148977041674915016
+      sniper_enemy_sheet_0_4: -6683210600448643881
+      sniper_enemy_sheet_0_5: -2917561356594416384
+      sniper_enemy_sheet_0_6: -8000977500543471039
+      sniper_enemy_sheet_0_7: 6590239564287976979
+      sniper_enemy_sheet_0_8: 1307495916513234805
+      sniper_enemy_sheet_0_9: -1501017678823003543
+      sniper_enemy_sheet_1: 1240663098014855524
+      sniper_enemy_sheet_10: -5960030172132378657
+      sniper_enemy_sheet_100: 4108349806031041941
+      sniper_enemy_sheet_101: 4780983938293991575
+      sniper_enemy_sheet_102: -5477779132091857110
+      sniper_enemy_sheet_103: 298666127069237974
+      sniper_enemy_sheet_104: 4998174420558842300
+      sniper_enemy_sheet_105: -6091407071222705329
+      sniper_enemy_sheet_106: -2416224960703065390
+      sniper_enemy_sheet_107: -8762389286843861760
+      sniper_enemy_sheet_108: -1534283655002838096
+      sniper_enemy_sheet_109: 81033485915428048
+      sniper_enemy_sheet_11: 1749523817980775790
+      sniper_enemy_sheet_110: 8009816609827811019
+      sniper_enemy_sheet_111: 16855313883342653
+      sniper_enemy_sheet_112: -4358402953009451528
+      sniper_enemy_sheet_113: -1431778425134520675
+      sniper_enemy_sheet_114: 1033079958930856947
+      sniper_enemy_sheet_115: -7324643862150769352
+      sniper_enemy_sheet_116: -5260801128997873253
+      sniper_enemy_sheet_117: -17117843411973407
+      sniper_enemy_sheet_118: 6030016910297017108
+      sniper_enemy_sheet_119: -9116537138343097040
+      sniper_enemy_sheet_12: -3595111125962046503
+      sniper_enemy_sheet_120: -8119305951545447770
+      sniper_enemy_sheet_121: -690926150141658481
+      sniper_enemy_sheet_122: -4591269743001147442
+      sniper_enemy_sheet_123: -7448376602913104596
+      sniper_enemy_sheet_124: -3759200298592141413
+      sniper_enemy_sheet_125: -6017911591920609974
+      sniper_enemy_sheet_126: 7450362694230200005
+      sniper_enemy_sheet_127: -4947408278350653691
+      sniper_enemy_sheet_128: 4635512945030819938
+      sniper_enemy_sheet_129: 4207400930477831143
+      sniper_enemy_sheet_13: -153044102802285095
+      sniper_enemy_sheet_130: 1802910523212273945
+      sniper_enemy_sheet_131: 7477371289532981748
+      sniper_enemy_sheet_132: -3712377757587878658
+      sniper_enemy_sheet_133: 8156888271425278866
+      sniper_enemy_sheet_134: 7132732083350614686
+      sniper_enemy_sheet_135: -6004035877903958359
+      sniper_enemy_sheet_136: -3589495735902360898
+      sniper_enemy_sheet_137: 7566454438106677081
+      sniper_enemy_sheet_138: 3804058900872953809
+      sniper_enemy_sheet_139: 9124338235658134286
+      sniper_enemy_sheet_14: 989308514891547194
+      sniper_enemy_sheet_140: -1736323678889800551
+      sniper_enemy_sheet_141: 2451579907723288522
+      sniper_enemy_sheet_142: 3558515049325911093
+      sniper_enemy_sheet_143: -1575162433736645632
+      sniper_enemy_sheet_144: 864334068098725155
+      sniper_enemy_sheet_145: 2454106187199717000
+      sniper_enemy_sheet_146: 7868520720209928957
+      sniper_enemy_sheet_147: 3369967451335998438
+      sniper_enemy_sheet_148: -8695518293337442152
+      sniper_enemy_sheet_149: -1126949969760571197
+      sniper_enemy_sheet_15: -1482085749082268567
+      sniper_enemy_sheet_150: -3791367808184805432
+      sniper_enemy_sheet_151: -4754700575427456791
+      sniper_enemy_sheet_152: 2573471126142515164
+      sniper_enemy_sheet_153: -616923187251108873
+      sniper_enemy_sheet_154: -2132893684348179391
+      sniper_enemy_sheet_155: -9095825237747145643
+      sniper_enemy_sheet_156: -8081144511034712747
+      sniper_enemy_sheet_157: 6017920663425603632
+      sniper_enemy_sheet_158: -5167273823396540249
+      sniper_enemy_sheet_159: -3598742659269850495
+      sniper_enemy_sheet_16: 2014634828335952159
+      sniper_enemy_sheet_160: -126718157651566530
+      sniper_enemy_sheet_161: 2393042060637758344
+      sniper_enemy_sheet_162: 8038643537513482649
+      sniper_enemy_sheet_163: -7882328222041952367
+      sniper_enemy_sheet_164: 5010141783661405111
+      sniper_enemy_sheet_165: 7067173444836859180
+      sniper_enemy_sheet_166: 3555297220515748589
+      sniper_enemy_sheet_167: 1676022811292372889
+      sniper_enemy_sheet_17: 8935973308319709367
+      sniper_enemy_sheet_18: -8856426695360070016
+      sniper_enemy_sheet_19: 4818411983402169042
+      sniper_enemy_sheet_1_0: 4286172703995223435
+      sniper_enemy_sheet_1_1: 8770856672572319506
+      sniper_enemy_sheet_1_10: -7887475467826545370
+      sniper_enemy_sheet_1_11: -5909459758198752176
+      sniper_enemy_sheet_1_12: -2715796994003135818
+      sniper_enemy_sheet_1_13: 4852012945681039657
+      sniper_enemy_sheet_1_14: 2367799275464303131
+      sniper_enemy_sheet_1_15: 7326697643543321444
+      sniper_enemy_sheet_1_16: 6076866354045433111
+      sniper_enemy_sheet_1_17: 4603144718783104672
+      sniper_enemy_sheet_1_18: -3006311030043012321
+      sniper_enemy_sheet_1_19: -7234601255155278062
+      sniper_enemy_sheet_1_2: 5752105733577898136
+      sniper_enemy_sheet_1_20: -2523290293664456197
+      sniper_enemy_sheet_1_3: 7086742718956571739
+      sniper_enemy_sheet_1_4: 7437294524713313095
+      sniper_enemy_sheet_1_5: -4164359095145509264
+      sniper_enemy_sheet_1_6: 7132778029615189761
+      sniper_enemy_sheet_1_7: -9076635095571403837
+      sniper_enemy_sheet_1_8: 6749657689230448974
+      sniper_enemy_sheet_1_9: -3962169009720958974
+      sniper_enemy_sheet_2: -7382425713449198706
+      sniper_enemy_sheet_20: -3657484094409551311
+      sniper_enemy_sheet_21: -1004664057905773700
+      sniper_enemy_sheet_22: 1202166854544986134
+      sniper_enemy_sheet_23: -1068850682029512545
+      sniper_enemy_sheet_24: -7822602152099063306
+      sniper_enemy_sheet_25: -6784009099396956185
+      sniper_enemy_sheet_26: 8364143638532555846
+      sniper_enemy_sheet_27: -4259714399900837200
+      sniper_enemy_sheet_28: 2428279367465341955
+      sniper_enemy_sheet_29: 8270089309604773008
+      sniper_enemy_sheet_2_0: -3750654313533073518
+      sniper_enemy_sheet_2_1: -3285415346132975728
+      sniper_enemy_sheet_2_10: 4182849781975227249
+      sniper_enemy_sheet_2_11: -4149735389211864891
+      sniper_enemy_sheet_2_12: -5479617626435025213
+      sniper_enemy_sheet_2_13: -5109155595750703533
+      sniper_enemy_sheet_2_14: -7103239168617911319
+      sniper_enemy_sheet_2_15: -3116015158146427604
+      sniper_enemy_sheet_2_16: 5828917648903258710
+      sniper_enemy_sheet_2_17: -3355453379981433713
+      sniper_enemy_sheet_2_18: -4037596842541631822
+      sniper_enemy_sheet_2_19: -2541657962151202931
+      sniper_enemy_sheet_2_2: 2522591459576837467
+      sniper_enemy_sheet_2_20: -3619131489559309957
+      sniper_enemy_sheet_2_3: -3599968310009972049
+      sniper_enemy_sheet_2_4: -2383706762248921378
+      sniper_enemy_sheet_2_5: 636513455349773196
+      sniper_enemy_sheet_2_6: -6451959989593420135
+      sniper_enemy_sheet_2_7: -6295093344840135295
+      sniper_enemy_sheet_2_8: 4410257228470748025
+      sniper_enemy_sheet_2_9: 2875727962249250355
+      sniper_enemy_sheet_3: -765152698947670582
+      sniper_enemy_sheet_30: 6038436243388322943
+      sniper_enemy_sheet_31: -493168509696520502
+      sniper_enemy_sheet_32: -106694213596108230
+      sniper_enemy_sheet_33: 7904063005821509930
+      sniper_enemy_sheet_34: -4121020578706217634
+      sniper_enemy_sheet_35: 8249143369025639127
+      sniper_enemy_sheet_36: 8928144369464793673
+      sniper_enemy_sheet_37: -8235228172615351515
+      sniper_enemy_sheet_38: 7202827617789254292
+      sniper_enemy_sheet_39: 7904951416787077297
+      sniper_enemy_sheet_3_0: 5777888223755898173
+      sniper_enemy_sheet_3_1: -6523109608870532876
+      sniper_enemy_sheet_3_10: -44630040484754762
+      sniper_enemy_sheet_3_11: -2186892462351989250
+      sniper_enemy_sheet_3_12: -615840929243891074
+      sniper_enemy_sheet_3_13: -1919649790958520459
+      sniper_enemy_sheet_3_14: 5904256643310249052
+      sniper_enemy_sheet_3_15: -8629317095383552510
+      sniper_enemy_sheet_3_16: -3046085090814336506
+      sniper_enemy_sheet_3_17: -8495888025957712617
+      sniper_enemy_sheet_3_18: -9028547695101195967
+      sniper_enemy_sheet_3_19: 3857300211127574450
+      sniper_enemy_sheet_3_2: 4735745313266285367
+      sniper_enemy_sheet_3_20: -5353481934992205596
+      sniper_enemy_sheet_3_3: -7902332708529862285
+      sniper_enemy_sheet_3_4: 443257083162824371
+      sniper_enemy_sheet_3_5: -6647932317827149917
+      sniper_enemy_sheet_3_6: 3406073238629846577
+      sniper_enemy_sheet_3_7: 8846887802352991205
+      sniper_enemy_sheet_3_8: -2912754758812062447
+      sniper_enemy_sheet_3_9: 5284751362574505767
+      sniper_enemy_sheet_4: -2914598508635214677
+      sniper_enemy_sheet_40: 5482479485149401786
+      sniper_enemy_sheet_41: -2371755926509346522
+      sniper_enemy_sheet_42: 3448687038332302007
+      sniper_enemy_sheet_43: 5764662631061239403
+      sniper_enemy_sheet_44: 7617028399756903860
+      sniper_enemy_sheet_45: 4684047034266461496
+      sniper_enemy_sheet_46: 8057365896963215146
+      sniper_enemy_sheet_47: 5909212132219108491
+      sniper_enemy_sheet_48: 6263178300116858167
+      sniper_enemy_sheet_49: -9107409780871793664
+      sniper_enemy_sheet_4_0: 3245968474230622610
+      sniper_enemy_sheet_4_1: -6280146188783019017
+      sniper_enemy_sheet_4_10: -7489582189665275978
+      sniper_enemy_sheet_4_11: -3382438917893388144
+      sniper_enemy_sheet_4_12: 2471925443324157872
+      sniper_enemy_sheet_4_13: 1029315526608898117
+      sniper_enemy_sheet_4_14: 1169747753976754743
+      sniper_enemy_sheet_4_15: 582582824858386251
+      sniper_enemy_sheet_4_16: 3276271270419526170
+      sniper_enemy_sheet_4_17: 5412290471883294235
+      sniper_enemy_sheet_4_18: -3137129566328640740
+      sniper_enemy_sheet_4_19: 8329864729336558563
+      sniper_enemy_sheet_4_2: -8652802710849772926
+      sniper_enemy_sheet_4_20: 6653662594735867150
+      sniper_enemy_sheet_4_3: 1105656474080044286
+      sniper_enemy_sheet_4_4: 267617047333071638
+      sniper_enemy_sheet_4_5: -2965539226466723186
+      sniper_enemy_sheet_4_6: -8198343312921729347
+      sniper_enemy_sheet_4_7: -6941024642182916773
+      sniper_enemy_sheet_4_8: -3590205017687205689
+      sniper_enemy_sheet_4_9: -744336782917398389
+      sniper_enemy_sheet_5: -1505333598568335616
+      sniper_enemy_sheet_50: 4562344310921378427
+      sniper_enemy_sheet_51: 8614459070859840127
+      sniper_enemy_sheet_52: -3063709705897489726
+      sniper_enemy_sheet_53: -4768825757827402863
+      sniper_enemy_sheet_54: 7550946273851526937
+      sniper_enemy_sheet_55: 7689034244806530267
+      sniper_enemy_sheet_56: 6747337883260546689
+      sniper_enemy_sheet_57: 575655935558752544
+      sniper_enemy_sheet_58: 8378171873039210357
+      sniper_enemy_sheet_59: 5828256513241894862
+      sniper_enemy_sheet_5_0: -1981368333167043371
+      sniper_enemy_sheet_5_1: -7979157596505102072
+      sniper_enemy_sheet_5_10: 2865032597792824190
+      sniper_enemy_sheet_5_11: -5697179519493351015
+      sniper_enemy_sheet_5_12: -4904195268256403013
+      sniper_enemy_sheet_5_13: -1963986860006326490
+      sniper_enemy_sheet_5_14: -2986184659244374860
+      sniper_enemy_sheet_5_15: 4598901298291065015
+      sniper_enemy_sheet_5_16: 4145948502617143909
+      sniper_enemy_sheet_5_17: -1848937459541672308
+      sniper_enemy_sheet_5_18: -3923729217747995905
+      sniper_enemy_sheet_5_19: 2956667951657873565
+      sniper_enemy_sheet_5_2: 5982211969754918464
+      sniper_enemy_sheet_5_20: 5464930089075128581
+      sniper_enemy_sheet_5_3: -4781024655479332960
+      sniper_enemy_sheet_5_4: -4294169232926479609
+      sniper_enemy_sheet_5_5: -4746114341195532980
+      sniper_enemy_sheet_5_6: 760136450567140487
+      sniper_enemy_sheet_5_7: -7177078248568141532
+      sniper_enemy_sheet_5_8: -1372788300197443898
+      sniper_enemy_sheet_5_9: -1644299177361369478
+      sniper_enemy_sheet_6: -4169481248365544034
+      sniper_enemy_sheet_60: 466270169926962933
+      sniper_enemy_sheet_61: 9063635111002429852
+      sniper_enemy_sheet_62: -4871502844944256234
+      sniper_enemy_sheet_63: -2834325942302401161
+      sniper_enemy_sheet_64: 6849689617938476612
+      sniper_enemy_sheet_65: 8721067085635724890
+      sniper_enemy_sheet_66: 6146978414651562331
+      sniper_enemy_sheet_67: -1186931031900933704
+      sniper_enemy_sheet_68: -6109942179010366396
+      sniper_enemy_sheet_69: 1207984990322316878
+      sniper_enemy_sheet_6_0: -496857003066098965
+      sniper_enemy_sheet_6_1: 4492454551486208051
+      sniper_enemy_sheet_6_10: -2302781610670220195
+      sniper_enemy_sheet_6_11: 6666222073403934205
+      sniper_enemy_sheet_6_12: 3328028748996196450
+      sniper_enemy_sheet_6_13: 3502326729458057631
+      sniper_enemy_sheet_6_14: 8991296861647011525
+      sniper_enemy_sheet_6_15: -6912601669084520472
+      sniper_enemy_sheet_6_16: -6677463008235511412
+      sniper_enemy_sheet_6_17: 4324934348185109776
+      sniper_enemy_sheet_6_18: 3465741809214961357
+      sniper_enemy_sheet_6_19: 8718834034265853473
+      sniper_enemy_sheet_6_2: 6796274770938495523
+      sniper_enemy_sheet_6_20: -5411564867179641782
+      sniper_enemy_sheet_6_3: -5974390835224846412
+      sniper_enemy_sheet_6_4: 8496303495728549445
+      sniper_enemy_sheet_6_5: 7563963085040961200
+      sniper_enemy_sheet_6_6: -3360182474795895085
+      sniper_enemy_sheet_6_7: -4254107159306636887
+      sniper_enemy_sheet_6_8: 6415080363483250094
+      sniper_enemy_sheet_6_9: -2489802359610391472
+      sniper_enemy_sheet_7: 7237476812447141427
+      sniper_enemy_sheet_70: 7100106658947277718
+      sniper_enemy_sheet_71: -735483364403195874
+      sniper_enemy_sheet_72: 222621013823020880
+      sniper_enemy_sheet_73: -8974893179427591518
+      sniper_enemy_sheet_74: -4235983323519485070
+      sniper_enemy_sheet_75: 1368605464196230695
+      sniper_enemy_sheet_76: -5596347257834855799
+      sniper_enemy_sheet_77: 8448821642024564334
+      sniper_enemy_sheet_78: 9046707167055457629
+      sniper_enemy_sheet_79: 1692824423005852493
+      sniper_enemy_sheet_7_0: 2904165309782831547
+      sniper_enemy_sheet_7_1: -4917947924552444213
+      sniper_enemy_sheet_7_10: 1037750233637688112
+      sniper_enemy_sheet_7_11: -5201561943804767058
+      sniper_enemy_sheet_7_12: 1708345724799832408
+      sniper_enemy_sheet_7_13: 8756939653441210330
+      sniper_enemy_sheet_7_14: 6491356501794645247
+      sniper_enemy_sheet_7_15: 4451980339586931122
+      sniper_enemy_sheet_7_16: 366890702357837491
+      sniper_enemy_sheet_7_17: 1292860202040343670
+      sniper_enemy_sheet_7_18: 4989178868900517321
+      sniper_enemy_sheet_7_19: -7378997057416031343
+      sniper_enemy_sheet_7_2: 2278536397990435331
+      sniper_enemy_sheet_7_20: 7852732466886417787
+      sniper_enemy_sheet_7_3: 2838642092120980216
+      sniper_enemy_sheet_7_4: 850313333326717866
+      sniper_enemy_sheet_7_5: 1708559674845935899
+      sniper_enemy_sheet_7_6: -4595407636110517030
+      sniper_enemy_sheet_7_7: 6018214209771929967
+      sniper_enemy_sheet_7_8: 9187088462332438539
+      sniper_enemy_sheet_7_9: 8991686351906901140
+      sniper_enemy_sheet_8: -7046044347750391272
+      sniper_enemy_sheet_80: 2027617561117682466
+      sniper_enemy_sheet_81: 5870207549739722247
+      sniper_enemy_sheet_82: 2579665041927342796
+      sniper_enemy_sheet_83: 5328016595990457051
+      sniper_enemy_sheet_84: -2509854196556547709
+      sniper_enemy_sheet_85: 1718853226491546061
+      sniper_enemy_sheet_86: -1301366274998164528
+      sniper_enemy_sheet_87: -7371336499364898156
+      sniper_enemy_sheet_88: -5341197476359855132
+      sniper_enemy_sheet_89: -2733285043814839110
+      sniper_enemy_sheet_9: -4649098332867556527
+      sniper_enemy_sheet_90: -5442157246023573543
+      sniper_enemy_sheet_91: -5703620093951281756
+      sniper_enemy_sheet_92: -6965011477553234572
+      sniper_enemy_sheet_93: 7446882429680268012
+      sniper_enemy_sheet_94: 3490060900870114534
+      sniper_enemy_sheet_95: 7595137972333907939
+      sniper_enemy_sheet_96: -3104575322332981668
+      sniper_enemy_sheet_97: -3566819025692838600
+      sniper_enemy_sheet_98: 6953705726560624414
+      sniper_enemy_sheet_99: -8049526929884252332
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

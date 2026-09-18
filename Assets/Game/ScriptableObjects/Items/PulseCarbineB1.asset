@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b5a9efce044e59a5fda33ba4cc6f2b, type: 3}
+  m_Name: PulseCarbineB1
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.BlasterWeaponDefinition
+  _id: weapon_pulse_carbine_b1
+  _displayName: Pulse Carbine B1
+  _category: 0
+  _isStackable: 0
+  _maxStack: 1
+  _icon: {fileID: 21300000, guid: 740e22c5cdc215344bcec80d63208638, type: 3}
+  _affixPool: {fileID: 11400000, guid: 68d6d52e117e41b6b90abc5a5a341845, type: 2}
+  _legendaryMechanicId: 
+  _weaponClass: 8
+  _knockback: 0
+  _staggerPower: 0
+  _damageMin: 7
+  _damageMax: 9
+  _fireRate: 8
+  _range: 12
+  _projectileSpeed: 22
+  _heatPerShot: 7
+  _coolingRatePerSecond: 35
+  _maxHeat: 100
+  _coolingDelaySeconds: 0.6
+  _overheatLockoutSeconds: 2.2

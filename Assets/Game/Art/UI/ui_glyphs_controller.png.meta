@@ -1,0 +1,483 @@
+fileFormatVersion: 2
+guid: 4c61e4a2945cfad44b68c94214c290ef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -7078348154121205301
+    second: ui_glyphs_controller_0
+  - first:
+      213: -1586734231478603831
+    second: ui_glyphs_controller_1
+  - first:
+      213: 5352546643037877674
+    second: ui_glyphs_controller_2
+  - first:
+      213: 2737594851866337754
+    second: ui_glyphs_controller_3
+  - first:
+      213: -4680011516294081758
+    second: ui_glyphs_controller_4
+  - first:
+      213: 3801320335740437252
+    second: ui_glyphs_controller_5
+  - first:
+      213: 8588158240700535338
+    second: ui_glyphs_controller_6
+  - first:
+      213: 7582915033192910200
+    second: ui_glyphs_controller_0_0
+  - first:
+      213: 8169714247197037686
+    second: ui_glyphs_controller_0_1
+  - first:
+      213: -744135602809499063
+    second: ui_glyphs_controller_0_2
+  - first:
+      213: 7393723018081924199
+    second: ui_glyphs_controller_0_3
+  - first:
+      213: 5350350451886399791
+    second: ui_glyphs_controller_0_4
+  - first:
+      213: 4946906265920686499
+    second: ui_glyphs_controller_0_5
+  - first:
+      213: 8935094236400574412
+    second: ui_glyphs_controller_0_6
+  - first:
+      213: 1067944691897186720
+    second: ui_glyphs_controller_0_7
+  - first:
+      213: 6101256604388383709
+    second: ui_glyphs_controller_0_8
+  - first:
+      213: 6483913343395346678
+    second: ui_glyphs_controller_0_9
+  - first:
+      213: -4876856267263050190
+    second: ui_glyphs_controller_0_10
+  - first:
+      213: -2241207443936138805
+    second: ui_glyphs_controller_0_11
+  - first:
+      213: 4754059384307016519
+    second: ui_glyphs_controller_0_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 1
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87dce63fb0deb3960800000000000000
+      internalID: 7582915033192910200
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_1
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67490a4a2d7a06170800000000000000
+      internalID: 8169714247197037686
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_2
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94291d1ac9c4ca5f0800000000000000
+      internalID: -744135602809499063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_3
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 764f66c49e7cb9660800000000000000
+      internalID: 7393723018081924199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_4
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f212a8c7363404a40800000000000000
+      internalID: 5350350451886399791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_5
+      rect:
+        serializedVersion: 2
+        x: 85
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a94b5df901f6a440800000000000000
+      internalID: 4946906265920686499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_6
+      rect:
+        serializedVersion: 2
+        x: 102
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccfdb4b2ed4dffb70800000000000000
+      internalID: 8935094236400574412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_7
+      rect:
+        serializedVersion: 2
+        x: 119
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a9bb400a0a12de00800000000000000
+      internalID: 1067944691897186720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_8
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb531c4e840ca450800000000000000
+      internalID: 6101256604388383709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_9
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6f8be7325dc7bf950800000000000000
+      internalID: 6483913343395346678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_10
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23ef529401de15cb0800000000000000
+      internalID: -4876856267263050190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_11
+      rect:
+        serializedVersion: 2
+        x: 187
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc9a93444b1a5e0e0800000000000000
+      internalID: -2241207443936138805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ui_glyphs_controller_0_12
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 0
+        width: 17
+        height: 13
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7436bba62dfc9f140800000000000000
+      internalID: 4754059384307016519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      ui_glyphs_controller_0: -7078348154121205301
+      ui_glyphs_controller_0_0: 7582915033192910200
+      ui_glyphs_controller_0_1: 8169714247197037686
+      ui_glyphs_controller_0_10: -4876856267263050190
+      ui_glyphs_controller_0_11: -2241207443936138805
+      ui_glyphs_controller_0_12: 4754059384307016519
+      ui_glyphs_controller_0_2: -744135602809499063
+      ui_glyphs_controller_0_3: 7393723018081924199
+      ui_glyphs_controller_0_4: 5350350451886399791
+      ui_glyphs_controller_0_5: 4946906265920686499
+      ui_glyphs_controller_0_6: 8935094236400574412
+      ui_glyphs_controller_0_7: 1067944691897186720
+      ui_glyphs_controller_0_8: 6101256604388383709
+      ui_glyphs_controller_0_9: 6483913343395346678
+      ui_glyphs_controller_1: -1586734231478603831
+      ui_glyphs_controller_2: 5352546643037877674
+      ui_glyphs_controller_3: 2737594851866337754
+      ui_glyphs_controller_4: -4680011516294081758
+      ui_glyphs_controller_5: 3801320335740437252
+      ui_glyphs_controller_6: 8588158240700535338
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

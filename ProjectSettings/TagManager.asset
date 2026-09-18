@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Enemy
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Ground
+    uniqueID: 1372010401
+    locked: 0
+  - name: GroundDetails
+    uniqueID: 1372010402
+    locked: 0
+  - name: LowProps
+    uniqueID: 1372010403
+    locked: 0
+  - name: Characters
+    uniqueID: 1372010404
+    locked: 0
+  - name: Weapons
+    uniqueID: 1372010405
+    locked: 0
+  - name: WorldProps
+    uniqueID: 1372010406
+    locked: 0
+  - name: AboveCharacters
+    uniqueID: 1372010407
+    locked: 0
+  - name: Projectiles
+    uniqueID: 1372010408
+    locked: 0
+  - name: WorldVFX
+    uniqueID: 1372010409
+    locked: 0
+  - name: Loot
+    uniqueID: 1372010410
+    locked: 0
+  - name: UIWorld
+    uniqueID: 1372010411
+    locked: 0
+  - name: ScreenUI
+    uniqueID: 1372010412
+    locked: 0

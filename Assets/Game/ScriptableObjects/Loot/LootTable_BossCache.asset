@@ -1,0 +1,576 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5014500838694b688417edd747b671cb, type: 3}
+  m_Name: LootTable_BossCache
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Loot.LootTableDefinition
+  _id: loot_boss_cache
+  _rolls:
+  - Label: Equipment
+    ChancePercent: 100
+    Entries:
+    - Item: {fileID: 11400000, guid: cbd0eeee743c4b2da050600af1f53b86, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bf8e981af73b471790c1efd966da8995, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 7d277231734948af8d3ae5d6a2d2dcbd, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 7d277231734948af8d3ae5d6a2d2dcbd, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cbdc269e448d4c4caff50cc0be0c6f34, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: d074851c5b3f48c2a73de88a6acb3132, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 307cc2501187455c8f2fa1d003f80a10, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 307cc2501187455c8f2fa1d003f80a10, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 223f4e63cf764462ba14c23b91238218, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 223f4e63cf764462ba14c23b91238218, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8b3bab011b304529b2276ddd1363f79c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 55c97bc67c9b42b0a1f972478db9db45, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 089e8bc255da479388ac82ba1c108a0f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 089e8bc255da479388ac82ba1c108a0f, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 66f289ea96cd41e5980153c33c0defb5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 66f289ea96cd41e5980153c33c0defb5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 1f9db0af52ca4b01a044684c054a2f43, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3712d9da285e443f85a9d8f3b33bd52b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 7b1e20a68399433195713deb17f41220, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 7b1e20a68399433195713deb17f41220, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ef011820bc2046dc80a2b2558602afa5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ef011820bc2046dc80a2b2558602afa5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a22e6a78a5cd37c429ee11b1178094c8, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 2ddc7ff84e8c49bfb1397f739b2d1467, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cf65f20e6b2f43fdb1a4869c38195079, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: cf65f20e6b2f43fdb1a4869c38195079, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cdce7a72265e4b549208f19754fec421, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ea86243418514b3ba67f8c4054baca67, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8b997576fd064cccb22322a56aeef99a, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 8b997576fd064cccb22322a56aeef99a, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f2383d590e0c4ea8925cfe90a0e37570, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: f2383d590e0c4ea8925cfe90a0e37570, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: d33e71200cec4b8aaf8a1d6412550b1b, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 188f2ec98f9642abbc59060ca9980a4e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: b810d31e648a40f3bc8e78211ca0dee9, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: b810d31e648a40f3bc8e78211ca0dee9, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f3d114281d7742b6a15274df68484e31, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: c4b699267323498689756179a8e039ed, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a9b511ee575f4aa4b4dff86ac6c5ac20, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: a9b511ee575f4aa4b4dff86ac6c5ac20, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 0ffb80c259e240aebb89cedb594c5e7f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 064ad2a836ba4fec9058f45e717c655e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: e4c2dcad786847b8bd67a16c83bf53b5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: e4c2dcad786847b8bd67a16c83bf53b5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a3ae1c7db91e4a58b67a7cbd8ee8dc85, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bf8e981af73b471790c1efd966da8995, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 40fc4df6ef9046e2a5718f762d2444b0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 40fc4df6ef9046e2a5718f762d2444b0, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 18bd3b6d64764032ba21075e6c3f5705, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 064ad2a836ba4fec9058f45e717c655e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: b92adc575c5da984c9e25d2ed4a15111, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: c4b699267323498689756179a8e039ed, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8afaa3c919b74535b9801b89d70bf7ba, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9ee75c1e48784f649f809cefdd6a8842, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 839d925d1e894077a1f3611f4d514785, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: d074851c5b3f48c2a73de88a6acb3132, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ce9016166bde41a5aa280db47d38416b, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ce9016166bde41a5aa280db47d38416b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f236d9a2dc8244769bb3f9d44793e5fa, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: f236d9a2dc8244769bb3f9d44793e5fa, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 05ff3f2e341441c78313bd596880766f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 6cc46c62643b41e79d41fed1784e9c3b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 744546b671064ae6a796b280dfd8788e, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3712d9da285e443f85a9d8f3b33bd52b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a29b84b9721b48f48f7493801689a81f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: a29b84b9721b48f48f7493801689a81f, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 08c5d246470c4cd59b82048148101e1c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 08c5d246470c4cd59b82048148101e1c, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: d64ce612566d493b8c20faa1bbf5a120, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 2ddc7ff84e8c49bfb1397f739b2d1467, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 9f7407cf66b54ccf9bc528b06ee12d7d, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9f7407cf66b54ccf9bc528b06ee12d7d, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: bb6a8125d12f41dcb1281333b75b1c4d, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bb6a8125d12f41dcb1281333b75b1c4d, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8668a4b2a51149a3b989bf23e29928a0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 55c97bc67c9b42b0a1f972478db9db45, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 35327fcd28ee4d1f818279c4a7642cbf, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 35327fcd28ee4d1f818279c4a7642cbf, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ecc75742e9f54a048e90f3415cf7946f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ea86243418514b3ba67f8c4054baca67, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5e5d17f556814b1ba8a2661dc5bf14dd, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 5e5d17f556814b1ba8a2661dc5bf14dd, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: fb52fff3ec184c68af5191c1453969ff, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 188f2ec98f9642abbc59060ca9980a4e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: e1440004d76d46a1b2fc75d808b8eec0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: e1440004d76d46a1b2fc75d808b8eec0, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5e113cf5338b48c9a6fc2d937a9dae7a, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 5e113cf5338b48c9a6fc2d937a9dae7a, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 3c114538d05c40c2ae024b3714ca3634, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3c114538d05c40c2ae024b3714ca3634, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a5b72db539dc411797ba7755d15d2415, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9ee75c1e48784f649f809cefdd6a8842, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 6a15105529394f4a836a3a335880243c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 6cc46c62643b41e79d41fed1784e9c3b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+  - Label: Coins
+    ChancePercent: 100
+    Entries:
+    - Item: {fileID: 0}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 80
+      MaxQuantity: 140
+  - Label: AdditionalItem
+    ChancePercent: 60
+    Entries:
+    - Item: {fileID: 11400000, guid: cbd0eeee743c4b2da050600af1f53b86, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bf8e981af73b471790c1efd966da8995, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 7d277231734948af8d3ae5d6a2d2dcbd, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 7d277231734948af8d3ae5d6a2d2dcbd, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cbdc269e448d4c4caff50cc0be0c6f34, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: d074851c5b3f48c2a73de88a6acb3132, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 307cc2501187455c8f2fa1d003f80a10, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 307cc2501187455c8f2fa1d003f80a10, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 223f4e63cf764462ba14c23b91238218, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 223f4e63cf764462ba14c23b91238218, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8b3bab011b304529b2276ddd1363f79c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 55c97bc67c9b42b0a1f972478db9db45, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 089e8bc255da479388ac82ba1c108a0f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 089e8bc255da479388ac82ba1c108a0f, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 66f289ea96cd41e5980153c33c0defb5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 66f289ea96cd41e5980153c33c0defb5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 1f9db0af52ca4b01a044684c054a2f43, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3712d9da285e443f85a9d8f3b33bd52b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 7b1e20a68399433195713deb17f41220, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 7b1e20a68399433195713deb17f41220, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ef011820bc2046dc80a2b2558602afa5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ef011820bc2046dc80a2b2558602afa5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a22e6a78a5cd37c429ee11b1178094c8, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 2ddc7ff84e8c49bfb1397f739b2d1467, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cf65f20e6b2f43fdb1a4869c38195079, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: cf65f20e6b2f43fdb1a4869c38195079, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: cdce7a72265e4b549208f19754fec421, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ea86243418514b3ba67f8c4054baca67, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8b997576fd064cccb22322a56aeef99a, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 8b997576fd064cccb22322a56aeef99a, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f2383d590e0c4ea8925cfe90a0e37570, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: f2383d590e0c4ea8925cfe90a0e37570, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: d33e71200cec4b8aaf8a1d6412550b1b, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 188f2ec98f9642abbc59060ca9980a4e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: b810d31e648a40f3bc8e78211ca0dee9, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: b810d31e648a40f3bc8e78211ca0dee9, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f3d114281d7742b6a15274df68484e31, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: c4b699267323498689756179a8e039ed, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a9b511ee575f4aa4b4dff86ac6c5ac20, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: a9b511ee575f4aa4b4dff86ac6c5ac20, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 0ffb80c259e240aebb89cedb594c5e7f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 064ad2a836ba4fec9058f45e717c655e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: e4c2dcad786847b8bd67a16c83bf53b5, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: e4c2dcad786847b8bd67a16c83bf53b5, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a3ae1c7db91e4a58b67a7cbd8ee8dc85, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bf8e981af73b471790c1efd966da8995, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 40fc4df6ef9046e2a5718f762d2444b0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 40fc4df6ef9046e2a5718f762d2444b0, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 18bd3b6d64764032ba21075e6c3f5705, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 064ad2a836ba4fec9058f45e717c655e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: b92adc575c5da984c9e25d2ed4a15111, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: c4b699267323498689756179a8e039ed, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8afaa3c919b74535b9801b89d70bf7ba, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9ee75c1e48784f649f809cefdd6a8842, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 839d925d1e894077a1f3611f4d514785, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: d074851c5b3f48c2a73de88a6acb3132, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ce9016166bde41a5aa280db47d38416b, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ce9016166bde41a5aa280db47d38416b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f236d9a2dc8244769bb3f9d44793e5fa, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: f236d9a2dc8244769bb3f9d44793e5fa, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 05ff3f2e341441c78313bd596880766f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 6cc46c62643b41e79d41fed1784e9c3b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 744546b671064ae6a796b280dfd8788e, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3712d9da285e443f85a9d8f3b33bd52b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a29b84b9721b48f48f7493801689a81f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: a29b84b9721b48f48f7493801689a81f, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 08c5d246470c4cd59b82048148101e1c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 08c5d246470c4cd59b82048148101e1c, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: d64ce612566d493b8c20faa1bbf5a120, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 2ddc7ff84e8c49bfb1397f739b2d1467, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 9f7407cf66b54ccf9bc528b06ee12d7d, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9f7407cf66b54ccf9bc528b06ee12d7d, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: bb6a8125d12f41dcb1281333b75b1c4d, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: bb6a8125d12f41dcb1281333b75b1c4d, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 8668a4b2a51149a3b989bf23e29928a0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 55c97bc67c9b42b0a1f972478db9db45, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 35327fcd28ee4d1f818279c4a7642cbf, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 35327fcd28ee4d1f818279c4a7642cbf, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: ecc75742e9f54a048e90f3415cf7946f, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: ea86243418514b3ba67f8c4054baca67, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5e5d17f556814b1ba8a2661dc5bf14dd, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 5e5d17f556814b1ba8a2661dc5bf14dd, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: fb52fff3ec184c68af5191c1453969ff, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 188f2ec98f9642abbc59060ca9980a4e, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: e1440004d76d46a1b2fc75d808b8eec0, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: e1440004d76d46a1b2fc75d808b8eec0, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5e113cf5338b48c9a6fc2d937a9dae7a, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 5e113cf5338b48c9a6fc2d937a9dae7a, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 3c114538d05c40c2ae024b3714ca3634, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 3c114538d05c40c2ae024b3714ca3634, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a5b72db539dc411797ba7755d15d2415, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 9ee75c1e48784f649f809cefdd6a8842, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 6a15105529394f4a836a3a335880243c, type: 2}
+      LegendaryVariant: {fileID: 11400000, guid: 6cc46c62643b41e79d41fed1784e9c3b, type: 2}
+      Weight: 2
+      MinQuantity: 1
+      MaxQuantity: 1
+  - Label: Ammo
+    ChancePercent: 100
+    Entries:
+    - Item: {fileID: 11400000, guid: 1e4d14f301c44922901a81ac08d568fa, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 4
+      MinQuantity: 20
+      MaxQuantity: 40
+    - Item: {fileID: 11400000, guid: 87611c06615e48d3a9c687ee6a86c449, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 3
+      MinQuantity: 15
+      MaxQuantity: 30
+    - Item: {fileID: 11400000, guid: d5aabe1528db489cb90b9f0e5980f571, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 2
+      MinQuantity: 6
+      MaxQuantity: 12
+    - Item: {fileID: 11400000, guid: 12699aa05af6429eaf8acf1645dc690e, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 2
+      MinQuantity: 5
+      MaxQuantity: 10
+  - Label: Consumable
+    ChancePercent: 60
+    Entries:
+    - Item: {fileID: 11400000, guid: 985a4cfe1fbf4aa7a5663ccf44afb223, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 4406967d8f4244e09fc23b61de0f268c, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5cc24de3d3cf4e6ebb9a2947a41c1a90, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 5a7c3b1e79734a5187fdcdcf47f6345c, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: f2223603674d44cbb57c295062a6a4b6, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: acfbed56e1a742908373568a9bbad8bf, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: a98fa3f0116842f29d42cc741cc2bb71, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 58ec093b9f0e4279ae81f7619b5418a2, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 65b0d2f0a78b454489a43a5f2440fa9b, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1
+    - Item: {fileID: 11400000, guid: 1411671af936430a8d07a3c0ec83f726, type: 2}
+      LegendaryVariant: {fileID: 0}
+      Weight: 1
+      MinQuantity: 1
+      MaxQuantity: 1

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed6d0f28068e483693cd219285f3b0ac, type: 3}
+  m_Name: DungeonGraphRules
+  m_EditorClassIdentifier: Game.Dungeon::RuinRail.Dungeon.Generation.DungeonGraphRules
+  _roomsDepth1To3: {x: 9, y: 10}
+  _roomsDepth4To8: {x: 10, y: 11}
+  _roomsDepth9Plus: {x: 10, y: 13}
+  _mainPathLength: {x: 6, y: 9}
+  _branchCount: {x: 1, y: 3}
+  _branchLength: {x: 1, y: 3}
+  _combatRooms: {x: 4, y: 8}
+  _maxMerchant: 1
+  _maxEvent: 2
+  _maxLoot: 2
+  _maxTreasure: 1
+  _maxMedical: 1
+  _maxEliteEarly: 1
+  _maxEliteLate: 2
+  _lateEliteDepth: 11
+  _eliteChanceDepth1To2: 5
+  _eliteChanceDepth3To5: 10
+  _eliteChanceDepth6To10: 15
+  _eliteChanceDepth11To20: 20
+  _eliteChanceDepth21Plus: 25
+  _maxGenerationAttempts: 32

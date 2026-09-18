@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 133ef2a29dd741b40b10560a9ad68ba0
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 7419610113687047759
+    second: bomber_sheet_0
+  - first:
+      213: -2028685649386284171
+    second: bomber_sheet_1
+  - first:
+      213: 8829088287932280780
+    second: bomber_sheet_2
+  - first:
+      213: -2699732313705566156
+    second: bomber_sheet_3
+  - first:
+      213: -676343942688126678
+    second: bomber_sheet_4
+  - first:
+      213: -2856428132232652338
+    second: bomber_sheet_5
+  - first:
+      213: -773202211571570813
+    second: bomber_sheet_6
+  - first:
+      213: 7194594101401977638
+    second: bomber_sheet_7
+  - first:
+      213: 6090291882106187503
+    second: bomber_sheet_8
+  - first:
+      213: 7211656716391320318
+    second: bomber_sheet_9
+  - first:
+      213: 8509895793897424391
+    second: bomber_sheet_10
+  - first:
+      213: -2503685095338851069
+    second: bomber_sheet_11
+  - first:
+      213: 7443531452035391627
+    second: bomber_sheet_12
+  - first:
+      213: -4349710186027838680
+    second: bomber_sheet_13
+  - first:
+      213: 79636979777854799
+    second: bomber_sheet_14
+  - first:
+      213: -1394370043461576114
+    second: bomber_sheet_15
+  - first:
+      213: 5294134331468931171
+    second: bomber_sheet_16
+  - first:
+      213: 8540764917278620096
+    second: bomber_sheet_17
+  - first:
+      213: -8182991406756740939
+    second: bomber_sheet_18
+  - first:
+      213: 3609835911195675011
+    second: bomber_sheet_19
+  - first:
+      213: 8922186606874327218
+    second: bomber_sheet_20
+  - first:
+      213: -6388556766377277375
+    second: bomber_sheet_21
+  - first:
+      213: 942277382900899825
+    second: bomber_sheet_22
+  - first:
+      213: -860463184024075474
+    second: bomber_sheet_23
+  - first:
+      213: 7386367688491380845
+    second: bomber_sheet_24
+  - first:
+      213: -1573177470503342434
+    second: bomber_sheet_25
+  - first:
+      213: -1402497285982040668
+    second: bomber_sheet_26
+  - first:
+      213: 6898541013589565321
+    second: bomber_sheet_27
+  - first:
+      213: -208229733876808728
+    second: bomber_sheet_28
+  - first:
+      213: 1516737147372542655
+    second: bomber_sheet_29
+  - first:
+      213: -5837405965802652401
+    second: bomber_sheet_30
+  - first:
+      213: -2889986014267416906
+    second: bomber_sheet_31
+  - first:
+      213: 3678078827912370432
+    second: bomber_sheet_32
+  - first:
+      213: -5828806095460285048
+    second: bomber_sheet_33
+  - first:
+      213: -4027677814766858317
+    second: bomber_sheet_34
+  - first:
+      213: -4177995728613835528
+    second: bomber_sheet_35
+  - first:
+      213: -2326777988172401620
+    second: bomber_sheet_36
+  - first:
+      213: 4085993202869076506
+    second: bomber_sheet_37
+  - first:
+      213: 1546892716347774552
+    second: bomber_sheet_38
+  - first:
+      213: 39845526872513710
+    second: bomber_sheet_39
+  - first:
+      213: -3706882259802986111
+    second: bomber_sheet_40
+  - first:
+      213: -5867235151707134811
+    second: bomber_sheet_41
+  - first:
+      213: 6426873622392477681
+    second: bomber_sheet_42
+  - first:
+      213: -2942241806266558765
+    second: bomber_sheet_43
+  - first:
+      213: -3030220885200826358
+    second: bomber_sheet_44
+  - first:
+      213: -1032972966359687789
+    second: bomber_sheet_45
+  - first:
+      213: 2686721643300342635
+    second: bomber_sheet_46
+  - first:
+      213: -6565970587068652036
+    second: bomber_sheet_47
+  - first:
+      213: 367263559221288248
+    second: bomber_sheet_48
+  - first:
+      213: 8960250178519410049
+    second: bomber_sheet_49
+  - first:
+      213: 3668299328405338300
+    second: bomber_sheet_50
+  - first:
+      213: -7196144092980414405
+    second: bomber_sheet_51
+  - first:
+      213: 5233374736441403174
+    second: bomber_sheet_52
+  - first:
+      213: -3507203502236010538
+    second: bomber_sheet_53
+  - first:
+      213: -6135394155189856062
+    second: bomber_sheet_54
+  - first:
+      213: -7849701995518152615
+    second: bomber_sheet_55
+  - first:
+      213: -194318609234789753
+    second: bomber_sheet_56
+  - first:
+      213: -3359333291007587063
+    second: bomber_sheet_57
+  - first:
+      213: -4854114996587759685
+    second: bomber_sheet_58
+  - first:
+      213: 7895579898132906053
+    second: bomber_sheet_59
+  - first:
+      213: 1536525807145084457
+    second: bomber_sheet_60
+  - first:
+      213: -1990534119345924294
+    second: bomber_sheet_61
+  - first:
+      213: -3976852219831396431
+    second: bomber_sheet_62
+  - first:
+      213: 4177466487128201537
+    second: bomber_sheet_63
+  - first:
+      213: 6352868135096213755
+    second: bomber_sheet_64
+  - first:
+      213: 6425236231087640824
+    second: bomber_sheet_65
+  - first:
+      213: -3007076275082078289
+    second: bomber_sheet_66
+  - first:
+      213: -9184020231900282518
+    second: bomber_sheet_67
+  - first:
+      213: 8066819811450343043
+    second: bomber_sheet_68
+  - first:
+      213: 3410071822499838541
+    second: bomber_sheet_69
+  - first:
+      213: 6475739756362196112
+    second: bomber_sheet_70
+  - first:
+      213: -111190860212964343
+    second: bomber_sheet_71
+  - first:
+      213: 8633045672297533026
+    second: bomber_sheet_72
+  - first:
+      213: 149195281553877426
+    second: bomber_sheet_73
+  - first:
+      213: 216448625587623447
+    second: bomber_sheet_74
+  - first:
+      213: 122894448700672039
+    second: bomber_sheet_75
+  - first:
+      213: 4261700746616603900
+    second: bomber_sheet_76
+  - first:
+      213: -8636392139035286360
+    second: bomber_sheet_77
+  - first:
+      213: -6581069263433516
+    second: bomber_sheet_78
+  - first:
+      213: 6678366228878049572
+    second: bomber_sheet_79
+  - first:
+      213: 2911349445019465386
+    second: bomber_sheet_80
+  - first:
+      213: 2962808581494342872
+    second: bomber_sheet_81
+  - first:
+      213: -7648503677604912034
+    second: bomber_sheet_82
+  - first:
+      213: -8607743452077722065
+    second: bomber_sheet_83
+  - first:
+      213: 3099005670314606836
+    second: bomber_sheet_84
+  - first:
+      213: -3310743126487852860
+    second: bomber_sheet_85
+  - first:
+      213: -8144763031143429407
+    second: bomber_sheet_86
+  - first:
+      213: 22891138505605036
+    second: bomber_sheet_87
+  - first:
+      213: 1896479877733620378
+    second: bomber_sheet_88
+  - first:
+      213: -6585291575398462309
+    second: bomber_sheet_89
+  - first:
+      213: -6450366928450587509
+    second: bomber_sheet_90
+  - first:
+      213: 6197197685287251914
+    second: bomber_sheet_91
+  - first:
+      213: 6558246062204972759
+    second: bomber_sheet_92
+  - first:
+      213: 5890319872637201818
+    second: bomber_sheet_93
+  - first:
+      213: 6701382776074202418
+    second: bomber_sheet_94
+  - first:
+      213: -3867785997068703606
+    second: bomber_sheet_95
+  - first:
+      213: -387523817548332625
+    second: bomber_sheet_96
+  - first:
+      213: -1207021907580587444
+    second: bomber_sheet_97
+  - first:
+      213: -114032191758672223
+    second: bomber_sheet_98
+  - first:
+      213: -3900046311567565701
+    second: bomber_sheet_99
+  - first:
+      213: 1983435940668453814
+    second: bomber_sheet_100
+  - first:
+      213: -3640746472833735868
+    second: bomber_sheet_101
+  - first:
+      213: 1694709816490795205
+    second: bomber_sheet_102
+  - first:
+      213: -7686152922671751326
+    second: bomber_sheet_103
+  - first:
+      213: -6954782211058047381
+    second: bomber_sheet_104
+  - first:
+      213: -8483215418659036178
+    second: bomber_sheet_105
+  - first:
+      213: 1816096002558688659
+    second: bomber_sheet_106
+  - first:
+      213: -3475477077352464391
+    second: bomber_sheet_107
+  - first:
+      213: -3938875420007759041
+    second: bomber_sheet_108
+  - first:
+      213: 8849420034954631029
+    second: bomber_sheet_109
+  - first:
+      213: 4859424506506759314
+    second: bomber_sheet_110
+  - first:
+      213: -3086958560981944899
+    second: bomber_sheet_111
+  - first:
+      213: 2048381747350164843
+    second: bomber_sheet_112
+  - first:
+      213: 2800243708206470860
+    second: bomber_sheet_113
+  - first:
+      213: 7666197882384550627
+    second: bomber_sheet_114
+  - first:
+      213: 1640461012478522780
+    second: bomber_sheet_115
+  - first:
+      213: -2400953522774987637
+    second: bomber_sheet_116
+  - first:
+      213: 1786394448637489137
+    second: bomber_sheet_117
+  - first:
+      213: -1688050929533090940
+    second: bomber_sheet_118
+  - first:
+      213: 7100094227061487049
+    second: bomber_sheet_119
+  - first:
+      213: 6512479427458608987
+    second: bomber_sheet_120
+  - first:
+      213: 1096086321623227228
+    second: bomber_sheet_121
+  - first:
+      213: -4285722477298927040
+    second: bomber_sheet_122
+  - first:
+      213: 4954753347218368641
+    second: bomber_sheet_123
+  - first:
+      213: -3965258981620631345
+    second: bomber_sheet_124
+  - first:
+      213: 4103121935393747920
+    second: bomber_sheet_125
+  - first:
+      213: -8022969867506598060
+    second: bomber_sheet_126
+  - first:
+      213: -5577089060193336882
+    second: bomber_sheet_127
+  - first:
+      213: 1783554731701309467
+    second: bomber_sheet_128
+  - first:
+      213: -7257570299559601381
+    second: bomber_sheet_129
+  - first:
+      213: 4911777647883557292
+    second: bomber_sheet_130
+  - first:
+      213: -7095966049109909432
+    second: bomber_sheet_131
+  - first:
+      213: -2869285116470156400
+    second: bomber_sheet_132
+  - first:
+      213: -2493335032744574314
+    second: bomber_sheet_133
+  - first:
+      213: -1634339034806886503
+    second: bomber_sheet_134
+  - first:
+      213: -1217334973033860452
+    second: bomber_sheet_135
+  - first:
+      213: 7906885268302988557
+    second: bomber_sheet_136
+  - first:
+      213: 8866832106531221235
+    second: bomber_sheet_137
+  - first:
+      213: 1442434396413095598
+    second: bomber_sheet_138
+  - first:
+      213: 2258158820199792797
+    second: bomber_sheet_139
+  - first:
+      213: 6541607213871401198
+    second: bomber_sheet_140
+  - first:
+      213: 748740801075143412
+    second: bomber_sheet_141
+  - first:
+      213: -7935438858712598788
+    second: bomber_sheet_142
+  - first:
+      213: 4026970414129742179
+    second: bomber_sheet_143
+  - first:
+      213: -5999127820339823755
+    second: bomber_sheet_144
+  - first:
+      213: 7999272582263857685
+    second: bomber_sheet_145
+  - first:
+      213: -3049333041419198764
+    second: bomber_sheet_146
+  - first:
+      213: -8982893904054206147
+    second: bomber_sheet_147
+  - first:
+      213: -8939108007281739235
+    second: bomber_sheet_148
+  - first:
+      213: -6861078482978609497
+    second: bomber_sheet_149
+  - first:
+      213: -6807275150779927668
+    second: bomber_sheet_150
+  - first:
+      213: 2670456808379946461
+    second: bomber_sheet_151
+  - first:
+      213: 2807113859412395175
+    second: bomber_sheet_152
+  - first:
+      213: -4955948682640140952
+    second: bomber_sheet_153
+  - first:
+      213: 1087074784877162289
+    second: bomber_sheet_154
+  - first:
+      213: -3500901684113652173
+    second: bomber_sheet_155
+  - first:
+      213: -8899080665772291787
+    second: bomber_sheet_156
+  - first:
+      213: -6645627049993068980
+    second: bomber_sheet_157
+  - first:
+      213: 8766052224909971222
+    second: bomber_sheet_158
+  - first:
+      213: -7370007371847971575
+    second: bomber_sheet_159
+  - first:
+      213: -7381278442667947430
+    second: bomber_sheet_160
+  - first:
+      213: 3430028165512340867
+    second: bomber_sheet_161
+  - first:
+      213: 6434512608789605178
+    second: bomber_sheet_162
+  - first:
+      213: 7656951702556200780
+    second: bomber_sheet_163
+  - first:
+      213: -5428932795726813242
+    second: bomber_sheet_164
+  - first:
+      213: -1761724750940644585
+    second: bomber_sheet_165
+  - first:
+      213: 3147924787219731540
+    second: bomber_sheet_166
+  - first:
+      213: 5952023586505673496
+    second: bomber_sheet_167
+  - first:
+      213: -7656248092924179646
+    second: bomber_sheet_0_0
+  - first:
+      213: 3062458291898920030
+    second: bomber_sheet_0_1
+  - first:
+      213: -4694871247350549340
+    second: bomber_sheet_0_2
+  - first:
+      213: 6132937175261593672
+    second: bomber_sheet_0_3
+  - first:
+      213: -5394575623735714496
+    second: bomber_sheet_0_4
+  - first:
+      213: 5189277578476893150
+    second: bomber_sheet_0_5
+  - first:
+      213: 6661411220043277308
+    second: bomber_sheet_0_6
+  - first:
+      213: 2443495592346186736
+    second: bomber_sheet_0_7
+  - first:
+      213: -3084142327016843457
+    second: bomber_sheet_0_8
+  - first:
+      213: 2633850169396848409
+    second: bomber_sheet_0_9
+  - first:
+      213: -4986899118796418728
+    second: bomber_sheet_0_10
+  - first:
+      213: -3133699379442175190
+    second: bomber_sheet_0_11
+  - first:
+      213: -5303553890313136853
+    second: bomber_sheet_0_12
+  - first:
+      213: 3577307664071752977
+    second: bomber_sheet_0_13
+  - first:
+      213: -3838664369196976283
+    second: bomber_sheet_0_14
+  - first:
+      213: 1482351098959790020
+    second: bomber_sheet_0_15
+  - first:
+      213: -2852819324099092663
+    second: bomber_sheet_0_16
+  - first:
+      213: -8806359186853943612
+    second: bomber_sheet_0_17
+  - first:
+      213: 4719165913375838983
+    second: bomber_sheet_0_18
+  - first:
+      213: 1981910362703262227
+    second: bomber_sheet_0_19
+  - first:
+      213: 6186142632449321493
+    second: bomber_sheet_0_20
+  - first:
+      213: -2502218010383752497
+    second: bomber_sheet_1_0
+  - first:
+      213: 4682291566727461739
+    second: bomber_sheet_1_1
+  - first:
+      213: -8522040816882364545
+    second: bomber_sheet_1_2
+  - first:
+      213: -7436643615476764839
+    second: bomber_sheet_1_3
+  - first:
+      213: 6528961600095896018
+    second: bomber_sheet_1_4
+  - first:
+      213: 4329177554367164365
+    second: bomber_sheet_1_5
+  - first:
+      213: -7287551248977442759
+    second: bomber_sheet_1_6
+  - first:
+      213: -5534209326416240120
+    second: bomber_sheet_1_7
+  - first:
+      213: -4901923259827875102
+    second: bomber_sheet_1_8
+  - first:
+      213: 717415174134456868
+    second: bomber_sheet_1_9
+  - first:
+      213: -4481622302414231773
+    second: bomber_sheet_1_10
+  - first:
+      213: 5635129051639841487
+    second: bomber_sheet_1_11
+  - first:
+      213: -149314033879130053
+    second: bomber_sheet_1_12
+  - first:
+      213: 2503222467833214709
+    second: bomber_sheet_1_13
+  - first:
+      213: 8979473888251294603
+    second: bomber_sheet_1_14
+  - first:
+      213: -7375473477795126274
+    second: bomber_sheet_1_15
+  - first:
+      213: -3405279816794954188
+    second: bomber_sheet_1_16
+  - first:
+      213: 4305147915644642474
+    second: bomber_sheet_1_17
+  - first:
+      213: -3146468997941980401
+    second: bomber_sheet_1_18
+  - first:
+      213: 5124983755631239968
+    second: bomber_sheet_1_19
+  - first:
+      213: -3275188725276167504
+    second: bomber_sheet_1_20
+  - first:
+      213: 7476981691585726151
+    second: bomber_sheet_2_0
+  - first:
+      213: 7845502773616916606
+    second: bomber_sheet_2_1
+  - first:
+      213: 3969769057604743494
+    second: bomber_sheet_2_2
+  - first:
+      213: 4534992835792851334
+    second: bomber_sheet_2_3
+  - first:
+      213: 7650511588690630764
+    second: bomber_sheet_2_4
+  - first:
+      213: 6508606190054051517
+    second: bomber_sheet_2_5
+  - first:
+      213: 1739923178377037085
+    second: bomber_sheet_2_6
+  - first:
+      213: -3844962731425784842
+    second: bomber_sheet_2_7
+  - first:
+      213: 2626367956806736719
+    second: bomber_sheet_2_8
+  - first:
+      213: 6054144815404521181
+    second: bomber_sheet_2_9
+  - first:
+      213: -3183021444205986617
+    second: bomber_sheet_2_10
+  - first:
+      213: -5104120360739991344
+    second: bomber_sheet_2_11
+  - first:
+      213: 7362210182210916253
+    second: bomber_sheet_2_12
+  - first:
+      213: -1900288660222799745
+    second: bomber_sheet_2_13
+  - first:
+      213: -8469294234733657528
+    second: bomber_sheet_2_14
+  - first:
+      213: -1686123016531056858
+    second: bomber_sheet_2_15
+  - first:
+      213: 6869009777218757681
+    second: bomber_sheet_2_16
+  - first:
+      213: 2209718677495182638
+    second: bomber_sheet_2_17
+  - first:
+      213: 1284426332343870128
+    second: bomber_sheet_2_18
+  - first:
+      213: 7018135989424351636
+    second: bomber_sheet_2_19
+  - first:
+      213: 2628868154860198876
+    second: bomber_sheet_2_20
+  - first:
+      213: 1977451908914925537
+    second: bomber_sheet_3_0
+  - first:
+      213: 2601128665920258350
+    second: bomber_sheet_3_1
+  - first:
+      213: 708627332990039387
+    second: bomber_sheet_3_2
+  - first:
+      213: -2203869217221301521
+    second: bomber_sheet_3_3
+  - first:
+      213: -3271148678574949081
+    second: bomber_sheet_3_4
+  - first:
+      213: -857661754390834392
+    second: bomber_sheet_3_5
+  - first:
+      213: 7543133573448958389
+    second: bomber_sheet_3_6
+  - first:
+      213: -4827791113609725283
+    second: bomber_sheet_3_7
+  - first:
+      213: -1025028465479557489
+    second: bomber_sheet_3_8
+  - first:
+      213: 1980467257052664391
+    second: bomber_sheet_3_9
+  - first:
+      213: -8594194144140968622
+    second: bomber_sheet_3_10
+  - first:
+      213: -7145383569571716617
+    second: bomber_sheet_3_11
+  - first:
+      213: -1038294309098978617
+    second: bomber_sheet_3_12
+  - first:
+      213: 9153241471666644061
+    second: bomber_sheet_3_13
+  - first:
+      213: 5842916892420798394
+    second: bomber_sheet_3_14
+  - first:
+      213: 31341190862423897
+    second: bomber_sheet_3_15
+  - first:
+      213: -4681182088511543384
+    second: bomber_sheet_3_16
+  - first:
+      213: 328632015143661436
+    second: bomber_sheet_3_17
+  - first:
+      213: -3951464720853676730
+    second: bomber_sheet_3_18
+  - first:
+      213: -2773730055649716624
+    second: bomber_sheet_3_19
+  - first:
+      213: -4341576223216179149
+    second: bomber_sheet_3_20
+  - first:
+      213: 1584769274048489379
+    second: bomber_sheet_4_0
+  - first:
+      213: -4815355019034109987
+    second: bomber_sheet_4_1
+  - first:
+      213: -832905132858003816
+    second: bomber_sheet_4_2
+  - first:
+      213: 6213927659648415031
+    second: bomber_sheet_4_3
+  - first:
+      213: -3121607687517210207
+    second: bomber_sheet_4_4
+  - first:
+      213: 5104142870406525927
+    second: bomber_sheet_4_5
+  - first:
+      213: 8501838430869975616
+    second: bomber_sheet_4_6
+  - first:
+      213: 7404192883536085486
+    second: bomber_sheet_4_7
+  - first:
+      213: 9193120386177949018
+    second: bomber_sheet_4_8
+  - first:
+      213: -1742741093994345465
+    second: bomber_sheet_4_9
+  - first:
+      213: -2869754104863487523
+    second: bomber_sheet_4_10
+  - first:
+      213: 7332052808361452164
+    second: bomber_sheet_4_11
+  - first:
+      213: 6800937488848327815
+    second: bomber_sheet_4_12
+  - first:
+      213: 2454861902460277198
+    second: bomber_sheet_4_13
+  - first:
+      213: 7951078308993132642
+    second: bomber_sheet_4_14
+  - first:
+      213: -3822290704787746649
+    second: bomber_sheet_4_15
+  - first:
+      213: 5705181219206750746
+    second: bomber_sheet_4_16
+  - first:
+      213: 2840329873706091460
+    second: bomber_sheet_4_17
+  - first:
+      213: -1655395416966977326
+    second: bomber_sheet_4_18
+  - first:
+      213: -8765954121139473351
+    second: bomber_sheet_4_19
+  - first:
+      213: 844264624527476332
+    second: bomber_sheet_4_20
+  - first:
+      213: 4926862714904263287
+    second: bomber_sheet_5_0
+  - first:
+      213: 2604602119867211879
+    second: bomber_sheet_5_1
+  - first:
+      213: 4784383197028474372
+    second: bomber_sheet_5_2
+  - first:
+      213: 5843863525818637402
+    second: bomber_sheet_5_3
+  - first:
+      213: 4828223779943859423
+    second: bomber_sheet_5_4
+  - first:
+      213: -2576630578260421058
+    second: bomber_sheet_5_5
+  - first:
+      213: -4551799383589511508
+    second: bomber_sheet_5_6
+  - first:
+      213: 5385452301087081768
+    second: bomber_sheet_5_7
+  - first:
+      213: -1517507160835161550
+    second: bomber_sheet_5_8
+  - first:
+      213: 1934716904322115791
+    second: bomber_sheet_5_9
+  - first:
+      213: 7769449658773299506
+    second: bomber_sheet_5_10
+  - first:
+      213: 7238385877894121295
+    second: bomber_sheet_5_11
+  - first:
+      213: 4941864088817715881
+    second: bomber_sheet_5_12
+  - first:
+      213: 3830798207850313478
+    second: bomber_sheet_5_13
+  - first:
+      213: -7696831238907618728
+    second: bomber_sheet_5_14
+  - first:
+      213: -1969218839039242208
+    second: bomber_sheet_5_15
+  - first:
+      213: 5866418885676384255
+    second: bomber_sheet_5_16
+  - first:
+      213: 5842693958945361206
+    second: bomber_sheet_5_17
+  - first:
+      213: 5646665968942621460
+    second: bomber_sheet_5_18
+  - first:
+      213: -3179707432015841318
+    second: bomber_sheet_5_19
+  - first:
+      213: 7907170641837654668
+    second: bomber_sheet_5_20
+  - first:
+      213: 1454237009443301435
+    second: bomber_sheet_6_0
+  - first:
+      213: 81623179876081241
+    second: bomber_sheet_6_1
+  - first:
+      213: 3678452166813038995
+    second: bomber_sheet_6_2
+  - first:
+      213: -5965903177191438629
+    second: bomber_sheet_6_3
+  - first:
+      213: -3544721065491265438
+    second: bomber_sheet_6_4
+  - first:
+      213: -3021678370148845561
+    second: bomber_sheet_6_5
+  - first:
+      213: -5938049790309951515
+    second: bomber_sheet_6_6
+  - first:
+      213: 5966565252107066395
+    second: bomber_sheet_6_7
+  - first:
+      213: 7134522995588654274
+    second: bomber_sheet_6_8
+  - first:
+      213: -9181476204238047719
+    second: bomber_sheet_6_9
+  - first:
+      213: -2931523340751579712
+    second: bomber_sheet_6_10
+  - first:
+      213: 64959929621406931
+    second: bomber_sheet_6_11
+  - first:
+      213: 3087642325091317684
+    second: bomber_sheet_6_12
+  - first:
+      213: 324174006892380095
+    second: bomber_sheet_6_13
+  - first:
+      213: 7676877184609422573
+    second: bomber_sheet_6_14
+  - first:
+      213: 1742096412466790608
+    second: bomber_sheet_6_15
+  - first:
+      213: -916464673497589488
+    second: bomber_sheet_6_16
+  - first:
+      213: -1034028787247117020
+    second: bomber_sheet_6_17
+  - first:
+      213: 6534703414761951808
+    second: bomber_sheet_6_18
+  - first:
+      213: -8011928470869592530
+    second: bomber_sheet_6_19
+  - first:
+      213: -8473692467738854890
+    second: bomber_sheet_6_20
+  - first:
+      213: 7499294047594213338
+    second: bomber_sheet_7_0
+  - first:
+      213: 2900693173192773362
+    second: bomber_sheet_7_1
+  - first:
+      213: -3594784179978924770
+    second: bomber_sheet_7_2
+  - first:
+      213: -1645440232371459404
+    second: bomber_sheet_7_3
+  - first:
+      213: -3469062948445153637
+    second: bomber_sheet_7_4
+  - first:
+      213: -8071201871561486258
+    second: bomber_sheet_7_5
+  - first:
+      213: -7313383153418942335
+    second: bomber_sheet_7_6
+  - first:
+      213: -914104313692549797
+    second: bomber_sheet_7_7
+  - first:
+      213: 1604793032695729268
+    second: bomber_sheet_7_8
+  - first:
+      213: 227156340336722251
+    second: bomber_sheet_7_9
+  - first:
+      213: 4689820482146839491
+    second: bomber_sheet_7_10
+  - first:
+      213: 729375201294526034
+    second: bomber_sheet_7_11
+  - first:
+      213: -1690834892508475245
+    second: bomber_sheet_7_12
+  - first:
+      213: 4243687541576091437
+    second: bomber_sheet_7_13
+  - first:
+      213: 3464359508282150271
+    second: bomber_sheet_7_14
+  - first:
+      213: 2805665131890121712
+    second: bomber_sheet_7_15
+  - first:
+      213: 5708525526678304635
+    second: bomber_sheet_7_16
+  - first:
+      213: -1246220038073692472
+    second: bomber_sheet_7_17
+  - first:
+      213: 2378756127422662734
+    second: bomber_sheet_7_18
+  - first:
+      213: -8938724551717769080
+    second: bomber_sheet_7_19
+  - first:
+      213: -7379455213089510329
+    second: bomber_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: bomber_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24b0efc8cea8fb590800000000000000
+      internalID: -7656248092924179646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5ca5144799008a20800000000000000
+      internalID: 3062458291898920030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a4b97b997778deb0800000000000000
+      internalID: -4694871247350549340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84041410ed19c1550800000000000000
+      internalID: 6132937175261593672
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 04d50494d0e9225b0800000000000000
+      internalID: -5394575623735714496
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed3b302b674040840800000000000000
+      internalID: 5189277578476893150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf32b710636127c50800000000000000
+      internalID: 6661411220043277308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f3f6088b4a09e120800000000000000
+      internalID: 2443495592346186736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f371a61e4ece235d0800000000000000
+      internalID: -3084142327016843457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 917608a36c05d8420800000000000000
+      internalID: 2633850169396848409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8515e655ca9facab0800000000000000
+      internalID: -4986899118796418728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a23bc77740dd284d0800000000000000
+      internalID: -3133699379442175190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b259eb016ddf566b0800000000000000
+      internalID: -5303553890313136853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11d7749fd5625a130800000000000000
+      internalID: 3577307664071752977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 567b01628135abac0800000000000000
+      internalID: -3838664369196976283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cf78ed787e529410800000000000000
+      internalID: 1482351098959790020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94f14ba80ffb868d0800000000000000
+      internalID: -2852819324099092663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c6a2174af689c580800000000000000
+      internalID: -8806359186853943612
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70316ee1568dd7140800000000000000
+      internalID: 4719165913375838983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 312f79969f8218b10800000000000000
+      internalID: 1981910362703262227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51aaa09d2f799d550800000000000000
+      internalID: 6186142632449321493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc2ed741af5564dd0800000000000000
+      internalID: -2502218010383752497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b6bf8914f57daf040800000000000000
+      internalID: 4682291566727461739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7fc85c5701abb980800000000000000
+      internalID: -8522040816882364545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95fa452680cbbc890800000000000000
+      internalID: -7436643615476764839
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d1c1edbbf78b9a50800000000000000
+      internalID: 6528961600095896018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dcf26a97c04541c30800000000000000
+      internalID: 4329177554367164365
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 938ce3a00ca6dda90800000000000000
+      internalID: -7287551248977442759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8026e4a60f98233b0800000000000000
+      internalID: -5534209326416240120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e21cb544ced8fbb0800000000000000
+      internalID: -4901923259827875102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42262c2cc45c4f900800000000000000
+      internalID: 717415174134456868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 327a127b2441ec1c0800000000000000
+      internalID: -4481622302414231773
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc20a7a2400043e40800000000000000
+      internalID: 5635129051639841487
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3067a26da78dedf0800000000000000
+      internalID: -149314033879130053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5f6b9f4629b3db220800000000000000
+      internalID: 2503222467833214709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b833d131def7d9c70800000000000000
+      internalID: 8979473888251294603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef3e4b9e2fd05a990800000000000000
+      internalID: -7375473477795126274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 436212f6c040eb0d0800000000000000
+      internalID: -3405279816794954188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa423893835febb30800000000000000
+      internalID: 4305147915644642474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0393e8fd1f7554d0800000000000000
+      internalID: -3146468997941980401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0232c0a82999f1740800000000000000
+      internalID: 5124983755631239968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 288
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2bc8105313c82d0800000000000000
+      internalID: -3275188725276167504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c60117db3393c760800000000000000
+      internalID: 7476981691585726151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7837c19433d0ec60800000000000000
+      internalID: 7845502773616916606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6413ed6dce3771730800000000000000
+      internalID: 3969769057604743494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 681df5ce4f78fee30800000000000000
+      internalID: 4534992835792851334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c681ae971c31c2a60800000000000000
+      internalID: 7650511588690630764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbe841588d6335a50800000000000000
+      internalID: 6508606190054051517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15c1a789e2752810800000000000000
+      internalID: 1739923178377037085
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6fb10ca64c2f3aac0800000000000000
+      internalID: -3844962731425784842
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f4b1feaddbbb27420800000000000000
+      internalID: 2626367956806736719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd695f422a4a40450800000000000000
+      internalID: 6054144815404521181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ccb6a16cd2a3d3d0800000000000000
+      internalID: -3183021444205986617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0114f13958a29b0800000000000000
+      internalID: -5104120360739991344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9f02707723db2660800000000000000
+      internalID: 7362210182210916253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7097bc1881d0a5e0800000000000000
+      internalID: -1900288660222799745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 842cf6804c5077a80800000000000000
+      internalID: -8469294234733657528
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6276e08cc00b998e0800000000000000
+      internalID: -1686123016531056858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1342fc1bfff935f50800000000000000
+      internalID: 6869009777218757681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2575a9fd6f7aae10800000000000000
+      internalID: 2209718677495182638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b2a38fa1f233d110800000000000000
+      internalID: 1284426332343870128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 499e50baf7d656160800000000000000
+      internalID: 7018135989424351636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 240
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdb57c398ad9b7420800000000000000
+      internalID: 2628868154860198876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1efca4fb802517b10800000000000000
+      internalID: 1977451908914925537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2143438db0191420800000000000000
+      internalID: 2601128665920258350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b55f00d0ecc85d900800000000000000
+      internalID: 708627332990039387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fea2b10af984a61e0800000000000000
+      internalID: -2203869217221301521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72d3d0eab9b8a92d0800000000000000
+      internalID: -3271148678574949081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8239810bd29f814f0800000000000000
+      internalID: -857661754390834392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b18fb215089ea860800000000000000
+      internalID: 7543133573448958389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9a31879f8d300db0800000000000000
+      internalID: -4827791113609725283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8e5d6e9a0e56c1f0800000000000000
+      internalID: -1025028465479557489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7429ae13a780c7b10800000000000000
+      internalID: 1980467257052664391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25d3cbbb5f94bb880800000000000000
+      internalID: -8594194144140968622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f1e3c7508f76dc90800000000000000
+      internalID: -7145383569571716617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c288d5b3dc3791f0800000000000000
+      internalID: -1038294309098978617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d54601e5f98d60f70800000000000000
+      internalID: 9153241471666644061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab7fed0e4f5361150800000000000000
+      internalID: 5842916892420798394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9574134a5a85f6000800000000000000
+      internalID: 31341190862423897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8a7295541b9190fb0800000000000000
+      internalID: -4681182088511543384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7f657c93198f8400800000000000000
+      internalID: 328632015143661436
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64d470ba5c39929c0800000000000000
+      internalID: -3951464720853676730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0769c22d53bb189d0800000000000000
+      internalID: -2773730055649716624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 192
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 338eae97d6f9fb3c0800000000000000
+      internalID: -4341576223216179149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a72d9e124b3ef510800000000000000
+      internalID: 1584769274048489379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd7d31f7f1c6c2db0800000000000000
+      internalID: -4815355019034109987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89e2660d13de074f0800000000000000
+      internalID: -832905132858003816
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 735715d984e4c3650800000000000000
+      internalID: 6213927659648415031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a97861e852dda4d0800000000000000
+      internalID: -3121607687517210207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e37c61d5ee85d640800000000000000
+      internalID: 5104142870406525927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 042f4c912099cf570800000000000000
+      internalID: 8501838430869975616
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee1c4afc23af0c660800000000000000
+      internalID: 7404192883536085486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5dd983b846849f70800000000000000
+      internalID: 9193120386177949018
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 70ccdfc553a80d7e0800000000000000
+      internalID: -1742741093994345465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd984e2a8d59c28d0800000000000000
+      internalID: -2869754104863487523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4822accae2fa0c560800000000000000
+      internalID: 7332052808361452164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 784117afc98c16e50800000000000000
+      internalID: 6800937488848327815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec1d8c4d4eb611220800000000000000
+      internalID: 2454861902460277198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26869dc6897e75e60800000000000000
+      internalID: 7951078308993132642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7a059d8fade74fac0800000000000000
+      internalID: -3822290704787746649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a126c0e6710ec2f40800000000000000
+      internalID: 5705181219206750746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c38e2fa8f0ea6720800000000000000
+      internalID: 2840329873706091460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d8afd093aad609e0800000000000000
+      internalID: -1655395416966977326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9343c1cbb23195680800000000000000
+      internalID: -8765954121139473351
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 144
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c668361f33e67bb00800000000000000
+      internalID: 844264624527476332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77a3cfa198bbf5440800000000000000
+      internalID: 4926862714904263287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7602ae704d7652420800000000000000
+      internalID: 2604602119867211879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 40eda304b2b856240800000000000000
+      internalID: 4784383197028474372
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5c18442ae2991150800000000000000
+      internalID: 5843863525818637402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fd4c5a362fb410340800000000000000
+      internalID: 4828223779943859423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e36d0610428fd3cd0800000000000000
+      internalID: -2576630578260421058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cae1e4cb392c4d0c0800000000000000
+      internalID: -4551799383589511508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8250b11a558fcba40800000000000000
+      internalID: 5385452301087081768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2320f4ef64bb0fae0800000000000000
+      internalID: -1517507160835161550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc8201f16ce79da10800000000000000
+      internalID: 1934716904322115791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2316673ec41a2db60800000000000000
+      internalID: 7769449658773299506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f474517fa99e37460800000000000000
+      internalID: 7238385877894121295
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aa4d36a437059440800000000000000
+      internalID: 4941864088817715881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 607fe117caab92530800000000000000
+      internalID: 3830798207850313478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a18cc84cc5f2590800000000000000
+      internalID: -7696831238907618728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0201f0636edeba4e0800000000000000
+      internalID: -1969218839039242208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fff326815e4b96150800000000000000
+      internalID: 5866418885676384255
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 63d4242233b651150800000000000000
+      internalID: 5842693958945361206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 413ac1c08ccfc5e40800000000000000
+      internalID: 5646665968942621460
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad7b609ffe86fd3d0800000000000000
+      internalID: -3179707432015841318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 96
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8281250ec9ebbd60800000000000000
+      internalID: 7907170641837654668
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b38281feadc7e2410800000000000000
+      internalID: 1454237009443301435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95e93f189dbf12100800000000000000
+      internalID: 81623179876081241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3993826a1cc7c0330800000000000000
+      internalID: 3678452166813038995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd641274baad43da0800000000000000
+      internalID: -5965903177191438629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2688c8fb8fe9ecec0800000000000000
+      internalID: -3544721065491265438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 708fbc92887d016d0800000000000000
+      internalID: -3021678370148845561
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e71ef54d2fc79da0800000000000000
+      internalID: -5938049790309951515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1cd70d0c7f7dc250800000000000000
+      internalID: 5966565252107066395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c4eae93ddae20360800000000000000
+      internalID: 7134522995588654274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91670bca908d49080800000000000000
+      internalID: -9181476204238047719
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c55cbfad032157d0800000000000000
+      internalID: -2931523340751579712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d4e7b936b8c6e000800000000000000
+      internalID: 64959929621406931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b7778ce55289da20800000000000000
+      internalID: 3087642325091317684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fbf3c3eaa82bf7400800000000000000
+      internalID: 324174006892380095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dec02f4202fb98a60800000000000000
+      internalID: 7676877184609422573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d0c095057b2d2810800000000000000
+      internalID: 1742096412466790608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0195bfe2c301843f0800000000000000
+      internalID: -916464673497589488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42d8b98eb4466a1f0800000000000000
+      internalID: -1034028787247117020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0421b65222eefaa50800000000000000
+      internalID: 6534703414761951808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e26baf73189efc090800000000000000
+      internalID: -8011928470869592530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 48
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61ab58c9895676a80800000000000000
+      internalID: -8473692467738854890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adfed0d0438d21860800000000000000
+      internalID: 7499294047594213338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fe4e8e8215514820800000000000000
+      internalID: 2900693173192773362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1d892495d2cc1ec0800000000000000
+      internalID: -3594784179978924770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4baec5a93d83a29e0800000000000000
+      internalID: -1645440232371459404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b961576d0a96bdfc0800000000000000
+      internalID: -3469062948445153637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e401c1f29a45dff80800000000000000
+      internalID: -8071201871561486258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 188432a15c4a18a90800000000000000
+      internalID: -7313383153418942335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5d04b648f27053f0800000000000000
+      internalID: -914104313692549797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47cc9dbb2ce554610800000000000000
+      internalID: 1604793032695729268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b418f3eec75072300800000000000000
+      internalID: 227156340336722251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cba6ba71e6951140800000000000000
+      internalID: 4689820482146839491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 256a32591e24f1a00800000000000000
+      internalID: 729375201294526034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 390523aaf92f888e0800000000000000
+      internalID: -1690834892508475245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 416
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d27c465c55b94ea30800000000000000
+      internalID: 4243687541576091437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7d87692e90e31030800000000000000
+      internalID: 3464359508282150271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fb92098299bfe620800000000000000
+      internalID: 2805665131890121712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b77f8e0b8b1c83f40800000000000000
+      internalID: 5708525526678304635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cec4a66a7984bee0800000000000000
+      internalID: -1246220038073692472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e48cf4e381a030120800000000000000
+      internalID: 2378756127422662734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 608
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 880bccd216543f380800000000000000
+      internalID: -8938724551717769080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bomber_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 32
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74c25ebe498e69990800000000000000
+      internalID: -7379455213089510329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      bomber_sheet_0: 7419610113687047759
+      bomber_sheet_0_0: -7656248092924179646
+      bomber_sheet_0_1: 3062458291898920030
+      bomber_sheet_0_10: -4986899118796418728
+      bomber_sheet_0_11: -3133699379442175190
+      bomber_sheet_0_12: -5303553890313136853
+      bomber_sheet_0_13: 3577307664071752977
+      bomber_sheet_0_14: -3838664369196976283
+      bomber_sheet_0_15: 1482351098959790020
+      bomber_sheet_0_16: -2852819324099092663
+      bomber_sheet_0_17: -8806359186853943612
+      bomber_sheet_0_18: 4719165913375838983
+      bomber_sheet_0_19: 1981910362703262227
+      bomber_sheet_0_2: -4694871247350549340
+      bomber_sheet_0_20: 6186142632449321493
+      bomber_sheet_0_3: 6132937175261593672
+      bomber_sheet_0_4: -5394575623735714496
+      bomber_sheet_0_5: 5189277578476893150
+      bomber_sheet_0_6: 6661411220043277308
+      bomber_sheet_0_7: 2443495592346186736
+      bomber_sheet_0_8: -3084142327016843457
+      bomber_sheet_0_9: 2633850169396848409
+      bomber_sheet_1: -2028685649386284171
+      bomber_sheet_10: 8509895793897424391
+      bomber_sheet_100: 1983435940668453814
+      bomber_sheet_101: -3640746472833735868
+      bomber_sheet_102: 1694709816490795205
+      bomber_sheet_103: -7686152922671751326
+      bomber_sheet_104: -6954782211058047381
+      bomber_sheet_105: -8483215418659036178
+      bomber_sheet_106: 1816096002558688659
+      bomber_sheet_107: -3475477077352464391
+      bomber_sheet_108: -3938875420007759041
+      bomber_sheet_109: 8849420034954631029
+      bomber_sheet_11: -2503685095338851069
+      bomber_sheet_110: 4859424506506759314
+      bomber_sheet_111: -3086958560981944899
+      bomber_sheet_112: 2048381747350164843
+      bomber_sheet_113: 2800243708206470860
+      bomber_sheet_114: 7666197882384550627
+      bomber_sheet_115: 1640461012478522780
+      bomber_sheet_116: -2400953522774987637
+      bomber_sheet_117: 1786394448637489137
+      bomber_sheet_118: -1688050929533090940
+      bomber_sheet_119: 7100094227061487049
+      bomber_sheet_12: 7443531452035391627
+      bomber_sheet_120: 6512479427458608987
+      bomber_sheet_121: 1096086321623227228
+      bomber_sheet_122: -4285722477298927040
+      bomber_sheet_123: 4954753347218368641
+      bomber_sheet_124: -3965258981620631345
+      bomber_sheet_125: 4103121935393747920
+      bomber_sheet_126: -8022969867506598060
+      bomber_sheet_127: -5577089060193336882
+      bomber_sheet_128: 1783554731701309467
+      bomber_sheet_129: -7257570299559601381
+      bomber_sheet_13: -4349710186027838680
+      bomber_sheet_130: 4911777647883557292
+      bomber_sheet_131: -7095966049109909432
+      bomber_sheet_132: -2869285116470156400
+      bomber_sheet_133: -2493335032744574314
+      bomber_sheet_134: -1634339034806886503
+      bomber_sheet_135: -1217334973033860452
+      bomber_sheet_136: 7906885268302988557
+      bomber_sheet_137: 8866832106531221235
+      bomber_sheet_138: 1442434396413095598
+      bomber_sheet_139: 2258158820199792797
+      bomber_sheet_14: 79636979777854799
+      bomber_sheet_140: 6541607213871401198
+      bomber_sheet_141: 748740801075143412
+      bomber_sheet_142: -7935438858712598788
+      bomber_sheet_143: 4026970414129742179
+      bomber_sheet_144: -5999127820339823755
+      bomber_sheet_145: 7999272582263857685
+      bomber_sheet_146: -3049333041419198764
+      bomber_sheet_147: -8982893904054206147
+      bomber_sheet_148: -8939108007281739235
+      bomber_sheet_149: -6861078482978609497
+      bomber_sheet_15: -1394370043461576114
+      bomber_sheet_150: -6807275150779927668
+      bomber_sheet_151: 2670456808379946461
+      bomber_sheet_152: 2807113859412395175
+      bomber_sheet_153: -4955948682640140952
+      bomber_sheet_154: 1087074784877162289
+      bomber_sheet_155: -3500901684113652173
+      bomber_sheet_156: -8899080665772291787
+      bomber_sheet_157: -6645627049993068980
+      bomber_sheet_158: 8766052224909971222
+      bomber_sheet_159: -7370007371847971575
+      bomber_sheet_16: 5294134331468931171
+      bomber_sheet_160: -7381278442667947430
+      bomber_sheet_161: 3430028165512340867
+      bomber_sheet_162: 6434512608789605178
+      bomber_sheet_163: 7656951702556200780
+      bomber_sheet_164: -5428932795726813242
+      bomber_sheet_165: -1761724750940644585
+      bomber_sheet_166: 3147924787219731540
+      bomber_sheet_167: 5952023586505673496
+      bomber_sheet_17: 8540764917278620096
+      bomber_sheet_18: -8182991406756740939
+      bomber_sheet_19: 3609835911195675011
+      bomber_sheet_1_0: -2502218010383752497
+      bomber_sheet_1_1: 4682291566727461739
+      bomber_sheet_1_10: -4481622302414231773
+      bomber_sheet_1_11: 5635129051639841487
+      bomber_sheet_1_12: -149314033879130053
+      bomber_sheet_1_13: 2503222467833214709
+      bomber_sheet_1_14: 8979473888251294603
+      bomber_sheet_1_15: -7375473477795126274
+      bomber_sheet_1_16: -3405279816794954188
+      bomber_sheet_1_17: 4305147915644642474
+      bomber_sheet_1_18: -3146468997941980401
+      bomber_sheet_1_19: 5124983755631239968
+      bomber_sheet_1_2: -8522040816882364545
+      bomber_sheet_1_20: -3275188725276167504
+      bomber_sheet_1_3: -7436643615476764839
+      bomber_sheet_1_4: 6528961600095896018
+      bomber_sheet_1_5: 4329177554367164365
+      bomber_sheet_1_6: -7287551248977442759
+      bomber_sheet_1_7: -5534209326416240120
+      bomber_sheet_1_8: -4901923259827875102
+      bomber_sheet_1_9: 717415174134456868
+      bomber_sheet_2: 8829088287932280780
+      bomber_sheet_20: 8922186606874327218
+      bomber_sheet_21: -6388556766377277375
+      bomber_sheet_22: 942277382900899825
+      bomber_sheet_23: -860463184024075474
+      bomber_sheet_24: 7386367688491380845
+      bomber_sheet_25: -1573177470503342434
+      bomber_sheet_26: -1402497285982040668
+      bomber_sheet_27: 6898541013589565321
+      bomber_sheet_28: -208229733876808728
+      bomber_sheet_29: 1516737147372542655
+      bomber_sheet_2_0: 7476981691585726151
+      bomber_sheet_2_1: 7845502773616916606
+      bomber_sheet_2_10: -3183021444205986617
+      bomber_sheet_2_11: -5104120360739991344
+      bomber_sheet_2_12: 7362210182210916253
+      bomber_sheet_2_13: -1900288660222799745
+      bomber_sheet_2_14: -8469294234733657528
+      bomber_sheet_2_15: -1686123016531056858
+      bomber_sheet_2_16: 6869009777218757681
+      bomber_sheet_2_17: 2209718677495182638
+      bomber_sheet_2_18: 1284426332343870128
+      bomber_sheet_2_19: 7018135989424351636
+      bomber_sheet_2_2: 3969769057604743494
+      bomber_sheet_2_20: 2628868154860198876
+      bomber_sheet_2_3: 4534992835792851334
+      bomber_sheet_2_4: 7650511588690630764
+      bomber_sheet_2_5: 6508606190054051517
+      bomber_sheet_2_6: 1739923178377037085
+      bomber_sheet_2_7: -3844962731425784842
+      bomber_sheet_2_8: 2626367956806736719
+      bomber_sheet_2_9: 6054144815404521181
+      bomber_sheet_3: -2699732313705566156
+      bomber_sheet_30: -5837405965802652401
+      bomber_sheet_31: -2889986014267416906
+      bomber_sheet_32: 3678078827912370432
+      bomber_sheet_33: -5828806095460285048
+      bomber_sheet_34: -4027677814766858317
+      bomber_sheet_35: -4177995728613835528
+      bomber_sheet_36: -2326777988172401620
+      bomber_sheet_37: 4085993202869076506
+      bomber_sheet_38: 1546892716347774552
+      bomber_sheet_39: 39845526872513710
+      bomber_sheet_3_0: 1977451908914925537
+      bomber_sheet_3_1: 2601128665920258350
+      bomber_sheet_3_10: -8594194144140968622
+      bomber_sheet_3_11: -7145383569571716617
+      bomber_sheet_3_12: -1038294309098978617
+      bomber_sheet_3_13: 9153241471666644061
+      bomber_sheet_3_14: 5842916892420798394
+      bomber_sheet_3_15: 31341190862423897
+      bomber_sheet_3_16: -4681182088511543384
+      bomber_sheet_3_17: 328632015143661436
+      bomber_sheet_3_18: -3951464720853676730
+      bomber_sheet_3_19: -2773730055649716624
+      bomber_sheet_3_2: 708627332990039387
+      bomber_sheet_3_20: -4341576223216179149
+      bomber_sheet_3_3: -2203869217221301521
+      bomber_sheet_3_4: -3271148678574949081
+      bomber_sheet_3_5: -857661754390834392
+      bomber_sheet_3_6: 7543133573448958389
+      bomber_sheet_3_7: -4827791113609725283
+      bomber_sheet_3_8: -1025028465479557489
+      bomber_sheet_3_9: 1980467257052664391
+      bomber_sheet_4: -676343942688126678
+      bomber_sheet_40: -3706882259802986111
+      bomber_sheet_41: -5867235151707134811
+      bomber_sheet_42: 6426873622392477681
+      bomber_sheet_43: -2942241806266558765
+      bomber_sheet_44: -3030220885200826358
+      bomber_sheet_45: -1032972966359687789
+      bomber_sheet_46: 2686721643300342635
+      bomber_sheet_47: -6565970587068652036
+      bomber_sheet_48: 367263559221288248
+      bomber_sheet_49: 8960250178519410049
+      bomber_sheet_4_0: 1584769274048489379
+      bomber_sheet_4_1: -4815355019034109987
+      bomber_sheet_4_10: -2869754104863487523
+      bomber_sheet_4_11: 7332052808361452164
+      bomber_sheet_4_12: 6800937488848327815
+      bomber_sheet_4_13: 2454861902460277198
+      bomber_sheet_4_14: 7951078308993132642
+      bomber_sheet_4_15: -3822290704787746649
+      bomber_sheet_4_16: 5705181219206750746
+      bomber_sheet_4_17: 2840329873706091460
+      bomber_sheet_4_18: -1655395416966977326
+      bomber_sheet_4_19: -8765954121139473351
+      bomber_sheet_4_2: -832905132858003816
+      bomber_sheet_4_20: 844264624527476332
+      bomber_sheet_4_3: 6213927659648415031
+      bomber_sheet_4_4: -3121607687517210207
+      bomber_sheet_4_5: 5104142870406525927
+      bomber_sheet_4_6: 8501838430869975616
+      bomber_sheet_4_7: 7404192883536085486
+      bomber_sheet_4_8: 9193120386177949018
+      bomber_sheet_4_9: -1742741093994345465
+      bomber_sheet_5: -2856428132232652338
+      bomber_sheet_50: 3668299328405338300
+      bomber_sheet_51: -7196144092980414405
+      bomber_sheet_52: 5233374736441403174
+      bomber_sheet_53: -3507203502236010538
+      bomber_sheet_54: -6135394155189856062
+      bomber_sheet_55: -7849701995518152615
+      bomber_sheet_56: -194318609234789753
+      bomber_sheet_57: -3359333291007587063
+      bomber_sheet_58: -4854114996587759685
+      bomber_sheet_59: 7895579898132906053
+      bomber_sheet_5_0: 4926862714904263287
+      bomber_sheet_5_1: 2604602119867211879
+      bomber_sheet_5_10: 7769449658773299506
+      bomber_sheet_5_11: 7238385877894121295
+      bomber_sheet_5_12: 4941864088817715881
+      bomber_sheet_5_13: 3830798207850313478
+      bomber_sheet_5_14: -7696831238907618728
+      bomber_sheet_5_15: -1969218839039242208
+      bomber_sheet_5_16: 5866418885676384255
+      bomber_sheet_5_17: 5842693958945361206
+      bomber_sheet_5_18: 5646665968942621460
+      bomber_sheet_5_19: -3179707432015841318
+      bomber_sheet_5_2: 4784383197028474372
+      bomber_sheet_5_20: 7907170641837654668
+      bomber_sheet_5_3: 5843863525818637402
+      bomber_sheet_5_4: 4828223779943859423
+      bomber_sheet_5_5: -2576630578260421058
+      bomber_sheet_5_6: -4551799383589511508
+      bomber_sheet_5_7: 5385452301087081768
+      bomber_sheet_5_8: -1517507160835161550
+      bomber_sheet_5_9: 1934716904322115791
+      bomber_sheet_6: -773202211571570813
+      bomber_sheet_60: 1536525807145084457
+      bomber_sheet_61: -1990534119345924294
+      bomber_sheet_62: -3976852219831396431
+      bomber_sheet_63: 4177466487128201537
+      bomber_sheet_64: 6352868135096213755
+      bomber_sheet_65: 6425236231087640824
+      bomber_sheet_66: -3007076275082078289
+      bomber_sheet_67: -9184020231900282518
+      bomber_sheet_68: 8066819811450343043
+      bomber_sheet_69: 3410071822499838541
+      bomber_sheet_6_0: 1454237009443301435
+      bomber_sheet_6_1: 81623179876081241
+      bomber_sheet_6_10: -2931523340751579712
+      bomber_sheet_6_11: 64959929621406931
+      bomber_sheet_6_12: 3087642325091317684
+      bomber_sheet_6_13: 324174006892380095
+      bomber_sheet_6_14: 7676877184609422573
+      bomber_sheet_6_15: 1742096412466790608
+      bomber_sheet_6_16: -916464673497589488
+      bomber_sheet_6_17: -1034028787247117020
+      bomber_sheet_6_18: 6534703414761951808
+      bomber_sheet_6_19: -8011928470869592530
+      bomber_sheet_6_2: 3678452166813038995
+      bomber_sheet_6_20: -8473692467738854890
+      bomber_sheet_6_3: -5965903177191438629
+      bomber_sheet_6_4: -3544721065491265438
+      bomber_sheet_6_5: -3021678370148845561
+      bomber_sheet_6_6: -5938049790309951515
+      bomber_sheet_6_7: 5966565252107066395
+      bomber_sheet_6_8: 7134522995588654274
+      bomber_sheet_6_9: -9181476204238047719
+      bomber_sheet_7: 7194594101401977638
+      bomber_sheet_70: 6475739756362196112
+      bomber_sheet_71: -111190860212964343
+      bomber_sheet_72: 8633045672297533026
+      bomber_sheet_73: 149195281553877426
+      bomber_sheet_74: 216448625587623447
+      bomber_sheet_75: 122894448700672039
+      bomber_sheet_76: 4261700746616603900
+      bomber_sheet_77: -8636392139035286360
+      bomber_sheet_78: -6581069263433516
+      bomber_sheet_79: 6678366228878049572
+      bomber_sheet_7_0: 7499294047594213338
+      bomber_sheet_7_1: 2900693173192773362
+      bomber_sheet_7_10: 4689820482146839491
+      bomber_sheet_7_11: 729375201294526034
+      bomber_sheet_7_12: -1690834892508475245
+      bomber_sheet_7_13: 4243687541576091437
+      bomber_sheet_7_14: 3464359508282150271
+      bomber_sheet_7_15: 2805665131890121712
+      bomber_sheet_7_16: 5708525526678304635
+      bomber_sheet_7_17: -1246220038073692472
+      bomber_sheet_7_18: 2378756127422662734
+      bomber_sheet_7_19: -8938724551717769080
+      bomber_sheet_7_2: -3594784179978924770
+      bomber_sheet_7_20: -7379455213089510329
+      bomber_sheet_7_3: -1645440232371459404
+      bomber_sheet_7_4: -3469062948445153637
+      bomber_sheet_7_5: -8071201871561486258
+      bomber_sheet_7_6: -7313383153418942335
+      bomber_sheet_7_7: -914104313692549797
+      bomber_sheet_7_8: 1604793032695729268
+      bomber_sheet_7_9: 227156340336722251
+      bomber_sheet_8: 6090291882106187503
+      bomber_sheet_80: 2911349445019465386
+      bomber_sheet_81: 2962808581494342872
+      bomber_sheet_82: -7648503677604912034
+      bomber_sheet_83: -8607743452077722065
+      bomber_sheet_84: 3099005670314606836
+      bomber_sheet_85: -3310743126487852860
+      bomber_sheet_86: -8144763031143429407
+      bomber_sheet_87: 22891138505605036
+      bomber_sheet_88: 1896479877733620378
+      bomber_sheet_89: -6585291575398462309
+      bomber_sheet_9: 7211656716391320318
+      bomber_sheet_90: -6450366928450587509
+      bomber_sheet_91: 6197197685287251914
+      bomber_sheet_92: 6558246062204972759
+      bomber_sheet_93: 5890319872637201818
+      bomber_sheet_94: 6701382776074202418
+      bomber_sheet_95: -3867785997068703606
+      bomber_sheet_96: -387523817548332625
+      bomber_sheet_97: -1207021907580587444
+      bomber_sheet_98: -114032191758672223
+      bomber_sheet_99: -3900046311567565701
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

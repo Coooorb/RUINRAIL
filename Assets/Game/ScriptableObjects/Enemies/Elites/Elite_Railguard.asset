@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce398a5116b2482a83cc80229f788ef7, type: 3}
+  m_Name: Elite_Railguard
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Elites.EliteDefinition
+  _id: elite_railguard
+  _displayName: Railguard
+  _biome: 0
+  _baseHealth: 450
+  _moveSpeed: 1.8
+  _baseXp: 300
+  _strongestAttackDamageMin: 20
+  _strongestAttackDamageMax: 25
+  _staggerResistancePercent: 90
+  _knockbackResistancePercent: 90
+  _moveset:
+  - {fileID: 11400000, guid: 486aa8acd2c34c989f44f29035ae7ab7, type: 2}
+  - {fileID: 11400000, guid: 6234e63e4d094a38943b8dc63f70c095, type: 2}
+  - {fileID: 11400000, guid: ddc6f44cf8de4aba927579f4c668dca5, type: 2}

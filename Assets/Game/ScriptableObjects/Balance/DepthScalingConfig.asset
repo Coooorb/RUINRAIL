@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2061f38a0d05464babd9726f2a177b32, type: 3}
+  m_Name: DepthScalingConfig
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Encounters.DepthScalingConfig
+  _healthPercent:
+  - {Depth: 1, Percent: 100}
+  - {Depth: 2, Percent: 108}
+  - {Depth: 3, Percent: 116}
+  - {Depth: 5, Percent: 132}
+  - {Depth: 10, Percent: 170}
+  - {Depth: 20, Percent: 235}
+  - {Depth: 30, Percent: 290}
+  - {Depth: 50, Percent: 380}
+  - {Depth: 100, Percent: 550}
+  _damagePercent:
+  - {Depth: 1, Percent: 100}
+  - {Depth: 5, Percent: 115}
+  - {Depth: 10, Percent: 130}
+  - {Depth: 20, Percent: 155}
+  - {Depth: 30, Percent: 175}
+  - {Depth: 50, Percent: 205}
+  - {Depth: 100, Percent: 260}
+  _attackSpeedPercent:
+  - {Depth: 1, Percent: 100}
+  - {Depth: 50, Percent: 110}
+  _movementSpeedPercent:
+  - {Depth: 1, Percent: 100}
+  - {Depth: 50, Percent: 105}
+  _eliteChancePercent:
+  - {FromDepth: 1, Percent: 5}
+  - {FromDepth: 3, Percent: 10}
+  - {FromDepth: 6, Percent: 15}
+  - {FromDepth: 11, Percent: 20}
+  - {FromDepth: 21, Percent: 25}

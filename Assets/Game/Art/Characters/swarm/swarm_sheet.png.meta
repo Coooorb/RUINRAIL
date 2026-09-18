@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: cbdce13536fac1f4a96bcbdb33659f70
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3419521045214480292
+    second: swarm_sheet_0
+  - first:
+      213: 4308306438157692687
+    second: swarm_sheet_1
+  - first:
+      213: 4470749241086598037
+    second: swarm_sheet_2
+  - first:
+      213: 4872969969852319468
+    second: swarm_sheet_3
+  - first:
+      213: -9217232366555495859
+    second: swarm_sheet_4
+  - first:
+      213: 2608619748679957714
+    second: swarm_sheet_5
+  - first:
+      213: 4668327859404926379
+    second: swarm_sheet_6
+  - first:
+      213: -5409716559529383162
+    second: swarm_sheet_7
+  - first:
+      213: 992316889930477177
+    second: swarm_sheet_8
+  - first:
+      213: 3439176518113283443
+    second: swarm_sheet_9
+  - first:
+      213: 1889858263552691162
+    second: swarm_sheet_10
+  - first:
+      213: -3058329714565430212
+    second: swarm_sheet_11
+  - first:
+      213: 4109135993736314456
+    second: swarm_sheet_12
+  - first:
+      213: 826780488213097128
+    second: swarm_sheet_13
+  - first:
+      213: 1267491224365382667
+    second: swarm_sheet_14
+  - first:
+      213: -2420000369011270498
+    second: swarm_sheet_15
+  - first:
+      213: -3062650741028629731
+    second: swarm_sheet_16
+  - first:
+      213: -5538570368784536880
+    second: swarm_sheet_17
+  - first:
+      213: 2598778047229495224
+    second: swarm_sheet_18
+  - first:
+      213: 993810559778688532
+    second: swarm_sheet_19
+  - first:
+      213: 2289597423402656700
+    second: swarm_sheet_20
+  - first:
+      213: -7260930853935020540
+    second: swarm_sheet_21
+  - first:
+      213: 3446059147880232241
+    second: swarm_sheet_22
+  - first:
+      213: -615777461235405941
+    second: swarm_sheet_23
+  - first:
+      213: 736023250528008159
+    second: swarm_sheet_24
+  - first:
+      213: 7113515206090033317
+    second: swarm_sheet_25
+  - first:
+      213: -6673816238427934029
+    second: swarm_sheet_26
+  - first:
+      213: 2535175175008631827
+    second: swarm_sheet_27
+  - first:
+      213: -2577063051470289685
+    second: swarm_sheet_28
+  - first:
+      213: 4133833785349318555
+    second: swarm_sheet_29
+  - first:
+      213: 1294669535551006886
+    second: swarm_sheet_30
+  - first:
+      213: 3336317513247230742
+    second: swarm_sheet_31
+  - first:
+      213: -8074684171322248035
+    second: swarm_sheet_32
+  - first:
+      213: 2738683832151786533
+    second: swarm_sheet_33
+  - first:
+      213: 8209340264968762625
+    second: swarm_sheet_34
+  - first:
+      213: 18994887804409302
+    second: swarm_sheet_35
+  - first:
+      213: 8580836684647773808
+    second: swarm_sheet_36
+  - first:
+      213: -4129497523776852357
+    second: swarm_sheet_37
+  - first:
+      213: -4889672877301160910
+    second: swarm_sheet_38
+  - first:
+      213: 5627206282821724142
+    second: swarm_sheet_39
+  - first:
+      213: -5206255551346881041
+    second: swarm_sheet_40
+  - first:
+      213: -3249634084838395111
+    second: swarm_sheet_41
+  - first:
+      213: -1901862642826470627
+    second: swarm_sheet_42
+  - first:
+      213: 5787934537669683298
+    second: swarm_sheet_43
+  - first:
+      213: -4719217557903035829
+    second: swarm_sheet_44
+  - first:
+      213: 7985512651659400514
+    second: swarm_sheet_45
+  - first:
+      213: -2212417476010673380
+    second: swarm_sheet_46
+  - first:
+      213: -8416573341369918056
+    second: swarm_sheet_47
+  - first:
+      213: -1687293847482330246
+    second: swarm_sheet_48
+  - first:
+      213: -8700380622128564121
+    second: swarm_sheet_49
+  - first:
+      213: -5118124332389959065
+    second: swarm_sheet_50
+  - first:
+      213: -8080686093025717246
+    second: swarm_sheet_51
+  - first:
+      213: -7545816556665939389
+    second: swarm_sheet_52
+  - first:
+      213: -8204080192121234255
+    second: swarm_sheet_53
+  - first:
+      213: 5538229347321901799
+    second: swarm_sheet_54
+  - first:
+      213: -9214956192737230636
+    second: swarm_sheet_55
+  - first:
+      213: -8956593350657089812
+    second: swarm_sheet_56
+  - first:
+      213: -4621929947507423688
+    second: swarm_sheet_57
+  - first:
+      213: 8320062185523152829
+    second: swarm_sheet_58
+  - first:
+      213: 828379475464375785
+    second: swarm_sheet_59
+  - first:
+      213: -6217552386217578872
+    second: swarm_sheet_60
+  - first:
+      213: 8468040998503565599
+    second: swarm_sheet_61
+  - first:
+      213: 4676774349818094795
+    second: swarm_sheet_62
+  - first:
+      213: 1791844535846723045
+    second: swarm_sheet_63
+  - first:
+      213: 3573127113322863360
+    second: swarm_sheet_64
+  - first:
+      213: 8626819744724361051
+    second: swarm_sheet_65
+  - first:
+      213: -5907582426346804426
+    second: swarm_sheet_66
+  - first:
+      213: 8986181504111581224
+    second: swarm_sheet_67
+  - first:
+      213: -3451179505890381854
+    second: swarm_sheet_68
+  - first:
+      213: 3140511070423175679
+    second: swarm_sheet_69
+  - first:
+      213: -3929823325223482418
+    second: swarm_sheet_70
+  - first:
+      213: 3727834465633235875
+    second: swarm_sheet_71
+  - first:
+      213: 6115511869444428779
+    second: swarm_sheet_72
+  - first:
+      213: -8346374245781080168
+    second: swarm_sheet_73
+  - first:
+      213: -4001315380140286525
+    second: swarm_sheet_74
+  - first:
+      213: 1122021780376486575
+    second: swarm_sheet_75
+  - first:
+      213: 741039691035633468
+    second: swarm_sheet_76
+  - first:
+      213: 6779474155440424825
+    second: swarm_sheet_77
+  - first:
+      213: 84399980751943601
+    second: swarm_sheet_78
+  - first:
+      213: 2082590427112527158
+    second: swarm_sheet_79
+  - first:
+      213: -2595038525838997677
+    second: swarm_sheet_80
+  - first:
+      213: -648551217504350052
+    second: swarm_sheet_81
+  - first:
+      213: 581082892830304704
+    second: swarm_sheet_82
+  - first:
+      213: 5459054956749997419
+    second: swarm_sheet_83
+  - first:
+      213: 1963321803911054149
+    second: swarm_sheet_84
+  - first:
+      213: -6997545257144254735
+    second: swarm_sheet_85
+  - first:
+      213: 5453503986945908209
+    second: swarm_sheet_86
+  - first:
+      213: 6090926079513778603
+    second: swarm_sheet_87
+  - first:
+      213: 6523515960018108560
+    second: swarm_sheet_88
+  - first:
+      213: 2574303857723820152
+    second: swarm_sheet_89
+  - first:
+      213: 5819121257948267430
+    second: swarm_sheet_90
+  - first:
+      213: -3490580546674395670
+    second: swarm_sheet_91
+  - first:
+      213: 8121618754035129066
+    second: swarm_sheet_92
+  - first:
+      213: -1236987875736635042
+    second: swarm_sheet_93
+  - first:
+      213: 4989693779891853708
+    second: swarm_sheet_94
+  - first:
+      213: 281226765584934282
+    second: swarm_sheet_95
+  - first:
+      213: 2833046253672129869
+    second: swarm_sheet_96
+  - first:
+      213: 4889014783067186133
+    second: swarm_sheet_97
+  - first:
+      213: 6586442507250398543
+    second: swarm_sheet_98
+  - first:
+      213: 1817743850464318285
+    second: swarm_sheet_99
+  - first:
+      213: 6976760999710284303
+    second: swarm_sheet_100
+  - first:
+      213: -737701673408546128
+    second: swarm_sheet_101
+  - first:
+      213: -3097711969866159488
+    second: swarm_sheet_102
+  - first:
+      213: -3160805170371785540
+    second: swarm_sheet_103
+  - first:
+      213: -919295880358883021
+    second: swarm_sheet_104
+  - first:
+      213: 1764296951348305259
+    second: swarm_sheet_105
+  - first:
+      213: 8734056348220774664
+    second: swarm_sheet_106
+  - first:
+      213: 7716462491104510683
+    second: swarm_sheet_107
+  - first:
+      213: -4129301468034260585
+    second: swarm_sheet_108
+  - first:
+      213: 8241948101430537760
+    second: swarm_sheet_109
+  - first:
+      213: 2787549509226327510
+    second: swarm_sheet_110
+  - first:
+      213: 5490858381694619978
+    second: swarm_sheet_111
+  - first:
+      213: 6041147766616782388
+    second: swarm_sheet_112
+  - first:
+      213: 6067876157303743978
+    second: swarm_sheet_113
+  - first:
+      213: -3198740091250890934
+    second: swarm_sheet_114
+  - first:
+      213: -3471388514861099278
+    second: swarm_sheet_115
+  - first:
+      213: -1543240899755893441
+    second: swarm_sheet_116
+  - first:
+      213: -9146325241606168862
+    second: swarm_sheet_117
+  - first:
+      213: -692954974941891386
+    second: swarm_sheet_118
+  - first:
+      213: -7332453505906010918
+    second: swarm_sheet_119
+  - first:
+      213: -5812727010897905462
+    second: swarm_sheet_120
+  - first:
+      213: 6264298289034129907
+    second: swarm_sheet_121
+  - first:
+      213: 6104248179738078267
+    second: swarm_sheet_122
+  - first:
+      213: -9127676049235271556
+    second: swarm_sheet_123
+  - first:
+      213: -7129646188583529378
+    second: swarm_sheet_124
+  - first:
+      213: 9049237538974330072
+    second: swarm_sheet_125
+  - first:
+      213: -6155540892906453648
+    second: swarm_sheet_126
+  - first:
+      213: -8898485449838895478
+    second: swarm_sheet_127
+  - first:
+      213: 2283745219612816589
+    second: swarm_sheet_128
+  - first:
+      213: 1614062536413491291
+    second: swarm_sheet_129
+  - first:
+      213: -4548639877301446492
+    second: swarm_sheet_130
+  - first:
+      213: -1101382500003798527
+    second: swarm_sheet_131
+  - first:
+      213: 2524036061351119678
+    second: swarm_sheet_132
+  - first:
+      213: 3223188341802328642
+    second: swarm_sheet_133
+  - first:
+      213: 6302488643843287800
+    second: swarm_sheet_134
+  - first:
+      213: -5602939977853180046
+    second: swarm_sheet_135
+  - first:
+      213: 8797160834173788833
+    second: swarm_sheet_136
+  - first:
+      213: -1739088169906214109
+    second: swarm_sheet_137
+  - first:
+      213: 4521734777362069398
+    second: swarm_sheet_138
+  - first:
+      213: 8863990436763474043
+    second: swarm_sheet_139
+  - first:
+      213: 1492487925421509170
+    second: swarm_sheet_140
+  - first:
+      213: -7121343320029124843
+    second: swarm_sheet_141
+  - first:
+      213: -6648848482116888193
+    second: swarm_sheet_142
+  - first:
+      213: 3396301848533919406
+    second: swarm_sheet_143
+  - first:
+      213: 8435209258521500071
+    second: swarm_sheet_144
+  - first:
+      213: 2422394381698607615
+    second: swarm_sheet_145
+  - first:
+      213: 7121940526120111598
+    second: swarm_sheet_146
+  - first:
+      213: -6199062421335473603
+    second: swarm_sheet_147
+  - first:
+      213: -8686032655885521440
+    second: swarm_sheet_148
+  - first:
+      213: 1253300287287328665
+    second: swarm_sheet_149
+  - first:
+      213: 4763513469354963223
+    second: swarm_sheet_150
+  - first:
+      213: 214954070252678362
+    second: swarm_sheet_151
+  - first:
+      213: -3462418488412995453
+    second: swarm_sheet_152
+  - first:
+      213: -4607569331305374378
+    second: swarm_sheet_153
+  - first:
+      213: 7202665302386553860
+    second: swarm_sheet_154
+  - first:
+      213: 3402434475611279134
+    second: swarm_sheet_155
+  - first:
+      213: 6807271738867517608
+    second: swarm_sheet_156
+  - first:
+      213: -8637876113651038026
+    second: swarm_sheet_157
+  - first:
+      213: -7997275361506842079
+    second: swarm_sheet_158
+  - first:
+      213: 6887196949866927115
+    second: swarm_sheet_159
+  - first:
+      213: -398728438691891101
+    second: swarm_sheet_160
+  - first:
+      213: -7005396805138104147
+    second: swarm_sheet_161
+  - first:
+      213: -5243994107481979548
+    second: swarm_sheet_162
+  - first:
+      213: 458713667542868735
+    second: swarm_sheet_163
+  - first:
+      213: 6769695244991606503
+    second: swarm_sheet_164
+  - first:
+      213: -4464218068323741908
+    second: swarm_sheet_165
+  - first:
+      213: -1302052165354280319
+    second: swarm_sheet_166
+  - first:
+      213: 5322991793417832833
+    second: swarm_sheet_167
+  - first:
+      213: -7343369565281320348
+    second: swarm_sheet_0_0
+  - first:
+      213: 4672596015581246873
+    second: swarm_sheet_0_1
+  - first:
+      213: -5677262783774446428
+    second: swarm_sheet_0_2
+  - first:
+      213: 525304477446874508
+    second: swarm_sheet_0_3
+  - first:
+      213: -1228427019239044394
+    second: swarm_sheet_0_4
+  - first:
+      213: 2170180581528402262
+    second: swarm_sheet_0_5
+  - first:
+      213: 8690111942954859800
+    second: swarm_sheet_0_6
+  - first:
+      213: -9017395321685398017
+    second: swarm_sheet_0_7
+  - first:
+      213: 4405377951688219087
+    second: swarm_sheet_0_8
+  - first:
+      213: 1030808310715778402
+    second: swarm_sheet_0_9
+  - first:
+      213: -2006701650872410938
+    second: swarm_sheet_0_10
+  - first:
+      213: -8942297217990504438
+    second: swarm_sheet_0_11
+  - first:
+      213: 5386501504467131420
+    second: swarm_sheet_0_12
+  - first:
+      213: 5712443554963941376
+    second: swarm_sheet_0_13
+  - first:
+      213: 3536642272878475744
+    second: swarm_sheet_0_14
+  - first:
+      213: 5553509438576737012
+    second: swarm_sheet_0_15
+  - first:
+      213: -6831926995516364638
+    second: swarm_sheet_0_16
+  - first:
+      213: 5729186888828486362
+    second: swarm_sheet_0_17
+  - first:
+      213: -2619437606404802083
+    second: swarm_sheet_0_18
+  - first:
+      213: -2181146078171631226
+    second: swarm_sheet_0_19
+  - first:
+      213: 2457848028428839970
+    second: swarm_sheet_0_20
+  - first:
+      213: -8571606027071262680
+    second: swarm_sheet_1_0
+  - first:
+      213: 7111687068356071917
+    second: swarm_sheet_1_1
+  - first:
+      213: -8571395767126988591
+    second: swarm_sheet_1_2
+  - first:
+      213: -1390218236342600689
+    second: swarm_sheet_1_3
+  - first:
+      213: -7228172137217945896
+    second: swarm_sheet_1_4
+  - first:
+      213: 8301965852867916252
+    second: swarm_sheet_1_5
+  - first:
+      213: -7350484908877052063
+    second: swarm_sheet_1_6
+  - first:
+      213: -6664730752538333699
+    second: swarm_sheet_1_7
+  - first:
+      213: -6526403261485104299
+    second: swarm_sheet_1_8
+  - first:
+      213: 1058532481533694274
+    second: swarm_sheet_1_9
+  - first:
+      213: 753035006133695293
+    second: swarm_sheet_1_10
+  - first:
+      213: 502499398851078754
+    second: swarm_sheet_1_11
+  - first:
+      213: -121370756856607138
+    second: swarm_sheet_1_12
+  - first:
+      213: -437372197678750483
+    second: swarm_sheet_1_13
+  - first:
+      213: -56227783981081785
+    second: swarm_sheet_1_14
+  - first:
+      213: 5432580501385402353
+    second: swarm_sheet_1_15
+  - first:
+      213: 3220764344836228755
+    second: swarm_sheet_1_16
+  - first:
+      213: -564356823458882461
+    second: swarm_sheet_1_17
+  - first:
+      213: -2523355319810823168
+    second: swarm_sheet_1_18
+  - first:
+      213: -647732731849463852
+    second: swarm_sheet_1_19
+  - first:
+      213: -6914409188405806185
+    second: swarm_sheet_1_20
+  - first:
+      213: -1148449321869862067
+    second: swarm_sheet_2_0
+  - first:
+      213: 411732162305580266
+    second: swarm_sheet_2_1
+  - first:
+      213: 6506264146219656504
+    second: swarm_sheet_2_2
+  - first:
+      213: 2321641119317169886
+    second: swarm_sheet_2_3
+  - first:
+      213: -686050491888298338
+    second: swarm_sheet_2_4
+  - first:
+      213: -8483779016576137368
+    second: swarm_sheet_2_5
+  - first:
+      213: 3488438730895964095
+    second: swarm_sheet_2_6
+  - first:
+      213: -8485477337989202907
+    second: swarm_sheet_2_7
+  - first:
+      213: -5604263829106936844
+    second: swarm_sheet_2_8
+  - first:
+      213: -2942848850858806864
+    second: swarm_sheet_2_9
+  - first:
+      213: -4860011331141361938
+    second: swarm_sheet_2_10
+  - first:
+      213: 1653757618569193809
+    second: swarm_sheet_2_11
+  - first:
+      213: -1216766285449421289
+    second: swarm_sheet_2_12
+  - first:
+      213: 7901668007380303278
+    second: swarm_sheet_2_13
+  - first:
+      213: -7602774392199260598
+    second: swarm_sheet_2_14
+  - first:
+      213: -9060313349871158027
+    second: swarm_sheet_2_15
+  - first:
+      213: 4677308600082888815
+    second: swarm_sheet_2_16
+  - first:
+      213: 779196766144471840
+    second: swarm_sheet_2_17
+  - first:
+      213: -3956531798048376878
+    second: swarm_sheet_2_18
+  - first:
+      213: 2893459521197363466
+    second: swarm_sheet_2_19
+  - first:
+      213: 8781648514582723513
+    second: swarm_sheet_2_20
+  - first:
+      213: 4966118180403797699
+    second: swarm_sheet_3_0
+  - first:
+      213: -1980262624004353270
+    second: swarm_sheet_3_1
+  - first:
+      213: -6504801315269068782
+    second: swarm_sheet_3_2
+  - first:
+      213: 1310997649566252226
+    second: swarm_sheet_3_3
+  - first:
+      213: -7190515534723864190
+    second: swarm_sheet_3_4
+  - first:
+      213: -4651694992843974965
+    second: swarm_sheet_3_5
+  - first:
+      213: 4648150005523474472
+    second: swarm_sheet_3_6
+  - first:
+      213: -7111206852559919240
+    second: swarm_sheet_3_7
+  - first:
+      213: -788540560529678173
+    second: swarm_sheet_3_8
+  - first:
+      213: 4935430197019194754
+    second: swarm_sheet_3_9
+  - first:
+      213: -1071091612414212723
+    second: swarm_sheet_3_10
+  - first:
+      213: -9121909866175682703
+    second: swarm_sheet_3_11
+  - first:
+      213: -1113838047756060501
+    second: swarm_sheet_3_12
+  - first:
+      213: -4972368594340452664
+    second: swarm_sheet_3_13
+  - first:
+      213: 235837757813129172
+    second: swarm_sheet_3_14
+  - first:
+      213: 265908280220785795
+    second: swarm_sheet_3_15
+  - first:
+      213: -2223757943317081179
+    second: swarm_sheet_3_16
+  - first:
+      213: 7670938676523161495
+    second: swarm_sheet_3_17
+  - first:
+      213: 2966004192584784013
+    second: swarm_sheet_3_18
+  - first:
+      213: 4185663091415362330
+    second: swarm_sheet_3_19
+  - first:
+      213: -7783913235814223740
+    second: swarm_sheet_3_20
+  - first:
+      213: -5253003730058322882
+    second: swarm_sheet_4_0
+  - first:
+      213: 8521938864226983264
+    second: swarm_sheet_4_1
+  - first:
+      213: 3832305459620770352
+    second: swarm_sheet_4_2
+  - first:
+      213: 5151481580680767636
+    second: swarm_sheet_4_3
+  - first:
+      213: -31332316852441734
+    second: swarm_sheet_4_4
+  - first:
+      213: 8431208365025500278
+    second: swarm_sheet_4_5
+  - first:
+      213: 3090132448943842689
+    second: swarm_sheet_4_6
+  - first:
+      213: -6444132633101562891
+    second: swarm_sheet_4_7
+  - first:
+      213: -6293690463688976171
+    second: swarm_sheet_4_8
+  - first:
+      213: -2085125274591115770
+    second: swarm_sheet_4_9
+  - first:
+      213: -5104207164969831581
+    second: swarm_sheet_4_10
+  - first:
+      213: -2557712828365915648
+    second: swarm_sheet_4_11
+  - first:
+      213: -3026323528599467132
+    second: swarm_sheet_4_12
+  - first:
+      213: -1609451365089931908
+    second: swarm_sheet_4_13
+  - first:
+      213: 8345174239350488864
+    second: swarm_sheet_4_14
+  - first:
+      213: -885828951909621851
+    second: swarm_sheet_4_15
+  - first:
+      213: -1004892409889167385
+    second: swarm_sheet_4_16
+  - first:
+      213: 5260947215396877180
+    second: swarm_sheet_4_17
+  - first:
+      213: -44974137533564193
+    second: swarm_sheet_4_18
+  - first:
+      213: 3504157064984272935
+    second: swarm_sheet_4_19
+  - first:
+      213: 2432442843415510971
+    second: swarm_sheet_4_20
+  - first:
+      213: -6784938148372984329
+    second: swarm_sheet_5_0
+  - first:
+      213: -868710963490270024
+    second: swarm_sheet_5_1
+  - first:
+      213: -5121088650127103435
+    second: swarm_sheet_5_2
+  - first:
+      213: 804144232926184636
+    second: swarm_sheet_5_3
+  - first:
+      213: 1570713030824822435
+    second: swarm_sheet_5_4
+  - first:
+      213: 5511482245170809190
+    second: swarm_sheet_5_5
+  - first:
+      213: 3586462955585556192
+    second: swarm_sheet_5_6
+  - first:
+      213: -3153460953094566788
+    second: swarm_sheet_5_7
+  - first:
+      213: -925345909819723973
+    second: swarm_sheet_5_8
+  - first:
+      213: -8249540176366010144
+    second: swarm_sheet_5_9
+  - first:
+      213: 9038934569790653052
+    second: swarm_sheet_5_10
+  - first:
+      213: -7280823631063297698
+    second: swarm_sheet_5_11
+  - first:
+      213: -9208437632883037736
+    second: swarm_sheet_5_12
+  - first:
+      213: 9090869525320547459
+    second: swarm_sheet_5_13
+  - first:
+      213: 323903041681248437
+    second: swarm_sheet_5_14
+  - first:
+      213: 7326575762691864969
+    second: swarm_sheet_5_15
+  - first:
+      213: -8152912926671727588
+    second: swarm_sheet_5_16
+  - first:
+      213: 8459175040015555443
+    second: swarm_sheet_5_17
+  - first:
+      213: -8904348302690149737
+    second: swarm_sheet_5_18
+  - first:
+      213: -1977306757990945357
+    second: swarm_sheet_5_19
+  - first:
+      213: 3039680889892885755
+    second: swarm_sheet_5_20
+  - first:
+      213: 8736477235667691570
+    second: swarm_sheet_6_0
+  - first:
+      213: -7513124422579252700
+    second: swarm_sheet_6_1
+  - first:
+      213: -4540984903314066766
+    second: swarm_sheet_6_2
+  - first:
+      213: 5230989688539263409
+    second: swarm_sheet_6_3
+  - first:
+      213: -6857423166254569108
+    second: swarm_sheet_6_4
+  - first:
+      213: 8721962441556001093
+    second: swarm_sheet_6_5
+  - first:
+      213: -2424131219606230243
+    second: swarm_sheet_6_6
+  - first:
+      213: -5666991934748260002
+    second: swarm_sheet_6_7
+  - first:
+      213: 927445728973728064
+    second: swarm_sheet_6_8
+  - first:
+      213: 385598237807194361
+    second: swarm_sheet_6_9
+  - first:
+      213: -289754733987680152
+    second: swarm_sheet_6_10
+  - first:
+      213: -5455414973361497057
+    second: swarm_sheet_6_11
+  - first:
+      213: 5343868707979024984
+    second: swarm_sheet_6_12
+  - first:
+      213: -6063171883453120126
+    second: swarm_sheet_6_13
+  - first:
+      213: -2619664178021258911
+    second: swarm_sheet_6_14
+  - first:
+      213: 5887978867750974176
+    second: swarm_sheet_6_15
+  - first:
+      213: -4643772993192084704
+    second: swarm_sheet_6_16
+  - first:
+      213: 2967219365167153448
+    second: swarm_sheet_6_17
+  - first:
+      213: -1979387760981397574
+    second: swarm_sheet_6_18
+  - first:
+      213: -2304172849594776077
+    second: swarm_sheet_6_19
+  - first:
+      213: -4581069259778543940
+    second: swarm_sheet_6_20
+  - first:
+      213: 1641397898121181082
+    second: swarm_sheet_7_0
+  - first:
+      213: 277670423443185379
+    second: swarm_sheet_7_1
+  - first:
+      213: -2130400078413999156
+    second: swarm_sheet_7_2
+  - first:
+      213: 8079920282321242933
+    second: swarm_sheet_7_3
+  - first:
+      213: -6582544525565811064
+    second: swarm_sheet_7_4
+  - first:
+      213: 1598023248947490437
+    second: swarm_sheet_7_5
+  - first:
+      213: -8139982919624766787
+    second: swarm_sheet_7_6
+  - first:
+      213: 5322330436106341446
+    second: swarm_sheet_7_7
+  - first:
+      213: 31087431399621874
+    second: swarm_sheet_7_8
+  - first:
+      213: 1093303771430949782
+    second: swarm_sheet_7_9
+  - first:
+      213: 3226559093056406281
+    second: swarm_sheet_7_10
+  - first:
+      213: -957171750174555754
+    second: swarm_sheet_7_11
+  - first:
+      213: -214697372545093852
+    second: swarm_sheet_7_12
+  - first:
+      213: -8352653697379493931
+    second: swarm_sheet_7_13
+  - first:
+      213: -5008748167411245797
+    second: swarm_sheet_7_14
+  - first:
+      213: 2090270827934826862
+    second: swarm_sheet_7_15
+  - first:
+      213: 8497104252438361211
+    second: swarm_sheet_7_16
+  - first:
+      213: 6210455585463445328
+    second: swarm_sheet_7_17
+  - first:
+      213: -533135075438736425
+    second: swarm_sheet_7_18
+  - first:
+      213: 8524066871393751034
+    second: swarm_sheet_7_19
+  - first:
+      213: -4773187346849469041
+    second: swarm_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: swarm_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4620ef6894c171a90800000000000000
+      internalID: -7343369565281320348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99530a7d15568d040800000000000000
+      internalID: 4672596015581246873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ac249cd39f4631b0800000000000000
+      internalID: -5677262783774446428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c85a42993a14a4700800000000000000
+      internalID: 525304477446874508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dac3cd6220c3fee0800000000000000
+      internalID: -1228427019239044394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6597374adb70e1e10800000000000000
+      internalID: 2170180581528402262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81d343a15ca799870800000000000000
+      internalID: 8690111942954859800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ffd2cab2bb6cbd280800000000000000
+      internalID: -9017395321685398017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc9d6b708eb032d30800000000000000
+      internalID: 4405377951688219087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2650cb772ba2e4e00800000000000000
+      internalID: 1030808310715778402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6cc5f810b73c624e0800000000000000
+      internalID: -2006701650872410938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a0056bdfe0496e380800000000000000
+      internalID: -8942297217990504438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1cded35492b0ca40800000000000000
+      internalID: 5386501504467131420
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 008681db52da64f40800000000000000
+      internalID: 5712443554963941376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e93d84c86da41130800000000000000
+      internalID: 3536642272878475744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4fa352f1967021d40800000000000000
+      internalID: 5553509438576737012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a868dc389e1031a0800000000000000
+      internalID: -6831926995516364638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad28270fe19228f40800000000000000
+      internalID: 5729186888828486362
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dd931f61063e5abd0800000000000000
+      internalID: -2619437606404802083
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 681f757b2330bb1e0800000000000000
+      internalID: -2181146078171631226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 168
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22c256672c70c1220800000000000000
+      internalID: 2457848028428839970
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820f1d19bb98b0980800000000000000
+      internalID: -8571606027071262680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de15a1795b9c1b260800000000000000
+      internalID: 7111687068356071917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d8eb1786f84c0980800000000000000
+      internalID: -8571395767126988591
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0c778631e3f4bce0800000000000000
+      internalID: -1390218236342600689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8de8fb9dcbf50bb90800000000000000
+      internalID: -7228172137217945896
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd17d9d15f1863370800000000000000
+      internalID: 8301965852867916252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 167838f7be4ddf990800000000000000
+      internalID: -7350484908877052063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dfda45b11be1283a0800000000000000
+      internalID: -6664730752538333699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 553ca32efce8d65a0800000000000000
+      internalID: -6526403261485104299
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24157010fa9a0be00800000000000000
+      internalID: 1058532481533694274
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d33780c2951537a00800000000000000
+      internalID: 753035006133695293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26aad587a8c39f600800000000000000
+      internalID: 502499398851078754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5e017f80fdc05ef0800000000000000
+      internalID: -121370756856607138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de4e9b2bd442ee9f0800000000000000
+      internalID: -437372197678750483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 74bdc4dd02d383ff0800000000000000
+      internalID: -56227783981081785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f75ac6de27646b40800000000000000
+      internalID: 5432580501385402353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 39605377b1472bc20800000000000000
+      internalID: 3220764344836228755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36c5a2b85700b28f0800000000000000
+      internalID: -564356823458882461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00c6598b4bd3bfcd0800000000000000
+      internalID: -2523355319810823168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d728b0238ac207f0800000000000000
+      internalID: -647732731849463852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 144
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79bff5d2a751b00a0800000000000000
+      internalID: -6914409188405806185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4b986f2d63ef00f0800000000000000
+      internalID: -1148449321869862067
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aecd3dc5834c6b500800000000000000
+      internalID: 411732162305580266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8356842f4c4ea4a50800000000000000
+      internalID: 6506264146219656504
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed617d42c40283020800000000000000
+      internalID: 2321641119317169886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e96140566b8aa76f0800000000000000
+      internalID: -686050491888298338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8670114feef834a80800000000000000
+      internalID: -8483779016576137368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fb7b4cf0b8c696030800000000000000
+      internalID: 3488438730895964095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52cb68fa1578d3a80800000000000000
+      internalID: -8485477337989202907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f3b2867db7a932b0800000000000000
+      internalID: -5604263829106936844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b1f4e0ef86e827d0800000000000000
+      internalID: -2942848850858806864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eee12fa9175cd8cb0800000000000000
+      internalID: -4860011331141361938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 159a967cac353f610800000000000000
+      internalID: 1653757618569193809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e9d15928d2d1fe0800000000000000
+      internalID: -1216766285449421289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eadb8f8103d58ad60800000000000000
+      internalID: 7901668007380303278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46d685b8f48d7690800000000000000
+      internalID: -7602774392199260598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fc333b030d434280800000000000000
+      internalID: -9060313349871158027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f68f1dce36329e040800000000000000
+      internalID: 4677308600082888815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 023ac28945340da00800000000000000
+      internalID: 779196766144471840
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d7f9c2da439719c0800000000000000
+      internalID: -3956531798048376878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a01d0f4ba12a72820800000000000000
+      internalID: 2893459521197363466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 120
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9bb3a0efbceaed970800000000000000
+      internalID: 8781648514582723513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ced3976c223be440800000000000000
+      internalID: 4966118180403797699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a03dc36a2a1b484e0800000000000000
+      internalID: -1980262624004353270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 218b4eceaad4ab5a0800000000000000
+      internalID: -6504801315269068782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ccb4c39a69913210800000000000000
+      internalID: 1310997649566252226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2892bd8d738263c90800000000000000
+      internalID: -7190515534723864190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc6521cbc0cd17fb0800000000000000
+      internalID: -4651694992843974965
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 828e4f59dcb818040800000000000000
+      internalID: 4648150005523474472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 877a7dc5b0bef4d90800000000000000
+      internalID: -7111206852559919240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a024aeb98a8e05f0800000000000000
+      internalID: -788540560529678173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 285b01b7d9b2e7440800000000000000
+      internalID: 4935430197019194754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8586287ad7b221f0800000000000000
+      internalID: -1071091612414212723
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 177a7718e47786180800000000000000
+      internalID: -9121909866175682703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba87f2a623ada80f0800000000000000
+      internalID: -1113838047756060501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c66702bb199efab0800000000000000
+      internalID: -4972368594340452664
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4df7313f03dd54300800000000000000
+      internalID: 235837757813129172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38c15690c22b0b300800000000000000
+      internalID: 265908280220785795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a3d12abeef9321e0800000000000000
+      internalID: -2223757943317081179
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 797d7fb7516a47a60800000000000000
+      internalID: 7670938676523161495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d88d55d391d592920800000000000000
+      internalID: 2966004192584784013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1ba641b766761a30800000000000000
+      internalID: 4185663091415362330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 96
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 480f4d8272cf9f390800000000000000
+      internalID: -7783913235814223740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3c521a60f49917b0800000000000000
+      internalID: -5253003730058322882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06d58dfee32044670800000000000000
+      internalID: 8521938864226983264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0327c77d2851f2530800000000000000
+      internalID: 3832305459620770352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 498e173343dbd7740800000000000000
+      internalID: 5151481580680767636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a7d25008c6fa09ff0800000000000000
+      internalID: -31332316852441734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67c95a8665ba10570800000000000000
+      internalID: 8431208365025500278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 185a430171b52ea20800000000000000
+      internalID: 3090132448943842689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fb8a7e3387d196a0800000000000000
+      internalID: -6444132633101562891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d81e816ed158a8a0800000000000000
+      internalID: -6293690463688976171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 606cec73c952013e0800000000000000
+      internalID: -2085125274591115770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36338ff60a63a29b0800000000000000
+      internalID: -5104207164969831581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00a3ac3ebbd218cd0800000000000000
+      internalID: -2557712828365915648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48b0c6ee8c65006d0800000000000000
+      internalID: -3026323528599467132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d0c8cb2841aa9e0800000000000000
+      internalID: -1609451365089931908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02ff93d81c300d370800000000000000
+      internalID: 8345174239350488864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af9ba5f247e4b3f0800000000000000
+      internalID: -885828951909621851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e7e1176da7ed02f0800000000000000
+      internalID: -1004892409889167385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c73bfc36e93a20940800000000000000
+      internalID: 5260947215396877180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fda7b3c9248306ff0800000000000000
+      internalID: -44974137533564193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7202097e84441a030800000000000000
+      internalID: 3504157064984272935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 72
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbff832e0e5c1c120800000000000000
+      internalID: 2432442843415510971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fd4b33c3be07d1a0800000000000000
+      internalID: -6784938148372984329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8b4dca83bf7b1f3f0800000000000000
+      internalID: -868710963490270024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53aa3e1610d3ee8b0800000000000000
+      internalID: -5121088650127103435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb48eb75be4e82b00800000000000000
+      internalID: 804144232926184636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a60466fd2b4cc510800000000000000
+      internalID: 1570713030824822435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6694741a6e7bc7c40800000000000000
+      internalID: 5511482245170809190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ee46c36e0da5c130800000000000000
+      internalID: 3586462955585556192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7ccbbd88f7ac34d0800000000000000
+      internalID: -3153460953094566788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b3fa5d63cc28823f0800000000000000
+      internalID: -925345909819723973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e00463eaeeb38d80800000000000000
+      internalID: -8249540176366010144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c72ce54d91fb07d70800000000000000
+      internalID: 9038934569790653052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e51d336ab7155fa90800000000000000
+      internalID: -7280823631063297698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9eaa3e2ce053080800000000000000
+      internalID: -9208437632883037736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38cb724faa1492e70800000000000000
+      internalID: 9090869525320547459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b0541da91cbe7400800000000000000
+      internalID: 323903041681248437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9893c3b96d93da560800000000000000
+      internalID: 7326575762691864969
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c149a01a3e80bde80800000000000000
+      internalID: -8152912926671727588
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37b5af851e6056570800000000000000
+      internalID: 8459175040015555443
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79a1dcd55666d6480800000000000000
+      internalID: -8904348302690149737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bd68f5daf13f84e0800000000000000
+      internalID: -1977306757990945357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 48
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf4db981aad1f2a20800000000000000
+      internalID: 3039680889892885755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 238624c02c33e3970800000000000000
+      internalID: 8736477235667691570
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4221ad6d4250cb790800000000000000
+      internalID: -7513124422579252700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2bd832a4e2bf0c0800000000000000
+      internalID: -4540984903314066766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b13d112865389840800000000000000
+      internalID: 5230989688539263409
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c69acd466f985d0a0800000000000000
+      internalID: -6857423166254569108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5418e3131a2aa0970800000000000000
+      internalID: 8721962441556001093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d1baf66df71cb5ed0800000000000000
+      internalID: -2424131219606230243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5983504cdcca51b0800000000000000
+      internalID: -5666991934748260002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 049aee70af2fedc00800000000000000
+      internalID: 927445728973728064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f0b386ed8be95500800000000000000
+      internalID: 385598237807194361
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8603da8ca959afbf0800000000000000
+      internalID: -289754733987680152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1cd07a5cf87a44b0800000000000000
+      internalID: -5455414973361497057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85a5a61e64c392a40800000000000000
+      internalID: 5343868707979024984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28104aacb494bdba0800000000000000
+      internalID: -6063171883453120126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1692a364f4515abd0800000000000000
+      internalID: -2619664178021258911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e2bd49959d46b150800000000000000
+      internalID: 5887978867750974176
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 02bbb3301110e8fb0800000000000000
+      internalID: -4643772993192084704
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 821c277aa4ead2920800000000000000
+      internalID: 2967219365167153448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: abfa2f1915dc784e0800000000000000
+      internalID: -1979387760981397574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f5cdc6500fe500e0800000000000000
+      internalID: -2304172849594776077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 24
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbe207f97c5cc60c0800000000000000
+      internalID: -4581069259778543940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a97f59c11ba67c610800000000000000
+      internalID: 1641397898121181082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ee96f967cb7ad300800000000000000
+      internalID: 277670423443185379
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc35ba08a6c4f62e0800000000000000
+      internalID: -2130400078413999156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 53b4b3100b4a12070800000000000000
+      internalID: 8079920282321242933
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886257b31aa16a4a0800000000000000
+      internalID: -6582544525565811064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58ea450ada15d2610800000000000000
+      internalID: 1598023248947490437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dbac40e79a8f80f80800000000000000
+      internalID: -8139982919624766787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64c4e5d2557bcd940800000000000000
+      internalID: 5322330436106341446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4cd89aad17e6000800000000000000
+      internalID: 31087431399621874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6939cbfccf13c2f00800000000000000
+      internalID: 1093303771430949782
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9030f6c666a07cc20800000000000000
+      internalID: 3226559093056406281
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6918ec15d5177b2f0800000000000000
+      internalID: -957171750174555754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 42f6d3f80ed350df0800000000000000
+      internalID: -214697372545093852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5d797db67b9651c80800000000000000
+      internalID: -8352653697379493931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1d5018441a5d7ab0800000000000000
+      internalID: -5008748167411245797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e61ca674e32220d10800000000000000
+      internalID: 2090270827934826862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b74bc0a4c47cbe570800000000000000
+      internalID: 8497104252438361211
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 057a3e85378ff2650800000000000000
+      internalID: 6210455585463445328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db4c2b397ce998f0800000000000000
+      internalID: -533135075438736425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aff891738a19b4670800000000000000
+      internalID: 8524066871393751034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: swarm_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 24
+        height: 24
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f8de5a0c56b32cdb0800000000000000
+      internalID: -4773187346849469041
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      swarm_sheet_0: 3419521045214480292
+      swarm_sheet_0_0: -7343369565281320348
+      swarm_sheet_0_1: 4672596015581246873
+      swarm_sheet_0_10: -2006701650872410938
+      swarm_sheet_0_11: -8942297217990504438
+      swarm_sheet_0_12: 5386501504467131420
+      swarm_sheet_0_13: 5712443554963941376
+      swarm_sheet_0_14: 3536642272878475744
+      swarm_sheet_0_15: 5553509438576737012
+      swarm_sheet_0_16: -6831926995516364638
+      swarm_sheet_0_17: 5729186888828486362
+      swarm_sheet_0_18: -2619437606404802083
+      swarm_sheet_0_19: -2181146078171631226
+      swarm_sheet_0_2: -5677262783774446428
+      swarm_sheet_0_20: 2457848028428839970
+      swarm_sheet_0_3: 525304477446874508
+      swarm_sheet_0_4: -1228427019239044394
+      swarm_sheet_0_5: 2170180581528402262
+      swarm_sheet_0_6: 8690111942954859800
+      swarm_sheet_0_7: -9017395321685398017
+      swarm_sheet_0_8: 4405377951688219087
+      swarm_sheet_0_9: 1030808310715778402
+      swarm_sheet_1: 4308306438157692687
+      swarm_sheet_10: 1889858263552691162
+      swarm_sheet_100: 6976760999710284303
+      swarm_sheet_101: -737701673408546128
+      swarm_sheet_102: -3097711969866159488
+      swarm_sheet_103: -3160805170371785540
+      swarm_sheet_104: -919295880358883021
+      swarm_sheet_105: 1764296951348305259
+      swarm_sheet_106: 8734056348220774664
+      swarm_sheet_107: 7716462491104510683
+      swarm_sheet_108: -4129301468034260585
+      swarm_sheet_109: 8241948101430537760
+      swarm_sheet_11: -3058329714565430212
+      swarm_sheet_110: 2787549509226327510
+      swarm_sheet_111: 5490858381694619978
+      swarm_sheet_112: 6041147766616782388
+      swarm_sheet_113: 6067876157303743978
+      swarm_sheet_114: -3198740091250890934
+      swarm_sheet_115: -3471388514861099278
+      swarm_sheet_116: -1543240899755893441
+      swarm_sheet_117: -9146325241606168862
+      swarm_sheet_118: -692954974941891386
+      swarm_sheet_119: -7332453505906010918
+      swarm_sheet_12: 4109135993736314456
+      swarm_sheet_120: -5812727010897905462
+      swarm_sheet_121: 6264298289034129907
+      swarm_sheet_122: 6104248179738078267
+      swarm_sheet_123: -9127676049235271556
+      swarm_sheet_124: -7129646188583529378
+      swarm_sheet_125: 9049237538974330072
+      swarm_sheet_126: -6155540892906453648
+      swarm_sheet_127: -8898485449838895478
+      swarm_sheet_128: 2283745219612816589
+      swarm_sheet_129: 1614062536413491291
+      swarm_sheet_13: 826780488213097128
+      swarm_sheet_130: -4548639877301446492
+      swarm_sheet_131: -1101382500003798527
+      swarm_sheet_132: 2524036061351119678
+      swarm_sheet_133: 3223188341802328642
+      swarm_sheet_134: 6302488643843287800
+      swarm_sheet_135: -5602939977853180046
+      swarm_sheet_136: 8797160834173788833
+      swarm_sheet_137: -1739088169906214109
+      swarm_sheet_138: 4521734777362069398
+      swarm_sheet_139: 8863990436763474043
+      swarm_sheet_14: 1267491224365382667
+      swarm_sheet_140: 1492487925421509170
+      swarm_sheet_141: -7121343320029124843
+      swarm_sheet_142: -6648848482116888193
+      swarm_sheet_143: 3396301848533919406
+      swarm_sheet_144: 8435209258521500071
+      swarm_sheet_145: 2422394381698607615
+      swarm_sheet_146: 7121940526120111598
+      swarm_sheet_147: -6199062421335473603
+      swarm_sheet_148: -8686032655885521440
+      swarm_sheet_149: 1253300287287328665
+      swarm_sheet_15: -2420000369011270498
+      swarm_sheet_150: 4763513469354963223
+      swarm_sheet_151: 214954070252678362
+      swarm_sheet_152: -3462418488412995453
+      swarm_sheet_153: -4607569331305374378
+      swarm_sheet_154: 7202665302386553860
+      swarm_sheet_155: 3402434475611279134
+      swarm_sheet_156: 6807271738867517608
+      swarm_sheet_157: -8637876113651038026
+      swarm_sheet_158: -7997275361506842079
+      swarm_sheet_159: 6887196949866927115
+      swarm_sheet_16: -3062650741028629731
+      swarm_sheet_160: -398728438691891101
+      swarm_sheet_161: -7005396805138104147
+      swarm_sheet_162: -5243994107481979548
+      swarm_sheet_163: 458713667542868735
+      swarm_sheet_164: 6769695244991606503
+      swarm_sheet_165: -4464218068323741908
+      swarm_sheet_166: -1302052165354280319
+      swarm_sheet_167: 5322991793417832833
+      swarm_sheet_17: -5538570368784536880
+      swarm_sheet_18: 2598778047229495224
+      swarm_sheet_19: 993810559778688532
+      swarm_sheet_1_0: -8571606027071262680
+      swarm_sheet_1_1: 7111687068356071917
+      swarm_sheet_1_10: 753035006133695293
+      swarm_sheet_1_11: 502499398851078754
+      swarm_sheet_1_12: -121370756856607138
+      swarm_sheet_1_13: -437372197678750483
+      swarm_sheet_1_14: -56227783981081785
+      swarm_sheet_1_15: 5432580501385402353
+      swarm_sheet_1_16: 3220764344836228755
+      swarm_sheet_1_17: -564356823458882461
+      swarm_sheet_1_18: -2523355319810823168
+      swarm_sheet_1_19: -647732731849463852
+      swarm_sheet_1_2: -8571395767126988591
+      swarm_sheet_1_20: -6914409188405806185
+      swarm_sheet_1_3: -1390218236342600689
+      swarm_sheet_1_4: -7228172137217945896
+      swarm_sheet_1_5: 8301965852867916252
+      swarm_sheet_1_6: -7350484908877052063
+      swarm_sheet_1_7: -6664730752538333699
+      swarm_sheet_1_8: -6526403261485104299
+      swarm_sheet_1_9: 1058532481533694274
+      swarm_sheet_2: 4470749241086598037
+      swarm_sheet_20: 2289597423402656700
+      swarm_sheet_21: -7260930853935020540
+      swarm_sheet_22: 3446059147880232241
+      swarm_sheet_23: -615777461235405941
+      swarm_sheet_24: 736023250528008159
+      swarm_sheet_25: 7113515206090033317
+      swarm_sheet_26: -6673816238427934029
+      swarm_sheet_27: 2535175175008631827
+      swarm_sheet_28: -2577063051470289685
+      swarm_sheet_29: 4133833785349318555
+      swarm_sheet_2_0: -1148449321869862067
+      swarm_sheet_2_1: 411732162305580266
+      swarm_sheet_2_10: -4860011331141361938
+      swarm_sheet_2_11: 1653757618569193809
+      swarm_sheet_2_12: -1216766285449421289
+      swarm_sheet_2_13: 7901668007380303278
+      swarm_sheet_2_14: -7602774392199260598
+      swarm_sheet_2_15: -9060313349871158027
+      swarm_sheet_2_16: 4677308600082888815
+      swarm_sheet_2_17: 779196766144471840
+      swarm_sheet_2_18: -3956531798048376878
+      swarm_sheet_2_19: 2893459521197363466
+      swarm_sheet_2_2: 6506264146219656504
+      swarm_sheet_2_20: 8781648514582723513
+      swarm_sheet_2_3: 2321641119317169886
+      swarm_sheet_2_4: -686050491888298338
+      swarm_sheet_2_5: -8483779016576137368
+      swarm_sheet_2_6: 3488438730895964095
+      swarm_sheet_2_7: -8485477337989202907
+      swarm_sheet_2_8: -5604263829106936844
+      swarm_sheet_2_9: -2942848850858806864
+      swarm_sheet_3: 4872969969852319468
+      swarm_sheet_30: 1294669535551006886
+      swarm_sheet_31: 3336317513247230742
+      swarm_sheet_32: -8074684171322248035
+      swarm_sheet_33: 2738683832151786533
+      swarm_sheet_34: 8209340264968762625
+      swarm_sheet_35: 18994887804409302
+      swarm_sheet_36: 8580836684647773808
+      swarm_sheet_37: -4129497523776852357
+      swarm_sheet_38: -4889672877301160910
+      swarm_sheet_39: 5627206282821724142
+      swarm_sheet_3_0: 4966118180403797699
+      swarm_sheet_3_1: -1980262624004353270
+      swarm_sheet_3_10: -1071091612414212723
+      swarm_sheet_3_11: -9121909866175682703
+      swarm_sheet_3_12: -1113838047756060501
+      swarm_sheet_3_13: -4972368594340452664
+      swarm_sheet_3_14: 235837757813129172
+      swarm_sheet_3_15: 265908280220785795
+      swarm_sheet_3_16: -2223757943317081179
+      swarm_sheet_3_17: 7670938676523161495
+      swarm_sheet_3_18: 2966004192584784013
+      swarm_sheet_3_19: 4185663091415362330
+      swarm_sheet_3_2: -6504801315269068782
+      swarm_sheet_3_20: -7783913235814223740
+      swarm_sheet_3_3: 1310997649566252226
+      swarm_sheet_3_4: -7190515534723864190
+      swarm_sheet_3_5: -4651694992843974965
+      swarm_sheet_3_6: 4648150005523474472
+      swarm_sheet_3_7: -7111206852559919240
+      swarm_sheet_3_8: -788540560529678173
+      swarm_sheet_3_9: 4935430197019194754
+      swarm_sheet_4: -9217232366555495859
+      swarm_sheet_40: -5206255551346881041
+      swarm_sheet_41: -3249634084838395111
+      swarm_sheet_42: -1901862642826470627
+      swarm_sheet_43: 5787934537669683298
+      swarm_sheet_44: -4719217557903035829
+      swarm_sheet_45: 7985512651659400514
+      swarm_sheet_46: -2212417476010673380
+      swarm_sheet_47: -8416573341369918056
+      swarm_sheet_48: -1687293847482330246
+      swarm_sheet_49: -8700380622128564121
+      swarm_sheet_4_0: -5253003730058322882
+      swarm_sheet_4_1: 8521938864226983264
+      swarm_sheet_4_10: -5104207164969831581
+      swarm_sheet_4_11: -2557712828365915648
+      swarm_sheet_4_12: -3026323528599467132
+      swarm_sheet_4_13: -1609451365089931908
+      swarm_sheet_4_14: 8345174239350488864
+      swarm_sheet_4_15: -885828951909621851
+      swarm_sheet_4_16: -1004892409889167385
+      swarm_sheet_4_17: 5260947215396877180
+      swarm_sheet_4_18: -44974137533564193
+      swarm_sheet_4_19: 3504157064984272935
+      swarm_sheet_4_2: 3832305459620770352
+      swarm_sheet_4_20: 2432442843415510971
+      swarm_sheet_4_3: 5151481580680767636
+      swarm_sheet_4_4: -31332316852441734
+      swarm_sheet_4_5: 8431208365025500278
+      swarm_sheet_4_6: 3090132448943842689
+      swarm_sheet_4_7: -6444132633101562891
+      swarm_sheet_4_8: -6293690463688976171
+      swarm_sheet_4_9: -2085125274591115770
+      swarm_sheet_5: 2608619748679957714
+      swarm_sheet_50: -5118124332389959065
+      swarm_sheet_51: -8080686093025717246
+      swarm_sheet_52: -7545816556665939389
+      swarm_sheet_53: -8204080192121234255
+      swarm_sheet_54: 5538229347321901799
+      swarm_sheet_55: -9214956192737230636
+      swarm_sheet_56: -8956593350657089812
+      swarm_sheet_57: -4621929947507423688
+      swarm_sheet_58: 8320062185523152829
+      swarm_sheet_59: 828379475464375785
+      swarm_sheet_5_0: -6784938148372984329
+      swarm_sheet_5_1: -868710963490270024
+      swarm_sheet_5_10: 9038934569790653052
+      swarm_sheet_5_11: -7280823631063297698
+      swarm_sheet_5_12: -9208437632883037736
+      swarm_sheet_5_13: 9090869525320547459
+      swarm_sheet_5_14: 323903041681248437
+      swarm_sheet_5_15: 7326575762691864969
+      swarm_sheet_5_16: -8152912926671727588
+      swarm_sheet_5_17: 8459175040015555443
+      swarm_sheet_5_18: -8904348302690149737
+      swarm_sheet_5_19: -1977306757990945357
+      swarm_sheet_5_2: -5121088650127103435
+      swarm_sheet_5_20: 3039680889892885755
+      swarm_sheet_5_3: 804144232926184636
+      swarm_sheet_5_4: 1570713030824822435
+      swarm_sheet_5_5: 5511482245170809190
+      swarm_sheet_5_6: 3586462955585556192
+      swarm_sheet_5_7: -3153460953094566788
+      swarm_sheet_5_8: -925345909819723973
+      swarm_sheet_5_9: -8249540176366010144
+      swarm_sheet_6: 4668327859404926379
+      swarm_sheet_60: -6217552386217578872
+      swarm_sheet_61: 8468040998503565599
+      swarm_sheet_62: 4676774349818094795
+      swarm_sheet_63: 1791844535846723045
+      swarm_sheet_64: 3573127113322863360
+      swarm_sheet_65: 8626819744724361051
+      swarm_sheet_66: -5907582426346804426
+      swarm_sheet_67: 8986181504111581224
+      swarm_sheet_68: -3451179505890381854
+      swarm_sheet_69: 3140511070423175679
+      swarm_sheet_6_0: 8736477235667691570
+      swarm_sheet_6_1: -7513124422579252700
+      swarm_sheet_6_10: -289754733987680152
+      swarm_sheet_6_11: -5455414973361497057
+      swarm_sheet_6_12: 5343868707979024984
+      swarm_sheet_6_13: -6063171883453120126
+      swarm_sheet_6_14: -2619664178021258911
+      swarm_sheet_6_15: 5887978867750974176
+      swarm_sheet_6_16: -4643772993192084704
+      swarm_sheet_6_17: 2967219365167153448
+      swarm_sheet_6_18: -1979387760981397574
+      swarm_sheet_6_19: -2304172849594776077
+      swarm_sheet_6_2: -4540984903314066766
+      swarm_sheet_6_20: -4581069259778543940
+      swarm_sheet_6_3: 5230989688539263409
+      swarm_sheet_6_4: -6857423166254569108
+      swarm_sheet_6_5: 8721962441556001093
+      swarm_sheet_6_6: -2424131219606230243
+      swarm_sheet_6_7: -5666991934748260002
+      swarm_sheet_6_8: 927445728973728064
+      swarm_sheet_6_9: 385598237807194361
+      swarm_sheet_7: -5409716559529383162
+      swarm_sheet_70: -3929823325223482418
+      swarm_sheet_71: 3727834465633235875
+      swarm_sheet_72: 6115511869444428779
+      swarm_sheet_73: -8346374245781080168
+      swarm_sheet_74: -4001315380140286525
+      swarm_sheet_75: 1122021780376486575
+      swarm_sheet_76: 741039691035633468
+      swarm_sheet_77: 6779474155440424825
+      swarm_sheet_78: 84399980751943601
+      swarm_sheet_79: 2082590427112527158
+      swarm_sheet_7_0: 1641397898121181082
+      swarm_sheet_7_1: 277670423443185379
+      swarm_sheet_7_10: 3226559093056406281
+      swarm_sheet_7_11: -957171750174555754
+      swarm_sheet_7_12: -214697372545093852
+      swarm_sheet_7_13: -8352653697379493931
+      swarm_sheet_7_14: -5008748167411245797
+      swarm_sheet_7_15: 2090270827934826862
+      swarm_sheet_7_16: 8497104252438361211
+      swarm_sheet_7_17: 6210455585463445328
+      swarm_sheet_7_18: -533135075438736425
+      swarm_sheet_7_19: 8524066871393751034
+      swarm_sheet_7_2: -2130400078413999156
+      swarm_sheet_7_20: -4773187346849469041
+      swarm_sheet_7_3: 8079920282321242933
+      swarm_sheet_7_4: -6582544525565811064
+      swarm_sheet_7_5: 1598023248947490437
+      swarm_sheet_7_6: -8139982919624766787
+      swarm_sheet_7_7: 5322330436106341446
+      swarm_sheet_7_8: 31087431399621874
+      swarm_sheet_7_9: 1093303771430949782
+      swarm_sheet_8: 992316889930477177
+      swarm_sheet_80: -2595038525838997677
+      swarm_sheet_81: -648551217504350052
+      swarm_sheet_82: 581082892830304704
+      swarm_sheet_83: 5459054956749997419
+      swarm_sheet_84: 1963321803911054149
+      swarm_sheet_85: -6997545257144254735
+      swarm_sheet_86: 5453503986945908209
+      swarm_sheet_87: 6090926079513778603
+      swarm_sheet_88: 6523515960018108560
+      swarm_sheet_89: 2574303857723820152
+      swarm_sheet_9: 3439176518113283443
+      swarm_sheet_90: 5819121257948267430
+      swarm_sheet_91: -3490580546674395670
+      swarm_sheet_92: 8121618754035129066
+      swarm_sheet_93: -1236987875736635042
+      swarm_sheet_94: 4989693779891853708
+      swarm_sheet_95: 281226765584934282
+      swarm_sheet_96: 2833046253672129869
+      swarm_sheet_97: 4889014783067186133
+      swarm_sheet_98: 6586442507250398543
+      swarm_sheet_99: 1817743850464318285
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

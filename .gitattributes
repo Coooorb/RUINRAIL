@@ -1,0 +1,43 @@
+# Line endings: normalize text, keep shell scripts LF for macOS
+* text=auto eol=lf
+*.cs text diff=csharp
+*.sh text eol=lf
+*.ps1 text
+*.md text
+*.txt text
+*.json text
+*.csv text
+
+# Unity YAML assets (Force Text serialization)
+*.asset text
+*.unity text
+*.prefab text
+*.meta text
+*.mat text
+*.anim text
+*.controller text
+*.overrideController text
+*.physicsMaterial2D text
+*.playable text
+*.mask text
+*.spriteatlas text
+*.inputactions text
+*.asmdef text
+*.shader text
+*.shadergraph text
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.psd binary
+*.aseprite binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.ttf binary
+*.otf binary
+*.fbx binary
+*.dll binary
+*.pdf binary

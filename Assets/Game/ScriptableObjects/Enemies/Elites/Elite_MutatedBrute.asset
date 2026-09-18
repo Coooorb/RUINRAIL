@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce398a5116b2482a83cc80229f788ef7, type: 3}
+  m_Name: Elite_MutatedBrute
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Elites.EliteDefinition
+  _id: elite_mutated_brute
+  _displayName: Mutated Brute
+  _biome: 2
+  _baseHealth: 525
+  _moveSpeed: 2.4
+  _baseXp: 350
+  _strongestAttackDamageMin: 28
+  _strongestAttackDamageMax: 34
+  _staggerResistancePercent: 90
+  _knockbackResistancePercent: 90
+  _moveset:
+  - {fileID: 11400000, guid: ffce5942dc9e48b98dadb2f7955cbec8, type: 2}
+  - {fileID: 11400000, guid: 834f9050603d4e2e97a7634ebcbb8985, type: 2}
+  - {fileID: 11400000, guid: c55ed54c8a86403ab08316ad2ea3f04e, type: 2}

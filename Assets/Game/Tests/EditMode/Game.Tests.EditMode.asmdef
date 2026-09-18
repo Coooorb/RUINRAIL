@@ -1,0 +1,39 @@
+{
+    "name": "Game.Tests.EditMode",
+    "rootNamespace": "RuinRail.Tests",
+    "references": [
+        "Game.Core",
+        "Game.Gameplay",
+        "Game.Dungeon",
+        "Game.Persistence",
+        "Game.Editor",
+        "Game.Networking",
+        "Unity.Netcode.Runtime",
+        "Game.UI",
+        "Game.Presentation",
+        "Game.Audio",
+        "Game.App",
+        "Unity.RenderPipelines.Universal.Runtime",
+        "Unity.RenderPipelines.Universal.2D.Runtime",
+        "UnityEngine.UI",
+        "Unity.Collections",
+        "Unity.InputSystem",
+        "UnityEngine.TestRunner",
+        "UnityEditor.TestRunner"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

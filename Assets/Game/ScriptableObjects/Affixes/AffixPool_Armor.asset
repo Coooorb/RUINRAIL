@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c744d0a64f1e4b99b28627e43245690d, type: 3}
+  m_Name: AffixPool_Armor
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.AffixPool
+  _id: pool_armor
+  _affixes:
+  - {fileID: 11400000, guid: 56b0a74355bd4a5f858eb548fad25d35, type: 2}
+  - {fileID: 11400000, guid: e0f3554b418f4b71bdc625ff9fa1f43f, type: 2}
+  - {fileID: 11400000, guid: b89b4deeeda647cf8a4e8bec00ebf553, type: 2}
+  - {fileID: 11400000, guid: 6d389fda5427451fac0fc8f42c61a957, type: 2}
+  - {fileID: 11400000, guid: a82a735408894687a5ddc4c03079438c, type: 2}
+  - {fileID: 11400000, guid: a59e65c9e347405bba3238e60d5efef9, type: 2}
+  - {fileID: 11400000, guid: 23bcc5ab43294e3c9752cadb09f8878e, type: 2}

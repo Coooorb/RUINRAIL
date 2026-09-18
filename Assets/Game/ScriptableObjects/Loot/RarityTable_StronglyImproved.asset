@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63079f2a8b344ee89719bf3b4f30604d, type: 3}
+  m_Name: RarityTable_StronglyImproved
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Loot.RarityTableDefinition
+  _quality: 2
+  _bands:
+  - Depth: 1
+    CommonPermille: 200
+    UncommonPermille: 350
+    RarePermille: 330
+    EpicPermille: 100
+    LegendaryPermille: 20
+  - Depth: 5
+    CommonPermille: 120
+    UncommonPermille: 280
+    RarePermille: 400
+    EpicPermille: 175
+    LegendaryPermille: 25
+  - Depth: 10
+    CommonPermille: 80
+    UncommonPermille: 220
+    RarePermille: 420
+    EpicPermille: 250
+    LegendaryPermille: 30
+  - Depth: 20
+    CommonPermille: 50
+    UncommonPermille: 180
+    RarePermille: 440
+    EpicPermille: 290
+    LegendaryPermille: 40
+  - Depth: 30
+    CommonPermille: 40
+    UncommonPermille: 140
+    RarePermille: 450
+    EpicPermille: 320
+    LegendaryPermille: 50

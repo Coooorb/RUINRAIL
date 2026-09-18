@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3d94f4f5973f524e9200f9ccc8dc44d, type: 3}
+  m_Name: Ammo_Light
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Items.AmmoItemDefinition
+  _id: ammo_light
+  _displayName: Light Ammo
+  _category: 4
+  _isStackable: 1
+  _maxStack: 180
+  _icon: {fileID: 21300000, guid: 782ab1e5aeb06d044a868b53691c2417, type: 3}
+  _ammoType: 0

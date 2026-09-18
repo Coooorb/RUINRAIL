@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f881c67b89891494186a81abd2802cf0, type: 3}
+  m_Name: MusicCatalog
+  m_EditorClassIdentifier: Game.Audio::RuinRail.Audio.MusicCatalog
+  _tracks:
+  - Role: 0
+    Clip: {fileID: 8300000, guid: 35405c5f387e8bd4799c262bff30ab4b, type: 3}
+  - Role: 1
+    Clip: {fileID: 8300000, guid: 80c19cbe3fdd8ba49a2fb91117a31011, type: 3}
+  - Role: 2
+    Clip: {fileID: 8300000, guid: 713c161b4f569f9489a2293827af3913, type: 3}
+  - Role: 3
+    Clip: {fileID: 8300000, guid: fc8a8e376713b8147ba6acf9a1d628d5, type: 3}
+  - Role: 4
+    Clip: {fileID: 8300000, guid: eb371807d7167144cad78445ab8aaa02, type: 3}
+  - Role: 5
+    Clip: {fileID: 8300000, guid: ce4329d1fb33745468c4ff595c161098, type: 3}
+  - Role: 6
+    Clip: {fileID: 8300000, guid: 89fcd17eb7703354f9d84f182ffaea19, type: 3}
+  - Role: 7
+    Clip: {fileID: 8300000, guid: b8c56170f8595e3469ba33b32abd78a6, type: 3}
+  - Role: 8
+    Clip: {fileID: 8300000, guid: 6bb8ab0a24b9ac24f828adec4d97719f, type: 3}
+  - Role: 9
+    Clip: {fileID: 8300000, guid: 314545d9e895d9543a9e8b87c05cb600, type: 3}
+  - Role: 10
+    Clip: {fileID: 8300000, guid: 10c2e859bfc294d45b5586df69866893, type: 3}
+  _stingers:
+  - Role: 0
+    Clip: {fileID: 8300000, guid: bab6a31be48ef5345bb72fa8b697b446, type: 3}
+  - Role: 1
+    Clip: {fileID: 8300000, guid: eb580beba86b3af43bfb2d59a051b1f3, type: 3}
+  - Role: 2
+    Clip: {fileID: 8300000, guid: 574b54126b2f55b4290bc64ca0e385cf, type: 3}
+  - Role: 3
+    Clip: {fileID: 8300000, guid: 0597d6f676b4cb34aa42c8b81b4833f5, type: 3}
+  - Role: 4
+    Clip: {fileID: 8300000, guid: 71e7ab9c37101a7449b61b56049965b8, type: 3}
+  - Role: 5
+    Clip: {fileID: 8300000, guid: c5f41f1e04a61604ca772d4f978b9788, type: 3}
+  _ambience:
+  - Biome: 0
+    Loop: {fileID: 8300000, guid: e52fcb6c02486384c914534589af7eb4, type: 3}
+    Character: electricity, tunnels, distant metal, old transit infrastructure
+  - Biome: 1
+    Loop: {fileID: 8300000, guid: e84b7632fc572c845acbd373c521b0f8, type: 3}
+    Character: machinery, steam, industrial movement
+  - Biome: 2
+    Loop: {fileID: 8300000, guid: b6259bce5bd766d4eaa5a2186627a081, type: 3}
+    Character: electronics, organic/bio ambience, damaged laboratory equipment
