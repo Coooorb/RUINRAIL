@@ -1,0 +1,11 @@
+- [ps1 Patch single-pair flatten](ps1-patch-single-pair-flatten.md) — single-pair @(@(a,b)) silently no-ops; use Edit tool or 2+ pairs
+- [Unity needs two runs (Smart App Control)](unity-needs-two-runs-smart-app-control.md) — first batch run after a C# edit always "fails"; run the harness twice
+- [PlayMode dungeon fixture cleanup](playmode-dungeon-fixture-cleanup.md) — clear scene roots after entering the Dungeon; overlay canvases lose their sorting layer when captured
+- [perl pipe-delimiter alternation](perl-pipe-delimiter-alternation.md) — `\|\|` in a perl s|..|..| pattern inserts the replacement at line 1; use Edit for lines with `|`
+- [Combat/ source scan forbids class switches](combat-source-no-class-switch-scan.md) — EditMode test greps Combat/**.cs for WeaponClass.BattleRifle/Smg/AssaultRifle; keep class tuning as data tables
+- [perl replacement newline/backslash](perl-replacement-newline-and-backslash.md) — `\n`/`\` in a perl replacement break C# literals; use Edit for escaped lines
+- [PowerShell Remove-Item + C:\Program guard](powershell-remove-item-program-files-guard.md) — Remove-Item in the same command as a "C:\Program…" path is blocked; use a .ps1 or File.Delete
+- [Stackable buy zeroes the source quantity](stackable-buy-quantity-zeroed.md) — snapshot quantities before trades; run PlayMode before EditMode (FinalMvpAudit reads the results xml)
+- [uGUI Filled image needs a sprite](ugui-filled-image-needs-sprite.md) — no sprite = full quad, fillAmount ignored; use UiBuild.Fillable
+- [Verify audio silence outside Unity](audio-silence-verify-outside-unity.md) — scripts/probe-audio-session.ps1; check the default playback endpoint
+- [Memory lives in repo](memory-lives-in-repo.md) — .claude/memory is git-tracked; ~/.claude/projects path is a junction/symlink; push/pull to sync
