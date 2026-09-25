@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RuinRail.Core.Rng;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Combat.Impact;
 using RuinRail.Gameplay.Combat.Projectiles;
@@ -74,6 +75,49 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
         /// <summary>Multiplier applied to telegraph, recovery and cooldown durations (1 = authored values).</summary>
         public float TimingMultiplier { get; protected set; } = 1f;
+
+        /// <summary>Diagnostics/proof seam: while true the actor pursues but never selects an attack (pursuit-only containment proofs).</summary>
+        public bool SuppressAttacks { get; set; }
+
+        /// <summary>
+        /// Seeds this actor's attack-selection stream. The composer derives it from RunSeed + Depth + room, so the same
+        /// run replays the same sequence of choices and a client rebuilding the encounter sees the same one. Without it
+        /// the actor still chooses deterministically, from a seed derived from its own id alone.
+        /// </summary>
+        public void SetSelectionSeed(int runSeed, int depth, int roomIndex)
+        {
+            _selectionSeed = SeededRandom.MixSeed(runSeed, depth, (int)RngStream.Encounter, SelectionSalt, roomIndex);
+            _selectionRandom = null;
+            _selectionDraws = 0;
+        }
+
+        private const int SelectionSalt = 0x4153; // "AS" — attack selection
+        private ulong _selectionSeed;
+        private SeededRandom _selectionRandom;
+        private int _selectionDraws;
+        private EnemyAttackDefinition _lastSelected;
+
+        /// <summary>The attack chosen immediately before the current one (no-repeat diagnostics).</summary>
+        public EnemyAttackDefinition LastSelectedAttack => _lastSelected;
+
+        /// <summary>
+        /// Diagnostics seam: clears every cooldown so a distribution proof can sample selection across the whole band
+        /// range without cooldowns, rather than list order, deciding what was reachable.
+        /// </summary>
+        public void ClearCooldownsForDiagnostics() => _cooldowns.Clear();
+
+        /// <summary>The attacks selection currently considers, including any phase-specific entries a subclass prepends.</summary>
+        public IEnumerable<EnemyAttackDefinition> ActiveMovesetForDiagnostics => ActiveMoveset;
+
+        /// <summary>How many selection draws this actor has made (determinism proofs).</summary>
+        public int SelectionDraws => _selectionDraws;
+
+        /// <summary>
+        /// The deterministic stream this actor draws attack choices from. Created on first use so an actor that never
+        /// reaches a choice allocates nothing, and never reseeded mid-encounter so the sequence stays reproducible.
+        /// </summary>
+        private SeededRandom SelectionRandom => _selectionRandom ??= new SeededRandom(
+            _selectionSeed != 0 ? _selectionSeed : SeededRandom.MixSeed(ActorDefinition?.Id?.GetHashCode() ?? 0, SelectionSalt));
 
         protected abstract IMovesetActorDefinition ActorDefinition { get; }
 
@@ -295,13 +339,30 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             if (toTarget.sqrMagnitude < 0.0001f) { _rigidbody2D.linearVelocity = Vector2.zero; return; }
             _steering ??= new ObstacleSteering(transform, BodyRadius());
             var heading = _steering.Steer(_rigidbody2D.position, toTarget.normalized, Time.fixedDeltaTime);
-            _rigidbody2D.linearVelocity = heading * ActorDefinition.MoveSpeed;
+            // RepositionToEngagementRange: while the target sits outside every authored attack band the actor closes
+            // faster, because nothing it owns can reach and plain pursuit at 1.6-3.2 tiles/s never catches a player at
+            // 5. It deals no damage, uses the same obstacle steering and the same EncounterBounds constraint as normal
+            // pursuit, and stops the moment any band contains the target — from there normal selection takes over.
+            var outOfRange = IsOutOfEngagementRange;
+            IsReengaging = outOfRange;
+            if (outOfRange) TimeOutOfEngagementRange += Time.fixedDeltaTime;
+            else TimeOutOfEngagementRange = 0f;
+            var speed = ActorDefinition.MoveSpeed * (outOfRange ? ReengageSpeedMultiplier : 1f);
+            var velocity = heading * speed;
+            // The arena's legal edge is not traversable: a boss/elite pursuing a player beyond it holds at the edge.
+            var bounds = Bounds;
+            if (bounds != null && bounds.IsBound) velocity = bounds.ConstrainVelocity(_rigidbody2D.position, velocity, Time.fixedDeltaTime);
+            _rigidbody2D.linearVelocity = velocity;
         }
 
         private ObstacleSteering _steering;
+        private EncounterBounds _bounds;
 
         /// <summary>The obstacle steering in use (diagnostics/tests).</summary>
         public ObstacleSteering Steering => _steering;
+
+        /// <summary>The encounter-room (arena) bounds this actor is confined to; null before the owning room binds them.</summary>
+        public EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = GetComponent<EncounterBounds>();
 
         private float BodyRadius()
         {
@@ -316,20 +377,94 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             EncounterStartedEvent?.Invoke(this);
         }
 
-        /// <summary>First ready active-moveset attack whose trigger range contains the target (fixed priority order).</summary>
+        /// <summary>
+        /// One attack drawn from EVERY ready active-moveset attack whose trigger band contains the target.
+        ///
+        /// List order used to decide this, which made an attack that sits late in a moveset effectively unreachable
+        /// whenever an earlier one was ready and in band — the Conductor's 14-tile burst cannon could not be seen while
+        /// its 10-tile sweep was off cooldown. Candidates are now drawn from this actor's deterministic selection
+        /// stream, so the same run replays the same sequence while no authored attack is unreachable.
+        ///
+        /// The attack chosen immediately before is skipped when any alternative is available, which removes the
+        /// degenerate same-attack-twice case without inventing adaptive behaviour. Cooldowns, phases, bands, damage and
+        /// telegraph timings are untouched.
+        /// </summary>
         public EnemyAttackDefinition SelectAttack()
         {
-            if (_target == null || ActorDefinition == null) return null;
+            if (_target == null || ActorDefinition == null || SuppressAttacks) return null;
             var distance = Vector2.Distance(_target.position, transform.position);
+            _candidates.Clear();
             foreach (var attack in ActiveMoveset)
             {
                 if (attack == null) continue;
                 if (_cooldowns.TryGetValue(attack, out var remaining) && remaining > 0f) continue;
-                if (attack.IsInTriggerRange(distance)) return attack;
+                if (attack.IsInTriggerRange(distance)) _candidates.Add(attack);
             }
 
-            return null;
+            if (_candidates.Count == 0) return null;
+            if (_candidates.Count == 1)
+            {
+                _lastSelected = _candidates[0];
+                return _lastSelected;
+            }
+
+            // Avoid an immediate repeat while an alternative exists; with only the previous attack ready it still fires.
+            var pool = _candidates.Count > 1 && _lastSelected != null && _candidates.Contains(_lastSelected) ? _candidates.Count - 1 : _candidates.Count;
+            var pick = SelectionRandom.NextInt(pool);
+            _selectionDraws++;
+            foreach (var attack in _candidates)
+            {
+                if (pool < _candidates.Count && attack == _lastSelected) continue;
+                if (pick-- == 0)
+                {
+                    _lastSelected = attack;
+                    return attack;
+                }
+            }
+
+            _lastSelected = _candidates[_candidates.Count - 1];
+            return _lastSelected;
         }
+
+        /// <summary>Reused across selections: the AI loop must not allocate a list per choice.</summary>
+        private readonly List<EnemyAttackDefinition> _candidates = new();
+
+        // ---- Phase 7: re-engagement when nothing is in band ----
+
+        /// <summary>
+        /// How much faster the actor closes while NO authored attack can reach the target. Bounded and non-damaging: it
+        /// is a gap-close, not a speed buff — inside any attack band the actor moves at its authored speed again.
+        /// </summary>
+        public const float ReengageSpeedMultiplier = 1.6f;
+
+        /// <summary>The longest trigger range any attack in the active moveset has; 0 when the actor has no moveset.</summary>
+        public float MaxAuthoredAttackRange
+        {
+            get
+            {
+                var max = 0f;
+                foreach (var attack in ActiveMoveset)
+                {
+                    if (attack != null && attack.MaxTriggerRange > max) max = attack.MaxTriggerRange;
+                }
+
+                return max;
+            }
+        }
+
+        /// <summary>
+        /// The target is beyond every authored attack band, so no attack can ever become valid where the actor stands.
+        /// This is the state that used to leave a boss walking at 1.6-3.2 tiles/s after a player moving at 5.
+        /// </summary>
+        public bool IsOutOfEngagementRange =>
+            _target != null && ActorDefinition != null && MaxAuthoredAttackRange > 0f
+            && Vector2.Distance(_target.position, transform.position) > MaxAuthoredAttackRange;
+
+        /// <summary>Seconds spent so far unable to reach the target with any attack (diagnostics / anti-kite proof).</summary>
+        public float TimeOutOfEngagementRange { get; private set; }
+
+        /// <summary>True while the re-engagement gap-close is driving the body.</summary>
+        public bool IsReengaging { get; private set; }
 
         private void BeginTelegraph(EnemyAttackDefinition attack)
         {

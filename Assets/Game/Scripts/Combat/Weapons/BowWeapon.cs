@@ -27,6 +27,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
         private IDamageRoller _damageRoller;
         private IPlayerStatsProvider _stats;
         private IImpactAttackerFeedback _impactFeedback;
+        private RuinRail.Gameplay.Stats.PlayerCombatEvents _combatEvents;
         private AimAssistConfig _aimAssist;
 
         /// <summary>The soft aim-assist tuning; null = raw aim only (applied on release).</summary>
@@ -47,7 +48,11 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
         public bool IsCharging { get; private set; }
         public float ChargeSeconds { get; private set; }
-        public float ChargeFraction => _definition == null ? 0f : BowChargeResolver.ChargeFraction(ChargeSeconds, _definition.FullChargeSeconds);
+
+        /// <summary>Seconds to a full draw after the capped Bow Charge Speed bonus; the authored time is the base.</summary>
+        public float CurrentFullChargeSeconds => _definition == null ? 0f : WeaponStatMath.BowFullChargeSeconds(_definition.FullChargeSeconds, _stats);
+
+        public float ChargeFraction => _definition == null ? 0f : BowChargeResolver.ChargeFraction(ChargeSeconds, CurrentFullChargeSeconds);
         public bool IsFullyCharged => ChargeFraction >= 1f;
         public Projectile LastSpawnedProjectile { get; private set; }
         public IReadOnlyList<Projectile> LastSpawnedProjectiles => _lastSpawnedProjectiles;
@@ -76,6 +81,12 @@ namespace RuinRail.Gameplay.Combat.Weapons
         public void SetStats(IPlayerStatsProvider stats)
         {
             _stats = stats;
+        }
+
+        /// <summary>The wearer's passive event hub (items/34 hooks); null = no passive hooks (enemies, tests).</summary>
+        public void SetCombatEvents(RuinRail.Gameplay.Stats.PlayerCombatEvents events)
+        {
+            _combatEvents = events;
         }
 
         /// <summary>Attacker-side impact hooks carried by every projectile this weapon fires; null = none.</summary>
@@ -171,18 +182,28 @@ namespace RuinRail.Gameplay.Combat.Weapons
             }
 
             var shot = BowChargeResolver.Resolve(_definition, ChargeFraction);
+            var fullDraw = ChargeFraction >= 1f;
             CancelCharge();
+            // Archer's Ring (a full draw pierces its first target) and the per-attack damage hooks of the wearer.
+            var pierce = _combatEvents != null ? _combatEvents.RaiseBowShotFired(fullDraw).Penetrations : 0;
+            var damageMultiplier = (_stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f) * (_combatEvents == null ? 1f : (100 + _combatEvents.RaiseAttackDamageRolling(shot.DamageMax, true).BonusPercent) / 100f);
 
-            var solved = ResolveShot(shot.Range);
+            var solved = ResolveShot(WeaponStatMath.ProjectileRange(shot.Range, _stats));
             LastShot = solved;
 
             _emitter.Emit(
                 _projectilePool, SingleProjectilePattern.Instance, _damageRoller, solved.Direction, solved.SpawnPosition,
-                shot.DamageMin, shot.DamageMax, shot.ProjectileSpeed, shot.Range,
-                gameObject, _lastSpawnedProjectiles, _stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f,
-                _definition.Knockback * (_stats?.GetMultiplier(StatId.Knockback) ?? 1f),
-                _definition.StaggerPower * (_stats?.GetMultiplier(StatId.StaggerPower) ?? 1f),
-                _impactFeedback);
+                shot.DamageMin, shot.DamageMax,
+                WeaponStatMath.ProjectileSpeed(shot.ProjectileSpeed, _stats),
+                WeaponStatMath.ProjectileRange(shot.Range, _stats),
+                gameObject, _lastSpawnedProjectiles, damageMultiplier,
+                WeaponStatMath.Knockback(_definition.Knockback, _stats),
+                WeaponStatMath.StaggerPower(_definition.StaggerPower, _stats),
+                _impactFeedback,
+                0f,
+                DamageTeam.Player,
+                ProjectileVisualCatalog.ResolveWeaponVisualId(_definition),
+                pierce);
             LastSpawnedProjectile = _lastSpawnedProjectiles[_lastSpawnedProjectiles.Count - 1];
 
             return true;

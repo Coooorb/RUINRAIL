@@ -8,6 +8,7 @@ using RuinRail.Dungeon.Runtime;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Combat.Weapons;
 using RuinRail.Dungeon.Grid;
+using RuinRail.Gameplay.Base;
 using RuinRail.Gameplay.Economy;
 using RuinRail.Gameplay.Enemies;
 using RuinRail.Gameplay.Enemies.Attacks;
@@ -22,6 +23,9 @@ using RuinRail.Core.Input;
 using RuinRail.Presentation;
 using RuinRail.Presentation.Animation;
 using RuinRail.Presentation.Vfx;
+using RuinRail.Presentation.World;
+using RuinRail.Networking;
+using RuinRail.UI.Base;
 using RuinRail.UI.Hud;
 using RuinRail.UI.Inventory;
 using RuinRail.UI.Merchant;
@@ -29,6 +33,7 @@ using RuinRail.UI.Multiplayer;
 using RuinRail.UI.Navigation;
 using RuinRail.UI.Onboarding;
 using RuinRail.UI.Pause;
+using RuinRail.UI.RunEnd;
 using RuinRail.UI.Theme;
 using RuinRail.UI.WeaponCache;
 using UnityEngine;
@@ -42,7 +47,7 @@ namespace RuinRail.App
     /// at-risk inventory; camera, HUD, inventory, pause, tutorial, VFX and audio binders observe. Descend rebuilds the
     /// depth; Return/Fail hand back to the Shelter scene. Every decision is the existing services'.
     /// </summary>
-    public sealed class ExpeditionScene : MonoBehaviour
+    public sealed partial class ExpeditionScene : MonoBehaviour
     {
         /// <summary>
         /// The contextual tutorial prompt's band on the 640×360 frame. It sits below the HUD's top band — the boss bar
@@ -57,7 +62,11 @@ namespace RuinRail.App
         private GroundLootLifetime _groundLifetime;
         private PlayerRig _rig;
         private PartyLifeRoster _roster;
+        private ExpeditionParty _party;
+        private LootAuthorityService _lootAuthority;
         private GameObject _dungeonRoot;
+        /// <summary>The depth's environmental underlay (presentation only); rebuilt with every depth.</summary>
+        public WorldSubstrate Substrate { get; private set; }
         private CameraRig _camera;
         private DungeonHudViewModel _hud;
         private InventoryViewModel _inventory;
@@ -68,6 +77,7 @@ namespace RuinRail.App
         private MinimapModel _minimap;
         private int? _revealedRoom;
         private PauseMenuViewModel _pause;
+        private RunFailedViewModel _runFailed;
         private TutorialPromptService _prompts;
         private ExpeditionTutorialBinder _tutorial;
         private TransitVoteViewModel _vote;
@@ -85,6 +95,12 @@ namespace RuinRail.App
 
         public ExpeditionService Expedition => _expedition;
         public PlayerRig Rig => _rig;
+        /// <summary>The run-level party composition: one player entity per expedition participant (1-3).</summary>
+        public ExpeditionParty Party => _party;
+        /// <summary>Host arbitration of every loot/economy request in this run (82).</summary>
+        public LootAuthorityService LootAuthority => _lootAuthority;
+        /// <summary>True when this run actually composed more than one player entity — the source of every co-op UI flag.</summary>
+        public bool IsCoop => _party != null && _party.IsCoop;
         public IReadOnlyDictionary<int, RoomRuntime> Rooms { get; private set; }
         public DungeonGenerationResult Generation { get; private set; }
         public int DepthsBuilt { get; private set; }
@@ -96,6 +112,9 @@ namespace RuinRail.App
         public TransitVoteViewModel Vote => _vote;
         public PauseMenuViewModel Pause => _pause;
         public PauseMenuScreen PauseScreen { get; private set; }
+        /// <summary>The Death / Run Lost screen: shown once from the expedition-ended callback after a conclusive failure.</summary>
+        public RunFailedViewModel RunFailed => _runFailed;
+        public RunFailedScreen RunFailedScreen { get; private set; }
         public InventoryViewModel Inventory => _inventory;
         public InventoryView InventoryView { get; private set; }
         /// <summary>The merchant trade screen (dungeon/58); bound to the merchant the player opened, closed with the room left behind.</summary>
@@ -131,6 +150,22 @@ namespace RuinRail.App
             }
 
             _expedition = session.Expedition;
+            // Solo, co-op host or co-op client (82): decided once, from the live session, never from a flag of the run.
+            Mode = ResolveRunMode(app);
+            if (Mode == CoopRunMode.Client)
+            {
+                // A joining client composes nothing until the host's start, the host's depth and its own replicated
+                // character exist: it never builds a player of its own and never rolls a dungeon of its own.
+                StartCoroutine(BuildWhenClientReady(app));
+                return;
+            }
+
+            BuildCore(app, null);
+        }
+
+        private void BuildCore(GameApp app, GameObject ownedNetworkPlayer)
+        {
+            var session = app.Menu.Session;
             _roster = new PartyLifeRoster();
             var content = app.Content;
             var state = _expedition.State;
@@ -145,7 +180,8 @@ namespace RuinRail.App
                 MerchantConfig = content.Merchant,
                 CarriedWallet = state.CarriedWallet,
                 EventConfig = content.Events,
-                BossSpawner = new RosterBossSpawner(new DefaultBossSpawner(content.Bosses, content.Stagger, spawner)),
+                // 82: bosses are the host's to spawn; a client shows the host's boss as a replica.
+                BossSpawner = Mode == CoopRunMode.Client ? null : new RosterBossSpawner(new DefaultBossSpawner(content.Bosses, content.Stagger, spawner)),
                 Expedition = _expedition,
                 ReviveAuthority = new PartyReviveAuthority(_roster)
             };
@@ -156,7 +192,9 @@ namespace RuinRail.App
             var camGo = new GameObject("MainCamera") { tag = "MainCamera" };
             camGo.transform.position = new Vector3(0f, 0f, -10f);
             var cam = camGo.AddComponent<UnityEngine.Camera>();
-            cam.backgroundColor = Color.black;
+            // Not raw black: the clear colour is the biome substrate's darkest note, so the few pixels the underlay
+            // cannot reach (a window wider than the layout plus its margin) still read as the same dark ground.
+            cam.backgroundColor = WorldSubstrate.ClearColorFor(state.Biome);
             cam.clearFlags = CameraClearFlags.SolidColor;
             // No AudioListener here: the process listener (AudioListenerRig on GameApp) follows this camera.
             _camera = camGo.AddComponent<CameraRig>();
@@ -177,14 +215,63 @@ namespace RuinRail.App
             // Every pickup that lands on the ground (chest loot, event rewards, drops) gets its sound, prompt hooks and stinger.
             _services.GroundLoot.PickupTracked += OnPickupTracked;
 
-            // Player from the at-risk inventory.
-            _rig = new PlayerRig(content, app.Registry, app.Specials);
+            // Player from the at-risk inventory plus the profile's permanent attribute ranks (player/13): the
+            // progression source is registered inside the one player composition, so the run's stat pipeline —
+            // and therefore the run-start full-HP fill below it — already carries Vitality and every other attribute.
+            _rig = new PlayerRig(content, app.Registry, app.Specials)
+            {
+                ReviveRequester = RequestDefibrillatorRevive,
+                // A co-op client's body is simulated by the host, which runs its incoming-impact passives (Anchored,
+                // Shock Absorber, Exo Lock) on its copy; the client's own rig runs every other passive.
+                PassiveAdmit = Mode == CoopRunMode.Client ? RuinRail.Gameplay.Items.Passives.EquipmentPassiveRegistrar.IsMemberRigMechanic : null,
+                GroundPickups = () => _services.GroundLoot.Tracked
+            };
             _disposables.Add(_rig);
-            var player = _rig.Build(state, _roster, _expedition.State.TransactionId, Vector2.zero);
+
+            // ---- Run-level party composition (80/82/83) ----
+            // 82: the process only applies damage locally when it is the authority. This was never set from the real
+            // role, so a client build would have applied damage itself; solo and host stay authoritative as before.
+            DamageAuthority.LocalIsAuthoritative = Mode != CoopRunMode.Client && (app.Network == null || app.Network.Controller == null || app.Network.Controller.IsHostAuthority);
+            _lootAuthority = new LootAuthorityService(Mode == CoopRunMode.Solo ? (app.Network?.Controller?.Authority ?? LocalAuthorityContext.Instance) : CoopAuthority());
+            _lootAuthority.SetDropService(new ItemDropService(_services.CreateLootSpawner(gameObject)));
+            GameObject player;
+            switch (Mode)
+            {
+                case CoopRunMode.Host:
+                    // Every member — this host included — is a real network player object (82); the host's own run
+                    // player is composed onto the one it owns, so the clients see the host like any other member.
+                    // The run player is composed onto the host's own object inside the spawn (before the loot
+                    // authority registers it), so the party's local entity already is the rig's player.
+                    _party = ComposeHostParty(app, session);
+                    player = _party != null && _party.LocalEntity == _rig.Player ? _rig.Player : null;
+                    break;
+                case CoopRunMode.Client:
+                    // The character the host spawned for this peer, never a second one (82).
+                    player = _rig.Attach(ownedNetworkPlayer, state, _roster, _expedition.State.TransactionId, session.Profile.Skills);
+                    _party = ComposeClientParty(app, session, player);
+                    break;
+                default:
+                    player = _rig.Build(state, _roster, _expedition.State.TransactionId, Vector2.zero, null, session.Profile.Skills);
+                    _party = ComposeParty(app, session, player);
+                    break;
+            }
+
+            if (_party == null || player == null)
+            {
+                Debug.LogError($"Expedition composition failed in {Mode} mode: no party or no local player.");
+                _expedition.Fail();
+                return;
+            }
+
+            _disposables.Add(_party);
             player.GetComponent<PlayerAiming>().SetCamera(cam);
-            _camera.SetFollow(() => player.GetComponent<DeadSpectatorFollow>().FollowPosition);
-            _camera.SetAim(() => (Vector2)player.transform.position + player.GetComponent<PlayerAiming>().AimDirection * 3f);
-            var binding = new PartyExpeditionBinding(_expedition, _roster, player.GetComponent<PlayerLifeStateComponent>());
+            _camera.SetFollow(() => player != null ? player.GetComponent<DeadSpectatorFollow>().FollowPosition : (Vector2)_camera.transform.position);
+            _camera.SetAim(() => player != null ? (Vector2)player.transform.position + player.GetComponent<PlayerAiming>().AimDirection * 3f : (Vector2)_camera.transform.position);
+            var binding = new PartyExpeditionBinding(_expedition, _roster, player.GetComponent<PlayerLifeStateComponent>())
+            {
+                // 84: the wipe is the host's decision; a client fails with the host's run end, never on its own view.
+                FailOnWipe = Mode != CoopRunMode.Client
+            };
             _disposables.Add(binding);
 
             // Player presentation: body (sprite + animator the animation driver draws into) and the held weapon on the
@@ -215,17 +302,43 @@ namespace RuinRail.App
             _hud.BindPlayer(player.GetComponent<HealthComponent>(), player.GetComponent<PlayerDash>(), player.GetComponent<PlayerLifeStateComponent>());
             _hud.BindWeapons(_rig.Loadout, _rig.Loadout.GetSlot(WeaponSlot.Primary), _rig.Loadout.GetSlot(WeaponSlot.Secondary), t => state.Inventory.Get(t), _rig.Special);
             _hud.BindInventory(state.Inventory);
+            // Timed effects: the HUD reads the runner that owns their countdowns, so a chip cannot outlive its buff.
+            _hud.BindStatusEffects(_rig.Consumables != null ? _rig.Consumables.Effects : null);
             _hud.BindExpedition(_expedition);
             _hud.BindParty(_roster);
             _hud.SetDisplayName(_expedition.State.TransactionId, session.Profile.DisplayName);
+            // Every composed member's sanitized name reaches the party rows, and a member held in reconnect grace (85)
+            // shows as DISCONNECTED rather than silently vanishing from the party block.
+            foreach (var member in _party.Members)
+            {
+                var life = member.GameObject != null ? member.GameObject.GetComponent<PlayerLifeStateComponent>() : null;
+                if (life != null) _hud.SetDisplayName(life.ParticipantId, member.Identity.DisplayName);
+            }
+
+            _party.Presence.Despawned += OnPartyMemberLeft;
+            _party.Presence.Reconnected += OnPartyMemberReconnected;
+            _disposables.Add(new ActionDisposable(() =>
+            {
+                if (_party == null) return;
+                _party.Presence.Despawned -= OnPartyMemberLeft;
+                _party.Presence.Reconnected -= OnPartyMemberReconnected;
+            }));
+            // 91 enemy-remaining readout: the local player's current room is the one authority — its lifecycle decides
+            // whether anything is counted (active standard combat only) and its encounter membership gives the number.
+            _hud.BindEnemyCount(() => CurrentRoom != null ? (CurrentRoom.ShowsEnemyCount, CurrentRoom.EnemiesRemaining) : (false, 0));
             HudView = DungeonHudView.Create(_hud);
             // One map model for the run; BuildDepth fills it from the generated layout and the room-entry events feed it.
             _minimap = new MinimapModel();
             HudView.BindMinimap(_minimap);
             _inventory = new InventoryViewModel();
             _inventory.Bind(state.Inventory, player.GetComponent<PlayerLootReceiver>(), () => state.CarriedCoins, app.Specials);
+            // 84/86: in co-op the shared world must keep running while one player is in a menu — a client can never
+            // stop the host simulation, and the host opening Pause is local UI too. Solo keeps the accepted
+            // time-scale pause. The flag is the actually composed party size, never a literal.
             var worldPause = new TimeScalePause();
-            _inventory.ConfigurePause(worldPause, isCoop: false);
+            var isCoop = _party.IsCoop;
+            InstallLootArbiter(isCoop);
+            _inventory.ConfigurePause(worldPause, isCoop);
             _disposables.Add(_inventory);
             _inventory.Changed += RefreshInventoryUi;
             InventoryView = InventoryView.Create(_inventory);
@@ -233,21 +346,27 @@ namespace RuinRail.App
             var playerSet = content.AnimationSetFor(CharacterVisual.PlayerActorId);
             if (playerSet != null && playerSet.TryGet("Idle", BodyFacing8.S, out var idle) && idle.Frames.Length > 0) InventoryView.SetPortrait(idle.Frames[0]);
             _merchant = new MerchantViewModel();
-            _merchant.ConfigurePause(worldPause, isCoop: false);
+            _merchant.ConfigurePause(worldPause, isCoop);
             _disposables.Add(_merchant);
             _merchant.Changed += RefreshMerchantUi;
             MerchantView = MerchantView.Create(_merchant);
             _weaponCache = new WeaponCacheViewModel();
-            _weaponCache.ConfigurePause(worldPause, isCoop: false);
+            _weaponCache.ConfigurePause(worldPause, isCoop);
             _disposables.Add(_weaponCache);
             _weaponCache.Changed += RefreshWeaponCacheUi;
             WeaponCacheView = WeaponCacheView.Create(_weaponCache);
-            _pause = new PauseMenuViewModel(_rig.Reader, worldPause, isCoop: false, app.SettingsScreen, app.Quit, ReturnToMainMenu, () => _expedition != null && _expedition.IsExpeditionActive);
+            _pause = new PauseMenuViewModel(_rig.Reader, worldPause, isCoop, app.SettingsScreen, app.Quit, ReturnToMainMenu, () => _expedition != null && _expedition.IsExpeditionActive);
             _disposables.Add(_pause);
-            // Tab never opens the inventory under the pause menu; Esc with the inventory open closes the inventory instead of pausing.
-            _rig.Reader.InventoryToggled += () => { if (!_pause.IsOpen && !_merchant.IsOpen && !_weaponCache.IsOpen) _inventory.Toggle(); };
+            // The Run Lost screen: the existing failure transaction decides the loss; this only shows its summary and offers the two exits.
+            _runFailed = new RunFailedViewModel(LeaveForShelterAfterRunLost, ReturnToMainMenu);
+            _runFailed.ConfigurePause(worldPause, isCoop);
+            _disposables.Add(_runFailed);
+            _runFailed.Changed += RefreshRunFailedUi;
+            // Tab never opens the inventory under the pause menu or the Run Lost screen; Esc with the inventory open closes the inventory instead of pausing.
+            _rig.Reader.InventoryToggled += () => { if (!_pause.IsOpen && !_merchant.IsOpen && !_weaponCache.IsOpen && !_runFailed.IsOpen) _inventory.Toggle(); };
             _pause.BeforePauseToggle = () =>
             {
+                if (_runFailed != null && _runFailed.IsOpen) return true; // Esc never opens the pause menu over the Run Lost screen
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return true; }
                 if (_merchant.IsOpen) { _merchant.Close(); return true; }
                 if (!_inventory.IsOpen) return false;
@@ -259,6 +378,7 @@ namespace RuinRail.App
             _menuInput.KeyboardBackEnabled = false;
             _menuInput.Back += () =>
             {
+                if (_runFailed.IsOpen) return; // the Run Lost screen has no back: one of its two exits must be chosen
                 if (_pause.IsOpen) { _pause.Back(); return; }
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return; }
                 if (_merchant.IsOpen) { _merchant.Close(); return; }
@@ -267,6 +387,7 @@ namespace RuinRail.App
             _menuInput.InputBlocked = () => app.InputBlocked;
             PauseScreen = PauseMenuScreen.Create(_canvas.transform, _menuInput, _pause);
             _pause.Changed += RefreshPauseUi;
+            RunFailedScreen = RunFailedScreen.Create(_canvas.transform, _menuInput, _runFailed);
             _prompts = new TutorialPromptService(new SaveSlotTutorialProgress(session.Slot, session.Autosave, () => app.Settings.Current.Tutorial.ShowPrompts), new SchemeGlyphs(InputScheme.KeyboardMouse));
             _tutorial = new ExpeditionTutorialBinder(_prompts, _rig.Reader).Attach(_expedition).Attach(player.GetComponent<HealthComponent>(), state.Inventory).Attach(_rig.Loadout);
             _disposables.Add(_tutorial);
@@ -277,19 +398,31 @@ namespace RuinRail.App
             // The one interaction prompt (ui/90): what the Interact press would do to the nearest usable world object.
             _glyphs = new SchemeGlyphs(InputScheme.KeyboardMouse);
             _interactor = player.GetComponent<PlayerInteractor>();
-            _interactText = UiKit.Label(_canvas.transform, string.Empty, new UiRect(170, 250, 300, 24), 1, TextAnchor.MiddleCenter);
+            // Wide enough for an event prompt with its cost and refusal reason ("[E] REPAIR BROKEN MACHINE (100 COINS) — NEED 63 MORE COINS").
+            _interactText = UiKit.Label(_canvas.transform, string.Empty, new UiRect(120, 250, 400, 24), 1, TextAnchor.MiddleCenter);
 
             _expedition.DepthEntered += OnDepthEntered;
             _expedition.TransitOpened += OnTransitOpened;
             _expedition.ExpeditionEnded += OnExpeditionEnded;
+            ComposeCoopRuntime(app, player);
             BuildDepth();
         }
 
         private void BuildDepth()
         {
-            if (_dungeonRoot != null) Destroy(_dungeonRoot);
             var content = _app.Content;
             var state = _expedition.State;
+            // 82: a client never rolls a depth. It waits for the host's payload for exactly this depth and rebuilds
+            // from its seed, biome and generation round; anything else is a desync and fails loudly.
+            var hostPayload = default(DungeonSyncPayload);
+            if (Mode == CoopRunMode.Client && !TryGetHostDepthPayload(state, out hostPayload))
+            {
+                _awaitingHostDepth = true;
+                return;
+            }
+
+            _awaitingHostDepth = false;
+            if (_dungeonRoot != null) Destroy(_dungeonRoot);
             var pools = BiomeRoomPools.Build(content.Rooms);
             var rules = DungeonGraphRules.CreateDefault();
             var generator = new DungeonGraphGenerator(rules);
@@ -297,22 +430,39 @@ namespace RuinRail.App
             Dictionary<int, RoomRoot> rooms = null;
             var exitProblems = new List<string>();
             // 53 "Generation Failure": a layout that instantiates with an open doorway onto the void is discarded and
-            // the next deterministic round is rolled; it is never patched in place.
-            for (var firstRound = 1; firstRound <= DungeonGenerationPipeline.DefaultMaxRounds; firstRound = Generation.Rounds + 1)
+            // the next deterministic round is rolled; it is never patched in place. A client starts at the round the
+            // host kept, so it lands on the same layout without re-deciding anything.
+            var startRound = Mode == CoopRunMode.Client ? Mathf.Max(1, hostPayload.Rounds) : 1;
+            for (var firstRound = startRound; firstRound <= DungeonGenerationPipeline.DefaultMaxRounds; firstRound = Generation.Rounds + 1)
             {
                 Generation = DungeonGenerationPipeline.Generate(generator, pool, state.RunSeed, state.Depth, firstRound: firstRound);
                 if (!Generation.Success) break;
                 _dungeonRoot = new GameObject($"Dungeon_D{state.Depth}_{state.Biome}");
                 rooms = DungeonLayoutInstantiator.Instantiate(Generation.Layout, _dungeonRoot.transform);
                 exitProblems = DungeonExitValidator.Validate(Generation.Layout, rooms);
-                if (exitProblems.Count == 0) break;
+                if (exitProblems.Count == 0 || Mode == CoopRunMode.Client) break;
                 Debug.LogWarning($"Dungeon round {Generation.Rounds} discarded: " + string.Join(" | ", exitProblems));
                 Destroy(_dungeonRoot);
                 _dungeonRoot = null;
                 rooms = null;
             }
 
+            var poolFingerprint = DungeonFingerprints.RoomPool(pool);
             Destroy(rules);
+            if (Mode == CoopRunMode.Client)
+            {
+                var desync = ClientDepthDesync(hostPayload, poolFingerprint, rooms != null && exitProblems.Count == 0);
+                if (desync != null)
+                {
+                    Debug.LogError("COOP-CLIENT depth rebuild refused: " + desync);
+                    _coopClient?.ReportDepth(state.Depth, false, Generation != null && Generation.Success ? DungeonFingerprints.Layout(Generation.Layout) : string.Empty, desync);
+                    LastDepthDesync = desync;
+                    if (_dungeonRoot != null) Destroy(_dungeonRoot);
+                    _expedition.Fail();
+                    return;
+                }
+            }
+
             if (!Generation.Success || rooms == null)
             {
                 Debug.LogError("Dungeon generation failed: " + (Generation.Error ?? "no round produced a dungeon without an open exit into the void"));
@@ -321,8 +471,23 @@ namespace RuinRail.App
             }
 
             ExitProblems = exitProblems;
-            var context = new DungeonRuntimeContext(state.RunSeed, state.Depth, state.StartingPartySize, content.Enemies, new DefaultEnemySpawner(content.Stagger), content.DepthScaling, content.Elites, new DefaultEliteSpawner(content.Stagger));
+            // 83: the dungeon scales for the party that actually exists. StartingPartySize is what the lobby promised;
+            // ScalingPartySize is what was composed. They are equal for a correctly started run — ComposeParty refuses
+            // to start otherwise — and this makes the guarantee structural rather than a comment.
+            var partySize = _party != null ? _party.ScalingPartySize : state.StartingPartySize;
+            // 82: enemy spawning is a host decision; a client's rooms get a spawner that refuses every spawn (and
+            // never activate anyway — they only mirror the host's lifecycle).
+            IEnemySpawner roomSpawner = new DefaultEnemySpawner(content.Stagger);
+            IEliteSpawner eliteSpawner = new DefaultEliteSpawner(content.Stagger);
+            if (Mode == CoopRunMode.Client)
+            {
+                roomSpawner = new AuthoritativeEnemySpawner(roomSpawner, new CoopClientAuthority());
+                eliteSpawner = null;
+            }
+
+            var context = new DungeonRuntimeContext(state.RunSeed, state.Depth, partySize, content.Enemies, roomSpawner, content.DepthScaling, content.Elites, eliteSpawner);
             Rooms = DungeonRoomRuntimeComposer.Attach(Generation.Layout, rooms, context, _services);
+            if (Mode == CoopRunMode.Client) foreach (var runtime in Rooms.Values) runtime.SetAuthoritative(false);
             foreach (var runtime in Rooms.Values)
             {
                 runtime.EnemySpawned += (_, enemy) => BindEnemyPresentation(enemy);
@@ -338,7 +503,7 @@ namespace RuinRail.App
                         var boss = content2.Boss;
                         BindActorPresentation(boss.Boss, boss.Boss.Definition != null ? boss.Boss.Definition.Id : null, isElite: false);
                         // Boss health is a dedicated screen bar (no small world bar): name + authoritative HP while the fight is on.
-                        // "Active encounter" is the boss room being entered and unresolved (the boss actor itself acquires its target at spawn).
+                        // "Active encounter" is the boss room being entered and unresolved (the boss acquires its target from BossEngagement.Begin on that entry).
                         var bossRoom = runtime;
                         _hud.BindBoss(boss.Boss.Definition != null ? boss.Boss.Definition.DisplayName : "BOSS", boss.Boss.Health, () => bossRoom.Lifecycle == RoomLifecycleState.Active && !boss.IsDefeated);
                     }
@@ -348,6 +513,7 @@ namespace RuinRail.App
                 AttachRoomAudio(runtime);
                 AttachMerchant(runtime);
                 AttachWeaponCache(runtime);
+                AttachEventNotices(runtime);
                 AttachRoomPresence(runtime);
             }
 
@@ -356,11 +522,26 @@ namespace RuinRail.App
             var startRoot = rooms[Generation.Graph.StartId];
             var spawn = startRoot.GetMarkers(RoomMarkerRole.PlayerSpawn).FirstOrDefault();
             var position = spawn != null ? (Vector2)startRoot.transform.TransformPoint(spawn.WorldCenter) : (Vector2)startRoot.transform.position;
-            _rig.Player.transform.position = position;
-            _rig.Player.GetComponent<Rigidbody2D>().position = position;
-            _camera.SetFollow(() => _rig.Player.GetComponent<DeadSpectatorFollow>().FollowPosition);
+            if (Mode == CoopRunMode.Solo)
+            {
+                _rig.Player.transform.position = position;
+                _rig.Player.GetComponent<Rigidbody2D>().position = position;
+            }
+            else
+            {
+                // Every member starts on the Start room's validated spawn markers, in the run's member order, on
+                // every peer (the host places them authoritatively; a client places its own the same way so the
+                // first reconciliation has nothing to correct).
+                position = PlaceCoopMembersAtStart(Generation.Layout, rooms);
+            }
+            _camera.SetFollow(() => _rig.Player != null ? _rig.Player.GetComponent<DeadSpectatorFollow>().FollowPosition : (Vector2)_camera.transform.position);
             var bounds = Generation.Layout.Placements.Aggregate(new Rect(position, Vector2.zero), (r, p) => { var b = p.Bounds; var pr = new Rect((Vector2)b.min * GridConstants.TileWorldSize, (Vector2)b.size * GridConstants.TileWorldSize); return Rect.MinMaxRect(Mathf.Min(r.xMin, pr.xMin), Mathf.Min(r.yMin, pr.yMin), Mathf.Max(r.xMax, pr.xMax), Mathf.Max(r.yMax, pr.yMax)); });
             _camera.SetVisibleBounds(bounds);
+            // The dark environmental underlay the depth sits in, under the dungeon root so it dies with the depth.
+            // Presentation only: Ground layer at a large negative order, no collider, no tile occupancy, no room
+            // membership — pathing, sealing, encounter bounds, doors and the minimap never see it.
+            Substrate = WorldSubstrate.Create(_dungeonRoot.transform, state.Biome, bounds);
+            _camera.GetComponent<UnityEngine.Camera>().backgroundColor = WorldSubstrate.ClearColorFor(state.Biome);
             _camera.GetComponent<BiomeLightingApplier>().Apply(content.LightingFor(state.Biome));
             // The depth objective is contextual, not a permanent text block: it rides the room-title reveal of the
             // Start room the player is standing in, and disappears with it.
@@ -371,6 +552,11 @@ namespace RuinRail.App
             _minimap?.MarkEntered(Generation.Graph.StartId);
             CurrentRoom = Rooms != null && Rooms.TryGetValue(Generation.Graph.StartId, out var startRuntime) ? startRuntime : null;
             DepthsBuilt++;
+            // The personal-best record is written here and nowhere else: the depth has generated, validated, composed
+            // and placed the player. Every earlier return in this method is a failed arrival, so a descend that could
+            // not build a dungeon never advances the record.
+            _expedition.RecordDepthArrival(state.Depth);
+            BindCoopDepth(pool, poolFingerprint);
         }
 
         /// <summary>Elite / Boss body: the same seam as every other character, driven by the moveset actor state.</summary>
@@ -492,10 +678,61 @@ namespace RuinRail.App
             binding.Event.ChoiceRequested += OnWeaponCacheChoiceRequested;
         }
 
+        /// <summary>
+        /// Every event object (57) reports what a press did through the HUD notice: the reward that dropped, a failed
+        /// repair, a started wave, a purchased heal — and a refused press says why (not enough coins, HP full, used).
+        /// Async events (Cursed Chest, Supply Signal) announce their resolution from the event's own Completed.
+        /// </summary>
+        private void AttachEventNotices(RoomRuntime runtime)
+        {
+            var binding = runtime.GetComponent<RoomContentBinding>();
+            if (binding != null && binding.Transit != null)
+            {
+                // Boarding the transit (60 step 5) restates the open decision on the notice line; the vote panel itself is already up.
+                binding.Transit.Boarded += _ => Notify("TRANSIT BOARDED: RETURN TO SHELTER (1) OR DESCEND DEEPER (2)", false);
+            }
+
+            if (binding == null || binding.Event == null || binding.EventInstance == null) return;
+            var instance = binding.EventInstance;
+            binding.Event.Activated += (_, result) => { if (result.Outcome != DungeonEventOutcome.Success && result.Outcome != DungeonEventOutcome.Failed || !result.IsTerminal) Notify(EventOutcomeText.For(instance, result, _app.Configs.Resolve), false); };
+            binding.Event.Refused += (_, _, result) => Notify(EventOutcomeText.For(instance, result, _app.Configs.Resolve), true);
+            instance.Completed += (e, result) => Notify(EventOutcomeText.For(e, result, _app.Configs.Resolve), result.Outcome == DungeonEventOutcome.Failed);
+            if (instance is SupplySignalEvent signal) _signals.Add(signal);
+        }
+
+        private readonly List<SupplySignalEvent> _signals = new();
+        private string _heldNotice;
+
+        /// <summary>The last notice the run announced (proof/diagnostics) and how many there were.</summary>
+        public string LastNotice { get; private set; } = string.Empty;
+        public int Notices { get; private set; }
+
+        private void Notify(string text, bool isProblem)
+        {
+            if (string.IsNullOrEmpty(text)) return;
+            LastNotice = text;
+            Notices++;
+            HudView?.Notice?.Show(text, isProblem);
+        }
+
+        /// <summary>A running Supply Signal keeps its countdown on the notice line; nothing else is held.</summary>
+        private void RefreshHeldNotice()
+        {
+            var running = _signals.FirstOrDefault(s => s.IsRunning);
+            var text = running != null ? $"SUPPLY SIGNAL: SURVIVE {Mathf.CeilToInt(running.Remaining)} S" : null;
+            if (text == _heldNotice) return;
+            _heldNotice = text;
+            if (text != null) HudView?.Notice?.Hold(text);
+            else HudView?.Notice?.Clear();
+        }
+
         private void OnWeaponCacheChoiceRequested(DungeonEventInteractable interactable, EventActor actor)
         {
             if (_weaponCache == null || interactable == null || actor == null) return;
             if (interactable.Event is not WeaponCacheEvent cache) return;
+            // The screen belongs to whoever pressed Interact on their own machine: a joined member's press replayed on
+            // the host never opens the host's screen (that member opened its own).
+            if (Mode != CoopRunMode.Solo && actor.GameObject != null && _rig?.Player != null && actor.GameObject != _rig.Player) return;
             if (_weaponCache.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false) || (_merchant?.IsOpen ?? false)) return;
             if (_openCache != interactable)
             {
@@ -503,7 +740,163 @@ namespace RuinRail.App
                 _weaponCache.Bind(cache, actor, _expedition?.State?.Inventory, _app.Specials);
             }
 
+            if (Mode == CoopRunMode.Client)
+            {
+                var node = NodeOf(interactable);
+                _weaponCache.ChooseRequest = index => { _coopClient?.SendCacheChoice(node, index); return _coopClient != null; };
+            }
+
             _weaponCache.Open();
+        }
+
+        /// <summary>
+        /// Composes the run's party from the lobby's start snapshot (81/83).
+        ///
+        /// The snapshot is the single source of who is in the expedition — the same object the host used to decide the
+        /// party size the dungeon is about to be scaled for. Composing from it is what closes the latent scaling bug:
+        /// if the snapshot promises three players and only one entity can be built, this returns null and the run fails
+        /// with a multiplayer error instead of silently generating a trio-scaled dungeon for a solo player.
+        /// </summary>
+        private ExpeditionParty ComposeParty(GameApp app, BaseSession session, GameObject localPlayer)
+        {
+            var content = app.Content;
+            var snapshot = session.Lobby?.StartSnapshot;
+            var local = session.Lobby?.Get(BaseSession.LocalClientId);
+            var members = new List<PartyMemberDescriptor>();
+            if (snapshot != null)
+            {
+                foreach (var member in snapshot.Members)
+                {
+                    // The lobby carries identity and at-risk loadout, not display names; the local player's own profile
+                    // name is used for this peer and the roster's sanitizer supplies "Player N" for the rest (10).
+                    var name = member.ClientId == BaseSession.LocalClientId ? session.Profile.DisplayName : null;
+                    members.Add(new PartyMemberDescriptor(member.ClientId, name, member.ParticipantId, member.ClientId == BaseSession.LocalClientId));
+                }
+            }
+
+            // 85: "Initial reconnect grace target: ~60 s" — a disconnected character stays represented and at risk.
+            var grace = new ReconnectGraceService(ReconnectGraceService.DefaultGraceSeconds,
+                () => _expedition != null && _expedition.IsExpeditionActive);
+            var request = new PartyCompositionRequest
+            {
+                Members = members,
+                LocalClientId = BaseSession.LocalClientId,
+                LocalDisplayName = session.Profile.DisplayName ?? "Player 1",
+                LocalParticipantId = local?.ParticipantId ?? _expedition.State.TransactionId,
+                LocalEntity = localPlayer,
+                IsHost = app.Network?.Controller == null || app.Network.Controller.IsHostAuthority,
+                Balance = content.PlayerBalance,
+                Caps = content.StatCaps,
+                LifeRoster = _roster,
+                Loot = _lootAuthority,
+                // On a live host session every member is spawned as the release network player object, so the other
+                // peers receive it; offline the same composition is built locally. Either way it is one entity per
+                // member through the same presence service.
+                RemoteFactory = LiveRemoteFactory(app, localPlayer),
+                LiveConnection = (app.Network?.Driver as NgoNetworkDriver)?.Connections,
+                Items = app.Registry,
+                Ammo = content.AmmoBalance,
+                Grace = grace,
+                DisplayNamePolicy = content.DisplayNamePolicy,
+                // Remote members spawn a ring around the start marker; the local player keeps the spawn the run placed it at.
+                SpawnPosition = identity => (Vector2)localPlayer.transform.position + RemoteSpawnOffset(identity.ClientId),
+                // Presentation only: the same accepted visual composition every player gets. Never local input, camera,
+                // HUD, cursor or audio listener — those belong to the local presentation composed once below.
+                Decorate = (go, isLocalOwner) => { if (!isLocalOwner) PlayerVisualComposer.Compose(go, content); }
+            };
+
+            var party = ExpeditionParty.Compose(request, out var error);
+            if (party == null)
+            {
+                Debug.LogError($"Co-op composition failed ({error}): the expedition expected {members.Count} participant(s). The run is not started underfilled (83).");
+                return null;
+            }
+
+            return party;
+        }
+
+        /// <summary>
+        /// Routes world pickups through the host arbiter for a co-op party: one shared object, one winner, one
+        /// transaction, and a coin pile split across the party (58/82). Solo installs nothing, so the accepted solo
+        /// pickup path is untouched. Cleared in OnDestroy — the next run must never inherit this run's arbiter.
+        /// </summary>
+        private void InstallLootArbiter(bool isCoop)
+        {
+            PickupArbiter.Clear();
+            if (Mode == CoopRunMode.Client)
+            {
+                // 82: a client never resolves ground loot. Its pickups are presentation of the host's; the host resolves
+                // the same press (or the same pull) against its own objects and grants the result to this player.
+                PickupArbiter.Items = (_, _) => false;
+                PickupArbiter.Coins = (_, _) => false;
+                return;
+            }
+
+            if (!isCoop || _lootAuthority == null) return;
+            PickupArbiter.Items = (pickup, interactor) =>
+            {
+                var clientId = ClientIdOf(interactor);
+                if (clientId == null) return null;
+                var granted = pickup.Item != null ? pickup.Item.ToSnapshot() : null;
+                var transaction = NewTransactionId();
+                var accepted = _lootAuthority.RequestPickup(transaction, clientId.Value, pickup).Verdict == LootVerdict.Accepted;
+                // A joined member's pickup lands in the host's mirror of its backpack; the member's own inventory gets it here.
+                if (accepted && _coopHost != null) _coopHost.SendGrant(clientId.Value, granted, transaction, "pickup");
+                return accepted;
+            };
+            PickupArbiter.Coins = (pile, interactor) =>
+            {
+                var clientId = ClientIdOf(interactor);
+                if (clientId == null) return null;
+                return _lootAuthority.RequestCoins(NewTransactionId(), clientId.Value, pile).Verdict == LootVerdict.Accepted;
+            };
+        }
+
+        /// <summary>Which party member an interacting GameObject is; null for anything that is not a composed member.</summary>
+        private ulong? ClientIdOf(GameObject interactor)
+        {
+            if (_party == null || interactor == null) return null;
+            foreach (var member in _party.Members)
+            {
+                if (member.GameObject == interactor) return member.OwnerClientId;
+            }
+
+            return null;
+        }
+
+        private static string NewTransactionId() => System.Guid.NewGuid().ToString("N");
+
+        /// <summary>The live NGO spawn factory when this process hosts a real session; null for solo/offline runs.</summary>
+        private static IPlayerEntityFactory LiveRemoteFactory(GameApp app, GameObject localPlayer)
+        {
+            var driver = app.Network?.Driver as NgoNetworkDriver;
+            var controller = app.Network?.Controller;
+            if (driver == null || !driver.IsListening || controller == null || !controller.IsHostAuthority) return null;
+            return driver.CreatePlayerFactory(app.Content.NetworkPlayerEntity,
+                identity => (Vector3)((Vector2)localPlayer.transform.position + RemoteSpawnOffset(identity.ClientId)));
+        }
+
+        private void OnPartyMemberLeft(NetworkPlayerEntity entity)
+        {
+            var life = entity?.GameObject != null ? entity.GameObject.GetComponent<PlayerLifeStateComponent>() : null;
+            if (life == null) return;
+            _roster?.Unregister(life);
+            _hud?.SetMemberConnected(life.ParticipantId, false);
+        }
+
+        private void OnPartyMemberReconnected(NetworkPlayerEntity entity, ulong newClientId)
+        {
+            var life = entity?.GameObject != null ? entity.GameObject.GetComponent<PlayerLifeStateComponent>() : null;
+            if (life == null) return;
+            _hud?.SetMemberConnected(life.ParticipantId, true);
+        }
+
+        /// <summary>A deterministic ring offset so party members never spawn inside one another.</summary>
+        private static Vector2 RemoteSpawnOffset(ulong clientId)
+        {
+            if (clientId == BaseSession.LocalClientId) return Vector2.zero;
+            var angle = (clientId % ExpeditionParty.MaxPartySize) * (Mathf.PI * 2f / ExpeditionParty.MaxPartySize);
+            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * 1.5f;
         }
 
         /// <summary>
@@ -517,11 +910,17 @@ namespace RuinRail.App
 
         private void OnRoomEntered(RoomRuntime room, GameObject player)
         {
-            if (room == null || _rig?.Player == null || player != _rig.Player) return; // local player only (13: no remote reveal)
-            CurrentRoom = room;
+            if (room == null || player == null) return;
             var nodeId = room.State.NodeId;
+            // Map discovery is the party's: the docs are silent on shared maps, and the smallest multiplayer-safe
+            // behaviour for one dungeon the whole party is inside is that any member walking into a room discovers it
+            // for everyone. Room activation itself is decided once by RoomRuntime under host authority (82).
             _minimap?.SetKind(nodeId, MinimapKindOf(room));
             _minimap?.MarkEntered(nodeId);
+
+            // Everything below is this client's own camera context and must stay local to the owned player.
+            if (_rig?.Player == null || player != _rig.Player) return;
+            CurrentRoom = room;
             if (_revealedRoom == nodeId) return; // still the same room: the reveal never repeats
             _revealedRoom = nodeId;
             var definition = room.Root != null ? room.Root.Definition : null;
@@ -592,11 +991,21 @@ namespace RuinRail.App
         {
             if (_merchant == null || merchant == null || merchant.Merchant == null || _expedition?.State == null) return;
             if (_merchant.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false)) return;
+            // A joined member's press replayed on the host never opens the host's trade screen.
+            if (Mode != CoopRunMode.Solo && interactor != null && _rig?.Player != null && interactor != _rig.Player) return;
             var state = _expedition.State;
             if (_openMerchant != merchant)
             {
                 _openMerchant = merchant;
                 _merchant.Bind(merchant.Merchant, state.Inventory, () => state.CarriedCoins, _app.Specials);
+            }
+
+            if (Mode == CoopRunMode.Client)
+            {
+                // 82: the host's merchant, this member's own wallet and backpack decide; the screen only asks.
+                var node = NodeOf(merchant);
+                _merchant.BuyRequest = index => { _coopClient?.SendBuy(node, index); return _coopClient != null ? TradeError.None : TradeError.NoSuchOffer; };
+                _merchant.SellRequest = instanceId => { _coopClient?.SendSell(node, instanceId); return _coopClient != null ? TradeError.None : TradeError.SourceMissingItem; };
             }
 
             _merchant.Open();
@@ -636,20 +1045,42 @@ namespace RuinRail.App
             _openCache = null;
             CurrentRoom = null;
             _revealedRoom = null;
+            _signals.Clear();
+            _heldNotice = null;
+            HudView?.Notice?.Clear();
             HudView?.RoomTitle?.Clear();
             HudView?.Vignette?.Reset();
             _vote?.Dispose();
             _vote = null;
             _voteText.text = string.Empty;
             BuildDepth();
+            // The one place the new-depth heal runs (dungeon/60): after the next depth exists, every living participant
+            // starts it at their own effective maximum. A room entry, a revisit, the Transit vote, a rebuild inside the
+            // same depth, an equipment change or a menu never reaches this callback, so the heal cannot repeat.
+            // A client's members are healed by the host (its own heal would be a second one, 82).
+            if (Mode != CoopRunMode.Client && _expedition != null && _expedition.IsExpeditionActive && state != null && state.Depth > 1)
+            {
+                LastDepthArrivalHeals = DepthArrivalHeal.ApplyToParty(_roster);
+                DepthArrivalHeals++;
+            }
         }
+
+        /// <summary>How often the new-depth heal ran (exactly once per successful Descend) and what it did last time.</summary>
+        public int DepthArrivalHeals { get; private set; }
+        public IReadOnlyList<DepthArrivalHeal.Outcome> LastDepthArrivalHeals { get; private set; } = System.Array.Empty<DepthArrivalHeal.Outcome>();
 
         private void OnTransitOpened(TransitDecision decision)
         {
-            _vote = new TransitVoteViewModel(decision, _expedition.State.TransactionId);
+            var vote = new TransitVoteViewModel(decision, _expedition.State.TransactionId);
+            _vote = vote;
             _voteList = ScreenNavigation.TransitVote(_vote);
-            _vote.Changed += _ => _voteText.text = _vote.StatusText + (_vote.AwaitingReturnConfirmation ? "\n" + _vote.ReturnWarningText : string.Empty);
-            _voteText.text = "Transit ready — RETURN TO SHELTER or DESCEND DEEPER (1 / 2)";
+            // The resolving vote descends (the next depth is built and this vote disposed) before the view model
+            // raises its last Changed: a stale vote never writes to the panel of the depth that replaced it.
+            vote.Changed += _ => { if (_vote != vote || _voteText == null) return; _voteText.text = vote.StatusText + (vote.AwaitingReturnConfirmation ? "\n" + vote.ReturnWarningText : string.Empty); };
+            // Factual context only (Phase 5): depth, next depth, personal best, coins at risk and any live deep-depth
+            // bonus. No recommendation, no prediction — the choice stays the player's.
+            _voteText.text = "Transit ready — RETURN TO SHELTER or DESCEND DEEPER (1 / 2)\n"
+                             + string.Join("\n", TransitContext.Lines(_expedition));
             _menuInput.Stack.Push(_voteList);
             _tutorial.ObserveTransitOpened(decision);
         }
@@ -658,10 +1089,16 @@ namespace RuinRail.App
         private bool _inventoryOverlay;
         private bool _merchantOverlay;
         private bool _weaponCacheOverlay;
+        private bool _runFailedOverlay;
 
         private void RefreshPauseUi()
         {
             SyncOverlay(ref _pauseOverlay, _pause.IsOpen);
+        }
+
+        private void RefreshRunFailedUi()
+        {
+            SyncOverlay(ref _runFailedOverlay, _runFailed.IsOpen && !_runFailed.IsResolved);
         }
 
         private void RefreshInventoryUi()
@@ -698,8 +1135,11 @@ namespace RuinRail.App
             if (tracked == open) return;
             tracked = open;
             if (open) CursorService.PushOverlay(); else CursorService.PopOverlay();
-            // While any window owns the screen the low-HP frame stands down (it must never tint a menu).
-            _hud?.SetOverlayOpen(_pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay);
+            // While any window owns the screen the low-HP frame stands down (it must never tint a menu), and the
+            // contextual tutorial line hides too (it shares the run canvas and would otherwise draw through a panel).
+            var anyOverlay = _pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _runFailedOverlay;
+            _hud?.SetOverlayOpen(anyOverlay);
+            if (_promptText != null) _promptText.enabled = !anyOverlay;
         }
 
         private void Update()
@@ -714,6 +1154,8 @@ namespace RuinRail.App
 
             _tutorial?.Tick();
             RefreshInteractionPrompt();
+            RefreshHeldNotice();
+            TickCoop(Time.deltaTime);
         }
 
         /// <summary>
@@ -754,7 +1196,26 @@ namespace RuinRail.App
             HudView?.RoomTitle?.Clear();
             _app.Audio.StopAllLoops();
             _app.Menu.Session?.SaveNow("expedition_end");
+            // The party's run is over on this peer; the next start (host) or the next received start (client) opens a new one.
+            _app.Coop?.ClearRun();
             if (LeavingToMainMenu) { LeaveForMainMenu(); return; }
+            // A conclusive failure of the party (solo death / co-op wipe) shows the Run Lost screen over the closed
+            // transaction and waits for RETURN TO SHELTER / MAIN MENU; every other end hands back to the Shelter as before.
+            if (IsConclusiveRunLoss(summary) && _runFailed != null && _runFailed.Show(summary)) return;
+            _app.LoadScene(SceneNames.Base);
+        }
+
+        /// <summary>The run failed and the party is wiped (or the local player is dead): the loss is final, not a downed-and-revivable state.</summary>
+        private bool IsConclusiveRunLoss(ExpeditionSummary summary)
+        {
+            if (summary == null || summary.IsSuccess) return false;
+            var local = _rig?.Player != null ? _rig.Player.GetComponent<PlayerLifeStateComponent>() : null;
+            return (_roster != null && _roster.IsWiped) || (local != null && local.IsDead);
+        }
+
+        /// <summary>RETURN TO SHELTER on the Run Lost screen: the transaction is already closed and saved; only the scene changes.</summary>
+        private void LeaveForShelterAfterRunLost()
+        {
             _app.LoadScene(SceneNames.Base);
         }
 
@@ -771,9 +1232,18 @@ namespace RuinRail.App
             if (_services?.GroundLoot != null) _services.GroundLoot.PickupTracked -= OnPickupTracked;
 
             _vote?.Dispose();
+            DisposeCoop();
             foreach (var d in _disposables) d.Dispose();
             _disposables.Clear();
             if (_rig?.Reader is IDisposable reader) reader.Dispose();
+
+            // Per-run process globals get explicit reset ownership here rather than being left pointing at a torn-down
+            // run's content: the next expedition (or the menu) must never read this one's resolvers, and a client
+            // process must not stay damage-authoritative after leaving a session (82).
+            RoomDoorLock.SkinResolver = null;
+            WorldObjectArt.Resolver = null;
+            PickupArbiter.Clear();
+            DamageAuthority.LocalIsAuthoritative = true;
         }
     }
 }

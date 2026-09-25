@@ -59,6 +59,9 @@ namespace RuinRail.Gameplay.Combat.Area
                         var direction = (Vector2)component.transform.position - center;
                         ImpactDispatcher.Apply(component, new ImpactRequest(direction, knockback, staggerPower, kind, source, feedback));
                     }
+
+                    // The blast's owner took this target's last health (Adrenaline); a co-op replica never dies locally.
+                    if (feedback != null && target is Component struck && struck.GetComponentInParent<HealthComponent>() is { IsAlive: false }) feedback.OnTargetKilled(false);
                 }
             }
 

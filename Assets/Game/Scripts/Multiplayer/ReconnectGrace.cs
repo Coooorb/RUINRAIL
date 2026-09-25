@@ -60,6 +60,9 @@ namespace RuinRail.Networking
         private readonly Func<bool> _expeditionActive;
         private readonly Func<double> _clock;
 
+        /// <summary>85: "Initial reconnect grace target: ~60 s".</summary>
+        public const float DefaultGraceSeconds = 60f;
+
         public ReconnectGraceService(float graceSeconds, Func<bool> expeditionActive, Func<double> clock = null)
         {
             GraceSeconds = Mathf.Max(0f, graceSeconds);

@@ -38,6 +38,19 @@ namespace RuinRail.Presentation.Animation
         public int StrikesShown { get; private set; }
         public SpriteAnimator Animator => _animator;
 
+        private IReplicatedActorView _replica;
+
+        /// <summary>Co-op client: drives the same animation from a host-replicated actor view (no controller exists here).</summary>
+        public void ConfigureReplica(SpriteAnimator animator, IReplicatedActorView replica)
+        {
+            Configure(animator, null, null, null);
+            if (_replica != null) _replica.Struck -= OnReplicaStruck;
+            _replica = replica;
+            if (_replica != null) _replica.Struck += OnReplicaStruck;
+        }
+
+        private void OnReplicaStruck(IReplicatedActorView _) => Strike();
+
         public void Configure(SpriteAnimator animator, EnemyController enemy, MovesetActorController actor, Rigidbody2D body)
         {
             Unsubscribe();
@@ -59,7 +72,11 @@ namespace RuinRail.Presentation.Animation
             Subscribe();
         }
 
-        private void OnDestroy() => Unsubscribe();
+        private void OnDestroy()
+        {
+            Unsubscribe();
+            if (_replica != null) _replica.Struck -= OnReplicaStruck;
+        }
 
         private void Subscribe()
         {
@@ -118,8 +135,18 @@ namespace RuinRail.Presentation.Animation
         {
             if (_strikeRemaining > 0f) _strikeRemaining -= deltaTime;
             var striking = _strikeRemaining > 0f;
-            var velocity = _body != null ? _body.linearVelocity : Vector2.zero;
+            var velocity = _replica != null ? _replica.Velocity : _body != null ? _body.linearVelocity : Vector2.zero;
             var moving = velocity.sqrMagnitude > 0.01f;
+
+            if (_replica != null)
+            {
+                State = _replica.IsMoveset ? Resolve(_replica.MovesetState, moving, striking) : Resolve(_replica.EnemyState, moving, striking);
+                var replicaFacing = moving ? velocity : _replica.Facing;
+                if (replicaFacing.sqrMagnitude > 0.0001f) Facing = BodyFacingResolver.Resolve(replicaFacing.normalized);
+                _animator?.Play(State.ToString(), Facing);
+                _animator?.Tick(deltaTime);
+                return;
+            }
 
             if (_actor != null) State = Resolve(_actor.State, moving, striking);
             else if (_enemy != null) State = Resolve(_enemy.State, moving, striking);

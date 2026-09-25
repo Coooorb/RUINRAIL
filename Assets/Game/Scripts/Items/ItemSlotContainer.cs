@@ -11,6 +11,19 @@ namespace RuinRail.Gameplay.Items
     /// occupy slots. Adds are atomic: an item that does not fully fit is rejected without partial insertion.
     /// Backpack and Storage are both instances of this container.
     /// </summary>
+    /// <summary>Outcome of a same-container slot move (<see cref="ItemSlotContainer.TryMove"/>).</summary>
+    public enum SlotMoveResult
+    {
+        /// <summary>Out of range or nothing in the source slot; the container is untouched.</summary>
+        Invalid,
+        /// <summary>Source and target are the same slot; nothing changed.</summary>
+        Unchanged,
+        Moved,
+        Swapped,
+        /// <summary>The source stack (partly or fully) merged into the same-definition target stack.</summary>
+        Merged
+    }
+
     public sealed class ItemSlotContainer : IItemContainer
     {
         private ItemInstance[] _slots;
@@ -122,6 +135,49 @@ namespace RuinRail.Gameplay.Items
             item.SetQuantity(0);
             Changed?.Invoke();
             return true;
+        }
+
+        /// <summary>
+        /// Manual reorder inside this container: the item in <paramref name="from"/> goes to exactly <paramref name="to"/>.
+        /// An empty target is a move, a same-definition stackable target merges up to its limit (the remainder stays in
+        /// the source slot), anything else swaps the two slots. Slot indices are the player's order — nothing here
+        /// compacts or re-sorts, and no instance is created, duplicated or lost.
+        /// </summary>
+        public SlotMoveResult TryMove(int from, int to)
+        {
+            if (from < 0 || from >= Capacity || to < 0 || to >= Capacity) return SlotMoveResult.Invalid;
+            if (from == to) return SlotMoveResult.Unchanged;
+            var source = _slots[from];
+            if (source == null) return SlotMoveResult.Invalid;
+            var target = _slots[to];
+            if (target == null)
+            {
+                _slots[to] = source;
+                _slots[from] = null;
+                Changed?.Invoke();
+                return SlotMoveResult.Moved;
+            }
+
+            var definition = _resolveDefinition(source.DefinitionId);
+            if (definition != null && definition.IsStackable && target.DefinitionId == source.DefinitionId)
+            {
+                var max = MaxStackFor(definition);
+                var room = max - target.Quantity;
+                if (room > 0)
+                {
+                    var moved = Mathf.Min(room, source.Quantity);
+                    target.SetQuantity(target.Quantity + moved);
+                    source.SetQuantity(source.Quantity - moved);
+                    if (source.Quantity == 0) _slots[from] = null;
+                    Changed?.Invoke();
+                    return SlotMoveResult.Merged;
+                }
+            }
+
+            _slots[to] = source;
+            _slots[from] = target;
+            Changed?.Invoke();
+            return SlotMoveResult.Swapped;
         }
 
         public ItemInstance RemoveAt(int slotIndex)

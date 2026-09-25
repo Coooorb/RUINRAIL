@@ -26,7 +26,7 @@ namespace RuinRail.Gameplay.Loot
 
         public static bool IsRegular(EquipmentItemDefinition d)
         {
-            return d != null && d.Category != ItemCategory.Consumable && d.Category != ItemCategory.Ammo
+            return d != null && d.IsAcquirableInV1 && d.Category != ItemCategory.Consumable && d.Category != ItemCategory.Ammo
                    && (string.IsNullOrEmpty(d.LegendaryMechanicId) || d is not WeaponDefinition);
         }
 

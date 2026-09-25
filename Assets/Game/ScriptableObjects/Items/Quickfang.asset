@@ -23,6 +23,7 @@ MonoBehaviour:
   _weaponClass: 0
   _knockback: 0
   _staggerPower: 0
+  _projectileVisualId: proj_pistol_legendary
   _damageMin: 13
   _damageMax: 15
   _fireRate: 4.4

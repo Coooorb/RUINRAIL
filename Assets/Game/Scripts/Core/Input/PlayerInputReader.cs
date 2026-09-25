@@ -31,6 +31,7 @@ namespace RuinRail.Core.Input
         public event Action Weapon2Selected;
         public event Action WeaponSwapped;
         public event Action ConsumableUsed;
+        public event Action QuickGrenadeUsed;
         public event Action InventoryToggled;
         public event Action PauseToggled;
 
@@ -166,6 +167,19 @@ namespace RuinRail.Core.Input
             if (context.performed)
             {
                 if (GameplayAllowed) ConsumableUsed?.Invoke();
+            }
+        }
+
+        /// <summary>
+        /// Quick-grenade. Gated exactly like firing and the consumable key: while an inventory, merchant, pause or
+        /// event window holds gameplay input, <see cref="GameplayInputGate"/> is held and the press does nothing.
+        /// </summary>
+        public void OnQuickGrenade(InputAction.CallbackContext context)
+        {
+            Note(context);
+            if (context.performed)
+            {
+                if (GameplayAllowed) QuickGrenadeUsed?.Invoke();
             }
         }
 

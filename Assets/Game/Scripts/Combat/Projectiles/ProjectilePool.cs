@@ -13,6 +13,15 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         /// <summary>Total spawns since creation (diagnostics/tests).</summary>
         public int SpawnCount { get; private set; }
 
+        /// <summary>
+        /// Raised for every gameplay projectile launch (never for presentation-only pools). Co-op uses it to show a
+        /// shot on the other peers; nothing about the shot itself depends on it.
+        /// </summary>
+        public static event System.Action<ProjectilePool, Vector2, ProjectileSpawnData> Launched;
+
+        /// <summary>A pool that only draws other peers' shots (zero damage): its launches are never re-announced.</summary>
+        public bool IsPresentationOnly { get; set; }
+
         private void Awake()
         {
             for (var i = 0; i < _initialSize; i++)
@@ -29,6 +38,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             projectile.gameObject.SetActive(true);
             projectile.Activate(data);
             SpawnCount++;
+            if (!IsPresentationOnly) Launched?.Invoke(this, position, data);
 
             return projectile;
         }
@@ -57,6 +67,8 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 instance = instanceObject.AddComponent<Projectile>();
             }
 
+            // Every pooled projectile carries its in-flight presentation; a prefab without one gets it here.
+            if (instance.GetComponent<ProjectileVisual>() == null) instance.gameObject.AddComponent<ProjectileVisual>();
             instance.SetPool(this);
             instance.gameObject.SetActive(false);
             return instance;

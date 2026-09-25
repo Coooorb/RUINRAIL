@@ -1,5 +1,8 @@
 # Current Production State After TASK 148
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. Its 'open completion blockers' (missing SFX/music/ambience, 15 affixes, 13 input actions) and its Windows build line predate later passes. The body below is kept unchanged as the record of its time.
+
+
 > **Status:** Baseline for TASK 149–184. Do not reinterpret earlier tasks as incomplete unless fresh evidence proves a regression.
 
 ## Proven Engineering State

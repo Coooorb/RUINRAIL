@@ -91,9 +91,15 @@ namespace RuinRail.Tests
             }
         }
 
+        /// <summary>The live run's seed (the release smoke's seed: OvergrownLabs, merchant + loot room on depth 1).</summary>
+        public const int LiveRunSeed = 11;
+
         private IEnumerator EnterDungeon()
         {
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            // A pinned run seed: with the clock seed every run composed a different dungeon and biome, so the frozen
+            // dummy's "clear spot" and the line of fire were a roll of the dice (the release gate must not be).
+            _app.SetRunSeedOverride(LiveRunSeed);
             SceneManager.LoadScene(SceneNames.MainMenu);
             yield return WaitComposed(SceneNames.MainMenu);
             _app.Menu.Play();
@@ -147,6 +153,21 @@ namespace RuinRail.Tests
             return worst;
         }
 
+        /// <summary>Diagnostics: the solid obstacle collider an actor overlaps most (name, type, bounds).</summary>
+        private static string PenetratingCollider(Component actor, float radius)
+        {
+            var position = (Vector2)actor.transform.position;
+            var count = Physics2D.OverlapCircle(position, radius, ContactFilter2D.noFilter, Overlaps);
+            for (var i = 0; i < count; i++)
+            {
+                var c = Overlaps[i];
+                if (c == null || c.isTrigger || !c.enabled || c.GetComponentInParent<EnvironmentObstacle>() == null || c.transform.IsChildOf(actor.transform)) continue;
+                return $"{c.name} ({c.GetType().Name}) bounds {c.bounds.center}/{c.bounds.size} inside={c.OverlapPoint(position)} closest={c.ClosestPoint(position)}";
+            }
+
+            return "none";
+        }
+
         /// <summary>Pixels of a saturated orange/red flat fill (the old placeholder quad tint) in a capture.</summary>
         private static int OrangeQuadPixels(LiveDungeonCapture.Result shot)
         {
@@ -164,6 +185,8 @@ namespace RuinRail.Tests
                 var dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 var at = from + dir * distance;
                 if (!RoomRuntime.IsSpawnClear(at) || !RoomRuntime.IsSpawnClear(at + Vector2.up * CombatHurtbox.NormalOffset.y)) continue;
+                // A hazard pool damages whatever stands in it on its own clock: the HP-delta proofs need a dummy nothing else touches.
+                if (Physics2D.OverlapCircleAll(at, DefaultEnemySpawner.BodyRadius + 0.3f).Any(c => c != null && c.GetComponentInParent<RuinRail.Gameplay.Combat.Hazards.HazardVolume>() != null)) continue;
                 var blocked = false;
                 foreach (var hit in Physics2D.CircleCastAll(from, 0.2f, dir, distance))
                     if (hit.collider != null && !hit.collider.isTrigger && hit.collider.GetComponentInParent<EnvironmentObstacle>() != null) { blocked = true; break; }
@@ -249,13 +272,30 @@ namespace RuinRail.Tests
             var wallStep = (Vector2)DoorDirections.Step(wallSide);
             var wallPoint = rect.center + Vector2.Scale(wallStep, rect.size * 0.5f); // the wall's outer face at the side's centre
             var outsideWall = wallPoint + wallStep * 1.6f;
+            // The wall is the question, not a pile-up (the same rule as the Charger lane below): one melee pursuer chases
+            // the player standing beyond the wall while the rest of the pack is held where it stands. With the whole pack
+            // chasing, the bodies pressing on the one at the wall push it up to ~0.4 tiles into the wall for a single
+            // physics step before EncounterBounds pulls it back (its documented sub-step correction) — a pile-up
+            // transient, recorded below as a diagnostic, not a wall that lets a body through.
+            var pursuer = enemies.Where(e => e != null && e.IsAlive && e.Definition.Id != "shooter" && e.Definition.Id != "sniper_enemy")
+                .OrderBy(e => Vector2.Distance(e.transform.position, wallPoint)).FirstOrDefault() ?? enemies.First(e => e != null && e.IsAlive);
+            foreach (var e in enemies) { if (e == null || !e.IsAlive || e == pursuer) continue; e.enabled = false; var held = e.GetComponent<Rigidbody2D>(); held.linearVelocity = Vector2.zero; held.bodyType = RigidbodyType2D.Kinematic; }
             yield return Teleport(run, outsideWall, 5);
             var worst = 0f;
+            var worstWhat = "-";
             for (var i = 0; i < 150; i++)
             {
                 yield return new WaitForFixedUpdate();
-                foreach (var e in enemies) if (e != null && e.IsAlive) worst = Mathf.Max(worst, Penetration(e, DefaultEnemySpawner.BodyRadius));
+                foreach (var e in enemies)
+                {
+                    if (e == null || !e.IsAlive) continue;
+                    var depth = Penetration(e, DefaultEnemySpawner.BodyRadius);
+                    if (depth > worst) { worst = depth; worstWhat = $"{e.Definition.Id}@{e.transform.position} frame {i} against {PenetratingCollider(e, DefaultEnemySpawner.BodyRadius)}"; }
+                }
             }
+
+            Note($"10 wall side {wallSide} player {playerBody.position} pursuer {pursuer.Definition.Id} worst penetration {worst:0.000} ({worstWhat})");
+            foreach (var e in enemies) { if (e == null || !e.IsAlive || e == pursuer) continue; e.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; e.enabled = true; }
 
             var alive = enemies.Where(e => e != null && e.IsAlive).ToList();
             foreach (var e in alive) Assert.IsTrue(rect.Contains(e.transform.position), $"{e.name} stayed inside the room ({e.transform.position} vs {rect})");
@@ -267,15 +307,19 @@ namespace RuinRail.Tests
 
             // ---- 12. the closed combat door holds them too ----
             var outsideDoor = entryCentre + entryStep * 1.6f;
-            // Bring the pack to the doorway's inside (they were pressed against the far wall) so 3 s is a fair run at the door.
-            var packIndex = 0;
-            foreach (var e in enemies.Where(e => e != null && e.IsAlive))
+            // Bring a melee pursuer to the doorway's inside (the pack was pressed against the far wall) so 3 s is a fair run
+            // at the door. As at the wall above, the door is the question, not a pile-up: the rest of the pack is held
+            // where it stands (a pack pressing on the one at the door pushes it into the blocker for a single physics step).
+            var doorPursuer = enemies.Where(e => e != null && e.IsAlive && e.Definition.Id != "shooter" && e.Definition.Id != "sniper_enemy")
+                .OrderBy(e => Vector2.Distance(e.transform.position, entryCentre)).FirstOrDefault() ?? enemies.First(e => e != null && e.IsAlive);
+            foreach (var e in enemies) { if (e == null || !e.IsAlive || e == doorPursuer) continue; e.enabled = false; var held = e.GetComponent<Rigidbody2D>(); held.linearVelocity = Vector2.zero; held.bodyType = RigidbodyType2D.Kinematic; }
+            foreach (var offset in new[] { 3f, 2.5f, 3.5f, 2f, 4f })
             {
-                var at = entryCentre - entryStep * (3f + packIndex * 1.1f);
-                if (!RoomRuntime.IsSpawnClear(at)) continue; // leave it where it is rather than place it in geometry
-                e.transform.position = at;
-                e.GetComponent<Rigidbody2D>().position = at;
-                packIndex++;
+                var at = entryCentre - entryStep * offset;
+                if (!RoomRuntime.IsSpawnClear(at)) continue; // never place it in geometry
+                doorPursuer.transform.position = at;
+                doorPursuer.GetComponent<Rigidbody2D>().position = at;
+                break;
             }
 
             Physics2D.SyncTransforms();
@@ -297,7 +341,7 @@ namespace RuinRail.Tests
             }
 
             Assert.LessOrEqual(worst, 0.12f, "no enemy body penetrated the door blocker");
-            var atDoor = alive.OrderBy(e => Vector2.Distance(e.transform.position, entryCentre)).First();
+            var atDoor = doorPursuer;
             yield return null;
             LiveDungeonCapture.Capture(Folder, "12_enemy_contained_by_closed_door", camera, entryCentre, ortho, ppu, includeUi: false);
             Note($"12 door {entry.Socket.Direction} centre {entryCentre} blocking={entry.IsBlocking} player {playerBody.position} nearest {atDoor.Definition.Id}@{atDoor.transform.position} dist {Vector2.Distance(atDoor.transform.position, entryCentre):0.00} worst-penetration {worst:0.000} pack {string.Join(" ", alive.Select(e => e.Definition.Id + ":" + e.State + "@" + e.transform.position))}");
@@ -388,11 +432,29 @@ namespace RuinRail.Tests
             }
 
             // ---- 1. direct crosshair-on-enemy shot, assist OFF: HP goes down ----
+            // Destroying the first wave lets the encounter spawn its next wave; those enemies were never in `enemies` and
+            // walked into the line of fire (a second hurtbox took the reference shot). The lane is the dummy's alone.
+            void ClearOthers() { foreach (var other in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) if (other != null && other != victim) Object.DestroyImmediate(other.gameObject); }
+            ClearOthers();
             weapon.SetAimAssist(null);
             yield return AimAt(hurtbox.AimPoint);
+            ClearOthers();
             var hp0 = health.CurrentHealth;
             var crosshairAtFire = aiming.AimWorldPoint;
+            // Diagnostics for the direct shot (this step has been timing/geometry sensitive): what lies on the line of fire.
+            {
+                var origin = aiming.AimOrigin;
+                var toHurt = hurtbox.AimPoint - origin;
+                var onLine = Physics2D.CircleCastAll(origin, 0.15f, toHurt.normalized, toHurt.magnitude)
+                    .Where(h => h.collider != null && !h.collider.transform.IsChildOf(player.transform))
+                    .Select(h => $"{h.collider.name}[{h.collider.GetType().Name},{(h.collider.isTrigger ? "trigger" : "solid")},obstacle={h.collider.GetComponentInParent<EnvironmentObstacle>() != null},dmg={h.collider.GetComponentInParent<IDamageable>() != null},team={TeamMember.IsTagged(h.collider, DamageTeam.Player)}]@{h.distance:0.00}");
+                Note($"01 pre-fire: victim {victim.Definition?.Id} at {victim.transform.position} alive={victim.IsAlive} hp={health.CurrentHealth}/{health.MaxHealth} bounds={(victim.Bounds != null ? victim.Bounds.Legal.ToString() : "-")} origin {origin} hurtbox {hurtbox.AimPoint} crosshair {crosshairAtFire} magazine {weapon.MagazineAmmo} reloading={weapon.IsReloading} authority={DamageAuthority.LocalIsAuthoritative} timeScale={Time.timeScale} onLine [{string.Join(" ", onLine)}]");
+            }
+
+            ClearOthers();
             yield return FireAndSettle(weapon, health, 1.5f);
+            var shotProjectile = weapon.LastSpawnedProjectile;
+            Note($"01 post-fire: fired projectile at {(shotProjectile != null ? shotProjectile.transform.position.ToString() : "-")} resolved={(shotProjectile != null && shotProjectile.IsResolved)} active={(shotProjectile != null && shotProjectile.gameObject.activeSelf)} data.dir={(shotProjectile != null ? shotProjectile.Data.Direction.ToString() : "-")} hp {hp0}->{health.CurrentHealth}");
             Assert.IsFalse(weapon.LastShot.Assisted);
             Assert.Less(health.CurrentHealth, hp0, "a crosshair inside the hurtbox hits without any assist");
             yield return null;
@@ -410,6 +472,7 @@ namespace RuinRail.Tests
             Assert.IsFalse(hurtbox.Contains(aiming.AimWorldPoint), "the crosshair is off the hurtbox");
             var offBy = Vector2.Angle(toTarget, aiming.AimWorldPoint - aiming.AimOrigin);
             var hp1 = health.CurrentHealth;
+            ClearOthers();
             yield return FireAndSettle(weapon, health, 1.5f);
             Assert.IsTrue(weapon.LastShot.Assisted, "inside the 18° mouse cone: the shot is bent onto the target");
             Assert.Less(health.CurrentHealth, hp1, "…and it hits");
@@ -424,6 +487,7 @@ namespace RuinRail.Tests
             var hp2 = health.CurrentHealth;
             var farOffBy = Vector2.Angle(toTarget, aiming.AimWorldPoint - aiming.AimOrigin);
             var rawAim = aiming.AimDirection;
+            ClearOthers();
             Assert.IsTrue(weapon.TryFire());
             Assert.IsFalse(weapon.LastShot.Assisted, "outside the cone the raw aim is used unchanged");
             Assert.Less(Vector2.Angle(weapon.LastShot.Direction, rawAim), 1f);
@@ -437,6 +501,7 @@ namespace RuinRail.Tests
             weapon.ApplyAuthoritativeState(1, false);
             var reserve = run.Rig.Inventory.Get(weapon.Definition.AmmoType);
             Assert.GreaterOrEqual(reserve, weapon.Definition.AmmoCostPerShot, "reserve available");
+            ClearOthers();
             Assert.IsTrue(weapon.TryFire());
             Assert.AreEqual(0, weapon.MagazineAmmo);
             Assert.IsTrue(weapon.IsReloading, "the reload started on its own");

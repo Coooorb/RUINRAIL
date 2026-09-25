@@ -224,7 +224,7 @@ namespace RuinRail.App
             Check("cache focus list on the menu input stack, first choice focused",
                 menuInput.Stack.Current == view.FocusList && view.FocusList.Focused != null && view.FocusList.Focused.Id == WeaponCacheView.RowFocusPrefix + "0");
             Check("gameplay gated and the pointer cursor shown while choosing",
-                GameplayInputGate.IsHeld && run.Rig.Reader.Move == Vector2.zero && CursorService.Current == CursorKind.Pointer && run.CurrentInteractionPrompt.Length == 0);
+                GameplayInputGate.IsHeld && run.Rig.Reader.Move == Vector2.zero && PointerLayerOwnsCursor && run.CurrentInteractionPrompt.Length == 0);
             yield return CaptureHud("qol_02_weapon_cache_ui_open");
 
             // A second press while the screen is up must not open it again.

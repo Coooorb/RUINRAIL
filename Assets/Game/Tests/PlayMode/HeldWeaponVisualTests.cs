@@ -98,7 +98,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(1, go.GetComponents<HeldWeaponVisual>().Length);
             Assert.AreEqual(1, go.GetComponents<PlayerAnimationDriver>().Length);
             Assert.AreEqual(1, go.GetComponents<WeaponVisualDriver>().Length);
-            Assert.AreEqual(2, go.GetComponentsInChildren<SpriteRenderer>(true).Length, "body + one weapon, nothing duplicated");
+            Assert.AreEqual(2, go.GetComponentsInChildren<SpriteRenderer>(true).Count(r => r.GetComponentInParent<RuinRail.Gameplay.Combat.Projectiles.Projectile>(true) == null), "body + one weapon, nothing duplicated (pooled projectile sprites excluded)");
         }
 
         [Test]

@@ -1,0 +1,30 @@
+critical_path,scenario,kind,seed,command,evidence
+boot and main menu,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,smoke_result.json stages menu/base; ScenesComposed starts MainMenu
+fresh profile creation,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,Shelter onboarding: display name + starter kit acknowledged; first kit granted
+shelter stations,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,ProgressionChecks (Character Station) + StarterFallbackChecks (Storage + Multiplayer Terminal READY)
+solo expedition D1,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,RoomsComposed + PlayabilityChecks
+combat,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,CombatChecks (direct hit / assist / auto reload / containment)
+loot and ammo,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,LootChecks + EconomyContainmentProjectileChecks
+inventory,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,InventoryChecks (graphical inventory; controller focus)
+merchant,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,MerchantChecks (seed 11 has a D1 merchant)
+non-combat events,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,NonCombatRoomsDriven + DepthSettingsNonCombatChecks
+weapon cache,cache,built-player,31,./scripts/run-release-smoke.sh <out> 10 cache,WeaponCacheChecks on the seed-31 D1 cache + its used state in the non-combat stage
+boss,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,RunVarietyChecks (boss attacks / anti-kite / boss defeated)
+transit descend,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,descend chosen through the transit vote panel
+next depth,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,depth 2 starts at full effective HP; deepest record 2
+return and extraction,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,stage return: BankedCoinsAfterReturn
+save and reload,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,SaveReloaded + affix rolls + deepest depth reloaded
+death and run lost,death,built-player,11,./scripts/run-release-smoke.sh <out> 10 death,independent death scenario: Run Lost + loss committed + XP/ranks/storage kept
+leave to main menu,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,ReturnToMenuOk (pause → return to main menu → failure transaction once)
+settings,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,DepthSettingsNonCombatChecks: Settings pages (music 70% applied live); final screen-shake 50% saved — returning verifies it after the relaunch
+controller navigation,fresh,built-player,11,./scripts/run-release-smoke.sh <out> 10 fresh,InventoryChecks controller focus / CLOSE reached
+returning profile,returning,built-player,profile,./scripts/run-release-smoke.sh <out> 10 fresh returning,relaunch on fresh run i's save: profile/storage/tutorial/settings restored; no migration
+attribute effects,returning,built-player,profile,./scripts/run-release-smoke.sh <out> 10 fresh returning,all six attributes in the re-entered run's stat pipeline
+storage,returning,built-player,profile,./scripts/run-release-smoke.sh <out> 10 fresh returning,Storage round trip without duplication
+shelter trader,returning,built-player,profile,./scripts/run-release-smoke.sh <out> 10 fresh returning,Trader buy + resale settled once in banked coins
+co-op duo full loop,duo,built-player,46,./scripts/run-coop-release-smoke.sh <out> 2 5 46,host+client: lobby / same D1 / combat / loot race / merchant / events / revive / boss / vote / D2 / reconnect / return
+co-op revive,duo,built-player,46,./scripts/run-coop-release-smoke.sh <out> 2 5 46,revive host→client and client→host
+co-op transit vote,duo,built-player,46,./scripts/run-coop-release-smoke.sh <out> 2 5 46,unanimous DESCEND; any RETURN returns the party
+co-op reconnect,duo,built-player,46,./scripts/run-coop-release-smoke.sh <out> 2 5 46,client drop + reconnect inside grace into the current room state
+co-op trio composition,trio,built-player,46,./scripts/run-coop-release-smoke.sh <out> 3 2 46,three identities / entities / scaling / vote / transition / bleedout / wipe
+defibrillator,trio,built-player,46,./scripts/run-coop-release-smoke.sh <out> 3 2 46,a client's Defibrillator revives the Dead teammate (host-validated; spent once)

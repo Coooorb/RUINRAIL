@@ -28,7 +28,19 @@ namespace RuinRail.Presentation.Vfx
         public Vector2 MarkerScale { get; private set; }
         public Color MarkerColor { get; private set; }
         public int Shown { get; private set; }
-        public bool IsEliteOrBoss => _actor != null;
+        public bool IsEliteOrBoss => _actor != null || (_replica != null && _replica.IsEliteOrBoss);
+
+        private IReplicatedActorView _replica;
+
+        /// <summary>Co-op client: the marker follows a host-replicated actor view (state, locked facing, current attack).</summary>
+        public void ConfigureReplica(FeedbackConfig config, EffectPool pool, IReplicatedActorView replica)
+        {
+            _config = config;
+            _pool = pool;
+            _enemy = null;
+            _actor = null;
+            _replica = replica;
+        }
 
         public void Configure(FeedbackConfig config, EffectPool pool, EnemyController enemy, MovesetActorController actor)
         {
@@ -44,9 +56,13 @@ namespace RuinRail.Presentation.Vfx
             if (_actor == null) _actor = GetComponent<MovesetActorController>();
         }
 
-        private bool Telegraphing => _actor != null ? _actor.State == MovesetActorState.Telegraph : _enemy != null && _enemy.State == EnemyState.Telegraph;
+        private bool Telegraphing => _replica != null
+            ? !_replica.IsDead && (_replica.IsMoveset ? _replica.MovesetState == MovesetActorState.Telegraph : _replica.EnemyState == EnemyState.Telegraph)
+            : _actor != null ? _actor.State == MovesetActorState.Telegraph : _enemy != null && _enemy.State == EnemyState.Telegraph;
 
-        private float TelegraphSeconds => _actor != null ? (_actor.CurrentAttack != null ? _actor.CurrentAttack.TelegraphSeconds : 0f) : _enemy != null ? _enemy.CurrentTelegraphSeconds : 0f;
+        private float TelegraphSeconds => _replica != null
+            ? (_replica.IsMoveset ? (_replica.CurrentAttack != null ? _replica.CurrentAttack.TelegraphSeconds : 0f) : _replica.EnemyDefinition != null ? _replica.EnemyDefinition.AttackTelegraphSeconds : 0f)
+            : _actor != null ? (_actor.CurrentAttack != null ? _actor.CurrentAttack.TelegraphSeconds : 0f) : _enemy != null ? _enemy.CurrentTelegraphSeconds : 0f;
 
         /// <summary>World-space size (x = along the attack direction, y = across) and centre offset of the danger shape.</summary>
         public static (Vector2 size, Vector2 offset) ShapeFor(EnemyAttackDefinition attack, Vector2 direction)
@@ -93,7 +109,7 @@ namespace RuinRail.Presentation.Vfx
             var color = MarkerColor;
             color.a = Mathf.Lerp(color.a * 0.5f, color.a, Fill01);
 
-            var shape = _actor != null ? ShapeOf(_actor) : ShapeOf(_enemy, transform.position);
+            var shape = _replica != null ? ShapeOf(_replica, transform.position) : _actor != null ? ShapeOf(_actor) : ShapeOf(_enemy, transform.position);
             MarkerScale = shape.Size;
             MarkerKind = shape.Kind;
             if (_pool == null) return;
@@ -150,6 +166,47 @@ namespace RuinRail.Presentation.Vfx
             var (size, offset) = ShapeFor(actor.CurrentAttack, direction);
             var kind = actor.CurrentAttack != null ? KindOf(actor.CurrentAttack.Motion) : KindStationary;
             return new DangerShape(kind, size, (Vector2)actor.transform.position + offset, AngleOf(direction));
+        }
+
+        /// <summary>
+        /// A replicated actor's danger shape from what the host sent: the moveset attack and its locked direction for
+        /// Elites/Bosses, the authored attack kind along the replicated facing for normal enemies.
+        /// </summary>
+        public static DangerShape ShapeOf(IReplicatedActorView replica, Vector2 position)
+        {
+            var direction = replica.Facing.sqrMagnitude > 0.0001f ? replica.Facing.normalized : Vector2.right;
+            if (replica.IsMoveset)
+            {
+                var (size, offset) = ShapeFor(replica.CurrentAttack, direction);
+                var kind = replica.CurrentAttack != null ? KindOf(replica.CurrentAttack.Motion) : KindStationary;
+                return new DangerShape(kind, size, position + offset, AngleOf(direction));
+            }
+
+            var definition = replica.EnemyDefinition;
+            if (definition == null) return new DangerShape(KindStationary, Vector2.one, position, 0f);
+            switch (definition.AttackKind)
+            {
+                case EnemyAttackKind.Projectile:
+                {
+                    var length = Mathf.Max(1f, definition.ProjectileRange);
+                    return new DangerShape(KindProjectile, new Vector2(length, 0.6f), position + direction * (length * 0.5f), AngleOf(direction));
+                }
+                case EnemyAttackKind.Lob:
+                {
+                    var radius = Mathf.Max(0.5f, definition.BombRadiusTiles);
+                    return new DangerShape(KindSlam, Vector2.one * (radius * 2f), position + direction * definition.AttackRange, 0f);
+                }
+                case EnemyAttackKind.Charge:
+                {
+                    var (size, offset) = ShapeFor(definition.ChargeAttack, direction);
+                    return new DangerShape(KindDash, size, position + offset, AngleOf(direction));
+                }
+                default:
+                {
+                    var reach = Mathf.Max(0.5f, definition.AttackRange);
+                    return new DangerShape(KindStationary, Vector2.one * (reach * 2f), position, 0f);
+                }
+            }
         }
 
         public static string KindOf(AttackMotion motion) => motion switch

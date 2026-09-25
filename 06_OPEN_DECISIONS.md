@@ -26,6 +26,12 @@ Finalized items now include:
 - Display-name validation/moderation behavior.
 - Default keyboard/mouse and controller mappings.
 
+Decisions finalized by the later passes (2026-09-19 → 2026-09-25), recorded here so this list matches the tree:
+- Co-op V1: 1–3 players, PvE only, host-authoritative NGO over UnityTransport; the local proof joins by direct address, live UGS Sessions/Relay needs a linked project (external configuration). No PvP, matchmaking, dedicated servers or host migration.
+- Post-Depth-30 reward continuation (bounded, flat through D30) and the persistent personal deepest-depth record (`dungeon/59`).
+- Seeded boss attack selection and boss anti-kite repositioning; biome encounter weighting (weighting, never exclusion).
+- D1 ammo / Blaster fine-tuning values and the Field Knife values as frozen in `production/FINAL_RELEASE_FROZEN_BASELINE.csv`.
+
 ## Do Not Invent
 
 A closed V1 design does **not** authorize Claude to invent additional systems or rebalance approved values during unrelated implementation work.

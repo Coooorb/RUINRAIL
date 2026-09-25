@@ -175,6 +175,15 @@ namespace RuinRail.UI.WeaponCache
         {
             var row = Selected;
             if (row == null || !IsBound) { Fail("NOTHING SELECTED"); return DungeonEventOutcome.Unavailable; }
+            if (ChooseRequest != null)
+            {
+                // Co-op client (82): the host's cache decides, once for the whole party; the answer comes back here.
+                if (!ChooseRequest(row.Index)) { Fail("REQUEST NOT SENT"); return DungeonEventOutcome.Unavailable; }
+                SetMessage("TAKING " + row.Name.ToUpperInvariant() + "…", false);
+                Raise();
+                return DungeonEventOutcome.Started;
+            }
+
             var result = _cache.Choose(_actor, row.Index);
             switch (result.Outcome)
             {
@@ -197,6 +206,28 @@ namespace RuinRail.UI.WeaponCache
             RebuildRows();
             Raise();
             return result.Outcome;
+        }
+
+        /// <summary>Co-op client: set by the run so Take becomes a request to the host's cache. Null in solo and on the host.</summary>
+        public Func<int, bool> ChooseRequest { get; set; }
+
+        /// <summary>The host's answer to this screen's request (same messages as a local take).</summary>
+        public void ReportRemoteResult(bool accepted, bool alreadyTaken, string itemName)
+        {
+            if (accepted)
+            {
+                Takes++;
+                SetMessage("TOOK " + (itemName ?? string.Empty).ToUpperInvariant(), false);
+                RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Purchase);
+                RebuildRows();
+                Raise();
+                Close();
+                return;
+            }
+
+            Fail(alreadyTaken ? "CACHE ALREADY EMPTIED" : "CANNOT TAKE THAT");
+            RebuildRows();
+            Raise();
         }
 
         // ---- Rows ----

@@ -67,6 +67,26 @@ namespace RuinRail.EditorTools.ArtGen
                 }
             }
 
+            /// <summary>
+            /// Returns the clip trimmed to exactly <paramref name="loopSeconds"/>, with everything past that point
+            /// added back onto the head.
+            ///
+            /// A musical bed is written one release tail longer than its bar grid so the last notes can ring out. If
+            /// that tail is left on the file, the loop is longer than the grid: every repetition slips off the beat by
+            /// the tail length and the joint audibly dips, because the tail decays to silence and the head starts from
+            /// it. Wrapping the tail onto the head instead makes the ring-out land over the next repetition's downbeat,
+            /// which is what the loop would sound like if it had been played continuously, and leaves the file exactly
+            /// one bar grid long.
+            /// </summary>
+            public Clip WrapTailToLoop(float loopSeconds)
+            {
+                var n = Mathf.Clamp(Mathf.RoundToInt(loopSeconds * SampleRate), 1, L.Length);
+                var wrapped = new Clip(n / (float)SampleRate);
+                for (var i = 0; i < n; i++) { wrapped.L[i] = L[i]; wrapped.R[i] = R[i]; }
+                for (var i = n; i < L.Length; i++) { wrapped.L[i - n] += L[i]; wrapped.R[i - n] += R[i]; }
+                return wrapped;
+            }
+
             /// <summary>Crossfades the tail into the head so the clip loops seamlessly (ambience, music beds).</summary>
             public void MakeSeamless(float seconds = 0.35f)
             {

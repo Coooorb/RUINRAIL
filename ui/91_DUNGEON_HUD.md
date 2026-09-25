@@ -33,3 +33,11 @@ Normal-enemy HP bars appear after taking damage and fade later. Elites and Bosse
 
 ## Damage Numbers
 Small normal damage numbers, no crit styling. Setting allows ON/OFF.
+
+## Enemies Remaining (implementation note 2026-09-20)
+- In an active standard combat room (a director encounter or an Elite encounter) the top-right shows, under the coin readout, a compact hostile token plus `xN`: the room encounter's own remaining count (living members plus queued reinforcements; summons once they exist). It updates the moment an encounter enemy dies and disappears when the room clears.
+- It is never shown before the encounter activates, in a cleared room, in a Boss arena (the boss bar is the arena's readout), in a Merchant / Treasure / Loot / Weapon Cache / Broken Machine / Transit / Medical / other event room, and never while an event wave (Cursed Chest, Supply Signal) runs in an event room.
+- The source is the room runtime's authoritative membership, replicated with the room state; a client shows the host's number and never counts replicas.
+
+## Event Notice (implementation note 2026-09-20)
+- One transient line under the tutorial band tells the player what an interaction just did: the reward that dropped (`MACHINE REPAIRED: MEDKIT x1`), a failed gamble (`REPAIR FAILED: THE MACHINE IS DEAD (100 COINS SPENT)`), a started wave, a purchased heal, a boarded transit — and why a press was refused (`BROKEN MACHINE: NOT ENOUGH COINS (100 NEEDED)`). A running Supply Signal holds its countdown on the same line.

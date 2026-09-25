@@ -28,6 +28,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
         private IDamageRoller _damageRoller;
         private IPlayerStatsProvider _stats;
         private IImpactAttackerFeedback _impactFeedback;
+        private RuinRail.Gameplay.Stats.PlayerCombatEvents _combatEvents;
+        private bool _firing;
+        private float _peakHeat;
         private AimAssistConfig _aimAssist;
 
         /// <summary>The soft aim-assist tuning; null = raw aim only.</summary>
@@ -50,6 +53,24 @@ namespace RuinRail.Gameplay.Combat.Weapons
         private float _fireCooldownRemaining;
 
         public BlasterHeatState Heat => _heat ??= BuildHeatState();
+
+        /// <summary>Shots per second after the capped Fire Rate bonus.</summary>
+        public float CurrentFireRate => _definition == null ? 0f : WeaponStatMath.FireRate(_definition.FireRate, _stats);
+
+        /// <summary>Seconds between shots.</summary>
+        public float CurrentFireInterval => _definition == null ? 0f : WeaponStatMath.FireInterval(_definition.FireRate, _stats);
+
+        /// <summary>Heat one shot adds after the capped Blaster Heat per Shot reduction.</summary>
+        public float CurrentHeatPerShot => _definition == null ? 0f : WeaponStatMath.BlasterHeatPerShot(_definition.HeatPerShot, _stats);
+
+        /// <summary>Heat shed per second after the capped Blaster Cooling Rate bonus.</summary>
+        public float CurrentCoolingRatePerSecond => _definition == null ? 0f : WeaponStatMath.BlasterCoolingRate(_definition.CoolingRatePerSecond, _stats);
+
+        /// <summary>Projectile speed after the capped Projectile Speed bonus.</summary>
+        public float CurrentProjectileSpeed => _definition == null ? 0f : WeaponStatMath.ProjectileSpeed(_definition.ProjectileSpeed, _stats);
+
+        /// <summary>Real reach after the capped Projectile Range bonus.</summary>
+        public float CurrentRange => _definition == null ? 0f : WeaponStatMath.ProjectileRange(_definition.Range, _stats);
         public Projectile LastSpawnedProjectile { get; private set; }
         public IReadOnlyList<Projectile> LastSpawnedProjectiles => _lastSpawnedProjectiles;
         public bool IsEquipped { get; private set; } = true;
@@ -63,6 +84,15 @@ namespace RuinRail.Gameplay.Combat.Weapons
         {
             // Heat is deliberately untouched: a holstered blaster keeps its heat and keeps cooling.
             IsEquipped = false;
+            SetFiring(false);
+        }
+
+        /// <summary>Continuous-fire state for Stabilizer / Lock In: the trigger held on the equipped blaster.</summary>
+        private void SetFiring(bool firing)
+        {
+            if (firing == _firing) return;
+            _firing = firing;
+            _combatEvents?.RaiseFiringStateChanged(firing);
         }
 
         public void SetDefinition(BlasterWeaponDefinition definition)
@@ -75,6 +105,12 @@ namespace RuinRail.Gameplay.Combat.Weapons
         public void SetStats(IPlayerStatsProvider stats)
         {
             _stats = stats;
+        }
+
+        /// <summary>The wearer's passive event hub (items/34 hooks); null = no passive hooks (enemies, tests).</summary>
+        public void SetCombatEvents(RuinRail.Gameplay.Stats.PlayerCombatEvents events)
+        {
+            _combatEvents = events;
         }
 
         /// <summary>Attacker-side impact hooks carried by every projectile this weapon fires; null = none.</summary>
@@ -124,12 +160,24 @@ namespace RuinRail.Gameplay.Combat.Weapons
         {
             var deltaTime = Time.deltaTime;
             TickFireCooldown(deltaTime);
+            // The cooling bonus is pushed into the heat state each frame so a source equipped or removed mid-run takes
+            // effect immediately without rebuilding (and losing) the accumulated heat.
+            Heat.CoolingRateMultiplier = _stats?.GetMultiplier(StatId.BlasterCoolingRate) ?? 1f;
             Heat.Tick(deltaTime);
+            // Cooling Module: a blaster that cooled all the way to 0 reports the peak heat it cooled down from.
+            if (_peakHeat > 0f && Heat.Heat <= 0f)
+            {
+                var peak = _peakHeat;
+                _peakHeat = 0f;
+                _combatEvents?.RaiseBlasterCooledToZero(peak);
+            }
 
             if (IsEquipped && _inputReader != null && _inputReader.FireHeld)
             {
                 TryFire();
             }
+
+            SetFiring(IsEquipped && _inputReader != null && _inputReader.FireHeld);
         }
 
         private void TickFireCooldown(float deltaTime)
@@ -152,19 +200,28 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 return false;
             }
 
-            _fireCooldownRemaining = 1f / _definition.FireRate;
-            Heat.AddShotHeat(_definition.HeatPerShot);
+            _fireCooldownRemaining = CurrentFireInterval;
+            // Heat and damage hooks of the wearer (Cooling Module, Steady Aim / Fresh Mag); the overheat is announced once.
+            var shotHeat = _combatEvents != null ? _combatEvents.RaiseBlasterShotHeatRolling(CurrentHeatPerShot).FinalHeat : CurrentHeatPerShot;
+            var wasOverheated = Heat.IsOverheated;
+            Heat.AddShotHeat(shotHeat);
+            _peakHeat = Mathf.Max(_peakHeat, Heat.Heat);
+            if (Heat.IsOverheated && !wasOverheated) _combatEvents?.RaiseBlasterOverheated();
+            var damageMultiplier = (_stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f) * (_combatEvents == null ? 1f : (100 + _combatEvents.RaiseAttackDamageRolling(_definition.DamageMax, true).BonusPercent) / 100f);
 
-            var solved = ResolveShot(_definition.Range);
+            var solved = ResolveShot(CurrentRange);
             LastShot = solved;
 
             _emitter.Emit(
                 _projectilePool, SingleProjectilePattern.Instance, _damageRoller, solved.Direction, solved.SpawnPosition,
-                _definition.DamageMin, _definition.DamageMax, _definition.ProjectileSpeed, _definition.Range,
-                gameObject, _lastSpawnedProjectiles, _stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f,
-                _definition.Knockback * (_stats?.GetMultiplier(StatId.Knockback) ?? 1f),
-                _definition.StaggerPower * (_stats?.GetMultiplier(StatId.StaggerPower) ?? 1f),
-                _impactFeedback);
+                _definition.DamageMin, _definition.DamageMax, CurrentProjectileSpeed, CurrentRange,
+                gameObject, _lastSpawnedProjectiles, damageMultiplier,
+                WeaponStatMath.Knockback(_definition.Knockback, _stats),
+                WeaponStatMath.StaggerPower(_definition.StaggerPower, _stats),
+                _impactFeedback,
+                0f,
+                DamageTeam.Player,
+                ProjectileVisualCatalog.ResolveWeaponVisualId(_definition));
             LastSpawnedProjectile = _lastSpawnedProjectiles[_lastSpawnedProjectiles.Count - 1];
 
             return true;

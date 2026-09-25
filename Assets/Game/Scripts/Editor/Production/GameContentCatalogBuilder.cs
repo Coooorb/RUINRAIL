@@ -63,6 +63,9 @@ namespace RuinRail.EditorTools.Production
             catalog.AimAssist = LoadOrCreate<AimAssistConfig>(AimAssistConfigPath);
             catalog.AudioEvents = Load<AudioEventCatalog>(AudioAssetAudit.CatalogPath);
             catalog.Music = Load<MusicCatalog>(MusicAssetAudit.CatalogPath);
+            // The networked player object a live host spawns per member; a built player reaches it only through here.
+            catalog.NetworkPlayerEntity = AssetDatabase.LoadAssetAtPath<GameObject>(NetworkPlayerPrefabAuthoring.PrefabPath);
+            catalog.CoopRunLink = AssetDatabase.LoadAssetAtPath<GameObject>(NetworkPlayerPrefabAuthoring.LinkPrefabPath);
             catalog.Lighting = All<BiomeLightingProfile>();
             catalog.Items = All<ItemDefinition>();
             catalog.Specials = All<LegendarySpecialDefinition>();
@@ -71,6 +74,7 @@ namespace RuinRail.EditorTools.Production
             catalog.Bosses = All<BossDefinition>();
             catalog.Rooms = All<RoomDefinition>().Where(r => !AssetDatabase.GetAssetPath(r).Contains("/_Test/") && !r.Id.StartsWith("test_")).ToList();
             catalog.AnimationSets = All<CharacterAnimationSet>();
+            catalog.ProjectileVisuals = AssetDatabase.LoadAssetAtPath<RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog>(RuinRail.EditorTools.ArtGen.ProjectileArtIntegration.CatalogPath);
             // Held weapon art lives at its convention path keyed by the weapon's stable id (the same rule AnimationAssetAudit counts).
             catalog.VfxSprites = AssetDatabase.FindAssets("t:Texture2D", new[] { "Assets/Game/Art/Vfx" })
                 .Select(AssetDatabase.GUIDToAssetPath).OrderBy(p => p, StringComparer.Ordinal)

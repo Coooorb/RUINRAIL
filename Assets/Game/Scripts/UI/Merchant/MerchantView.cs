@@ -109,6 +109,21 @@ namespace RuinRail.UI.Merchant
             _plate.color = _plate.sprite != null ? (row.IsSold ? new Color(0.5f, 0.5f, 0.5f, 1f) : Color.white) : UiTheme.Charcoal;
             _control.Refresh();
         }
+
+        /// <summary>
+        /// Appends one state note to the row's subtitle, refitted to the row width.
+        ///
+        /// The Shelter counter uses it for the two facts the dungeon merchant has no need of — the coins are not there,
+        /// or this definition is already worn — so a purchase the player cannot make, or would not want, says so on the
+        /// row rather than only in a rejection message afterwards.
+        /// </summary>
+        public void Annotate(string note, Color color)
+        {
+            if (_subtitle == null || string.IsNullOrEmpty(note)) return;
+            var textWidth = Mathf.RoundToInt(((RectTransform)_subtitle.transform).sizeDelta.x);
+            _subtitle.text = UiText.Fit(_subtitle.text + " · " + note, textWidth);
+            _subtitle.color = color;
+        }
     }
 
     /// <summary>Line pitch shared with the HUD so stacked rows never share pixels.</summary>
@@ -147,6 +162,8 @@ namespace RuinRail.UI.Merchant
         private UiSkin _skin;
         private readonly List<MerchantRowView> _rows = new();
         private readonly List<Text> _detailRows = new();
+        private readonly DetailPager _detailPager = new(DetailLines);
+        private string _detailKey;
         private readonly Dictionary<string, UiControl> _buttons = new();
         private Text _title;
         private Text _coins;
@@ -173,6 +190,10 @@ namespace RuinRail.UI.Merchant
         public string DetailTitleText => _detailTitle != null ? _detailTitle.text : string.Empty;
         public string DetailSubtitleText => _detailSubtitle != null ? _detailSubtitle.text : string.Empty;
         public IReadOnlyList<string> DetailRowTexts => _detailRows.Select(r => r.text).ToList();
+        /// <summary>The details pager (shared layout with the inventory); the inputs step it, the tests read it.</summary>
+        public DetailPager DetailPager => _detailPager;
+        public bool DetailsPageDown() { if (!_detailPager.PageDown()) return false; RenderDetails(); return true; }
+        public bool DetailsPageUp() { if (!_detailPager.PageUp()) return false; RenderDetails(); return true; }
         public string HintsText => _hints != null ? _hints.text : string.Empty;
         public int Renders { get; private set; }
 
@@ -464,6 +485,8 @@ namespace RuinRail.UI.Merchant
             var width = DetailsPanel.Width - UiTheme.Pad * 2;
             if (tooltip == null)
             {
+                _detailPager.SetRows(null, false);
+                _detailKey = null;
                 _detailTitle.text = _viewModel.Tab == MerchantTab.Buy ? "NO OFFER SELECTED" : "NOTHING TO SELL";
                 _detailTitle.color = UiTheme.InkMuted;
                 _detailSubtitle.text = _viewModel.Tab == MerchantTab.Buy ? "Select an offer to see its details." : "Dungeon-held backpack items can be sold here.";
@@ -478,31 +501,25 @@ namespace RuinRail.UI.Merchant
             subtitle += row.Tab == MerchantTab.Buy ? (row.IsSold ? " · SOLD" : $" · PRICE {row.Price} C") : (row.IsUnsellable ? " · STARTER" : $" · SELLS FOR {row.Price} C");
             _detailSubtitle.text = UiText.Fit(subtitle, width);
 
-            var lines = new List<(string key, string value, Color color)>();
-            foreach (var stat in tooltip.BaseStats) lines.Add((stat.Label, stat.Value, UiTheme.Ink));
-            foreach (var affix in tooltip.Affixes) lines.Add((affix.Label, affix.Value, UiTheme.Terminal));
-            if (!string.IsNullOrEmpty(tooltip.LegendaryText)) lines.Add((tooltip.LegendaryText, string.Empty, UiTheme.Amber));
-            var comparison = _viewModel.CompareFor(row);
-            if (comparison.Count > 0)
+            // The inventory's layout: description first, then Legendary, stats, affixes, comparison; paged, never cut.
+            var key = row.Tab + ":" + (row.Item != null ? row.Item.InstanceId : row.GetHashCode().ToString());
+            var sameItem = key == _detailKey;
+            _detailKey = key;
+            _detailPager.SetRows(ItemDetailLayout.Compose(tooltip, _viewModel.CompareFor(row), width), sameItem);
+            var visible = _detailPager.Visible(DetailPagingInput.Hint());
+            for (var i = 0; i < _detailRows.Count && i < visible.Count; i++)
             {
-                lines.Add(("— VS EQUIPPED —", string.Empty, UiTheme.InkMuted));
-                foreach (var line in comparison) lines.Add((line.Label, $"{line.Candidate} vs {line.Current} ({(line.Delta > 0 ? "+" : line.Delta < 0 ? "-" : "=")})", line.Delta > 0 ? UiTheme.Terminal : line.Delta < 0 ? UiTheme.Danger : UiTheme.InkMuted));
-            }
-
-            for (var i = 0; i < _detailRows.Count && i < lines.Count; i++)
-            {
-                var (key, value, color) = lines[i];
-                _detailRows[i].text = string.IsNullOrEmpty(value) ? UiText.Fit(key, width) : StatLine(key, value, width);
-                _detailRows[i].color = color;
+                _detailRows[i].text = ItemDetailLayout.Render(visible[i], width);
+                _detailRows[i].color = visible[i].Color;
             }
         }
 
-        private static string StatLine(string key, string value, int width)
+        private void Update()
         {
-            var chars = UiText.CharsFor(width);
-            var k = UiText.Fit(key, width - UiText.Width(value) - UiText.Advance);
-            var pad = Math.Max(1, chars - k.Length - value.Length);
-            return k + new string(' ', pad) + value;
+            if (_panel == null || !_panel.activeSelf || !_detailPager.Overflows) return;
+            var step = DetailPagingInput.Poll();
+            if (step > 0) DetailsPageDown();
+            else if (step < 0) DetailsPageUp();
         }
 
         private static Color Readable(Color color)

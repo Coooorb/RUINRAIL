@@ -34,7 +34,14 @@ MonoBehaviour:
   _chargeAttack: {fileID: 0}
   _bombRadiusTiles: 0
   _bombStaggerPower: 0
+  _projectileVisualId: proj_enemy_sniper
   _moveset: []
+  _summonDefinition: {fileID: 0}
+  _summonIntervalSeconds: 9
+  _summonCountMin: 2
+  _summonCountMax: 3
+  _maxLivingSummons: 6
+  _summonRadiusTiles: 1.5
   _frontalShieldPercent: 0
   _frontalShieldArcDegrees: 120
   _unlockDepth: 11

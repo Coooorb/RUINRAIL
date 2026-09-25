@@ -20,6 +20,8 @@ namespace RuinRail.Core.Input
         event Action Weapon2Selected;
         event Action WeaponSwapped;
         event Action ConsumableUsed;
+        /// <summary>Quick-use the first usable grenade in the backpack without opening the inventory (press edge).</summary>
+        event Action QuickGrenadeUsed;
         event Action InventoryToggled;
         /// <summary>Pause / menu press edge (116: Escape, controller Menu/Options). Consumed by the pause flow, never by gameplay.</summary>
         event Action PauseToggled;

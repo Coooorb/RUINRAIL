@@ -1,6 +1,7 @@
 using RuinRail.Core.Input;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Items;
+using RuinRail.Gameplay.Progression;
 using RuinRail.Gameplay.Stats;
 using UnityEngine;
 
@@ -25,6 +26,13 @@ namespace RuinRail.Gameplay.Player
             public PartyLifeRoster LifeRoster;
             /// <summary>Party participant id for revive/loot authority lookups; null = the object name.</summary>
             public string ParticipantId;
+
+            /// <summary>
+            /// This player's permanent attribute ranks (player/13). Registered on the stat pipeline as part of the one
+            /// player composition, so solo, networked and test-built players all receive progression the same way.
+            /// Null = no progression source (an unowned prefab; the host applies the owner's ranks on spawn).
+            /// </summary>
+            public SkillAllocation Progression;
         }
 
         public static GameObject Build(Options options)
@@ -77,6 +85,9 @@ namespace RuinRail.Gameplay.Player
             go.AddComponent<PickupAttractor>();
             var binder = go.AddComponent<PlayerStatsBinder>();
             binder.Configure(options.Caps, options.BalanceConfig);
+            // Permanent progression is the first modifier source on the pipeline (player/12): equipment sources are
+            // added later by the loadout registrar and sum with it; neither can overwrite the other.
+            binder.ApplyProgression(options.Progression);
             // Health was composed first: pick up the dash iFrames and revive protection added after it.
             health.RefreshInvulnerabilityStates();
             return go;

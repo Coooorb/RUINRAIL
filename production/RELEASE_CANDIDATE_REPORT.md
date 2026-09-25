@@ -1,5 +1,8 @@
 # RUINRAIL Release Candidate Report — TASK 183
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. Its missing-content list (animation, weapon sprites, VFX, audio) was resolved by later passes; its Windows build predates the current tree. The body below is kept unchanged as the record of its time.
+
+
 > **Status:** Measured on real target hardware. Every number below came from a run that actually happened.
 > **Verdict:** Engineering candidate is stable and fast. **Not shippable as V1** — see §7.
 

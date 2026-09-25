@@ -49,6 +49,8 @@ namespace RuinRail.Gameplay.Enemies
         [Tooltip("Lob archetypes (Bomber): explosion radius and stagger of the thrown bomb; range = AttackRange, flight speed = ProjectileSpeed.")]
         [SerializeField, Min(0f)] private float _bombRadiusTiles;
         [SerializeField, Min(0f)] private float _bombStaggerPower;
+        [Tooltip("Projectile archetypes: the in-flight visual profile id (ProjectileVisualCatalog); empty = the hostile default. Presentation only.")]
+        [SerializeField] private string _projectileVisualId = string.Empty;
         [Tooltip("Moveset archetypes (Brute): fixed attacks in priority order, run by the shared AttackResolver.")]
         [SerializeField] private Attacks.EnemyAttackDefinition[] _moveset = Array.Empty<Attacks.EnemyAttackDefinition>();
 
@@ -98,6 +100,18 @@ namespace RuinRail.Gameplay.Enemies
         public Attacks.EnemyAttackDefinition ChargeAttack => _chargeAttack;
         public EnemyDefinition SummonDefinition => _summonDefinition;
         public bool IsSummoner => _summonDefinition != null;
+
+        /// <summary>In-flight visual of this archetype's projectiles (presentation only); empty = the hostile default profile.</summary>
+        public string ProjectileVisualId => _projectileVisualId;
+
+#if UNITY_EDITOR
+        /// <summary>Editor-only binding used by the art pipeline. Never called at runtime.</summary>
+        public void EditorSetProjectileVisualId(string id)
+        {
+            _projectileVisualId = id ?? string.Empty;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+#endif
         public float SummonIntervalSeconds => Mathf.Max(0.1f, _summonIntervalSeconds);
         public int SummonCountMin => Mathf.Max(1, _summonCountMin);
         public int SummonCountMax => Mathf.Max(SummonCountMin, _summonCountMax);

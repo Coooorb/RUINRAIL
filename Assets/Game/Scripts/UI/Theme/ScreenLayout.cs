@@ -80,6 +80,36 @@ namespace RuinRail.UI.Theme
         /// <summary>Truncates with an ellipsis so the result is guaranteed to fit the width. Never clips mid-glyph.</summary>
         public static string Fit(string text, int widthPixels, int scale = 1) =>
             TextFit.Clamp(text, CharsFor(widthPixels, scale));
+
+        /// <summary>
+        /// Word-wraps a sentence into lines that each fit the width (whole glyph cells, never mid-glyph). A single word
+        /// longer than a line is split hard rather than clipped, so nothing the writer put in is lost.
+        /// </summary>
+        public static System.Collections.Generic.List<string> Wrap(string text, int widthPixels, int scale = 1)
+        {
+            var lines = new System.Collections.Generic.List<string>();
+            var chars = CharsFor(widthPixels, scale);
+            if (string.IsNullOrWhiteSpace(text) || chars <= 0) return lines;
+            var current = new System.Text.StringBuilder();
+            foreach (var rawWord in text.Split(' '))
+            {
+                var word = rawWord;
+                while (word.Length > chars)
+                {
+                    if (current.Length > 0) { lines.Add(current.ToString()); current.Clear(); }
+                    lines.Add(word.Substring(0, chars));
+                    word = word.Substring(chars);
+                }
+
+                if (word.Length == 0) continue;
+                if (current.Length == 0) current.Append(word);
+                else if (current.Length + 1 + word.Length <= chars) current.Append(' ').Append(word);
+                else { lines.Add(current.ToString()); current.Clear(); current.Append(word); }
+            }
+
+            if (current.Length > 0) lines.Add(current.ToString());
+            return lines;
+        }
     }
 
     /// <summary>

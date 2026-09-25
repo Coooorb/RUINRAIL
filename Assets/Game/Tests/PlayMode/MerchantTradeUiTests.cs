@@ -174,7 +174,10 @@ namespace RuinRail.Tests
             StringAssert.Contains(UiText.Fit(tooltip.Name, MerchantView.DetailsPanel.Width - UiTheme.Pad * 2), _view.DetailTitleText);
             StringAssert.Contains(RarityStyle.For(tooltip.Rarity).Label, _view.DetailSubtitleText);
             StringAssert.Contains($"PRICE {selected.Price} C", _view.DetailSubtitleText);
-            if (tooltip.BaseStats.Count > 0) StringAssert.Contains(tooltip.BaseStats[0].Label, _view.DetailRowTexts[0]);
+            // The shared details layout leads with the item's description; the first stat row follows it (paged, never cut).
+            var rows = string.Join("\n", _view.DetailPager.Rows.Select(r => r.Key));
+            if (tooltip.BaseStats.Count > 0) StringAssert.Contains(tooltip.BaseStats[0].Label, rows);
+            StringAssert.Contains(UiText.Wrap(tooltip.Description, MerchantView.DetailsPanel.Width - UiTheme.Pad * 2)[0], _view.DetailRowTexts[0], "the description is the first visible row");
             foreach (var text in _view.GetComponentsInChildren<UnityEngine.UI.Text>(true)) Assert.AreSame(UiFont.Font(), text.font, text.name);
         }
 

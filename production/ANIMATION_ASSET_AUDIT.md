@@ -1,5 +1,8 @@
 # RUINRAIL V1 animation asset audit (art/103)
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. This frozen copy predates the art pass; the live audit (22/22 actor sets, 33/33 weapon sprites) is regenerated to TestResults/animation_assets.md. The body below is kept unchanged as the record of its time.
+
+
 Status: **BLOCKED_EXTERNAL_ASSET** — 0/22 actor animation sets complete; weapon sprites 0/33.
 
 | Actor | Kind | Set | Required clips | Missing | Status |

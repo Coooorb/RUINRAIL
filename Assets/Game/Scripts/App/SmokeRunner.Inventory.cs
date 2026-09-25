@@ -69,7 +69,7 @@ namespace RuinRail.App
             yield return null;
             Check("inventory opens as a window", vm.IsOpen && view.IsVisible);
             Check("solo inventory pauses the world and holds gameplay input", Time.timeScale == 0f && GameplayInputGate.IsHeld && run.Rig.Reader.Move == Vector2.zero && !run.Rig.Reader.FireHeld);
-            Check("inventory takes the pointer cursor", CursorService.Current == CursorKind.Pointer);
+            Check($"inventory takes the pointer cursor (cursor {CursorService.Current}, base {CursorService.Base}, overlays {CursorService.Overlays})", PointerLayerOwnsCursor);
             Check("skin frames bound (panel, slot, 5 rarity frames)", UiSkin.Load() != null && UiSkin.Load().HasInventoryFrames);
             Check("five graphical equipment slots", view.EquipmentSlots.Count == 5);
             Check("eight-slot graphical backpack grid (4 x 2)", view.BackpackSlots.Count == InventoryViewModel.BackpackSlots && InventoryView.BackpackColumns == 4);
@@ -106,7 +106,10 @@ namespace RuinRail.App
             menuInput.Stack.Navigate(Vector2Int.right);
             for (var guard = 0; guard < 16 && vm.Cursor.Index != smgIndex; guard++) { var target = smgIndex > vm.Cursor.Index ? Vector2Int.right : Vector2Int.left; if (smgIndex / 4 != vm.Cursor.Index / 4) target = smgIndex / 4 > vm.Cursor.Index / 4 ? Vector2Int.down : Vector2Int.up; if (!menuInput.Stack.Navigate(target)) break; }
             yield return null;
-            Check("details panel follows the cursor (Rare SMG)", vm.Cursor.Index == smgIndex && view.DetailTitleText.Contains("Rattler") && view.DetailSubtitleText.Contains("RARE") && view.DetailRowTexts.Any(r => r.StartsWith("Damage")) && view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")));
+            Check("details panel follows the cursor (Rare SMG)", vm.Cursor.Index == smgIndex && view.DetailTitleText.Contains("Rattler") && view.DetailSubtitleText.Contains("RARE") && view.DetailPager.Rows.Any(r => r.Key.StartsWith("Damage")) && view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")));
+            // The description leads the panel; the stats and the comparison follow, paged rather than cut.
+            Check("description leads the details, comparison reachable by paging", view.DetailRowTexts[0].Length > 0 && view.DetailPager.Rows[0].Key == view.DetailRowTexts[0] && (view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) || view.DetailsPageDown() && (view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) || view.DetailsPageDown())));
+            while (view.DetailsPageUp()) { }
             menuInput.Stack.Activate();
             yield return null;
             Check("confirm selects the item (selected frame shown)", vm.Selected.HasValue && vm.Selected.Value.Index == smgIndex && view.BackpackSlots[smgIndex].ShowsSelectedFrame);

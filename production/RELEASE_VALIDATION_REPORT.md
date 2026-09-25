@@ -1,5 +1,8 @@
 # RUINRAIL V1 release validation report (TASK 147)
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. Its offline fake-transport multiplayer path is superseded by real host/client built-player proofs. The body below is kept unchanged as the record of its time.
+
+
 ## Build
 - Unity 6000.3.24f1, target StandaloneWindows64 (the development-environment platform; the GDD commits to no other platform), BuildOptions.None (non-development release), scenes Bootstrap → MainMenu → Base → Dungeon.
 - Command: `Unity.exe -batchmode -nographics -executeMethod RuinRail.EditorTools.Production.ReleaseBuildTool.BuildBatch`; output Builds/Windows64/RUINRAIL.exe.

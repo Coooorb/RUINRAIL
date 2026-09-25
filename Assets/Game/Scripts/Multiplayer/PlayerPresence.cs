@@ -152,6 +152,16 @@ namespace RuinRail.Networking
 
         public ReconnectGraceService Grace => _grace;
         public int ReconnectCount { get; private set; }
+
+        /// <summary>
+        /// 81/83: the party is agreed in the lobby and fixed when the expedition starts, and 83 pins the scaling to it.
+        /// Once the run's composition root has closed the party, a connection that is not already a member and did not
+        /// reclaim a held entity (85) is admitted as nothing: no roster entry and no player object. Without this, a
+        /// stray or replayed connection mid-expedition would mint a fourth character the run was never scaled for.
+        /// </summary>
+        public bool IsPartyClosed { get; private set; }
+
+        public void CloseParty() => IsPartyClosed = true;
         public event Action<NetworkPlayerEntity, ulong> Reconnected;
 
         public SessionRoster Roster => _roster;
@@ -169,9 +179,20 @@ namespace RuinRail.Networking
             if (!_connection.IsHost) return;
             if (_entities.ContainsKey(clientId)) return;
             if (_roster.Count >= _roster.MaxMembers && !_roster.Contains(clientId)) return;
+            // A closed party admits only members it already has (a reconnect re-adds itself before this callback).
+            if (IsPartyClosed && !_roster.Contains(clientId)) return;
             var identity = _roster.Add(clientId, rawName, clientId == _connection.LocalClientId);
             var isLocal = clientId == _connection.LocalClientId;
             var go = _factory.Spawn(identity, isLocal);
+            if (go == null)
+            {
+                // A member without an entity is not a member: counting it would let the run believe it composed a party
+                // it never built, and the dungeon would be scaled for a player who does not exist (83).
+                _roster.Remove(clientId);
+                Debug.LogError($"No player entity could be spawned for client {clientId}; the member is not admitted.");
+                return;
+            }
+
             var entity = new NetworkPlayerEntity(identity, go, isLocal);
             entity.ReconnectToken = ReconnectGraceService.NewToken();
             _entities[clientId] = entity;
@@ -251,14 +272,25 @@ namespace RuinRail.Networking
         private readonly Gameplay.Items.GlobalStatCapsConfig _caps;
         private readonly Func<PlayerIdentity, Vector2> _spawnPosition;
         private readonly Action<GameObject, bool> _decorate;
+        private readonly PartyLifeRoster _roster;
+        private readonly Func<PlayerIdentity, string> _participantId;
 
         /// <param name="decorate">Presentation composition run on every spawned entity (local owner or replica) — the app passes its player visual composer so a session member is never a bare collider.</param>
-        public LocalPlayerEntityFactory(PlayerBalanceConfig balance = null, Gameplay.Items.GlobalStatCapsConfig caps = null, Func<PlayerIdentity, Vector2> spawnPosition = null, Action<GameObject, bool> decorate = null)
+        /// <param name="roster">
+        /// 84: the party roster every spawned member joins. Without it a presence-spawned entity is invisible to
+        /// Downed/revive/wipe and to transit voting, which is exactly the gap that made the run solo-shaped — the
+        /// machinery was all party-aware, but only one entity ever reached the roster.
+        /// </param>
+        /// <param name="participantId">The party participant id for revive/loot/vote lookups; defaults to the client id.</param>
+        public LocalPlayerEntityFactory(PlayerBalanceConfig balance = null, Gameplay.Items.GlobalStatCapsConfig caps = null, Func<PlayerIdentity, Vector2> spawnPosition = null, Action<GameObject, bool> decorate = null,
+            PartyLifeRoster roster = null, Func<PlayerIdentity, string> participantId = null)
         {
             _balance = balance;
             _caps = caps;
             _spawnPosition = spawnPosition;
             _decorate = decorate;
+            _roster = roster;
+            _participantId = participantId;
         }
 
         public GameObject Spawn(PlayerIdentity identity, bool isLocalOwner)
@@ -269,7 +301,9 @@ namespace RuinRail.Networking
                 IsLocal = isLocalOwner,
                 BalanceConfig = _balance,
                 Caps = _caps,
-                Position = _spawnPosition?.Invoke(identity) ?? Vector2.zero
+                Position = _spawnPosition?.Invoke(identity) ?? Vector2.zero,
+                LifeRoster = _roster,
+                ParticipantId = _participantId?.Invoke(identity) ?? identity.ClientId.ToString()
             });
             _decorate?.Invoke(entity, isLocalOwner);
             return entity;
@@ -277,7 +311,10 @@ namespace RuinRail.Networking
 
         public void Despawn(GameObject entity)
         {
-            if (entity != null) UnityEngine.Object.Destroy(entity);
+            if (entity == null) return;
+            // Editor-time composition (validators, editor tests) has no next frame to destroy in.
+            if (Application.isPlaying) UnityEngine.Object.Destroy(entity);
+            else UnityEngine.Object.DestroyImmediate(entity);
         }
     }
 }

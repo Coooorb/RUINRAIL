@@ -229,7 +229,7 @@ namespace RuinRail.App
             yield return null;
             Check("merchant window visible over the run, bound to this merchant's stock", view.IsVisible && vm.Merchant == merchant.Merchant && vm.Rows.Count == merchant.Merchant.Offers.Count && vm.Rows.Count > 0);
             Check("merchant focus list on the menu input stack, first offer focused", menuInput.Stack.Current == view.FocusList && view.FocusList.Focused != null && view.FocusList.Focused.Id == "merchant.row.0");
-            Check("gameplay gated and the pointer cursor shown while trading", GameplayInputGate.IsHeld && run.Rig.Reader.Move == Vector2.zero && !run.Rig.Reader.InteractHeld && CursorService.Current == CursorKind.Pointer && run.CurrentInteractionPrompt.Length == 0);
+            Check("gameplay gated and the pointer cursor shown while trading", GameplayInputGate.IsHeld && run.Rig.Reader.Move == Vector2.zero && !run.Rig.Reader.InteractHeld && PointerLayerOwnsCursor && run.CurrentInteractionPrompt.Length == 0);
             Check("offer rows show icon, rarity frame, name and price", view.RowViews.Take(vm.Rows.Count).All(r => r.IconVisible && r.FrameSprite != null && r.NameText.Length > 0 && r.PriceText.EndsWith(" C")));
             Check("coins and free backpack slots shown", view.CoinsText.Contains("COINS") && view.BackpackText.Contains("SLOTS FREE"));
             yield return CaptureHud("merchant_12_menu_open");

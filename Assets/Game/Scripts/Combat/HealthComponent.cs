@@ -81,10 +81,12 @@ namespace RuinRail.Gameplay.Combat
                 return false;
             }
 
-            // 82: only the host (or a solo game) applies damage; clients render replicated health.
+            // 82: only the host (or a solo game) applies damage; clients render replicated health. A client's own hit
+            // on a replicated enemy becomes a request to the host instead of a local change.
             if (!DamageAuthority.LocalIsAuthoritative)
             {
-                return false;
+                var relay = DamageAuthority.RemoteDamageRelay;
+                return relay != null && relay(this, request);
             }
 
             if (IsInvulnerable)
@@ -148,10 +150,12 @@ namespace RuinRail.Gameplay.Combat
                 return false;
             }
 
-            // 82: healing is decided by the host as well; a client only receives replicated values.
+            // 82: healing is decided by the host as well; a client only receives replicated values (its own heal is
+            // forwarded as a request and comes back through the replicated health).
             if (!DamageAuthority.LocalIsAuthoritative)
             {
-                return false;
+                var relay = DamageAuthority.RemoteHealRelay;
+                return relay != null && relay(this, amount);
             }
 
             var previousHealth = CurrentHealth;

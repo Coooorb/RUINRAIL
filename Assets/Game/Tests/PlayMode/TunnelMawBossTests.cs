@@ -91,11 +91,9 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             boss.SetTarget(player.transform);
-            Assert.AreEqual("Claw Sweep", boss.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(3f, 0f);
-            Assert.AreEqual("Bite/Lunge", boss.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(9f, 0f);
-            Assert.AreEqual("Marked Leap", boss.SelectAttack().DisplayName, "Beyond roar range the leap closes the gap.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 1.5f, "Claw Sweep", "Close: the claw sweep.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 3f, "Bite/Lunge", "Bite/Lunge is the band's attack here");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 9f, "Marked Leap", "Beyond roar range the leap closes the gap.");
         }
 
         [UnityTest]
@@ -118,8 +116,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(0.8f, boss.TimingMultiplier, 0.0001f);
             CollectionAssert.AreEqual(new[] { 2 }, phases);
 
-            player.transform.position = new Vector2(5f, 0f);
-            Assert.AreEqual("Burrow Emergence", boss.SelectAttack().DisplayName, "Phase 2 prepends the burrow emergence to the rotation.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 5f, "Burrow Emergence", "Phase 2 prepends the burrow emergence to the rotation.");
 
             boss.Health.TryApplyDamage(new DamageRequest(300));
             Assert.AreEqual(2, boss.Phase);

@@ -356,9 +356,26 @@ namespace RuinRail.UI.Inventory
                 return result.Success ? Done() : Fail(InventoryActionResult.Refused, result.Error.ToString());
             }
 
-            // Backpack -> backpack: slots are a flat 8-slot bag; moving within it changes nothing about ownership.
-            return Done();
+            // Backpack -> backpack: a manual reorder. The item lands in exactly the slot the player chose — an empty
+            // slot is a move, an occupied slot swaps (or merges a same-definition stack) — and the order stays as put:
+            // nothing compacts or re-sorts. Ownership never changes, so this is the container's own slot operation.
+            var reorder = _inventory.MoveBackpackSlot(from.Index, to.Index);
+            switch (reorder)
+            {
+                case SlotMoveResult.Moved:
+                case SlotMoveResult.Swapped:
+                case SlotMoveResult.Merged:
+                    LastReorder = reorder;
+                    return Done();
+                case SlotMoveResult.Unchanged:
+                    return Done();
+                default:
+                    return Fail(InventoryActionResult.Refused, "Nothing to move.");
+            }
         }
+
+        /// <summary>The outcome of the last backpack-to-backpack reorder (diagnostics/tests).</summary>
+        public SlotMoveResult LastReorder { get; private set; }
 
         private InventoryActionResult Swap(InventorySlotRef a, InventorySlotRef b)
         {

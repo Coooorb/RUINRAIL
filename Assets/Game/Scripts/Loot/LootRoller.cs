@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RuinRail.Core.Rng;
+using UnityEngine;
 using RuinRail.Gameplay.Items;
 
 namespace RuinRail.Gameplay.Loot
@@ -75,11 +76,18 @@ namespace RuinRail.Gameplay.Loot
         public const int UsefulAmmoPercent = 70;
 
         private readonly Func<LootQuality, RarityTableDefinition> _rarityTables;
+        private readonly Func<int, float> _coinDepthMultiplier;
         private readonly AffixRollService _affixes = new();
 
-        public LootRoller(Func<LootQuality, RarityTableDefinition> rarityTables)
+        /// <param name="coinDepthMultiplier">
+        /// Depth curve applied to coin rewards this roller produces (null = 1.0 everywhere). It is applied here, on the
+        /// reward side, and deliberately NOT on <see cref="RuinRail.Gameplay.Expedition.ExpeditionService.AddCarriedCoins"/>:
+        /// that seam also carries merchant sale proceeds, which must never inherit a depth bonus.
+        /// </param>
+        public LootRoller(Func<LootQuality, RarityTableDefinition> rarityTables, Func<int, float> coinDepthMultiplier = null)
         {
             _rarityTables = rarityTables ?? throw new ArgumentNullException(nameof(rarityTables));
+            _coinDepthMultiplier = coinDepthMultiplier;
         }
 
         public LootResult Roll(LootTableDefinition table, LootContext context)
@@ -117,7 +125,7 @@ namespace RuinRail.Gameplay.Loot
                 var quantity = selection.NextInt(Math.Min(entry.MinQuantity, entry.MaxQuantity), Math.Max(entry.MinQuantity, entry.MaxQuantity));
                 if (entry.IsCoins)
                 {
-                    result.Coins += quantity;
+                    result.Coins += ScaleCoins(quantity, context.Depth);
                     continue;
                 }
 
@@ -127,9 +135,13 @@ namespace RuinRail.Gameplay.Loot
             return result;
         }
 
-        /// <summary>Co-op-only consumables (Defibrillator) are never eligible for a Solo party.</summary>
+        /// <summary>
+        /// Co-op-only consumables (Defibrillator) are never eligible for a Solo party, and equipment held back from V1
+        /// acquisition never drops — the table keeps the entry so the data survives for a later design pass.
+        /// </summary>
         public static bool IsEligible(LootTableDefinition.Entry entry, LootContext context)
         {
+            if (entry.Item is EquipmentItemDefinition equipment && !equipment.IsAcquirableInV1) return false;
             return entry.Item is not RuinRail.Gameplay.Items.Consumables.ConsumableDefinition consumable || consumable.IsDropEligible(context.PartySize);
         }
 
@@ -147,6 +159,14 @@ namespace RuinRail.Gameplay.Loot
             if (useful.Length == 0) return PickWeighted(entries, random);
             var pool = random.NextInt(100) < UsefulAmmoPercent ? useful : entries;
             return PickWeighted(pool, random);
+        }
+
+        /// <summary>The authored coin quantity after the depth curve, rounded once and never below the authored amount.</summary>
+        private int ScaleCoins(int quantity, int depth)
+        {
+            if (_coinDepthMultiplier == null || quantity <= 0) return quantity;
+            var multiplier = _coinDepthMultiplier(depth);
+            return multiplier <= 1f ? quantity : Mathf.Max(quantity, Mathf.RoundToInt(quantity * multiplier));
         }
 
         public Rarity RollRarity(LootContext context) => RollRarity(context, context.Random);

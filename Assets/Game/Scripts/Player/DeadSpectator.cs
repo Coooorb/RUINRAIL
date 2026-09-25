@@ -110,9 +110,15 @@ namespace RuinRail.Gameplay.Player
 
         public int WipeFailures { get; private set; }
 
+        /// <summary>
+        /// False on a co-op client (82/84): the wipe is the host's decision, which reaches the client as the run's end;
+        /// a client's replicated view of the party must never fail its own transaction from a transient state.
+        /// </summary>
+        public bool FailOnWipe { get; set; } = true;
+
         private void OnTeamWiped(PartyLifeRoster roster)
         {
-            if (!_expedition.IsExpeditionActive) return;
+            if (!FailOnWipe || !_expedition.IsExpeditionActive) return;
             WipeFailures++;
             _expedition.Fail();
         }

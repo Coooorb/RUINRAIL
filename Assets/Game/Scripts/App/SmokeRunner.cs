@@ -21,6 +21,10 @@ namespace RuinRail.App
         public sealed class Result
         {
             public bool Success;
+            /// <summary>The release-smoke scenario this run executed (`fresh` by default, `returning` on a relaunch).</summary>
+            public string Scenario = "fresh";
+            /// <summary>The run seed the first expedition composed with (the `-seed` override, or the clock).</summary>
+            public int RunSeed;
             public string Stage = "boot";
             public string Error = "";
             public string ScenesComposed = "";
@@ -51,6 +55,44 @@ namespace RuinRail.App
             public string[] RoomHudChecks = Array.Empty<string>();
             /// <summary>Weapon Cache interaction and reward checks that passed (one line each).</summary>
             public string[] WeaponCacheChecks = Array.Empty<string>();
+            /// <summary>Ammo resale / room containment / backpack reorder / projectile visual checks that passed (one line each).</summary>
+            public string[] EconomyContainmentProjectileChecks = Array.Empty<string>();
+            /// <summary>Starter Loadout fallback checks at the Shelter (one line each).</summary>
+            public string[] StarterFallbackChecks = Array.Empty<string>();
+            /// <summary>Death / Run Lost screen checks (one line each).</summary>
+            public string[] DeathScreenChecks = Array.Empty<string>();
+            /// <summary>Character-attribute purchase, persistence and runtime-effect checks (one line each).</summary>
+            public string[] ProgressionChecks = Array.Empty<string>();
+            /// <summary>Depth-heal / item-description / Settings pages / enemy-count / non-combat room checks (one line each).</summary>
+            public string[] DepthSettingsNonCombatChecks = Array.Empty<string>();
+
+            /// <summary>Previously dead accessory intrinsic / affix / impact / ammo-capacity checks (one line each).</summary>
+            public string[] StatConsumerChecks = Array.Empty<string>();
+
+            /// <summary>The affix rolls the smoke produced with the real roll service, as "affixId=value; ...".</summary>
+            public string StatConsumerAffixRolls = "";
+
+            /// <summary>Deepest-depth record, boss attack variety and anti-kite checks (one line each).</summary>
+            public string[] RunVarietyChecks = System.Array.Empty<string>();
+
+            /// <summary>World substrate, audio mix, status chips, pickup attraction, quick-grenade, aim assist and Codex checks (one line each).</summary>
+            public string[] PresentationQolChecks = System.Array.Empty<string>();
+
+            /// <summary>Returning-profile scenario checks (relaunch restore, attributes, Storage, Trader, re-entered run).</summary>
+            public string[] ReturningChecks = Array.Empty<string>();
+            /// <summary>Fresh-profile creation checks (Shelter onboarding: display name, starter kit, first expedition).</summary>
+            public string[] ProfileChecks = Array.Empty<string>();
+            /// <summary>Long-run scenario samples, one CSV line per depth (see SmokeRunner.LongRun).</summary>
+            public string[] LongRunSamples = Array.Empty<string>();
+
+            /// <summary>The personal-best depth the smoke reached and persisted.</summary>
+            public int DeepestDepthReached;
+            /// <summary>The non-combat room mechanics the smoke actually drove on the generated depth.</summary>
+            public string[] NonCombatRoomsDriven = Array.Empty<string>();
+            /// <summary>The exact ammo sale the smoke performed (quote, coin change) and the four bundle quotes.</summary>
+            public string AmmoSaleEvidence = "";
+            /// <summary>Where each captured projectile was when its frame was taken (world position, profile, visibility).</summary>
+            public System.Collections.Generic.List<string> ProjectilePositions = new();
             public string ProofDirectory = "";
             public string AudioEvidence = "";
             public string[] ProofCaptures = Array.Empty<string>();
@@ -59,6 +101,8 @@ namespace RuinRail.App
         }
 
         public const string ScreenshotArgument = "-screenshot";
+        /// <summary>The display name the fresh-profile smoke creates its profile with (the returning scenario expects it).</summary>
+        public const string SmokeDisplayName = "Smoke Runner";
 
         private GameApp _app;
         private readonly Result _result = new();
@@ -70,6 +114,9 @@ namespace RuinRail.App
         {
             _app = app;
             app.SceneComposed += name => _composed += name + ";";
+            if (ScenarioName == ReturningScenario) { StartCoroutine(RunReturning()); return; }
+            if (ScenarioName == DeathScenario) { StartCoroutine(RunDeath()); return; }
+            if (ScenarioName == LongRunScenario) { StartCoroutine(RunLongRun()); return; }
             BeginAudioEvidence();
             StartCoroutine(Run());
         }
@@ -89,21 +136,51 @@ namespace RuinRail.App
                 var screen = FindFirstObjectByType<BaseHubScreen>();
                 if (screen == null) { Fail("no BaseHubScreen"); yield break; }
                 var session = menu.Session;
+                // Fresh profile creation exactly as a new player meets it: the Shelter onboarding asks for a display
+                // name and shows the starter kit; both are answered through the onboarding the screen composed.
+                var onboarding = screen.Onboarding;
+                if (onboarding == null || onboarding.IsComplete || !onboarding.NeedsDisplayName) { Fail($"profile: a fresh profile starts the Shelter onboarding (step {onboarding?.Step}, needs name {onboarding?.NeedsDisplayName})"); yield break; }
+                if (!onboarding.SubmitDisplayName(SmokeDisplayName)) { Fail("profile: display name refused: " + onboarding.NameError); yield break; }
+                onboarding.AcknowledgeStarterKit();
+                yield return null;
+                // ui/95: after the name and the kit, the last onboarding step is starting the first expedition (below).
+                if (onboarding.Step != RuinRail.UI.Onboarding.ShelterOnboardingStep.StartFirstExpedition || session.Profile.DisplayName != SmokeDisplayName || !session.Slot.FirstLaunch.DisplayNameConfirmed)
+                { Fail($"profile: onboarding did not reach its last step (step {onboarding.Step}, name '{session.Profile.DisplayName}')"); yield break; }
+                if (!session.GrantedFirstKit || !onboarding.IsGearEquipped) { Fail("profile: the first starter kit was not granted and equipped"); yield break; }
+                _result.ProfileChecks = new[]
+                {
+                    "a fresh profile opens the Shelter onboarding at the display-name step",
+                    $"display name '{SmokeDisplayName}' accepted and confirmed in the save slot",
+                    "the first starter kit was granted once and equipped (Primary Weapon + Armor)",
+                    "onboarding reached its last step: start the first expedition"
+                };
                 var pistol = session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon);
                 _result.Pistol = pistol != null ? pistol.InstanceId : "";
+                // Character progression: earn, buy, refuse, persist — before the expedition that must show the effect.
+                yield return ProgressionShelterChecks(screen, session);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                // Previously dead content, equipped into the real Shelter loadout before the run is committed.
+                StatConsumerShelterChecks(session);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
                 if (!screen.Hub.Multiplayer.SetReady(true)) { Fail("ready refused"); yield break; }
                 screen.Hub.Open(BaseStation.Transit);
                 if (!screen.Hub.Transit.StartExpedition()) { Fail("start refused: " + screen.Hub.Transit.Feedback.Text); yield break; }
                 yield return WaitFor(() => _composed.Contains(SceneNames.Dungeon), "dungeon composed");
                 Stage("dungeon");
+                if (!session.Slot.FirstLaunch.ShelterOnboardingComplete) { Fail("profile: starting the first expedition did not complete the onboarding"); yield break; }
+                _result.ProfileChecks = _result.ProfileChecks.Concat(new[] { "starting the first expedition completed the onboarding" }).ToArray();
                 yield return null;
                 var run = FindFirstObjectByType<ExpeditionScene>();
                 if (run == null || run.Rooms == null || run.Rooms.Count == 0) { Fail("no rooms composed"); yield break; }
                 _result.RoomsComposed = run.Rooms.Count;
                 _result.Biome = run.Expedition.State.Biome.ToString();
+                _result.RunSeed = run.Expedition.State.RunSeed;
                 if (run.Rig?.Player == null) { Fail("no player"); yield break; }
                 // Let a few frames of gameplay run (physics, HUD, camera), then extract through the service.
                 for (var i = 0; i < 30; i++) yield return null;
+                ProgressionRunChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return ProgressionRunCaptures(run);
                 yield return StartHpDashIconHudChecks(run);
                 if (!string.IsNullOrEmpty(_result.Error)) yield break;
                 yield return PlayabilityChecks(run);
@@ -122,6 +199,23 @@ namespace RuinRail.App
                 if (!string.IsNullOrEmpty(_result.Error)) yield break;
                 yield return RoomHudQolChecks(run);
                 if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return EconomyContainmentProjectileChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return DepthSettingsNonCombatChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                ProgressionDepthChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return StatConsumerRunChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                // Presentation / audio / UX-QoL in the shipped player, on the first depth (the substrate, the mix, the
+                // HUD chips, the pickup reach, quick-grenade, the aim-assist setting and the Help pages).
+                yield return PresentationQolChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                // Deepest depth, boss attack variety, anti-kite and a real descend. This stage descends, so it runs
+                // last in the dungeon: every check above belongs to the first depth.
+                yield return RunVarietyDepthChecks(run);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return ProgressionDepthCaptures();
                 // Optional visual proof from the shipped player (needs a graphics device, i.e. no -nographics).
                 var shotIndex = Array.IndexOf(Environment.GetCommandLineArgs(), ScreenshotArgument);
                 if (shotIndex >= 0 && shotIndex + 1 < Environment.GetCommandLineArgs().Length)
@@ -145,17 +239,36 @@ namespace RuinRail.App
                 var reloaded = _app.ProbeSave();
                 _result.SaveReloaded = reloaded.Success && reloaded.BankedCoins == _result.BankedCoinsAfterReturn && Array.IndexOf(reloaded.EquippedInstanceIds, _result.Pistol) >= 0;
                 if (!_result.SaveReloaded) { Fail("reload mismatch"); yield break; }
+                StatConsumerSaveChecks(reloaded);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                RunVarietyPersistenceChecks(reloaded);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
 
-                // Second expedition: leave it through the pause menu (RETURN TO MAIN MENU → confirm). The run must resolve
+                // Second expedition: started with NOTHING equipped (everything stripped into Storage) — Ready equips the
+                // free Starter Loadout — and ended by the player's death: the Run Lost screen, RETURN TO SHELTER.
+                Stage("starter_fallback");
+                screen = FindFirstObjectByType<BaseHubScreen>();
+                if (screen == null) { Fail("no BaseHubScreen after return"); yield break; }
+                yield return StarterFallbackChecks(screen, menu.Session);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+                yield return WaitFor(() => _composed.EndsWith(SceneNames.Dungeon + ";"), "second dungeon composed");
+                yield return null;
+                run = FindFirstObjectByType<ExpeditionScene>();
+                if (run == null || run.Rig?.Player == null) { Fail("no player on the second run"); yield break; }
+                Stage("death");
+                yield return DeathScreenChecks(run, menu);
+                if (!string.IsNullOrEmpty(_result.Error)) yield break;
+
+                // Third expedition: leave it through the pause menu (RETURN TO MAIN MENU → confirm). The run must resolve
                 // as the one failure transaction, the profile must reload with the marker closed and banked state intact.
                 Stage("leave");
                 screen = FindFirstObjectByType<BaseHubScreen>();
-                if (screen == null) { Fail("no BaseHubScreen after return"); yield break; }
+                if (screen == null) { Fail("no BaseHubScreen after the run lost"); yield break; }
                 var bankedBeforeLeave = menu.Session.Profile.BankedCoins;
-                if (!screen.Hub.Multiplayer.SetReady(true)) { Fail("ready refused (2)"); yield break; }
+                if (!screen.Hub.Multiplayer.SetReady(true)) { Fail("ready refused (3)"); yield break; }
                 screen.Hub.Open(BaseStation.Transit);
-                if (!screen.Hub.Transit.StartExpedition()) { Fail("second start refused: " + screen.Hub.Transit.Feedback.Text); yield break; }
-                yield return WaitFor(() => _composed.EndsWith(SceneNames.Dungeon + ";"), "second dungeon composed");
+                if (!screen.Hub.Transit.StartExpedition()) { Fail("third start refused: " + screen.Hub.Transit.Feedback.Text); yield break; }
+                yield return WaitFor(() => _composed.EndsWith(SceneNames.Dungeon + ";"), "third dungeon composed");
                 yield return null;
                 run = FindFirstObjectByType<ExpeditionScene>();
                 if (run == null || run.Pause == null || run.PauseScreen == null) { Fail("no pause screen on the second run"); yield break; }
@@ -163,7 +276,7 @@ namespace RuinRail.App
                 run.Pause.Open();
                 yield return null;
                 if (!run.PauseScreen.IsShowing || run.PauseScreen.Controls.Count < 4) { Fail("pause screen not usable"); yield break; }
-                if (RuinRail.UI.Theme.CursorService.Current != RuinRail.UI.Theme.CursorKind.Pointer) { Fail("pause did not take the pointer cursor"); yield break; }
+                if (!PointerLayerOwnsCursor) { Fail($"pause did not take the pointer cursor (cursor {RuinRail.UI.Theme.CursorService.Current}, base {RuinRail.UI.Theme.CursorService.Base}, overlays {RuinRail.UI.Theme.CursorService.Overlays})"); yield break; }
                 run.Pause.Activate(RuinRail.UI.Pause.PauseMenuItem.ReturnToMainMenu);
                 if (!run.Pause.IsConfirming) { Fail("no leave confirmation"); yield break; }
                 run.Pause.Confirm();
@@ -173,9 +286,16 @@ namespace RuinRail.App
                 var afterLeave = _app.ProbeSave();
                 _result.ReturnToMenuOk = expedition.LastSummary != null && expedition.LastSummary.Outcome == ExpeditionOutcome.Failed
                     && menu.Session == null && afterLeave.Success && !afterLeave.ExpeditionMarkerOpen && afterLeave.BankedCoins == bankedBeforeLeave
-                    && RuinRail.UI.Theme.CursorService.Current == RuinRail.UI.Theme.CursorKind.Pointer;
+                    && PointerLayerOwnsCursor;
                 if (!_result.ReturnToMenuOk) { Fail($"return to main menu: outcome {expedition.LastSummary?.Outcome}, session {(menu.Session == null ? "closed" : "open")}, marker {afterLeave.ExpeditionMarkerOpen}, banked {afterLeave.BankedCoins}/{bankedBeforeLeave}"); yield break; }
                 if (menu.Play() == PlayOutcome.Failed || menu.AbandonedExpedition != null) { Fail("profile did not continue cleanly after leaving"); yield break; }
+
+                // One settings change the relaunch must find (the mid-run Settings stage restores its music level to the
+                // default on purpose): screen-shake intensity through the same Settings model the GAMEPLAY page drives.
+                var settingsModel = _app.SettingsScreen;
+                settingsModel.SetScreenShakeIntensity(FreshSmokeShakeIntensity);
+                if (settingsModel.Apply() != RuinRail.Persistence.SaveError.None || Mathf.Abs(_app.Settings.Current.Accessibility.ScreenShakeIntensity - FreshSmokeShakeIntensity) > 1e-3f)
+                { Fail("settings: the screen-shake intensity change was not saved"); yield break; }
 
                 _result.Success = true;
                 Stage("done");
@@ -214,7 +334,8 @@ namespace RuinRail.App
             Check("gameplay owns the aim cursor", RuinRail.UI.Theme.CursorService.Current == RuinRail.UI.Theme.CursorKind.Aim);
             run.Pause.Open();
             yield return null;
-            Check("pause menu usable (4 controls, pointer cursor)", run.PauseScreen.IsShowing && run.PauseScreen.Controls.Count >= 4 && RuinRail.UI.Theme.CursorService.Current == RuinRail.UI.Theme.CursorKind.Pointer);
+            Check($"pause menu usable (showing={run.PauseScreen.IsShowing} controls={run.PauseScreen.Controls.Count} cursor={RuinRail.UI.Theme.CursorService.Current} base={RuinRail.UI.Theme.CursorService.Base} overlays={RuinRail.UI.Theme.CursorService.Overlays} hover={RuinRail.UI.Theme.CursorService.Hovering})",
+                run.PauseScreen.IsShowing && run.PauseScreen.Controls.Count >= 4 && PointerLayerOwnsCursor);
             run.Pause.Close();
             yield return null;
             Check("aim cursor restored after pause", RuinRail.UI.Theme.CursorService.Current == RuinRail.UI.Theme.CursorKind.Aim);
@@ -288,12 +409,15 @@ namespace RuinRail.App
             var victim = enemies.OrderByDescending(e => e.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>().MaxHealth).FirstOrDefault();
             if (weapon != null && victim != null && aiming != null)
             {
+                // The reference shots are about the shot, not the pack: the rest of the pack is held still (as the
+                // Charger lane below does) so a chasing body cannot walk into the line of fire and take the round.
+                foreach (var e in enemies) { if (e == null || !e.IsAlive || e == victim) continue; e.enabled = false; var hb = e.GetComponent<Rigidbody2D>(); hb.linearVelocity = Vector2.zero; hb.bodyType = RigidbodyType2D.Kinematic; }
                 victim.enabled = false;
                 var vb = victim.GetComponent<Rigidbody2D>();
                 vb.linearVelocity = Vector2.zero;
                 vb.bodyType = RigidbodyType2D.Kinematic;
                 var origin = aiming.AimOrigin;
-                var at = ClearSpotAround(origin, 4f) ?? ClearSpotAround(origin, 3f) ?? origin + Vector2.right * 4f; // rooms have cover: a clear line for the reference shot
+                var at = ClearSpotAround(origin, 4f, victim) ?? ClearSpotAround(origin, 3f, victim) ?? origin + Vector2.right * 4f; // rooms have cover: a clear line for the reference shot
                 victim.transform.position = at;
                 vb.position = at;
                 var health = victim.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>();
@@ -318,6 +442,10 @@ namespace RuinRail.App
                     var (dc, _) = entry.BlockerArea();
                     var step = (Vector2)RuinRail.Dungeon.Rooms.DoorDirections.Step(entry.Socket.Direction);
                     var behind = dc + step * 2f;
+                    // The dummy is deliberately parked outside its own room for this probe: its encounter bounds would
+                    // (rightly) pull it straight back in, so they stand down for the duration of the probe only.
+                    var victimBounds = victim.GetComponent<RuinRail.Gameplay.Combat.EncounterBounds>();
+                    if (victimBounds != null) victimBounds.enabled = false;
                     victim.transform.position = behind;
                     vb.position = behind;
                     Physics2D.SyncTransforms();
@@ -328,6 +456,7 @@ namespace RuinRail.App
                     victim.transform.position = at;
                     vb.position = at;
                     Physics2D.SyncTransforms();
+                    if (victimBounds != null) victimBounds.enabled = true;
                 }
 
                 // Auto reload on the final round.
@@ -339,6 +468,9 @@ namespace RuinRail.App
             {
                 Check("ranged weapon, aiming and a target available", false);
             }
+
+            // The pack chases again for the containment checks (the frozen dummy stays frozen).
+            foreach (var e in enemies) { if (e == null || !e.IsAlive || e == victim) continue; e.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic; e.enabled = true; }
 
             // Walls and the shut door hold the pack; the player stands outside a plain wall, then outside the door.
             var wallSide = new[] { RuinRail.Dungeon.Rooms.DoorDirection.West, RuinRail.Dungeon.Rooms.DoorDirection.East, RuinRail.Dungeon.Rooms.DoorDirection.South, RuinRail.Dungeon.Rooms.DoorDirection.North }
@@ -418,16 +550,25 @@ namespace RuinRail.App
         }
 
         /// <summary>A point at the distance from the origin that a body fits in, with nothing solid on the line between.</summary>
-        private static Vector2? ClearSpotAround(Vector2 from, float distance)
+        private static Vector2? ClearSpotAround(Vector2 from, float distance, Component target = null)
         {
             for (var angle = 0; angle < 360; angle += 45)
             {
                 var dir = new Vector2(Mathf.Cos(angle * Mathf.Deg2Rad), Mathf.Sin(angle * Mathf.Deg2Rad));
                 var at = from + dir * distance;
                 if (!RuinRail.Dungeon.Runtime.RoomRuntime.IsSpawnClear(at) || !RuinRail.Dungeon.Runtime.RoomRuntime.IsSpawnClear(at + Vector2.up * RuinRail.Gameplay.Combat.CombatHurtbox.NormalOffset.y)) continue;
+                // A hazard pool damages whatever stands in it on its own clock: the HP-delta proof needs a dummy nothing else touches.
+                if (Physics2D.OverlapCircleAll(at, RuinRail.Gameplay.Enemies.DefaultEnemySpawner.BodyRadius + 0.3f).Any(c => c != null && c.GetComponentInParent<RuinRail.Gameplay.Combat.Hazards.HazardVolume>() != null)) continue;
                 var blocked = false;
-                foreach (var hit in Physics2D.CircleCastAll(from, 0.2f, dir, distance))
-                    if (hit.collider != null && !hit.collider.isTrigger && hit.collider.GetComponentInParent<RuinRail.Gameplay.Combat.EnvironmentObstacle>() != null) { blocked = true; break; }
+                foreach (var hit in Physics2D.CircleCastAll(from, 0.3f, dir, distance + 0.5f))
+                {
+                    if (hit.collider == null) continue;
+                    if (!hit.collider.isTrigger && hit.collider.GetComponentInParent<RuinRail.Gameplay.Combat.EnvironmentObstacle>() != null) { blocked = true; break; }
+                    // Another enemy's body or hurtbox on the lane would take the reference round.
+                    var owner = hit.collider.GetComponentInParent<RuinRail.Gameplay.Enemies.EnemyController>();
+                    if (owner != null && (target == null || owner.gameObject != target.gameObject)) { blocked = true; break; }
+                }
+
                 if (!blocked) return at;
             }
 
@@ -463,6 +604,16 @@ namespace RuinRail.App
                 yield return null;
             }
         }
+
+        /// <summary>
+        /// True while a menu layer over gameplay owns the cursor. The question is whether the overlay forces the
+        /// pointer — not which of its two sprites is up: <see cref="RuinRail.UI.Theme.CursorService.Resolve"/> turns the
+        /// pointer into its Hover decoration whenever the mouse happens to rest on a control of that very menu, and in
+        /// a built player the OS cursor sits wherever it was left. Asking for the exact Pointer sprite therefore tested
+        /// where the mouse happened to be, not that the menu had taken the cursor.
+        /// </summary>
+        private static bool PointerLayerOwnsCursor =>
+            RuinRail.UI.Theme.CursorService.Resolve(RuinRail.UI.Theme.CursorService.Base, RuinRail.UI.Theme.CursorService.Overlays, hover: false) == RuinRail.UI.Theme.CursorKind.Pointer;
 
         private void Stage(string stage) { _result.Stage = stage; Debug.Log("[SMOKE] " + stage); }
         private void Fail(string error) { _result.Error = error; Debug.LogError("[SMOKE] FAIL " + error); }

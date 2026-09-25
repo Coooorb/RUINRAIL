@@ -24,6 +24,22 @@ namespace RuinRail.UI.Navigation
         public bool IsEnabled => _isEnabled?.Invoke() ?? true;
         public int Activations { get; private set; }
 
+        /// <summary>
+        /// Optional horizontal step for an adjustable control (a slider, a selector): left/right on keyboard, D-pad or
+        /// stick step it by -1 / +1 instead of changing the screen's section. Null for plain buttons and rows.
+        /// </summary>
+        public Action<int> Adjust { get; set; }
+        public bool IsAdjustable => Adjust != null;
+        public int Adjustments { get; private set; }
+
+        public bool TryAdjust(int delta)
+        {
+            if (!IsEnabled || Adjust == null || delta == 0) return false;
+            Adjustments++;
+            Adjust(delta);
+            return true;
+        }
+
         public bool TryActivate()
         {
             if (!IsEnabled || Activate == null) return false;
@@ -79,6 +95,20 @@ namespace RuinRail.UI.Navigation
         {
             _items.Add(new FocusItem(id, label, activate, isEnabled));
             return this;
+        }
+
+        /// <summary>Adds an adjustable control: Enter/click activates it, left/right steps it.</summary>
+        public FocusList AddAdjustable(string id, string label, Action activate, Action<int> adjust, Func<bool> isEnabled = null)
+        {
+            _items.Add(new FocusItem(id, label, activate, isEnabled) { Adjust = adjust });
+            return this;
+        }
+
+        /// <summary>Steps the focused control horizontally; false when it is not adjustable (the screen then treats the step as a section change).</summary>
+        public bool AdjustFocused(int delta)
+        {
+            EnsureValid();
+            return Focused != null && Focused.TryAdjust(delta);
         }
 
         public FocusItem Find(string id) => _items.FirstOrDefault(i => i.Id == id);
@@ -192,6 +222,8 @@ namespace RuinRail.UI.Navigation
         public bool Contains(FocusList list) => list != null && _stack.Exists(e => e.list == list);
 
         public bool Move(int delta) => Current?.Move(delta) ?? false;
+        /// <summary>Horizontal step on the live panel's focused control; false when that control is not adjustable.</summary>
+        public bool Adjust(int delta) => Current?.AdjustFocused(delta) ?? false;
         /// <summary>Directional step on the live panel (navigator-aware); false when the panel has no navigator and the step is horizontal.</summary>
         public bool Navigate(Vector2Int direction) => Current?.Navigate(direction) ?? false;
         public bool CurrentHasNavigator => Current != null && Current.HasNavigator;

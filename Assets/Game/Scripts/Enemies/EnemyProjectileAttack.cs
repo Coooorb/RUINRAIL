@@ -133,7 +133,7 @@ namespace RuinRail.Gameplay.Enemies
         private void Fire()
         {
             LastDamageDealt = _damageRoller.Roll(_definition.DamageMin, _definition.DamageMax);
-            var data = new ProjectileSpawnData(LastDamageDealt, _definition.ProjectileSpeed, _definition.ProjectileRange, 0f, 0f, _lockedDirection, gameObject, null, 0f, DamageTeam.Enemy);
+            var data = new ProjectileSpawnData(LastDamageDealt, _definition.ProjectileSpeed, _definition.ProjectileRange, 0f, 0f, _lockedDirection, gameObject, null, 0f, DamageTeam.Enemy, false, _definition.ProjectileVisualId);
             _spawned.Add(_pool.Spawn(transform.position, data));
             ShotsFired++;
         }

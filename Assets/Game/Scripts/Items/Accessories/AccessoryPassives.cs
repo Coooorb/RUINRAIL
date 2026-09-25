@@ -13,6 +13,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float DurationSeconds = 3f;
         private TimedBuff _buff;
         public override string Id => "accessory_momentum";
+        public override string Description => $"After a Dash, +{MovePercent}% Movement Speed for {DurationSeconds:0.#} s.";
         protected override void OnAttach()
         {
             _buff = new TimedBuff(Context.Stats, "passive:accessory_momentum", StatModifier.Percent(StatId.MovementSpeed, MovePercent));
@@ -31,6 +32,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         private bool _moving;
         private float _stillFor;
         public override string Id => "steady_aim";
+        public override string Description => $"After {StillSeconds:0.#} s without moving, projectile weapons deal +{DamagePercent}% damage until you move.";
         public bool IsActive => !_moving && _stillFor >= StillSeconds;
         protected override void OnAttach()
         {
@@ -54,6 +56,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float DurationSeconds = 4f;
         private TimedBuff _buff;
         public override string Id => "flow_state";
+        public override string Description => $"A melee kill grants +{AttackSpeedPercent}% Melee Attack Speed for {DurationSeconds:0.#} s (further kills refresh).";
         protected override void OnAttach()
         {
             _buff = new TimedBuff(Context.Stats, "passive:flow_state", StatModifier.Percent(StatId.MeleeAttackSpeed, AttackSpeedPercent));
@@ -73,6 +76,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         private TimedBuff _buff;
         private float _cooldown;
         public override string Id => "hot_swap";
+        public override string Description => $"Swapping weapons gives the new weapon +{SpeedPercent}% Fire/Attack Speed for {DurationSeconds:0.#} s ({CooldownSeconds:0.#} s cooldown).";
         public bool IsBuffActive => _buff != null && _buff.IsActive;
         protected override void OnAttach()
         {
@@ -98,6 +102,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const int DamagePercent = 15;
         private int _remaining;
         public override string Id => "fresh_mag";
+        public override string Description => $"After a reload, the next {Attacks} shots deal +{DamagePercent}% damage.";
         public int RemainingAttacks => _remaining;
         protected override void OnAttach()
         {
@@ -127,6 +132,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float HeatMultiplier = 0.5f;
         private int _remaining;
         public override string Id => "cold_start";
+        public override string Description => $"A Blaster that cools from {PeakHeatThreshold:0}+ Heat down to 0 builds {Mathf.RoundToInt((1f - HeatMultiplier) * 100f)}% less Heat on its next {Shots} shots.";
         public int RemainingShots => _remaining;
         protected override void OnAttach()
         {
@@ -157,6 +163,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float CooldownSeconds = 8f;
         private float _cooldown;
         public override string Id => "emergency_vent";
+        public override string Description => $"When a Blaster overheats, emit a {RadiusTiles:0.#}-tile energy pulse for {DamageMin}–{DamageMax} damage ({CooldownSeconds:0.#} s cooldown).";
         protected override void OnAttach() => Context.Events.BlasterOverheated += OnOverheat;
         protected override void OnDetach() => Context.Events.BlasterOverheated -= OnOverheat;
         private void OnOverheat()
@@ -172,6 +179,7 @@ namespace RuinRail.Gameplay.Items.Accessories
     public sealed class PerfectDrawPassive : AccessoryPassive
     {
         public override string Id => "perfect_draw";
+        public override string Description => "A fully drawn Bow shot pierces the first enemy hit without losing damage.";
         protected override void OnAttach() => Context.Events.BowShotFired += OnShot;
         protected override void OnDetach() => Context.Events.BowShotFired -= OnShot;
         private void OnShot(BowShotRequest request) { if (request.IsFullDraw) request.Penetrations = Math.Max(request.Penetrations, 1); }
@@ -186,6 +194,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float CooldownSeconds = 6f;
         private float _cooldown;
         public override string Id => "discharge";
+        public override string Description => $"The Dash endpoint emits a {RadiusTiles:0.#}-tile shockwave: heavy knockback and stagger, no damage ({CooldownSeconds:0.#} s cooldown).";
         protected override void OnAttach() => Context.Events.DashEnded += OnDashEnded;
         protected override void OnDetach() => Context.Events.DashEnded -= OnDashEnded;
         private void OnDashEnded()
@@ -203,6 +212,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float MinTravelTiles = 7f;
         public const int DamagePercent = 15;
         public override string Id => "long_shot";
+        public override string Description => $"A projectile that travelled at least {MinTravelTiles:0.#} tiles deals +{DamagePercent}% damage.";
         protected override void OnAttach() => Context.Events.ProjectileHitRolling += OnHit;
         protected override void OnDetach() => Context.Events.ProjectileHitRolling -= OnHit;
         private void OnHit(ProjectileHitRequest request) { if (request.TravelDistance >= MinTravelTiles) request.BonusPercent += DamagePercent; }
@@ -217,6 +227,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         private float _remainingSeconds;
         private float _carry;
         public override string Id => "second_pulse";
+        public override string Description => $"Healing consumables additionally restore {ExtraPercent}% of their healing over {DurationSeconds:0.#} s.";
         public int PendingHeal => _pending;
         protected override void OnAttach() => Context.Events.HealingConsumableUsed += OnHealing;
         protected override void OnDetach() { Context.Events.HealingConsumableUsed -= OnHealing; _pending = 0; _remainingSeconds = 0f; }
@@ -249,6 +260,7 @@ namespace RuinRail.Gameplay.Items.Accessories
     {
         public const int BonusPercent = 25;
         public override string Id => "scavengers_reserve";
+        public override string Description => $"Ammo pickups grant {BonusPercent}% more ammo.";
         protected override void OnAttach() => Context.Events.AmmoPickupRolling += OnPickup;
         protected override void OnDetach() => Context.Events.AmmoPickupRolling -= OnPickup;
         private void OnPickup(AmmoPickupRequest request) => request.BonusPercent += BonusPercent;
@@ -258,6 +270,7 @@ namespace RuinRail.Gameplay.Items.Accessories
     public sealed class RoomSweepPassive : AccessoryPassive
     {
         public override string Id => "room_sweep";
+        public override string Description => "On Combat Room clear, remaining Coin and Ammo pickups in the room are pulled to you.";
         protected override void OnAttach() => Context.Events.CombatRoomCleared += OnCleared;
         protected override void OnDetach() => Context.Events.CombatRoomCleared -= OnCleared;
         private void OnCleared() => Context.World.PullCoinAndAmmoPickups();
@@ -273,6 +286,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         private float _firingFor;
         private bool _applied;
         public override string Id => "lock_in";
+        public override string Description => $"After {ContinuousSeconds:0.#} s of continuous fire, Spread is reduced by a further {SpreadReductionPercent}% until you stop firing.";
         public bool IsApplied => _applied;
         protected override void OnAttach() => Context.Events.FiringStateChanged += OnFiring;
         protected override void OnDetach() { Context.Events.FiringStateChanged -= OnFiring; SetApplied(false); }
@@ -306,6 +320,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         private readonly Dictionary<string, float> _targetCooldowns = new();
         private readonly List<string> _cooldownScratch = new();
         public override string Id => "wallbreaker";
+        public override string Description => $"An enemy or Elite knocked into a wall takes {BonusMin}–{BonusMax} bonus damage and heavy stagger ({PerTargetCooldownSeconds:0.#} s per target; never Bosses).";
         protected override void OnAttach() => Context.Events.EnemyKnockedIntoWall += OnWall;
         protected override void OnDetach() { Context.Events.EnemyKnockedIntoWall -= OnWall; _targetCooldowns.Clear(); }
         private void OnWall(WallImpactRequest request)
@@ -337,6 +352,7 @@ namespace RuinRail.Gameplay.Items.Accessories
         public const float CooldownSeconds = 6f;
         private float _cooldown;
         public override string Id => "arc_stagger";
+        public override string Description => $"When you stagger an enemy, emit a {RadiusTiles:0.#}-tile shockwave that staggers enemies nearby ({CooldownSeconds:0.#} s cooldown).";
         protected override void OnAttach() => Context.Events.EnemyStaggeredByWearer += OnStagger;
         protected override void OnDetach() => Context.Events.EnemyStaggeredByWearer -= OnStagger;
         private void OnStagger(string targetId)

@@ -34,6 +34,7 @@ namespace RuinRail.UI.Theme
         [SerializeField] private Sprite dashIcon;
         [SerializeField] private Sprite coinIcon;
         [SerializeField] private Sprite lowHealthVignette;
+        [SerializeField] private Sprite enemyIcon;
 
         /// <summary>The Shelter interior the hub screen is staged in.</summary>
         public Sprite ShelterBackdrop => shelterBackdrop;
@@ -70,6 +71,8 @@ namespace RuinRail.UI.Theme
         public Sprite CoinIcon => coinIcon;
         /// <summary>The low-HP danger vignette (91 Player State), stretched over the frame and tinted by the HUD.</summary>
         public Sprite LowHealthVignette => lowHealthVignette;
+        /// <summary>The HUD hostile token (91 enemy-remaining readout): the enemy count chip is this plus "xN".</summary>
+        public Sprite EnemyIcon => enemyIcon;
         public bool HasInventoryFrames => panelFrame != null && inventorySlot != null && rarityFrames != null && rarityFrames.Length == 5 && System.Array.TrueForAll(rarityFrames, s => s != null);
 
         private static UiSkin _cached;
@@ -120,6 +123,9 @@ namespace RuinRail.UI.Theme
             coinIcon = coin;
             lowHealthVignette = vignette;
         }
+
+        /// <summary>Editor-only: binds the generated HUD hostile token (enemy-remaining chip).</summary>
+        public void EditorSetEnemyIcon(Sprite icon) => enemyIcon = icon;
 
         /// <summary>Editor-only: binds the three generated cursors and their hotspots.</summary>
         public void EditorSetCursors(Texture2D pointer, Vector2 pointerHotspot, Texture2D hover, Vector2 hoverHotspot, Texture2D aim, Vector2 aimHotspot)

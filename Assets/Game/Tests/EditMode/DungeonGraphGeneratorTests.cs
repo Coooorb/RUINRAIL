@@ -49,10 +49,11 @@ namespace RuinRail.Tests
             Assert.AreEqual(new Vector2Int(1, 3), _rules.BranchCount);
             Assert.AreEqual(new Vector2Int(1, 3), _rules.BranchLength);
             Assert.AreEqual(new Vector2Int(4, 8), _rules.CombatRooms);
-            Assert.AreEqual(5, _rules.EliteChancePercent(2));
-            Assert.AreEqual(10, _rules.EliteChancePercent(5));
-            Assert.AreEqual(15, _rules.EliteChancePercent(10));
-            Assert.AreEqual(20, _rules.EliteChancePercent(20));
+            // 59_DEPTH_SCALING elite chance, raised by the run-variety pass; the D21+ cap is unchanged at 25%.
+            Assert.AreEqual(8, _rules.EliteChancePercent(2));
+            Assert.AreEqual(18, _rules.EliteChancePercent(5));
+            Assert.AreEqual(25, _rules.EliteChancePercent(10));
+            Assert.AreEqual(25, _rules.EliteChancePercent(20));
             Assert.AreEqual(25, _rules.EliteChancePercent(21));
             Assert.AreEqual(1, _rules.MaxElites(10));
             Assert.AreEqual(2, _rules.MaxElites(11));

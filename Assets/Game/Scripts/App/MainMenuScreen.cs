@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RuinRail.Core;
 using RuinRail.Gameplay.Progression;
 using RuinRail.UI.Base;
@@ -26,14 +27,23 @@ namespace RuinRail.App
         private Text _footer;
         private Text _playHint;
         private FocusList _menuList;
-        private FocusList _settingsList;
-        private GameObject _settingsPanel;
+        private SettingsPanel.Instance _settings;
+        private CodexPanel.Instance _codex;
+        private RuinRail.UI.Codex.CodexViewModel _codexModel;
         private UiPrompts _prompts;
         private readonly List<UiControl> _controls = new();
 
         public MainMenuViewModel Menu => _app.Menu;
         public MenuInput Input => _input;
         public FocusList MenuList => _menuList;
+        /// <summary>The Settings panel while it is open (its list owns the input), else null.</summary>
+        public SettingsPanel.Instance SettingsInstance => _settings;
+        public bool SettingsShowing => _settings != null && _settings.Panel != null;
+        /// <summary>The Help / Codex page over the menu.</summary>
+        public bool CodexShowing => _codex != null && _codex.Panel != null;
+        public CodexPanel.Instance CodexInstance => _codex;
+        public FocusList CodexList => _codex?.List;
+        public FocusList SettingsList => _settings?.List;
         /// <summary>Every interactive control on the screen, in build order. The interaction tests walk this.</summary>
         public IReadOnlyList<UiControl> Controls => _controls;
 
@@ -60,13 +70,15 @@ namespace RuinRail.App
             BuildActions();
             BuildProfileCard();
 
-            _status = UiKit.Label(_root, string.Empty, new UiRect(36, 250, 300, UiText.Height(3)), 1,
+            // Below the action column, which is four controls deep now that HELP sits between SETTINGS and QUIT:
+            // PLAY 132..162, SETTINGS 168..192, HELP 198..222, QUIT 228..252. The status starts clear of all of them.
+            _status = UiKit.Label(_root, string.Empty, new UiRect(36, 260, 300, UiText.Height(3)), 1,
                 TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
 
             UiKit.ChromeBar(_root, ScreenLayout.Footer, "Footer", ruleAtBottom: false);
             _footer = UiKit.Label(_root, _prompts.Footer(),
                 new UiRect(UiTheme.ScreenMargin, ScreenLayout.Footer.Y + 5, ScreenLayout.Footer.Width - UiTheme.ScreenMargin * 2, UiText.Height()),
-                1, TextAnchor.UpperLeft, UiTheme.InkFaint);
+                1, TextAnchor.UpperLeft, UiTheme.InkMuted);
 
             _input.Stack.Push(_menuList);
             Menu.Changed += OnMenuChanged;
@@ -145,7 +157,7 @@ namespace RuinRail.App
                 UiKit.Label(_root, "No profile on this machine yet.",
                     new UiRect(inner.X, rowY, inner.Width, UiText.Height(3)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
                 UiKit.Label(_root, "PLAY creates one and opens The Shelter.",
-                    new UiRect(inner.X, rowY + UiText.LineHeight * 2, inner.Width, UiText.Height(3)), 1, TextAnchor.UpperLeft, UiTheme.InkFaint, wrap: true);
+                    new UiRect(inner.X, rowY + UiText.LineHeight * 2, inner.Width, UiText.Height(3)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
                 return;
             }
 
@@ -155,6 +167,9 @@ namespace RuinRail.App
                 ("SURVIVOR", string.IsNullOrEmpty(probe.DisplayName) ? "unnamed" : probe.DisplayName),
                 ("LEVEL", level.ToString()),
                 ("BANKED", probe.BankedCoins + " C"),
+                // The card already had a natural key/value slot, so the record goes here rather than forcing a new
+                // element into the accepted layout. "none yet" for a profile that has not entered a depth.
+                ("DEEPEST", probe.DeepestDepthReached > 0 ? "DEPTH " + probe.DeepestDepthReached : "none yet"),
                 ("EQUIPPED", probe.EquippedInstanceIds.Length.ToString())
             };
 
@@ -192,6 +207,9 @@ namespace RuinRail.App
                 case MainMenuState.Settings:
                     ShowSettings();
                     break;
+                case MainMenuState.Help:
+                    ShowCodex();
+                    break;
                 case MainMenuState.Quitting:
                     _app.Quit();
                     break;
@@ -202,33 +220,70 @@ namespace RuinRail.App
         }
 
         /// <summary>
-        /// The settings page, as a panel over the menu rather than beside it.
-        ///
-        /// It scrolls by focus rather than by a scrollbar: the list is long, so the rows that fit are drawn and the
-        /// window follows the focused entry. That keeps every control reachable by keyboard, controller and pointer
-        /// without a scroll widget none of the three would share.
+        /// The Settings panel over the menu: the category root first, then one page per category (ui/90). The panel
+        /// manages its own focus list on the shared stack; Back walks page → categories → menu.
         /// </summary>
         private void ShowSettings()
         {
-            if (_settingsPanel != null) return;
-            var panel = SettingsPanel.Build(_root, _app.SettingsScreen);
-            _settingsPanel = panel.Panel;
-            _settingsList = panel.List;
-            _controls.AddRange(panel.Controls);
-            _input.Stack.Push(_settingsList);
+            if (SettingsShowing) return;
+            var settings = _app.SettingsScreen;
+            settings.ResetToCategories();
+            settings.CloseRequested = CloseSettings;
+            _settings = SettingsPanel.Build(_root, settings, _input);
+        }
+
+        private void CloseSettings()
+        {
+            if (!SettingsShowing) return;
+            var settings = _app.SettingsScreen;
+            settings.BackFromPage(); // applies any page still open
+            settings.ResetToCategories();
+            foreach (var control in _settings.Controls) _controls.Remove(control);
+            SettingsPanel.Close(_settings);
+            _settings = null;
+            Menu.BackToMenu();
+        }
+
+        /// <summary>
+        /// The Help / Codex page over the menu. It is built over the live rebinder's glyphs, so the control names in
+        /// the text are the ones actually bound right now rather than the defaults.
+        /// </summary>
+        private void ShowCodex()
+        {
+            if (CodexShowing) return;
+            _codexModel ??= new RuinRail.UI.Codex.CodexViewModel(
+                new RuinRail.UI.Onboarding.SchemeGlyphs(
+                    RuinRail.Core.Input.ActiveInputDevice.Current == RuinRail.Core.Input.InputDeviceKind.Gamepad
+                        ? RuinRail.UI.Onboarding.InputScheme.Gamepad
+                        : RuinRail.UI.Onboarding.InputScheme.KeyboardMouse,
+                    _app.SettingsRebinder),
+                _app.Content != null ? _app.Content.AmmoBalance : null);
+            _codexModel.CloseRequested = CloseCodex;
+            _codexModel.Open();
+            _codex = CodexPanel.Build(_root, _codexModel, _input);
+        }
+
+        private void CloseCodex()
+        {
+            if (!CodexShowing) return;
+            foreach (var control in _codex.Controls) _controls.Remove(control);
+            CodexPanel.Close(_codex);
+            _codex = null;
+            Menu.BackToMenu();
         }
 
         private void OnBack()
         {
-            if (_settingsPanel != null)
-            {
-                _input.Stack.Pop();
-                foreach (var control in _settingsPanel.GetComponentsInChildren<UiControl>(true)) _controls.Remove(control);
-                Destroy(_settingsPanel);
-                _settingsPanel = null;
-                _settingsList = null;
-                Menu.BackToMenu();
-            }
+            if (CodexShowing) { _codexModel.Close(); return; }
+            if (!SettingsShowing) return;
+            if (_app.SettingsScreen.BackFromPage()) return; // page -> categories
+            CloseSettings();
         }
+
+        /// <summary>Every interactive control, including the open Settings panel's live rows.</summary>
+        public IReadOnlyList<UiControl> AllControls => _controls
+            .Concat(_settings != null ? _settings.Controls : new List<UiControl>())
+            .Concat(_codex != null ? _codex.Controls : new List<UiControl>())
+            .Where(c => c != null).Distinct().ToList();
     }
 }

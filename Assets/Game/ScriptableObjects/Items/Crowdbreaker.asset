@@ -18,11 +18,12 @@ MonoBehaviour:
   _isStackable: 0
   _maxStack: 1
   _icon: {fileID: 21300000, guid: 47b53a07098b3b04ebebbf34d676207c, type: 3}
-  _affixPool: {fileID: 11400000, guid: 3c6c5255825643c281fb014020052625, type: 2}
+  _affixPool: {fileID: 11400000, guid: 7e3c9a24b51f4f309c4f8163d9eb2c53, type: 2}
   _legendaryMechanicId: concussion_blast
   _weaponClass: 4
-  _knockback: 0
-  _staggerPower: 0
+  _knockback: 6
+  _staggerPower: 3
+  _projectileVisualId: proj_pellet_legendary
   _damageMin: 5
   _damageMax: 7
   _fireRate: 1.5

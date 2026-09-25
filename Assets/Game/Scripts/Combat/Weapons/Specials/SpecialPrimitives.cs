@@ -29,7 +29,7 @@ namespace RuinRail.Gameplay.Combat.Weapons.Specials
         public static Projectile Fire(SpecialContext ctx, Vector2 direction, DamageBand damage, float speed, float range, float knockback = 0f, float stagger = 0f, bool piercing = false, float explosionRadius = 0f)
         {
             if (ctx.Pool == null) return null;
-            var data = new ProjectileSpawnData(damage.Roll(ctx.Roller), speed, range, knockback, stagger, direction, ctx.Owner, ctx.Feedback, explosionRadius, ctx.SourceTeam, piercing);
+            var data = new ProjectileSpawnData(damage.Roll(ctx.Roller), speed, range, knockback, stagger, direction, ctx.Owner, ctx.Feedback, explosionRadius, ctx.SourceTeam, piercing, ctx.ProjectileVisualId);
             return ctx.Pool.Spawn(ctx.SpawnPosition, data);
         }
     }

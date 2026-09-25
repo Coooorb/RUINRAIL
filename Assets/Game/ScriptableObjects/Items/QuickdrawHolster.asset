@@ -19,6 +19,7 @@ MonoBehaviour:
   _maxStack: 1
   _icon: {fileID: 21300000, guid: 92025392db4f4e54a8e8a5b25048deaa, type: 3}
   _affixPool: {fileID: 11400000, guid: 81ddb24cc8b84decbc197de85ea4a955, type: 2}
+  _excludedFromV1Acquisition: 1
   _legendaryMechanicId: hot_swap
   _intrinsic:
   - Stat: 8

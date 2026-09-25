@@ -32,6 +32,15 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
+        /// <summary>The Run Lost screen's two exits; RETURN TO SHELTER is the first (default focus) entry.</summary>
+        public static FocusList RunFailed(RunEnd.RunFailedViewModel failed)
+        {
+            var list = new FocusList("RunFailed");
+            list.Add("runfailed.shelter", RunEnd.RunFailedViewModel.ReturnToShelterLabel, failed.ReturnToShelter);
+            list.Add("runfailed.menu", RunEnd.RunFailedViewModel.MainMenuLabel, failed.MainMenu);
+            return list;
+        }
+
         /// <summary>The confirmation under RETURN TO MAIN MENU / QUIT GAME: confirm or back out.</summary>
         public static FocusList PauseConfirmation(PauseMenuViewModel pause)
         {
@@ -91,11 +100,23 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
+        /// <summary>
+        /// The Character Station's controls: one live-captioned row per attribute (name + rank / cap, MAX at the cap)
+        /// and the respec at its real price. A row is enabled only while the purchase would actually succeed — at the
+        /// Shelter, below the cap, with the Skill Point in hand — so a rejected purchase is never offered as available
+        /// and nothing can be spent by pressing it.
+        /// </summary>
         public static FocusList Character(CharacterPanelViewModel character)
         {
             var list = new FocusList("Character");
-            foreach (var skill in CharacterPanelViewModel.Attributes) list.Add("character.allocate." + skill, "+ " + skill, () => character.Allocate(skill));
-            list.Add("character.respec", "RESPEC", () => character.Respec());
+            foreach (var skill in CharacterPanelViewModel.Attributes)
+            {
+                var attribute = skill;
+                list.Add("character.allocate." + attribute, character.NameOf(attribute),
+                    () => character.Allocate(attribute), () => character.CanAllocate(attribute));
+            }
+
+            list.Add("character.respec", character.RespecLabel(), () => character.Respec(), () => character.CanRespec());
             return list;
         }
 
@@ -132,33 +153,44 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
+        public const string SettingsBackId = "settings.back";
+        public const string SettingsDefaultsId = "settings.defaults";
+
+        /// <summary>
+        /// The Settings root (ui/90): one control per real category, then RESET TO DEFAULTS and BACK. Selecting a
+        /// category opens its page (<see cref="SettingsPage"/>); nothing here is a value.
+        /// </summary>
         public static FocusList Settings(SettingsViewModel settings)
         {
             var list = new FocusList("Settings");
-            foreach (var tab in SettingsViewModel.Tabs) list.Add("settings.tab." + tab, tab.ToString().ToUpperInvariant(), () => settings.SelectTab(tab));
-            list.Add("settings.master", "MASTER VOLUME", () => settings.SetMasterVolume(Mathf.Repeat(settings.Draft.Audio.MasterVolume + 0.1f, 1.1f)));
-            list.Add("settings.music", "MUSIC VOLUME", () => settings.SetMusicVolume(Mathf.Repeat(settings.Draft.Audio.MusicVolume + 0.1f, 1.1f)));
-            list.Add("settings.sfx", "SFX VOLUME", () => settings.SetSfxVolume(Mathf.Repeat(settings.Draft.Audio.SfxVolume + 0.1f, 1.1f)));
-            list.Add("settings.mute", "MUTE", () => settings.SetMute(!settings.Draft.Audio.Mute));
-            list.Add("settings.fullscreen", "FULLSCREEN", () => settings.SetFullscreen(!settings.Draft.Video.Fullscreen));
-            list.Add("settings.vsync", "VSYNC", () => settings.SetVSync(!settings.Draft.Video.VSync));
-            list.Add("settings.shake", "SCREEN SHAKE", () => settings.SetScreenShake(!settings.Draft.Accessibility.ScreenShake));
-            list.Add("settings.shake.intensity", "SHAKE INTENSITY", () => settings.SetScreenShakeIntensity(Mathf.Repeat(settings.Draft.Accessibility.ScreenShakeIntensity + 0.25f, 1.25f)));
-            list.Add("settings.damage_numbers", "DAMAGE NUMBERS", () => settings.SetDamageNumbers(!settings.Draft.Accessibility.DamageNumbers));
-            list.Add("settings.hit_flash", "HIT FLASH", () => settings.SetHitFlash(!settings.Draft.Accessibility.HitFlash));
-            list.Add("settings.tutorials", "TUTORIAL PROMPTS", () => settings.SetTutorialPrompts(!settings.Draft.Tutorial.ShowPrompts));
-            list.Add("settings.tutorials.reset", "RESET TUTORIALS", () => settings.ResetTutorials(), () => settings.CanResetTutorials);
-            foreach (var scheme in SettingsViewModel.Schemes) list.Add("settings.scheme." + scheme, scheme.ToUpperInvariant(), () => settings.SelectScheme(scheme));
-            foreach (var entry in settings.ControlEntries)
+            foreach (var tab in SettingsViewModel.Tabs)
             {
-                var e = entry;
-                list.Add("settings.rebind." + e.Scheme + "." + e.ActionName + "." + e.Binding.name, settings.BindingLine(e), () => settings.BeginRebind(e), () => e.IsRebindable);
+                var t = tab;
+                if (t == SettingsTab.Gameplay && !settings.HasGameplayPreferences) continue;
+                list.Add("settings.category." + t, SettingsViewModel.CategoryLabel(t), () => settings.OpenPage(t));
             }
 
-            list.Add("settings.reset_bindings", "RESET BINDINGS", settings.ResetAllBindings);
-            list.Add("settings.apply", "APPLY", () => settings.Apply());
-            list.Add("settings.discard", "DISCARD", settings.Discard);
-            list.Add("settings.defaults", "RESET TO DEFAULTS", () => settings.ResetToDefaults());
+            list.Add(SettingsDefaultsId, "RESET TO DEFAULTS", () => settings.ResetToDefaults());
+            list.Add(SettingsBackId, "BACK", () => settings.RequestClose());
+            return list;
+        }
+
+        /// <summary>
+        /// One category page: every row is a real control — Enter/click toggles, cycles, starts a rebind or runs the
+        /// action; left/right (arrows, D-pad, stick) step sliders and selectors — and BACK applies and returns to the
+        /// categories. Row ids are the view model's.
+        /// </summary>
+        public static FocusList SettingsPage(SettingsViewModel settings, SettingsTab tab)
+        {
+            var list = new FocusList("Settings." + tab);
+            foreach (var row in settings.RowsFor(tab))
+            {
+                var r = row;
+                if (r.Adjust != null) list.AddAdjustable(r.Id, r.Label, r.Activate, r.Adjust, () => r.IsEnabled);
+                else list.Add(r.Id, r.Label, r.Activate, () => r.IsEnabled);
+            }
+
+            list.Add(SettingsBackId, "BACK", () => settings.BackFromPage());
             return list;
         }
     }

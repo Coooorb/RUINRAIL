@@ -53,7 +53,8 @@ namespace RuinRail.Tests.EditMode
         [Test]
         public void MainMenu_HasPlaySettingsQuit_AndPlayHandlesFirstExistingAndBrokenSaves()
         {
-            CollectionAssert.AreEqual(new[] { "PLAY", "SETTINGS", "QUIT" }, MainMenuViewModel.Entries.Select(MainMenuViewModel.Label));
+            // HELP is a Main Menu entry, between SETTINGS and QUIT: the manual is reachable before a run starts.
+            CollectionAssert.AreEqual(new[] { "PLAY", "SETTINGS", "HELP", "QUIT" }, MainMenuViewModel.Entries.Select(MainMenuViewModel.Label));
             var (menu, store, saves) = Menu();
             Assert.IsFalse(menu.HasSave);
             menu.Select(MainMenuEntry.Settings);

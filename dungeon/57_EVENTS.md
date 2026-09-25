@@ -24,3 +24,9 @@ Choose exactly one weapon from three random presented weapons. Once used, the ev
 
 ## Co-op
 The player triggering a paid event spends their own Carried Coins. Rewards are spawned into the shared world unless the event explicitly represents a single-choice selection.
+
+## Interaction Contract (implementation note 2026-09-20)
+- Every event object draws its final art, answers the Interact prompt while it is still open, and the prompt states the cost and — when the press would be refused — why (`REPAIR BROKEN MACHINE (100 COINS) — NEED 63 MORE COINS`, `USE MEDICAL STATION (150 COINS) — HP FULL`, `— USED`). A refused press announces its reason on the HUD notice and changes nothing.
+- A successful press executes the outcome exactly once and announces it (reward names, failed repair with the coins spent, started wave, purchased heal); the object dims to its used state, offers no prompt and cannot repeat; a revisit restores the used state. Every event room can be exited afterwards.
+- Broken Machine (57.3) is the paid seeded repair as specified: the coins are spent whether the machine yields an item / ammo / consumable or simply fails; there is no option menu because the design defines none.
+- The transit car in the Boss Room offers `BOARD TRANSIT` once the decision is open; boarding restates the open choice.

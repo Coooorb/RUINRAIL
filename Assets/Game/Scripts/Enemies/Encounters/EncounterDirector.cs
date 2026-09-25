@@ -119,6 +119,47 @@ namespace RuinRail.Gameplay.Enemies.Encounters
     /// target drawn from the depth budget scaled by the party multiplier, then a seeded weighted fill over 2-4 roles
     /// bounded by the active cap. Same run seed + depth + room index + party size => same plan.
     /// </summary>
+    /// <summary>
+    /// Per-biome archetype weighting (56_BIOMES). The three biomes used the same flat archetype pool, which is why they
+    /// played identically once the art was ignored. Weights are derived from the authored biome descriptions and are
+    /// never exclusive: every archetype keeps a non-zero weight in every biome, so no encounter becomes impossible —
+    /// only the combat texture differs.
+    ///
+    /// Metro is "electricity/rail machinery and cramped movement layouts": close pressure up, long-range sniping down.
+    /// Rustworks is "presses, furnaces, explosive environmental props, heavy mechanical": armoured and explosive up,
+    /// swarms down. Overgrown Labs is "bio tanks, overgrowth, failed experiments": swarming and summoning up, armour down.
+    /// </summary>
+    public static class BiomeEncounterWeights
+    {
+        public const int Default = 10;
+
+        private static readonly Dictionary<(Biome, string), int> Weights = new()
+        {
+            [(Biome.RuinedMetro, "charger")] = 20,
+            [(Biome.RuinedMetro, "swarm")] = 20,
+            [(Biome.RuinedMetro, "brute")] = 15,
+            [(Biome.RuinedMetro, "sniper_enemy")] = 5,
+
+            [(Biome.Rustworks, "brute")] = 20,
+            [(Biome.Rustworks, "shield_enemy")] = 20,
+            [(Biome.Rustworks, "bomber")] = 15,
+            [(Biome.Rustworks, "swarm")] = 5,
+
+            [(Biome.OvergrownLabs, "swarm")] = 20,
+            [(Biome.OvergrownLabs, "summoner")] = 20,
+            [(Biome.OvergrownLabs, "bomber")] = 15,
+            [(Biome.OvergrownLabs, "shield_enemy")] = 5
+        };
+
+        /// <summary>Selection weight of an archetype in a biome; <see cref="Default"/> when the table says nothing.</summary>
+        public static int Of(Biome biome, EnemyDefinition definition) =>
+            definition != null && Weights.TryGetValue((biome, definition.Id), out var weight) ? weight : Default;
+
+        /// <summary>Every authored deviation from the default, for the identity artefact and the validator.</summary>
+        public static IEnumerable<(Biome Biome, string EnemyId, int Weight)> Authored =>
+            Weights.Select(kv => (kv.Key.Item1, kv.Key.Item2, kv.Value));
+    }
+
     public static class EncounterDirector
     {
         public const int MinRoles = 2;
@@ -137,6 +178,21 @@ namespace RuinRail.Gameplay.Enemies.Encounters
             }
 
             return true;
+        }
+
+        /// <summary>Index of a biome-weighted pick from <paramref name="pool"/>, using exactly one draw.</summary>
+        private static int WeightedPick(List<EnemyDefinition> pool, Biome biome, IRandomSource random)
+        {
+            var total = 0;
+            foreach (var definition in pool) total += Mathf.Max(1, BiomeEncounterWeights.Of(biome, definition));
+            var pick = random.NextInt(total);
+            for (var i = 0; i < pool.Count; i++)
+            {
+                pick -= Mathf.Max(1, BiomeEncounterWeights.Of(biome, pool[i]));
+                if (pick < 0) return i;
+            }
+
+            return pool.Count - 1;
         }
 
         public static SeededRandom DeriveRandom(in EncounterContext context)
@@ -170,7 +226,9 @@ namespace RuinRail.Gameplay.Enemies.Encounters
             var roles = new List<EnemyDefinition>();
             for (var i = 0; i < roleCount; i++)
             {
-                var pick = random.NextInt(pool.Count);
+                // Biome-weighted, still exactly one draw per role so the stream advances identically to the flat pick
+                // it replaced; only which archetype the draw lands on changes.
+                var pick = WeightedPick(pool, ctx.Biome, random);
                 roles.Add(pool[pick]);
                 pool.RemoveAt(pick);
             }

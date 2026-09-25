@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RuinRail.Gameplay.Items;
+using RuinRail.Gameplay.Progression;
 using RuinRail.UI.Inventory;
 using RuinRail.UI.Multiplayer;
 using RuinRail.UI.Navigation;
@@ -10,18 +11,25 @@ namespace RuinRail.UI.Base
     /// <summary>One line of a station's data panel. A value-less row is a heading inside the list.</summary>
     public readonly struct StationRow
     {
-        public StationRow(string key, string value = null, bool isHeading = false)
+        public StationRow(string key, string value = null, bool isHeading = false, bool isText = false)
         {
             Key = key ?? string.Empty;
             Value = value ?? string.Empty;
             IsHeading = isHeading;
+            IsText = isText;
         }
 
         public string Key { get; }
         public string Value { get; }
         public bool IsHeading { get; }
 
+        /// <summary>A sentence that needs the whole column rather than the key/value split (an attribute's effect line).</summary>
+        public bool IsText { get; }
+
         public static StationRow Heading(string text) => new(text, null, true);
+
+        /// <summary>One full-width line of text inside the list; no value, no rule, no extra spacing.</summary>
+        public static StationRow Text(string text) => new(text, null, false, true);
     }
 
     /// <summary>What one Shelter station presents: its identity, what it is for, and the state it currently holds.</summary>
@@ -165,22 +173,32 @@ namespace RuinRail.UI.Base
         private static StationView Character(BaseHubViewModel hub)
         {
             var sheet = hub.Character.Sheet;
+            var character = hub.Character;
             var rows = new List<StationRow>
             {
                 new("LEVEL", sheet.Level.ToString()),
                 new("XP", sheet.IsMaxLevel ? $"{sheet.TotalXp} (max)" : $"{sheet.XpIntoLevel} / {sheet.XpToNextLevel}"),
                 new("SKILL POINTS", sheet.UnspentPoints.ToString()),
-                new("RESPEC COST", sheet.RespecPrice + " C"),
+                new("RANK COST", SkillCatalog.PointCostText),
+                // The respec price lives on its own control's caption; the rows above are the purchase economy.
                 StationRow.Heading("ATTRIBUTES")
             };
 
+            // One block per attribute: rank / cap, what it does, and — per affected stat — what it is worth now and
+            // what one more point buys, or MAX at the cap. Every number is formatted from SkillRules through
+            // SkillCatalog, so this panel can never advertise an effect the run does not produce.
             foreach (var skill in CharacterPanelViewModel.Attributes)
-                rows.Add(new StationRow(skill.ToString().ToUpperInvariant(), sheet.Ranks.TryGetValue(skill, out var rank) ? rank.ToString() : "0"));
+            {
+                rows.Add(new StationRow(character.NameOf(skill),
+                    character.IsMaxed(skill) ? character.RankTextOf(skill) + " " + SkillCatalog.MaxedText : character.RankTextOf(skill)));
+                rows.Add(StationRow.Text(character.DescriptionOf(skill)));
+                foreach (var line in character.EffectRows(skill)) rows.Add(StationRow.Text(line));
+            }
 
             return new StationView
             {
                 Title = "CHARACTER",
-                Description = DescriptionOf(BaseStation.Character),
+                Description = character.StatusLine(),
                 Rows = rows
             };
         }
@@ -221,6 +239,8 @@ namespace RuinRail.UI.Base
 
             rows.Add(new StationRow("STATUS", terminal.StatusText));
             rows.Add(new StationRow("PARTY", $"{terminal.Roster.Count} / {terminal.MaxPartySize}"));
+            // The non-blocking notice (Starter Loadout equipped on READY) gets a full-width line, never a truncated value cell.
+            if (!string.IsNullOrEmpty(terminal.Notice)) rows.Add(StationRow.Heading(terminal.Notice));
             if (!string.IsNullOrEmpty(terminal.JoinCodeToShare)) rows.Add(new StationRow("JOIN CODE", terminal.JoinCodeToShare));
             if (!string.IsNullOrEmpty(terminal.ErrorText)) rows.Add(new StationRow("ERROR", terminal.ErrorText));
 

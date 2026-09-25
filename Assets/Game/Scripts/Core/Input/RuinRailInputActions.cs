@@ -210,6 +210,15 @@ namespace RuinRail.Core.Input
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""QuickGrenade"",
+                    ""type"": ""Button"",
+                    ""id"": ""7c2e4f18-6a0b-4d93-95c7-2b8e41f0a6d5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -542,6 +551,28 @@ namespace RuinRail.Core.Input
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a91c3d7-08e4-4b62-9f1a-6d3c27b8e410"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""QuickGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6407f21-9d3a-4c85-81e6-4f0b92da7c33"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""QuickGrenade"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -591,6 +622,7 @@ namespace RuinRail.Core.Input
             m_Player_Consumable = m_Player.FindAction("Consumable", throwIfNotFound: true);
             m_Player_Inventory = m_Player.FindAction("Inventory", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+            m_Player_QuickGrenade = m_Player.FindAction("QuickGrenade", throwIfNotFound: true);
         }
 
         ~@RuinRailInputActions()
@@ -684,6 +716,7 @@ namespace RuinRail.Core.Input
         private readonly InputAction m_Player_Consumable;
         private readonly InputAction m_Player_Inventory;
         private readonly InputAction m_Player_Pause;
+        private readonly InputAction m_Player_QuickGrenade;
         /// <summary>
         /// Provides access to input actions defined in input action map "Player".
         /// </summary>
@@ -747,6 +780,10 @@ namespace RuinRail.Core.Input
             /// Provides access to the underlying input action "Player/Pause".
             /// </summary>
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
+            /// <summary>
+            /// Provides access to the underlying input action "Player/QuickGrenade".
+            /// </summary>
+            public InputAction @QuickGrenade => m_Wrapper.m_Player_QuickGrenade;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -812,6 +849,9 @@ namespace RuinRail.Core.Input
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @QuickGrenade.started += instance.OnQuickGrenade;
+                @QuickGrenade.performed += instance.OnQuickGrenade;
+                @QuickGrenade.canceled += instance.OnQuickGrenade;
             }
 
             /// <summary>
@@ -862,6 +902,9 @@ namespace RuinRail.Core.Input
                 @Pause.started -= instance.OnPause;
                 @Pause.performed -= instance.OnPause;
                 @Pause.canceled -= instance.OnPause;
+                @QuickGrenade.started -= instance.OnQuickGrenade;
+                @QuickGrenade.performed -= instance.OnQuickGrenade;
+                @QuickGrenade.canceled -= instance.OnQuickGrenade;
             }
 
             /// <summary>
@@ -1019,6 +1062,13 @@ namespace RuinRail.Core.Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnPause(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "QuickGrenade" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnQuickGrenade(InputAction.CallbackContext context);
         }
     }
 }

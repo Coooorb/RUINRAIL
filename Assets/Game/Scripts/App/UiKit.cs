@@ -276,12 +276,13 @@ namespace RuinRail.App
             else if (mouse != null && (mouse.leftButton.wasPressedThisFrame || mouse.delta.ReadValue().sqrMagnitude > 1f)) ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
 
             // A panel with its own 2D navigator (the inventory) consumes every direction itself; a plain list steps
-            // vertically and hands left/right to the screen (tab bars).
+            // vertically; left/right first go to an adjustable focused control (a settings slider / selector) and
+            // otherwise to the screen (tab bars).
             var grid = Stack.CurrentHasNavigator;
             if (down) { if (grid) Stack.Navigate(Vector2Int.down); else Stack.Move(+1); Steps++; }
             if (up) { if (grid) Stack.Navigate(Vector2Int.up); else Stack.Move(-1); Steps++; }
-            if (right) { if (grid) Stack.Navigate(Vector2Int.right); else Horizontal?.Invoke(+1); Steps++; }
-            if (left) { if (grid) Stack.Navigate(Vector2Int.left); else Horizontal?.Invoke(-1); Steps++; }
+            if (right) { if (grid) Stack.Navigate(Vector2Int.right); else if (!Stack.Adjust(+1)) Horizontal?.Invoke(+1); Steps++; }
+            if (left) { if (grid) Stack.Navigate(Vector2Int.left); else if (!Stack.Adjust(-1)) Horizontal?.Invoke(-1); Steps++; }
             if (confirm) Stack.Activate();
             if (back) Back?.Invoke();
         }

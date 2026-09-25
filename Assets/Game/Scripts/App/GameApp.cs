@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using RuinRail.Audio;
 using RuinRail.Core;
+using RuinRail.Core.Input;
 using RuinRail.Gameplay.Base;
 using RuinRail.Gameplay.Combat.Weapons.Specials;
 using RuinRail.Gameplay.Items;
@@ -40,8 +41,16 @@ namespace RuinRail.App
         public SaveSlotService Saves { get; private set; }
         public UserSettingsService Settings { get; private set; }
         public SettingsViewModel SettingsScreen { get; private set; }
+        /// <summary>The rebinder behind the Settings CONTROLS page (its own action instance, never a player's).</summary>
+        public InputRebinder SettingsRebinder { get; private set; }
+        private RuinRailInputActions _settingsActions;
         public MainMenuViewModel Menu { get; private set; }
         public NetworkBootstrap Network { get; private set; }
+        /// <summary>
+        /// The co-op session layer (81/82): lobby relay, the host's authoritative expedition start and the client's
+        /// start from it. Process lifetime, like the session it serves; idle outside a live session.
+        /// </summary>
+        public CoopSessionService Coop { get; private set; }
         public AudioService Audio { get; private set; }
         public GameplayAudioBinder AudioBinder { get; private set; }
         public MusicDirector Music { get; private set; }
@@ -94,6 +103,10 @@ namespace RuinRail.App
             Configs = Content.BuildBaseConfigs();
             // Every replicated player object composes the same body + held-weapon presentation as the solo player.
             RuinRail.Networking.NetworkPlayerObject.VisualComposer = go => PlayerVisualComposer.Compose(go, Content);
+            // Every pooled projectile, player or enemy, draws its in-flight profile from the shipped catalog.
+            RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog.Active = Content.ProjectileVisuals;
+            // Item descriptions read the shipped weapon catalog so an ammo type can say which classes consume it (ui/93).
+            RuinRail.Gameplay.Items.ItemDescriptions.WeaponCatalog = Content.Items.OfType<RuinRail.Gameplay.Items.WeaponDefinition>().ToList();
 
             var args = Environment.GetCommandLineArgs();
             IsSmoke = smoke || args.Contains(SmokeArgument);
@@ -106,7 +119,12 @@ namespace RuinRail.App
             Saves = new SaveSlotService(new FileSaveStore(Path.Combine(SaveDirectory, SaveSlotService.SlotFileName)), Configs.Resolve);
             Settings = new UserSettingsService(new FileSaveStore(Path.Combine(SaveDirectory, UserSettingsService.SettingsFileName)));
             SettingsViewModel.Bootstrap(Settings, new UnitySettingsApplier());
-            SettingsScreen = new SettingsViewModel(Settings, null, new UnitySettingsApplier());
+            // The CONTROLS page rebinds against a dedicated action instance carrying the persisted overrides; APPLY
+            // publishes the result through ActiveBindingOverrides to every live and future input reader.
+            _settingsActions = new RuinRailInputActions();
+            ActiveBindingOverrides.ApplyTo(_settingsActions.asset);
+            SettingsRebinder = new InputRebinder(_settingsActions.asset);
+            SettingsScreen = new SettingsViewModel(Settings, SettingsRebinder, new UnitySettingsApplier());
             Menu = new MainMenuViewModel(Saves, Configs);
             Menu.SetSettings(SettingsScreen);
 
@@ -115,10 +133,13 @@ namespace RuinRail.App
             // never present FakeMultiplayerServices to the player as online play.
             Network = gameObject.AddComponent<NetworkBootstrap>();
             var mode = LiveServiceConfiguration.Resolve();
-            var (services, driver) = LiveServiceConfiguration.Compose(mode);
+            // Live composition builds the process NetworkManager itself (transport + the networked player prefab):
+            // without one the session controller has no driver and online play silently degrades to the fake.
+            var (services, driver) = LiveServiceConfiguration.ComposeForProcess(mode, Content.NetworkPlayerEntity, Content.CoopRunLink);
             LiveMultiplayerMode = mode;
             if (driver != null) Network.Configure(services, driver);
             else Network.Configure(new FakeMultiplayerServices(), new FakeNetworkDriver());
+            Coop = new CoopSessionService();
 
             // The one listener of the process, on the persistent root: Main Menu and Shelter have no camera object, and
             // the dungeon camera must not add a second one. It follows Camera.main wherever one exists.
@@ -140,11 +161,27 @@ namespace RuinRail.App
             // destination has composed — so a transition never presents a raw or half-built frame.
             Transition.LoadRequested += SceneManager.LoadScene;
 
+            // 113 autosave points (storage/loadout, trader, skill spending, base upgrades): the Shelter services mark the
+            // slot dirty at each one and this end-of-frame flusher writes it — once per frame, and on pause/quit. It
+            // existed with its tests but was never composed, so those safe points only reached disk at the next
+            // explicit save (expedition start or leaving the Shelter), and a crash in between silently undid them.
+            _autosaveFlusher = gameObject.AddComponent<RuinRail.Persistence.AutosaveFlusher>();
+
             SceneManager.sceneLoaded += OnSceneLoaded;
             if (IsSmoke)
             {
                 Smoke = gameObject.AddComponent<SmokeRunner>();
                 Smoke.Begin(this);
+            }
+            else if (CoopExpeditionProof.Requested(args))
+            {
+                // Two or three built processes play one real co-op expedition over a real socket: the completion proof.
+                CoopExpeditionProof.Begin(this, args);
+            }
+            else if (CoopPeerRunner.Requested(args))
+            {
+                // Two built processes, one host and one client, over a real socket: the co-op runtime proof.
+                CoopPeerRunner.Begin(this, args);
             }
             else if (PlayerProfileRunner.Requested(args))
             {
@@ -157,6 +194,10 @@ namespace RuinRail.App
         private void OnDestroy()
         {
             SceneManager.sceneLoaded -= OnSceneLoaded;
+            Coop?.Dispose();
+            SettingsScreen?.Dispose();
+            SettingsRebinder?.Dispose();
+            _settingsActions?.Dispose();
             if (Current == this) Current = null;
         }
 
@@ -208,9 +249,13 @@ namespace RuinRail.App
             if (!Transition.Begin(SceneTransitionViewModel.KindFor(ComposedScene, sceneName), sceneName)) return;
         }
 
+        private RuinRail.Persistence.AutosaveFlusher _autosaveFlusher;
+
         private void Update()
         {
             if (!IsSmoke) Transition.Tick(Time.unscaledDeltaTime);
+            // The flusher follows whichever profile session is open (none at the Main Menu).
+            _autosaveFlusher?.SetAutosave(Menu?.Session?.Autosave);
         }
 
         /// <summary>Focus loss hands the cursor back to the OS; regaining it restores the cursor the current screen owns.</summary>
@@ -231,6 +276,21 @@ namespace RuinRail.App
             public string DisplayName = "";
             public string[] EquippedInstanceIds = Array.Empty<string>();
             public bool ExpeditionMarkerOpen;
+
+            /// <summary>Permanent attribute ranks as stored on disk, indexed by SkillId (player/13).</summary>
+            public int[] SkillRanks = Array.Empty<int>();
+
+            public int UnspentSkillPoints;
+
+            /// <summary>Deepest depth ever reached, as stored on disk. 0 for a profile that has entered no depth yet.</summary>
+            public int DeepestDepthReached;
+
+            /// <summary>
+            /// Every affix roll stored on an equipped item, as "definitionId:affixId=value". Affix rolls are the one part
+            /// of an item that the run now composes into real stats, so the built-player smoke has to be able to see
+            /// that a save round trip preserved them verbatim rather than dropping or re-rolling them.
+            /// </summary>
+            public string[] EquippedAffixRolls = Array.Empty<string>();
         }
 
         public SaveProbe ProbeSave()
@@ -245,7 +305,16 @@ namespace RuinRail.App
                 TotalXp = slot.Profile.TotalXp,
                 DisplayName = slot.Profile.DisplayName,
                 EquippedInstanceIds = slot.Profile.SafeLoadout != null ? slot.Profile.SafeLoadout.Equipped.Select(e => e.Item.InstanceId).ToArray() : Array.Empty<string>(),
-                ExpeditionMarkerOpen = slot.ActiveExpedition.IsOpen
+                ExpeditionMarkerOpen = slot.ActiveExpedition.IsOpen,
+                SkillRanks = ((RuinRail.Gameplay.Progression.SkillId[])Enum.GetValues(typeof(RuinRail.Gameplay.Progression.SkillId))).Select(slot.Profile.Skills.GetRank).ToArray(),
+                UnspentSkillPoints = slot.Profile.UnspentSkillPoints,
+                DeepestDepthReached = slot.Profile.DeepestDepthReached,
+                EquippedAffixRolls = slot.Profile.SafeLoadout != null
+                    ? slot.Profile.SafeLoadout.Equipped
+                        .Where(e => e.Item?.AffixRolls != null)
+                        .SelectMany(e => e.Item.AffixRolls.Select(r => $"{e.Item.DefinitionId}:{r.AffixId}={r.Value}"))
+                        .ToArray()
+                    : Array.Empty<string>()
             };
         }
 

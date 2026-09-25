@@ -51,14 +51,20 @@ namespace RuinRail.Gameplay.Loot
             return _rarityTables.FirstOrDefault(t => t != null && t.Quality == quality) ?? _rarityTables.FirstOrDefault(t => t != null && t.Quality == LootQuality.Standard);
         }
 
-        public LootRoller CreateRoller() => new(RarityTableFor);
+        /// <summary>
+        /// A roller over this catalog's rarity tables. <paramref name="economy"/> supplies the deep-depth coin curve;
+        /// without it coins stay exactly as authored, which is what every test fixture and the Shelter expect.
+        /// </summary>
+        public LootRoller CreateRoller(RuinRail.Gameplay.Economy.EconomyConfig economy = null) =>
+            new(RarityTableFor, economy != null ? economy.CoinRewardMultiplier : null);
 
         /// <summary>Configures a chest for a source kind: table, quality and a per-source deterministic context.</summary>
-        public bool Configure(SupplyChest chest, LootSourceKind kind, int runSeed, int depth, int sourceIndex, int partySize = 1, IReadOnlyCollection<Items.AmmoType> usefulAmmoTypes = null, LootSpawner spawner = null)
+        public bool Configure(SupplyChest chest, LootSourceKind kind, int runSeed, int depth, int sourceIndex, int partySize = 1,
+            IReadOnlyCollection<Items.AmmoType> usefulAmmoTypes = null, LootSpawner spawner = null, RuinRail.Gameplay.Economy.EconomyConfig economy = null)
         {
             if (chest == null || !TryGet(kind, out var source) || source.Table == null) return false;
             var context = LootContext.ForSource(runSeed, depth, sourceIndex, source.Quality, partySize, usefulAmmoTypes);
-            chest.Configure(source.Table, source.Quality, context, CreateRoller(), spawner);
+            chest.Configure(source.Table, source.Quality, context, CreateRoller(economy), spawner);
             chest.SetKind(kind);
             return true;
         }

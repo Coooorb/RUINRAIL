@@ -169,7 +169,10 @@ namespace RuinRail.Tests
             Assert.AreEqual("weapon_pipe_launcher", definition.Id);
             Assert.AreEqual("Pipe Launcher", definition.DisplayName);
             Assert.AreEqual(WeaponClass.RocketLauncher, definition.WeaponClass);
-            Assert.AreEqual("pool_ranged", definition.AffixPool.Id);
+            // combat/42 names rockets as an impact class, so they roll from the impact-capable ranged pool.
+            Assert.AreEqual("pool_ranged_impact", definition.AffixPool.Id);
+            Assert.AreEqual(12f, definition.Knockback);
+            Assert.AreEqual(12f, definition.StaggerPower);
             Assert.IsTrue(string.IsNullOrEmpty(definition.LegendaryMechanicId), "Sunbreaker salvo is not implemented here.");
 
             foreach (var other in new[] { P9RangerAssetPath, Ar17AssetPath, Rattler9AssetPath, SentinelAssetPath, LongshotAssetPath })
@@ -192,8 +195,10 @@ namespace RuinRail.Tests
             Assert.AreEqual(WeaponClass.Spear, spear.WeaponClass);
             Assert.AreEqual(ItemCategory.Weapon, spear.Category);
             Assert.IsTrue(spear.WindUpSeconds + spear.RecoverySeconds < 1f / spear.AttackRate, "Swing phases fit inside the 1.8/s cadence.");
-            Assert.AreEqual(0f, spear.Knockback);
-            Assert.AreEqual(0f, spear.StaggerPower);
+            // Spear is the heavy melee class combat/42 names for higher knockback; 8 knockback = 2 tiles at the
+            // authored 0.25 units/point, and 10 stagger is exactly StaggerConfig.HighStaggerPower.
+            Assert.AreEqual(8f, spear.Knockback);
+            Assert.AreEqual(10f, spear.StaggerPower);
             Assert.IsTrue(string.IsNullOrEmpty(spear.LegendaryMechanicId));
             Assert.AreSame(spear.GetType(), AssetDatabase.LoadAssetAtPath<MeleeWeaponDefinition>(FieldKnifeAssetPath).GetType(), "Same definition type as the knife: shape is data.");
 
@@ -204,6 +209,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(3.5f, knife.AttackRate, 0.001f);
             Assert.AreEqual(1.2f, knife.AttackRange, 0.001f);
             Assert.AreEqual(80f, knife.AttackArcDegrees, 0.001f);
+            // items/24 gives the knife "low stagger" and no knockback: it must never shove a target out of its own reach.
+            Assert.AreEqual(0f, knife.Knockback);
+            Assert.AreEqual(3f, knife.StaggerPower);
         }
         [Test]
         public void WeaponDefinitions_AreEquipmentItems_WithClassIdentity()

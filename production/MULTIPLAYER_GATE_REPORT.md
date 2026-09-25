@@ -1,5 +1,8 @@
 # MULTIPLAYER GATE REPORT — TASK 108
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. Its PASS was over deterministic doubles (FakeMultiplayerServices / FakeNetworkDriver); real-runtime co-op is proven in production/COOP_RUNTIME_COMPOSITION_COMPLETION_REPORT.md. The body below is kept unchanged as the record of its time.
+
+
 > **Status:** Hard autonomous checkpoint (production/130_AUTONOMOUS_TASK_RUNNER.md). Generated 2026-09-15 by the autonomous runner from real harness runs; nothing below is inferred.
 
 ## Verdict

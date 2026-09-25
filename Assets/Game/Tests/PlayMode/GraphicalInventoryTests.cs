@@ -189,7 +189,12 @@ namespace RuinRail.Tests
             Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Fire rate")));
             Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Magazine")));
             Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Ammo")));
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")), "93: compared against the equipped weapon");
+            // The description leads (ui/93 update); the comparison follows on the next page, reachable through the pager.
+            Assert.IsTrue(view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")), "93: compared against the equipped weapon");
+            var guard = 0;
+            while (!view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) && view.DetailsPageDown() && guard++ < 5) { }
+            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")), "the comparison page is reachable");
+            while (view.DetailsPageUp()) { }
             Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("–")), "damage ranges keep their en dash");
 
             vm.SetCursor(Eq(EquippedSlot.Armor));

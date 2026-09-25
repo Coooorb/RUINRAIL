@@ -40,6 +40,21 @@ namespace RuinRail.Networking
         public bool IsAuthority => true;
     }
 
+    /// <summary>The co-op host's authority (82): it decides every host-owned domain for the whole party.</summary>
+    public sealed class CoopHostAuthority : IAuthorityContext
+    {
+        public static readonly CoopHostAuthority Instance = new();
+        public NetworkRole Role => NetworkRole.Host;
+        public bool IsAuthority => true;
+    }
+
+    /// <summary>A co-op client (82): it decides nothing shared; every attempt is refused and counted by the caller.</summary>
+    public sealed class CoopClientAuthority : IAuthorityContext
+    {
+        public NetworkRole Role => NetworkRole.Client;
+        public bool IsAuthority => false;
+    }
+
     public sealed class AuthorityViolationException : InvalidOperationException
     {
         public AuthorityViolationException(AuthoritativeDomain domain, NetworkRole role)

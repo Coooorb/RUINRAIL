@@ -70,14 +70,15 @@ namespace RuinRail.Tests
         private UiControl Control(string id) => _screen.Controls.First(c => c.Id == id);
 
         [Test]
-        public void Opening_ShowsFourRealControls_PutsOneListOnTheStack_AndTakesThePointerCursor()
+        public void Opening_ShowsEveryRealControl_PutsOneListOnTheStack_AndTakesThePointerCursor()
         {
             Assert.IsFalse(_screen.IsShowing);
             Assert.AreEqual(CursorKind.Aim, CursorService.Current);
             _reader.RaisePause();
             Assert.IsTrue(_screen.IsShowing);
             Assert.AreEqual("PAUSED", _screen.TitleText);
-            CollectionAssert.AreEqual(new[] { "pause.Resume", "pause.Settings", "pause.ReturnToMainMenu", "pause.QuitGame" },
+            // HELP joined the root between SETTINGS and the two destructive entries.
+            CollectionAssert.AreEqual(new[] { "pause.Resume", "pause.Settings", "pause.Help", "pause.ReturnToMainMenu", "pause.QuitGame" },
                 _screen.Controls.Where(c => c.Id.StartsWith("pause.") && !c.Id.StartsWith("pause.confirm")).Select(c => c.Id));
             Assert.AreSame(_screen.RootList, _input.Stack.Current);
             Assert.AreEqual(1, _input.Stack.Depth, "one pause layer");
@@ -129,9 +130,11 @@ namespace RuinRail.Tests
             _input.Stack.Move(+1);
             Assert.AreEqual("pause.Settings", _input.Stack.Focused.Id);
             _input.Stack.Move(+1);
+            Assert.AreEqual("pause.Help", _input.Stack.Focused.Id);
+            _input.Stack.Move(+1);
             _input.Stack.Move(+1);
             Assert.AreEqual("pause.QuitGame", _input.Stack.Focused.Id);
-            _input.Stack.Move(-3);
+            _input.Stack.Move(-4);
             Assert.AreEqual("pause.Resume", _input.Stack.Focused.Id);
             _input.Stack.Activate();
             Assert.IsFalse(_pause.IsOpen, "Enter / A on RESUME resumes");

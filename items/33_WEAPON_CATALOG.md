@@ -69,7 +69,13 @@ Bows require no ammo. Holding Fire charges the shot; full draw uses the listed F
 
 ## Blaster
 
-Blasters require no ammo. Max Heat = **100**. Cooling Delay = **0.6s**. Overheat Lockout = **2.2s**.
+Blasters require no ammo. Max Heat = **100**. Cooling Delay = **0.5s**. Overheat Lockout = **1.9s**.
+
+> Cooling Delay and Overheat Lockout were 0.6s and 2.2s until the D1 ammo / blaster fine-tuning pass
+> (2026-09-23). Owner playtesting found blasters useful but slightly stiff, and the validation pass measured
+> 54–60% of a sustained firing cycle spent unable to fire. The two timings were shortened to raise practical
+> sustained output by 8–9% without touching damage, fire rate, Heat/Shot, Cooling Rate or Max Heat, so heat
+> management remains the class constraint (it still costs 50–57% of a sustained cycle).
 
 | Weapon | Damage | Fire Rate | Heat/Shot | Cooling Rate |
 |---|---:|---:|---:|---:|

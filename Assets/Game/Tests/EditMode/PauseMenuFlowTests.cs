@@ -34,6 +34,7 @@ namespace RuinRail.Tests
             public event Action Weapon2Selected;
             public event Action WeaponSwapped;
             public event Action ConsumableUsed;
+            public event Action QuickGrenadeUsed;
             public event Action InventoryToggled;
 #pragma warning restore CS0067
             public event Action PauseToggled;

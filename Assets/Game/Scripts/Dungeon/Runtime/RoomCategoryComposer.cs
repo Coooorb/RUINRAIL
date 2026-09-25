@@ -135,7 +135,8 @@ namespace RuinRail.Dungeon.Runtime
             collider.size = Vector2.one;
             var spawner = services.CreateLootSpawner(go);
             var chest = go.AddComponent<SupplyChest>();
-            services.LootCatalog.Configure(chest, kind, context.RunSeed, context.Depth, sourceIndex, context.PartySize, services.UsefulAmmoTypes, spawner);
+            services.LootCatalog.Configure(chest, kind, context.RunSeed, context.Depth, sourceIndex, context.PartySize, services.UsefulAmmoTypes, spawner,
+                services.Prices?.Config);
             chest.AttachVisual(); // final crate art; the sprite follows closed / opened / locked from here on
             return chest;
         }
@@ -207,7 +208,7 @@ namespace RuinRail.Dungeon.Runtime
             var spawner = services.CreateLootSpawner(go);
             var deliverer = new LootSpawnerDeliverer(spawner, () => go.transform.position, room.transform);
             var eventContext = new DungeonEventContext(context.RunSeed, context.Depth, room.State.NodeId, context.PartySize, room.Root.Definition != null ? room.Root.Definition.Biome : Biome.RuinedMetro, services.UsefulAmmoTypes);
-            var rewards = new EventRewardRoller(services.LootCatalog);
+            var rewards = new EventRewardRoller(services.LootCatalog, services.Prices?.Config);
             var tags = room.Root.Definition != null ? room.Root.Definition.Tags : null;
             IDungeonEvent instance = kind switch
             {
@@ -290,15 +291,31 @@ namespace RuinRail.Dungeon.Runtime
                     if (encounter != null)
                     {
                         binding.Boss = encounter;
+                        if (encounter.Boss != null)
+                        {
+                            // The arena owns the boss: it never leaves the room interior, and the fight begins when the
+                            // first player enters (BossEngagement.Begin hands over the target) — not when the actor
+                            // happens to see a player elsewhere on the depth at spawn time.
+                            room.BindEncounterBounds(encounter.Boss.gameObject);
+                            // Attack choice draws from RunSeed + Depth + this room, so the same run replays the same
+                            // sequence of boss attacks and a client rebuilding the encounter agrees with the host.
+                            encounter.Boss.SetSelectionSeed(context.RunSeed, context.Depth, room.State.NodeId);
+                            encounter.Boss.SetTarget(null);
+                        }
+
                         if (encounter.Boss != null && encounter.Boss.Definition != null)
                         {
                             // 59/83: boss HP scales by depth then party (boss curve); damage bands by depth.
                             encounter.Boss.SetDamageRoller(new DepthScaledDamageRoller(new UnityRandomDamageRoller(), context.Depth, context.Scaling));
                             encounter.Boss.Health.SetMaxHealth(DepthScaling.ScaledHealth(encounter.Boss.Definition.BaseHealth, context.Depth, context.PartySize, true, context.Scaling));
-                            // Boss summons are normal enemies: normal-HP party curve, never the boss multiplier.
+                            // Boss summons are normal enemies: normal-HP party curve, never the boss multiplier; they stay in the arena too.
                             encounter.Boss.Summoned += (_, summons) =>
                             {
-                                foreach (var summon in summons) EnemySpawnScaling.Apply(summon, context.Depth, context.PartySize, context.Scaling);
+                                foreach (var summon in summons)
+                                {
+                                    EnemySpawnScaling.Apply(summon, context.Depth, context.PartySize, context.Scaling);
+                                    room.BindEncounterBounds(summon.gameObject);
+                                }
                             };
                         }
 

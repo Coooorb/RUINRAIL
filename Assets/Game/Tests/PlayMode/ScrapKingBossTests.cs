@@ -75,13 +75,10 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             boss.SetTarget(player.transform);
-            Assert.AreEqual("Heavy Melee Swing", boss.SelectAttack().DisplayName, "Point blank: the swing.");
-            player.transform.position = new Vector2(3f, 0f);
-            Assert.AreEqual("Combat Roll", boss.SelectAttack().DisplayName, "Mid range: reposition first.");
-            player.transform.position = new Vector2(7f, 0f);
-            Assert.AreEqual("Grenade Throw", boss.SelectAttack().DisplayName, "Grenade range.");
-            player.transform.position = new Vector2(9.5f, 0f);
-            Assert.AreEqual("Automatic Burst", boss.SelectAttack().DisplayName, "Far: the burst.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 1.5f, "Heavy Melee Swing", "Point blank: the swing.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 3f, "Combat Roll", "Mid range: reposition first.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 7f, "Grenade Throw", "Grenade range.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 9.5f, "Automatic Burst", "Far: the burst.");
         }
 
         [UnityTest]
@@ -104,8 +101,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(0.7f, boss.TimingMultiplier, 0.0001f, "More movement/aggression: every telegraph and recovery runs at 70%.");
             CollectionAssert.AreEqual(new[] { 2 }, phases);
 
-            player.transform.position = new Vector2(3f, 0f);
-            Assert.AreEqual("Combat Roll", boss.SelectAttack().DisplayName, "Same known mechanics, faster.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 3f, "Combat Roll", "Same known mechanics, faster.");
 
             boss.Health.TryApplyDamage(new DamageRequest(300));
             Assert.AreEqual(2, boss.Phase);

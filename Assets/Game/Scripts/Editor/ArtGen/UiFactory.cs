@@ -121,6 +121,48 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         /// <summary>
+        /// The HUD hostile token (12×12, 91 enemy-remaining readout): a hard-edged emergency-red threat mask — a
+        /// rounded skull-like plate with two dark eye slots and a notched jaw, outlined in charcoal so it reads on any
+        /// floor. It is the "enemies" sign beside the remaining count, never a portrait of one enemy.
+        /// </summary>
+        public static PixelCanvas EnemyIcon(int size = 12)
+        {
+            var c = new PixelCanvas(size, size);
+            var red = RuinPalette.EmergencyRed;
+            var lit = RuinPalette.Lighten(red, 0.35f);
+            var dark = RuinPalette.Darken(red, 0.45f);
+            var outline = RuinPalette.OutlineCharcoal;
+            // Plate: rows 1..8 rounded at the corners, jaw rows 9..10 narrower.
+            for (var y = 1; y <= 8; y++)
+            {
+                var inset = y == 1 || y == 8 ? 2 : 1;
+                for (var x = inset; x < size - inset; x++) c.Set(x, y, red);
+            }
+
+            for (var x = 3; x < size - 3; x++) { c.Set(x, 9, red); c.Set(x, 10, dark); }
+            // Lit crown, dark brow line.
+            for (var x = 3; x < size - 3; x++) c.Set(x, 1, lit);
+            for (var x = 2; x < size - 2; x++) c.Set(x, 4, dark);
+            // Eye slots (2×2), dark.
+            c.Set(3, 5, outline); c.Set(4, 5, outline); c.Set(3, 6, outline); c.Set(4, 6, outline);
+            c.Set(7, 5, outline); c.Set(8, 5, outline); c.Set(7, 6, outline); c.Set(8, 6, outline);
+            // Jaw notches.
+            c.Set(4, 10, outline); c.Set(7, 10, outline);
+            // Outline ring around every filled pixel that borders transparency.
+            var filled = new bool[size, size];
+            for (var y = 0; y < size; y++) for (var x = 0; x < size; x++) filled[x, y] = c.Get(x, y).a > 0;
+            for (var y = 0; y < size; y++)
+            for (var x = 0; x < size; x++)
+            {
+                if (filled[x, y]) continue;
+                var edge = (x > 0 && filled[x - 1, y]) || (x < size - 1 && filled[x + 1, y]) || (y > 0 && filled[x, y - 1]) || (y < size - 1 && filled[x, y + 1]);
+                if (edge) c.Set(x, y, outline);
+            }
+
+            return c;
+        }
+
+        /// <summary>
         /// The HUD coin/token icon (12×12, spec 18 / 91 Top Information): a struck brass token — dark rim, lit
         /// upper-left edge, a stamped bar mark in the middle. Authored once at screen pixels; the coin readout is the
         /// icon plus the number, never the word "COINS".

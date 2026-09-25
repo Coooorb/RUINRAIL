@@ -9,6 +9,11 @@ namespace RuinRail.Tests
     {
         private const string PulseCarbineAssetPath = "Assets/Game/ScriptableObjects/Items/PulseCarbineB1.asset";
 
+        /// <summary>
+        /// A synthetic heat state for the behavioural tests below. Its 0.6 s / 2.2 s timings are the fixture's own,
+        /// deliberately not the catalogue's, so those tests keep exercising the state machine rather than the
+        /// authored balance numbers (which PulseCarbineB1_UsesApprovedV1Values pins separately).
+        /// </summary>
         private static BlasterHeatState NewState() => new(100f, 35f, 0.6f, 2.2f);
 
         [Test]
@@ -28,8 +33,8 @@ namespace RuinRail.Tests
             Assert.AreEqual(7f, definition.HeatPerShot, 0.001f);
             Assert.AreEqual(35f, definition.CoolingRatePerSecond, 0.001f);
             Assert.AreEqual(100f, definition.MaxHeat, 0.001f);
-            Assert.AreEqual(0.6f, definition.CoolingDelaySeconds, 0.001f);
-            Assert.AreEqual(2.2f, definition.OverheatLockoutSeconds, 0.001f);
+            Assert.AreEqual(0.5f, definition.CoolingDelaySeconds, 0.001f);
+            Assert.AreEqual(1.9f, definition.OverheatLockoutSeconds, 0.001f);
             Assert.IsInstanceOf<EquipmentItemDefinition>(definition);
         }
 

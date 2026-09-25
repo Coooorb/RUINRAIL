@@ -20,7 +20,7 @@ MonoBehaviour:
   _minTriggerRange: 3
   _maxTriggerRange: 10
   _telegraphSeconds: 0.7
-  _recoverySeconds: 1.0
+  _recoverySeconds: 1
   _hitCount: 3
   _hitIntervalSeconds: 0.2
   _hitRadius: 0.5
@@ -35,3 +35,4 @@ MonoBehaviour:
   _projectileRange: 12
   _zoneLength: 6
   _zoneWidth: 1.5
+  _projectileVisualId: proj_boss_energy

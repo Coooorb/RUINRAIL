@@ -84,11 +84,9 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(8f, 0f));
             elite.SetTarget(player.transform);
-            Assert.AreEqual("Burst Cannon", elite.SelectAttack().DisplayName, "Far target: Burst Cannon.");
-            player.transform.position = new Vector2(3.5f, 0f);
-            Assert.AreEqual("Rail Sweep", elite.SelectAttack().DisplayName, "Mid range: Rail Sweep.");
-            player.transform.position = new Vector2(1.5f, 0f);
-            Assert.AreEqual("Ground Shock", elite.SelectAttack().DisplayName, "Close: Ground Shock denial.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 8f, "Burst Cannon", "Far target: Burst Cannon.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 3.5f, "Rail Sweep", "Mid range: Rail Sweep.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 1.5f, "Ground Shock", "Close: Ground Shock denial.");
             player.transform.position = new Vector2(30f, 0f);
             Assert.IsNull(elite.SelectAttack(), "Out of every range: keep advancing (slowly).");
         }

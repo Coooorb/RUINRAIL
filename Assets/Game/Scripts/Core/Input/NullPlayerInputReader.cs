@@ -26,6 +26,7 @@ namespace RuinRail.Core.Input
         public event Action Weapon2Selected;
         public event Action WeaponSwapped;
         public event Action ConsumableUsed;
+        public event Action QuickGrenadeUsed;
         public event Action InventoryToggled;
         public event Action PauseToggled;
 #pragma warning restore CS0067

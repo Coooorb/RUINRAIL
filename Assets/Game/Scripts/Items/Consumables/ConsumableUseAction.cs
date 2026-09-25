@@ -42,15 +42,25 @@ namespace RuinRail.Gameplay.Items.Consumables
         public event Action<ConsumableDefinition> UseCompleted;
         public event Action<ConsumableDefinition> UseCancelled;
 
-        public ConsumableUseResult TryUse()
+        public ConsumableUseResult TryUse() => TryUse(_inventory.GetEquipped(EquippedSlot.ActiveConsumable));
+
+        /// <summary>
+        /// Uses one explicit stack through this same channel.
+        ///
+        /// The quick-grenade key needs to throw a grenade the player is carrying without first making it the Active
+        /// Consumable, and there must be exactly one place that channels, applies and spends a consumable — so it is
+        /// an entry point on this action rather than a second use path. Every rule below is the same one the Active
+        /// Consumable obeys: one use at a time, one unit per successful use, spent at the definition's consumption
+        /// point, a cancelled OnCompletion use costs nothing, and an emptied stack leaves the inventory.
+        /// </summary>
+        public ConsumableUseResult TryUse(ItemInstance stack)
         {
             if (IsUsing) return ConsumableUseResult.AlreadyUsing;
 
-            var stack = _inventory.GetEquipped(EquippedSlot.ActiveConsumable);
             if (stack == null) return ConsumableUseResult.NothingEquipped;
             if (stack.Quantity <= 0)
             {
-                _inventory.Unequip(EquippedSlot.ActiveConsumable);
+                Discard(stack);
                 return ConsumableUseResult.EmptyStack;
             }
 
@@ -105,10 +115,42 @@ namespace RuinRail.Gameplay.Items.Consumables
         {
             if (_stack == null || _stack.Quantity <= 0) return;
             _stack.SetQuantity(_stack.Quantity - 1);
-            if (_stack.Quantity == 0)
+            if (_stack.Quantity == 0) Discard(_stack);
+        }
+
+        /// <summary>Removes an emptied stack from wherever it is held — the Active Consumable slot or a backpack slot.</summary>
+        private void Discard(ItemInstance stack)
+        {
+            if (stack == null) return;
+            if (ReferenceEquals(_inventory.GetEquipped(EquippedSlot.ActiveConsumable), stack))
             {
                 _inventory.Unequip(EquippedSlot.ActiveConsumable);
+                return;
             }
+
+            var slots = _inventory.BackpackSlots;
+            for (var i = 0; i < slots.Count; i++)
+            {
+                if (ReferenceEquals(slots[i], stack)) { _inventory.RemoveFromBackpack(i); return; }
+            }
+        }
+
+        /// <summary>
+        /// The first grenade this inventory can actually throw, in the order a player would reach for one: the Active
+        /// Consumable if it already holds grenades, then the backpack left to right. Returns null when there is none,
+        /// which is what makes an empty quick-grenade press a silent no-op rather than an error.
+        /// </summary>
+        public ItemInstance FindQuickGrenade()
+        {
+            bool IsUsableGrenade(ItemInstance item) =>
+                item != null && item.Quantity > 0 &&
+                _resolveDefinition(item.DefinitionId) is ConsumableDefinition d && d.EffectKind == ConsumableEffectKind.Grenade;
+
+            var active = _inventory.GetEquipped(EquippedSlot.ActiveConsumable);
+            if (IsUsableGrenade(active)) return active;
+            var slots = _inventory.BackpackSlots;
+            for (var i = 0; i < slots.Count; i++) if (IsUsableGrenade(slots[i])) return slots[i];
+            return null;
         }
 
         private void Reset()

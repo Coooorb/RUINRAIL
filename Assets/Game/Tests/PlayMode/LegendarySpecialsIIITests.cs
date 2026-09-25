@@ -111,11 +111,11 @@ namespace RuinRail.Tests
             Assert.AreEqual((SpecialKind.DashStrike, 12f, 5f, 50, 60), (charge.Kind, charge.CooldownSeconds, charge.DistanceTiles, charge.DamageMin, charge.DamageMax));
 
             var redline = AssetDatabase.LoadAssetAtPath<BlasterWeaponDefinition>("Assets/Game/ScriptableObjects/Items/Redline.asset");
-            Assert.AreEqual((WeaponClass.Blaster, 8, 10, 9f, 8f, 40f, 100f, 0.6f, 2.2f, "overcharge_barrage", "pool_blaster"), (redline.WeaponClass, redline.DamageMin, redline.DamageMax, redline.FireRate, redline.HeatPerShot, redline.CoolingRatePerSecond, redline.MaxHeat, redline.CoolingDelaySeconds, redline.OverheatLockoutSeconds, redline.LegendaryMechanicId, redline.AffixPool.Id));
+            Assert.AreEqual((WeaponClass.Blaster, 8, 10, 9f, 8f, 40f, 100f, 0.5f, 1.9f, "overcharge_barrage", "pool_blaster"), (redline.WeaponClass, redline.DamageMin, redline.DamageMax, redline.FireRate, redline.HeatPerShot, redline.CoolingRatePerSecond, redline.MaxHeat, redline.CoolingDelaySeconds, redline.OverheatLockoutSeconds, redline.LegendaryMechanicId, redline.AffixPool.Id));
             var ghostedge = AssetDatabase.LoadAssetAtPath<MeleeWeaponDefinition>("Assets/Game/ScriptableObjects/Items/Ghostedge.asset");
             Assert.AreEqual((WeaponClass.Knife, 15, 18, 3.8f, 1.2f, 80f, "blink_strike", "pool_melee"), (ghostedge.WeaponClass, ghostedge.DamageMin, ghostedge.DamageMax, ghostedge.AttackRate, ghostedge.AttackRange, ghostedge.AttackArcDegrees, ghostedge.LegendaryMechanicId, ghostedge.AffixPool.Id));
             var railspike = AssetDatabase.LoadAssetAtPath<MeleeWeaponDefinition>("Assets/Game/ScriptableObjects/Items/Railspike.asset");
-            Assert.AreEqual((WeaponClass.Spear, 26, 30, 1.7f, 3.0f, 20f, "impaling_charge", "pool_melee"), (railspike.WeaponClass, railspike.DamageMin, railspike.DamageMax, railspike.AttackRate, railspike.AttackRange, railspike.AttackArcDegrees, railspike.LegendaryMechanicId, railspike.AffixPool.Id));
+            Assert.AreEqual((WeaponClass.Spear, 26, 30, 1.7f, 3.0f, 20f, "impaling_charge", "pool_melee_heavy"), (railspike.WeaponClass, railspike.DamageMin, railspike.DamageMax, railspike.AttackRate, railspike.AttackRange, railspike.AttackArcDegrees, railspike.LegendaryMechanicId, railspike.AffixPool.Id));
         }
 
         // ---- Redline: 16 bolts, no heat ----

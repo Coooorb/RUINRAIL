@@ -76,13 +76,10 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             boss.SetTarget(player.transform);
-            Assert.AreEqual("Arm Sweep", boss.SelectAttack().DisplayName, "Point blank: the sweep.");
-            player.transform.position = new Vector2(2.7f, 0f);
-            Assert.AreEqual("Hydraulic Slam", boss.SelectAttack().DisplayName, "Just outside the sweep: the slam.");
-            player.transform.position = new Vector2(5f, 0f);
-            Assert.AreEqual("Furnace Blast", boss.SelectAttack().DisplayName, "Mid range: the cone.");
-            player.transform.position = new Vector2(8.5f, 0f);
-            Assert.AreEqual("Marked Rocket Barrage", boss.SelectAttack().DisplayName, "Far: marked rockets.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 1.5f, "Arm Sweep", "Point blank: the sweep.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 2.7f, "Hydraulic Slam", "Just outside the sweep: the slam.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 5f, "Furnace Blast", "Mid range: the cone.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 8.5f, "Marked Rocket Barrage", "Far: marked rockets.");
         }
 
         [UnityTest]
@@ -105,8 +102,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(0.8f, boss.TimingMultiplier, 0.0001f);
             CollectionAssert.AreEqual(new[] { 2 }, phases);
 
-            player.transform.position = new Vector2(5f, 0f);
-            Assert.AreEqual("Reactor Overload Burn", boss.SelectAttack().DisplayName, "Phase 2 prepends the burning zones to the rotation.");
+            BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 5f, "Reactor Overload Burn", "Phase 2 prepends the burning zones to the rotation.");
 
             boss.Health.TryApplyDamage(new DamageRequest(300));
             Assert.AreEqual(2, boss.Phase);

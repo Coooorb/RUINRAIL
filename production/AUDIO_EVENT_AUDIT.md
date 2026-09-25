@@ -1,5 +1,8 @@
 # RUINRAIL V1 audio event audit (art/105 SFX coverage rule)
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. This frozen copy predates the audio content pass; the live audit (53/53 events with clips) is regenerated to TestResults/audio_assets.md. The body below is kept unchanged as the record of its time.
+
+
 Contract: **COMPLETE** — 53/53 required events defined. Content: **BLOCKED_EXTERNAL_ASSET** — 0/53 events have clips.
 
 | Event | Bus | Defined | Clips | Status |

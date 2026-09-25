@@ -52,6 +52,17 @@ namespace RuinRail.App
         public AimAssistConfig AimAssist;
         public AudioEventCatalog AudioEvents;
         public MusicCatalog Music;
+        /// <summary>
+        /// The release network player prefab (82): the object a host spawns per session member. It is carried here
+        /// because a built player has no AssetDatabase — without a runtime reference the prefab exists, validates and
+        /// is registered with NGO, but no running process can ever instantiate it.
+        /// </summary>
+        public GameObject NetworkPlayerEntity;
+        /// <summary>
+        /// The session's co-op expedition channel (one network object per session; enemies, loot and rooms replicate
+        /// through it by definition id). Registered with NGO next to the player prefab on every peer.
+        /// </summary>
+        public GameObject CoopRunLink;
         public List<BiomeLightingProfile> Lighting = new();
 
         [Header("Definitions")]
@@ -73,6 +84,8 @@ namespace RuinRail.App
         public List<DoorSkin> DoorSkins = new();
         /// <summary>World-object art (chests, pickups, coins, merchant, event objects, transit car) keyed by the Art/World file stem; WorldObjectArt resolves through it.</summary>
         public List<WorldSprite> WorldSprites = new();
+        /// <summary>Every in-flight projectile presentation profile plus the weapon-class family defaults; ProjectileVisual resolves through it.</summary>
+        public RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog ProjectileVisuals;
 
         [System.Serializable]
         public sealed class WorldSprite
@@ -105,7 +118,8 @@ namespace RuinRail.App
             AmmoBalance = AmmoBalance,
             Economy = Economy,
             Trader = Trader,
-            Workshop = Workshop
+            Workshop = Workshop,
+            StatCaps = StatCaps
         };
 
         public BiomeLightingProfile LightingFor(Biome biome) => Lighting.FirstOrDefault(l => l != null && l.Biome == biome);
@@ -151,6 +165,17 @@ namespace RuinRail.App
                 var skin = DoorSkinFor(biome);
                 if (skin == null || skin.Open == null || skin.Locked == null) problems.Add($"missing door skin for {biome}");
             }
+            if (ProjectileVisuals == null) problems.Add("missing projectile visual catalog");
+            else
+            {
+                foreach (var problem in ProjectileVisuals.Problems()) problems.Add("projectile visuals: " + problem);
+                foreach (var weapon in Items.OfType<WeaponDefinition>().Where(w => w.WeaponClass != WeaponClass.Knife && w.WeaponClass != WeaponClass.Spear))
+                {
+                    var id = !string.IsNullOrEmpty(weapon.ProjectileVisualId) ? weapon.ProjectileVisualId : ProjectileVisuals.FamilyDefaultFor(weapon.WeaponClass);
+                    if (string.IsNullOrEmpty(id) || ProjectileVisuals.Find(id) == null) problems.Add($"weapon {weapon.Id} resolves no projectile visual profile");
+                }
+            }
+
             foreach (var key in WorldObjectArt.RequiredKeys)
             {
                 if (WorldSpriteFor(key) == null) problems.Add($"missing world sprite {key}");

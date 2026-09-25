@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RuinRail.Dungeon.Grid;
 using RuinRail.Dungeon.Rooms;
+using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Enemies;
 using RuinRail.Gameplay.Enemies.Encounters;
 using RuinRail.Gameplay.Player;
@@ -28,6 +29,9 @@ namespace RuinRail.Dungeon.Runtime
         /// <summary>47/80: spawn markers closer than this to the entry point are skipped when others exist.</summary>
         public const float MinSpawnDistanceFromEntryTiles = 5f;
 
+        /// <summary>The outer tile ring of every room is wall (door cells included): the encounter interior starts one tile in.</summary>
+        public const float WallRingTiles = 1f;
+
         private RoomRoot _root;
         private readonly RoomRuntimeState _state = new();
         private EncounterPlan _plan;
@@ -43,6 +47,8 @@ namespace RuinRail.Dungeon.Runtime
         private bool _scaleSpawns = true;
 
         public RoomRoot Root => _root;
+        /// <summary>What the deterministic prop-dressing pass did to this room (diagnostics; presentation only).</summary>
+        public RoomPropDressing.Result Dressing { get; internal set; }
         public RoomRuntimeState State => _state;
         public RoomLifecycleState Lifecycle => _state.State;
         public EncounterPlan Plan => _plan;
@@ -120,8 +126,16 @@ namespace RuinRail.Dungeon.Runtime
             _state.EntryCount = state.EntryCount;
             _state.EnemiesSpawned = state.EnemiesSpawned;
             _state.EnemiesDefeated = state.EnemiesDefeated;
+            _state.EnemiesRemaining = state.EnemiesRemaining;
             _state.Resolved = new List<string>(state.Resolved ?? new List<string>());
             SetDoorsLocked(_state.State == RoomLifecycleState.Active);
+            // A client learns of the activation from the host's state: its own player's room listeners (per-room passives
+            // such as Emergency Care / Second Wind) hear the entry the host decided, exactly as the cleared case below.
+            if (!IsAuthoritative && !wasActive && _state.State == RoomLifecycleState.Active)
+            {
+                foreach (var listener in Listeners()) listener.OnCombatRoomEntered(this);
+            }
+
             if (!IsAuthoritative && wasActive && _state.State == RoomLifecycleState.Cleared)
             {
                 var context = new RoomClearedContext(_state.NodeId, _state.RoomId, _state.RoomType, _state.IsElite, _depth, _state.EnemiesDefeated);
@@ -180,8 +194,45 @@ namespace RuinRail.Dungeon.Runtime
             Activated?.Invoke(this);
             foreach (var listener in Listeners()) listener.OnCombatRoomEntered(this);
             _engagement.Begin(this, enteringPlayer);
+            RefreshEnemiesRemaining();
             // An engagement resolved before the room was entered (e.g. a boss already dead) clears immediately.
             if (_engagement.IsComplete) OnEngagementCompleted(_engagement);
+        }
+
+        /// <summary>
+        /// True while this room is the kind of place the HUD counts enemies for (91): an active standard Combat
+        /// encounter (director encounter or Elite), never a Boss arena and never a non-combat/event room, whatever
+        /// event waves may be running there.
+        /// </summary>
+        public bool ShowsEnemyCount => IsCountedCombat && _state.State == RoomLifecycleState.Active;
+
+        private bool IsCountedCombat => _state.RoomType == RoomType.Combat && _engagement is not BossEngagement;
+
+        /// <summary>
+        /// The authoritative number of encounter enemies still to be resolved in this room (see
+        /// <see cref="RoomRuntimeState.EnemiesRemaining"/>): 0 when nothing is being counted. On the host it is
+        /// recomputed from the encounter's own membership; a client reads the replicated figure.
+        /// </summary>
+        public int EnemiesRemaining => IsAuthoritative ? RefreshEnemiesRemaining() : _state.EnemiesRemaining;
+
+        private int RefreshEnemiesRemaining()
+        {
+            var count = 0;
+            if (IsAuthoritative && _state.State == RoomLifecycleState.Active && IsCountedCombat)
+            {
+                switch (_engagement)
+                {
+                    case EncounterEngagement encounter:
+                        count = encounter.Runtime.LivingCount + encounter.Runtime.PendingCount;
+                        break;
+                    case EliteEngagement elite:
+                        count = elite.Encounter != null && elite.Encounter.Elite != null && elite.Encounter.Elite.Health != null && elite.Encounter.Elite.Health.IsAlive && !elite.IsComplete ? 1 : 0;
+                        break;
+                }
+            }
+
+            _state.EnemiesRemaining = count;
+            return count;
         }
 
         /// <summary>Spawns an extra encounter inside this room (events such as Cursed Chest / Supply Signal waves).</summary>
@@ -197,6 +248,29 @@ namespace RuinRail.Dungeon.Runtime
 
         public void LockDoors() => SetDoorsLocked(true);
         public void UnlockDoors() => SetDoorsLocked(false);
+
+        /// <summary>
+        /// The legal encounter interior of this room in world units: the room bounds minus the wall ring, which is also
+        /// where the door cells and the combat door blockers are. An encounter actor's collider must stay inside it.
+        /// </summary>
+        public Rect InteriorWorldBounds => InteriorWorldBoundsOf(_root);
+
+        /// <summary>Pure: the encounter interior (world) of a placed room root.</summary>
+        public static Rect InteriorWorldBoundsOf(RoomRoot root)
+        {
+            if (root == null) return new Rect();
+            var min = (Vector2)root.transform.TransformPoint(new Vector3(WallRingTiles * GridConstants.TileWorldSize, WallRingTiles * GridConstants.TileWorldSize, 0f));
+            var size = new Vector2(root.Size.x - WallRingTiles * 2f, root.Size.y - WallRingTiles * 2f) * GridConstants.TileWorldSize;
+            return new Rect(min, new Vector2(Mathf.Max(0f, size.x), Mathf.Max(0f, size.y)));
+        }
+
+        /// <summary>
+        /// Makes this room the authoritative owner of an encounter actor: its collider may never leave
+        /// <see cref="InteriorWorldBounds"/> until it dies or is despawned. Applied to every actor the room spawns
+        /// (encounters, reinforcements, summons, event waves), to its Elite and to its Boss.
+        /// </summary>
+        public EncounterBounds BindEncounterBounds(GameObject actor) =>
+            actor == null ? null : EncounterBounds.Bind(actor, InteriorWorldBounds, _state.RoomId, _state.NodeId);
 
         /// <summary>Validated EnemySpawn marker centers, preferring those at least ~5 tiles from the entry point.</summary>
         public List<Vector2> SpawnPointsFor(Vector2 entryWorldPosition)
@@ -229,6 +303,8 @@ namespace RuinRail.Dungeon.Runtime
         private void OnEnemySpawned(EncounterRuntime runtime, EnemyController enemy)
         {
             _state.EnemiesSpawned++;
+            RefreshEnemiesRemaining();
+            BindEncounterBounds(enemy.gameObject); // the room that spawned it owns it: no door, open or pending, is an exit
             if (_scaleSpawns) EnemySpawnScaling.Apply(enemy, _depth, _partySize, _scalingConfig);
             enemy.Died += OnEnemyDied;
             EnemySpawned?.Invoke(this, enemy);
@@ -238,6 +314,7 @@ namespace RuinRail.Dungeon.Runtime
         {
             enemy.Died -= OnEnemyDied;
             _state.EnemiesDefeated++;
+            RefreshEnemiesRemaining();
         }
 
         private void OnEngagementCompleted(IRoomEngagement engagement)
@@ -247,6 +324,7 @@ namespace RuinRail.Dungeon.Runtime
             // Completion means every spawned actor is resolved; the last Died callback may still be queued behind this one.
             _state.EnemiesDefeated = Math.Max(_state.EnemiesDefeated, _state.EnemiesSpawned);
             _state.State = RoomLifecycleState.Cleared;
+            _state.EnemiesRemaining = 0;
             SetDoorsLocked(false);
             var context = new RoomClearedContext(_state.NodeId, _state.RoomId, _state.RoomType, _state.IsElite, _depth, _state.EnemiesDefeated);
             Cleared?.Invoke(this, context);
@@ -266,7 +344,12 @@ namespace RuinRail.Dungeon.Runtime
 
         private void Update()
         {
-            if (_state.State == RoomLifecycleState.Active) _engagement?.Tick(Time.deltaTime);
+            if (_state.State == RoomLifecycleState.Active)
+            {
+                _engagement?.Tick(Time.deltaTime);
+                RefreshEnemiesRemaining();
+            }
+
             for (var i = _extraEncounters.Count - 1; i >= 0; i--)
             {
                 _extraEncounters[i].Tick();

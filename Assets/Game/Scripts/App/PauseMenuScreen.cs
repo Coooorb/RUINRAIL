@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RuinRail.UI.Navigation;
 using RuinRail.UI.Pause;
 using RuinRail.UI.Theme;
@@ -35,14 +36,20 @@ namespace RuinRail.App
         private Text _confirmTitle;
         private Text _confirmText;
         private SettingsPanel.Instance _settings;
+        private CodexPanel.Instance _codex;
+        private RuinRail.UI.Codex.CodexViewModel _codexModel;
         private readonly List<UiControl> _controls = new();
 
         public PauseMenuViewModel Pause => _pause;
         public FocusList RootList => _rootList;
         public FocusList ConfirmList => _confirmList;
         public FocusList SettingsList => _settings?.List;
-        /// <summary>Every interactive control currently built, in build order (the interaction tests walk this).</summary>
-        public IReadOnlyList<UiControl> Controls => _controls;
+        public SettingsPanel.Instance SettingsInstance => _settings;
+        /// <summary>The Help / Codex page over the pause root.</summary>
+        public CodexPanel.Instance CodexInstance => _codex;
+        public FocusList CodexList => _codex?.List;
+        /// <summary>Every interactive control currently built, in build order (the interaction tests walk this), including the open Settings panel's rows.</summary>
+        public IReadOnlyList<UiControl> Controls => _settings != null ? _controls.Concat(_settings.Controls).Where(c => c != null).Distinct().ToList() : _controls;
         public bool IsShowing => _overlay != null && _overlay.activeSelf;
         public bool SettingsShowing => _settings != null;
         public bool ConfirmationShowing => _confirmPanel != null && _confirmPanel.activeSelf;
@@ -144,6 +151,7 @@ namespace RuinRail.App
             if (!open)
             {
                 CloseSettings();
+                CloseCodex();
                 _input.Stack.Remove(_confirmList);
                 _input.Stack.Remove(_rootList);
                 return;
@@ -152,9 +160,10 @@ namespace RuinRail.App
             if (!_input.Stack.Contains(_rootList)) _input.Stack.Push(_rootList);
 
             var confirming = _pause.IsConfirming;
+            var helping = _pause.Screen == UI.Pause.PauseScreen.Help;
             _confirmPanel.SetActive(confirming);
-            // One panel at a time: the root menu steps aside while a confirmation asks its question.
-            _rootPanel.SetActive(!confirming);
+            // One panel at a time: the root menu steps aside while a confirmation asks its question or Help is open.
+            _rootPanel.SetActive(!confirming && !helping);
             if (confirming)
             {
                 _confirmTitle.text = _pause.ConfirmationTitle;
@@ -172,26 +181,46 @@ namespace RuinRail.App
 
             if (_pause.Screen == UI.Pause.PauseScreen.Settings)
             {
-                if (_settings == null)
-                {
-                    _settings = SettingsPanel.Build(_overlay.transform, _pause.Settings);
-                    _controls.AddRange(_settings.Controls);
-                    _input.Stack.Push(_settings.List);
-                }
+                if (_settings == null) _settings = SettingsPanel.Build(_overlay.transform, _pause.Settings, _input);
             }
             else
             {
                 CloseSettings();
+            }
+
+            if (helping)
+            {
+                if (_codex == null)
+                {
+                    // Built over the live device so the control names in the text are the ones in the player's hands.
+                    _codexModel ??= new RuinRail.UI.Codex.CodexViewModel(
+                        new RuinRail.UI.Onboarding.SchemeGlyphs(
+                            RuinRail.Core.Input.ActiveInputDevice.Current == RuinRail.Core.Input.InputDeviceKind.Gamepad
+                                ? RuinRail.UI.Onboarding.InputScheme.Gamepad
+                                : RuinRail.UI.Onboarding.InputScheme.KeyboardMouse));
+                    _codexModel.CloseRequested = () => _pause.LeaveHelp();
+                    _codexModel.Open();
+                    _codex = CodexPanel.Build(_overlay.transform, _codexModel, _input);
+                }
+            }
+            else
+            {
+                CloseCodex();
             }
         }
 
         private void CloseSettings()
         {
             if (_settings == null) return;
-            _input.Stack.Remove(_settings.List);
-            foreach (var control in _settings.Controls) _controls.Remove(control);
-            Destroy(_settings.Panel);
+            SettingsPanel.Close(_settings);
             _settings = null;
+        }
+
+        private void CloseCodex()
+        {
+            if (_codex == null) return;
+            CodexPanel.Close(_codex);
+            _codex = null;
         }
     }
 }

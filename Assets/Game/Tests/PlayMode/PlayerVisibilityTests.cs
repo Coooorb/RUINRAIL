@@ -73,7 +73,7 @@ namespace RuinRail.Tests
             }
 
             Assert.AreSame(animator, CharacterVisual.Attach(player, null), "attaching twice reuses the one body rather than stacking a second renderer");
-            Assert.AreEqual(1, player.GetComponentsInChildren<SpriteRenderer>(true).Length);
+            Assert.AreEqual(1, player.GetComponentsInChildren<SpriteRenderer>(true).Count(r => r.GetComponentInParent<RuinRail.Gameplay.Combat.Projectiles.Projectile>(true) == null), "one body renderer (pooled projectile sprites excluded)");
         }
 
         [Test]

@@ -70,7 +70,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 pulledBack = true;
             }
 
-            if (assist == null) return new ShotSolution(spawn, direction, pulledBack, null, Vector2.zero);
+            // One gate for every weapon that fires: no configured assist, or the player turned it off in Settings, and
+            // the shot leaves on the raw aim with no bend and no proximity pull. There is no second assist path.
+            if (assist == null || !RuinRail.Core.Rendering.AssistPreferences.AimAssist) return new ShotSolution(spawn, direction, pulledBack, null, Vector2.zero);
 
             var pointer = aiming != null && aiming.HasPointerAim;
             var halfAngle = assist.HalfAngleFor(weaponClass, pointer);

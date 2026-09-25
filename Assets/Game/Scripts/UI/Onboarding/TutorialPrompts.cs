@@ -15,6 +15,7 @@ namespace RuinRail.UI.Onboarding
         Reload,
         WeaponSwap,
         Consumable,
+        LowAmmo,
         Transit
     }
 
@@ -56,13 +57,13 @@ namespace RuinRail.UI.Onboarding
         private static readonly Dictionary<string, string> KeyboardDefaults = new()
         {
             { "Move", "WASD" }, { "Aim", "Mouse" }, { "Fire", "LMB" }, { "Special", "RMB" }, { "Dash", "Space" }, { "Interact", "E" }, { "Reload", "R" },
-            { "Weapon1", "1" }, { "Weapon2", "2" }, { "WeaponSwap", "Mouse Wheel" }, { "Consumable", "G" }, { "Inventory", "Tab" }, { "Pause", "Esc" }
+            { "Weapon1", "1" }, { "Weapon2", "2" }, { "WeaponSwap", "Mouse Wheel" }, { "Consumable", "G" }, { "QuickGrenade", "Q" }, { "Inventory", "Tab" }, { "Pause", "Esc" }
         };
 
         private static readonly Dictionary<string, string> GamepadDefaults = new()
         {
             { "Move", "Left Stick" }, { "Aim", "Right Stick" }, { "Fire", "RT" }, { "Special", "LT" }, { "Dash", "B" }, { "Interact", "A" }, { "Reload", "X" },
-            { "Weapon1", "D-Pad Left" }, { "Weapon2", "D-Pad Right" }, { "WeaponSwap", "Y" }, { "Consumable", "RB" }, { "Inventory", "View" }, { "Pause", "Menu" }
+            { "Weapon1", "D-Pad Left" }, { "Weapon2", "D-Pad Right" }, { "WeaponSwap", "Y" }, { "Consumable", "RB" }, { "QuickGrenade", "LB" }, { "Inventory", "View" }, { "Pause", "Menu" }
         };
 
         private readonly InputRebinder _rebinder;
@@ -112,6 +113,9 @@ namespace RuinRail.UI.Onboarding
                 TutorialPromptId.Reload => $"Magazine empty — {G("Reload")}: reload.",
                 TutorialPromptId.WeaponSwap => $"Two weapons equipped — {G("WeaponSwap")}: swap weapons.",
                 TutorialPromptId.Consumable => $"Low health — {G("Consumable")}: use your active consumable.",
+                // Taught as resource management, not as an order: both weapons is the advice, and melee is one option
+                // among them rather than a requirement. It never says "switch to melee".
+                TutorialPromptId.LowAmmo => $"Ammo running low — {G("WeaponSwap")}: use both weapons to conserve rounds.",
                 TutorialPromptId.Transit => "Boss defeated. At the Transit: Return to the Shelter to secure your loot, or Descend deeper for more.",
                 _ => id.ToString()
             };

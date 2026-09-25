@@ -86,7 +86,8 @@ namespace RuinRail.Core.Input
         {
             { "Move", "Move" }, { "Aim", "Aim" }, { "Fire", "Primary Attack" }, { "Special", "Legendary Special" }, { "Dash", "Dash" },
             { "Reload", "Reload" }, { "Interact", "Interact" }, { "Weapon1", "Select Primary Weapon" }, { "Weapon2", "Select Secondary Weapon" },
-            { "WeaponSwap", "Swap Weapon" }, { "Consumable", "Use Active Consumable" }, { "Inventory", "Inventory" }, { PauseActionName, "Pause" }
+            { "WeaponSwap", "Swap Weapon" }, { "Consumable", "Use Active Consumable" }, { "QuickGrenade", "Quick Grenade" },
+            { "Inventory", "Inventory" }, { PauseActionName, "Pause" }
         };
 
         private readonly InputActionAsset _asset;

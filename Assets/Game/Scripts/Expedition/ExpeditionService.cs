@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RuinRail.Core;
+using UnityEngine;
 using RuinRail.Gameplay.Economy;
 using RuinRail.Gameplay.Items;
 using RuinRail.Gameplay.Progression;
@@ -33,7 +34,8 @@ namespace RuinRail.Gameplay.Expedition
     public sealed class ExpeditionSummary
     {
         public ExpeditionSummary(int expeditionIndex, string transactionId, ExpeditionOutcome outcome, int runSeed, IReadOnlyList<Biome> biomes, ExpeditionStats stats,
-            int levelBefore, int levelAfter, CoinReceipt coinResult, int coinsLost, IReadOnlyList<ItemSummaryLine> securedItems, IReadOnlyList<ItemSummaryLine> lostItems)
+            int levelBefore, int levelAfter, CoinReceipt coinResult, int coinsLost, IReadOnlyList<ItemSummaryLine> securedItems, IReadOnlyList<ItemSummaryLine> lostItems,
+            int deepestDepthReached = 0, int deepestDepthBefore = 0)
         {
             ExpeditionIndex = expeditionIndex;
             TransactionId = transactionId;
@@ -52,6 +54,8 @@ namespace RuinRail.Gameplay.Expedition
             CoinsLost = coinsLost;
             SecuredItems = securedItems;
             LostItems = lostItems;
+            DeepestDepthReached = deepestDepthReached;
+            DeepestDepthBefore = deepestDepthBefore;
         }
 
         /// <summary>Sequence number of this ended expedition on the profile (trader refresh / tutorial hooks).</summary>
@@ -69,6 +73,15 @@ namespace RuinRail.Gameplay.Expedition
         public int ElitesDefeated { get; }
         public int BossesDefeated { get; }
         public int XpEarned { get; }
+
+        /// <summary>Deepest depth ever reached, after this expedition's arrivals were recorded.</summary>
+        public int DeepestDepthReached { get; }
+
+        /// <summary>The record as it stood before this expedition, so the screen can say what was beaten.</summary>
+        public int DeepestDepthBefore { get; }
+
+        /// <summary>This expedition pushed the record further than any previous one.</summary>
+        public bool IsNewPersonalBest => DeepestDepthReached > DeepestDepthBefore;
         public int LevelBefore { get; }
         public int LevelAfter { get; }
 
@@ -98,6 +111,7 @@ namespace RuinRail.Gameplay.Expedition
         private readonly Func<AmmoType, AmmoItemDefinition> _resolveAmmo;
         private readonly AmmoBalanceConfig _ammoBalance;
         private readonly ITransitResolutionPolicy _transitPolicy;
+        private readonly EconomyConfig _economy;
         private readonly string _localPlayerId;
         private Func<bool> _isLocalPlayerDead;
         private Func<IEnumerable<string>> _livingPlayerIds;
@@ -109,13 +123,15 @@ namespace RuinRail.Gameplay.Expedition
             Func<AmmoType, AmmoItemDefinition> resolveAmmo,
             AmmoBalanceConfig ammoBalance,
             ITransitResolutionPolicy transitPolicy = null,
-            string localPlayerId = "local")
+            string localPlayerId = "local",
+            EconomyConfig economy = null)
         {
             _resolveDefinition = resolveDefinition ?? throw new ArgumentNullException(nameof(resolveDefinition));
             _resolveAmmo = resolveAmmo ?? throw new ArgumentNullException(nameof(resolveAmmo));
             _ammoBalance = ammoBalance;
             _transitPolicy = transitPolicy ?? new SoloTransitPolicy();
             _localPlayerId = localPlayerId;
+            _economy = economy;
         }
 
         /// <summary>84/85: the party may Return while this peer's player is still Dead; then the local at-risk state is lost, not secured.</summary>
@@ -159,7 +175,14 @@ namespace RuinRail.Gameplay.Expedition
         public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome) => Start(profile, runSeed, firstBiome, 1);
 
         /// <summary>partySize is the party at expedition start (83): captured once here, never re-read from the live roster.</summary>
-        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize)
+        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize) => Start(profile, runSeed, firstBiome, partySize, null);
+
+        /// <summary>
+        /// Co-op peers start their own transaction with the participant id the host assigned them (82/84): every peer
+        /// owns its own at-risk state and save, and the id is what the host's roster, revive and vote lookups use for
+        /// this player. Null draws a fresh id, as solo always has.
+        /// </summary>
+        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize, string transactionId)
         {
             if (profile == null) throw new ArgumentNullException(nameof(profile));
             if (IsExpeditionActive) throw new InvalidOperationException("An expedition is already active.");
@@ -179,12 +202,42 @@ namespace RuinRail.Gameplay.Expedition
             foreach (var item in AllItems(inventory)) item.IsAtRisk = true;
             inventory.MarksIncomingAtRisk = true;
 
-            State = new ExpeditionState(runSeed, firstBiome, inventory, null, partySize);
+            State = new ExpeditionState(runSeed, firstBiome, inventory, transactionId, partySize);
+            DeepestDepthAtExpeditionStart = profile.DeepestDepthReached;
             Transit = null;
             LastSummary = null;
             ExpeditionStarted?.Invoke(State);
             DepthEntered?.Invoke(State);
             return State;
+        }
+
+        // ---- Deepest depth (personal best) ----
+
+        /// <summary>
+        /// Deepest depth ever arrived at, across every expedition. 0 before the first depth is entered.
+        /// </summary>
+        public int DeepestDepthReached => Profile?.DeepestDepthReached ?? 0;
+
+        /// <summary>The personal best as it stood when this expedition began, so a run summary can say what was beaten.</summary>
+        public int DeepestDepthAtExpeditionStart { get; private set; }
+
+        /// <summary>This expedition has already pushed the record past where it started.</summary>
+        public bool IsNewPersonalBestThisExpedition => DeepestDepthReached > DeepestDepthAtExpeditionStart;
+
+        /// <summary>Raised when the record actually rises, with the new value.</summary>
+        public event Action<int> DeepestDepthRecordRaised;
+
+        /// <summary>
+        /// Records that the player has ARRIVED at <paramref name="depth"/>: the depth generated and composed, not merely
+        /// that a descend was requested. Monotonic — a lower or equal depth changes nothing, so replaying a transition,
+        /// re-entering a room or a later shallow run can never move the record. Returns true only when it rose.
+        /// </summary>
+        public bool RecordDepthArrival(int depth)
+        {
+            if (Profile == null || depth <= 0 || depth <= Profile.DeepestDepthReached) return false;
+            Profile.DeepestDepthReached = depth;
+            DeepestDepthRecordRaised?.Invoke(depth);
+            return true;
         }
 
         // ---- In-run bookkeeping ----
@@ -195,14 +248,35 @@ namespace RuinRail.Gameplay.Expedition
             State.AddCarriedCoins(amount);
         }
 
-        /// <summary>Records expedition XP for the summary and commits it permanently to the profile at once.</summary>
+        /// <summary>
+        /// Records expedition XP for the summary and commits it permanently to the profile at once. The authored amount
+        /// passes through the deep-depth reward curve exactly once, here, so every XP source in the run (normal kill,
+        /// elite, boss, event) inherits it and none of them can apply it twice. Depths at or above the curve's start
+        /// are unaffected: <see cref="EconomyConfig.XpRewardMultiplier"/> returns 1.0 for them.
+        /// </summary>
         public void AddXp(int amount)
         {
             EnsureActive();
             if (amount <= 0) return;
-            State.AddXp(amount);
-            Progression.AddXp(amount);
+            var scaled = ScaleXpForDepth(amount);
+            State.AddXp(scaled);
+            Progression.AddXp(scaled);
         }
+
+        /// <summary>The deep-depth XP curve at the current depth; the authored amount when no economy is configured.</summary>
+        public int ScaleXpForDepth(int amount)
+        {
+            if (_economy == null || amount <= 0 || State == null) return amount;
+            var multiplier = _economy.XpRewardMultiplier(State.Depth);
+            return multiplier <= 1f ? amount : Mathf.Max(amount, Mathf.RoundToInt(amount * multiplier));
+        }
+
+        /// <summary>The reward multipliers in force at the current depth (1.0 / 1.0 above the curve's start).</summary>
+        public (float Xp, float Coins) DeepDepthRewardMultipliers => RewardMultipliersAt(State?.Depth ?? 0);
+
+        /// <summary>The reward multipliers a given depth carries; 1.0 / 1.0 when no economy is configured.</summary>
+        public (float Xp, float Coins) RewardMultipliersAt(int depth) =>
+            _economy == null || depth <= 0 ? (1f, 1f) : (_economy.XpRewardMultiplier(depth), _economy.CoinRewardMultiplier(depth));
 
         public void RecordEnemyDefeated(int xp) { EnsureActive(); State.Stats.EnemiesDefeated++; AddXp(xp); }
         public void RecordEliteDefeated(int xp) { EnsureActive(); State.Stats.ElitesDefeated++; AddXp(xp); }
@@ -335,7 +409,8 @@ namespace RuinRail.Gameplay.Expedition
         {
             Profile.ExpeditionsEnded++;
             return new ExpeditionSummary(Profile.ExpeditionsEnded, state.TransactionId, state.Outcome, state.RunSeed, state.BiomeHistory.ToArray(), state.Stats,
-                _levelAtStart, Profile.Level, coinResult, coinsLost, secured, lost);
+                _levelAtStart, Profile.Level, coinResult, coinsLost, secured, lost,
+                Profile.DeepestDepthReached, DeepestDepthAtExpeditionStart);
         }
 
         private void EnsureActive()

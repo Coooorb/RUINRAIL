@@ -35,6 +35,17 @@ namespace RuinRail.Gameplay.Expedition
         /// <summary>Count of ended expeditions (extraction or failure); the trader refresh keys on it.</summary>
         public int ExpeditionsEnded;
 
+        /// <summary>
+        /// Deepest depth the player has actually ARRIVED at, across every expedition. Monotonic: it only ever rises,
+        /// and neither death, extraction nor a later shallow run lowers it. 0 means "no depth entered yet", which is
+        /// also what an old save deserializes to — JsonUtility leaves a missing field at its default, so no migration
+        /// step is needed and no historical best is invented.
+        ///
+        /// Written only by <see cref="ExpeditionService.RecordDepthArrival"/>, which the scene calls once a depth has
+        /// been generated and composed successfully. A failed descend therefore cannot record a depth never entered.
+        /// </summary>
+        public int DeepestDepthReached;
+
         /// <summary>Loadout stored safely between expeditions (equipped + backpack). Null/empty when everything is at risk.</summary>
         public InventorySnapshot SafeLoadout;
 

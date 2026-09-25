@@ -1,5 +1,8 @@
 # RUINRAIL V1 music / stinger / ambience audit (art/105)
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. This frozen copy predates the music pass; the live audit (11/11 tracks, 6/6 stingers, 3/3 ambience) is regenerated to TestResults/music_assets.md. The body below is kept unchanged as the record of its time.
+
+
 Routing/data: **COMPLETE** — 11 track roles, 6 stinger roles, 3 ambience roles (exact).
 Content: **BLOCKED_EXTERNAL_ASSET** — tracks 0/11, stingers 0/6, ambience 0/3.
 

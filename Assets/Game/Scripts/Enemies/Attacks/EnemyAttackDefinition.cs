@@ -51,6 +51,8 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         [SerializeField, Min(0f)] private float _projectileRange = 12f;
         [SerializeField, Min(0f)] private float _zoneLength = 6f;
         [SerializeField, Min(0f)] private float _zoneWidth = 1.5f;
+        [Tooltip("Projectile motion: the in-flight visual profile id (ProjectileVisualCatalog); empty = the hostile default. Presentation only.")]
+        [SerializeField] private string _projectileVisualId = string.Empty;
 
         public string Id => _id;
         public string DisplayName => _displayName;
@@ -69,6 +71,18 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         public float Knockback => _knockback;
         public float StaggerPower => _staggerPower;
         public float CooldownSeconds => _cooldownSeconds;
+
+        /// <summary>In-flight visual of this attack's projectiles (presentation only); empty = the hostile default profile.</summary>
+        public string ProjectileVisualId => _projectileVisualId;
+
+#if UNITY_EDITOR
+        /// <summary>Editor-only binding used by the art pipeline. Never called at runtime.</summary>
+        public void EditorSetProjectileVisualId(string id)
+        {
+            _projectileVisualId = id ?? string.Empty;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+#endif
         public int ProjectileCount => Mathf.Max(1, _projectileCount);
         public float SpreadDegrees => _spreadDegrees;
         public float ProjectileSpeed => _projectileSpeed;

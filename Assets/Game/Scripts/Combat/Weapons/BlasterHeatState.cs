@@ -22,7 +22,25 @@ namespace RuinRail.Gameplay.Combat.Weapons
         }
 
         public float MaxHeat { get; }
+
+        /// <summary>The authored cooling rate; <see cref="EffectiveCoolingRatePerSecond"/> is what actually cools.</summary>
         public float CoolingRatePerSecond { get; }
+
+        /// <summary>
+        /// Live Blaster Cooling Rate multiplier from the wielder's stat pipeline (1 = authored). Held as a multiplier
+        /// rather than rebuilt into a new state so equipping or removing a cooling source never discards accumulated
+        /// heat, an overheat lockout or a cooling delay.
+        /// </summary>
+        public float CoolingRateMultiplier
+        {
+            get => _coolingRateMultiplier;
+            set => _coolingRateMultiplier = Mathf.Max(0f, value);
+        }
+
+        private float _coolingRateMultiplier = 1f;
+
+        /// <summary>Heat shed per second after the capped Blaster Cooling Rate bonus.</summary>
+        public float EffectiveCoolingRatePerSecond => CoolingRatePerSecond * _coolingRateMultiplier;
         public float CoolingDelaySeconds { get; }
         public float OverheatLockoutSeconds { get; }
 
@@ -99,7 +117,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 }
             }
 
-            Heat = Mathf.Max(0f, Heat - CoolingRatePerSecond * deltaTime);
+            Heat = Mathf.Max(0f, Heat - EffectiveCoolingRatePerSecond * deltaTime);
         }
     }
 }

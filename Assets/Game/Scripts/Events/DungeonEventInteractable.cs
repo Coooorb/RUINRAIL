@@ -41,7 +41,11 @@ namespace RuinRail.Gameplay.Events
             var receiver = interactor.GetComponent<PlayerLootReceiver>();
             if (receiver == null) return null;
             var health = interactor.GetComponent<HealthComponent>();
-            return new EventActor(receiver.Wallet, receiver.Backpack, "local", interactor, health != null ? new HealthComponentPatient(health) : null);
+            // The actor is the interacting member (84/co-op): per-participant limits (Medical Station heals) and the
+            // Weapon Cache's chooser must name who acted, not one shared "local" for the whole party.
+            var life = interactor.GetComponent<PlayerLifeStateComponent>();
+            var participant = life != null && !string.IsNullOrEmpty(life.ParticipantId) ? life.ParticipantId : "local";
+            return new EventActor(receiver.Wallet, receiver.Backpack, participant, interactor, health != null ? new HealthComponentPatient(health) : null);
         }
 
         public EventPrompt PromptFor(GameObject interactor)
@@ -50,17 +54,43 @@ namespace RuinRail.Gameplay.Events
             return EventPromptBuilder.Build(_event, actor?.Wallet?.Balance ?? 0);
         }
 
-        public bool CanInteract(GameObject interactor) => _event != null && _event.CanActivate(ActorFor(interactor));
+        /// <summary>
+        /// The object answers the Interact press while its event is still open (Available, or a multi-use service
+        /// between uses), whether or not this player can afford or use it right now: the prompt then says why the
+        /// press will be refused instead of the object silently showing nothing (57: a prompt that exists but does
+        /// nothing, and an object that does nothing without a prompt, are both failures). Resolved events are inert.
+        /// </summary>
+        public bool CanInteract(GameObject interactor) => _event != null && interactor != null && _event.Phase == DungeonEventPhase.Available && ActorFor(interactor) != null;
 
-        /// <summary>The HUD line for the one Interact prompt: "&lt;ACTION&gt; &lt;TITLE&gt;" plus the Carried-coin cost when the event charges one.</summary>
+        /// <summary>True when the press would actually activate the event for this player (affordable, usable).</summary>
+        public bool CanActivate(GameObject interactor) => _event != null && _event.CanActivate(ActorFor(interactor));
+
+        /// <summary>Why the press would be refused for this player right now, or empty when it would go through.</summary>
+        public string RefusalFor(GameObject interactor)
+        {
+            if (_event == null) return string.Empty;
+            var actor = ActorFor(interactor);
+            if (actor == null) return string.Empty;
+            if (_event.Phase != DungeonEventPhase.Available) return "USED";
+            if (_event.CanActivate(actor)) return string.Empty;
+            return EventPromptBuilder.RefusalReason(_event, actor);
+        }
+
+        /// <summary>The HUD line for the one Interact prompt: "&lt;ACTION&gt; &lt;TITLE&gt;" plus the Carried-coin cost when the event charges one, and the refusal reason when the press would be refused.</summary>
         string IInteractionPrompt.PromptFor(GameObject interactor)
         {
             if (_event == null || !CanInteract(interactor)) return string.Empty;
             var prompt = PromptFor(interactor);
             var text = prompt.ActionLabel + " " + prompt.Title;
             if (prompt.HasCost) text += $" ({prompt.CostCoins} COINS)";
+            var refusal = RefusalFor(interactor);
+            if (!string.IsNullOrEmpty(refusal)) text += " — " + refusal;
             return text.ToUpperInvariant();
         }
+
+        /// <summary>Raised when a press reached the event and was refused (not enough coins, nothing to heal, no uses left): the HUD tells the player why.</summary>
+        public event Action<DungeonEventInteractable, EventActor, DungeonEventResult> Refused;
+        public int Refusals { get; private set; }
 
         public bool Interact(GameObject interactor)
         {
@@ -79,6 +109,13 @@ namespace RuinRail.Gameplay.Events
                 Activated?.Invoke(this, result);
                 ChoiceRequested?.Invoke(this, actor);
                 return true;
+            }
+
+            if (result.Outcome == DungeonEventOutcome.InsufficientFunds || result.Outcome == DungeonEventOutcome.Unavailable)
+            {
+                Refusals++;
+                Refused?.Invoke(this, actor, result);
+                return false;
             }
 
             Activated?.Invoke(this, result);

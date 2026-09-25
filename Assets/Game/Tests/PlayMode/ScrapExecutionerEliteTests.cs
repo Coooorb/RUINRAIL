@@ -71,11 +71,9 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(4.5f, 0f));
             elite.SetTarget(player.transform);
-            Assert.AreEqual("Execution Charge", elite.SelectAttack().DisplayName, "Out of melee reach: the charge closes in.");
-            player.transform.position = new Vector2(2.2f, 0f);
-            Assert.AreEqual("Overhead Slam", elite.SelectAttack().DisplayName, "Just outside the cleave: the slam's radius reaches.");
-            player.transform.position = new Vector2(1.2f, 0f);
-            Assert.AreEqual("Heavy Cleave", elite.SelectAttack().DisplayName, "In melee reach: the cleave comes first.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 4.5f, "Execution Charge", "Out of melee reach: the charge closes in.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 2.2f, "Overhead Slam", "Just outside the cleave: the slam's radius reaches.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 1.2f, "Heavy Cleave", "In melee reach: the cleave comes first.");
             player.transform.position = new Vector2(30f, 0f);
             Assert.IsNull(elite.SelectAttack(), "Out of every range: keep advancing.");
         }

@@ -200,43 +200,63 @@ namespace RuinRail.App
             Check("chest interaction prompt shown", run.CurrentInteractionPrompt.Contains("OPEN CHEST"));
             yield return Capture("01_closed_supply_chest_in_room");
 
-            var lightBefore = inventory.Get(AmmoType.Light);
+            // Snapshotted before the chest opens: the survivor is standing next to it, and the baseline pickup reach
+            // (PickupAttractor.DefaultBaseRadiusTiles) draws coins and ammo in on its own within a frame or two. So the
+            // spawned-loot checks below have to be about "did the loot reach the player" rather than "is it still on
+            // the floor waiting to be pressed".
+            var reserveBeforeOpen = System.Enum.GetValues(typeof(AmmoType)).Cast<AmmoType>().ToDictionary(t => t, inventory.Get);
+            var coinsBefore = run.Expedition.State.CarriedCoins;
             var opened = interactor.TryInteract();
             yield return null;
             Check("chest opened exactly once through the interactor", opened && chest.IsOpened && chest.LastResult != null && !chest.LastResult.IsEmpty && chest.Visual.Key == WorldObjectArt.SupplyChestOpen);
             Check("second interaction is a no-op", !chest.TryOpen(out _) && chest.SpawnedPickups.Count > 0);
-            Check("loot spawned as visible pickups", chest.SpawnedPickups.All(p => p != null && p.GetComponent<WorldObjectVisual>() != null && p.GetComponent<WorldObjectVisual>().IsVisible));
+            // A pickup the attraction reach has already taken is gone from the scene; every one still on the ground
+            // must be drawn with its final art.
+            Check("loot spawned as visible pickups (or was already drawn in by the attraction reach)",
+                chest.SpawnedPickups.Where(p => p != null).All(p => p.GetComponent<WorldObjectVisual>() != null && p.GetComponent<WorldObjectVisual>().IsVisible));
             Check("chest open sound started", _voicesStarted.Contains(AudioEventIds.ChestOpen));
             yield return Capture("02_supply_chest_opened_loot_spawned");
 
-            // The ammo pickup: reserve before, walk onto it (or interact), reserve after.
-            var ammoPickup = chest.SpawnedPickups.Select(p => p.GetComponent<WorldItemPickup>()).FirstOrDefault(p => p != null && p.Category == ItemCategory.Ammo);
-            Check("supply chest produced an ammo stack", ammoPickup != null && ammoPickup.Item.Quantity > 0);
-            if (ammoPickup != null)
+            // The ammo the chest rolled reaches the reserve exactly once, whether the attraction reach took it while
+            // the player stood at the chest or the player pressed Interact on it.
+            var rolledAmmo = chest.LastResult.Items
+                .Select(i => (item: i, definition: content.Items.OfType<AmmoItemDefinition>().FirstOrDefault(a => a.Id == i.DefinitionId)))
+                .Where(pair => pair.definition != null).ToList();
+            Check("supply chest produced an ammo stack", rolledAmmo.Count > 0 && rolledAmmo.All(pair => pair.item.Quantity > 0));
+            foreach (var (item, definition) in rolledAmmo)
             {
-                var ammoType = content.Items.OfType<AmmoItemDefinition>().First(a => a.Id == ammoPickup.Item.DefinitionId).AmmoType;
-                var before = inventory.Get(ammoType);
-                var quantity = ammoPickup.Item.Quantity;
-                yield return Capture("04_ammo_pickup_before_collection");
-                Put((Vector2)ammoPickup.transform.position + Vector2.down * 0.2f);
-                for (var i = 0; i < 3; i++) yield return new WaitForFixedUpdate();
-                yield return null;
-                var took = ammoPickup != null && !ammoPickup.IsConsumed ? ammoPickup.Interact(player) : true;
-                yield return null;
+                var ammoType = definition.AmmoType;
+                var quantity = item.Quantity;
+                var pickup = chest.SpawnedPickups.Where(p => p != null).Select(p => p.GetComponent<WorldItemPickup>())
+                    .FirstOrDefault(p => p != null && !p.IsConsumed && p.Item != null && p.Item.InstanceId == item.InstanceId);
+                if (pickup != null)
+                {
+                    yield return Capture("04_ammo_pickup_before_collection");
+                    Put((Vector2)pickup.transform.position + Vector2.down * 0.2f);
+                    for (var i = 0; i < 3; i++) yield return new WaitForFixedUpdate();
+                    yield return null;
+                    if (pickup != null && !pickup.IsConsumed) pickup.Interact(player);
+                    yield return null;
+                }
+
                 var after = inventory.Get(ammoType);
                 var cap = content.AmmoBalance.GetStackLimit(ammoType);
-                Check($"reserve increased after collection ({ammoType} {before} → {after}, +{quantity}, cap {cap})", took && after == Mathf.Min(cap, before + quantity) && after > before);
-                Check("ammo pickup consumed once (gone from the ground)", ammoPickup == null || ammoPickup.IsConsumed);
+                var expected = Mathf.Min(cap, reserveBeforeOpen[ammoType] + quantity);
+                Check($"reserve increased after collection ({ammoType} {reserveBeforeOpen[ammoType]} → {after}, +{quantity}, cap {cap})", after == expected && after > reserveBeforeOpen[ammoType]);
+                Check("ammo pickup consumed once (gone from the ground)",
+                    chest.SpawnedPickups.Where(p => p != null).Select(p => p.GetComponent<WorldItemPickup>())
+                        .All(p => p == null || p.IsConsumed || p.Item == null || p.Item.InstanceId != item.InstanceId));
                 Check("pickup sound started", _voicesStarted.Contains(AudioEventIds.PickupItem));
                 yield return Capture("05_reserve_increased_after_pickup");
             }
 
-            var coins = chest.SpawnedPickups.Select(p => p != null ? p.GetComponent<CoinPickup>() : null).FirstOrDefault(c => c != null);
-            if (coins != null)
+            if (chest.LastResult.Coins > 0)
             {
-                var carried = run.Expedition.State.CarriedCoins;
-                var amount = coins.Amount;
-                Check("coins collected once", coins.Interact(player) && run.Expedition.State.CarriedCoins == carried + amount);
+                var stillOnTheGround = chest.SpawnedPickups.Where(p => p != null).Select(p => p.GetComponent<CoinPickup>()).FirstOrDefault(c => c != null && !c.IsCollected);
+                if (stillOnTheGround != null) stillOnTheGround.Interact(player);
+                yield return null;
+                Check($"coins collected once ({coinsBefore} → {run.Expedition.State.CarriedCoins}, +{chest.LastResult.Coins})",
+                    run.Expedition.State.CarriedCoins == coinsBefore + chest.LastResult.Coins);
             }
 
             // Zero firearm reserve → the knife still works and consumes nothing.
@@ -254,7 +274,42 @@ namespace RuinRail.App
 
             // A frozen enemy inside knife reach along the current aim: the swing lands, HP drops, no ammo moves.
             var aiming = player.GetComponent<PlayerAiming>();
-            var spot = (Vector2)player.transform.position + aiming.AimDirection.normalized * Mathf.Min(0.8f, knife != null ? knife.Definition.AttackRange * 0.7f : 0.8f);
+            var reach = Mathf.Min(0.8f, knife != null ? knife.Definition.AttackRange * 0.7f : 0.8f);
+            // Precondition, not a tolerance: the dummy goes on open floor with nothing solid between it and the player.
+            // Where the player happened to stop (by the chest) the aim could point into a wall or a prop on some seeds, and
+            // the swing then rightly hit nothing; the player is moved to the nearest interior point with a clear lane.
+            bool LaneClear(Vector2 from, Vector2 dir) => RuinRail.Dungeon.Runtime.RoomRuntime.IsSpawnClear(from) && RuinRail.Dungeon.Runtime.RoomRuntime.IsSpawnClear(from + dir * reach)
+                && !Physics2D.CircleCastAll(from, 0.3f, dir, reach + 0.4f).Any(h => h.collider != null && !h.collider.isTrigger && h.collider.GetComponentInParent<RuinRail.Gameplay.Combat.EnvironmentObstacle>() != null);
+            if (!LaneClear(player.transform.position, aiming.AimDirection.normalized) && run.CurrentRoom != null)
+            {
+                var interior = run.CurrentRoom.InteriorWorldBounds;
+                var here = (Vector2)player.transform.position;
+                var candidates = new List<Vector2>();
+                for (var x = interior.xMin + 1f; x <= interior.xMax - 1f; x += 0.5f)
+                for (var y = interior.yMin + 1f; y <= interior.yMax - 1f; y += 0.5f)
+                    candidates.Add(new Vector2(x, y));
+                foreach (var candidate in candidates.OrderBy(c => Vector2.Distance(c, here)))
+                {
+                    if (!LaneClear(candidate, aiming.AimDirection.normalized)) continue;
+                    Put(candidate);
+                    for (var i = 0; i < 3; i++) yield return new WaitForFixedUpdate();
+                    yield return null;
+                    if (LaneClear(player.transform.position, aiming.AimDirection.normalized)) break;
+                }
+            }
+
+            // The aim follows the pointer through the camera, which trails the player after any move: wait until it is
+            // steady, or the swing resolves toward a different direction than the one the dummy was placed on.
+            var settledFrames = 0;
+            var lastAim = aiming.AimDirection;
+            for (var i = 0; i < 180 && settledFrames < 8; i++)
+            {
+                yield return null;
+                settledFrames = Vector2.Angle(lastAim, aiming.AimDirection) < 0.5f ? settledFrames + 1 : 0;
+                lastAim = aiming.AimDirection;
+            }
+
+            var spot = (Vector2)player.transform.position + aiming.AimDirection.normalized * reach;
             var victim = new DefaultEnemySpawner(content.Stagger).Spawn(content.Enemies.First(e => e.Id == "grunt"), spot, player.transform);
             run.BindEnemyPresentation(victim);
             victim.enabled = false;
@@ -263,13 +318,34 @@ namespace RuinRail.App
             vb.bodyType = RigidbodyType2D.Kinematic;
             Physics2D.SyncTransforms();
             yield return new WaitForFixedUpdate();
+            // The aim eases toward the pointer, so it can still be turning by a few degrees per frame: put the dummy on
+            // the aim as it is at the moment of the swing (the swing resolves ~0.08 s later, well inside the 80° arc).
+            var onAim = (Vector2)player.transform.position + aiming.AimDirection.normalized * reach;
+            victim.transform.position = onAim;
+            vb.position = onAim;
+            Physics2D.SyncTransforms();
             var health = victim.GetComponent<HealthComponent>();
             var hp0 = health.CurrentHealth;
             var reservesBefore = new[] { AmmoType.Light, AmmoType.Medium, AmmoType.Heavy, AmmoType.Shells }.Select(inventory.Get).ToArray();
+            var stateBefore = knife != null ? knife.State.ToString() : "-";
             var swung = knife != null && knife.TryAttack();
+            // Hold the dummy on the aim through the wind-up: the aim eases after the camera, and the swing resolves on the
+            // knife's own clock toward whatever the aim is at that moment.
+            for (var f = 0; f < 60 && swung && knife.State == MeleeAttackState.WindUp && health.CurrentHealth == hp0; f++)
+            {
+                var onAimNow = (Vector2)player.transform.position + aiming.AimDirection.normalized * reach;
+                victim.transform.position = onAimNow;
+                vb.position = onAimNow;
+                Physics2D.SyncTransforms();
+                yield return null;
+            }
+
             var deadline = Time.time + 2f;
             while (Time.time < deadline && health.CurrentHealth == hp0) yield return null;
-            Check($"ammo-free secondary damages an enemy at zero firearm reserve (HP {hp0} → {health.CurrentHealth})", swung && health.CurrentHealth < hp0);
+            var toVictim = (Vector2)victim.transform.position - (Vector2)(knife != null ? knife.transform.position : player.transform.position);
+            var knifeDiag = $"swung={swung} stateBefore={stateBefore} equipped={knife?.IsEquipped} active={run.Rig.Loadout.ActiveSlot} player={(Vector2)player.transform.position} aim={aiming.AimDirection} victim={(Vector2)victim.transform.position} dist={toVictim.magnitude:0.00} angle={Vector2.Angle(aiming.AimDirection, toVictim):0.0} alive={victim.IsAlive} gated={RuinRail.Core.Input.GameplayInputGate.IsHeld}";
+            Debug.Log("[SMOKE] knife: " + knifeDiag);
+            Check($"ammo-free secondary damages an enemy at zero firearm reserve (HP {hp0} → {health.CurrentHealth}; {knifeDiag})", swung && health.CurrentHealth < hp0);
             var reservesAfter = new[] { AmmoType.Light, AmmoType.Medium, AmmoType.Heavy, AmmoType.Shells }.Select(inventory.Get).ToArray();
             Check("no ammo consumed by the melee swing", reservesBefore.SequenceEqual(reservesAfter) && reservesAfter[0] == 0);
             Check("enemy hit sound started", _voicesStarted.Contains(AudioEventIds.EnemyHit));

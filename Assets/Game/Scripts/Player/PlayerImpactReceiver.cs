@@ -42,6 +42,9 @@ namespace RuinRail.Gameplay.Player
         public void SetStats(IPlayerStatsProvider stats) => _stats = stats;
         public void SetEvents(PlayerCombatEvents events) => _events = events;
 
+        /// <summary>The wearer's passive event hub (null until composed); the weapons' binder hands it on.</summary>
+        public PlayerCombatEvents Events => _events;
+
         private void Awake()
         {
             _body = GetComponent<Rigidbody2D>();
@@ -125,6 +128,18 @@ namespace RuinRail.Gameplay.Player
             if (_events == null) return default;
             var request = _events.RaiseEnemyKnockedIntoWall(targetId, isBoss);
             return new WallImpactOutcome(request.BonusDamageMin, request.BonusDamageMax, request.ApplyHighStagger);
+        }
+
+        /// <summary>Long Shot and any other projectile-hit hook of the wearer (items/34).</summary>
+        public int OnProjectileHitRolling(int damage, float travelDistance) =>
+            _events != null ? _events.RaiseProjectileHitRolling(damage, travelDistance).FinalAmount : damage;
+
+        /// <summary>The wearer's kill (Adrenaline; Flow State on a melee kill).</summary>
+        public void OnTargetKilled(bool melee)
+        {
+            if (_events == null) return;
+            if (melee) _events.RaiseMeleeKill();
+            else _events.RaiseEnemyKilled();
         }
     }
 }

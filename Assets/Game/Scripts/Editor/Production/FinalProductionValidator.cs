@@ -99,6 +99,7 @@ namespace RuinRail.EditorTools.Production
             ValidateBuildScenes(report.Add("Build scenes and boot flow"), report.Findings);
             ValidateAssemblies(report.Add("Assembly hygiene (no Editor leaks into runtime)"));
             ValidateNetworkPrefabs(report.Add("Network prefabs"), report.Findings);
+            ValidateItemDescriptions(report.Add("Item descriptions (ui/93)"));
             CollectExternalBlockers(report);
             return report;
         }
@@ -399,6 +400,16 @@ namespace RuinRail.EditorTools.Production
 
             if (outstanding.Count > 0)
                 report.ExternalBlockers.Add("outstanding final asset roles: " + string.Join(", ", outstanding));
+        }
+
+        // ---- 10. Item descriptions ----
+
+        private static void ValidateItemDescriptions(Section section)
+        {
+            var report = ItemDescriptionValidator.ValidateProject();
+            foreach (var line in report.Lines.Where(l => !l.Pass)) section.Errors.Add($"item '{line.Id}': {string.Join("; ", line.Problems)}");
+            foreach (var p in report.Problems) section.Errors.Add(p);
+            if (report.Pass) section.Passed.Add($"{report.Count}/{report.Count} player-facing items carry a complete data-derived description (no placeholders, no internal ids, every Legendary mechanic described).");
         }
 
         private static List<T> LoadAll<T>() where T : UnityEngine.Object =>

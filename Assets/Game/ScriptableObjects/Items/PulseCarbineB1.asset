@@ -31,5 +31,5 @@ MonoBehaviour:
   _heatPerShot: 7
   _coolingRatePerSecond: 35
   _maxHeat: 100
-  _coolingDelaySeconds: 0.6
-  _overheatLockoutSeconds: 2.2
+  _coolingDelaySeconds: 0.5
+  _overheatLockoutSeconds: 1.9

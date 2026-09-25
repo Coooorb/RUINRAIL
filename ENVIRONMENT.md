@@ -73,7 +73,7 @@ When `All` is requested, the harness attempts both EditMode and PlayMode and ret
 ## Verification Status
 
 - **Documentation check:** Each of the seven version numbers above was confirmed in Unity's official Unity 6000.0 package documentation on 2026-09-14 as released/available. This documentation check does not prove that the exact combination resolves together under Unity `6000.3.24f1`.
-- **Actual project resolution:** **NOT YET VERIFIED.** No Unity Editor / Package Manager resolution was run in the documentation workspace.
+- **Actual project resolution:** **VERIFIED (2026-09-25).** `Packages/manifest.json` carries exactly the seven pins above; the project resolves, compiles, runs the full EditMode/PlayMode suites and builds a non-development player under Unity `6000.3.24f1` (see `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`). No version was changed.
 - **TASK 001 requirement:** Unity Package Manager must resolve the exact approved pins in the real project without silent substitution. If resolution fails, follow the Package Change Rule above and report the exact conflict.
 
 Re-check official Unity documentation before an intentional toolchain upgrade.

@@ -21,14 +21,20 @@ namespace RuinRail.Dungeon.Runtime
         private readonly DepthScalingConfig _scaling;
         private bool _raised;
 
-        public EliteEngagement(EliteDefinition definition, IEliteSpawner spawner, int depth, int partySize, DepthScalingConfig scaling = null)
+        public EliteEngagement(EliteDefinition definition, IEliteSpawner spawner, int depth, int partySize, DepthScalingConfig scaling = null,
+            int runSeed = 0, int roomIndex = 0)
         {
             _definition = definition != null ? definition : throw new ArgumentNullException(nameof(definition));
             _spawner = spawner ?? throw new ArgumentNullException(nameof(spawner));
             _depth = Math.Max(1, depth);
             _partySize = Math.Max(1, partySize);
             _scaling = scaling;
+            _runSeed = runSeed;
+            _roomIndex = roomIndex;
         }
+
+        private readonly int _runSeed;
+        private readonly int _roomIndex;
 
         public EliteDefinition Definition => _definition;
         public EliteEncounter Encounter { get; private set; }
@@ -50,8 +56,13 @@ namespace RuinRail.Dungeon.Runtime
                 throw new InvalidOperationException($"Elite spawner produced no encounter for {_definition.Id}.");
             }
 
+            // The Elite belongs to this room: its collider never leaves the room interior.
+            room.BindEncounterBounds(Encounter.Elite.gameObject);
             // Depth + party scaling through the same seams as regular enemies (72/59/83).
             Encounter.Elite.SetDamageRoller(new DepthScaledDamageRoller(new UnityRandomDamageRoller(), _depth, _scaling));
+            // Attack choice draws from RunSeed + Depth + this room, exactly like the boss, so the elite's sequence is
+            // reproducible for the run rather than decided by moveset order.
+            Encounter.Elite.SetSelectionSeed(_runSeed, _depth, _roomIndex);
             Encounter.Elite.Health.SetMaxHealth(DepthScaling.ScaledHealth(_definition.BaseHealth, _depth, _partySize, false, _scaling));
             Encounter.Completed += OnCompleted;
             Spawned?.Invoke(this, Encounter);

@@ -298,14 +298,18 @@ namespace RuinRail.Tests
         public IEnumerator MagneticCoil_PullsCoinsAndAmmoWithinThreeTiles_NeverEquipment()
         {
             var (attractor, stats, receiver, inventory, _) = CreateAttractingPlayer(Vector2.zero);
-            Assert.AreEqual(0f, attractor.Radius, "No attraction without a source.");
+            // Every survivor now has a small baseline reach (the QoL pass); the Coil is still purely additive on top
+            // of it, so the accessory keeps the identity 30 gives it — "+3 tiles" — and remains the reason to wear it.
+            Assert.AreEqual(PickupAttractor.DefaultBaseRadiusTiles, attractor.Radius, 0.0001f, "The baseline reach without any source.");
             stats.SetSource(new StatModifierSource("accessory_magnetic_coil", StatModifier.Flat(StatId.PickupAttractionRadius, 3)));
-            Assert.AreEqual(3f, attractor.Radius);
+            Assert.AreEqual(PickupAttractor.DefaultBaseRadiusTiles + 3f, attractor.Radius, 0.0001f);
+            Assert.Greater(attractor.Radius, PickupAttractor.DefaultBaseRadiusTiles * 2f, "The Coil is still meaningfully stronger than the baseline.");
 
             var coins = _spawner.CreateCoinPickup(new Vector2(2.5f, 0f));
             coins.SetAmount(15);
             var ammo = SpawnPickup(new ItemInstance("ammo_light", 12), new Vector2(0f, 2.5f));
             var rifle = SpawnPickup(new ItemInstance("weapon_test_rifle"), new Vector2(-2f, 0f));
+            // Past the Coil's 4.25-tile reach: still untouched, so the accessory extends the reach without vacuuming.
             var farAmmo = SpawnPickup(new ItemInstance("ammo_light", 5), new Vector2(6f, 0f));
 
             StepUntilSettled(attractor);
@@ -329,6 +333,7 @@ namespace RuinRail.Tests
             stats.SetSource(new StatModifierSource("accessory_magnetic_coil", StatModifier.Flat(StatId.PickupAttractionRadius, 3)));
             for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) inventory.TryAddToBackpack(new ItemInstance("weapon_test_rifle"));
             var ammo = SpawnPickup(new ItemInstance("ammo_light", 12), new Vector2(0f, 2f));
+            var where = ammo.transform.position;
 
             StepUntilSettled(attractor);
             yield return null;
@@ -337,6 +342,11 @@ namespace RuinRail.Tests
             Assert.AreEqual(12, ammo.Item.Quantity);
             Assert.AreEqual(0, inventory.Get(AmmoType.Light));
             Assert.AreEqual(0, attractor.Collected);
+            // It is not even moved. A stack the backpack cannot take used to be dragged onto the player and left
+            // there, where it became the nearest interactable and took the interaction prompt from whatever the
+            // player was standing at; attraction now refuses to pull anything it could not collect.
+            Assert.AreEqual(where, ammo.transform.position, "An untakeable stack stays exactly where it fell.");
+            Assert.IsFalse(ammo.CanBeCollectedBy(attractor.gameObject), "A full backpack means it cannot be collected.");
         }
 
         [UnityTest]

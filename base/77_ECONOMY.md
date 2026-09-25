@@ -79,6 +79,8 @@ All 16 Accessory families use a V1 base price of **300 Coins** before Rarity mul
 | Heavy Ammo ×20 | 90 |
 | Shells ×12 | 80 |
 
+> **Design update (2026-09-19, ECONOMY/CONTAINMENT/DEATH/PROJECTILES runtime fix pass, explicit owner instruction):** a bundle price is a price for the whole bundle, never a per-round value. **Ammo resale = 15 % of the equivalent current Merchant purchase value for the exact quantity sold (bundle price × quantity ÷ bundle units), rounded down** — no rarity multiplier, no 5-coin step rounding, and a payout of 0 for tiny quantities is legitimate (no minimum 1 coin). Applies to the Dungeon Merchant and the Shelter Trader. The percent is data on `EconomyConfig` (`AmmoSellPercentOfPurchaseValue`). Before this rule the 35 % item formula was applied to the bundle price *per round* (a 180-round Light stack sold for 3,600 Coins); a full Light bundle now sells for 9, a full 180 stack for 27.
+
 ## Dungeon Event Prices
 
 All event prices use Carried Coins.

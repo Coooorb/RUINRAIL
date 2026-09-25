@@ -459,6 +459,43 @@ namespace RuinRail.Tests
                     $"'{header[i].t.text}' overlaps '{header[j].t.text}' in the header.");
         }
 
+        // ---------------- the Character Station reflects a purchase made from any device ----------------
+
+        /// <summary>
+        /// A skill purchase made with the keyboard/controller goes straight through the focus stack, not through the
+        /// control's pointer handler. The station's data column must still show the new rank, effect and next-rank
+        /// preview immediately — it used to keep the values it was built with until the player left and re-entered.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator CharacterStation_ShowsTheNewRank_AfterAKeyboardPurchase()
+        {
+            yield return OpenShelter();
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            var session = hub.Session;
+            session.Progression.AddXp(RuinRail.Gameplay.Progression.LevelCurve.TotalXpForLevel(4));
+
+            hub.Hub.Open(BaseStation.Character);
+            yield return null;
+            CollectionAssert.Contains(StationRows(hub), "0 / 10", "the station opens showing rank 0 of the cap");
+
+            // The keyboard/controller path: focus the control and confirm through the focus stack itself.
+            Assert.IsTrue(hub.Input.Stack.Current.Focus("character.allocate." + RuinRail.Gameplay.Progression.SkillId.Vitality));
+            Assert.IsTrue(hub.Input.Stack.Activate(), "the attribute control is enabled with a Skill Point in hand");
+            yield return null;
+
+            Assert.AreEqual(1, hub.Hub.Character.RankOf(RuinRail.Gameplay.Progression.SkillId.Vitality));
+            var rows = StationRows(hub);
+            CollectionAssert.Contains(rows, "1 / 10", "the panel shows the rank the purchase produced");
+            CollectionAssert.Contains(rows, "Max HP +2->+4", "and the effect now / next-rank preview that goes with it");
+            CollectionAssert.Contains(rows, "2", "the remaining Skill Points are re-read too (3 earned - 1 spent)");
+        }
+
+        /// <summary>Every string the open station's data column is currently drawing.</summary>
+        private static string[] StationRows(BaseHubScreen hub) =>
+            AllChildren(hub.transform).Where(t => t != null && t.name == "StationData")
+                .SelectMany(t => t.GetComponentsInChildren<Text>(true))
+                .Select(t => t.text).ToArray();
+
         /// <summary>A rect transform box expressed in the reference frame’s own space.</summary>
         private static Rect CanvasRect(RectTransform canvas, RectTransform rect)
         {

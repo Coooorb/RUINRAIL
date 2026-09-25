@@ -52,11 +52,18 @@ Attack frequency and movement speed scale only slightly. Initial attack-frequenc
 Threat budgets cap rather than growing forever.
 
 ## Elite Chance per Dungeon
-- Depth 1–2: ~5%.
-- 3–5: ~10%.
-- 6–10: ~15%.
-- 11–20: ~20%.
+
+Per elite slot (1 slot up to Depth 10, 2 from Depth 11):
+
+- Depth 1–2: ~8%.
+- 3–5: ~18%.
+- 6–10: ~25%.
+- 11–20: ~25%.
 - 21+: ~25% cap.
+
+> Raised from 5/10/15/20/25 by the run-variety pass (2026-09-24). At the old rates a measured five-depth expedition had
+> a 65.8% chance of containing no elite at all, so the six authored elite variants were rarely seen. Depth 1–2 stays the
+> lowest band so a first run is not elite-heavy, and the 25% per-slot cap is unchanged.
 
 ## Loot Rarity V1 Baseline Targets
 
@@ -72,3 +79,32 @@ High-quality sources (boss/treasure/elite) use improved tables. Legendary remain
 
 ## Endless Rule
 After roughly Depth 30 no new mandatory gameplay systems are introduced. Content can stop growing while difficulty continues through slow stat curves, capped threat complexity, hard encounter templates, capped elite frequency, and better-but-capped loot quality.
+
+## Deep-Depth Reward Continuation (from Depth 30)
+
+The loot rarity table above has no band past Depth 30, and the threat budget caps at Depth 50, so without a reward
+curve every reward axis goes flat while enemy HP keeps climbing to x5.5 and damage to x2.6 by Depth 100. Coins and XP
+therefore continue on one bounded curve, authored in `EconomyConfig`:
+
+    multiplier(depth) = min(1 + percentPerRootDepth/100 x sqrt(depth - startDepth), cap)
+
+with `startDepth = 30`, `percentPerRootDepth = 7` and `cap = 175%` for both coins and XP.
+
+| Depth | Multiplier |
+|---:|---:|
+| 1–30 | x1.00 (exactly unchanged) |
+| 40 | x1.22 |
+| 50 | x1.31 |
+| 75 | x1.47 |
+| 100 | x1.59 |
+| 145+ | x1.75 (cap) |
+
+Rules this curve obeys, and a change to it must keep:
+
+- Depth 1 through Depth 30 is **exactly** x1.00 — the accepted early-game economy is untouched.
+- It rises at every depth past the start, so deeper is never reward-flat.
+- Each step is smaller than the last (square root), so the curve cannot run away.
+- It stops at an authored cap, so Depth 100+ cannot inflate the economy.
+- It applies to **reward** coins (chests, boss cache, events) and to XP. It does **not** apply to merchant sale
+  proceeds, item affix power, ammo, or the rarity table — no new rarity tier and no higher power ceiling.
+- Rarity remains capped by the Depth 30+ band above; deeper play buys more coins and XP, not better item tiers.

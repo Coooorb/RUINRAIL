@@ -224,6 +224,17 @@ namespace RuinRail.UI.Merchant
         {
             var row = Selected;
             if (row == null || row.Tab != MerchantTab.Buy || !IsBound) { Fail("NOTHING SELECTED"); return TradeError.NoSuchOffer; }
+            if (BuyRequest != null)
+            {
+                // Co-op client (82): the host commits the trade; the screen only sends the request and shows the answer.
+                var sent = BuyRequest(row.Index);
+                if (sent == TradeError.None) SetMessage($"BUYING {row.Name.ToUpperInvariant()}…", false);
+                else Fail("REQUEST NOT SENT");
+                RebuildRows();
+                Raise();
+                return sent;
+            }
+
             var error = _merchant.Buy(row.Index, _backpack);
             switch (error)
             {
@@ -249,6 +260,16 @@ namespace RuinRail.UI.Merchant
             if (row == null || row.Tab != MerchantTab.Sell || !IsBound || row.Item == null) { Fail("NOTHING SELECTED"); return TradeError.SourceMissingItem; }
             var name = row.Name;
             var value = row.Price;
+            if (SellRequest != null)
+            {
+                var sent = SellRequest(row.Item.InstanceId);
+                if (sent == TradeError.None) SetMessage($"SELLING {name.ToUpperInvariant()}…", false);
+                else Fail("REQUEST NOT SENT");
+                RebuildRows();
+                Raise();
+                return sent;
+            }
+
             var error = _merchant.Sell(_backpack, row.Item.InstanceId);
             switch (error)
             {
@@ -265,6 +286,47 @@ namespace RuinRail.UI.Merchant
             RebuildRows();
             Raise();
             return error;
+        }
+
+        /// <summary>
+        /// Co-op client: set by the run so Buy/Sell become requests to the host (the host's merchant, the member's own
+        /// wallet and backpack decide). Null in solo and on the host, where the screen trades directly as before.
+        /// </summary>
+        public Func<int, TradeError> BuyRequest { get; set; }
+        public Func<string, TradeError> SellRequest { get; set; }
+
+        /// <summary>The host's answer to a request this screen sent: the same messages a local trade shows.</summary>
+        public void ReportRemoteResult(bool isBuy, TradeError error, string itemName, int coins)
+        {
+            var name = (itemName ?? string.Empty).ToUpperInvariant();
+            if (error == TradeError.None)
+            {
+                if (isBuy) Purchases++; else Sales++;
+                SetMessage(isBuy ? $"BOUGHT {name} FOR {coins} COINS" : $"SOLD {name} FOR {coins} COINS", false);
+                RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Confirm);
+            }
+            else
+            {
+                Fail(error switch
+                {
+                    TradeError.AlreadySold => "SOLD OUT",
+                    TradeError.InsufficientFunds => "NOT ENOUGH COINS",
+                    TradeError.DestinationRejected => "BACKPACK FULL",
+                    TradeError.Unsellable => "STARTER GEAR — CANNOT BE SOLD",
+                    TradeError.NoValue => "NO VALUE",
+                    TradeError.SourceMissingItem => "ITEM NO LONGER IN BACKPACK",
+                    _ => "TRADE REFUSED"
+                });
+            }
+
+            Refresh();
+        }
+
+        /// <summary>Re-reads stock, coins and backpack (a replicated change arrived while the screen is up).</summary>
+        public void Refresh()
+        {
+            RebuildRows();
+            Raise();
         }
 
         // ---- Rows ----

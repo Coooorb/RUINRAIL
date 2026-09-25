@@ -223,6 +223,46 @@ namespace RuinRail.UI.Base
         public CharacterSheet Sheet => _session.Character.GetSheet();
         public static readonly SkillId[] Attributes = (SkillId[])Enum.GetValues(typeof(SkillId));
 
+        // ---- live per-attribute presentation (ui/94): every number comes from SkillCatalog / SkillRules, never from
+        // text authored beside the rule, so the screen cannot show a value the run does not produce.
+
+        public int RankOf(SkillId skill) => _session.Progression.Profile.Skills.GetRank(skill);
+        public int MaxRank => SkillRules.MaxRank;
+        public bool IsMaxed(SkillId skill) => RankOf(skill) >= SkillRules.MaxRank;
+        public int UnspentPoints => _session.Progression.UnspentSkillPoints;
+
+        /// <summary>The Skill Point price of the next rank, or 0 at the cap (nothing is ever deducted there).</summary>
+        public int CostOf(SkillId skill) => IsMaxed(skill) ? 0 : SkillCatalog.PointCostPerRank;
+
+        public bool CanAfford(SkillId skill) => !IsMaxed(skill) && UnspentPoints >= CostOf(skill);
+
+        /// <summary>The purchase is offered only at the Shelter, below the cap, and with the points in hand.</summary>
+        public bool CanAllocate(SkillId skill) => _session.Character.IsAtBase && CanAfford(skill);
+
+        public string NameOf(SkillId skill) => SkillCatalog.DisplayName(skill);
+        public string DescriptionOf(SkillId skill) => SkillCatalog.Description(skill);
+        public string RankTextOf(SkillId skill) => SkillCatalog.RankText(RankOf(skill));
+        public string EffectNow(SkillId skill) => SkillCatalog.EffectText(skill, RankOf(skill));
+
+        /// <summary>The effect one more point buys, or null at the cap.</summary>
+        public string EffectNext(SkillId skill) => SkillCatalog.NextRankEffectText(skill, RankOf(skill));
+
+        /// <summary>One panel line per affected stat: the value now and what one more point buys, or MAX at the cap.</summary>
+        public IReadOnlyList<string> EffectRows(SkillId skill) => SkillCatalog.EffectRows(skill, RankOf(skill));
+
+
+        /// <summary>The respec control's caption: the Banked Coin price the Character Station actually charges.</summary>
+        public string RespecLabel() => $"RESPEC {_session.Character.RespecPrice} C";
+
+        /// <summary>True while the Character Station would actually accept a respec (Shelter, points spent, coins in hand).</summary>
+        public bool CanRespec() => _session.Character.CanRespec(out _);
+
+        /// <summary>The panel subtitle: what the station is for, or why nothing can be bought right now.</summary>
+        public string StatusLine() =>
+            UnspentPoints > 0
+                ? "Spend Skill Points on the six attributes."
+                : "No Skill Points. Earn XP on an expedition.";
+
         public bool Allocate(SkillId skill)
         {
             var error = _session.Character.Allocate(skill);
@@ -309,11 +349,16 @@ namespace RuinRail.UI.Base
         {
             var member = _session.Lobby.Get(BaseSession.LocalClientId);
             if (member == null) return false;
+            // No weapon equipped is not a refusal: the free Starter Loadout is equipped first (75), then the lobby re-validates.
+            var starter = ready && _session.EnsureStarterLoadoutIfEmpty();
             if (ready && !member.HasValidLoadout) { Feedback.Error($"Loadout not ready: {member.InvalidReason}."); return false; }
             var ok = _session.Lobby.SetReady(BaseSession.LocalClientId, ready);
-            Feedback.Ok(ready ? "Ready." : "Not ready.");
+            Feedback.Ok(ready ? (starter ? StarterLoadoutEquippedMessage + " Ready." : "Ready.") : "Not ready.");
             return ok;
         }
+
+        /// <summary>The small non-blocking notice shown when the fallback equipped the kit.</summary>
+        public const string StarterLoadoutEquippedMessage = "STARTER LOADOUT EQUIPPED.";
     }
 
     /// <summary>Transit (94): Start Expedition — the host starts the party through the lobby, exactly once.</summary>
@@ -331,12 +376,22 @@ namespace RuinRail.UI.Base
         }
 
         public StationFeedback Feedback { get; }
-        public bool CanStart => _session.Lobby.AllReady && !_session.Expedition.IsExpeditionActive;
+        public bool CanStart => _session.Lobby.AllReady && !_session.Expedition.IsExpeditionActive && StartGate?.Invoke() == null;
         public ExpeditionStartSnapshot Started => _session.Lobby.StartSnapshot;
+
+        /// <summary>
+        /// Set by the Shelter composition in a live session: a non-null reason refuses Start (81 — a joined client's
+        /// local lobby must never start an expedition of its own; the host's start reaches it instead).
+        /// </summary>
+        public Func<string> StartGate { get; set; }
 
         public bool StartExpedition()
         {
             if (_session.Expedition.IsExpeditionActive) { Feedback.Error("An expedition is already running."); return false; }
+            var gate = StartGate?.Invoke();
+            if (gate != null) { Feedback.Error(gate); return false; }
+            // Resolve → validate → preserve or fall back: a loadout with nothing equipped gets the Starter Loadout before launch.
+            var starter = _session.EnsureStarterLoadoutIfEmpty();
             _session.CommitLoadoutToProfile();
             var error = _session.Lobby.TryStart(BaseSession.LocalClientId, _runSeed(), out var snapshot);
             if (error != LobbyStartError.None && error != LobbyStartError.AlreadyStarted)
@@ -353,7 +408,7 @@ namespace RuinRail.UI.Base
 
             var state = _coordinator.Apply(snapshot, _session.Expedition, _session.Profile);
             if (state == null) { Feedback.Error("The expedition cannot start."); return false; }
-            Feedback.Ok($"Expedition started: Depth 1, {HudBiomeName((Biome)snapshot.Biome)}.");
+            Feedback.Ok((starter ? MultiplayerPanelViewModel.StarterLoadoutEquippedMessage + " " : string.Empty) + $"Expedition started: Depth 1, {HudBiomeName((Biome)snapshot.Biome)}.");
             return true;
         }
 
@@ -374,7 +429,10 @@ namespace RuinRail.UI.Base
                 $"Enemies Defeated: {summary.EnemiesDefeated}",
                 $"Elites Defeated: {summary.ElitesDefeated}",
                 $"Bosses Defeated: {summary.BossesDefeated}",
-                $"XP Earned: {summary.XpEarned} (kept)"
+                $"XP Earned: {summary.XpEarned} (kept)",
+                summary.IsNewPersonalBest
+                    ? $"Deepest Depth: {summary.DeepestDepthReached} — NEW PERSONAL BEST (was {summary.DeepestDepthBefore})"
+                    : $"Deepest Depth: {summary.DeepestDepthReached}"
             };
             if (summary.IsSuccess)
             {

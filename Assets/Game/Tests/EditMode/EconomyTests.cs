@@ -128,9 +128,16 @@ namespace RuinRail.Tests
             Assert.AreEqual(600, _prices.EventPrice(DungeonEventPriceKind.MedicalStationHeal, 40));
             Assert.AreEqual(500, _prices.EventPrice(DungeonEventPriceKind.MedicalStationRevive, 1));
             Assert.AreEqual(1500, _prices.EventPrice(DungeonEventPriceKind.MedicalStationRevive, 60));
+            // 59 Deep-Depth Reward Continuation: exactly flat through Depth 30, then a bounded square-root curve.
             Assert.AreEqual(1f, _config.CoinRewardMultiplier(1), 0.0001f);
-            Assert.AreEqual(1f, _config.CoinRewardMultiplier(50), 0.0001f, "No approved depth curve: hook is flat.");
-            Assert.AreEqual(40, _prices.ScaleCoinReward(40, 20));
+            Assert.AreEqual(1f, _config.CoinRewardMultiplier(30), 0.0001f, "D1-D30 coin rewards are exactly unchanged.");
+            Assert.AreEqual(1.22f, _config.CoinRewardMultiplier(40), 0.01f);
+            Assert.AreEqual(1.31f, _config.CoinRewardMultiplier(50), 0.01f);
+            Assert.AreEqual(1.59f, _config.CoinRewardMultiplier(100), 0.01f);
+            Assert.AreEqual(1.75f, _config.CoinRewardMultiplier(1000), 0.01f, "the curve stops at its authored cap.");
+            Assert.AreEqual(1f, _config.XpRewardMultiplier(30), 0.0001f, "D1-D30 XP is exactly unchanged.");
+            Assert.AreEqual(_config.CoinRewardMultiplier(75), _config.XpRewardMultiplier(75), 0.0001f, "coins and XP share the curve.");
+            Assert.AreEqual(40, _prices.ScaleCoinReward(40, 20), "the curve does not touch Depth 20.");
         }
 
         // ---- Acceptance 2 + 3 + 4: domains and atomic debits ----

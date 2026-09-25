@@ -333,10 +333,19 @@ namespace RuinRail.Tests
                 Assert.AreEqual(kv.Value.max, assets[kv.Key].MaxValue, kv.Key);
             }
 
+            // The eight approved ranged affix assets still exist with their approved ranges. They are split across two
+            // pools so a roll can never be a guaranteed no-op: impact affixes only reach the families that author a
+            // non-zero Knockback/Stagger Power base (Shotgun, Rocket Launcher).
+            var impactAffixes = new[] { "affix_knockback", "affix_stagger_power" };
             var pool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_Ranged.asset");
             Assert.IsNotNull(pool);
             Assert.AreEqual("pool_ranged", pool.Id);
-            CollectionAssert.AreEquivalent(expected.Keys, pool.Affixes.Select(a => a.Id));
+            CollectionAssert.AreEquivalent(expected.Keys.Except(impactAffixes), pool.Affixes.Select(a => a.Id));
+
+            var impactPool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_RangedImpact.asset");
+            Assert.IsNotNull(impactPool, "Shotguns and rockets roll from the impact-capable ranged pool.");
+            Assert.AreEqual("pool_ranged_impact", impactPool.Id);
+            CollectionAssert.AreEquivalent(expected.Keys, impactPool.Affixes.Select(a => a.Id));
 
             var caps = AssetDatabase.LoadAssetAtPath<GlobalStatCapsConfig>("Assets/Game/ScriptableObjects/Balance/GlobalStatCapsConfig.asset");
             Assert.IsNotNull(caps);

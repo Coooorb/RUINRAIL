@@ -8,6 +8,7 @@ namespace RuinRail.UI.Base
     {
         Play,
         Settings,
+        Help,
         Quit
     }
 
@@ -16,6 +17,7 @@ namespace RuinRail.UI.Base
         Menu,
         Base,
         Settings,
+        Help,
         SaveError,
         Quitting
     }
@@ -44,7 +46,7 @@ namespace RuinRail.UI.Base
             _configs = configs ?? throw new ArgumentNullException(nameof(configs));
         }
 
-        public static readonly MainMenuEntry[] Entries = { MainMenuEntry.Play, MainMenuEntry.Settings, MainMenuEntry.Quit };
+        public static readonly MainMenuEntry[] Entries = { MainMenuEntry.Play, MainMenuEntry.Settings, MainMenuEntry.Help, MainMenuEntry.Quit };
         public MainMenuState State { get; private set; } = MainMenuState.Menu;
         public BaseSession Session { get; private set; }
         public PlayOutcome? LastOutcome { get; private set; }
@@ -61,6 +63,7 @@ namespace RuinRail.UI.Base
         {
             MainMenuEntry.Play => "PLAY",
             MainMenuEntry.Settings => "SETTINGS",
+            MainMenuEntry.Help => "HELP",
             MainMenuEntry.Quit => "QUIT",
             _ => entry.ToString().ToUpperInvariant()
         };
@@ -71,6 +74,7 @@ namespace RuinRail.UI.Base
             {
                 case MainMenuEntry.Play: Play(); break;
                 case MainMenuEntry.Settings: State = MainMenuState.Settings; Raise(); break;
+                case MainMenuEntry.Help: State = MainMenuState.Help; Raise(); break;
                 case MainMenuEntry.Quit: State = MainMenuState.Quitting; Raise(); break;
             }
         }

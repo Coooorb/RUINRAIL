@@ -15,9 +15,9 @@ MonoBehaviour:
   _id: hazard_electrified_rail
   _displayName: Electrified Rail
   _kind: 3
-  _damageMin: 5
-  _damageMax: 8
-  _tickIntervalSeconds: 1
+  _damageMin: 3
+  _damageMax: 5
+  _tickIntervalSeconds: 0.6
   _initialDelaySeconds: 0
   _affectsPlayers: 1
   _affectsEnemies: 1

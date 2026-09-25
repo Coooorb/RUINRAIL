@@ -19,6 +19,13 @@ namespace RuinRail.UI.Base
         public TraderConfig Trader;
         public WorkshopConfig Workshop;
 
+        /// <summary>
+        /// Global stat caps, so the Shelter loadout applies the same equipment-derived Ammo Stack Capacity rule the run
+        /// does. Null is safe: Ammo Stack Capacity carries no cap in player/16, and PlayerStats treats a missing cap as
+        /// uncapped rather than as zero.
+        /// </summary>
+        public GlobalStatCapsConfig StatCaps;
+
         public ItemDefinition Resolve(string id) => Registry != null && Registry.TryGet(id, out var definition) ? definition : null;
         public AmmoItemDefinition ResolveAmmo(AmmoType type) => Registry?.Definitions.OfType<AmmoItemDefinition>().FirstOrDefault(a => a.AmmoType == type);
     }
@@ -33,6 +40,7 @@ namespace RuinRail.UI.Base
     {
         private readonly AutosaveBinder _autosaveBinder;
         private readonly LobbyLoadoutBinder _loadoutBinder;
+        private readonly Gameplay.Stats.LoadoutStatRegistrar _loadoutStats;
         /// <summary>True while the Base loadout inventory is the authoritative safe loadout (false during a run).</summary>
         private bool _loadoutSynced = true;
 
@@ -58,6 +66,14 @@ namespace RuinRail.UI.Base
             _autosaveBinder = new AutosaveBinder(Autosave, Storage, Trader, Workshop, Progression, Banked);
 
             Loadout = new PlayerInventory(configs.Resolve, configs.ResolveAmmo, configs.AmmoBalance);
+            // The Shelter loadout resolves ammo stack limits through the same pipeline the run uses, so an Ammo Pouch
+            // raises capacity identically at the Shelter, in storage transfers, at the Trader and inside an expedition.
+            LoadoutStats = new Gameplay.Stats.PlayerStats(configs.StatCaps);
+            // The Shelter resolves affixes from the same registry the run does, so a rolled Ammo Stack Capacity affix
+            // raises the stack limit identically whether the player is packing at the Shelter or already in the dungeon.
+            var affixes = Gameplay.Items.AffixRegistry.FromDefinitions(configs.Registry?.Definitions);
+            _loadoutStats = new Gameplay.Stats.LoadoutStatRegistrar(Loadout, LoadoutStats, configs.Resolve, affixes.Get);
+            Loadout.SetAmmoCapacityBonusProvider(() => LoadoutStats.GetPercent(Gameplay.Stats.StatId.AmmoStackCapacity));
             if (Profile.SafeLoadout != null) Loadout.RestoreFromSnapshot(Profile.SafeLoadout);
             Loadout.EquippedChanged += (_, _) => Autosave.MarkDirty("loadout");
             Loadout.BackpackChanged += () => Autosave.MarkDirty("loadout");
@@ -66,7 +82,10 @@ namespace RuinRail.UI.Base
             Lobby.Join(LocalClientId, Profile.DisplayName ?? "Player 1");
             _loadoutBinder = new LobbyLoadoutBinder(Lobby, LocalClientId, Loadout);
 
-            Expedition = new ExpeditionService(configs.Resolve, configs.ResolveAmmo, configs.AmmoBalance, null, Lobby.Get(LocalClientId).ParticipantId);
+            // The economy config carries the bounded deep-depth reward curve, so XP earned past its start depth scales
+            // through the one seam in ExpeditionService.AddXp.
+            Expedition = new ExpeditionService(configs.Resolve, configs.ResolveAmmo, configs.AmmoBalance, null,
+                Lobby.Get(LocalClientId).ParticipantId, configs.Economy);
             // While a run is active the Base loadout is empty (the gear is at risk in the expedition); on return it is the
             // secured loadout. Subscribed BEFORE the recorder so the restore runs before the end-of-run save.
             Expedition.ExpeditionStarted += _ => { _loadoutSynced = false; Loadout.RestoreFromSnapshot(null); };
@@ -90,6 +109,9 @@ namespace RuinRail.UI.Base
         public StarterKitService StarterKit { get; }
         public AutosaveService Autosave { get; }
         public PlayerInventory Loadout { get; }
+
+        /// <summary>Equipment-derived stats of the Shelter loadout (capacity rules only; combat stats belong to the run).</summary>
+        public Gameplay.Stats.PlayerStats LoadoutStats { get; }
         public PartyLobby Lobby { get; }
         public ExpeditionService Expedition { get; }
         public ExpeditionTransactionRecorder Recorder { get; }
@@ -115,6 +137,23 @@ namespace RuinRail.UI.Base
             if (!Expedition.IsExpeditionActive) Profile.SafeLoadout = Loadout.ToSnapshot();
         }
 
+        /// <summary>How often the Starter Loadout fallback actually equipped the kit in this session (diagnostics/tests).</summary>
+        public int StarterLoadoutFallbacks { get; private set; }
+
+        /// <summary>
+        /// Run before Ready/Start: a loadout with no weapon equipped gets the free Starter Loadout through the existing
+        /// kit service (75); a loadout with a weapon equipped is preserved untouched. The lobby sees the change through
+        /// the loadout binder like any other edit. Never runs on scene load, never during a run, never writes storage.
+        /// </summary>
+        public bool EnsureStarterLoadoutIfEmpty()
+        {
+            if (Expedition.IsExpeditionActive || !_loadoutSynced) return false;
+            if (!StarterKit.EnsureEquippedLoadout(Loadout)) return false;
+            StarterLoadoutFallbacks++;
+            Autosave.MarkDirty("starter_loadout_fallback");
+            return true;
+        }
+
         /// <summary>Writes the current Base state (storage, loadout, coins, progression) as one safe point.</summary>
         public SaveError SaveNow(string reason = "base") => Autosave.SaveNow(reason);
 
@@ -122,6 +161,7 @@ namespace RuinRail.UI.Base
         {
             _loadoutBinder.Dispose();
             _autosaveBinder.Dispose();
+            _loadoutStats.Dispose();
             Recorder.Dispose();
         }
     }

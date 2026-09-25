@@ -77,6 +77,29 @@ namespace RuinRail.Gameplay.Base
             return true;
         }
 
+        /// <summary>True when a weapon is equipped in either weapon slot (an equipped item that does not resolve to a weapon counts as absent).</summary>
+        public bool HasEquippedWeapon(PlayerInventory loadout)
+        {
+            return loadout != null && (HasWeapon(loadout.GetEquipped(EquippedSlot.PrimaryWeapon)) || HasWeapon(loadout.GetEquipped(EquippedSlot.SecondaryWeapon)));
+        }
+
+        /// <summary>
+        /// Starter Loadout fallback at expedition start: when the live Base loadout has no weapon equipped — nothing
+        /// equipped, an empty profile, or weapon slots emptied by the save validator's quarantine of unresolved items —
+        /// the existing free kit is merged into it (kit pieces fill the empty slots, the rest goes to the backpack) so
+        /// the run begins with the authoritative Starter Loadout. A loadout that already has a weapon equipped is never
+        /// touched, so an intentional loadout is preserved and a second call in a row changes nothing. Nothing is
+        /// written to storage and the equipment copies carry the usual starter restrictions (Common, affix-free,
+        /// unsellable).
+        /// </summary>
+        public bool EnsureEquippedLoadout(PlayerInventory loadout)
+        {
+            if (loadout == null) throw new ArgumentNullException(nameof(loadout));
+            if (HasEquippedWeapon(loadout)) return false;
+            MergeKitInto(loadout);
+            return true;
+        }
+
         private bool HasWeapon(ItemInstance item)
         {
             return item != null && _resolveDefinition(item.DefinitionId) is { Category: ItemCategory.Weapon };
@@ -93,6 +116,13 @@ namespace RuinRail.Gameplay.Base
         private void MergeKitIntoSafeLoadout(PlayerProfile profile)
         {
             var inventory = LoadSafeLoadout(profile);
+            MergeKitInto(inventory);
+            profile.SafeLoadout = inventory.ToSnapshot();
+        }
+
+        /// <summary>The one kit merge: equips kit pieces into empty slots and puts the rest in the backpack through the normal inventory rules.</summary>
+        private static void MergeKitInto(PlayerInventory inventory)
+        {
             foreach (var (item, slot) in CreateKit())
             {
                 var placed = slot.HasValue && inventory.GetEquipped(slot.Value) == null && inventory.TryEquip(item, slot.Value);
@@ -101,8 +131,6 @@ namespace RuinRail.Gameplay.Base
                     inventory.Add(AmmoType.Light, LightAmmoCount); // partial fit into existing stacks/space; never fails the grant
                 }
             }
-
-            profile.SafeLoadout = inventory.ToSnapshot();
         }
     }
 }

@@ -19,7 +19,9 @@ namespace RuinRail.Tests
             var reader = new FakePlayerInputReader();
             var world = new TimeScalePause();
             using var menu = new PauseMenuViewModel(reader, world, isCoop: false);
-            CollectionAssert.AreEqual(new[] { "RESUME", "SETTINGS", "RETURN TO MAIN MENU", "QUIT GAME" }, PauseMenuViewModel.Items.Select(PauseMenuViewModel.Label));
+            // HELP sits between SETTINGS and the two destructive entries: a manual is reachable from the pause menu, and
+            // the leave/quit pair stays last so nothing moved into the place a habit already points at.
+            CollectionAssert.AreEqual(new[] { "RESUME", "SETTINGS", "HELP", "RETURN TO MAIN MENU", "QUIT GAME" }, PauseMenuViewModel.Items.Select(PauseMenuViewModel.Label));
             Assert.IsFalse(menu.IsOpen);
             Assert.AreEqual(1f, Time.timeScale);
 

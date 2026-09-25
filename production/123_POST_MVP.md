@@ -8,7 +8,7 @@ Potential later additions, not requirements:
 - More bosses/events.
 - Cosmetics.
 - Achievements.
-- Deepest-depth leaderboards/records.
+- Deepest-depth leaderboards (the personal deepest-depth record itself ships in V1).
 - More base NPC flavor/visuals.
 - Host migration.
 - Public matchmaking.

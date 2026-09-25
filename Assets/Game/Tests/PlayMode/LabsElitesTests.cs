@@ -71,11 +71,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(350, elite.XpValue);
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             elite.SetTarget(player.transform);
-            Assert.AreEqual("Double Slam", elite.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(4f, 0f);
-            Assert.AreEqual("Roar Rush", elite.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(7f, 0f);
-            Assert.AreEqual("Mutation Leap", elite.SelectAttack().DisplayName);
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 1.5f, "Double Slam", "Close: the double slam.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 4f, "Roar Rush", "Roar Rush is the band's attack here");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 7f, "Mutation Leap", "Mutation Leap is the band's attack here");
             player.transform.position = new Vector2(30f, 0f);
             Assert.IsNull(elite.SelectAttack());
         }
@@ -89,11 +87,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(3.4f, elite.Definition.MoveSpeed, 0.001f);
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             elite.SetTarget(player.transform);
-            Assert.AreEqual("Radial Pulse", elite.SelectAttack().DisplayName, "Close: the radial ring pushes back.");
-            player.transform.position = new Vector2(5f, 0f);
-            Assert.AreEqual("Blink Shot", elite.SelectAttack().DisplayName, "Mid: reposition.");
-            player.transform.position = new Vector2(8f, 0f);
-            Assert.AreEqual("Energy Burst", elite.SelectAttack().DisplayName, "Far: the burst.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 1.5f, "Radial Pulse", "Close: the radial ring pushes back.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 5f, "Blink Shot", "Mid: reposition.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 8f, "Energy Burst", "Far: the burst.");
         }
 
         [UnityTest]

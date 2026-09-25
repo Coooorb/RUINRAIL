@@ -56,6 +56,15 @@ namespace RuinRail.Gameplay.Expedition
         }
     }
 
+    /// <summary>
+    /// 82/86 on a co-op client: the client's copy of the decision never resolves by itself — votes are forwarded to the
+    /// host, and the host's result arrives through <see cref="TransitDecision.ResolveFromAuthority"/>.
+    /// </summary>
+    public sealed class HostDecidedTransitPolicy : ITransitResolutionPolicy
+    {
+        public TransitChoice? Resolve(IReadOnlyDictionary<string, TransitChoice> choices, IReadOnlyCollection<string> livingPlayerIds) => null;
+    }
+
     /// <summary>86: what the party is told before confirming Return while a teammate is still Dead.</summary>
     public sealed class TransitReturnWarning
     {
@@ -109,6 +118,34 @@ namespace RuinRail.Gameplay.Expedition
         public event Action<TransitDecision, TransitChoice> Resolved;
         public event Action<TransitDecision> VotersChanged;
 
+        /// <summary>A living player's choice was recorded (co-op: a client forwards its own vote to the host from here).</summary>
+        public event Action<TransitDecision, string, TransitChoice> Submitted;
+
+        /// <summary>
+        /// 86 on a co-op client: the party decision is the host's, never re-derived locally. The client's copy of the
+        /// decision takes the host's resolved result exactly once (a repeat is ignored), which runs this peer's own
+        /// Descend or Return transaction through the same Resolved path a local resolution would.
+        /// </summary>
+        public bool ResolveFromAuthority(TransitChoice choice)
+        {
+            if (State == TransitDecisionState.Resolved) return false;
+            State = TransitDecisionState.Resolved;
+            Result = choice;
+            Resolutions++;
+            Resolved?.Invoke(this, choice);
+            return true;
+        }
+
+        /// <summary>A client mirrors another member's recorded vote for display; it never resolves anything.</summary>
+        public bool MirrorVote(string playerId, TransitChoice choice)
+        {
+            if (!CanVote(playerId)) return false;
+            if (_choices.TryGetValue(playerId, out var existing) && existing == choice) return false;
+            _choices[playerId] = choice;
+            VotersChanged?.Invoke(this);
+            return true;
+        }
+
         public void Open()
         {
             if (State != TransitDecisionState.Closed) return;
@@ -127,6 +164,7 @@ namespace RuinRail.Gameplay.Expedition
 
             Submissions++;
             _choices[playerId] = choice;
+            Submitted?.Invoke(this, playerId, choice);
             return TryResolve();
         }
 

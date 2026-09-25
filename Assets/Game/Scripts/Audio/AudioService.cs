@@ -170,7 +170,7 @@ namespace RuinRail.Audio
             }
         }
 
-        public static float GainFor(AudioBus bus) => AudioLevels.GainFor(bus == AudioBus.Music);
+        public static float GainFor(AudioBus bus) => bus == AudioBus.Ambience ? AudioLevels.AmbienceBusGain : AudioLevels.GainFor(bus == AudioBus.Music);
 
         /// <summary>The mixer group a bus routes to (null without a mixer: the source outputs straight to the listener).</summary>
         public AudioMixerGroup GroupFor(AudioBus bus) => _groups.TryGetValue(bus, out var group) ? group : null;

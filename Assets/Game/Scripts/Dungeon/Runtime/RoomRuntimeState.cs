@@ -29,6 +29,14 @@ namespace RuinRail.Dungeon.Runtime
         public int EnemiesSpawned;
         public int EnemiesDefeated;
 
+        /// <summary>
+        /// Host-authoritative count of the active standard encounter's enemies still to be resolved: every living
+        /// encounter member (including summons registered into the encounter) plus the reinforcements still queued.
+        /// 0 outside an active Combat encounter. Replicated with the rest of the state, so a client's HUD shows the
+        /// host's number rather than counting replicas. Boss rooms never write it (the boss bar is their readout).
+        /// </summary>
+        public int EnemiesRemaining;
+
         /// <summary>Ids of one-time interactions already resolved in this room (chest:0, event:cursed_chest, boss_cache, ...).</summary>
         public List<string> Resolved = new();
 

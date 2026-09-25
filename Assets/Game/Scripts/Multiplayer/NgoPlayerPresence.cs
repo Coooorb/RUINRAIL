@@ -66,18 +66,40 @@ namespace RuinRail.Networking
     {
         private readonly NetworkObject _prefab;
         private readonly Func<PlayerIdentity, Vector3> _spawnPosition;
+        private readonly Func<PlayerIdentity, string> _participantId;
+        private readonly PartyLifeRoster _roster;
 
-        public NgoPlayerEntityFactory(NetworkObject prefab, Func<PlayerIdentity, Vector3> spawnPosition = null)
+        /// <param name="participantId">
+        /// The party participant id per member (84/86: revive, vote and loot lookups). Written to the object before it is
+        /// spawned and replicated, so every peer's roster names the member the same way.
+        /// </param>
+        /// <param name="roster">84: every spawned member joins the host's party life roster (Downed/revive/wipe, voters).</param>
+        public NgoPlayerEntityFactory(NetworkObject prefab, Func<PlayerIdentity, Vector3> spawnPosition = null, Func<PlayerIdentity, string> participantId = null, PartyLifeRoster roster = null)
         {
             _prefab = prefab != null ? prefab : throw new ArgumentNullException(nameof(prefab));
             _spawnPosition = spawnPosition;
+            _participantId = participantId;
+            _roster = roster;
         }
 
         public GameObject Spawn(PlayerIdentity identity, bool isLocalOwner)
         {
             var instance = UnityEngine.Object.Instantiate(_prefab, _spawnPosition?.Invoke(identity) ?? Vector3.zero, Quaternion.identity);
+            instance.name = $"Player_{identity.ClientId}_{identity.DisplayName}";
+            // The expedition spans scene loads on every peer; only the host's despawn ends a player object.
+            UnityEngine.Object.DontDestroyOnLoad(instance.gameObject);
+            var participant = _participantId?.Invoke(identity);
+            var life = instance.GetComponent<PlayerLifeStateComponent>();
+            if (life != null)
+            {
+                if (!string.IsNullOrEmpty(participant)) life.SetParticipantId(participant);
+                if (_roster != null) life.SetRoster(_roster);
+            }
+
             instance.SpawnAsPlayerObject(identity.ClientId, true);
-            instance.GetComponent<NetworkPlayerObject>()?.SetDisplayName(identity.DisplayName);
+            var net = instance.GetComponent<NetworkPlayerObject>();
+            net?.SetDisplayName(identity.DisplayName);
+            if (net != null && !string.IsNullOrEmpty(participant)) net.SetParticipantId(participant);
             return instance.gameObject;
         }
 

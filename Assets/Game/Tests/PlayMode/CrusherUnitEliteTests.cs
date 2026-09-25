@@ -72,11 +72,9 @@ namespace RuinRail.Tests
 
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             elite.SetTarget(player.transform);
-            Assert.AreEqual("Hydraulic Slam", elite.SelectAttack().DisplayName, "Close: the rectangular slam.");
-            player.transform.position = new Vector2(2.8f, 0f);
-            Assert.AreEqual("Crusher Charge", elite.SelectAttack().DisplayName, "Mid range: charge first in the moveset order.");
-            player.transform.position = new Vector2(8.5f, 0f);
-            Assert.AreEqual("Scrap Barrage", elite.SelectAttack().DisplayName, "Beyond charge range: the barrage.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 1.5f, "Hydraulic Slam", "Close: the rectangular slam.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 2.8f, "Crusher Charge", "Mid range: charge first in the moveset order.");
+            BossSelectionAssert.CanSelectAt(elite, player.transform, Vector2.zero, 8.5f, "Scrap Barrage", "Beyond charge range: the barrage.");
             player.transform.position = new Vector2(30f, 0f);
             Assert.IsNull(elite.SelectAttack());
         }

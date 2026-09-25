@@ -204,7 +204,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(WorldObjectArt.SupplyChestOpen, target.Visual.Key, "opened state is drawn");
             Assert.IsFalse(target.LastResult.IsEmpty);
             Assert.Greater(target.SpawnedPickups.Count, 0);
-            Assert.IsTrue(target.SpawnedPickups.All(p => p.GetComponent<WorldObjectVisual>() != null && p.GetComponent<WorldObjectVisual>().IsVisible && p.GetComponent<WorldObjectVisual>().Renderer.sortingLayerName == SortingLayers.Loot));
+            // A pickup the survivor's baseline attraction reach has already drawn in is gone from the scene, which is
+            // the QoL behaviour rather than a missing visual; every pickup still on the ground must be drawn.
+            Assert.IsTrue(target.SpawnedPickups.Where(p => p != null).All(p => p.GetComponent<WorldObjectVisual>() != null && p.GetComponent<WorldObjectVisual>().IsVisible && p.GetComponent<WorldObjectVisual>().Renderer.sortingLayerName == SortingLayers.Loot));
             Assert.IsFalse(target.TryOpen(out _), "a second open is refused");
             Assert.AreEqual(chestOpens + 1, audio.PlayedCount(AudioEventIds.ChestOpen), "chest open cue played once");
             Assert.IsTrue(chestRoom.State.IsResolved(RoomCategoryComposer.SupplyChestResolvedId), "opened state recorded in the room state");
@@ -213,7 +215,7 @@ namespace RuinRail.Tests
             Note($"opened once: items [{string.Join(", ", target.LastResult.Items.Select(i => i.DefinitionId + " x" + i.Quantity))}] coins {target.LastResult.Coins}; pickups {target.SpawnedPickups.Count}");
 
             // 4–5. Ammo pickup: reserve before/after, consumed once, cap respected.
-            var ammoPickup = target.SpawnedPickups.Select(p => p.GetComponent<WorldItemPickup>()).First(p => p != null && p.Category == ItemCategory.Ammo);
+            var ammoPickup = target.SpawnedPickups.Where(p => p != null).Select(p => p.GetComponent<WorldItemPickup>()).First(p => p != null && !p.IsConsumed && p.Category == ItemCategory.Ammo);
             var ammoType = content.Items.OfType<AmmoItemDefinition>().First(a => a.Id == ammoPickup.Item.DefinitionId).AmmoType;
             var before = inventory.Get(ammoType);
             var quantity = ammoPickup.Item.Quantity;

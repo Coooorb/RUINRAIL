@@ -31,6 +31,38 @@ namespace RuinRail.EditorTools.ArtGen
             Debug.Log($"Audio generation complete: {written} clips.");
         }
 
+        /// <summary>
+        /// Regenerates the 11 music beds only and rebinds them. This exists because the loop fix in
+        /// <see cref="GameAudioFactory.BuildMusic"/> changes only the music files: regenerating everything would
+        /// rewrite 62 clips that are byte-identical, and a batch runner should touch exactly what changed.
+        /// </summary>
+        [MenuItem("RuinRail/Art/Regenerate Music Loops")]
+        public static void GenerateMusic()
+        {
+            Written.Clear();
+            foreach (MusicRole role in Enum.GetValues(typeof(MusicRole)))
+            {
+                var clip = GameAudioFactory.BuildMusic(role.ToString());
+                clip.Normalize(GameAudioFactory.PeakFor("Music"));
+                var path = $"{AudioRoot}/Music/music_{role.ToString().ToLowerInvariant()}.wav";
+                AudioSynth.WriteWav(clip, path);
+                Written.Add((path, true));
+            }
+
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            ApplyImportSettings();
+            AssetDatabase.SaveAssets();
+            BindMusic();
+            Debug.Log($"Regenerated {Written.Count} music beds on their bar grid.");
+        }
+
+        /// <summary>Batch entry for the runner (-executeMethod).</summary>
+        public static void GenerateMusicBatch()
+        {
+            try { GenerateMusic(); EditorApplication.Exit(0); }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
         private static readonly List<(string path, bool loop)> Written = new();
 
         public static int GenerateFiles()

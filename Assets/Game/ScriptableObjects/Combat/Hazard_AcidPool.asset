@@ -15,10 +15,10 @@ MonoBehaviour:
   _id: hazard_acid_pool
   _displayName: Acid Pool
   _kind: 3
-  _damageMin: 5
-  _damageMax: 8
+  _damageMin: 6
+  _damageMax: 9
   _tickIntervalSeconds: 1
-  _initialDelaySeconds: 0
+  _initialDelaySeconds: 0.3
   _affectsPlayers: 1
   _affectsEnemies: 1
   _knockback: 0

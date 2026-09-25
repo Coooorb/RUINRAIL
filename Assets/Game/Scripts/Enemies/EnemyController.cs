@@ -109,9 +109,13 @@ namespace RuinRail.Gameplay.Enemies
         }
 
         private ObstacleSteering _steering;
+        private EncounterBounds _bounds;
 
         /// <summary>The obstacle steering in use (diagnostics/tests).</summary>
         public ObstacleSteering Steering => _steering;
+
+        /// <summary>The encounter-room bounds this enemy is confined to (bound by the owning room when it spawns; null before/without).</summary>
+        public EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = GetComponent<EncounterBounds>();
 
         private float BodyRadius()
         {
@@ -447,7 +451,11 @@ namespace RuinRail.Gameplay.Enemies
             // Solid geometry deflects the heading (wall slide / corner rounding) instead of being pushed into.
             _steering ??= new ObstacleSteering(transform, BodyRadius());
             direction = _steering.Steer(_rigidbody2D.position, direction, Time.fixedDeltaTime);
-            _rigidbody2D.linearVelocity = direction * _definition.MoveSpeed * _movementSpeedMultiplier;
+            var velocity = direction * _definition.MoveSpeed * _movementSpeedMultiplier;
+            // The encounter room's legal edge is not traversable: pursuit stops (slides) there, whatever the doors do.
+            var bounds = Bounds;
+            if (bounds != null && bounds.IsBound) velocity = bounds.ConstrainVelocity(_rigidbody2D.position, velocity, Time.fixedDeltaTime);
+            _rigidbody2D.linearVelocity = velocity;
         }
     }
 }

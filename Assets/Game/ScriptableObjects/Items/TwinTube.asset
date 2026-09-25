@@ -18,11 +18,11 @@ MonoBehaviour:
   _isStackable: 0
   _maxStack: 1
   _icon: {fileID: 21300000, guid: 8d580e6f8e286d2499305837b3d8912e, type: 3}
-  _affixPool: {fileID: 11400000, guid: 3c6c5255825643c281fb014020052625, type: 2}
+  _affixPool: {fileID: 11400000, guid: 7e3c9a24b51f4f309c4f8163d9eb2c53, type: 2}
   _legendaryMechanicId: 
   _weaponClass: 7
-  _knockback: 0
-  _staggerPower: 0
+  _knockback: 12
+  _staggerPower: 12
   _damageMin: 50
   _damageMax: 60
   _fireRate: 0.65

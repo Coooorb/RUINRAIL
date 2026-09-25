@@ -19,7 +19,7 @@ MonoBehaviour:
   _damageMax: 10
   _minTriggerRange: 2
   _maxTriggerRange: 7
-  _telegraphSeconds: 1.0
+  _telegraphSeconds: 1
   _recoverySeconds: 1.3
   _hitCount: 1
   _hitIntervalSeconds: 0
@@ -35,3 +35,4 @@ MonoBehaviour:
   _projectileRange: 7
   _zoneLength: 6
   _zoneWidth: 1.5
+  _projectileVisualId: proj_boss_furnace

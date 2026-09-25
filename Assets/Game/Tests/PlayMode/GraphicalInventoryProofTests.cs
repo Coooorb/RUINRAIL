@@ -163,7 +163,12 @@ namespace RuinRail.Tests
             Assert.IsTrue(view.BackpackSlots[smgIndex].ShowsFocusBrackets, "keyboard focus is visible on the cursor slot");
             StringAssert.Contains("Rattler", view.DetailTitleText);
             StringAssert.Contains("RARE", view.DetailSubtitleText);
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")));
+            Assert.IsTrue(view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")), "the comparison is part of the details (on the page after the description)");
+            var pageGuard = 0;
+            while (!view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) && view.DetailsPageDown() && pageGuard++ < 5) { yield return null; }
+            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")), "paging reaches the comparison");
+            while (view.DetailsPageUp()) { }
+            yield return null;
             menuInput.Stack.Activate();
             yield return null;
             Assert.IsTrue(view.BackpackSlots[smgIndex].ShowsSelectedFrame, "the picked item shows the selected frame");

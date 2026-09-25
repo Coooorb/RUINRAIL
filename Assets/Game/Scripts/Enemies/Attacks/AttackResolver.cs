@@ -44,6 +44,11 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
         /// <summary>True when the last dash ended early because a wall was in the way (clear recovery window, 44 Charger).</summary>
         public bool LastDashStoppedByWall { get; private set; }
+
+        /// <summary>True when the last dash ended early at the encounter room's legal edge (a doorway is not a dash lane).</summary>
+        public bool LastDashStoppedByBounds { get; private set; }
+        private EncounterBounds _bounds;
+        private EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = _self != null ? _self.GetComponent<EncounterBounds>() : null;
         private static readonly RaycastHit2D[] WallHits = new RaycastHit2D[8];
         public IReadOnlyList<Projectile> SpawnedProjectiles => _spawnedProjectiles;
 
@@ -58,6 +63,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             _hitsDone = 0;
             _dashTravelled = 0f;
             LastDashStoppedByWall = false;
+            LastDashStoppedByBounds = false;
             HitsLanded = 0;
             _hitThisWindow.Clear();
             _spawnedProjectiles.Clear();
@@ -149,7 +155,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
                 var offset = count == 1 || spread <= 0f ? 0f : Mathf.Lerp(-spread * 0.5f, spread * 0.5f, i / (float)(count - 1));
                 var direction = (Vector2)(Quaternion.Euler(0f, 0f, offset) * _direction);
                 var damage = _roller.Roll(_attack.DamageMin, _attack.DamageMax);
-                var data = new ProjectileSpawnData(damage, _attack.ProjectileSpeed, _attack.ProjectileRange, _attack.Knockback, _attack.StaggerPower, direction, _self.gameObject);
+                var data = new ProjectileSpawnData(damage, _attack.ProjectileSpeed, _attack.ProjectileRange, _attack.Knockback, _attack.StaggerPower, direction, _self.gameObject, null, 0f, DamageTeam.Enemy, false, _attack.ProjectileVisualId);
                 _spawnedProjectiles.Add(_projectilePool.Spawn((Vector2)_self.position + direction * 0.6f, data));
             }
         }
@@ -168,6 +174,26 @@ namespace RuinRail.Gameplay.Enemies.Attacks
                 LastDashStoppedByWall = true;
                 _attack = null;
                 return true;
+            }
+
+            // The encounter room's legal edge ends a dash exactly like a wall: the endpoint is constrained to the room,
+            // so a charge aimed through an open doorway stops at the threshold and leaves the same recovery window.
+            var bounds = Bounds;
+            if (bounds != null && bounds.IsBound)
+            {
+                // The tick may run at frame rate, but the velocity it commits is consumed by whole physics steps: the
+                // endpoint is checked against the distance the body will actually travel in the coming step.
+                var physicsStep = Mathf.Min(_attack.DashSpeed * Time.fixedDeltaTime, _attack.DashDistance - _dashTravelled);
+                var position = _body != null ? _body.position : (Vector2)_self.position;
+                var free = bounds.FreeDistance(position, _direction, physicsStep + 0.001f);
+                if (free < physicsStep - 0.0001f)
+                {
+                    if (_body != null) _body.linearVelocity = free > 0.0001f ? _direction * (free / Time.fixedDeltaTime) : Vector2.zero;
+                    StrikeCircle(_self.position, _attack.HitRadius);
+                    LastDashStoppedByBounds = true;
+                    _attack = null;
+                    return true;
+                }
             }
 
             if (_body != null)

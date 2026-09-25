@@ -78,7 +78,7 @@ namespace RuinRail.Tests
             Assert.IsNotNull(CharacterVisual.RendererOf(entity).GetComponent<YSorter>(), $"{label}: y-sorted");
             Assert.AreEqual(1, entity.GetComponents<HeldWeaponVisual>().Length, $"{label}: one weapon visual");
             Assert.AreEqual(1, entity.GetComponents<PlayerAnimationDriver>().Length, $"{label}: one driver");
-            Assert.AreEqual(2, entity.GetComponentsInChildren<SpriteRenderer>(true).Length, $"{label}: body + weapon renderers, no duplicate stack");
+            Assert.AreEqual(2, entity.GetComponentsInChildren<SpriteRenderer>(true).Count(r => r.GetComponentInParent<RuinRail.Gameplay.Combat.Projectiles.Projectile>(true) == null), $"{label}: body + weapon renderers, no duplicate stack (pooled projectile sprites excluded)");
         }
 
         [Test]

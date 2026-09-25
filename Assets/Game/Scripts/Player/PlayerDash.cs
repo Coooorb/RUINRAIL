@@ -93,6 +93,9 @@ namespace RuinRail.Gameplay.Player
 
         public event System.Action<PlayerDash, Vector2> DashStarted;
 
+        /// <summary>The dash reached its endpoint (Dash Capacitor's shockwave point).</summary>
+        public event System.Action<PlayerDash> DashEnded;
+
         /// <summary>True when a dash could start now (not dashing, cooldown elapsed, configured).</summary>
         public bool CanDash => _balanceConfig != null && !IsDashing && _cooldownTimeRemaining <= 0f;
 
@@ -155,6 +158,7 @@ namespace RuinRail.Gameplay.Player
                 {
                     _dashTimeRemaining = 0f;
                     IsDashing = false;
+                    DashEnded?.Invoke(this);
                 }
             }
 

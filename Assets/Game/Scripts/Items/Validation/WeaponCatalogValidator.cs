@@ -105,8 +105,10 @@ namespace RuinRail.Gameplay.Items.Validation
         };
 
         public const float BlasterMaxHeat = 100f;
-        public const float BlasterCoolingDelay = 0.6f;
-        public const float BlasterOverheatLockout = 2.2f;
+        // 33_WEAPON_CATALOG: shortened from 0.6s / 2.2s by the D1 ammo / blaster fine-tuning pass so heat costs
+        // less flow while remaining the class constraint. Damage, fire rate, Heat/Shot, Cooling Rate and Max Heat are unchanged.
+        public const float BlasterCoolingDelay = 0.5f;
+        public const float BlasterOverheatLockout = 1.9f;
         public const float BlasterProjectileSpeed = 22f;
 
         public static IEnumerable<string> AllCatalogIds => Firearms.Select(f => f.Id).Concat(Bows.Select(b => b.Id)).Concat(Blasters.Select(b => b.Id)).Concat(Melees.Select(m => m.Id));

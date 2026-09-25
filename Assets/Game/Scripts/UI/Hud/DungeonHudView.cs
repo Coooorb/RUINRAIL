@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using RuinRail.UI.Theme;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,13 +32,20 @@ namespace RuinRail.UI.Hud
         public const int HpBarWidth = 150;
         public const int WeaponsGap = 8;
         public const int WeaponsWidth = HudWeaponSlotView.Width * 2 + WeaponsGap;
+        /// <summary>Gap between timed-effect chips in the strip over the consumable slot.</summary>
+        public const int StatusChipGap = 2;
+        public const int StatusChipPitch = HudStatusChipView.Size + StatusChipGap;
 
         // ---- Top band geometry, in reference pixels from the top-left ----
         public static readonly UiRect MinimapRect = new(Margin, Margin, HudMinimapView.Width, HudMinimapView.Height);
         public static readonly UiRect BiomeRect = new(Margin, MinimapRect.Bottom + 2, HudMinimapView.Width, LineHeight);
         public static readonly UiRect PartyRect = new(Margin, BiomeRect.Bottom + 3, 180, LinePitch + LineHeight);
         public static readonly UiRect RoomTitleRect = new((ReferenceWidth - HudRoomTitleView.Width) / 2, 28, HudRoomTitleView.Width, HudRoomTitleView.Height);
+        /// <summary>Under the tutorial band (52..92) and the co-op party lines: the event-outcome notice line, never over the room title, a prompt or a party line.</summary>
+        public static readonly UiRect NoticeRect = new((ReferenceWidth - HudNoticeView.Width) / 2, 124, HudNoticeView.Width, HudNoticeView.Height);
         public static readonly UiRect CoinsRect = new(ReferenceWidth - Margin - HudCoinView.Width, Margin, HudCoinView.Width, HudCoinView.Height);
+        /// <summary>Top-right under the coins: the enemy-remaining chip (91), only during an active standard combat encounter.</summary>
+        public static readonly UiRect EnemiesRect = new(ReferenceWidth - Margin - HudEnemyCountView.Width, CoinsRect.Bottom + 4, HudEnemyCountView.Width, HudEnemyCountView.Height);
 
         private DungeonHudViewModel _viewModel;
         private Canvas _canvas;
@@ -49,8 +57,12 @@ namespace RuinRail.UI.Hud
         private HudConsumableSlotView _consumable;
         private HudMinimapView _minimap;
         private HudCoinView _coins;
+        private HudEnemyCountView _enemies;
         private HudRoomTitleView _roomTitle;
+        private HudNoticeView _notice;
         private HudLowHealthVignetteView _vignette;
+        private readonly List<HudStatusChipView> _statusChips = new();
+        private Text _statusDetail;
         private Text _biome;
         private Text _bossName;
         private Image _bossFill;
@@ -87,8 +99,24 @@ namespace RuinRail.UI.Hud
         /// <summary>The room-graph minimap; bind its model from the composition root.</summary>
         public HudMinimapView Minimap => _minimap;
         public HudCoinView CoinView => _coins;
+        /// <summary>Top-right, under the coins: the enemy-remaining chip; hidden outside an active standard combat encounter.</summary>
+        public HudEnemyCountView EnemyCount => _enemies;
+        public RectTransform EnemyCountPanel => _enemies != null ? _enemies.Rect : null;
+        public bool EnemyCountVisible => _enemies != null && _enemies.IsVisible;
+        /// <summary>The enemy chip's number text ("x5"); empty while hidden.</summary>
+        public string EnemiesText => _enemies != null && _enemies.IsVisible ? _enemies.CountText : string.Empty;
         public HudRoomTitleView RoomTitle => _roomTitle;
+        /// <summary>The event-outcome notice line (what an interaction just did / why it was refused).</summary>
+        public HudNoticeView Notice => _notice;
+        public RectTransform NoticePanel => _notice != null ? _notice.Rect : null;
         public HudLowHealthVignetteView Vignette => _vignette;
+        /// <summary>Bottom-right, above the consumable slot: the timed-effect chips (91 keeps its own blocks untouched).</summary>
+        public RectTransform StatusPanel { get; private set; }
+        public IReadOnlyList<HudStatusChipView> StatusChips => _statusChips;
+        /// <summary>The chips actually on screen right now, in the order they are drawn.</summary>
+        public IReadOnlyList<HudStatusChipView> VisibleStatusChips => _statusChips.Where(c => c.IsVisible).ToList();
+        /// <summary>The detail line under the strip ("COMBAT STIM  FIRE RATE +20%  6s"); empty when nothing is active.</summary>
+        public string StatusDetailText => _statusDetail != null ? _statusDetail.text : string.Empty;
 
         public string HpText => _hp != null ? _hp.text : string.Empty;
         /// <summary>The primary slot's visible resource line ("12 / 36", "NO AMMO", "HEAT 0%"…); empty for melee.</summary>
@@ -197,6 +225,24 @@ namespace RuinRail.UI.Hud
             ConsumablePanel = Panel("Consumable", root, new Vector2(1f, 0f), new Vector2(-Margin, Margin), new Vector2(HudConsumableSlotView.Size, HudConsumableSlotView.Size));
             _consumable = HudConsumableSlotView.Create(ConsumablePanel, new UiRect(0, 0, HudConsumableSlotView.Size, HudConsumableSlotView.Size), slotSprite, rarityFrame);
 
+            // Bottom-right, directly above the consumable slot: the timed-effect chips, right-aligned so the strip
+            // grows leftwards into empty HUD and never reaches the weapon slots. Its detail line sits above the strip.
+            // Nothing here moves or covers the minimap, biome line, party lines, enemy chip, boss bar, low-HP vignette,
+            // dash icon, weapon slots or the consumable slot: it occupies space none of them use.
+            var statusWidth = HudSnapshot.MaxStatusEffects * StatusChipPitch - StatusChipGap;
+            StatusPanel = Panel("Status", root, new Vector2(1f, 0f),
+                new Vector2(-Margin, Margin + HudConsumableSlotView.Size + 4), new Vector2(statusWidth, HudStatusChipView.Size));
+            for (var i = 0; i < HudSnapshot.MaxStatusEffects; i++)
+            {
+                // Right-aligned: chip 0 is the rightmost, nearest the consumable slot that granted it.
+                var x = statusWidth - (i + 1) * StatusChipPitch + StatusChipGap;
+                _statusChips.Add(HudStatusChipView.Create(StatusPanel, new UiRect(x, 0, HudStatusChipView.Size, HudStatusChipView.Size), "Status" + i));
+            }
+
+            _statusDetail = UiBuild.Label(StatusPanel, string.Empty, new UiRect(statusWidth - 150, -LineHeight - 2, 150, LineHeight),
+                1, TextAnchor.UpperRight, UiTheme.Ink, false, "StatusDetail");
+            _statusDetail.gameObject.SetActive(false);
+
             // Top-left: the minimap, the biome identity under it, and the compact co-op party lines under that.
             _minimap = HudMinimapView.Create(root, MinimapRect);
             TopLeftPanel = _minimap.Rect;
@@ -214,11 +260,19 @@ namespace RuinRail.UI.Hud
             // Top-centre: the boss bar (name line over a 6 px bar). x 280..500 sits clear of the 106 px minimap block
             // and of the coins block that starts at 572, so it can never overlap either.
             BossPanel = Panel("Boss", root, new Vector2(0.5f, 1f), new Vector2(70f, -Margin), new Vector2(220f, LineHeight + BarHeight));
+            // The bar used to be a bare opaque quad with no frame and no plate behind the name: against the dark
+            // dungeon it read as a black rectangle dropped on the HUD rather than as part of it. It now gets the same
+            // treatment as the HP block — one translucent theme plate behind the whole block, and a soft edge around
+            // the bar so the empty portion is visibly the bar's track rather than a hole. No panel covers anything:
+            // the plate is the first sibling, under the name and the fill.
+            UiBuild.Plate(BossPanel, new UiRect(-3, -2, 226, LineHeight + BarHeight + 4), UiTheme.WithAlpha(UiTheme.NearBlack, 0.62f), "BossPlate")
+                .transform.SetAsFirstSibling();
             _bossName = Label("BossName", BossPanel, new Vector2(0f, 1f), Vector2.zero, new Vector2(220f, LineHeight), TextAnchor.UpperCenter);
             var bossBack = Panel("BossBarBack", BossPanel, new Vector2(0f, 1f), new Vector2(0f, -LineHeight), new Vector2(220f, BarHeight - 2));
             var bossBackImage = bossBack.gameObject.AddComponent<Image>();
-            bossBackImage.color = new Color(0.12f, 0.12f, 0.12f, 0.9f);
+            bossBackImage.color = UiTheme.WithAlpha(UiTheme.Charcoal, 0.92f);
             bossBackImage.raycastTarget = false;
+            UiBuild.Border(bossBack, new UiRect(0, 0, 220, BarHeight - 2), UiTheme.PanelEdgeSoft);
             var bossFill = Panel("BossBarFill", bossBack, new Vector2(0f, 0f), Vector2.zero, new Vector2(220f, BarHeight - 2));
             _bossFill = bossFill.gameObject.AddComponent<Image>();
             _bossFill.color = new Color(0.85f, 0.2f, 0.2f, 1f);
@@ -231,10 +285,15 @@ namespace RuinRail.UI.Hud
             // Top-centre, under the boss band: the brief room-title reveal.
             _roomTitle = HudRoomTitleView.Create(root, RoomTitleRect);
             RoomTitlePanel = _roomTitle.Rect;
+            _notice = HudNoticeView.Create(root, NoticeRect);
 
             // Top-right: the coin token plus the Carried Coins number.
             _coins = HudCoinView.Create(root, CoinsRect, skin != null ? skin.CoinIcon : null);
             TopRightPanel = _coins.Rect;
+            // Under it: the enemy-remaining chip (hostile icon + "xN"); it only exists on screen while a standard
+            // combat encounter is active in the player's room.
+            _enemies = HudEnemyCountView.Create(root, EnemiesRect, skin != null ? skin.EnemyIcon : null);
+            _enemies.Show(false, 0);
 
             // The low-HP danger frame, underneath every HUD element of this canvas.
             _vignette = HudLowHealthVignetteView.Create(root, skin != null ? skin.LowHealthVignette : null);
@@ -286,6 +345,7 @@ namespace RuinRail.UI.Hud
             _consumable.Show(s);
             _biome.text = s.BiomeText;
             _coins.Show(s.Coins);
+            _enemies.Show(s.EnemiesVisible, s.EnemiesRemaining);
             // Low HP is judged against the effective maximum the HUD already reads (base + equipment), never a base value.
             _vignette.Show(s.Hp, s.MaxHp, s.VignetteSuppressed);
             BossPanel.gameObject.SetActive(s.BossVisible);
@@ -301,6 +361,15 @@ namespace RuinRail.UI.Hud
                 _party[i].gameObject.SetActive(visible);
                 if (visible) _party[i].text = $"{s.Party[i].Name}  {s.Party[i].StateText}";
             }
+
+            // Timed effects: one chip each, newest-expiring last, and one detail line naming the longest-running one.
+            // An expired effect leaves the snapshot on the runner's own tick, so a chip cannot outlive its effect.
+            for (var i = 0; i < _statusChips.Count; i++) _statusChips[i].Show(i < s.StatusEffects.Count ? s.StatusEffects[i] : null);
+            var hasStatus = s.StatusEffects.Count > 0;
+            _statusDetail.gameObject.SetActive(hasStatus);
+            // Cleared, not merely hidden: a line left holding the name of an expired buff is stale UI whether or not
+            // anything is drawing it, and the HUD's own readback would still report it.
+            _statusDetail.text = hasStatus ? UiText.Fit(s.StatusEffects[0].DetailText, 150) : string.Empty;
         }
     }
 }

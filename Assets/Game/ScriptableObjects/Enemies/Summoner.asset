@@ -34,6 +34,7 @@ MonoBehaviour:
   _chargeAttack: {fileID: 0}
   _bombRadiusTiles: 0
   _bombStaggerPower: 0
+  _projectileVisualId: proj_enemy_round
   _moveset: []
   _summonDefinition: {fileID: 11400000, guid: fa88f4eb50504d4da28e54df6fdae144, type: 2}
   _summonIntervalSeconds: 9

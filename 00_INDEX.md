@@ -16,7 +16,11 @@ Do **not** load the entire documentation set into every coding task. Use `produc
 - `CLAUDE.md` — automatic Claude Code project instructions.
 - `CLAUDE_START_HERE.md` — task/context protocol.
 - `ENVIRONMENT.md` — pinned Unity and package toolchain.
-- `scripts/` — Unity test harness.
+- `scripts/` — Unity test harness, release smoke (`run-release-smoke.sh`, `run-coop-release-smoke.sh`, `release_smoke_manifest.csv`).
+
+### Current Release Status
+- `production/FINAL_RELEASE_CANDIDATE_AUDIT.md` — **the current release-candidate status** (built-player scenarios, co-op proofs, smoke stability, NOT RUN items). Reports it names as superseded carry a banner and are historical.
+- `production/FINAL_RELEASE_FROZEN_BASELINE.csv` — the frozen shipping values the release gate compares against.
 
 ### Project
 - `01_PROJECT_VISION.md` — game identity and elevator pitch.
@@ -131,7 +135,7 @@ Do **not** load the entire documentation set into every coding task. Use `produc
 - `production/125_PROMPT_TEMPLATE.md`
 - `production/126_FINAL_MVP_CONTENT_COUNTS.md`
 - `production/127_MODEL_ROUTING_GUIDE.md`
-- `production/131_CURRENT_PRODUCTION_STATE_AFTER_TASK_148.md`
+- `production/131_CURRENT_PRODUCTION_STATE_AFTER_TASK_148.md` — historical (superseded; see Current Release Status)
 - `production/132_COMPLETION_ROADMAP_TASK149_184.md`
 - `production/133_REVIEW_GATED_COMPLETION_RUNNER.md`
 - `production/134_FINAL_PRODUCTION_ASSET_MANIFEST_RULES.md`

@@ -8,6 +8,8 @@ namespace RuinRail.Persistence
         [UnityEngine.Range(0f, 1f)] public float MasterVolume = 1f;
         [UnityEngine.Range(0f, 1f)] public float MusicVolume = 1f;
         [UnityEngine.Range(0f, 1f)] public float SfxVolume = 1f;
+        /// <summary>The biome ambience bed's own level (ui/90 AUDIO page); it still sits under the art/105 ceiling relative to SFX.</summary>
+        [UnityEngine.Range(0f, 1f)] public float AmbienceVolume = 1f;
         public bool Mute;
     }
 
@@ -20,6 +22,9 @@ namespace RuinRail.Persistence
         /// <summary>0 = use the display's current resolution.</summary>
         public int ResolutionWidth;
         public int ResolutionHeight;
+
+        /// <summary>Application.targetFrameRate; 0 = unlimited (the display's refresh under VSync).</summary>
+        public int FrameRateLimit;
     }
 
     [Serializable]
@@ -39,6 +44,12 @@ namespace RuinRail.Persistence
         public bool DamageNumbers = true;
         /// <summary>Enemy/player hit flash (photosensitivity).</summary>
         public bool HitFlash = true;
+        /// <summary>
+        /// Soft aim assist ON/OFF. Default ON — the shipped behaviour — and, because JsonUtility leaves a field the
+        /// document does not mention at its initializer, an older settings file without this key loads with it ON
+        /// rather than resetting anything.
+        /// </summary>
+        public bool AimAssist = true;
     }
 
     [Serializable]

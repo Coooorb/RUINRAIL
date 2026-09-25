@@ -67,6 +67,9 @@ namespace RuinRail.Dungeon.Runtime
                 if (!rooms.TryGetValue(placement.NodeId, out var root) || root == null) continue;
                 var runtime = root.gameObject.AddComponent<RoomRuntime>();
                 runtime.Configure(root, placement.NodeId, context.Depth, context.PartySize);
+                // Presentation only, before anything is spawned or bound: it writes to FloorDetail alone, so no
+                // collider, occupancy, marker, door or spawn this method goes on to use can be affected by it.
+                runtime.Dressing = RoomPropDressing.Apply(root, context.RunSeed, context.Depth, placement.NodeId);
                 runtime.SetScaling(context.Scaling);
                 runtime.SetSpawner(context.Spawner);
                 var isElite = layout.Graph != null && layout.Graph.GetNode(placement.NodeId).IsElite;
@@ -76,7 +79,8 @@ namespace RuinRail.Dungeon.Runtime
                     if (elite != null && context.EliteSpawner != null)
                     {
                         runtime.Configure(root, placement.NodeId, context.Depth, context.PartySize, isElite: true);
-                        var engagement = new EliteEngagement(elite, context.EliteSpawner, context.Depth, context.PartySize, context.Scaling);
+                        var engagement = new EliteEngagement(elite, context.EliteSpawner, context.Depth, context.PartySize, context.Scaling,
+                            context.RunSeed, placement.NodeId);
                         if (services?.Expedition != null) engagement.EliteDefeated += (_, xp) => { if (services.Expedition.IsExpeditionActive) services.Expedition.RecordEliteDefeated(xp); };
                         runtime.SetEngagement(engagement);
                     }

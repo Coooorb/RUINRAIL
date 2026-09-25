@@ -14,4 +14,6 @@ A free basic starter kit is always available when needed:
 
 > **Design update (2026-09-17, explicit owner instruction, LOOT/AMMO/AUDIO runtime fix pass):** the kit now guarantees the ammo-free Secondary. Previously "No guaranteed Secondary Weapon".
 
+> **Design update (2026-09-19, ECONOMY/CONTAINMENT/DEATH/PROJECTILES runtime fix pass, explicit owner instruction):** a player who reaches READY / START EXPEDITION with **no weapon equipped** (nothing equipped, everything stored, or weapon slots emptied by the save validator's quarantine) is not refused: the free Starter Loadout above is equipped through the same kit service before launch (`STARTER LOADOUT EQUIPPED` notice, non-blocking). A loadout that already has a weapon equipped is never touched; the fallback is idempotent, never writes Storage, never runs on scene load and never during a run. The existing first-profile grant and the no-weapon-anywhere rescue grant are unchanged.
+
 Starter items are deliberately weak and cannot be exploited for profit. Give them zero resale value or otherwise prevent repeated free-kit selling.

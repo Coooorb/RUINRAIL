@@ -37,7 +37,7 @@ namespace RuinRail.Tests
             Assert.Greater(AudioLevels.Master, 0f);
             Assert.Greater(AudioLevels.Music, 0f);
             Assert.Greater(AudioLevels.Sfx, 0f);
-            Assert.Greater(AudioLevels.AmbienceGain, 0f, "ambience has no slider of its own; it is a fixed share of SFX");
+            Assert.Greater(AudioLevels.AmbienceGain, 0f, "a fresh profile is audible on the ambience bus too (its own AUDIO-page level defaults to 100%)");
             Assert.IsFalse(AudioLevels.Muted);
         }
 

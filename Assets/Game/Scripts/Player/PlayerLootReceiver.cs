@@ -12,8 +12,20 @@ namespace RuinRail.Gameplay.Player
     /// The player's receiving side for world loot: exposes the backpack as a transfer-service container and holds the
     /// expedition's Carried Coins (base/77_ECONOMY). Co-op even split happens before coins reach this component.
     /// </summary>
-    public sealed class PlayerLootReceiver : MonoBehaviour, IItemReceiver, ICoinReceiver
+    public sealed class PlayerLootReceiver : MonoBehaviour, IItemReceiver, ICoinReceiver, IPickupQuantityHook
     {
+        private RuinRail.Gameplay.Stats.PlayerCombatEvents _combatEvents;
+
+        /// <summary>The collector's passive hub (Scavenger's Reserve); null = stacks are taken as they lie.</summary>
+        public void SetCombatEvents(RuinRail.Gameplay.Stats.PlayerCombatEvents events) => _combatEvents = events;
+
+        /// <summary>An ammo stack is taken with the wearer's ammo-pickup bonus; every other item as it lies.</summary>
+        public int PickupQuantityFor(ItemInstance item)
+        {
+            if (item == null || _combatEvents == null || _inventory == null || _inventory.Resolve(item.DefinitionId) is not AmmoItemDefinition) return item?.Quantity ?? 0;
+            return _combatEvents.RaiseAmmoPickupRolling(item.Quantity).FinalAmount;
+        }
+
         private PlayerInventory _inventory;
         private BackpackContainer _backpack;
         private readonly ItemTransferService _transferService = new();

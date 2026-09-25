@@ -26,6 +26,15 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         /// <summary>Piercing shots damage every target along their path once each and stop only at walls or range.</summary>
         public bool Piercing { get; }
 
+        /// <summary>
+        /// A non-piercing shot that passes through its first N targets (full damage each) before an ordinary hit resolves
+        /// it — a fully drawn Bow shot with Perfect Draw (items/34). 0 = ordinary.
+        /// </summary>
+        public int PierceCount { get; }
+
+        /// <summary>The in-flight presentation profile (ProjectileVisualCatalog id); null/empty = the side's default. Presentation only.</summary>
+        public string VisualId { get; }
+
         public ProjectileSpawnData(
             int damage,
             float speed,
@@ -37,8 +46,12 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             IImpactAttackerFeedback feedback = null,
             float explosionRadius = 0f,
             DamageTeam sourceTeam = DamageTeam.Enemy,
-            bool piercing = false)
+            bool piercing = false,
+            string visualId = null,
+            int pierceCount = 0)
         {
+            VisualId = visualId;
+            PierceCount = Mathf.Max(0, pierceCount);
             Piercing = piercing;
             Feedback = feedback;
             ExplosionRadius = Mathf.Max(0f, explosionRadius);
@@ -51,5 +64,9 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             Direction = direction;
             Source = source;
         }
+
+        /// <summary>The same shot with a named in-flight visual (nothing mechanical changes).</summary>
+        public ProjectileSpawnData WithVisual(string visualId) =>
+            new(Damage, Speed, MaxRange, Knockback, StaggerPower, Direction, Source, Feedback, ExplosionRadius, SourceTeam, Piercing, visualId, PierceCount);
     }
 }

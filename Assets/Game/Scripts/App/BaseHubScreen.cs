@@ -6,6 +6,8 @@ using RuinRail.Gameplay.Base;
 using RuinRail.Gameplay.Expedition;
 using RuinRail.Networking;
 using RuinRail.UI.Base;
+using RuinRail.UI.Inventory;
+using RuinRail.UI.Merchant;
 using RuinRail.UI.Multiplayer;
 using RuinRail.UI.Navigation;
 using RuinRail.UI.Onboarding;
@@ -33,11 +35,17 @@ namespace RuinRail.App
         private BaseHubViewModel _hub;
         private ShelterOnboardingViewModel _onboarding;
         private TerminalViewModel _terminal;
+        private SessionPartyBridge _partyBridge;
+        private SessionRoster _approvalRoster;
         private MenuInput _input;
         private RectTransform _root;
         private FocusList _stationList;
         private FocusList _panelList;
         private GameObject _panel;
+        /// <summary>The open station's data column (state rows), rebuilt when that state changes.</summary>
+        private GameObject _panelData;
+        private BaseStation? _panelStation;
+        private UiRect _panelDataRegion;
         private Text _feedback;
         private Text _footer;
         private Text _onboardingText;
@@ -45,6 +53,15 @@ namespace RuinRail.App
         private readonly UiPrompts _prompts = new();
         private readonly List<UiControl> _controls = new();
         private readonly List<UiControl> _panelControls = new();
+
+        // The Trader counter's graphical rows and details pane (the merchant's primitives, reused verbatim).
+        private readonly List<MerchantRowView> _traderRows = new();
+        private readonly List<Text> _traderDetailLines = new();
+        private readonly DetailPager _traderDetails = new(TraderDetailLines);
+        private Text _traderDetailTitle;
+        private Text _traderDetailSubtitle;
+        private string _traderDetailKey;
+        private FocusWindow _traderWindow;
 
         // Header and left-column labels are rebuilt in place rather than recreated, so nothing can accumulate.
         private Text _profileName;
@@ -55,6 +72,8 @@ namespace RuinRail.App
         private Text _expeditionHint;
 
         public BaseHubViewModel Hub => _hub;
+        /// <summary>The Multiplayer Terminal view model the MULTIPLAYER station shows (READY lives here).</summary>
+        public TerminalViewModel Terminal => _terminal;
         public ShelterOnboardingViewModel Onboarding => _onboarding;
         public MenuInput Input => _input;
         public FocusList StationList => _stationList;
@@ -78,8 +97,40 @@ namespace RuinRail.App
             var session = app.Menu.Session;
             if (session == null) { app.LoadScene(SceneNames.MainMenu); return; }
 
-            _terminal = new TerminalViewModel(new MultiplayerTerminalService(app.Network.Controller), session.Lobby, BaseSession.LocalClientId);
+            _terminal = new TerminalViewModel(new MultiplayerTerminalService(app.Network.Controller), session.Lobby, BaseSession.LocalClientId)
+            {
+                // READY in the terminal: a player with nothing equipped gets the free Starter Loadout first (base/75).
+                PrepareLoadout = session.EnsureStarterLoadoutIfEmpty
+            };
             _hub = new BaseHubViewModel(session, new MultiplayerTerminalService(app.Network.Controller), app.NextRunSeed);
+            // 81: a player who joins the hosted session becomes a party member here, so READY/START and the expedition's
+            // start snapshot describe the real party. Without this the terminal could show a full lobby while the run
+            // still started for one participant.
+            if (app.Network?.Driver is NgoNetworkDriver ngo)
+            {
+                _approvalRoster = new SessionRoster(app.Content.DisplayNamePolicy);
+                _approvalRoster.Add(BaseSession.LocalClientId, session.Profile.DisplayName, true);
+                ngo.ConfigureApproval(_approvalRoster);
+                ngo.SetConnectionPayload(session.Profile.DisplayName);
+                _partyBridge = new SessionPartyBridge(ngo.Connections, session.Lobby,
+                    clientId => _approvalRoster.Get(clientId)?.DisplayName ?? $"Player {clientId + 1}");
+            }
+
+            // 81/82 co-op: a joined client's Ready/loadout reaches the host's lobby, and the host's start starts this
+            // peer's own expedition (never a seed of its own). Each role only acts while this process has that role.
+            if (app.Coop != null)
+            {
+                app.Coop.BindHost(session.Lobby, session.Expedition);
+                app.Coop.BindClient(session.Lobby, BaseSession.LocalClientId, () => new LobbyMemberMessage
+                {
+                    DisplayName = session.Profile.DisplayName,
+                    Loadout = session.Loadout.ToSnapshot(),
+                    SkillRanks = CoopMemberProfile.RanksOf(session.Profile.Skills)
+                }, session.Expedition, session.Profile);
+                app.Coop.RunStartReceived += OnCoopRunStart;
+                // A joined client cannot start an expedition of its own: only the host starts the party (81).
+                _hub.Transit.StartGate = () => app.Coop.IsClient ? "Only the host can start." : null;
+            }
             _onboarding = new ShelterOnboardingViewModel(session, app.Content.DisplayNamePolicy);
             app.SettingsScreen.SetTutorialProgress(new SaveSlotTutorialProgress(session.Slot, session.Autosave, () => app.Settings.Current.Tutorial.ShowPrompts));
             app.MusicBinder.Attach(session.Progression);
@@ -100,6 +151,12 @@ namespace RuinRail.App
 
             _input.Stack.Push(_stationList);
             _hub.StationChanged += OnStationChanged;
+            _terminal.Changed += OnTerminalChanged;
+            // A skill purchase or a respec changes the Character panel's whole state (rank, effect, next-rank preview,
+            // remaining points). The mouse path already refreshed the panel from the control it clicked; keyboard and
+            // controller activation go straight through the focus stack, so without this the panel kept showing the
+            // ranks it was built with until the player left and re-entered the station.
+            session.Character.Changed += OnCharacterSheetChanged;
             _hub.SummaryReady += OnSummary;
             _onboarding.Changed += RefreshTexts;
             session.Expedition.ExpeditionStarted += OnExpeditionStarted;
@@ -218,6 +275,9 @@ namespace RuinRail.App
             y = ValueRow(inner, y, "LEVEL", "level");
             y = ValueRow(inner, y, "XP", "xp");
             y = ValueRow(inner, y, "POINTS", "points");
+            // The personal best belongs with the survivor's permanent record, next to level and XP: it is the one
+            // number a lost run still adds to. One row, existing StatRow language, no new screen.
+            y = ValueRow(inner, y, "DEEPEST", "deepest");
 
             y += 4;
             y = SectionHeading(_root, inner, y, "SHELTER");
@@ -238,7 +298,7 @@ namespace RuinRail.App
             // The contextual help line: the onboarding step, or the section the player is standing in.
             _onboardingText = UiKit.Label(_root, string.Empty,
                 new UiRect(inner.X, y, inner.Width, Mathf.Max(UiText.Height(2), inner.Bottom - y)), 1,
-                TextAnchor.UpperLeft, UiTheme.InkFaint, wrap: true);
+                TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
         }
 
         private int SectionHeading(Transform parent, UiRect inner, int y, string text)
@@ -289,7 +349,7 @@ namespace RuinRail.App
             UiKit.Label(_root,
                 "Everything in the loadout and backpack is lost if the expedition fails. XP, Banked Coins and Storage are not.",
                 new UiRect(inner.X, y, inner.Width, Mathf.Max(UiText.Height(6), inner.Bottom - y)), 1,
-                TextAnchor.UpperLeft, UiTheme.InkFaint, wrap: true);
+                TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
         }
 
         // ---------------- zone 4c: the station panel ----------------
@@ -301,8 +361,17 @@ namespace RuinRail.App
                 _input.Stack.Remove(_panelList);
                 Destroy(_panel);
                 _panel = null;
+                _panelData = null;
+                _panelStation = null;
                 _panelList = null;
                 _panelControls.Clear();
+                _traderRows.Clear();
+                _traderDetailLines.Clear();
+                _traderDetailTitle = null;
+                _traderDetailSubtitle = null;
+                _traderDetailKey = null;
+                _traderWindow = null;
+                _traderDetails.SetRows(null, false);
             }
 
             // Removing the old panel pops it off the focus stack, and popping restores the tab the panel was pushed
@@ -378,16 +447,200 @@ namespace RuinRail.App
             var bodyY = inner.Y + UiText.LineHeight * 2 + 4;
             UiKit.Plate(_panel.transform, new UiRect(inner.X, bodyY - 3, inner.Width, 1), UiTheme.PanelEdge, "HeaderRule");
 
-            // Two columns: the station's controls on the left, the state it holds on the right.
+            // Two columns: the station's controls on the left, the state it holds on the right. The Character Station
+            // is the one station whose data side carries sentences (an attribute's effect and next-rank preview) while
+            // its controls are only a name and a rank, so it gets the narrower control column and the wider data one.
+            // The Trader is the one station whose controls ARE its data: an offer row has to carry the icon, rarity,
+            // category and price, which does not fit a 147 px half column. It gets the full width for a merchant-style
+            // list with the details pane under it instead of beside it.
+            if (station == BaseStation.Trader)
+            {
+                BuildTraderPanel(new UiRect(inner.X, bodyY, inner.Width, inner.Bottom - bodyY));
+                _panelStation = station;
+                return;
+            }
+
             var gap = UiTheme.Pad;
-            var controlWidth = (inner.Width - gap) / 2;
+            var controlWidth = station == BaseStation.Character
+                ? Mathf.RoundToInt((inner.Width - gap) * 0.31f)
+                : (inner.Width - gap) / 2;
             var controls = new UiRect(inner.X, bodyY, controlWidth, inner.Bottom - bodyY);
             var data = new UiRect(inner.X + controlWidth + gap, bodyY, inner.Width - controlWidth - gap, inner.Bottom - bodyY);
 
             UiKit.Plate(_panel.transform, new UiRect(data.X - gap / 2, bodyY, 1, data.Height), UiTheme.PanelEdgeSoft, "ColumnRule");
 
             BuildStationControls(station, controls);
+            _panelStation = station;
+            _panelDataRegion = data;
             BuildStationData(view, data);
+        }
+
+        /// <summary>
+        /// Re-reads the open station's state rows (READY / LOADOUT status, the terminal's status and notice, a trader's
+        /// stock) so what a control just did is visible without leaving and reopening the station.
+        /// </summary>
+        private void RefreshStationData()
+        {
+            if (_panel == null || !_panelStation.HasValue || _hub == null) return;
+            // The Trader has no key/value data column: its state lives on the offer rows and in the details pane.
+            if (_panelStation.Value == BaseStation.Trader) { RenderTrader(); return; }
+            BuildStationData(StationPresentation.For(_panelStation.Value, _hub, _terminal), _panelDataRegion);
+        }
+
+        private void OnTerminalChanged(TerminalViewModel _) => RefreshStationData();
+
+        private void OnCharacterSheetChanged(RuinRail.Gameplay.Base.CharacterSheet _)
+        {
+            if (_panelStation == BaseStation.Character) RefreshStationData();
+        }
+
+        // ---------------- the Trader counter ----------------
+
+        /// <summary>Visible offer rows before the list scrolls (the focus window pages the rest).</summary>
+        public const int TraderVisibleRows = 4;
+        /// <summary>Detail lines under the counter (the pager adds its own hint line when they overflow).</summary>
+        public const int TraderDetailLines = 6;
+
+        public IReadOnlyList<MerchantRowView> TraderRows => _traderRows;
+        public string TraderDetailTitleText => _traderDetailTitle != null ? _traderDetailTitle.text : string.Empty;
+        public string TraderDetailSubtitleText => _traderDetailSubtitle != null ? _traderDetailSubtitle.text : string.Empty;
+        public IReadOnlyList<string> TraderDetailTexts => _traderDetailLines.Select(l => l.text).ToList();
+        /// <summary>The details pager for the counter; the inputs step it, the tests read it.</summary>
+        public DetailPager TraderDetails => _traderDetails;
+
+        /// <summary>
+        /// The counter: graphical offer rows over a details pane, then SELL.
+        ///
+        /// The rows are <see cref="MerchantRowView"/> — the same primitive the Dungeon Merchant uses — so an offer
+        /// carries its icon, rarity frame, rarity/category subtitle and price, and two rolls of one definition are
+        /// told apart at a glance. The focus list is unchanged (<c>trader.buy.N</c> plus <c>trader.sell</c>), so the
+        /// transaction path, the navigation contract and the keyboard/controller/pointer behaviour are all the ones
+        /// that were already accepted.
+        /// </summary>
+        private void BuildTraderPanel(UiRect region)
+        {
+            _panelList = ScreenNavigation.Trader(_hub.Trader, () => _selectedInstance);
+            _selectedInstance = FirstSelectable(BaseStation.Trader);
+
+            var rowPitch = MerchantRowView.Height + 2;
+            var listHeight = TraderVisibleRows * rowPitch;
+            var sellY = region.Y + listHeight + 2;
+            const int sellHeight = 16;
+            var detailTop = sellY + sellHeight + 6;
+
+            var skin = UiSkin.Load();
+            var offerItems = _panelList.Items.Where(i => ShelterTraderPresentation.OfferIndexOf(i.Id) >= 0).ToList();
+            var window = _traderWindow = new FocusWindow(_panelList, TraderVisibleRows, offerItems.Count);
+            for (var slot = 0; slot < TraderVisibleRows; slot++)
+            {
+                var bounds = new UiRect(region.X, region.Y + slot * rowPitch, region.Width, MerchantRowView.Height);
+                var row = MerchantRowView.Create(_panel.transform, bounds, skin != null ? skin.InventorySlot : null, "TraderRow" + slot);
+                row.gameObject.SetActive(slot < offerItems.Count);
+                row.Bind(_panelList, slot < offerItems.Count ? offerItems[slot] : null,
+                    i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); RefreshStationData(); });
+                _traderRows.Add(row);
+                window.Register(slot, row.Control);
+                _panelControls.Add(row.Control);
+            }
+
+            var sellItem = _panelList.Find("trader.sell");
+            if (sellItem != null)
+            {
+                var sell = UiKit.Control(_panel.transform, _panelList, sellItem,
+                    new UiRect(region.X, sellY, region.Width, sellHeight), ControlRole.Button,
+                    i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); RefreshStationData(); },
+                    labelAnchor: TextAnchor.MiddleLeft);
+                _panelControls.Add(sell);
+            }
+
+            UiKit.Plate(_panel.transform, new UiRect(region.X, detailTop - 4, region.Width, 1), UiTheme.PanelEdgeSoft, "TraderRule");
+            _traderDetailTitle = UiKit.Label(_panel.transform, string.Empty,
+                new UiRect(region.X, detailTop, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+            _traderDetailSubtitle = UiKit.Label(_panel.transform, string.Empty,
+                new UiRect(region.X, detailTop + UiText.LineHeight, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+            for (var i = 0; i < TraderDetailLines; i++)
+            {
+                var y = detailTop + UiText.LineHeight * 2 + 3 + i * UiText.LineHeight;
+                if (y + UiText.Height() > region.Bottom) break;
+                _traderDetailLines.Add(UiKit.Label(_panel.transform, string.Empty,
+                    new UiRect(region.X, y, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink));
+            }
+
+            _panel.AddComponent<FocusWindowDriver>().Bind(window);
+            _panelList.FocusChanged += OnTraderFocusChanged;
+            _input.Stack.Push(_panelList);
+            RenderTrader();
+        }
+
+        private void OnTraderFocusChanged(FocusItem _) => RenderTrader();
+
+        /// <summary>Re-reads the counter: stock, sold state, affordability, and the focused offer's details.</summary>
+        private void RenderTrader()
+        {
+            if (_traderRows.Count == 0 || _hub == null) return;
+            var rows = ShelterTraderPresentation.Rows(_hub.Trader.Offers);
+            var banked = _hub.Trader.Banked;
+            var loadout = Session?.Loadout;
+            var skin = UiSkin.Load();
+            Func<int, Sprite> rarityFrame = skin != null ? skin.RarityFrame : null;
+            var rowWidth = Mathf.RoundToInt(((RectTransform)_traderRows[0].transform).sizeDelta.x);
+
+            // The focus window owns which offers are on screen; reading its offset (rather than recomputing one) is
+            // what keeps the row art and the focused control looking at the same entry on the frame focus moves.
+            _traderWindow?.Refresh();
+            var focusedIndex = ShelterTraderPresentation.OfferIndexOf(_panelList?.Focused?.Id);
+            var first = _traderWindow != null ? _traderWindow.Offset : 0;
+
+            for (var slot = 0; slot < _traderRows.Count; slot++)
+            {
+                var at = first + slot;
+                var row = at < rows.Count ? rows[at] : null;
+                _traderRows[slot].Show(row, rarityFrame, rowWidth);
+                if (row == null) continue;
+                // The counter says what the Dungeon Merchant's subtitle cannot: whether the coins are there and
+                // whether this definition is already worn, so a duplicate buy is a decision rather than a surprise.
+                if (!row.IsSold && row.Price > banked) _traderRows[slot].Annotate("NO COINS", UiTheme.Danger);
+                else if (ShelterTraderPresentation.IsEquippedAlready(row, loadout)) _traderRows[slot].Annotate("EQUIPPED", UiTheme.Cyan);
+            }
+
+            RenderTraderDetails(rows, focusedIndex, banked, loadout);
+        }
+
+        private void RenderTraderDetails(List<MerchantRow> rows, int focusedIndex, int banked, RuinRail.Gameplay.Items.PlayerInventory loadout)
+        {
+            if (_traderDetailTitle == null) return;
+            foreach (var line in _traderDetailLines) line.text = string.Empty;
+            var row = focusedIndex >= 0 ? rows.FirstOrDefault(r => r.Index == focusedIndex) : null;
+            var width = _traderDetailTitle != null ? Mathf.RoundToInt(((RectTransform)_traderDetailTitle.transform).sizeDelta.x) : 0;
+            var tooltip = ShelterTraderPresentation.TooltipFor(row, loadout, _app != null ? _app.Specials : null);
+            if (tooltip == null)
+            {
+                _traderDetails.SetRows(null, false);
+                _traderDetailKey = null;
+                _traderDetailTitle.text = rows.Count == 0 ? "THE COUNTER IS BARE" : "SELECT AN OFFER";
+                _traderDetailTitle.color = UiTheme.InkMuted;
+                _traderDetailSubtitle.text = rows.Count == 0
+                    ? "Stock rotates as the Trader is upgraded."
+                    : "Its stats, affixes and comparison show here.";
+                return;
+            }
+
+            var affordable = row.IsSold || row.Price <= banked;
+            _traderDetailTitle.text = UiText.Fit(tooltip.Name, width);
+            _traderDetailTitle.color = UiTheme.Ink;
+            _traderDetailSubtitle.text = UiText.Fit(ShelterTraderPresentation.DetailSubtitle(row, tooltip, affordable), width);
+            _traderDetailSubtitle.color = affordable ? UiTheme.InkMuted : UiTheme.Danger;
+
+            var key = row.Item != null ? row.Item.InstanceId : row.Index.ToString();
+            var sameItem = key == _traderDetailKey;
+            _traderDetailKey = key;
+            _traderDetails.SetRows(ItemDetailLayout.Compose(tooltip, ShelterTraderPresentation.CompareFor(row, loadout, _app != null ? _app.Specials : null), width), sameItem);
+            var visible = _traderDetails.Visible(DetailPagingInput.Hint());
+            for (var i = 0; i < _traderDetailLines.Count && i < visible.Count; i++)
+            {
+                _traderDetailLines[i].text = ItemDetailLayout.Render(visible[i], width);
+                _traderDetailLines[i].color = visible[i].Color;
+            }
         }
 
         private void BuildStationControls(BaseStation station, UiRect region)
@@ -417,7 +670,7 @@ namespace RuinRail.App
             for (var slot = 0; slot < rows.Count && slot < _panelList.Items.Count; slot++)
             {
                 var control = UiKit.Control(_panel.transform, _panelList, _panelList.Items[slot], rows[slot], role,
-                    i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); },
+                    i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); RefreshStationData(); },
                     labelAnchor: role == ControlRole.Primary ? TextAnchor.MiddleCenter : TextAnchor.MiddleLeft);
                 window.Register(slot, control);
                 _panelControls.Add(control);
@@ -430,9 +683,18 @@ namespace RuinRail.App
         /// <summary>The station data column: headings, key/value rows, or an honest sentence when there is nothing.</summary>
         private void BuildStationData(StationView view, UiRect region)
         {
+            if (_panelData != null) Destroy(_panelData);
+            _panelData = new GameObject("StationData");
+            _panelData.transform.SetParent(_panel.transform, false);
+            var dataRect = _panelData.AddComponent<RectTransform>();
+            dataRect.anchorMin = dataRect.anchorMax = new Vector2(0f, 1f);
+            dataRect.pivot = new Vector2(0f, 1f);
+            dataRect.anchoredPosition = Vector2.zero;
+            dataRect.sizeDelta = Vector2.zero;
+            var parent = _panelData.transform;
             if (view.IsEmpty)
             {
-                UiKit.Label(_panel.transform, view.EmptyText,
+                UiKit.Label(parent, view.EmptyText,
                     new UiRect(region.X, region.Y, region.Width, UiText.Height(6)), 1,
                     TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
                 return;
@@ -447,14 +709,23 @@ namespace RuinRail.App
                 {
                     y += 3;
                     if (y + UiText.Height() > region.Bottom) break;
-                    UiKit.Label(_panel.transform, UiText.Fit(row.Key, region.Width),
+                    UiKit.Label(parent, UiText.Fit(row.Key, region.Width),
                         new UiRect(region.X, y, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
-                    UiKit.Plate(_panel.transform, new UiRect(region.X, y + UiText.Height() + 1, region.Width, 1), UiTheme.AmberDim, "Rule");
+                    UiKit.Plate(parent, new UiRect(region.X, y + UiText.Height() + 1, region.Width, 1), UiTheme.AmberDim, "Rule");
                     y += UiText.LineHeight + 3;
                     continue;
                 }
 
-                UiKit.StatRow(_panel.transform, new UiRect(region.X, y, region.Width, UiText.Height()), row.Key, row.Value);
+                if (row.IsText)
+                {
+                    // A sentence needs the whole column: the key/value split would clip it at 56 %.
+                    UiKit.Label(parent, UiText.Fit(row.Key, region.Width),
+                        new UiRect(region.X, y, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+                    y += UiText.LineHeight;
+                    continue;
+                }
+
+                UiKit.StatRow(parent, new UiRect(region.X, y, region.Width, UiText.Height()), row.Key, row.Value);
                 y += UiText.LineHeight;
             }
         }
@@ -468,7 +739,7 @@ namespace RuinRail.App
 
             var hintWidth = UiText.Width(_prompts.Footer()) + 8;
             _footer = UiKit.Label(_root, _prompts.Footer(),
-                new UiRect(UiTheme.ScreenMargin, footer.Y + 5, hintWidth, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkFaint);
+                new UiRect(UiTheme.ScreenMargin, footer.Y + 5, hintWidth, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
 
             // Feedback gets its own reserved strip to the right of the hints, so the two can never run together.
             var feedbackX = UiTheme.ScreenMargin + hintWidth + UiTheme.Pad;
@@ -500,6 +771,7 @@ namespace RuinRail.App
             Set("level", sheet.Level.ToString());
             Set("xp", sheet.IsMaxLevel ? "max" : $"{sheet.XpIntoLevel}/{sheet.XpToNextLevel}");
             Set("points", sheet.UnspentPoints.ToString());
+            Set("deepest", session.Profile.DeepestDepthReached > 0 ? "DEPTH " + session.Profile.DeepestDepthReached : "none yet");
             Set("banked", session.Banked.Balance + " C");
             Set("storage", $"{session.Storage.Items.Count()}/{session.Storage.Capacity}");
             Set("trader", "Lv " + _hub.Workshop.TraderLevel);
@@ -524,7 +796,7 @@ namespace RuinRail.App
                 : _hub.Current.HasValue
                     ? StationPresentation.DescriptionOf(_hub.Current.Value)
                     : "Arrows or the mouse pick a station. Esc leaves the current station.";
-            _onboardingText.color = !_onboarding.IsComplete ? UiTheme.Amber : UiTheme.InkFaint;
+            _onboardingText.color = !_onboarding.IsComplete ? UiTheme.Amber : UiTheme.InkMuted;
         }
 
         private void Set(string id, string value)
@@ -537,6 +809,13 @@ namespace RuinRail.App
         {
             _footer.text = _prompts.Footer();
             RefreshTexts();
+            // The counter's details page with the same wheel / PageUp-Down / right-stick input the merchant uses.
+            if (_panelStation == BaseStation.Trader && _traderDetails.Overflows)
+            {
+                var step = DetailPagingInput.Poll();
+                if (step > 0 && _traderDetails.PageDown()) RenderTrader();
+                else if (step < 0 && _traderDetails.PageUp()) RenderTrader();
+            }
         }
 
         private void OnDestroy()
@@ -551,7 +830,15 @@ namespace RuinRail.App
             }
 
             if (_onboarding != null) { _onboarding.Changed -= RefreshTexts; _onboarding.Dispose(); }
-            if (Session != null) Session.Expedition.ExpeditionStarted -= OnExpeditionStarted;
+            _partyBridge?.Dispose();
+            _partyBridge = null;
+            if (_app?.Coop != null) _app.Coop.RunStartReceived -= OnCoopRunStart;
+            if (Session != null)
+            {
+                Session.Expedition.ExpeditionStarted -= OnExpeditionStarted;
+                Session.Character.Changed -= OnCharacterSheetChanged;
+            }
+            if (_terminal != null) _terminal.Changed -= OnTerminalChanged;
             _terminal?.Dispose();
         }
 
@@ -563,6 +850,21 @@ namespace RuinRail.App
         };
 
         private void OnExpeditionStarted(ExpeditionState state) => _app.LoadScene(SceneNames.Dungeon);
+
+        /// <summary>
+        /// Client: the host started the party's expedition. This peer commits its loadout and starts its own at-risk
+        /// transaction from the host's start (seed, biome, party size, participant id) — the same Start transaction
+        /// the host ran — and the expedition-started handler above takes it into the Dungeon.
+        /// </summary>
+        private void OnCoopRunStart(RunStartMessage run)
+        {
+            var session = Session;
+            if (session == null || session.Expedition.IsExpeditionActive || _app.Coop == null || !_app.Coop.IsClient) return;
+            session.EnsureStarterLoadoutIfEmpty();
+            session.CommitLoadoutToProfile();
+            var state = _app.Coop.ApplyRunStart(run);
+            if (state == null) Debug.LogError($"COOP-CLIENT could not start the host's run {run?.StartId}.");
+        }
 
         private void OnSummary(ExpeditionSummaryViewModel summary)
         {

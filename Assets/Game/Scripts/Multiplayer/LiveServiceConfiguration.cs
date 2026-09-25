@@ -54,6 +54,72 @@ namespace RuinRail.Networking
             Compose(mode, mode == Mode.Fake ? null : UnityEngine.Object.FindFirstObjectByType<Unity.Netcode.NetworkManager>());
 
         /// <summary>
+        /// Composes for this process, creating the NetworkManager when live composition needs one.
+        ///
+        /// The shipped player had no NetworkManager anywhere: live mode resolved, found none and returned a null
+        /// driver, so every "online" session fell back to the in-memory fake. The manager is therefore built here,
+        /// next to the app root, with the transport and the one networked player prefab registered — which is what the
+        /// session controller then has to drive.
+        /// </summary>
+        public static (IMultiplayerServices Services, INetworkDriver Driver) ComposeForProcess(Mode mode, GameObject networkPlayerPrefab) => ComposeForProcess(mode, networkPlayerPrefab, null);
+
+        /// <summary>
+        /// As above, also registering the co-op expedition channel prefab and spawning it whenever this process starts
+        /// hosting: without it a joining client can own a character but never learns the dungeon, the enemies or the
+        /// vote (the gap the co-op completion pass closed).
+        /// </summary>
+        public static (IMultiplayerServices Services, INetworkDriver Driver) ComposeForProcess(Mode mode, GameObject networkPlayerPrefab, GameObject coopLinkPrefab)
+        {
+            if (mode == Mode.Fake) return (new FakeMultiplayerServices(), new FakeNetworkDriver());
+            var manager = UnityEngine.Object.FindFirstObjectByType<Unity.Netcode.NetworkManager>();
+            if (manager == null) manager = ComposeNetworkManager(networkPlayerPrefab);
+            if (coopLinkPrefab != null) CoopLinkSpawner.Install(manager, coopLinkPrefab);
+            else Debug.LogError("The co-op expedition channel prefab is missing from the content catalog; joined clients could not play an expedition.");
+            return Compose(mode, manager);
+        }
+
+        /// <summary>
+        /// Transport payload ceiling for the co-op channel's reliable records (an inventory snapshot is a few KB). Both
+        /// peers compose the same value; it is a transport buffer size, not a gameplay value.
+        /// </summary>
+        public const int CoopMaxPayloadBytes = 65536;
+
+        /// <summary>
+        /// The process's NetworkManager: UDP transport, no automatic player object, the player prefab registered.
+        ///
+        /// It is deliberately a ROOT object that survives scene loads on its own: NGO throws in a player build if the
+        /// NetworkManager is nested under anything, so it must never be parented to the app root.
+        /// </summary>
+        private static Unity.Netcode.NetworkManager ComposeNetworkManager(GameObject networkPlayerPrefab)
+        {
+            var go = new GameObject("NetworkManager");
+            UnityEngine.Object.DontDestroyOnLoad(go);
+            var manager = go.AddComponent<Unity.Netcode.NetworkManager>();
+            var transport = go.AddComponent<Unity.Netcode.Transports.UTP.UnityTransport>();
+            transport.MaxPayloadSize = CoopMaxPayloadBytes;
+            manager.NetworkConfig = new Unity.Netcode.NetworkConfig
+            {
+                NetworkTransport = transport,
+                // The presence service creates exactly one entity per member (82), so NGO must not add one of its own.
+                PlayerPrefab = null,
+                ConnectionApproval = true,
+                EnableSceneManagement = false,
+                TickRate = 30
+            };
+
+            if (networkPlayerPrefab != null && networkPlayerPrefab.GetComponent<Unity.Netcode.NetworkObject>() != null)
+            {
+                manager.AddNetworkPrefab(networkPlayerPrefab);
+            }
+            else
+            {
+                Debug.LogError("The networked player prefab is missing from the content catalog; a session could not spawn players.");
+            }
+
+            return manager;
+        }
+
+        /// <summary>
         /// Builds the adapter pair for a mode. Live needs a NetworkManager; without one there is nothing to drive, so
         /// it reports that plainly instead of silently degrading to a fake.
         /// </summary>

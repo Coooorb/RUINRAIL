@@ -21,3 +21,6 @@ Depth is theoretically infinite.
 
 ## Team Rule
 The party stays together. No individual extraction and no split-depth parties.
+
+## New Depth Heal (implementation note 2026-09-20)
+When the party chooses **DESCEND** and the next depth has been generated, every living expedition participant begins that depth at their own **effective** maximum HP (`PlayerStats.MaxHealth` over the current loadout: base + armor / accessory / affix modifiers — 120/120 with a Scrap Vest, never a hard-coded base). The heal runs exactly once per successful depth transition, through the ordinary host-authoritative heal path; it never resurrects a Dead or Downed participant, and it is never triggered by entering or revisiting a room, opening or reopening the Transit decision, voting, rebuilding inside the same depth, equipment changes or menus. Returning to the Shelter does not use it.

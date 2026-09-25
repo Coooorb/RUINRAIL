@@ -5,9 +5,20 @@ using UnityEngine;
 
 namespace RuinRail.Presentation.Vfx
 {
-    /// <summary>One pooled world-space number (TextMesh, built-in font: placeholder until the pixel font arrives).</summary>
+    /// <summary>
+    /// One pooled world-space number.
+    ///
+    /// The figure is drawn twice: a near-black copy one reference pixel down-right, then the number itself over it.
+    /// Plain white text had nothing behind it, so a number landing on a lit floor tile, a muzzle flash or an impact
+    /// flash disappeared into it exactly when the player most wanted to read it — and a translucent plate behind every
+    /// number would be a box of UI in the middle of the fight. A one-pixel shadow is what pixel art uses instead: it
+    /// costs one extra quad, it reads at any background value, and it keeps the figure itself unblurred and on grid.
+    /// </summary>
     public sealed class DamageNumber : MonoBehaviour
     {
+        /// <summary>Shadow offset in reference pixels (one pixel right and one down, on the 32 PPU grid).</summary>
+        public const int ShadowPixels = 1;
+
         private DamageNumberPool _pool;
         private float _remaining;
         private float _lifetime;
@@ -15,6 +26,8 @@ namespace RuinRail.Presentation.Vfx
         private float _risePixels;
 
         public TextMesh Text { get; private set; }
+        /// <summary>The dark copy under the figure; the tests assert it tracks the number's own text.</summary>
+        public TextMesh Shadow { get; private set; }
         public int Value { get; private set; }
         public bool IsHeal { get; private set; }
         public bool IsActive => _remaining > 0f;
@@ -29,6 +42,28 @@ namespace RuinRail.Presentation.Vfx
             Text.anchor = TextAnchor.MiddleCenter;
             var renderer = GetComponent<MeshRenderer>();
             if (renderer != null) SpriteSorting.Apply(renderer, SortingRole.WorldUi);
+
+            if (Shadow == null)
+            {
+                var shadowGo = new GameObject("Shadow");
+                shadowGo.transform.SetParent(transform, false);
+                var offset = ShadowPixels / (float)SortingConvention.PixelsPerUnit;
+                shadowGo.transform.localPosition = new Vector3(offset, -offset, 0f);
+                Shadow = shadowGo.AddComponent<TextMesh>();
+                Shadow.font = Text.font;
+                Shadow.characterSize = Text.characterSize;
+                Shadow.fontSize = Text.fontSize;
+                Shadow.anchor = Text.anchor;
+                Shadow.color = new Color(0.03f, 0.04f, 0.05f, 0.9f);
+                var shadowRenderer = shadowGo.GetComponent<MeshRenderer>();
+                if (shadowRenderer != null)
+                {
+                    shadowRenderer.sharedMaterial = Text.font != null ? Text.font.material : shadowRenderer.sharedMaterial;
+                    SpriteSorting.Apply(shadowRenderer, SortingRole.WorldUi);
+                    // One order under the figure, so the shadow can never draw over the number it is behind.
+                    shadowRenderer.sortingOrder -= 1;
+                }
+            }
         }
 
         public void Show(int value, bool isHeal, Vector2 position, float lifetime, float risePixels)
@@ -41,6 +76,7 @@ namespace RuinRail.Presentation.Vfx
             _risePixels = risePixels;
             Text.text = isHeal ? "+" + value : value.ToString();
             Text.color = isHeal ? new Color(0.55f, 1f, 0.55f) : Color.white;
+            if (Shadow != null) Shadow.text = Text.text;
             transform.position = new Vector3(position.x, position.y, 0f);
             gameObject.SetActive(true);
         }

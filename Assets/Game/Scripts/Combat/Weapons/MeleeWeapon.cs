@@ -20,12 +20,22 @@ namespace RuinRail.Gameplay.Combat.Weapons
         private IDamageRoller _damageRoller;
         private IPlayerStatsProvider _stats;
         private IImpactAttackerFeedback _impactFeedback;
+        private RuinRail.Gameplay.Stats.PlayerCombatEvents _combatEvents;
         private readonly HashSet<IDamageable> _hitThisSwing = new();
 
         private float _cooldownRemaining;
         private float _phaseTimeRemaining;
 
         public MeleeAttackState State { get; private set; } = MeleeAttackState.Idle;
+
+        /// <summary>Swings per second after the capped Melee Attack Speed bonus.</summary>
+        public float CurrentAttackRate => _definition == null ? 0f : WeaponStatMath.MeleeAttackRate(_definition.AttackRate, _stats);
+
+        /// <summary>Wind-up window after the capped Melee Attack Speed bonus; the whole cadence speeds up, not only the cooldown.</summary>
+        public float CurrentWindUpSeconds => _definition == null ? 0f : WeaponStatMath.MeleePhaseSeconds(_definition.WindUpSeconds, _stats);
+
+        /// <summary>Recovery window after the capped Melee Attack Speed bonus.</summary>
+        public float CurrentRecoverySeconds => _definition == null ? 0f : WeaponStatMath.MeleePhaseSeconds(_definition.RecoverySeconds, _stats);
         public int HitCountThisSwing => _hitThisSwing.Count;
         public bool IsEquipped { get; private set; } = true;
 
@@ -62,6 +72,12 @@ namespace RuinRail.Gameplay.Combat.Weapons
         public void SetStats(IPlayerStatsProvider stats)
         {
             _stats = stats;
+        }
+
+        /// <summary>The wearer's passive event hub (items/34 hooks); null = no passive hooks (enemies, tests).</summary>
+        public void SetCombatEvents(RuinRail.Gameplay.Stats.PlayerCombatEvents events)
+        {
+            _combatEvents = events;
         }
 
         public void SetImpactFeedback(IImpactAttackerFeedback feedback)
@@ -130,7 +146,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
                     {
                         ResolveActiveHit();
                         State = MeleeAttackState.Recovery;
-                        _phaseTimeRemaining = _definition.RecoverySeconds;
+                        _phaseTimeRemaining = CurrentRecoverySeconds;
                     }
 
                     break;
@@ -166,10 +182,10 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
             _hitThisSwing.Clear();
             State = MeleeAttackState.WindUp;
-            _phaseTimeRemaining = _definition.WindUpSeconds;
+            _phaseTimeRemaining = CurrentWindUpSeconds;
             _cooldownRemaining = Mathf.Max(
-                _definition.WindUpSeconds + _definition.RecoverySeconds,
-                1f / _definition.AttackRate);
+                CurrentWindUpSeconds + CurrentRecoverySeconds,
+                1f / CurrentAttackRate);
 
             return true;
         }
@@ -189,6 +205,8 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
             var halfArc = _definition.AttackArcDegrees * 0.5f;
             var candidates = Physics2D.OverlapCircleAll(origin, _definition.AttackRange);
+            // One attack per swing (not per target): the wearer's per-attack hooks (Fresh Mag) apply to every target it hits.
+            var attackMultiplier = _combatEvents == null ? 1f : (100 + _combatEvents.RaiseAttackDamageRolling(_definition.DamageMax, false).BonusPercent) / 100f;
 
             foreach (var candidate in candidates)
             {
@@ -225,11 +243,13 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
                 _hitThisSwing.Add(damageable);
                 // Integer roll first, then the (already capped) weapon-damage multiplier, rounded back to an integer.
-                var damage = Mathf.Max(0, Mathf.RoundToInt(_damageRoller.Roll(_definition.DamageMin, _definition.DamageMax) * (_stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f)));
+                var damage = Mathf.Max(0, Mathf.RoundToInt(_damageRoller.Roll(_definition.DamageMin, _definition.DamageMax) * (_stats?.GetMultiplier(StatId.WeaponDamage) ?? 1f) * attackMultiplier));
                 if (damageable.TryApplyDamage(new DamageRequest(damage)))
                 {
-                    var knockback = _definition.Knockback * (_stats?.GetMultiplier(StatId.Knockback) ?? 1f);
-                    var stagger = _definition.StaggerPower * (_stats?.GetMultiplier(StatId.StaggerPower) ?? 1f);
+                    // A melee kill (Combat Bracelet / Flow State, and any kill for Adrenaline); a co-op replica never dies locally.
+                    if (candidate.GetComponentInParent<HealthComponent>() is { IsAlive: false }) _impactFeedback?.OnTargetKilled(true);
+                    var knockback = WeaponStatMath.Knockback(_definition.Knockback, _stats);
+                    var stagger = WeaponStatMath.StaggerPower(_definition.StaggerPower, _stats);
                     ImpactDispatcher.Apply(candidate, new ImpactRequest(toTarget, knockback, stagger, DamageKind.Normal, gameObject, _impactFeedback));
                 }
             }

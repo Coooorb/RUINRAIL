@@ -80,7 +80,7 @@ namespace RuinRail.Tests.EditMode
             var saves = new SaveSlotService(new MemorySaveStore(), Resolve);
             var menu = new MainMenuViewModel(saves, _configs);
             var mainList = ScreenNavigation.MainMenu(menu);
-            CollectionAssert.AreEqual(new[] { "menu.Play", "menu.Settings", "menu.Quit" }, Walk(mainList));
+            CollectionAssert.AreEqual(new[] { "menu.Play", "menu.Settings", "menu.Help", "menu.Quit" }, Walk(mainList));
             mainList.Focus("menu.Play");
             Assert.IsTrue(mainList.ActivateFocused());
             Assert.AreEqual(MainMenuState.Base, menu.State, "Activation runs the view model's own action.");
@@ -90,6 +90,10 @@ namespace RuinRail.Tests.EditMode
             using var hub = new BaseHubViewModel(session, terminal, () => 5);
             var hubList = ScreenNavigation.BaseHub(hub);
             CollectionAssert.AreEqual(BaseHubViewModel.Stations.Select(s => "station." + s).Append("station.close"), Walk(hubList), "All 7 stations + leave.");
+
+            // The Character Station only offers a rank it could actually sell: its controls are disabled without a
+            // Skill Point in hand (progression pass). Give the fixture profile the levels that make them purchasable.
+            session.Progression.AddXp(RuinRail.Gameplay.Progression.LevelCurve.TotalXpForLevel(4));
 
             string selected = session.Loadout.GetEquipped(EquippedSlot.Armor)?.InstanceId;
             var screens = new (string name, FocusList list, string[] mustContain)[]
@@ -124,20 +128,34 @@ namespace RuinRail.Tests.EditMode
             using var reader = new PlayerInputReader();
             using var rebinder = new InputRebinder(reader.Asset);
             using var settings = new SettingsViewModel(settingsService, rebinder, null);
+            // Settings is category-based: the root lists the four real categories plus RESET TO DEFAULTS and BACK;
+            // each category is its own page of adjustable rows.
             var settingsList = ScreenNavigation.Settings(settings);
-            var settingsWalk = Walk(settingsList);
-            Assert.IsTrue(settingsWalk.Contains("settings.tab.Controls"));
-            Assert.IsTrue(settingsWalk.Contains("settings.shake") && settingsWalk.Contains("settings.hit_flash") && settingsWalk.Contains("settings.damage_numbers"), "Accessibility toggles are reachable.");
-            Assert.IsTrue(settingsWalk.Contains("settings.rebind.Keyboard&Mouse.Dash."), "Rebind rows are reachable (keyboard scheme by default).");
-            Assert.IsFalse(settingsWalk.Contains("settings.rebind.Keyboard&Mouse.Pause."), "Fixed bindings are not focusable.");
-            Assert.IsTrue(settingsWalk.Contains("settings.apply") && settingsWalk.Contains("settings.discard") && settingsWalk.Contains("settings.defaults"));
-            settingsList.Focus("settings.mute");
-            settingsList.ActivateFocused();
+            CollectionAssert.AreEqual(new[] { "settings.category.Video", "settings.category.Audio", "settings.category.Controls", "settings.category.Gameplay", "settings.defaults", "settings.back" }, Walk(settingsList));
+            var gameplay = Walk(ScreenNavigation.SettingsPage(settings, SettingsTab.Gameplay));
+            Assert.IsTrue(gameplay.Contains("settings.shake") && gameplay.Contains("settings.hit_flash") && gameplay.Contains("settings.damage_numbers") && gameplay.Contains("settings.tutorials"), "Gameplay toggles are reachable.");
+            var controls = Walk(ScreenNavigation.SettingsPage(settings, SettingsTab.Controls));
+            Assert.IsTrue(controls.Contains("settings.rebind.Keyboard&Mouse.Dash."), "Rebind rows are reachable (keyboard scheme by default).");
+            Assert.IsFalse(controls.Contains("settings.rebind.Keyboard&Mouse.Pause."), "Fixed bindings are not focusable.");
+            Assert.IsTrue(controls.Contains("settings.controls.scheme") && controls.Contains("settings.reset_bindings") && controls.Contains("settings.back"));
+            var audio = ScreenNavigation.SettingsPage(settings, SettingsTab.Audio);
+            CollectionAssert.AreEqual(new[] { "settings.audio.master", "settings.audio.music", "settings.audio.sfx", "settings.audio.ambience", "settings.audio.mute", "settings.back" }, Walk(audio));
+            audio.Focus("settings.audio.mute");
+            audio.ActivateFocused();
             Assert.IsTrue(settings.Draft.Audio.Mute, "Toggle through the focus item.");
+            audio.Focus("settings.audio.music");
+            Assert.IsTrue(audio.Focused.IsAdjustable, "a slider steps with left/right");
+            Assert.IsTrue(audio.AdjustFocused(-2));
+            Assert.AreEqual(0.9f, settings.Draft.Audio.MusicVolume, 1e-4f, "two steps down from 100%");
+            Assert.IsFalse(audio.Focused.TryActivate(), "a slider has no Enter action of its own (a click on its bar never also bumps it)");
+            var video = Walk(ScreenNavigation.SettingsPage(settings, SettingsTab.Video));
+            CollectionAssert.AreEqual(new[] { "settings.video.display_mode", "settings.video.resolution", "settings.video.vsync", "settings.video.framerate", "settings.back" }, video, "APPLY / REVERT only become focusable once a display change is pending");
+            settings.SetFullscreen(!settings.Draft.Video.Fullscreen);
+            CollectionAssert.Contains(Walk(ScreenNavigation.SettingsPage(settings, SettingsTab.Video)), "settings.video.apply");
 
             using var pause = new PauseMenuViewModel(null, new TimeScalePause(), isCoop: true, settings);
             pause.Open();
-            CollectionAssert.AreEqual(new[] { "pause.Resume", "pause.Settings", "pause.ReturnToMainMenu", "pause.QuitGame" }, Walk(ScreenNavigation.PauseMenu(pause)));
+            CollectionAssert.AreEqual(new[] { "pause.Resume", "pause.Settings", "pause.Help", "pause.ReturnToMainMenu", "pause.QuitGame" }, Walk(ScreenNavigation.PauseMenu(pause)));
             menu.LeaveBase();
         }
 

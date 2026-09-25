@@ -151,6 +151,9 @@ namespace RuinRail.Gameplay.Items
 
         public ItemInstance RemoveFromBackpack(int slotIndex) => _backpack.RemoveAt(slotIndex);
 
+        /// <summary>Manual backpack reorder: slot <paramref name="from"/> to exactly slot <paramref name="to"/> (move / swap / stack merge), raising BackpackChanged.</summary>
+        public SlotMoveResult MoveBackpackSlot(int from, int to) => _backpack.TryMove(from, to);
+
         public int CountOf(string definitionId) => _backpack.CountOf(definitionId);
 
         // ---- IAmmoReserve (ammo lives only in backpack stacks) ----

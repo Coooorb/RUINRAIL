@@ -11,6 +11,7 @@ namespace RuinRail.Gameplay.Items.Armor
     {
         public const int HealPercentOfMax = 6;
         public override string Id => "patchwork";
+        public override string Description => $"After clearing a Combat Room, restore {HealPercentOfMax}% of Max HP.";
         protected override void OnAttach() => Context.Events.CombatRoomCleared += OnCleared;
         protected override void OnDetach() => Context.Events.CombatRoomCleared -= OnCleared;
         private void OnCleared() => Context.Heal(Mathf.RoundToInt(Context.MaxHealth() * HealPercentOfMax / 100f));
@@ -23,6 +24,7 @@ namespace RuinRail.Gameplay.Items.Armor
         public const float DurationSeconds = 1f;
         private TimedBuff _buff;
         public override string Id => "momentum";
+        public override string Description => $"After a Dash, +{MovePercent}% Movement Speed for {DurationSeconds:0.#} s.";
         protected override void OnAttach()
         {
             _buff = new TimedBuff(Context.Stats, "passive:momentum", StatModifier.Percent(StatId.MovementSpeed, MovePercent));
@@ -43,6 +45,7 @@ namespace RuinRail.Gameplay.Items.Armor
         public const float CooldownSeconds = 8f;
         private float _cooldown;
         public override string Id => "anchored";
+        public override string Description => $"Fully negate one incoming stagger every {CooldownSeconds:0.#} s (damage still applies).";
         public bool IsReady => _cooldown <= 0f;
         protected override void OnAttach() => Context.Events.StaggerIncoming += OnStagger;
         protected override void OnDetach() => Context.Events.StaggerIncoming -= OnStagger;
@@ -63,6 +66,7 @@ namespace RuinRail.Gameplay.Items.Armor
         private const string SourceId = "passive:last_stand";
         private bool _active;
         public override string Id => "last_stand";
+        public override string Description => $"While below {ThresholdPercent}% HP: +{DrPercent}% Damage Reduction (DR caps still apply).";
         public bool IsActive => _active;
         protected override void OnAttach()
         {
@@ -88,6 +92,7 @@ namespace RuinRail.Gameplay.Items.Armor
     public sealed class ShockAbsorberPassive : ArmorPassive
     {
         public override string Id => "shock_absorber";
+        public override string Description => "Ignore knockback from explosions (explosion damage still applies).";
         protected override void OnAttach() => Context.Events.ExplosionKnockbackIncoming += OnKnockback;
         protected override void OnDetach() => Context.Events.ExplosionKnockbackIncoming -= OnKnockback;
         private void OnKnockback(NegatableRequest request) => request.Negate(Id);
@@ -100,6 +105,7 @@ namespace RuinRail.Gameplay.Items.Armor
         private bool _usedThisRoom;
         private bool _inCombatRoom;
         public override string Id => "emergency_care";
+        public override string Description => $"The first healing consumable used in each Combat Room heals {BonusPercent}% more.";
         protected override void OnAttach()
         {
             Context.Events.CombatRoomEntered += OnRoomEntered;
@@ -131,6 +137,7 @@ namespace RuinRail.Gameplay.Items.Armor
         private TimedBuff _buff;
         private float _cooldown;
         public override string Id => "adrenaline";
+        public override string Description => $"Kill an enemy: +{MovePercent}% Movement Speed for {DurationSeconds:0.#} s ({CooldownSeconds:0.#} s cooldown).";
         public bool IsBuffActive => _buff != null && _buff.IsActive;
         protected override void OnAttach()
         {
@@ -165,6 +172,7 @@ namespace RuinRail.Gameplay.Items.Armor
         private TimedBuff _buff;
         private float _cooldown;
         public override string Id => "exo_lock";
+        public override string Description => $"A hit of {DamageThreshold}+ damage grants +{ResistPercent}% Stagger and Knockback Resistance for {DurationSeconds:0.#} s ({CooldownSeconds:0.#} s cooldown).";
         public bool IsBuffActive => _buff != null && _buff.IsActive;
         protected override void OnAttach()
         {
@@ -199,6 +207,7 @@ namespace RuinRail.Gameplay.Items.Armor
         private bool _usedThisRoom;
         private bool _wasBelow;
         public override string Id => "second_wind";
+        public override string Description => $"The first time HP falls below {ThresholdPercent}% in a Combat Room, the Dash cooldown resets (once per room).";
         protected override void OnAttach()
         {
             Context.Events.CombatRoomEntered += OnRoomEntered;

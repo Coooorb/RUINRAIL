@@ -76,3 +76,4 @@ High-tech security core.
 - No cheap untelegraphed one-shots.
 - Boss Stagger resistance is very high.
 - Boss death spawns a high-quality Boss Cache and activates the Transit Car.
+- A Boss never leaves its arena: pursuit stops at the arena's legal edge, charge/dash/leap endpoints are constrained to it, knockback cannot eject it, and a player outside the arena does not cause it to chase out (combat/43 Encounter Containment, 2026-09-19).

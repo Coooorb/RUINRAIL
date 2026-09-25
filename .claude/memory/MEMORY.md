@@ -10,3 +10,16 @@
 - [Verify audio silence outside Unity](audio-silence-verify-outside-unity.md) — scripts/probe-audio-session.ps1; check the default playback endpoint
 - [Memory lives in repo](memory-lives-in-repo.md) — .claude/memory is git-tracked; ~/.claude/projects path is a junction/symlink; push/pull to sync
 - [Final audit report regenerated on Mac](final-audit-report-regenerated-on-mac.md) — EditMode rewrites production/FINAL_MVP_COMPLETION_REPORT.md; on Mac build/smoke lines are NOT RUN; git checkout the report before committing
+- [Mac has no Windows build module](mac-no-windows-build-module.md) — Windows x64 build is NOT RUN here; use BuildMacBatch + the .app smoke as the substitute
+- [CombatAim proof flake fixed](combat-aim-proof-flaky-on-mac.md) — seed 11 + clear later waves + one pursuer at wall/door; a failure now is a real regression; PlayMode before EditMode
+- [Live-run descend + pickup prompts](live-run-descend-and-pickup-prompts.md) — descend via run.Vote.Vote; dropped loot steals the interact prompt; smoke seed notes
+- [git checkout destroys uncommitted passes](git-checkout-destroys-uncommitted-passes.md) — the tree is dirty from earlier passes; reverse your own edits instead of checking files out
+- [Built-player smoke now deterministic](built-player-smoke-seed-flaky-on-mac.md) — official gate is run-release-smoke.sh (pinned seeds, 40/40); clock seed was 2/10; never widen tolerances
+- [PlayMode impact target must clear the player](playmode-impact-target-must-clear-the-player.md) — collider overlap halves measured knockback; one lane per target
+- [Unity Editor lock blocks the batch harness](unity-editor-lock-blocks-batch-harness.md) — "Multiple Unity instances" = editor open; wait, don't kill it
+- [Boss attack tests pinned list order](boss-attack-tests-pinned-list-order.md) — 19 assertions in 8 files; use BossSelectionAssert, don't re-pin the order
+- [Pickup attraction steals the interact prompt](pickup-attraction-steals-interact-prompt.md) — gate pulls on CanBeCollectedBy, not CanInteract
+- [Co-op peer proof gotchas](coop-peer-proof-gotchas.md) — identical NetworkConfig on both peers; host must outlive the client's sample
+- [Co-op expedition proof runner](coop-expedition-proof-runner.md) — -coop-expedition host|client; seed 11; reader rebinding, link-routed proof messages, stray processes
+- [Release audit tooling + fixed dead seams](release-smoke-and-dead-seams-2026-09-25.md) — release smoke scripts, FinalReleaseCandidateValidator + frozen baseline; impact receiver / Defibrillator / AutosaveFlusher wired
+- [Batch PlayMode frame loops](batch-playmode-frame-loops.md) — uncapped fps; wait on Time.time deadlines, not frame counts

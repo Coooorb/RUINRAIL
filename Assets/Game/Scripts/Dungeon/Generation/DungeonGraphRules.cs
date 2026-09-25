@@ -31,10 +31,15 @@ namespace RuinRail.Dungeon.Generation
         [SerializeField] private int _lateEliteDepth = 11;
 
         [Header("Elite chance per dungeon (percent)")]
-        [SerializeField] private int _eliteChanceDepth1To2 = 5;
-        [SerializeField] private int _eliteChanceDepth3To5 = 10;
-        [SerializeField] private int _eliteChanceDepth6To10 = 15;
-        [SerializeField] private int _eliteChanceDepth11To20 = 20;
+        // 59_DEPTH_SCALING elite chance. Raised by the run-variety pass from 5/10/15/20/25: the measured rate meant a
+        // player pushing five depths had a 65.8% chance of meeting no elite at all, so six authored elite variants went
+        // unseen. Depth 1-2 is deliberately left lowest so a first run is not elite-heavy, and the D21+ cap is unchanged
+        // at 25% per slot so deep play does not become an elite parade. Slot counts, elite HP, damage and rewards are
+        // not touched by this pass.
+        [SerializeField] private int _eliteChanceDepth1To2 = 8;
+        [SerializeField] private int _eliteChanceDepth3To5 = 18;
+        [SerializeField] private int _eliteChanceDepth6To10 = 25;
+        [SerializeField] private int _eliteChanceDepth11To20 = 25;
         [SerializeField] private int _eliteChanceDepth21Plus = 25;
 
         [SerializeField, Min(1)] private int _maxGenerationAttempts = 32;

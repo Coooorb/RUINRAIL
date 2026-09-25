@@ -65,6 +65,8 @@ namespace RuinRail.UI.Inventory
         private readonly List<Text> _equipmentRarities = new();
         private readonly List<Text> _ammoRows = new();
         private readonly List<Text> _detailRows = new();
+        private readonly DetailPager _detailPager = new(DetailLines - 2);
+        private InventorySlotRef? _detailCursor;
         private readonly Dictionary<string, UiControl> _buttons = new();
         private Text _coins;
         private Text _backpackHeader;
@@ -95,6 +97,11 @@ namespace RuinRail.UI.Inventory
         /// <summary>The details panel as one string (title, subtitle, every stat row) — the successor of the old tooltip text.</summary>
         public string TooltipText => string.Join("\n", new[] { DetailTitleText, DetailSubtitleText }.Concat(_detailRows.Select(r => r.text)).Where(s => !string.IsNullOrEmpty(s)));
         public IReadOnlyList<string> DetailRowTexts => _detailRows.Select(r => r.text).ToList();
+        /// <summary>The details pager: every composed row of the cursor item and the page in view (tests read it; the inputs step it).</summary>
+        public DetailPager DetailPager => _detailPager;
+        /// <summary>Steps the details page (mouse wheel / PageDown / right stick); public for the tests.</summary>
+        public bool DetailsPageDown() { if (!_detailPager.PageDown()) return false; RenderDetails(); return true; }
+        public bool DetailsPageUp() { if (!_detailPager.PageUp()) return false; RenderDetails(); return true; }
         public IReadOnlyList<string> AmmoTexts => _ammoRows.Select(r => r.text).ToList();
         public string HintsText => _hints != null ? _hints.text : string.Empty;
         public Sprite PortraitSprite => _portrait != null && _portrait.enabled ? _portrait.sprite : null;
@@ -488,6 +495,8 @@ namespace RuinRail.UI.Inventory
             _message.text = _viewModel.Message;
             if (tooltip == null)
             {
+                _detailPager.SetRows(null, false);
+                _detailCursor = null;
                 _detailTitle.text = cursor.Kind == InventorySlotKind.Equipped ? InventoryViewModel.SlotLabel(cursor.EquippedSlot) + " — EMPTY" : $"BACKPACK SLOT {cursor.Index + 1} — EMPTY";
                 _detailTitle.color = UiTheme.InkMuted;
                 _detailSubtitle.text = _viewModel.Selected.HasValue ? "Select a slot to move the picked item here." : "Select an item to see its details.";
@@ -504,33 +513,24 @@ namespace RuinRail.UI.Inventory
             if (tooltip.IsUnsellable) subtitle += " · STARTER";
             _detailSubtitle.text = UiText.Fit(subtitle, width);
 
-            var lines = new List<(string key, string value, Color color)>();
-            foreach (var stat in tooltip.BaseStats) lines.Add((stat.Label, stat.Value, UiTheme.Ink));
-            foreach (var affix in tooltip.Affixes) lines.Add((affix.Label, affix.Value, UiTheme.Terminal));
-            if (!string.IsNullOrEmpty(tooltip.LegendaryText)) lines.Add((tooltip.LegendaryText, string.Empty, UiTheme.Amber));
-            var comparison = _viewModel.CompareAt(cursor);
-            if (comparison.Count > 0)
+            // Description first, then Legendary, stats, affixes and the comparison; the pager keeps the tail reachable.
+            var sameItem = _detailCursor.HasValue && _detailCursor.Value.Equals(cursor);
+            _detailCursor = cursor;
+            _detailPager.SetRows(ItemDetailLayout.Compose(tooltip, _viewModel.CompareAt(cursor), width), sameItem);
+            var visible = _detailPager.Visible(DetailPagingInput.Hint());
+            for (var i = 0; i < _detailRows.Count && i < visible.Count; i++)
             {
-                lines.Add(("— VS EQUIPPED —", string.Empty, UiTheme.InkMuted));
-                // Up/down as text as well as colour (ui/90): the pixel face has no arrow glyphs, so (+) / (-) / (=).
-                foreach (var line in comparison) lines.Add((line.Label, $"{line.Candidate} vs {line.Current} ({(line.Delta > 0 ? "+" : line.Delta < 0 ? "-" : "=")})", line.Delta > 0 ? UiTheme.Terminal : line.Delta < 0 ? UiTheme.Danger : UiTheme.InkMuted));
-            }
-
-            for (var i = 0; i < _detailRows.Count && i < lines.Count; i++)
-            {
-                var (key, value, color) = lines[i];
-                _detailRows[i].text = string.IsNullOrEmpty(value) ? UiText.Fit(key, width) : StatLine(key, value, width);
-                _detailRows[i].color = color;
+                _detailRows[i].text = ItemDetailLayout.Render(visible[i], width);
+                _detailRows[i].color = visible[i].Color;
             }
         }
 
-        /// <summary>"Label ........ value" on one line: the key left, the value right-aligned in the same box.</summary>
-        private static string StatLine(string key, string value, int width)
+        private void Update()
         {
-            var chars = UiText.CharsFor(width);
-            var k = UiText.Fit(key, width - UiText.Width(value) - UiText.Advance);
-            var pad = Math.Max(1, chars - k.Length - value.Length);
-            return k + new string(' ', pad) + value;
+            if (_panel == null || !_panel.activeSelf || !_detailPager.Overflows) return;
+            var step = DetailPagingInput.Poll();
+            if (step > 0) DetailsPageDown();
+            else if (step < 0) DetailsPageUp();
         }
 
         /// <summary>Rarity colours are tuned for slot frames; text needs a floor on luminance to stay readable on the charcoal plate.</summary>

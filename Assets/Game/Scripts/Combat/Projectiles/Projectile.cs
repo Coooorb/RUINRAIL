@@ -15,11 +15,14 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         private Rigidbody2D _rigidbody2D;
         private CircleCollider2D _circle;
         private ProjectilePool _pool;
+        private ProjectileVisual _visual;
 
         private readonly System.Collections.Generic.HashSet<IDamageable> _pierced = new();
         private ProjectileSpawnData _data;
         private Vector2 _direction;
         private float _distanceTraveled;
+        private int _piercesLeft;
+        private bool _lastWasPassThrough;
         private float _elapsedLifetime;
         private bool _isResolved;
 
@@ -51,7 +54,11 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             // Kinematic projectiles must also register trigger contacts against kinematic targets (bosses, dummies).
             _rigidbody2D.useFullKinematicContacts = true;
             _circle = GetComponent<CircleCollider2D>();
+            _visual = GetComponent<ProjectileVisual>();
         }
+
+        /// <summary>The in-flight presentation riding on this projectile (null when the pool built it without one).</summary>
+        public ProjectileVisual Visual => _visual != null ? _visual : _visual = GetComponent<ProjectileVisual>();
 
         /// <summary>Number of hits resolved by the per-step sweep rather than by a trigger overlap (diagnostics/tests).</summary>
         public int SweepResolvedHits { get; private set; }
@@ -67,6 +74,8 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             _elapsedLifetime = 0f;
             _isResolved = false;
             _pierced.Clear();
+            _piercesLeft = data.PierceCount;
+            _lastWasPassThrough = false;
             _rigidbody2D.linearVelocity = Vector2.zero;
             // The pool placed the transform at the muzzle; the body only learns of that at the next transform sync,
             // which is *after* this projectile's first FixedUpdate. Teleport the body explicitly so the very first
@@ -74,6 +83,8 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             _rigidbody2D.position = transform.position;
 
             transform.rotation = Quaternion.Euler(0f, 0f, Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg);
+            // Presentation rides on the same transform: it can only ever be where the authoritative shot is.
+            Visual?.Apply(data.VisualId, data.SourceTeam);
         }
 
         private void FixedUpdate()
@@ -103,7 +114,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                     return;
                 }
 
-                if (!_data.Piercing) break;
+                if (!_data.Piercing && !_lastWasPassThrough) break;
             }
 
             var step = _direction * stepLength;
@@ -133,7 +144,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             {
                 var candidate = SweepHits[i];
                 if (candidate.collider == null || !IsRelevant(candidate.collider)) continue;
-                if (_data.Piercing && _pierced.Contains(candidate.collider.GetComponentInParent<IDamageable>())) continue;
+                if ((_data.Piercing || _data.PierceCount > 0) && _pierced.Contains(candidate.collider.GetComponentInParent<IDamageable>())) continue;
                 if (!found || candidate.distance < nearest.distance)
                 {
                     nearest = candidate;
@@ -189,23 +200,43 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 return;
             }
 
+            _lastWasPassThrough = false;
             if (damageable != null && _data.Piercing)
             {
-                if (_pierced.Add(damageable) && damageable.TryApplyDamage(new DamageRequest(_data.Damage, DamageKind.Normal, 0f, _direction)))
+                if (_pierced.Add(damageable) && damageable.TryApplyDamage(new DamageRequest(HitDamage(), DamageKind.Normal, 0f, _direction)))
                 {
                     Impact.ImpactDispatcher.Apply(other, new Impact.ImpactRequest(_data.Direction, _data.Knockback, _data.StaggerPower, DamageKind.Normal, _data.Source, _data.Feedback));
+                    ReportKill(other);
                     Impacted?.Invoke(this, _rigidbody2D.position, true);
                 }
 
                 return; // never resolved by a target: only walls and range end a piercing shot
             }
 
+            if (damageable != null && _data.PierceCount > 0 && _pierced.Contains(damageable)) return; // already passed through it
+            if (damageable != null && _piercesLeft > 0)
+            {
+                // Pass through this target with full damage (Perfect Draw); the next target resolves the shot normally.
+                _pierced.Add(damageable);
+                _piercesLeft--;
+                _lastWasPassThrough = true;
+                if (damageable.TryApplyDamage(new DamageRequest(HitDamage(), DamageKind.Normal, 0f, _direction)))
+                {
+                    Impact.ImpactDispatcher.Apply(other, new Impact.ImpactRequest(_data.Direction, _data.Knockback, _data.StaggerPower, DamageKind.Normal, _data.Source, _data.Feedback));
+                    ReportKill(other);
+                }
+
+                Impacted?.Invoke(this, _rigidbody2D.position, true);
+                return;
+            }
+
             if (damageable != null)
             {
                 _isResolved = true;
-                if (damageable.TryApplyDamage(new DamageRequest(_data.Damage, DamageKind.Normal, 0f, _direction)))
+                if (damageable.TryApplyDamage(new DamageRequest(HitDamage(), DamageKind.Normal, 0f, _direction)))
                 {
                     Impact.ImpactDispatcher.Apply(other, new Impact.ImpactRequest(_data.Direction, _data.Knockback, _data.StaggerPower, DamageKind.Normal, _data.Source, _data.Feedback));
+                    ReportKill(other);
                 }
 
                 Impacted?.Invoke(this, _rigidbody2D.position, true);
@@ -227,6 +258,17 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 Impacted?.Invoke(this, _rigidbody2D.position, false);
                 ReturnToPool();
             }
+        }
+
+        /// <summary>The damage this direct hit carries: the wearer's projectile-hit hook may raise it (Long Shot).</summary>
+        private int HitDamage() => _data.Feedback != null ? _data.Feedback.OnProjectileHitRolling(_data.Damage, _distanceTraveled) : _data.Damage;
+
+        /// <summary>Tells the shooter it took the target's last health (a replica on a co-op client never dies locally).</summary>
+        private void ReportKill(Collider2D other)
+        {
+            if (_data.Feedback == null) return;
+            var health = other.GetComponentInParent<HealthComponent>();
+            if (health != null && !health.IsAlive) _data.Feedback.OnTargetKilled(false);
         }
 
         /// <summary>
@@ -264,6 +306,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
 
         private void ReturnToPool()
         {
+            Visual?.Clear(); // the sprite never outlives the registered hit / expiry
             if (_pool != null)
             {
                 _pool.Return(this);

@@ -868,8 +868,12 @@ namespace RuinRail.EditorTools.ArtGen
                     if (k % 4 == 2) Snare(c, rng, k * beat, 0.26f);
             }
 
-            c.MakeSeamless(0.8f);
-            return c;
+            // The buffer is one release tail longer than the 8-bar grid so the last notes can ring; wrapping that tail
+            // onto the head lands the ring-out over the next repetition's downbeat and leaves the file exactly `dur`
+            // long, so a looping track stays on the beat instead of slipping by 1.2 s and dipping every repetition.
+            var looped = c.WrapTailToLoop(dur);
+            looped.MakeSeamless(0.25f);
+            return looped;
         }
 
         private static void Kick(Clip c, float at, float gain)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RuinRail.Gameplay.Combat.Weapons.Specials;
 using RuinRail.Gameplay.Items;
+using RuinRail.Gameplay.Items.Consumables;
 using RuinRail.Gameplay.Stats;
 
 namespace RuinRail.UI.Inventory
@@ -37,6 +38,8 @@ namespace RuinRail.UI.Inventory
         public readonly List<TooltipLine> BaseStats = new();
         public readonly List<TooltipLine> Affixes = new();
         public string LegendaryText;
+        /// <summary>The item's data-derived explanation (ui/93): what it does with its own numbers; always present for a known definition.</summary>
+        public string Description = string.Empty;
         public int? Quantity;
         public bool IsUnsellable;
         public bool IsAtRisk;
@@ -50,6 +53,7 @@ namespace RuinRail.UI.Inventory
             yield return Name;
             yield return RarityText;
             yield return CategoryText;
+            if (!string.IsNullOrEmpty(Description)) yield return Description;
             foreach (var line in BaseStats) yield return line.ToString();
             foreach (var line in Affixes) yield return line.ToString();
             if (!string.IsNullOrEmpty(LegendaryText)) yield return LegendaryText;
@@ -113,18 +117,40 @@ namespace RuinRail.UI.Inventory
                     }
 
                     break;
+                case ConsumableDefinition consumable:
+                    // Consumables had no stat lines at all: their effect (amount, duration, use time) is data and reads as data.
+                    foreach (var (label, value) in ItemDescriptions.Build(consumable, specials).Effects)
+                        tooltip.BaseStats.Add(new TooltipLine(label, value, NumericOf(value)));
+                    break;
+                case AmmoItemDefinition ammo:
+                    foreach (var (label, value) in ItemDescriptions.Build(ammo, specials).Effects)
+                        tooltip.BaseStats.Add(new TooltipLine(label, value));
+                    break;
+            }
+
+            if (definition != null)
+            {
+                var description = ItemDescriptions.Build(definition, specials);
+                tooltip.Description = description.Summary;
+                if (!string.IsNullOrEmpty(description.Legendary) && definition is EquipmentItemDefinition legendaryFamily && item.Rarity == Rarity.Legendary)
+                    tooltip.LegendaryText = description.Legendary;
             }
 
             if (definition is EquipmentItemDefinition equipment)
             {
                 foreach (var roll in item.AffixRolls)
                 {
+                    // A roll whose affix is no longer in this item's pool can only come from a save written before the
+                    // pool was corrected. The item keeps it verbatim (nothing is rerolled or dropped), but the tooltip
+                    // must not present it as a working bonus, and it must never leak the internal snake_case id.
                     var affix = equipment.AffixPool != null ? equipment.AffixPool.Affixes.FirstOrDefault(a => a != null && a.Id == roll.AffixId) : null;
-                    var label = (affix != null ? affix.DisplayName : roll.AffixId) + " (affix)";
+                    var label = affix != null
+                        ? affix.DisplayName + " (affix)"
+                        : LegacyAffixName(roll.AffixId) + " (legacy affix, no effect)";
                     tooltip.Affixes.Add(new TooltipLine(label, roll.Value >= 0 ? $"+{roll.Value}" : roll.Value.ToString(), roll.Value));
                 }
 
-                if (item.Rarity == Rarity.Legendary && !string.IsNullOrEmpty(equipment.LegendaryMechanicId))
+                if (item.Rarity == Rarity.Legendary && !string.IsNullOrEmpty(equipment.LegendaryMechanicId) && string.IsNullOrEmpty(tooltip.LegendaryText))
                 {
                     tooltip.LegendaryText = specials != null && specials.TryGet(equipment.LegendaryMechanicId, out var special)
                         ? $"LEGENDARY SPECIAL: {special.DisplayName} ({special.Kind}, {special.CooldownSeconds:0.#}s cooldown)"
@@ -136,9 +162,39 @@ namespace RuinRail.UI.Inventory
             return tooltip;
         }
 
-        public static string Label(StatId stat) => stat.ToString();
+        public static string Label(StatId stat) => StatLabels.Of(stat);
 
-        public static string Format(StatModifier modifier) => modifier.Kind == StatModifierKind.Flat ? (modifier.Value >= 0 ? $"+{modifier.Value}" : modifier.Value.ToString()) : (modifier.Value >= 0 ? $"+{modifier.Value}%" : $"{modifier.Value}%");
+        /// <summary>
+        /// Player-facing name for an affix id that no longer belongs to the item's pool ("affix_stagger_power" →
+        /// "Stagger Power"). Used only for legacy save data; it never invents a value, only a readable name.
+        /// </summary>
+        public static string LegacyAffixName(string affixId)
+        {
+            if (string.IsNullOrEmpty(affixId)) return "Unknown";
+            var body = affixId.StartsWith("affix_", System.StringComparison.Ordinal) ? affixId.Substring("affix_".Length) : affixId;
+            var words = body.Split('_');
+            for (var i = 0; i < words.Length; i++)
+            {
+                if (words[i].Length == 0) continue;
+                words[i] = char.ToUpperInvariant(words[i][0]) + words[i].Substring(1);
+            }
+
+            return string.Join(" ", words);
+        }
+
+        public static string Format(StatModifier modifier) => StatLabels.Format(modifier);
+
+        /// <summary>The leading integer of a value ("+25 HP" → 25, "8 s" → 8); null when the value carries none.</summary>
+        private static int? NumericOf(string value)
+        {
+            if (string.IsNullOrEmpty(value)) return null;
+            var start = 0;
+            while (start < value.Length && !char.IsDigit(value[start]) && value[start] != '-') start++;
+            var end = start;
+            if (end < value.Length && value[end] == '-') end++;
+            while (end < value.Length && char.IsDigit(value[end])) end++;
+            return end > start && int.TryParse(value.Substring(start, end - start), out var n) ? n : null;
+        }
     }
 
     /// <summary>One compared line: the candidate's value against the current item's, with an explicit up/down/same mark (93).</summary>

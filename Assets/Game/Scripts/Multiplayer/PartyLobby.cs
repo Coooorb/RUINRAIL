@@ -292,7 +292,13 @@ namespace RuinRail.Networking
         public int Applied { get; private set; }
         public int Ignored { get; private set; }
 
-        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile)
+        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile) => Apply(snapshot, expedition, profile, null);
+
+        /// <summary>
+        /// A co-op client applies the host's start with the participant id the host assigned it, so this peer's
+        /// transaction, roster entry and vote id are the ones every other peer uses for it.
+        /// </summary>
+        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile, string transactionId)
         {
             if (snapshot == null || expedition == null || profile == null) return null;
             if (!_applied.Add(snapshot.StartTransactionId))
@@ -302,7 +308,7 @@ namespace RuinRail.Networking
             }
 
             Applied++;
-            return expedition.Start(profile, snapshot.RunSeed, (Biome)snapshot.Biome, snapshot.PartySize);
+            return expedition.Start(profile, snapshot.RunSeed, (Biome)snapshot.Biome, snapshot.PartySize, transactionId);
         }
     }
 }

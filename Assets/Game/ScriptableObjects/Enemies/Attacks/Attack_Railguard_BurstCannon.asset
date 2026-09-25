@@ -20,7 +20,7 @@ MonoBehaviour:
   _minTriggerRange: 4
   _maxTriggerRange: 12
   _telegraphSeconds: 0.8
-  _recoverySeconds: 1.0
+  _recoverySeconds: 1
   _hitCount: 3
   _hitIntervalSeconds: 0.2
   _hitRadius: 0.5
@@ -35,3 +35,4 @@ MonoBehaviour:
   _projectileRange: 11
   _zoneLength: 6
   _zoneWidth: 1.5
+  _projectileVisualId: proj_enemy_rail

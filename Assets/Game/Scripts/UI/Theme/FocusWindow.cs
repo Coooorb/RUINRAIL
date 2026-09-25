@@ -20,20 +20,30 @@ namespace RuinRail.UI.Theme
     {
         private readonly FocusList _list;
         private readonly Dictionary<int, UiControl> _slots = new();
+        private readonly int _itemCount;
 
-        public FocusWindow(FocusList list, int capacity)
+        /// <summary>
+        /// <paramref name="itemCount"/> limits the window to the list's first N entries, for a panel whose remaining
+        /// entries are permanent controls of their own (the Shelter counter's SELL sits under a scrolling offer list).
+        /// The default, -1, windows the whole list.
+        /// </summary>
+        public FocusWindow(FocusList list, int capacity, int itemCount = -1)
         {
             _list = list;
             Capacity = Mathf.Max(1, capacity);
+            _itemCount = itemCount;
         }
 
         public int Capacity { get; }
+
+        /// <summary>How many of the list's entries this window owns.</summary>
+        public int ItemCount => _list == null ? 0 : _itemCount >= 0 ? Mathf.Min(_itemCount, _list.Items.Count) : _list.Items.Count;
 
         /// <summary>Index of the list entry shown in the first row.</summary>
         public int Offset { get; private set; }
 
         /// <summary>True when the list is longer than the window, i.e. the window actually scrolls.</summary>
-        public bool Scrolls => _list != null && _list.Items.Count > Capacity;
+        public bool Scrolls => ItemCount > Capacity;
 
         public void Register(int slot, UiControl control)
         {
@@ -48,12 +58,17 @@ namespace RuinRail.UI.Theme
         {
             if (_list == null || _slots.Count == 0) return;
 
-            var count = _list.Items.Count;
-            var focused = Mathf.Clamp(_list.FocusedIndex, 0, Mathf.Max(0, count - 1));
-
+            var count = ItemCount;
             var maxOffset = Mathf.Max(0, count - Capacity);
-            if (focused < Offset) Offset = focused;
-            else if (focused >= Offset + Capacity) Offset = focused - Capacity + 1;
+            // A focus that sits outside the windowed entries (a permanent control below the list) leaves the window
+            // where the player left it rather than scrolling the list out from under them.
+            var focused = _list.FocusedIndex;
+            if (focused >= 0 && focused < count)
+            {
+                if (focused < Offset) Offset = focused;
+                else if (focused >= Offset + Capacity) Offset = focused - Capacity + 1;
+            }
+
             Offset = Mathf.Clamp(Offset, 0, maxOffset);
 
             foreach (var (slot, control) in _slots)

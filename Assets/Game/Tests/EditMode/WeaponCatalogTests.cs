@@ -31,6 +31,22 @@ namespace RuinRail.Tests
             return w;
         }
 
+
+        /// <summary>
+        /// The pool a weapon class rolls from. Shotguns and Rocket Launchers carry authored Knockback/Stagger Power
+        /// (combat/42, items/24) so they roll the impact pool; every other firearm has no impact base, and an impact
+        /// affix on one would be a guaranteed no-op.
+        /// </summary>
+        private static string ExpectedPoolFor(WeaponClass cls) => cls switch
+        {
+            WeaponClass.Shotgun or WeaponClass.RocketLauncher => "pool_ranged_impact",
+            WeaponClass.Spear => "pool_melee_heavy",
+            WeaponClass.Knife => "pool_melee",
+            WeaponClass.Bow => "pool_bow",
+            WeaponClass.Blaster => "pool_blaster",
+            _ => "pool_ranged"
+        };
+
         private void Firearm(string id, string name, WeaponClass cls, int dMin, int dMax, float rate, int mag, float reload, float range, float speed, AmmoType ammo, int cost = 1, int pellets = 1)
         {
             var w = Get<RangedWeaponDefinition>(id);
@@ -47,7 +63,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(cost, w.AmmoCostPerShot, id);
             Assert.AreEqual(pellets, w.ProjectilesPerShot, id);
             Assert.IsNotNull(w.AffixPool, $"{id} must roll from a pool.");
-            Assert.AreEqual("pool_ranged", w.AffixPool.Id, id);
+            Assert.AreEqual(ExpectedPoolFor(cls), w.AffixPool.Id, id);
             Assert.AreEqual(cls == WeaponClass.RocketLauncher, w.IsExplosive, id);
         }
 
@@ -116,8 +132,8 @@ namespace RuinRail.Tests
             {
                 Assert.AreEqual(WeaponClass.Blaster, blaster.WeaponClass);
                 Assert.AreEqual(100f, blaster.MaxHeat, 0.001f, "33: Max Heat 100.");
-                Assert.AreEqual(0.6f, blaster.CoolingDelaySeconds, 0.001f, "33: Cooling Delay 0.6 s.");
-                Assert.AreEqual(2.2f, blaster.OverheatLockoutSeconds, 0.001f, "33: Overheat Lockout 2.2 s.");
+                Assert.AreEqual(0.5f, blaster.CoolingDelaySeconds, 0.001f, "33: Cooling Delay 0.5 s (shortened by the D1 ammo / blaster fine-tuning pass).");
+                Assert.AreEqual(1.9f, blaster.OverheatLockoutSeconds, 0.001f, "33: Overheat Lockout 1.9 s (shortened by the D1 ammo / blaster fine-tuning pass).");
                 Assert.AreEqual(22f, blaster.ProjectileSpeed, 0.001f, "33: Blaster projectile speed 22.");
                 Assert.AreEqual("pool_blaster", blaster.AffixPool.Id);
             }
@@ -131,7 +147,7 @@ namespace RuinRail.Tests
                 Assert.AreEqual(rate, m.AttackRate, 0.001f, id);
                 Assert.AreEqual(range, m.AttackRange, 0.001f, id);
                 Assert.AreEqual(arc, m.AttackArcDegrees, 0.001f, id);
-                Assert.AreEqual("pool_melee", m.AffixPool.Id, id);
+                Assert.AreEqual(ExpectedPoolFor(cls), m.AffixPool.Id, id);
                 Assert.LessOrEqual(m.WindUpSeconds + m.RecoverySeconds, 1f / m.AttackRate + 0.0001f, $"{id}: swing phases fit the cadence.");
             }
 
@@ -159,12 +175,16 @@ namespace RuinRail.Tests
             }
 
             // Class pools exclude nonsense combinations (22): no magazine/reload on bows, blasters or melee; no projectile stats on melee.
+            // They also exclude affixes that could not move a number on the weapon that rolled them: a knife authors 0 knockback,
+            // so a Knockback affix on it would be a purely decorative tooltip line. Knockback lives on the heavy-melee pool instead.
             var meleePool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_Melee.asset");
+            var meleeHeavyPool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_MeleeHeavy.asset");
             var bowPool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_Bow.asset");
             var blasterPool = AssetDatabase.LoadAssetAtPath<AffixPool>("Assets/Game/ScriptableObjects/Affixes/AffixPool_Blaster.asset");
-            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.Knockback, AffixStat.StaggerPower }, meleePool.Affixes.Select(a => a.Stat));
-            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.ProjectileSpeed, AffixStat.Range, AffixStat.Knockback, AffixStat.StaggerPower }, bowPool.Affixes.Select(a => a.Stat));
-            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.FireRate, AffixStat.ProjectileSpeed, AffixStat.Range, AffixStat.Knockback, AffixStat.StaggerPower }, blasterPool.Affixes.Select(a => a.Stat));
+            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.MeleeAttackSpeed, AffixStat.StaggerPower }, meleePool.Affixes.Select(a => a.Stat));
+            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.MeleeAttackSpeed, AffixStat.StaggerPower, AffixStat.Knockback }, meleeHeavyPool.Affixes.Select(a => a.Stat));
+            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.ProjectileSpeed, AffixStat.Range, AffixStat.BowChargeSpeed }, bowPool.Affixes.Select(a => a.Stat));
+            CollectionAssert.AreEquivalent(new[] { AffixStat.Damage, AffixStat.FireRate, AffixStat.ProjectileSpeed, AffixStat.Range }, blasterPool.Affixes.Select(a => a.Stat));
         }
 
         // ---- Acceptance 4: data-only variants, no per-weapon scripts ----

@@ -23,6 +23,16 @@ namespace RuinRail.UI.Onboarding
         /// <summary>Healing becomes relevant at or below this fraction of max health (V1 FINAL (TASK 179) tunable for the prompt only; not a balance value).</summary>
         public const float ConsumablePromptHealthFraction = 0.5f;
 
+        /// <summary>
+        /// Ammo becomes a thing worth teaching at or below this many magazines' worth of total rounds (magazine plus
+        /// reserve) for the weapon in hand.
+        ///
+        /// Two magazines is deliberately early: it lands while the player still has rounds to spend and a decision to
+        /// make, not in the boss fight where the lesson arrives too late to act on. It teaches nothing about melee
+        /// being required — the copy says use both weapons — and it changes no ammo value, drop or cap.
+        /// </summary>
+        public const float LowAmmoMagazineThreshold = 2f;
+
         private readonly TutorialPromptService _prompts;
         private readonly IPlayerInputReader _reader;
         private readonly List<Action> _unsubscribe = new();
@@ -31,6 +41,7 @@ namespace RuinRail.UI.Onboarding
         private WeaponLoadout _loadout;
         private bool _moved;
         private bool _aimed;
+        private bool _hasFired;
         private Vector2 _initialAim;
         private bool _aimSampled;
 
@@ -165,6 +176,28 @@ namespace RuinRail.UI.Onboarding
             if (_reader.FireHeld && _prompts.Active == TutorialPromptId.Fire) _prompts.Complete(TutorialPromptId.Fire);
 
             if (_loadout != null && _loadout.ActiveWeapon is RangedWeapon ranged && ranged.MagazineAmmo <= 0 && !ranged.IsReloading && !_prompts.IsSeen(TutorialPromptId.Reload)) ObserveMagazineEmpty();
+
+            if (_reader.FireHeld) _hasFired = true;
+            ObserveAmmoReserve();
+        }
+
+        /// <summary>
+        /// The low-ammo context: the weapon in hand is a firearm, the player has actually been shooting, a second
+        /// weapon is equipped so the advice is something they can do right now, and the rounds they hold are down to
+        /// <see cref="LowAmmoMagazineThreshold"/> magazines. The prompt service does the rest — it is shown once and
+        /// never again, it is silent when prompts are off in Settings, and it queues rather than stacking.
+        /// </summary>
+        public void ObserveAmmoReserve()
+        {
+            if (!_hasFired || _inventory == null || _loadout == null || _prompts.IsSeen(TutorialPromptId.LowAmmo)) return;
+            if (_loadout.ActiveWeapon is not RangedWeapon weapon || weapon.Definition == null) return;
+            // Nothing to swap to is nothing to teach.
+            if (_inventory.GetEquipped(EquippedSlot.PrimaryWeapon) == null || _inventory.GetEquipped(EquippedSlot.SecondaryWeapon) == null) return;
+            var magazine = weapon.CurrentMagazineSize;
+            if (magazine <= 0) return;
+            var rounds = weapon.MagazineAmmo + _inventory.Get(weapon.Definition.AmmoType);
+            if (rounds > magazine * LowAmmoMagazineThreshold) return;
+            _prompts.Trigger(TutorialPromptId.LowAmmo);
         }
 
         // ---- Completions from the local player's input ----
@@ -173,7 +206,7 @@ namespace RuinRail.UI.Onboarding
         private void OnInteract() => CompleteIfActive(TutorialPromptId.PickupInventory);
         private void OnInventory() => CompleteIfActive(TutorialPromptId.PickupInventory);
         private void OnReload() => CompleteIfActive(TutorialPromptId.Reload);
-        private void OnWeaponSwap() => CompleteIfActive(TutorialPromptId.WeaponSwap);
+        private void OnWeaponSwap() { CompleteIfActive(TutorialPromptId.WeaponSwap); CompleteIfActive(TutorialPromptId.LowAmmo); }
         private void OnConsumable() => CompleteIfActive(TutorialPromptId.Consumable);
 
         private void CompleteIfActive(TutorialPromptId id)

@@ -75,11 +75,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(750, omega.Boss.XpValue);
             var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
             omega.Boss.SetTarget(player.transform);
-            Assert.AreEqual("Arm Slam", omega.Boss.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(4f, 0f);
-            Assert.AreEqual("Charge", omega.Boss.SelectAttack().DisplayName);
-            player.transform.position = new Vector2(8.5f, 0f);
-            Assert.AreEqual("Spore Projectile Burst", omega.Boss.SelectAttack().DisplayName);
+            BossSelectionAssert.CanSelectAt(omega.Boss, player.transform, Vector2.zero, 1.5f, "Arm Slam", "Close: the arm slam.");
+            BossSelectionAssert.CanSelectAt(omega.Boss, player.transform, Vector2.zero, 4f, "Charge", "Mid: the charge.");
+            BossSelectionAssert.CanSelectAt(omega.Boss, player.transform, Vector2.zero, 8.5f, "Spore Projectile Burst", "Far: the spore burst.");
 
             var aegis = new DefaultBossSpawner(new[] { _aegis }).Spawn(_aegis, new Vector2(60f, 0f), null);
             _created.Add(aegis.gameObject);
@@ -87,13 +85,11 @@ namespace RuinRail.Tests
             Assert.AreEqual(700, aegis.Boss.XpValue);
             var (target, _) = SpawnPlayerDummy(new Vector2(61.5f, 0f));
             aegis.Boss.SetTarget(target.transform);
-            Assert.AreEqual("Radial Projectile Ring", aegis.Boss.SelectAttack().DisplayName, "Close: the ring.");
-            target.transform.position = new Vector2(65.5f, 0f);
-            Assert.AreEqual("Reposition Dash", aegis.Boss.SelectAttack().DisplayName, "Mid: reposition.");
-            target.transform.position = new Vector2(68f, 0f);
-            Assert.AreEqual("Triple Energy Burst", aegis.Boss.SelectAttack().DisplayName, "Far: the burst.");
-            target.transform.position = new Vector2(71f, 0f);
-            Assert.AreEqual("Line Energy Attack", aegis.Boss.SelectAttack().DisplayName, "Beyond the burst: the line.");
+            BossSelectionAssert.CanSelectAt(aegis.Boss, target.transform, new Vector2(60f, 0f), 1.5f, "Radial Projectile Ring", "Close: the ring.");
+            BossSelectionAssert.CanSelectAt(aegis.Boss, target.transform, new Vector2(60f, 0f), 5.5f, "Reposition Dash", "Mid: reposition.");
+            BossSelectionAssert.CanSelectAt(aegis.Boss, target.transform, new Vector2(60f, 0f), 8f, "Triple Energy Burst", "Far: the burst.");
+            // Beyond the burst band only the line attack still reaches, so selection must return exactly it.
+            BossSelectionAssert.OnlySelectableAt(aegis.Boss, target.transform, new Vector2(60f, 0f), 11f, "Line Energy Attack", "Beyond the burst: the line.");
         }
 
         [UnityTest]
@@ -116,8 +112,7 @@ namespace RuinRail.Tests
                 Assert.AreEqual(2, boss.Phase, $"{definition.Id}: exactly half: phase 2.");
                 Assert.AreEqual(definition.PhaseTwoTimingMultiplier, boss.TimingMultiplier, 0.0001f);
                 CollectionAssert.AreEqual(new[] { 2 }, phases);
-                player.transform.position = new Vector2(3f, 0f);
-                Assert.AreEqual(extra, boss.SelectAttack().DisplayName, $"{definition.Id}: phase 2 prepends the combined mechanic.");
+                BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 3f, extra, $"{definition.Id}: phase 2 adds the combined mechanic to the rotation.");
                 boss.Health.TryApplyDamage(new DamageRequest(200));
                 CollectionAssert.AreEqual(new[] { 2 }, phases, "Phase transition happens exactly once.");
                 Object.DestroyImmediate(encounter.gameObject);

@@ -51,6 +51,63 @@ namespace RuinRail.UI.Hud
     }
 
     /// <summary>
+    /// The enemy-remaining chip (91): a hostile token plus "xN" on the same restrained plate as the coin readout, top-
+    /// right under it. It is a count, not a sentence, and it exists on screen only while the view model says an active
+    /// standard combat encounter still has enemies — the view never decides eligibility itself.
+    /// </summary>
+    public sealed class HudEnemyCountView : MonoBehaviour
+    {
+        public const int Width = HudCoinView.Width;
+        public const int Height = HudCoinView.Height;
+        public const int IconSize = 12;
+
+        private Image _icon;
+        private Text _count;
+        private GameObject _body;
+
+        public bool HasIconSprite => _icon != null && _icon.sprite != null;
+        public bool IconVisible => _icon != null && _icon.enabled && IsVisible;
+        public Sprite IconSprite => _icon != null ? _icon.sprite : null;
+        public string CountText => _count != null ? _count.text : string.Empty;
+        public bool IsVisible => _body != null && _body.activeSelf;
+        public int Shown { get; private set; }
+        public RectTransform Rect => (RectTransform)transform;
+
+        public static HudEnemyCountView Create(Transform parent, UiRect bounds, Sprite enemySprite, string name = "Enemies")
+        {
+            var rect = UiBuild.NewRect(parent, name, bounds);
+            var view = rect.gameObject.AddComponent<HudEnemyCountView>();
+            view.Build(bounds.Width, bounds.Height, enemySprite);
+            return view;
+        }
+
+        private void Build(int width, int height, Sprite enemySprite)
+        {
+            var inner = new UiRect(0, 0, width, height);
+            _body = UiBuild.NewRect(transform, "Body", inner).gameObject;
+            UiBuild.Plate(_body.transform, inner, UiTheme.WithAlpha(UiTheme.NearBlack, 0.72f), "Plate");
+            UiBuild.Border(_body.transform, inner, UiTheme.PanelEdgeSoft);
+            var iconRect = UiBuild.NewRect(_body.transform, "Icon", new UiRect(3, (height - IconSize) / 2, IconSize, IconSize));
+            _icon = iconRect.gameObject.AddComponent<Image>();
+            _icon.raycastTarget = false;
+            _icon.preserveAspect = true;
+            _icon.sprite = enemySprite;
+            if (enemySprite == null) _icon.color = UiTheme.Danger; // an unbound token still reads as the hostile slot
+            var textX = 3 + IconSize + 3;
+            _count = UiBuild.Label(_body.transform, string.Empty, new UiRect(textX, (height - UiText.LineHeight) / 2, width - textX - 4, UiText.LineHeight), 1, TextAnchor.UpperRight, UiTheme.Danger, false, "EnemyCount");
+        }
+
+        /// <summary>Shows "xN" while visible; hides the whole chip otherwise (a hidden chip has no text and no plate).</summary>
+        public void Show(bool visible, int remaining)
+        {
+            if (_body == null) return;
+            if (_body.activeSelf != visible) _body.SetActive(visible);
+            _count.text = visible ? $"x{Mathf.Max(0, remaining)}" : string.Empty;
+            if (visible) Shown++;
+        }
+    }
+
+    /// <summary>
     /// The room-title reveal (ui/91): the name of the room the player has just entered, briefly, top-centre under the
     /// HUD band. Fade in, hold, fade out — about two seconds in total, one line of name plus an optional role line
     /// for special rooms. It never blocks the play area and never repeats while the player stays in the room; the
@@ -146,6 +203,101 @@ namespace RuinRail.UI.Hud
             _name.color = UiTheme.WithAlpha(UiTheme.Amber, alpha);
             _role.color = UiTheme.WithAlpha(UiTheme.InkMuted, alpha * 0.9f);
             if (_plate != null) _plate.color = UiTheme.WithAlpha(UiTheme.NearBlack, alpha * 0.62f);
+        }
+    }
+
+    /// <summary>
+    /// The event notice (ui/91): one line for what an interaction just did — the reward that landed, the repair that
+    /// failed, the signal that started, the reason a press was refused — shown briefly under the room-title band, or
+    /// held (a running Supply Signal's countdown) until cleared. It is presentation only: the composition root feeds
+    /// it from the event results, and nothing waits for it.
+    /// </summary>
+    public sealed class HudNoticeView : MonoBehaviour
+    {
+        public const int Width = 400;
+        public const int Height = UiText.LineHeight + 4;
+        public const float DefaultSeconds = 3.2f;
+        public const float FadeSeconds = 0.35f;
+
+        private Text _text;
+        private Image _plate;
+        private float _remaining;
+        private bool _held;
+        private Color _color = UiTheme.Amber;
+
+        public string Text => _text != null ? _text.text : string.Empty;
+        public bool IsShowing => _held || _remaining > 0f;
+        public bool IsHeld => _held;
+        public float Alpha { get; private set; }
+        public int Notices { get; private set; }
+        public RectTransform Rect => (RectTransform)transform;
+
+        public static HudNoticeView Create(Transform parent, UiRect bounds, string name = "EventNotice")
+        {
+            var rect = UiBuild.NewRect(parent, name, bounds);
+            var view = rect.gameObject.AddComponent<HudNoticeView>();
+            view.Build(bounds.Width);
+            return view;
+        }
+
+        private void Build(int width)
+        {
+            _plate = UiBuild.Plate(transform, new UiRect(0, 0, width, Height), UiTheme.WithAlpha(UiTheme.NearBlack, 0f), "NoticePlate");
+            _text = UiBuild.Label(transform, string.Empty, new UiRect(0, 2, width, UiText.LineHeight), 1, TextAnchor.UpperCenter, UiTheme.Amber, false, "NoticeText");
+            Apply(0f);
+        }
+
+        /// <summary>Shows a line for a few seconds (a new notice replaces the current one).</summary>
+        public void Show(string text, bool isProblem = false, float seconds = DefaultSeconds)
+        {
+            if (string.IsNullOrEmpty(text)) return;
+            _held = false;
+            _color = isProblem ? UiTheme.Danger : UiTheme.Amber;
+            SetText(text);
+            _remaining = Mathf.Max(0.1f, seconds);
+            Notices++;
+            Apply(1f);
+        }
+
+        /// <summary>Holds a line until <see cref="Clear"/> (a countdown the caller updates by calling Hold again).</summary>
+        public void Hold(string text)
+        {
+            if (string.IsNullOrEmpty(text)) { Clear(); return; }
+            _held = true;
+            _color = UiTheme.Amber;
+            SetText(text);
+            Apply(1f);
+        }
+
+        public void Clear()
+        {
+            _held = false;
+            _remaining = 0f;
+            Apply(0f);
+        }
+
+        private void SetText(string text)
+        {
+            _text.text = UiText.Fit(text.ToUpperInvariant(), Width);
+            var plateWidth = Mathf.Min(Width, UiText.Width(_text.text) + 10);
+            var plateRect = (RectTransform)_plate.transform;
+            plateRect.sizeDelta = new Vector2(plateWidth, Height);
+            plateRect.anchoredPosition = new Vector2(Mathf.Round((Width - plateWidth) / 2f), 0f);
+        }
+
+        private void Update()
+        {
+            if (_held) { if (Alpha < 1f) Apply(1f); return; }
+            if (_remaining <= 0f) { if (Alpha != 0f) Apply(0f); return; }
+            _remaining -= Time.unscaledDeltaTime;
+            Apply(_remaining <= 0f ? 0f : Mathf.Clamp01(_remaining / FadeSeconds));
+        }
+
+        private void Apply(float alpha)
+        {
+            Alpha = alpha;
+            _text.color = UiTheme.WithAlpha(_color, alpha);
+            if (_plate != null) _plate.color = UiTheme.WithAlpha(UiTheme.NearBlack, alpha * 0.7f);
         }
     }
 
@@ -270,6 +422,75 @@ namespace RuinRail.UI.Hud
         {
             if (_image == null) return;
             _image.color = UiTheme.WithAlpha(UiTheme.Danger, alpha);
+        }
+    }
+
+    /// <summary>
+    /// One timed-effect chip: the consumable's own icon over a vertical "time left" fill, with a thin frame that says
+    /// whether the effect is something the player wanted or something done to them.
+    ///
+    /// A chip is a square the size of the HUD's small icon slots and carries no text of its own, because up to three
+    /// of them sit over the consumable slot and three labels there would be clutter. The seconds and the effect line
+    /// appear on the details row under the strip when the strip is pointed at or focused, which is where a player who
+    /// wants the exact number looks.
+    /// </summary>
+    public sealed class HudStatusChipView : MonoBehaviour
+    {
+        public const int Size = 16;
+        public const int IconSize = 12;
+
+        private Image _plate;
+        private Image _fill;
+        private Image _icon;
+        private readonly System.Collections.Generic.List<Image> _frame = new();
+
+        public RectTransform Rect => (RectTransform)transform;
+        public bool IsVisible => gameObject.activeSelf;
+        public Sprite IconSprite => _icon != null ? _icon.sprite : null;
+        public bool IconVisible => _icon != null && _icon.enabled;
+        /// <summary>Fraction of the effect's duration still to run (the chip's vertical fill).</summary>
+        public float Fill => _fill != null ? _fill.fillAmount : 0f;
+        public string DefinitionId { get; private set; } = string.Empty;
+
+        public static HudStatusChipView Create(Transform parent, UiRect bounds, string name)
+        {
+            var rect = UiBuild.NewRect(parent, name, bounds);
+            var view = rect.gameObject.AddComponent<HudStatusChipView>();
+            view.Build(bounds.Width, bounds.Height);
+            return view;
+        }
+
+        private void Build(int width, int height)
+        {
+            var inner = new UiRect(0, 0, width, height);
+            _plate = UiBuild.Plate(transform, inner, UiTheme.WithAlpha(UiTheme.NearBlack, 0.78f), "Plate");
+            // The remaining-time wipe sits under the icon so the icon is never obscured by it.
+            _fill = UiBuild.Fillable(transform, inner, UiTheme.WithAlpha(UiTheme.Terminal, 0.35f),
+                Image.FillMethod.Vertical, (int)Image.OriginVertical.Bottom, "Fill");
+            foreach (var edge in UiBuild.Border(transform, inner, UiTheme.Terminal)) _frame.Add(edge);
+            var iconRect = UiBuild.NewRect(transform, "Icon", new UiRect((width - IconSize) / 2, (height - IconSize) / 2, IconSize, IconSize));
+            _icon = iconRect.gameObject.AddComponent<Image>();
+            _icon.raycastTarget = false;
+            _icon.preserveAspect = true;
+            _icon.enabled = false;
+            gameObject.SetActive(false);
+        }
+
+        /// <summary>Renders one effect, or hides the chip when there is none. The caller owns which effects exist.</summary>
+        public void Show(HudStatusEffect effect)
+        {
+            gameObject.SetActive(effect != null);
+            if (effect == null) { DefinitionId = string.Empty; return; }
+            DefinitionId = effect.DefinitionId;
+            var accent = effect.IsPositive ? UiTheme.Terminal : UiTheme.Danger;
+            _fill.color = UiTheme.WithAlpha(accent, 0.35f);
+            _fill.fillAmount = effect.Remaining01;
+            foreach (var edge in _frame) if (edge != null) edge.color = accent;
+            _icon.enabled = effect.Icon != null;
+            _icon.sprite = effect.Icon;
+            // No icon on the definition is still a readable chip: the accent fill and frame carry the state.
+            if (effect.Icon == null) _plate.color = UiTheme.WithAlpha(accent, 0.22f);
+            else _plate.color = UiTheme.WithAlpha(UiTheme.NearBlack, 0.78f);
         }
     }
 }

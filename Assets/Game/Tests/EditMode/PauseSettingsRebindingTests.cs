@@ -15,7 +15,9 @@ namespace RuinRail.Tests.EditMode
     public sealed class PauseSettingsRebindingTests
     {
         private const string AssetPath = "Assets/Game/Settings/Input/RuinRailInputActions.inputactions";
-        private static readonly string[] ApprovedActions = { "Move", "Aim", "Fire", "Special", "Dash", "Reload", "Interact", "Weapon1", "Weapon2", "WeaponSwap", "Consumable", "Inventory", "Pause" };
+        // The 13 actions of 116, in their original order, plus QuickGrenade appended by the UX-QoL pass: appended, so
+        // no existing action's index, default binding or generated callback moved.
+        private static readonly string[] ApprovedActions = { "Move", "Aim", "Fire", "Special", "Dash", "Reload", "Interact", "Weapon1", "Weapon2", "WeaponSwap", "Consumable", "Inventory", "Pause", "QuickGrenade" };
 
         private readonly List<PlayerInputReader> _readers = new();
 
@@ -50,23 +52,23 @@ namespace RuinRail.Tests.EditMode
             return a.bindings.First(b => !b.isComposite && b.groups == scheme && (part == null || b.name == part)).effectivePath;
         }
 
-        // ---- Acceptance 1 + 2: Pause exists with Esc / Menu; the 12 existing actions and their defaults are untouched ----
+        // ---- Acceptance 1 + 2: Pause exists with Esc / Menu; the existing actions and their defaults are untouched ----
 
         [Test]
-        public void PauseAction_ExistsWithEscapeAndMenu_AndThe12ExistingActionsAreIntact()
+        public void PauseAction_ExistsWithEscapeAndMenu_AndTheExistingActionsAreIntact()
         {
             var asset = AssetDatabase.LoadAssetAtPath<InputActionAsset>(AssetPath);
             var map = asset.FindActionMap("Player", throwIfNotFound: true);
-            CollectionAssert.AreEqual(ApprovedActions, map.actions.Select(a => a.name).ToArray(), "116: exactly the 13 required actions, original order preserved.");
+            CollectionAssert.AreEqual(ApprovedActions, map.actions.Select(a => a.name).ToArray(), "116: exactly the required actions, original order preserved.");
             var pause = map.FindAction("Pause", throwIfNotFound: true);
             Assert.AreEqual("Button", pause.expectedControlType);
             Assert.IsTrue(pause.bindings.Any(b => b.path == "<Keyboard>/escape" && b.groups == "Keyboard&Mouse"));
             Assert.IsTrue(pause.bindings.Any(b => b.path == "<Gamepad>/start" && b.groups == "Gamepad"), "Menu / Options = Gamepad start.");
 
-            // Generated wrapper: the callback interface carries the new action next to the existing twelve.
+            // Generated wrapper: the callback interface carries one method per action and nothing else.
             var generated = typeof(RuinRailInputActions.IPlayerActions).GetMethods().Select(m => m.Name).ToList();
             foreach (var action in ApprovedActions) CollectionAssert.Contains(generated, "On" + action);
-            Assert.AreEqual(13, generated.Count);
+            Assert.AreEqual(ApprovedActions.Length, generated.Count);
 
             // A live reader exposes the same defaults (defaults are the approved 116 tables).
             var reader = Reader();
@@ -87,8 +89,10 @@ namespace RuinRail.Tests.EditMode
 
             var kb = rebinder.EntriesFor(InputRebinder.KeyboardMouseScheme).ToList();
             var pad = rebinder.EntriesFor(InputRebinder.GamepadScheme).ToList();
-            Assert.AreEqual(16, kb.Count, "12 single bindings + 4 WASD parts.");
-            Assert.AreEqual(13, pad.Count);
+            // 13 single keyboard bindings (the 12 of 116 plus QuickGrenade's Q) + 4 WASD parts.
+            Assert.AreEqual(17, kb.Count, "13 single bindings + 4 WASD parts.");
+            // One gamepad binding per action (Move is a single stick, so it has no parts to split).
+            Assert.AreEqual(14, pad.Count);
             Assert.IsFalse(rebinder.Find("Pause", InputRebinder.KeyboardMouseScheme).IsRebindable, "Pause stays on Escape.");
             Assert.IsFalse(rebinder.Find("Aim", InputRebinder.KeyboardMouseScheme).IsRebindable, "Mouse position is not a rebindable control.");
             Assert.IsFalse(rebinder.Find("Move", InputRebinder.GamepadScheme).IsRebindable, "Left stick is fixed.");
@@ -123,10 +127,15 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(RebindOutcome.Applied, rebinder.TryBind(dash, "<Keyboard>/leftShift").Outcome);
             Assert.AreEqual("<Keyboard>/leftShift", dash.EffectivePath);
             var padDash = rebinder.Find("Dash", InputRebinder.GamepadScheme);
-            Assert.AreEqual(RebindOutcome.Applied, rebinder.TryBind(padDash, "<XInputController>/leftShoulder").Outcome);
-            Assert.AreEqual("<Gamepad>/leftShoulder", padDash.EffectivePath);
+            // D-pad up, not LB: LB is QuickGrenade's default (paired with RB for the Active Consumable), so rebinding
+            // onto it would now be a conflict rather than the plain apply this case is about.
+            Assert.AreEqual(RebindOutcome.Applied, rebinder.TryBind(padDash, "<XInputController>/dpad/up").Outcome);
+            Assert.AreEqual("<Gamepad>/dpad/up", padDash.EffectivePath);
             Assert.AreEqual(RebindOutcome.Impossible, rebinder.TryBind(padDash, "<Gamepad>/leftStick").Outcome);
             Assert.AreEqual(RebindOutcome.Reserved, rebinder.TryBind(padDash, "<Gamepad>/start").Outcome, "Menu is reserved for Pause.");
+            var padConflict = rebinder.TryBind(padDash, "<Gamepad>/leftShoulder");
+            Assert.AreEqual(RebindOutcome.Conflict, padConflict.Outcome, "LB already belongs to Quick Grenade.");
+            Assert.AreEqual("Quick Grenade", padConflict.ConflictingAction, "The conflict names the action by its rebinding label.");
             Assert.AreNotEqual("—", InputRebinder.HumanReadable("<Gamepad>/leftShoulder"), "Display text resolves for overrides.");
             Assert.AreEqual("—", InputRebinder.HumanReadable(""));
 
@@ -217,7 +226,7 @@ namespace RuinRail.Tests.EditMode
             Assert.IsFalse(vm.SetResolution(640, 480), "Not offered by the display.");
             StringAssert.Contains("not available", vm.Message);
             Assert.IsTrue(vm.SetResolution(1280, 720));
-            Assert.AreEqual("1280×720", vm.ResolutionText);
+            Assert.AreEqual("1280 x 720", vm.ResolutionText, "the pixel face has no multiplication sign");
             Assert.IsTrue(vm.IsDirty);
             Assert.AreEqual(1f, service.Current.Audio.MasterVolume, "Draft only until APPLY.");
             Assert.AreEqual(0, applier.Applied.Count);
@@ -244,7 +253,7 @@ namespace RuinRail.Tests.EditMode
             Assert.IsTrue(vm.SetResolution(0, 0));
             Assert.AreEqual("Native", vm.ResolutionText);
             vm.Discard();
-            Assert.AreEqual("1280×720", vm.ResolutionText, "Discard returns to persisted values.");
+            Assert.AreEqual("1280 x 720", vm.ResolutionText, "Discard returns to persisted values.");
             Assert.AreEqual(SaveError.None, vm.ResetToDefaults());
             Assert.AreEqual(1f, service.Current.Audio.MasterVolume);
             Assert.IsTrue(service.Current.Accessibility.ScreenShake);
@@ -262,7 +271,7 @@ namespace RuinRail.Tests.EditMode
             public bool SpecialHeld => false;
             public bool InteractHeld => false;
 #pragma warning disable CS0067
-            public event System.Action Dash, Reload, Interact, Weapon1Selected, Weapon2Selected, WeaponSwapped, ConsumableUsed, InventoryToggled;
+            public event System.Action Dash, Reload, Interact, Weapon1Selected, Weapon2Selected, WeaponSwapped, ConsumableUsed, QuickGrenadeUsed, InventoryToggled;
 #pragma warning restore CS0067
             public event System.Action PauseToggled;
             public void Enable() { }

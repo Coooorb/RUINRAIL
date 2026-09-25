@@ -71,6 +71,9 @@ namespace RuinRail.Networking
                 GetComponent<PlayerLifeStateComponent>()?.SetInputReader(_remoteReader);
                 GetComponent<PlayerReviver>()?.SetInputReader(_remoteReader);
                 GetComponent<DeadSpectatorFollow>()?.SetInputReader(_remoteReader);
+                // The member's Interact command (chests, events, pickups, transit) resolves here, on the host, against
+                // the host's objects — the one place those interactions may be decided (82).
+                GetComponent<PlayerInteractor>()?.SetInputReader(_remoteReader);
             }
 
             if (IsServer && _dash != null)
@@ -91,8 +94,44 @@ namespace RuinRail.Networking
             }
         }
 
+        /// <summary>85: a reclaimed character becomes this client's own after its spawn: it predicts and sends intents from now on.</summary>
+        public override void OnGainedOwnership()
+        {
+            if (IsServer) return;
+            if (_body != null) _body.bodyType = RigidbodyType2D.Dynamic;
+            if (_dash != null)
+            {
+                _dash.DashStarted -= OnOwnerDashStarted;
+                _dash.DashStarted += OnOwnerDashStarted;
+            }
+        }
+
+        public override void OnLostOwnership()
+        {
+            if (IsServer) return;
+            if (_body != null) _body.bodyType = RigidbodyType2D.Kinematic;
+            if (_dash != null) _dash.DashStarted -= OnOwnerDashStarted;
+        }
+
+        public override void OnNetworkDespawn()
+        {
+            if (_dash != null) _dash.DashStarted -= OnOwnerDashStarted;
+        }
+
+        /// <summary>
+        /// Host: the owning connection dropped or was replaced (85). The character stops acting on stale intents and
+        /// accepts the new connection's sequence from the start.
+        /// </summary>
+        public void ResetRemoteInput()
+        {
+            if (!IsServer) return;
+            _remoteReader?.Reset();
+            _dashValidator?.Reset();
+        }
+
         private void OnOwnerDashStarted(PlayerDash dash, Vector2 direction)
         {
+            if (!IsSpawned) return;
             RequestDashRpc(new DashRequest { Sequence = ++_dashSequence, Direction = direction });
         }
 

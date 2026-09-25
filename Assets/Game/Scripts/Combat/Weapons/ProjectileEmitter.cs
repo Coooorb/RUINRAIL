@@ -31,7 +31,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
             float staggerPower = 0f,
             IImpactAttackerFeedback feedback = null,
             float explosionRadius = 0f,
-            DamageTeam sourceTeam = DamageTeam.Player)
+            DamageTeam sourceTeam = DamageTeam.Player,
+            string visualId = null,
+            int pierceCount = 0)
         {
             pattern.ResolveDirections(aimDirection, _directions);
             spawned.Clear();
@@ -41,7 +43,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 // Damage is rolled independently per projectile; each one is an ordinary pooled projectile.
                 // Integer roll first, then the (already capped) weapon-damage multiplier, rounded back to an integer.
                 var damage = Mathf.Max(0, Mathf.RoundToInt(damageRoller.Roll(damageMin, damageMax) * damageMultiplier));
-                var data = new ProjectileSpawnData(damage, projectileSpeed, range, knockback, staggerPower, direction, source, feedback, explosionRadius, sourceTeam);
+                var data = new ProjectileSpawnData(damage, projectileSpeed, range, knockback, staggerPower, direction, source, feedback, explosionRadius, sourceTeam, false, visualId, pierceCount);
                 spawned.Add(pool.Spawn(spawnPosition, data));
             }
         }

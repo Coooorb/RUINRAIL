@@ -60,7 +60,9 @@ namespace RuinRail.Tests
                 Assert.AreEqual(speed, w.ProjectileSpeed, 0.001f, id);
                 Assert.AreEqual(ammo, w.AmmoType, id);
                 Assert.AreEqual(special, w.LegendaryMechanicId, id);
-                Assert.AreEqual("pool_ranged", w.AffixPool.Id, id);
+                // Shotguns and rockets carry authored impact, so they roll the impact-capable ranged pool.
+                var expectedPool = cls is WeaponClass.Shotgun or WeaponClass.RocketLauncher ? "pool_ranged_impact" : "pool_ranged";
+                Assert.AreEqual(expectedPool, w.AffixPool.Id, id);
                 Assert.IsNotNull(Registry().CreateFor(w.LegendaryMechanicId), $"{id}: mechanic id resolves to a special.");
             }
 

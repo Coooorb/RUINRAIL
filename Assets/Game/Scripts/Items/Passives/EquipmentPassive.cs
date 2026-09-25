@@ -51,6 +51,13 @@ namespace RuinRail.Gameplay.Items.Passives
         protected PassiveContext Context { get; private set; }
 
         public abstract string Id { get; }
+
+        /// <summary>
+        /// The player-facing effect text of this passive, written next to the constants it quotes so the tooltip can
+        /// never drift from the mechanic (items/28, 34). One sentence; numbers are the passive's own.
+        /// </summary>
+        public abstract string Description { get; }
+
         public bool IsAttached => Context != null;
 
         public void Attach(PassiveContext context)

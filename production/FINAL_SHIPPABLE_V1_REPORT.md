@@ -1,5 +1,8 @@
 # RUINRAIL — Final Shippable V1 Report
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. 'Real multiplayer has never been proven' is superseded: co-op is proven in built players over UnityTransport (live UGS Relay remains NOT RUN). Its Windows build predates the current tree. The body below is kept unchanged as the record of its time.
+
+
 > **Terminal status:** `BLOCKED_EXTERNAL_DEPENDENCY`
 > **Date:** 2026-09-16
 > **Pass:** FINAL_AUTONOMOUS_COMPLETION_PROMPT_V2, executed against FINAL_ART_PRODUCTION_SPEC v2.0

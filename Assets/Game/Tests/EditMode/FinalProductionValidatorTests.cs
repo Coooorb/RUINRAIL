@@ -14,8 +14,8 @@ namespace RuinRail.Tests.EditMode
             var report = FinalProductionValidator.WriteReport();
             var markdown = report.ToMarkdown();
             Assert.IsTrue(report.DataPass, string.Join("\n", report.Sections.SelectMany(s => s.Errors.Select(e => s.Name + ": " + e))));
-            Assert.AreEqual(9, report.Sections.Count);
-            CollectionAssert.AreEqual(new[] { "Stable ids", "Serialized references", "Rooms and room pools", "Loot tables, rarity tables, Legendary mechanics, prices", "Enemies, Elites, Bosses", "Content counts (production/126)", "Build scenes and boot flow", "Assembly hygiene (no Editor leaks into runtime)", "Network prefabs" }, report.Sections.Select(s => s.Name));
+            Assert.AreEqual(10, report.Sections.Count);
+            CollectionAssert.AreEqual(new[] { "Stable ids", "Serialized references", "Rooms and room pools", "Loot tables, rarity tables, Legendary mechanics, prices", "Enemies, Elites, Bosses", "Content counts (production/126)", "Build scenes and boot flow", "Assembly hygiene (no Editor leaks into runtime)", "Network prefabs", "Item descriptions (ui/93)" }, report.Sections.Select(s => s.Name));
             StringAssert.Contains("33 weapons / 9 armor / 16 accessories / 10 consumables / 9 enemies / 6 Elites / 6 Bosses / 63 rooms", markdown);
             StringAssert.Contains("every serialized object reference resolves", markdown);
             StringAssert.Contains("no runtime script uses UnityEditor outside #if UNITY_EDITOR", markdown);

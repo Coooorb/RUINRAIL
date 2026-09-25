@@ -23,6 +23,7 @@ MonoBehaviour:
   _weaponClass: 5
   _knockback: 0
   _staggerPower: 0
+  _projectileVisualId: proj_sniper_legendary
   _damageMin: 48
   _damageMax: 55
   _fireRate: 0.9

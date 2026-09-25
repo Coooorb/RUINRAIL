@@ -13,6 +13,15 @@ namespace RuinRail.Gameplay.Combat.Impact
 
         /// <summary>The attacker's knockback drove a target into a wall; the return value may add damage/stagger. Null = nothing extra.</summary>
         WallImpactOutcome OnTargetKnockedIntoWall(string targetId, bool isBoss);
+
+        /// <summary>
+        /// A direct (non-explosive) projectile of the attacker is about to damage a target after travelling
+        /// <paramref name="travelDistance"/> tiles; returns the damage to apply (wearer passives may raise it).
+        /// </summary>
+        int OnProjectileHitRolling(int damage, float travelDistance) => damage;
+
+        /// <summary>The attacker's hit (projectile, blast or melee) took the target's last health.</summary>
+        void OnTargetKilled(bool melee) { }
     }
 
     /// <summary>Plain result of the wall-impact hook (mirrors Stats.WallImpactRequest without a Stats dependency).</summary>
@@ -100,9 +109,22 @@ namespace RuinRail.Gameplay.Combat.Impact
     /// <summary>Delivers one hit's impact to whatever receivers the struck object exposes (any subset, none is fine).</summary>
     public static class ImpactDispatcher
     {
+        /// <summary>
+        /// 82 on a client process: knockback and stagger of a hit are the host's to apply, so the impact of a hit the
+        /// local player landed is forwarded here (together with the damage request) instead of moving a replica.
+        /// Returns true when forwarded. Null outside a co-op client run.
+        /// </summary>
+        public static System.Func<Component, ImpactRequest, bool> RemoteImpactRelay { get; set; }
+
         public static void Apply(Component struck, ImpactRequest request)
         {
             if (struck == null) return;
+            if (!DamageAuthority.LocalIsAuthoritative)
+            {
+                RemoteImpactRelay?.Invoke(struck, request);
+                return;
+            }
+
             if (request.HasStagger) struck.GetComponentInParent<IStaggerReceiver>()?.ApplyStagger(request);
             if (request.HasKnockback) struck.GetComponentInParent<IKnockbackReceiver>()?.ApplyKnockback(request);
         }

@@ -441,7 +441,7 @@ namespace RuinRail.EditorTools.Production
             "ui.panel_frame", "ui.button", "ui.button_focus", "ui.inventory_slot",
             "ui.rarity_frame.Common", "ui.rarity_frame.Uncommon", "ui.rarity_frame.Rare", "ui.rarity_frame.Epic", "ui.rarity_frame.Legendary",
             "ui.bar.hp", "ui.bar.xp", "ui.glyphs.keyboard", "ui.glyphs.controller", "ui.dash_icon",
-            "ui.coin_icon", "ui.vignette_low_hp",
+            "ui.coin_icon", "ui.vignette_low_hp", "ui.enemy_icon",
             "ui.mainmenu_background", "ui.shelter_stations"
         };
 
@@ -489,6 +489,19 @@ namespace RuinRail.EditorTools.Production
                     AssetType = "Effect sprite (or frame strip)",
                     Spec = "art/106 section 10 short, layered, never hides hazards; the current pool sprite is a white square",
                     Status = StatusOfSprite("Assets/Game/Art/Vfx/vfx_" + kind + ".png")
+                });
+            }
+
+            foreach (var spec in RuinRail.EditorTools.ArtGen.ProjectileFactory.Specs())
+            {
+                r.Roles.Add(new Role
+                {
+                    Category = "Projectile visuals",
+                    RoleId = "vfx." + spec.Id,
+                    Owner = "ProjectileVisual (pooled projectile presentation) via ProjectileVisualCatalog",
+                    AssetType = "In-flight projectile sprite (or 2-frame strip)",
+                    Spec = "Projectile visuals pass: " + spec.Description + "; authored +X, pivot at the head, readable at 640x360",
+                    Status = StatusOfSprite(RuinRail.EditorTools.ArtGen.ProjectileArtIntegration.SheetPath(spec.Id))
                 });
             }
 

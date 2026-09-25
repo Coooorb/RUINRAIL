@@ -67,6 +67,17 @@ namespace RuinRail.UI.Multiplayer
         public int CopyRequests { get; private set; }
         public string LastCopiedCode { get; private set; }
 
+        /// <summary>
+        /// Owner hook run right before the local player goes Ready: returns true when it changed the loadout (the
+        /// Starter Loadout fallback for a player with nothing equipped, base/75), which the terminal then reports as
+        /// a notice. Null = nothing to prepare.
+        /// </summary>
+        public Func<bool> PrepareLoadout { get; set; }
+
+        /// <summary>The non-blocking notice shown by the station after a Ready that prepared the loadout (empty otherwise).</summary>
+        public string Notice { get; private set; } = string.Empty;
+        public const string StarterLoadoutEquippedNotice = "STARTER LOADOUT EQUIPPED";
+
         public event Action<TerminalViewModel> Changed;
 
         public string StatusText => _terminal.State switch
@@ -148,7 +159,10 @@ namespace RuinRail.UI.Multiplayer
                 case TerminalAction.Leave: return await _terminal.LeaveAsync();
                 case TerminalAction.ToggleReady:
                     var member = _lobby.Get(_localClientId);
-                    _lobby.SetReady(_localClientId, !member.IsReady);
+                    var goingReady = !member.IsReady;
+                    // Going Ready with nothing equipped is not a refusal: the owner's hook equips the Starter Loadout first.
+                    Notice = goingReady && PrepareLoadout != null && PrepareLoadout() ? StarterLoadoutEquippedNotice : string.Empty;
+                    _lobby.SetReady(_localClientId, goingReady);
                     Raise();
                     return SessionError.None;
                 case TerminalAction.CopyCode:

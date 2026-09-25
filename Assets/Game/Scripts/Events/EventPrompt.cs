@@ -49,6 +49,28 @@ namespace RuinRail.Gameplay.Events
             _ => "Use"
         };
 
+        /// <summary>The short upper-case reason a press would be refused for this actor (empty when it would go through).</summary>
+        public static string RefusalReason(IDungeonEvent dungeonEvent, EventActor actor)
+        {
+            if (dungeonEvent == null || actor == null) return string.Empty;
+            if (dungeonEvent.Phase != DungeonEventPhase.Available) return "USED";
+            if (dungeonEvent is MedicalStationEvent station)
+            {
+                if (actor.Patient == null || !actor.Patient.IsAlive) return "NO PATIENT";
+                if (station.HealsRemainingFor(actor.ParticipantId) <= 0) return "USED";
+                if (actor.Patient.CurrentHealth >= actor.Patient.MaxHealth) return "HP FULL";
+            }
+
+            var cost = dungeonEvent.CostCoins;
+            if (cost > 0)
+            {
+                if (actor.Wallet == null) return "NO COINS";
+                if (!actor.Wallet.CanAfford(cost)) return $"NEED {cost - actor.Wallet.Balance} MORE COINS";
+            }
+
+            return dungeonEvent.CanActivate(actor) ? string.Empty : "UNAVAILABLE";
+        }
+
         public static EventPrompt Build(IDungeonEvent dungeonEvent, int carriedCoins)
         {
             var cost = dungeonEvent.CostCoins;

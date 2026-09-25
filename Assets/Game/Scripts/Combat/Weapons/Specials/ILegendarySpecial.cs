@@ -13,8 +13,9 @@ namespace RuinRail.Gameplay.Combat.Weapons.Specials
     public sealed class SpecialContext
     {
         public SpecialContext(GameObject owner, Rigidbody2D body, Func<Vector2> aimDirection, Func<Vector2> spawnPosition, ProjectilePool pool, IDamageRoller roller,
-            DamageTeam sourceTeam = DamageTeam.Player, IImpactAttackerFeedback feedback = null)
+            DamageTeam sourceTeam = DamageTeam.Player, IImpactAttackerFeedback feedback = null, string projectileVisualId = null)
         {
+            ProjectileVisualId = projectileVisualId;
             Owner = owner;
             Body = body;
             AimDirectionProvider = aimDirection ?? (() => Vector2.right);
@@ -33,6 +34,8 @@ namespace RuinRail.Gameplay.Combat.Weapons.Specials
         public IDamageRoller Roller { get; }
         public DamageTeam SourceTeam { get; }
         public IImpactAttackerFeedback Feedback { get; }
+        /// <summary>The in-flight visual the special's shots carry (the Legendary weapon's own profile); null = the player default.</summary>
+        public string ProjectileVisualId { get; }
 
         public Vector2 AimDirection
         {

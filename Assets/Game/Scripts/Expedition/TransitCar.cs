@@ -10,7 +10,7 @@ namespace RuinRail.Gameplay.Expedition
     /// reports defeat; then boarding (Interact) surfaces the decision and choices are forwarded to the ExpeditionService.
     /// Repeated boarding/choices after resolution are no-ops.
     /// </summary>
-    public sealed class TransitCar : MonoBehaviour, IInteractable
+    public sealed class TransitCar : MonoBehaviour, IInteractable, IInteractionPrompt
     {
         [SerializeField] private BossEncounter _bossEncounter;
 
@@ -63,6 +63,9 @@ namespace RuinRail.Gameplay.Expedition
         }
 
         public bool CanInteract(GameObject interactor) => IsActivated && !_boarded && _service != null && _service.Transit != null && _service.Transit.State == TransitDecisionState.Open;
+
+        /// <summary>The HUD prompt for the one Interact action (ui/90): boarding is offered only while the decision is open.</summary>
+        public string PromptFor(GameObject interactor) => CanInteract(interactor) ? "BOARD TRANSIT" : string.Empty;
 
         public bool Interact(GameObject interactor)
         {

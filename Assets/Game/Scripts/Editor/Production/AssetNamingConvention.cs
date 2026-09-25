@@ -139,6 +139,14 @@ namespace RuinRail.EditorTools.Production
                         Slicing = "Multiple when the effect is a frame strip; frames read left to right."
                     };
 
+                case "Projectile visuals":
+                    return new Placement
+                    {
+                        ExpectedSourcePath = $"{ArtRoot}/Vfx/{FileStem(roleId)}.png",
+                        BindingPoint = "ProjectileVisualCatalog profile (frames/trail), resolved by ProjectileVisual from ProjectileSpawnData.VisualId",
+                        Slicing = "Frame strip (1 or 2 cells), authored pointing +X, pivot at the head."
+                    };
+
                 case "SFX":
                     return new Placement
                     {

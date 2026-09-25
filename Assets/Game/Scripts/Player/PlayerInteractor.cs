@@ -18,6 +18,12 @@ namespace RuinRail.Gameplay.Player
 
         public float Reach => _reach;
 
+        /// <summary>
+        /// Installed only by a co-op client run (process-wide, cleared on teardown): decides which interactables this
+        /// process may resolve locally. Null in solo and on the host, where every interaction is local and unchanged.
+        /// </summary>
+        public static System.Func<IInteractable, GameObject, bool> LocalInteractionFilter { get; set; }
+
         public void SetInputReader(IPlayerInputReader inputReader)
         {
             Attach(inputReader);
@@ -54,7 +60,13 @@ namespace RuinRail.Gameplay.Player
             // 84: Downed/Dead players perform no normal interactions.
             if (!_actionGate.CanAct(this)) return false;
             var target = FindNearestInteractable();
-            return target != null && target.Interact(gameObject);
+            if (target == null) return false;
+            // 82 on a co-op client: the Interact press travels to the host as a command and is resolved there against
+            // the host's objects (chest, event, pickup, transit). Only what is purely this player's own presentation
+            // (opening a trade or choice screen) may run locally; everything else is the host's to decide.
+            var filter = LocalInteractionFilter;
+            if (filter != null && !filter(target, gameObject)) return false;
+            return target.Interact(gameObject);
         }
 
         public IInteractable FindNearestInteractable()

@@ -153,6 +153,7 @@ namespace RuinRail.EditorTools.ArtGen
             GenerateWeapons();
             GenerateIcons();
             GenerateVfx();
+            GenerateProjectileVisuals();
             GenerateWorldObjects();
             GenerateBiomeDressing();
             GenerateUiSprites();
@@ -168,6 +169,7 @@ namespace RuinRail.EditorTools.ArtGen
             AnimationSetBuilder.BuildAll();
             AuthorBiomeLighting();
             BindEverything();
+            ProjectileArtIntegration.BindCatalog();
             ProvenanceRecorder.Record();
             Debug.Log("Final art generation complete.");
         }
@@ -242,6 +244,43 @@ namespace RuinRail.EditorTools.ArtGen
                 var sheet = PixelCanvas.Row(frames);
                 WriteSheet(sheet, $"{ArtRoot}/Vfx/vfx_{role}.png", size, size, 32, new Vector2(0.5f, 0.5f));
             }
+        }
+
+        /// <summary>Every in-flight projectile profile (player families, Legendary variants, hostile rounds, Boss attacks) as frame strips.</summary>
+        public static void GenerateProjectileVisuals()
+        {
+            foreach (var spec in ProjectileFactory.Specs())
+            {
+                var frames = new List<PixelCanvas>();
+                for (var f = 0; f < spec.Frames; f++) frames.Add(ProjectileFactory.Build(spec.Id, f));
+                var sheet = PixelCanvas.Row(frames);
+                WriteSheet(sheet, ProjectileArtIntegration.SheetPath(spec.Id), spec.Width, spec.Height, 32, new Vector2(spec.PivotX, 0.5f));
+            }
+        }
+
+        /// <summary>Generates the projectile art (only) and binds the catalog, family defaults and per-definition profiles.</summary>
+        [MenuItem("RuinRail/Art/Generate Projectile Visuals")]
+        public static void GenerateProjectileVisualsAndBind()
+        {
+            Pending.Clear();
+            GenerateProjectileVisuals();
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            ApplyPendingImports();
+            var catalog = ProjectileArtIntegration.BindCatalog();
+            AssetDatabase.SaveAssets();
+            ProvenanceRecorder.Record();
+            Debug.Log($"Generated projectile visuals: {catalog.Profiles.Count} profiles, problems: {string.Join("; ", catalog.Problems().DefaultIfEmpty("none"))}");
+        }
+
+        public static void GenerateProjectileVisualsBatch()
+        {
+            try
+            {
+                GenerateProjectileVisualsAndBind();
+                var catalog = AssetDatabase.LoadAssetAtPath<RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog>(ProjectileArtIntegration.CatalogPath);
+                EditorApplication.Exit(catalog != null && catalog.Problems().Count == 0 ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
         }
 
         public static void GenerateWorldObjects()
@@ -334,6 +373,7 @@ namespace RuinRail.EditorTools.ArtGen
 
             WriteSprite(UiFactory.DashIcon(), $"{ArtRoot}/UI/ui_dash_icon.png", ppu);
             WriteSprite(UiFactory.CoinIcon(), $"{ArtRoot}/UI/ui_coin_icon.png", ppu);
+            WriteSprite(UiFactory.EnemyIcon(), $"{ArtRoot}/UI/ui_enemy_icon.png", ppu);
             WriteSprite(UiFactory.LowHealthVignette(), $"{ArtRoot}/UI/ui_vignette_low_hp.png", ppu);
             WriteSprite(UiFactory.Bar(32, 8, RuinPalette.Hex("#B4483E")), $"{ArtRoot}/UI/ui_bar_hp.png", ppu, null, new Vector4(3, 3, 3, 3));
             WriteSprite(UiFactory.Bar(32, 6, RuinPalette.TerminalGreen), $"{ArtRoot}/UI/ui_bar_xp.png", ppu, null, new Vector4(3, 3, 3, 3));
@@ -504,6 +544,9 @@ namespace RuinRail.EditorTools.ArtGen
             skin.EditorSetHudSprites(coin, vignette);
             if (coin == null || vignette == null)
                 Debug.LogError("UI skin: coin icon / low-HP vignette missing under Art/UI; run RuinRail/Art/Generate Missing UI Sprites.");
+            var enemy = AssetDatabase.LoadAssetAtPath<Sprite>($"{ArtRoot}/UI/ui_enemy_icon.png");
+            skin.EditorSetEnemyIcon(enemy);
+            if (enemy == null) Debug.LogError("UI skin: enemy icon missing under Art/UI; run RuinRail/Art/Generate Missing UI Sprites.");
         }
 
         /// <summary>
@@ -526,6 +569,7 @@ namespace RuinRail.EditorTools.ArtGen
             WriteIfMissing("ui_dash_icon", () => UiFactory.DashIcon());
             WriteIfMissing("ui_coin_icon", () => UiFactory.CoinIcon());
             WriteIfMissing("ui_vignette_low_hp", () => UiFactory.LowHealthVignette());
+            WriteIfMissing("ui_enemy_icon", () => UiFactory.EnemyIcon());
 
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
             ApplyPendingImports();
@@ -537,7 +581,7 @@ namespace RuinRail.EditorTools.ArtGen
             AssetDatabase.SaveAssets();
             RuinRail.UI.Theme.UiSkin.InvalidateCache();
             ProvenanceRecorder.Record();
-            Debug.Log($"Generated {written} missing UI sprite(s); dash icon bound = {skin.DashIcon != null}, coin = {skin.CoinIcon != null}, vignette = {skin.LowHealthVignette != null}.");
+            Debug.Log($"Generated {written} missing UI sprite(s); dash icon bound = {skin.DashIcon != null}, coin = {skin.CoinIcon != null}, vignette = {skin.LowHealthVignette != null}, enemy = {skin.EnemyIcon != null}.");
         }
 
         public static void GenerateMissingUiSpritesBatch()
@@ -546,7 +590,7 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 GenerateMissingUiSprites();
                 var skin = AssetDatabase.LoadAssetAtPath<RuinRail.UI.Theme.UiSkin>(UiSkinPath);
-                var ok = skin != null && skin.DashIcon != null && skin.CoinIcon != null && skin.LowHealthVignette != null;
+                var ok = skin != null && skin.DashIcon != null && skin.CoinIcon != null && skin.LowHealthVignette != null && skin.EnemyIcon != null;
                 EditorApplication.Exit(ok ? 0 : 1);
             }
             catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }

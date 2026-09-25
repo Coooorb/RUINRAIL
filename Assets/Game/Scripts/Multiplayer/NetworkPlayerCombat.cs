@@ -33,23 +33,59 @@ namespace RuinRail.Networking
                 foreach (var weapon in GetComponentsInChildren<MeleeWeapon>(true)) weapon.SetInputReader(_motion.RemoteReader);
             }
 
-            if (IsOwner && !IsServer)
-            {
-                var input = GetComponent<Gameplay.Player.PlayerInput>()?.Reader;
-                if (input != null)
-                {
-                    input.Reload += () => SendCommand(WeaponCommandKind.Reload);
-                    input.Weapon1Selected += () => SendCommand(WeaponCommandKind.SelectPrimary);
-                    input.Weapon2Selected += () => SendCommand(WeaponCommandKind.SelectSecondary);
-                    input.WeaponSwapped += () => SendCommand(WeaponCommandKind.Swap);
-                    input.ConsumableUsed += () => SendCommand(WeaponCommandKind.UseConsumable);
-                    input.Interact += () => SendCommand(WeaponCommandKind.Interact);
-                }
-            }
+            if (IsOwner && !IsServer) SubscribeOwnerCommands();
         }
+
+        private Core.Input.IPlayerInputReader _commandReader;
+
+        /// <summary>The owner's edge presses travel to the host as sequence-numbered commands (one subscription per reader).</summary>
+        private void SubscribeOwnerCommands()
+        {
+            UnsubscribeOwnerCommands();
+            _commandReader = GetComponent<Gameplay.Player.PlayerInput>()?.Reader;
+            if (_commandReader == null) return;
+            _commandReader.Reload += OnReload;
+            _commandReader.Weapon1Selected += OnWeapon1;
+            _commandReader.Weapon2Selected += OnWeapon2;
+            _commandReader.WeaponSwapped += OnSwap;
+            _commandReader.ConsumableUsed += OnConsumable;
+            _commandReader.Interact += OnInteract;
+        }
+
+        /// <summary>A despawned (or no longer owned) character never sends again, whatever reader outlives it.</summary>
+        private void UnsubscribeOwnerCommands()
+        {
+            if (_commandReader == null) return;
+            _commandReader.Reload -= OnReload;
+            _commandReader.Weapon1Selected -= OnWeapon1;
+            _commandReader.Weapon2Selected -= OnWeapon2;
+            _commandReader.WeaponSwapped -= OnSwap;
+            _commandReader.ConsumableUsed -= OnConsumable;
+            _commandReader.Interact -= OnInteract;
+            _commandReader = null;
+        }
+
+        private void OnReload() => SendCommand(WeaponCommandKind.Reload);
+        private void OnWeapon1() => SendCommand(WeaponCommandKind.SelectPrimary);
+        private void OnWeapon2() => SendCommand(WeaponCommandKind.SelectSecondary);
+        private void OnSwap() => SendCommand(WeaponCommandKind.Swap);
+        private void OnConsumable() => SendCommand(WeaponCommandKind.UseConsumable);
+        private void OnInteract() => SendCommand(WeaponCommandKind.Interact);
+
+        /// <summary>85: a reclaimed character becomes this client's own after its spawn; its presses reach the host from now on.</summary>
+        public override void OnGainedOwnership()
+        {
+            if (IsServer) return;
+            SubscribeOwnerCommands();
+        }
+
+        public override void OnLostOwnership() => UnsubscribeOwnerCommands();
+
+        public override void OnNetworkDespawn() => UnsubscribeOwnerCommands();
 
         private void SendCommand(WeaponCommandKind kind)
         {
+            if (!IsSpawned || !IsOwner) return;
             SubmitCommandRpc(new WeaponCommand { Sequence = ++_commandSequence, Kind = kind });
         }
 

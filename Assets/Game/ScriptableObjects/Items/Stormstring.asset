@@ -23,6 +23,7 @@ MonoBehaviour:
   _weaponClass: 6
   _knockback: 0
   _staggerPower: 0
+  _projectileVisualId: proj_arrow_legendary
   _quickDamageMin: 12
   _quickDamageMax: 15
   _fullDrawDamageMin: 30

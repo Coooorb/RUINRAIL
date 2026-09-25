@@ -55,6 +55,10 @@ namespace RuinRail.Gameplay.Combat.Impact
         public bool IsKnockbackActive => _knockbackRemaining > 0f || _knockbackStopPending;
         public int WallImpacts { get; private set; }
         public int KnockbacksApplied { get; private set; }
+        /// <summary>Knockbacks cut short at the encounter room's legal edge (diagnostics).</summary>
+        public int BoundsStops { get; private set; }
+        private EncounterBounds _bounds;
+        private EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = GetComponent<EncounterBounds>();
 
         public event Action<ImpactReceiver> Staggered;
         public event Action<ImpactReceiver> StaggerEnded;
@@ -108,6 +112,23 @@ namespace RuinRail.Gameplay.Combat.Impact
             {
                 ResolveWallImpact();
                 return;
+            }
+
+            // An encounter actor is never knocked out of its room: the step is cut at the legal edge (an open doorway
+            // is not a wall, so there is no wall-impact bonus — the knockback simply ends there).
+            var bounds = Bounds;
+            if (bounds != null && bounds.IsBound)
+            {
+                var free = bounds.FreeDistance(_body.position, _knockbackDirection, step);
+                if (free < step - 0.0001f)
+                {
+                    BoundsStops++;
+                    if (free <= 0.0001f) { EndKnockback(); return; }
+                    _body.linearVelocity = _knockbackDirection * (free / dt);
+                    _knockbackRemaining = 0f;
+                    _knockbackStopPending = true;
+                    return;
+                }
             }
 
             _body.linearVelocity = _knockbackDirection * (step / dt);

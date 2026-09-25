@@ -16,9 +16,9 @@ MonoBehaviour:
   _bus: 4
   _clips:
   - {fileID: 8300000, guid: 7d69f01c9e660f846a811bc99faffd91, type: 3}
-  _volume: 1
-  _pitchMin: 1
-  _pitchMax: 1
+  _volume: 0.28
+  _pitchMin: 0.97
+  _pitchMax: 1.03
   _loop: 0
-  _maxInstances: 4
-  _minIntervalMs: 0
+  _maxInstances: 2
+  _minIntervalMs: 45

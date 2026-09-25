@@ -20,7 +20,7 @@ MonoBehaviour:
   _minTriggerRange: 0
   _maxTriggerRange: 4
   _telegraphSeconds: 0.8
-  _recoverySeconds: 1.0
+  _recoverySeconds: 1
   _hitCount: 1
   _hitIntervalSeconds: 0
   _hitRadius: 0.5
@@ -35,3 +35,4 @@ MonoBehaviour:
   _projectileRange: 6
   _zoneLength: 6
   _zoneWidth: 1.5
+  _projectileVisualId: proj_enemy_energy

@@ -11,8 +11,22 @@ namespace RuinRail.Gameplay.Items
         [SerializeField] private WeaponClass _weaponClass;
         [SerializeField, Min(0f)] private float _knockback;
         [SerializeField, Min(0f)] private float _staggerPower;
+        [Tooltip("Optional in-flight projectile visual profile id (ProjectileVisualCatalog); empty = the class family default.")]
+        [SerializeField] private string _projectileVisualId = string.Empty;
 
         public WeaponClass WeaponClass => _weaponClass;
+
+        /// <summary>Per-weapon projectile visual override (presentation only); empty means the weapon-class family default.</summary>
+        public string ProjectileVisualId => _projectileVisualId;
+
+#if UNITY_EDITOR
+        /// <summary>Editor-only binding used by the art pipeline. Never called at runtime.</summary>
+        public void EditorSetProjectileVisualId(string id)
+        {
+            _projectileVisualId = id ?? string.Empty;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+#endif
 
         /// <summary>Knockback points per hit before the wielder's Knockback stat (23_WEAPON_FRAMEWORK). 0 = none authored.</summary>
         public float Knockback => _knockback;

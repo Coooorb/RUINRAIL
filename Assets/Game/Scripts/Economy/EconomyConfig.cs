@@ -34,6 +34,8 @@ namespace RuinRail.Gameplay.Economy
         [SerializeField] private int _legendaryPercent = 500;
         [SerializeField] private int _sellPercentOfBuyValue = 35;
         [SerializeField] private int _roundingStep = 5;
+        [Tooltip("Ammo resale: percent of the equivalent current purchase value for the exact quantity sold, rounded down (no step rounding, no rarity).")]
+        [SerializeField, Range(0, 100)] private int _ammoSellPercentOfPurchaseValue = 15;
 
         [Header("Base prices")]
         [SerializeField] private WeaponClassPrice[] _weaponClassPrices =
@@ -84,7 +86,19 @@ namespace RuinRail.Gameplay.Economy
         [SerializeField, Min(0)] private int _coinRewardPercentPerDepth;
         [SerializeField, Min(100)] private int _coinRewardCapPercent = 100;
 
+        // ---- Deep-depth reward continuation (59_DEPTH_SCALING) ----
+        // Enemy HP keeps climbing to x5.5 and damage to x2.6 by Depth 100, while coins are flat at every depth, the
+        // rarity table has no band past Depth 30 and XP stops growing once the threat budget caps at Depth 50. Past the
+        // start depth below, coin and XP rewards therefore follow a bounded square-root curve: it rises every depth
+        // (never flat), the step shrinks as depth grows (diminishing returns), and it stops at an authored cap.
+        [SerializeField, Min(1)] private int _deepDepthBonusStartDepth = 30;
+        [SerializeField, Min(0)] private int _deepDepthCoinPercentPerRootDepth = 7;
+        [SerializeField, Min(100)] private int _deepDepthCoinCapPercent = 175;
+        [SerializeField, Min(0)] private int _deepDepthXpPercentPerRootDepth = 7;
+        [SerializeField, Min(100)] private int _deepDepthXpCapPercent = 175;
+
         public int SellPercentOfBuyValue => _sellPercentOfBuyValue;
+        public int AmmoSellPercentOfPurchaseValue => Mathf.Clamp(_ammoSellPercentOfPurchaseValue, 0, 100);
         public int RoundingStep => Mathf.Max(1, _roundingStep);
         public int AccessoryBasePrice => _accessoryBasePrice;
         public int SkillRespecPrice => _skillRespecPrice;
@@ -139,11 +153,34 @@ namespace RuinRail.Gameplay.Economy
             return false;
         }
 
-        /// <summary>Multiplier applied to coin rewards found at a depth (1.0 everywhere until an approved curve exists).</summary>
+        /// <summary>The depth from which the deep-depth reward continuation applies; at or below it every curve is 1.0.</summary>
+        public int DeepDepthBonusStartDepth => Mathf.Max(1, _deepDepthBonusStartDepth);
+
+        /// <summary>
+        /// Multiplier applied to coin rewards found at a depth: the (currently flat) per-depth curve times the bounded
+        /// deep-depth continuation. Exactly 1.0 at every depth up to <see cref="DeepDepthBonusStartDepth"/>.
+        /// </summary>
         public float CoinRewardMultiplier(int depth)
         {
             var percent = 100 + Mathf.Max(0, depth - 1) * _coinRewardPercentPerDepth;
-            return Mathf.Min(percent, _coinRewardCapPercent) / 100f;
+            return Mathf.Min(percent, _coinRewardCapPercent) / 100f * DeepDepthMultiplier(depth, _deepDepthCoinPercentPerRootDepth, _deepDepthCoinCapPercent);
+        }
+
+        /// <summary>Multiplier applied to XP earned at a depth. Exactly 1.0 at every depth up to the start depth.</summary>
+        public float XpRewardMultiplier(int depth) =>
+            DeepDepthMultiplier(depth, _deepDepthXpPercentPerRootDepth, _deepDepthXpCapPercent);
+
+        /// <summary>
+        /// The bounded continuation: 1 + percent/100 x sqrt(depth - start), clamped at the cap. Square-root rather than
+        /// linear so every deeper depth still pays more than the one above it while each step pays less than the last,
+        /// and the cap keeps Depth 100+ from inflating the economy.
+        /// </summary>
+        private float DeepDepthMultiplier(int depth, int percentPerRootDepth, int capPercent)
+        {
+            var over = depth - DeepDepthBonusStartDepth;
+            if (over <= 0 || percentPerRootDepth <= 0) return 1f;
+            var multiplier = 1f + percentPerRootDepth / 100f * Mathf.Sqrt(over);
+            return Mathf.Min(multiplier, Mathf.Max(100, capPercent) / 100f);
         }
 
         private static bool TryGet(ItemPrice[] table, string itemId, out int price)

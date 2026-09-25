@@ -23,6 +23,7 @@ MonoBehaviour:
   _weaponClass: 8
   _knockback: 0
   _staggerPower: 0
+  _projectileVisualId: proj_energy_bolt_legendary
   _damageMin: 8
   _damageMax: 10
   _fireRate: 9
@@ -31,5 +32,5 @@ MonoBehaviour:
   _heatPerShot: 8
   _coolingRatePerSecond: 40
   _maxHeat: 100
-  _coolingDelaySeconds: 0.6
-  _overheatLockoutSeconds: 2.2
+  _coolingDelaySeconds: 0.5
+  _overheatLockoutSeconds: 1.9

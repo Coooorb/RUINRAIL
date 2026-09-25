@@ -59,13 +59,17 @@ namespace RuinRail.Networking
     /// <summary>A party member's receiving side on the host: its backpack container and Carried wallet.</summary>
     public sealed class LootParticipant
     {
-        public LootParticipant(ulong clientId, string participantId, IItemContainer backpack, CoinWallet wallet, GameObject entity = null)
+        public LootParticipant(ulong clientId, string participantId, IItemContainer backpack, CoinWallet wallet, GameObject entity = null,
+            IReadOnlyList<IItemContainer> carried = null)
         {
             ClientId = clientId;
             ParticipantId = participantId;
             Backpack = backpack;
             Wallet = wallet;
             Entity = entity;
+            // A drop may come from the backpack or an equipped slot; without an explicit list the backpack is all this
+            // member can drop from. The host never takes the container list from the request (see RequestDrop).
+            Carried = carried != null && carried.Count > 0 ? carried : new[] { backpack };
         }
 
         public ulong ClientId { get; }
@@ -73,6 +77,9 @@ namespace RuinRail.Networking
         public IItemContainer Backpack { get; }
         public CoinWallet Wallet { get; }
         public GameObject Entity { get; }
+
+        /// <summary>Every container this member may drop from: its backpack and its own equipped slots.</summary>
+        public IReadOnlyList<IItemContainer> Carried { get; }
     }
 
     /// <summary>
@@ -170,11 +177,18 @@ namespace RuinRail.Networking
             return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = transfer.Error.ToString(), InstanceId = instanceId, Quantity = transfer.Success ? quantity : 0 });
         }
 
+        /// <summary>
+        /// Drop of a carried instance. The containers are the requesting member's own, taken from its participant
+        /// record — never from the request: a client that names someone else's backpack must not be able to make that
+        /// member drop an item for it to pick up (82).
+        /// </summary>
         public LootTransactionResult RequestDrop(string transactionId, ulong clientId, IEnumerable<IItemContainer> sources, string instanceId, int quantity, Vector2 position)
         {
             if (!Gate(transactionId, clientId, out var cached)) return cached;
             if (_drops == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Rejected, Detail = "no drop service" });
-            var drop = _drops.DropFromAny(sources, instanceId, quantity, position);
+            var owned = _participants.TryGetValue(clientId, out var owner) ? owner.Carried : null;
+            if (owned == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown, Detail = "unknown participant" });
+            var drop = _drops.DropFromAny(owned, instanceId, quantity, position);
             return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = drop.Success ? LootVerdict.Accepted : LootVerdict.Rejected, Detail = drop.Transfer.Error.ToString(), InstanceId = drop.Success ? drop.Pickup.Item.InstanceId : instanceId, Quantity = drop.Transfer.Quantity });
         }
 
@@ -230,9 +244,42 @@ namespace RuinRail.Networking
             if (!Gate(transactionId, clientId, out var cached)) return cached;
             if (merchant == null || !_participants.TryGetValue(clientId, out var participant)) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown });
             var offer = merchant.Offers.FirstOrDefault(o => o.Index == offerIndex);
-            var error = merchant.Buy(offerIndex, participant.Backpack);
+            // 58/84: the buying member pays from their own Carried wallet, never from the host's.
+            var error = merchant.Buy(offerIndex, participant.Backpack, participant.Wallet);
             var verdict = error == TradeError.None ? LootVerdict.Accepted : error == TradeError.AlreadySold ? LootVerdict.AlreadyTaken : LootVerdict.Rejected;
             return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = error.ToString(), Coins = error == TradeError.None && offer != null ? offer.Price : 0, InstanceId = offer?.Item.InstanceId });
+        }
+
+        /// <summary>
+        /// A member sells one carried item to the depth's merchant: the host resolves the item from the seller's own
+        /// carried containers (never from a container the request names) and pays the seller's own wallet.
+        /// </summary>
+        public LootTransactionResult RequestMerchantSell(string transactionId, ulong clientId, DungeonMerchantService merchant, string instanceId)
+        {
+            if (!Gate(transactionId, clientId, out var cached)) return cached;
+            if (merchant == null || !_participants.TryGetValue(clientId, out var participant)) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown });
+            var source = participant.Carried.FirstOrDefault(c => c != null && c.Find(instanceId) != null);
+            if (source == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Rejected, Detail = TradeError.SourceMissingItem.ToString(), InstanceId = instanceId });
+            var item = source.Find(instanceId);
+            var value = merchant.QuoteSellValue(item);
+            var quantity = item.Quantity;
+            var error = merchant.Sell(source, instanceId, participant.Wallet);
+            return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = error == TradeError.None ? LootVerdict.Accepted : LootVerdict.Rejected, Detail = error.ToString(), Coins = error == TradeError.None ? value : 0, InstanceId = instanceId, Quantity = quantity });
+        }
+
+        /// <summary>
+        /// 57.6 Weapon Cache in co-op: the choosing member's pick goes into that member's own backpack, exactly once for
+        /// the whole party (the event's own Choose is the authority; a second choice is refused as already taken).
+        /// </summary>
+        public LootTransactionResult RequestCacheChoose(string transactionId, ulong clientId, WeaponCacheEvent cache, EventActor actor, int index)
+        {
+            if (!Gate(transactionId, clientId, out var cached)) return cached;
+            if (cache == null || actor == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown });
+            if (cache.IsConsumed) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.AlreadyTaken });
+            var choice = index >= 0 && index < cache.Choices.Count ? cache.Choices[index] : null;
+            var result = cache.Choose(actor, index);
+            var verdict = result.Outcome == DungeonEventOutcome.Success ? LootVerdict.Accepted : cache.IsConsumed ? LootVerdict.AlreadyTaken : LootVerdict.Rejected;
+            return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = result.Outcome + (string.IsNullOrEmpty(result.Detail) ? string.Empty : ":" + result.Detail), InstanceId = choice?.Item.InstanceId, Quantity = verdict == LootVerdict.Accepted ? 1 : 0 });
         }
     }
 

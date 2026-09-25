@@ -14,6 +14,8 @@ namespace RuinRail.Dungeon.Runtime
         public PlayerCombatEvents Events => _events;
         public RoomRuntime CurrentCombatRoom { get; private set; }
         public int RoomsCleared { get; private set; }
+        /// <summary>The combat room whose clear was relayed last (Room Sweep pulls that room's pickups).</summary>
+        public RoomRuntime LastClearedRoom { get; private set; }
 
         public void SetEvents(PlayerCombatEvents events) => _events = events;
 
@@ -27,6 +29,7 @@ namespace RuinRail.Dungeon.Runtime
         {
             if (CurrentCombatRoom == room) CurrentCombatRoom = null;
             RoomsCleared++;
+            LastClearedRoom = room;
             _events?.RaiseCombatRoomCleared();
         }
     }

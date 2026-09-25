@@ -140,6 +140,7 @@ namespace RuinRail.Networking
         public event Action Weapon2Selected;
         public event Action WeaponSwapped;
         public event Action ConsumableUsed;
+        public event Action QuickGrenadeUsed;
         public event Action InventoryToggled;
         public event Action PauseToggled;
 #pragma warning restore CS0067
@@ -192,6 +193,26 @@ namespace RuinRail.Networking
             return true;
         }
 
+        /// <summary>
+        /// 85: the member's connection dropped (or came back under a new one). The held character stands still with
+        /// nothing pressed, and the sequence windows restart so the reconnected owner's fresh intents and commands are
+        /// accepted instead of being rejected as older than the previous connection's.
+        /// </summary>
+        public void Reset()
+        {
+            Move = Vector2.zero;
+            FireHeld = false;
+            SpecialHeld = false;
+            InteractHeld = false;
+            LastSequence = 0;
+            AppliedIntents = 0;
+            _lastCommandSequence = 0;
+            _anyCommand = false;
+            Resets++;
+        }
+
+        public int Resets { get; private set; }
+
         public void SetHeld(bool fire, bool special, bool interact = false)
         {
             FireHeld = fire;
@@ -227,6 +248,13 @@ namespace RuinRail.Networking
         public uint LastAcceptedSequence { get; private set; }
         public int Accepted { get; private set; }
         public int Rejected { get; private set; }
+
+        /// <summary>A new connection starts its dash sequence again (85 reconnect).</summary>
+        public void Reset()
+        {
+            _any = false;
+            _lastSequence = 0;
+        }
 
         public DashVerdict Validate(in DashRequest request)
         {

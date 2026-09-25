@@ -1,0 +1,101 @@
+key,value,source
+player.max_health,100,PlayerBalanceConfig.MaxHealth
+player.move_speed,5,PlayerBalanceConfig.MoveSpeed
+player.dash,speed 17 duration 0.18 cooldown 1.4706 iframes 0.1,PlayerBalanceConfig dash fields
+player.revive,bleedout 20 crawl 0.35 hold 4 hp 30% protection 1.5 range 1.5,PlayerBalanceConfig revive fields
+player.reconnect_grace,60,ReconnectGraceService.DefaultGraceSeconds
+ammo.cap.Light,180,AmmoBalanceConfig.GetStackLimit
+ammo.cap.Medium,120,AmmoBalanceConfig.GetStackLimit
+ammo.cap.Heavy,60,AmmoBalanceConfig.GetStackLimit
+ammo.cap.Shells,40,AmmoBalanceConfig.GetStackLimit
+loot.supply_chest.light_ammo,26-46 weight 4,LootTable_SupplyChest light-ammo entry (the D1 Supply Light range)
+starter.kit,weapon_p9_ranger x1 @PrimaryWeapon; weapon_field_knife x1 @SecondaryWeapon; armor_scrap_vest x1 @Armor; consumable_bandage x1 @ActiveConsumable; ammo_light x60,StarterKitService.CreateKit()
+weapon.weapon_ar_17,ranged AssaultRifle kb 0 stg 0 dmg 8-10 rate 7.5 mag 30 reload 1.8 range 12 speed 22 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_arc_blaster_b4,blaster Blaster kb 0 stg 0 dmg 10-12 rate 6 range 12 speed 22 heat 10/100 cool 35 delay 0.5 lockout 1.9,WeaponDefinition core fields
+weapon.weapon_breacher_12,ranged Shotgun kb 6 stg 3 dmg 5-7 rate 1.4 mag 6 reload 2.2 range 6 speed 16 ammo Shellsx1 pellets 6 spread 30 blast 0,WeaponDefinition core fields
+weapon.weapon_buzzsaw,ranged Smg kb 0 stg 0 dmg 7-9 rate 11 mag 36 reload 1.8 range 8 speed 18 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_compound_bow,bow Bow kb 0 stg 0 quick 12-15 full 32-38 charge 1 speed 16/24 range 8/12,WeaponDefinition core fields
+weapon.weapon_crowdbreaker,ranged Shotgun kb 6 stg 3 dmg 5-7 rate 1.5 mag 6 reload 2.2 range 6 speed 16 ammo Shellsx1 pellets 7 spread 30 blast 0,WeaponDefinition core fields
+weapon.weapon_farline,ranged Sniper kb 0 stg 0 dmg 48-55 rate 0.9 mag 5 reload 2.4 range 21 speed 34 ammo Heavyx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_field_knife,melee Knife kb 0 stg 3 dmg 14-17 rate 3.5 reach 1.2 arc 80 windup 0.08 recovery 0.12,WeaponDefinition core fields
+weapon.weapon_ghostedge,melee Knife kb 0 stg 3 dmg 15-18 rate 3.8 reach 1.2 arc 80 windup 0.08 recovery 0.12,WeaponDefinition core fields
+weapon.weapon_guard_lance,melee Spear kb 8 stg 10 dmg 20-24 rate 2.2 reach 3 arc 20 windup 0.15 recovery 0.25,WeaponDefinition core fields
+weapon.weapon_hound_br,ranged BattleRifle kb 0 stg 0 dmg 15-18 rate 4 mag 16 reload 2.1 range 14 speed 26 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_judicator,ranged BattleRifle kb 0 stg 0 dmg 20-24 rate 2.8 mag 10 reload 2 range 16 speed 26 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_kestrel_12,ranged Pistol kb 0 stg 0 dmg 10-12 rate 5.2 mag 15 reload 1.4 range 9 speed 20 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_longshot_s1,ranged Sniper kb 0 stg 0 dmg 45-52 rate 1 mag 5 reload 2.4 range 20 speed 34 ammo Heavyx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_marauder_a2,ranged AssaultRifle kb 0 stg 0 dmg 10-12 rate 6.5 mag 28 reload 1.9 range 13 speed 22 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_needle_m7,ranged Sniper kb 0 stg 0 dmg 34-40 rate 1.5 mag 7 reload 2.2 range 18 speed 34 ammo Heavyx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_p9_ranger,ranged Pistol kb 0 stg 0 dmg 12-14 rate 4 mag 12 reload 1.2 range 10 speed 20 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_pipe_launcher,ranged RocketLauncher kb 12 stg 12 dmg 65-80 rate 0.5 mag 1 reload 2.2 range 14 speed 10 ammo Heavyx4 pellets 1 spread 0 blast 2,WeaponDefinition core fields
+weapon.weapon_pulse_carbine_b1,blaster Blaster kb 0 stg 0 dmg 7-9 rate 8 range 12 speed 22 heat 7/100 cool 35 delay 0.5 lockout 1.9,WeaponDefinition core fields
+weapon.weapon_quickfang,ranged Pistol kb 0 stg 0 dmg 13-15 rate 4.4 mag 12 reload 1.2 range 10 speed 20 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_railspike,melee Spear kb 8 stg 10 dmg 26-30 rate 1.7 reach 3 arc 20 windup 0.15 recovery 0.25,WeaponDefinition core fields
+weapon.weapon_rattler_9,ranged Smg kb 0 stg 0 dmg 6-8 rate 10 mag 32 reload 1.6 range 8 speed 18 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_recurve_bow,bow Bow kb 0 stg 0 quick 10-12 full 25-30 charge 0.65 speed 16/24 range 8/12,WeaponDefinition core fields
+weapon.weapon_redline,blaster Blaster kb 0 stg 0 dmg 8-10 rate 9 range 12 speed 22 heat 8/100 cool 40 delay 0.5 lockout 1.9,WeaponDefinition core fields
+weapon.weapon_ripper_knife,melee Knife kb 0 stg 3 dmg 10-13 rate 5 reach 1 arc 70 windup 0.08 recovery 0.12,WeaponDefinition core fields
+weapon.weapon_scatter_8,ranged Shotgun kb 6 stg 3 dmg 4-5 rate 1.7 mag 8 reload 2.4 range 5 speed 16 ammo Shellsx1 pellets 8 spread 30 blast 0,WeaponDefinition core fields
+weapon.weapon_scrap_spear,melee Spear kb 8 stg 10 dmg 24-28 rate 1.8 reach 2.6 arc 20 windup 0.15 recovery 0.25,WeaponDefinition core fields
+weapon.weapon_sentinel_br,ranged BattleRifle kb 0 stg 0 dmg 18-22 rate 3 mag 12 reload 2 range 15 speed 26 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_stormstring,bow Bow kb 0 stg 0 quick 12-15 full 30-36 charge 0.8 speed 16/24 range 8/12,WeaponDefinition core fields
+weapon.weapon_sunbreaker,ranged RocketLauncher kb 12 stg 12 dmg 70-85 rate 0.5 mag 1 reload 2.3 range 14 speed 10 ammo Heavyx4 pellets 1 spread 0 blast 2,WeaponDefinition core fields
+weapon.weapon_twin_tube,ranged RocketLauncher kb 12 stg 12 dmg 50-60 rate 0.65 mag 2 reload 2.8 range 13 speed 10 ammo Heavyx4 pellets 1 spread 0 blast 2,WeaponDefinition core fields
+weapon.weapon_vanguard,ranged AssaultRifle kb 0 stg 0 dmg 9-11 rate 8 mag 30 reload 1.8 range 12 speed 22 ammo Mediumx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.weapon_wasp_45,ranged Smg kb 0 stg 0 dmg 8-10 rate 8 mag 26 reload 1.7 range 9 speed 18 ammo Lightx1 pellets 1 spread 0 blast 0,WeaponDefinition core fields
+weapon.field_knife,melee Knife kb 0 stg 3 dmg 14-17 rate 3.5 reach 1.2 arc 80 windup 0.08 recovery 0.12,the starter Field Knife
+blaster.heat.weapon_arc_blaster_b4,heat/shot 10 cooling/s 35 max 100 delay 0.5 lockout 1.9,BlasterWeaponDefinition heat fields
+blaster.heat.weapon_pulse_carbine_b1,heat/shot 7 cooling/s 35 max 100 delay 0.5 lockout 1.9,BlasterWeaponDefinition heat fields
+blaster.heat.weapon_redline,heat/shot 8 cooling/s 40 max 100 delay 0.5 lockout 1.9,BlasterWeaponDefinition heat fields
+boss.hp.boss_aegis_core,1050,BossDefinition.BaseHealth
+boss.hp.boss_scrap_king,1000,BossDefinition.BaseHealth
+boss.hp.boss_subject_omega,1250,BossDefinition.BaseHealth
+boss.hp.boss_the_conductor,1050,BossDefinition.BaseHealth
+boss.hp.boss_the_foundry_titan,1350,BossDefinition.BaseHealth
+boss.hp.boss_tunnel_maw,1150,BossDefinition.BaseHealth
+elite.hp.elite_crusher_unit,475,EliteDefinition.BaseHealth
+elite.hp.elite_mutated_brute,525,EliteDefinition.BaseHealth
+elite.hp.elite_prototype_x7,375,EliteDefinition.BaseHealth
+elite.hp.elite_railguard,450,EliteDefinition.BaseHealth
+elite.hp.elite_scrap_executioner,500,EliteDefinition.BaseHealth
+elite.hp.elite_tunnel_stalker,350,EliteDefinition.BaseHealth
+enemy.hp.bomber,40,EnemyDefinition.BaseHealth
+enemy.hp.brute,90,EnemyDefinition.BaseHealth
+enemy.hp.charger,45,EnemyDefinition.BaseHealth
+enemy.hp.grunt,30,EnemyDefinition.BaseHealth
+enemy.hp.shield_enemy,55,EnemyDefinition.BaseHealth
+enemy.hp.shooter,24,EnemyDefinition.BaseHealth
+enemy.hp.sniper_enemy,30,EnemyDefinition.BaseHealth
+enemy.hp.summoner,65,EnemyDefinition.BaseHealth
+enemy.hp.swarm,10,EnemyDefinition.BaseHealth
+depth.scaling.D1,hp x1 dmg x1,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D5,hp x1.32 dmg x1.15,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D10,hp x1.7 dmg x1.3,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D20,hp x2.35 dmg x1.55,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D30,hp x2.9 dmg x1.75,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D31,hp x2.945 dmg x1.765,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D50,hp x3.8 dmg x2.05,DepthScaling.HealthMultiplier/DamageMultiplier
+depth.scaling.D100,hp x5.5 dmg x2.6,DepthScaling.HealthMultiplier/DamageMultiplier
+reward.D1,coin x1 xp x1,EconomyConfig reward multipliers (D100000 = the cap)
+reward.D30,coin x1 xp x1,EconomyConfig reward multipliers (D100000 = the cap)
+reward.D31,coin x1.07 xp x1.07,EconomyConfig reward multipliers (D100000 = the cap)
+reward.D40,coin x1.2214 xp x1.2214,EconomyConfig reward multipliers (D100000 = the cap)
+reward.D100,coin x1.5857 xp x1.5857,EconomyConfig reward multipliers (D100000 = the cap)
+reward.D100000,coin x1.75 xp x1.75,EconomyConfig reward multipliers (D100000 = the cap)
+elite.frequency,D1:8%x1 D3:18%x1 D5:18%x1 D6:25%x1 D10:25%x1 D11:25%x2 D20:25%x2 D21:25%x2 D30:25%x2 D50:25%x2,DungeonGraphRules.CreateDefault() (the runtime rules)
+rooms.depth_gated,"9 (D5:3, D10:3, D20:3)",RoomDefinition.MinDepth
+biome.weights,OvergrownLabs:bomber=15 OvergrownLabs:shield_enemy=5 OvergrownLabs:summoner=20 OvergrownLabs:swarm=20 RuinedMetro:brute=15 RuinedMetro:charger=20 RuinedMetro:sniper_enemy=5 RuinedMetro:swarm=20 Rustworks:bomber=15 Rustworks:brute=20 Rustworks:shield_enemy=20 Rustworks:swarm=5 default=10,BiomeEncounterWeights.Authored
+progression.max_level,61,LevelCurve.MaxLevel
+progression.attribute_cap,10,SkillRules.MaxRank
+inventory.backpack_size,8,PlayerInventory.BackpackCapacity
+party.max_players,3/3,ExpeditionParty / SessionRequest MaxPartySize
+coop.scaling,p1: threat x1 hp x1 boss x1 dmg x1 cap 10 p2: threat x1.4 hp x1.2 boss x1.65 dmg x1 cap 14 p3: threat x1.75 hp x1.35 boss x2.2 dmg x1 cap 18,PartyScaling
+pickup.attraction,base 1.25 max 2,PickupAttractor constants
+pickup.magnetic_coil_bonus,3,Magnetic Coil flat PickupAttractionRadius
+aim_assist,"mouse 18 controller 24 proximity 28px ppu 32 classes Pistol:1,Smg:1,AssaultRifle:1,BattleRifle:1,Shotgun:1,Sniper:0.75,Bow:1,RocketLauncher:0.65,Blaster:1,Knife:0,Spear:0",AimAssistConfig
+count.audio_events,53,AudioEventCatalog
+count.rooms,63,catalog rooms
+count.items,72,catalog items
+count.weapons,33,catalog weapons
+count.enemies_elites_bosses,9/6/6,catalog enemies/elites/bosses
+save.version,2,SaveSlot.CurrentVersion

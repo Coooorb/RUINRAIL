@@ -1,5 +1,8 @@
 # RUINRAIL Final Release Completion Audit — TASK 184
 
+> **SUPERSEDED — historical document (2026-09-25).** Current release status: `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`. Its content blockers (0/53 clips, white-square effects, placeholder font) were resolved by later passes. The body below is kept unchanged as the record of its time.
+
+
 > **Terminal status:** `BLOCKED_EXTERNAL_DEPENDENCY`
 > **Date:** 2026-09-15
 > **Candidate:** `Builds/Windows64/RUINRAIL.exe` · SHA-256 `e1a9d9e062bbcdb91f76983fae8bb1e4fb8036d55289318ef91033f130d38ecc`

@@ -9,6 +9,7 @@ namespace RuinRail.UI.Pause
     {
         Resume,
         Settings,
+        Help,
         ReturnToMainMenu,
         QuitGame
     }
@@ -18,6 +19,8 @@ namespace RuinRail.UI.Pause
         Closed,
         Root,
         Settings,
+        /// <summary>The Help / Codex page over the pause root.</summary>
+        Help,
         /// <summary>The destructive-leave confirmation for RETURN TO MAIN MENU.</summary>
         ConfirmReturn,
         /// <summary>The confirmation for QUIT GAME.</summary>
@@ -39,7 +42,7 @@ namespace RuinRail.UI.Pause
     /// </summary>
     public sealed class PauseMenuViewModel : IDisposable
     {
-        public static readonly PauseMenuItem[] Items = { PauseMenuItem.Resume, PauseMenuItem.Settings, PauseMenuItem.ReturnToMainMenu, PauseMenuItem.QuitGame };
+        public static readonly PauseMenuItem[] Items = { PauseMenuItem.Resume, PauseMenuItem.Settings, PauseMenuItem.Help, PauseMenuItem.ReturnToMainMenu, PauseMenuItem.QuitGame };
 
         private readonly IPlayerInputReader _reader;
         private readonly IWorldPause _worldPause;
@@ -83,6 +86,7 @@ namespace RuinRail.UI.Pause
         {
             PauseMenuItem.Resume => "RESUME",
             PauseMenuItem.Settings => "SETTINGS",
+            PauseMenuItem.Help => "HELP",
             PauseMenuItem.ReturnToMainMenu => "RETURN TO MAIN MENU",
             PauseMenuItem.QuitGame => "QUIT GAME",
             _ => item.ToString()
@@ -133,6 +137,7 @@ namespace RuinRail.UI.Pause
         {
             if (!IsOpen) return;
             if (Screen == PauseScreen.Settings) LeaveSettings(apply: true);
+            if (Screen == PauseScreen.Help) LeaveHelp();
             Screen = PauseScreen.Closed;
             RuinRail.Core.Input.GameplayInputGate.Release();
             RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Cancel);
@@ -170,7 +175,13 @@ namespace RuinRail.UI.Pause
                     break;
                 case PauseMenuItem.Settings:
                     if (_settings == null) return;
+                    _settings.ResetToCategories(); // Settings always opens on its category list
+                    _settings.CloseRequested = () => { if (Screen == PauseScreen.Settings) LeaveSettings(apply: true); };
                     Screen = PauseScreen.Settings;
+                    Raise();
+                    break;
+                case PauseMenuItem.Help:
+                    Screen = PauseScreen.Help;
                     Raise();
                     break;
                 case PauseMenuItem.ReturnToMainMenu:
@@ -218,16 +229,32 @@ namespace RuinRail.UI.Pause
         public void LeaveSettings(bool apply)
         {
             if (Screen != PauseScreen.Settings) return;
-            if (apply) _settings?.Apply(); else _settings?.Discard();
+            if (apply) { _settings?.BackFromPage(); _settings?.Apply(); } else _settings?.Discard();
+            _settings?.ResetToCategories();
             Screen = PauseScreen.Root;
             Raise();
         }
 
-        /// <summary>Back (Esc / B): a nested panel owns it first; on the root it resumes.</summary>
+        /// <summary>Back from the Help page to the pause root. It holds no state, so leaving it costs nothing.</summary>
+        public void LeaveHelp()
+        {
+            if (Screen != PauseScreen.Help) return;
+            Screen = PauseScreen.Root;
+            Raise();
+        }
+
+        /// <summary>Back (Esc / B): a nested panel owns it first — a settings page returns to the categories, the categories return here; on the root it resumes.</summary>
         public void Back()
         {
             if (IsConfirming) { CancelConfirmation(); return; }
-            if (Screen == PauseScreen.Settings) { LeaveSettings(apply: true); return; }
+            if (Screen == PauseScreen.Settings)
+            {
+                if (_settings != null && _settings.BackFromPage()) return; // page -> categories, still in Settings
+                LeaveSettings(apply: true);
+                return;
+            }
+
+            if (Screen == PauseScreen.Help) { LeaveHelp(); return; }
             if (Screen == PauseScreen.Root) Close();
         }
 
@@ -245,12 +272,15 @@ namespace RuinRail.UI.Pause
         /// </summary>
         public Func<bool> BeforePauseToggle { get; set; }
 
-        private void OnPauseToggled()
+        private void OnPauseToggled() => HandlePauseInput();
+
+        /// <summary>The Pause action (Esc / Menu) exactly as the input reader delivers it — the owner's veto first, then settings/confirmation/toggle.</summary>
+        public void HandlePauseInput()
         {
             if (!IsOpen && BeforePauseToggle != null && BeforePauseToggle()) return;
             if (_settings != null && _settings.IsListening) return;
             if (IsConfirming) { CancelConfirmation(); return; }
-            if (Screen == PauseScreen.Settings) { LeaveSettings(apply: true); return; }
+            if (Screen == PauseScreen.Settings || Screen == PauseScreen.Help) { Back(); return; }
             Toggle();
         }
 

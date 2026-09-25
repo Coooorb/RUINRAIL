@@ -8,6 +8,8 @@ using RuinRail.Gameplay.Combat.Weapons.Specials;
 using RuinRail.Gameplay.Economy;
 using RuinRail.Gameplay.Expedition;
 using RuinRail.Gameplay.Items;
+using RuinRail.Gameplay.Items.Consumables;
+using RuinRail.Gameplay.Stats;
 using RuinRail.Gameplay.Player;
 using UnityEngine;
 
@@ -79,6 +81,33 @@ namespace RuinRail.UI.Hud
         };
     }
 
+    /// <summary>
+    /// One timed effect currently on the local player, as the HUD shows it.
+    ///
+    /// The remaining time is read from the authority that owns the timer (<see cref="ConsumableEffectRunner"/>); nothing
+    /// here counts down on its own, so a chip can never outlive the effect or disagree with it.
+    /// </summary>
+    public sealed class HudStatusEffect
+    {
+        public string DefinitionId = string.Empty;
+        public string Name = string.Empty;
+        public Sprite Icon;
+        /// <summary>Seconds left, from the effect runner.</summary>
+        public float Remaining;
+        /// <summary>The effect's authored full duration, so the chip can show a fill rather than only a number.</summary>
+        public float Duration;
+        /// <summary>A buff the player wanted (green) rather than something done to them (red).</summary>
+        public bool IsPositive = true;
+        /// <summary>What the effect does, for the focus/hover detail line ("ARMOR +20%").</summary>
+        public string EffectText = string.Empty;
+
+        public float Remaining01 => Duration > 0f ? Mathf.Clamp01(Remaining / Duration) : 0f;
+        /// <summary>Whole seconds, rounded up, so a chip never reads 0s while the effect is still on.</summary>
+        public int RemainingSeconds => Mathf.Max(0, Mathf.CeilToInt(Remaining));
+        public string RemainingText => RemainingSeconds + "s";
+        public string DetailText => string.IsNullOrEmpty(EffectText) ? $"{Name}  {RemainingText}" : $"{Name}  {EffectText}  {RemainingText}";
+    }
+
     /// <summary>Everything the HUD renders, as plain readable values (integers for HP/damage; no critical-hit styling, no score abstraction).</summary>
     public sealed class HudSnapshot
     {
@@ -102,9 +131,25 @@ namespace RuinRail.UI.Hud
         /// <summary>An overlay window owns the screen: the low-HP frame stands down so it never tints a menu.</summary>
         public bool VignetteSuppressed;
         public readonly List<HudPartyMember> Party = new();
+        /// <summary>
+        /// Timed effects on the local player, longest-remaining first. Only effects that really exist at runtime reach
+        /// this list: the three authored timed-buff consumables (Armor Injector, Combat Stim, Damage Stim). There is no
+        /// runtime timed debuff on the player in this build, so the list is 0-3 long and the HUD stays quiet.
+        /// </summary>
+        public readonly List<HudStatusEffect> StatusEffects = new();
+        /// <summary>Chips the HUD draws; the fourth exists as headroom, not because a fourth effect is authored.</summary>
+        public const int MaxStatusEffects = 4;
         /// <summary>Boss bar (55/46): shown only while a boss encounter is active and the boss alive.</summary>
         public bool BossVisible;
         public string BossName = string.Empty;
+
+        /// <summary>
+        /// 91 enemy-remaining readout: shown only while the local player's room is an active standard combat
+        /// encounter with enemies left (never a Boss arena, never a non-combat/event room, never a cleared room).
+        /// </summary>
+        public bool EnemiesVisible;
+        public int EnemiesRemaining;
+        public string EnemiesText => EnemiesVisible ? $"x{EnemiesRemaining}" : string.Empty;
         public int BossHp;
         public int BossMaxHp;
         public float BossHp01 => BossMaxHp > 0 ? Mathf.Clamp01(BossHp / (float)BossMaxHp) : 0f;
@@ -148,6 +193,8 @@ namespace RuinRail.UI.Hud
         private readonly Dictionary<string, string> _displayNames = new(StringComparer.Ordinal);
         private readonly HashSet<string> _disconnected = new(StringComparer.Ordinal);
         private Func<AmmoType, int> _reserve;
+        private ConsumableEffectRunner _effects;
+        private readonly List<HudStatusEffect> _statusScratch = new();
         private HealthComponent _bossHealth;
         private Func<bool> _bossActive;
 
@@ -255,6 +302,17 @@ namespace RuinRail.UI.Hud
         /// active until the boss is dead. Health events (including replicated ones on clients) refresh it; nothing here
         /// touches the fight.
         /// </summary>
+        /// <summary>
+        /// Binds the runner that owns the player's timed effects. The HUD reads it; it never starts, refreshes or ends
+        /// an effect, and it keeps no timer of its own — there is exactly one countdown per effect, in the runner.
+        /// </summary>
+        public void BindStatusEffects(ConsumableEffectRunner effects)
+        {
+            _effects = effects;
+            RefreshStatusEffects();
+            Raise();
+        }
+
         public void BindBoss(string displayName, HealthComponent health, Func<bool> isActive)
         {
             Unbind(ref _bossHealth, h => { h.Damaged -= OnBossHealth; h.Healed -= OnBossHealth; h.Died -= OnBossDied; });
@@ -270,6 +328,36 @@ namespace RuinRail.UI.Hud
 
             RefreshBoss();
             Raise();
+        }
+
+        private Func<(bool visible, int remaining)> _enemyCount;
+
+        /// <summary>
+        /// The enemy-remaining source (91): the composition root hands over a delegate that reads the local player's
+        /// current room — its authoritative "is this an active standard combat encounter" flag and its host-side
+        /// remaining count. The HUD polls it in Tick and never counts scene objects itself.
+        /// </summary>
+        public void BindEnemyCount(Func<(bool visible, int remaining)> source)
+        {
+            _enemyCount = source;
+            if (RefreshEnemyCount()) Raise();
+        }
+
+        private bool RefreshEnemyCount()
+        {
+            var visible = false;
+            var remaining = 0;
+            if (_enemyCount != null)
+            {
+                var (v, r) = _enemyCount();
+                visible = v && r > 0;
+                remaining = v ? Math.Max(0, r) : 0;
+            }
+
+            if (visible == Snapshot.EnemiesVisible && remaining == Snapshot.EnemiesRemaining) return false;
+            Snapshot.EnemiesVisible = visible;
+            Snapshot.EnemiesRemaining = remaining;
+            return true;
         }
 
         private void OnBossHealth(int _) { if (RefreshBoss()) Raise(); }
@@ -330,9 +418,66 @@ namespace RuinRail.UI.Hud
             changed |= RefreshWeapon(Snapshot.Primary, WeaponOf(WeaponSlot.Primary), WeaponSlot.Primary);
             changed |= RefreshWeapon(Snapshot.Secondary, WeaponOf(WeaponSlot.Secondary), WeaponSlot.Secondary);
             changed |= RefreshConsumable();
+            changed |= RefreshStatusEffects();
             changed |= RefreshParty();
             changed |= RefreshBoss();
+            changed |= RefreshEnemyCount();
             if (changed) Raise();
+        }
+
+        /// <summary>
+        /// Re-reads the timed effects from the runner that owns their timers.
+        ///
+        /// Everything here is a read: the ids come from <see cref="ConsumableEffectRunner.ActiveBuffDefinitionIds"/> and
+        /// the countdown from <see cref="ConsumableEffectRunner.RemainingSeconds"/>, so an effect that expires leaves the
+        /// list on the next tick and no chip can linger. Only whole-second changes raise, so a running buff does not
+        /// republish the whole snapshot 60 times a second.
+        /// </summary>
+        private bool RefreshStatusEffects()
+        {
+            if (_effects == null)
+            {
+                if (Snapshot.StatusEffects.Count == 0) return false;
+                Snapshot.StatusEffects.Clear();
+                return true;
+            }
+
+            _statusScratch.Clear();
+            foreach (var id in _effects.ActiveBuffDefinitionIds)
+            {
+                var remaining = _effects.RemainingSeconds(id);
+                if (remaining <= 0f) continue;
+                var definition = _inventory?.Resolve(id) as ConsumableDefinition;
+                _statusScratch.Add(new HudStatusEffect
+                {
+                    DefinitionId = id,
+                    Name = definition != null && !string.IsNullOrEmpty(definition.DisplayName) ? definition.DisplayName : id,
+                    Icon = definition != null ? definition.Icon : null,
+                    Remaining = remaining,
+                    Duration = definition != null ? definition.BuffDurationSeconds : remaining,
+                    // Every timed effect a consumable applies is a buff the player chose; nothing in this build applies
+                    // a timed debuff to the player, so a negative chip is reachable only when one is authored later.
+                    IsPositive = definition == null || definition.BuffPercent >= 0,
+                    EffectText = definition != null ? $"{StatLabels.Of(definition.BuffStat)} {(definition.BuffPercent >= 0 ? "+" : "")}{definition.BuffPercent}%" : string.Empty
+                });
+            }
+
+            _statusScratch.Sort((a, b) => b.Remaining.CompareTo(a.Remaining));
+            if (_statusScratch.Count > HudSnapshot.MaxStatusEffects) _statusScratch.RemoveRange(HudSnapshot.MaxStatusEffects, _statusScratch.Count - HudSnapshot.MaxStatusEffects);
+
+            var changed = _statusScratch.Count != Snapshot.StatusEffects.Count;
+            if (!changed)
+            {
+                for (var i = 0; i < _statusScratch.Count; i++)
+                {
+                    if (_statusScratch[i].DefinitionId != Snapshot.StatusEffects[i].DefinitionId ||
+                        _statusScratch[i].RemainingSeconds != Snapshot.StatusEffects[i].RemainingSeconds) { changed = true; break; }
+                }
+            }
+
+            Snapshot.StatusEffects.Clear();
+            Snapshot.StatusEffects.AddRange(_statusScratch);
+            return changed;
         }
 
         // ---- Snapshot assembly ----

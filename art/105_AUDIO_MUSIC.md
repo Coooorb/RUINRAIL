@@ -55,3 +55,6 @@ Keep ambience below combat readability.
 There is intentionally **no fixed required SFX file count**. This is a final production decision, not an unresolved design item. Every gameplay-significant action defined by the GDD must receive appropriate audio feedback; variations may be added during production for repetition control.
 
 Legendary drops receive a distinctive reusable sound. UI sounds are subtle; purchase/confirm/cancel/failed-action feedback should be clear but not noisy.
+
+## Ambience Level (implementation note 2026-09-20)
+The AUDIO settings page carries an Ambience slider beside Master, Music and SFX. It scales the ambience bus (master × SFX × ambience), which still sits under the fixed ceiling relative to the SFX bus, so ambience can be turned down or off on its own but never rises above combat readability.

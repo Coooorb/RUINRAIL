@@ -63,6 +63,28 @@ namespace RuinRail.Gameplay.Economy
 
         public int SellValue(ItemDefinition definition, Rarity rarity) => SellValue(BuyValue(definition, rarity));
 
+        /// <summary>
+        /// Ammo resale payout for an exact quantity: <see cref="EconomyConfig.AmmoSellPercentOfPurchaseValue"/> (15 %) of
+        /// the equivalent current purchase value (bundle price × quantity ÷ bundle units), rounded <b>down</b>. The bundle
+        /// price is a price for the whole bundle, never a per-round price; there is no rarity multiplier and no step
+        /// rounding (a step of 5 would turn a single round into 5 coins). Tiny quantities legitimately pay 0.
+        /// </summary>
+        public int AmmoSellValue(AmmoItemDefinition ammo, int quantity)
+        {
+            if (ammo == null || quantity <= 0) return 0;
+            if (!_config.TryGetAmmoBundle(ammo.AmmoType, out var bundle) || bundle.Units <= 0 || bundle.Price <= 0) return 0;
+            var payout = (long)bundle.Price * quantity * _config.AmmoSellPercentOfPurchaseValue / ((long)bundle.Units * 100);
+            return (int)Math.Min(int.MaxValue, Math.Max(0, payout));
+        }
+
+        /// <summary>The equivalent current purchase value of an exact ammo quantity (what the Merchant would charge for it, rounded down).</summary>
+        public int AmmoPurchaseValue(AmmoItemDefinition ammo, int quantity)
+        {
+            if (ammo == null || quantity <= 0) return 0;
+            if (!_config.TryGetAmmoBundle(ammo.AmmoType, out var bundle) || bundle.Units <= 0) return 0;
+            return (int)Math.Min(int.MaxValue, (long)bundle.Price * quantity / bundle.Units);
+        }
+
         /// <summary>Consumables/ammo have one fixed rarity label; the buy value is their flat catalog price.</summary>
         public int FlatPrice(ItemDefinition definition) => TryGetBasePrice(definition, out var price) ? price : 0;
 

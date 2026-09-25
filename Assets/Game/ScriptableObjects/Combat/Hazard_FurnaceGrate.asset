@@ -15,11 +15,11 @@ MonoBehaviour:
   _id: hazard_furnace_grate
   _displayName: Furnace Grate
   _kind: 3
-  _damageMin: 5
-  _damageMax: 8
-  _tickIntervalSeconds: 1
+  _damageMin: 9
+  _damageMax: 13
+  _tickIntervalSeconds: 1.6
   _initialDelaySeconds: 0
   _affectsPlayers: 1
   _affectsEnemies: 1
   _knockback: 0
-  _staggerPower: 0
+  _staggerPower: 4

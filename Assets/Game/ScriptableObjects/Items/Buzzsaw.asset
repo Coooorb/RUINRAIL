@@ -23,6 +23,7 @@ MonoBehaviour:
   _weaponClass: 1
   _knockback: 0
   _staggerPower: 0
+  _projectileVisualId: proj_smg_legendary
   _damageMin: 7
   _damageMax: 9
   _fireRate: 11

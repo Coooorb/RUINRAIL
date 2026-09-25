@@ -36,11 +36,17 @@ namespace RuinRail.Gameplay.Loot
 
         public bool CanInteract(GameObject interactor) => !_collected && !_resolving && _amount > 0 && interactor != null && interactor.GetComponent<ICoinReceiver>() != null;
 
+        /// <summary>Coins have no capacity limit, so anything that can take them can always take them.</summary>
+        public bool CanBeCollectedBy(GameObject interactor) => CanInteract(interactor);
+
         public string PromptFor(GameObject interactor) => CanInteract(interactor) ? $"TAKE {_amount} COINS" : string.Empty;
 
         public bool Interact(GameObject interactor)
         {
             if (!CanInteract(interactor)) return false;
+            // 58 in co-op: the host resolves the pile and splits it across the party; solo installs no arbiter.
+            var arbitrated = PickupArbiter.Coins?.Invoke(this, interactor);
+            if (arbitrated.HasValue) return arbitrated.Value;
             var receiver = interactor.GetComponent<ICoinReceiver>();
 
             // Re-entrant callbacks during the credit (or a duplicate same-frame interaction) see a resolving pile.

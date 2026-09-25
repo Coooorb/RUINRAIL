@@ -21,6 +21,7 @@ namespace RuinRail.Tests
         public event Action Weapon2Selected;
         public event Action WeaponSwapped;
         public event Action ConsumableUsed;
+        public event Action QuickGrenadeUsed;
         public event Action InventoryToggled;
         public event Action PauseToggled;
 
@@ -75,6 +76,16 @@ namespace RuinRail.Tests
         public void RaiseConsumableUsed()
         {
             ConsumableUsed?.Invoke();
+        }
+
+        /// <summary>
+        /// The quick-grenade press. The real reader only raises this while gameplay input is allowed, so this double
+        /// honours the same gate — a test that holds <see cref="GameplayInputGate"/> must see nothing happen.
+        /// </summary>
+        public void RaiseQuickGrenade()
+        {
+            if (GameplayInputGate.IsHeld) return;
+            QuickGrenadeUsed?.Invoke();
         }
     }
 #pragma warning restore CS0067

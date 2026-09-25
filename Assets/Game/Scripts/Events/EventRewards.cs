@@ -12,10 +12,10 @@ namespace RuinRail.Gameplay.Events
         private readonly LootSourceCatalog _catalog;
         private readonly LootRoller _roller;
 
-        public EventRewardRoller(LootSourceCatalog catalog)
+        public EventRewardRoller(LootSourceCatalog catalog, RuinRail.Gameplay.Economy.EconomyConfig economy = null)
         {
             _catalog = catalog != null ? catalog : throw new ArgumentNullException(nameof(catalog));
-            _roller = catalog.CreateRoller();
+            _roller = catalog.CreateRoller(economy);
         }
 
         public LootResult Roll(DungeonEventContext context, LootSourceKind source, LootQuality quality, int salt = 0)

@@ -51,7 +51,7 @@ namespace RuinRail.Gameplay.Base
     /// <summary>
     /// Shelter Trader (base/72_TRADER): deterministic offers per (profile seed, refresh count, level), refreshed once
     /// per ended expedition; buying debits Banked Coins and moves the item atomically, selling moves the item into the
-    /// trader sink and credits the exact 35 % rounded value; Starter Kit items are unsellable; level upgrades 4→5→6.
+    /// trader sink and credits the exact 35 % rounded value (ammo: the bundle-based ammo resale rule); Starter Kit items are unsellable; level upgrades 4→5→6.
     /// </summary>
     public sealed class TraderService
     {
@@ -109,7 +109,8 @@ namespace RuinRail.Gameplay.Base
             _offers.Clear();
             var level = _config.GetLevel(Level);
             var random = new SeededRandom(SeededRandom.MixSeed(_profileSeed, _state.RefreshCount, Level, 0x7A4D));
-            var equipment = _catalog.Where(d => d is EquipmentItemDefinition && d.Category != ItemCategory.Consumable).ToList();
+            // V1 acquisition gate: equipment whose effect is explicitly deferred never reaches the counter.
+            var equipment = _catalog.Where(d => d is EquipmentItemDefinition e && e.IsAcquirableInV1 && d.Category != ItemCategory.Consumable).ToList();
             var consumables = _catalog.OfType<ConsumableDefinition>().Where(c => c.DropEligibility == DropEligibility.Any).Cast<ItemDefinition>().ToList();
             var ammo = _catalog.OfType<AmmoItemDefinition>().Cast<ItemDefinition>().ToList();
 
@@ -199,6 +200,8 @@ namespace RuinRail.Gameplay.Base
             if (item == null || item.IsUnsellable) return 0;
             var definition = _resolveDefinition(item.DefinitionId);
             if (definition == null) return 0;
+            // Ammo is priced per bundle, not per round: its payout is the 15 % ammo resale rule on the exact quantity.
+            if (definition is AmmoItemDefinition ammo) return _prices.AmmoSellValue(ammo, item.Quantity);
             var unitValue = definition is EquipmentItemDefinition ? _prices.SellValue(definition, item.Rarity) : _prices.SellValue(_prices.FlatPrice(definition));
             return definition.IsStackable ? unitValue * Math.Max(1, item.Quantity) : unitValue;
         }

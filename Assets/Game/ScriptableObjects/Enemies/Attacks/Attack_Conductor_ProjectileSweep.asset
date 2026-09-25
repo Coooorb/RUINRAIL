@@ -20,7 +20,7 @@ MonoBehaviour:
   _minTriggerRange: 2
   _maxTriggerRange: 10
   _telegraphSeconds: 0.8
-  _recoverySeconds: 1.0
+  _recoverySeconds: 1
   _hitCount: 1
   _hitIntervalSeconds: 0
   _hitRadius: 0
@@ -35,3 +35,4 @@ MonoBehaviour:
   _projectileRange: 12
   _zoneLength: 0
   _zoneWidth: 0
+  _projectileVisualId: proj_boss_arc
