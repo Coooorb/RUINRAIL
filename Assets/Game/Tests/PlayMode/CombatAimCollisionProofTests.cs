@@ -539,6 +539,167 @@ namespace RuinRail.Tests
             }
         }
 
+        /// <summary>
+        /// Live run: the survivor stands outside an unentered combat room's open door and fires the real starter P9 into
+        /// it. The rounds fly into the interior, yet the room stays Unentered with its doors open and nothing spawns;
+        /// walking in afterwards activates and locks it as always.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LiveRun_ShootingIntoAnUnenteredRoom_FromOutside_DoesNotLockIt_EnteringDoes()
+        {
+            yield return EnterDungeon();
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var camera = run.Camera.Camera;
+            var player = run.Rig.Player;
+            var combatNode = run.Generation.Graph.Nodes.First(n => n.Type == RoomType.Combat && !n.IsElite);
+            var room = run.Rooms[combatNode.Id];
+            Assert.AreEqual(RoomLifecycleState.Unentered, room.Lifecycle);
+            var entry = room.Doors.First(d => d.Socket != null && run.Generation.Layout.IsSocketUsed(combatNode.Id, d.Socket.Direction));
+            var doorway = SocketCentre(room.Root, entry.Socket);
+            var outward = (Vector2)DoorDirections.Step(entry.Socket.Direction);
+            var interior = (Vector2)room.Root.transform.TransformPoint(RoomEntryTrigger.InteriorVolume(room.Root.Size).center);
+            yield return Teleport(run, doorway + outward * 2.5f);
+            Assert.AreEqual(RoomLifecycleState.Unentered, room.Lifecycle, "standing outside the door");
+
+            var aiming = player.GetComponent<PlayerAiming>();
+            var reader = new FakePlayerInputReader { IsAimFromPointer = true };
+            aiming.SetInputReader(reader);
+            var weapon = run.Rig.Loadout.ActiveWeapon as RangedWeapon;
+            Assert.IsNotNull(weapon, "the starter P9 Ranger is the active ranged weapon");
+            weapon.SetAimAssist(null);
+            weapon.ApplyAuthoritativeState(weapon.Definition.MagazineSize, false);
+            for (var i = 0; i < 20; i++) { reader.Aim = camera.WorldToScreenPoint(new Vector3(interior.x, interior.y, 0f)); yield return null; }
+
+            var volume = RoomEntryTrigger.InteriorVolume(room.Root.Size);
+            var reachedInside = false;
+            var fired = 0;
+            var until = Time.time + 2f;
+            while (Time.time < until)
+            {
+                reader.Aim = camera.WorldToScreenPoint(new Vector3(interior.x, interior.y, 0f));
+                if (weapon.TryFire()) fired++;
+                yield return new WaitForFixedUpdate();
+                reachedInside |= run.Rig.Projectiles.GetComponentsInChildren<RuinRail.Gameplay.Combat.Projectiles.Projectile>(false)
+                    .Any(p => volume.Contains((Vector2)room.Root.transform.InverseTransformPoint(p.transform.position)));
+            }
+
+            Note($"shot into unentered room {room.State.RoomId}: fired {fired}, a round reached the interior {reachedInside}, lifecycle {room.Lifecycle}, doors locked {room.DoorsLocked}");
+            Assert.Greater(fired, 2, "the P9 fired");
+            Assert.IsTrue(reachedInside, "rounds really flew into the room's interior");
+            Assert.AreEqual(RoomLifecycleState.Unentered, room.Lifecycle, "shooting in from outside does not start the room");
+            Assert.IsFalse(room.DoorsLocked, "and does not lock the player out");
+            LiveDungeonCapture.Capture(Folder, "20_shot_into_room_from_outside_still_open", camera, (doorway + interior) * 0.5f, LiveDungeonCapture.Height / (2f * run.Camera.Config.PixelsPerUnit), run.Camera.Config.PixelsPerUnit, includeUi: false);
+
+            yield return Teleport(run, interior);
+            Assert.AreEqual(RoomLifecycleState.Active, room.Lifecycle, "walking in starts the room");
+            Assert.IsTrue(room.DoorsLocked, "and locks it behind the survivor");
+        }
+
+        /// <summary>
+        /// Live run: a real enemy round hits the survivor. On the hit frame the body is tinted red (captured at gameplay
+        /// distance and close), and a moment later it is back to its exact normal colour.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LiveRun_ThePlayerFlashesRedWhenARealEnemyRoundHits_ThenLooksNormalAgain()
+        {
+            yield return EnterDungeon();
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var camera = run.Camera.Camera;
+            var ppu = run.Camera.Config.PixelsPerUnit;
+            var player = run.Rig.Player;
+            var health = player.GetComponent<HealthComponent>();
+            var flash = player.GetComponent<HitFlash>();
+            var body = RuinRail.Presentation.Animation.CharacterVisual.RendererOf(player);
+            Assert.IsNotNull(flash, "the live survivor carries the damage flash");
+            var normal = body.color;
+
+            // An enemy round from three tiles to the right, flying at the survivor.
+            var shooter = new GameObject("TestShooter");
+            shooter.transform.position = player.transform.position + Vector3.right * 3f;
+            shooter.AddComponent<TeamMember>().SetTeam(DamageTeam.Enemy);
+            var pool = shooter.AddComponent<RuinRail.Gameplay.Combat.Projectiles.ProjectilePool>();
+            var hp = health.CurrentHealth;
+            var aim = (Vector2)(player.transform.position + Vector3.up * 0.5f - shooter.transform.position);
+            pool.Spawn((Vector2)shooter.transform.position, new RuinRail.Gameplay.Combat.Projectiles.ProjectileSpawnData(6, 14f, 6f, 0f, 0f, aim.normalized, shooter, null, 0f, DamageTeam.Enemy));
+            var deadline = Time.time + 2f;
+            while (health.CurrentHealth == hp && Time.time < deadline) yield return new WaitForFixedUpdate();
+            Assert.Less(health.CurrentHealth, hp, "the round hit");
+            Assert.IsTrue(flash.IsFlashing, "the hit is on the body at once");
+            Assert.AreEqual(run.Rig != null ? _app.Content.Feedback.PlayerHitFlashColor : Color.red, body.color);
+            LiveDungeonCapture.Capture(Folder, "30_player_hit_flash", camera, ppu, includeUi: true);
+            LiveDungeonCapture.Capture(Folder, "31_player_hit_flash_close", camera, player.transform.position, LiveDungeonCapture.Height / (2f * ppu * 3f), ppu, includeUi: false);
+            Note($"player hit: hp {hp} -> {health.CurrentHealth}, tint {body.color}, flash {_app.Content.Feedback.PlayerHitFlashSeconds}s");
+
+            var until = Time.time + _app.Content.Feedback.PlayerHitFlashSeconds + 0.2f;
+            while (Time.time < until) yield return null;
+            Assert.IsFalse(flash.IsFlashing);
+            Assert.AreEqual(normal, body.color, "back to the exact normal colour");
+            LiveDungeonCapture.Capture(Folder, "32_player_after_flash_close", camera, player.transform.position, LiveDungeonCapture.Height / (2f * ppu * 3f), ppu, includeUi: false);
+            Object.DestroyImmediate(shooter);
+        }
+
+        /// <summary>
+        /// Live run: a normal enemy flashes red on a hit; the depth's boss flashes a subtle red on a weak hit and a
+        /// clearly stronger red on a heavy one; both return to their exact colours. Close captures at 640×360.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LiveRun_EnemyFlashesRed_BossFlashStrengthFollowsTheHit()
+        {
+            yield return EnterDungeon();
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var camera = run.Camera.Camera;
+            var ppu = run.Camera.Config.PixelsPerUnit;
+            var feedback = _app.Content.Feedback;
+            var closeOrtho = LiveDungeonCapture.Height / (2f * ppu * 2f);
+
+            // ---- the boss of the depth ----
+            var bossRoom = run.Rooms.Values.First(r => r.State.RoomType == RoomType.Boss);
+            var boss = bossRoom.GetComponent<RoomContentBinding>().Boss.Boss;
+            yield return Teleport(run, bossRoom.InteriorWorldBounds.center + Vector2.down * 3f);
+            BossIntroSequence.Current?.Finish();
+            boss.SuppressAttacks = true;
+            var flash = boss.GetComponent<HitFlash>();
+            Assert.IsNotNull(flash, "the live boss carries the hit flash");
+            Assert.IsTrue(flash.IsBossProfile, "with the damage-scaled boss profile");
+            var body = RuinRail.Presentation.Animation.CharacterVisual.RendererOf(boss.gameObject);
+            var normal = body.color;
+
+            var weak = 13; // a P9 round
+            Assert.IsTrue(boss.Health.TryApplyDamage(new DamageRequest(weak)));
+            var weakColor = body.color;
+            var weakIntensity = flash.LastIntensity;
+            LiveDungeonCapture.Capture(Folder, "40_boss_weak_hit", camera, boss.transform.position, closeOrtho, ppu, includeUi: false);
+            var until = Time.time + feedback.BossFlashSeconds + 0.1f;
+            while (Time.time < until) yield return null;
+            Assert.AreEqual(normal, body.color, "restored after the weak hit");
+            LiveDungeonCapture.Capture(Folder, "41_boss_normal", camera, boss.transform.position, closeOrtho, ppu, includeUi: false);
+
+            var strong = Mathf.RoundToInt(boss.Health.MaxHealth * 0.06f); // a heavy sniper/rocket-class hit
+            Assert.IsTrue(boss.Health.TryApplyDamage(new DamageRequest(strong)));
+            var strongColor = body.color;
+            LiveDungeonCapture.Capture(Folder, "42_boss_strong_hit", camera, boss.transform.position, closeOrtho, ppu, includeUi: false);
+            Assert.Greater(flash.LastIntensity, weakIntensity);
+            Assert.Less(strongColor.g, weakColor.g, "the heavy hit is visibly redder");
+            Note($"boss {boss.Definition.Id} max {boss.Health.MaxHealth}: weak {weak} -> intensity {weakIntensity:0.00} tint {weakColor}; strong {strong} -> intensity {flash.LastIntensity:0.00} tint {strongColor}");
+            until = Time.time + feedback.BossFlashSeconds + 0.1f;
+            while (Time.time < until) yield return null;
+            Assert.AreEqual(normal, body.color, "restored after the strong hit");
+
+            // ---- a normal enemy, composed by the game's own presentation seam ----
+            var grunt = new DefaultEnemySpawner().Spawn(_app.Content.Enemies.First(e => e.Id == "grunt"), (Vector2)run.Rig.Player.transform.position + Vector2.right * 2f, null);
+            run.BindEnemyPresentation(grunt);
+            yield return null;
+            var gruntBody = RuinRail.Presentation.Animation.CharacterVisual.RendererOf(grunt.gameObject);
+            var gruntNormal = gruntBody.color;
+            Assert.IsTrue(grunt.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(4)));
+            Assert.AreEqual(feedback.HitFlashColor, gruntBody.color, "the enemy flashes red");
+            LiveDungeonCapture.Capture(Folder, "43_enemy_hit", camera, grunt.transform.position, closeOrtho, ppu, includeUi: false);
+            until = Time.time + feedback.HitFlashSeconds + 0.1f;
+            while (Time.time < until) yield return null;
+            Assert.AreEqual(gruntNormal, gruntBody.color, "and looks normal again");
+            Object.DestroyImmediate(grunt.gameObject);
+        }
+
         private static string OpenIndex(Biome biome) => biome == Biome.RuinedMetro ? "06" : biome == Biome.Rustworks ? "08" : "09";
         private static string LockedIndex(Biome biome) => biome == Biome.RuinedMetro ? "07" : biome == Biome.Rustworks ? "08" : "09";
 

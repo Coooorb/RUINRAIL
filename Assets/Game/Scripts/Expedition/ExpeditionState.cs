@@ -66,6 +66,8 @@ namespace RuinRail.Gameplay.Expedition
         /// <summary>Carried Coins (77_ECONOMY): the expedition's own wallet, lost on failure, banked only by Return.</summary>
         public CoinWallet CarriedWallet { get; } = new(CoinDomain.Carried);
         public int CarriedCoins => CarriedWallet.Balance;
+        /// <summary>Banked Coins this player moved into the Carried wallet at Start (at risk like any carried coin).</summary>
+        public int CoinsBroughtIn { get; internal set; }
         public ExpeditionOutcome Outcome { get; private set; } = ExpeditionOutcome.InProgress;
         public ExpeditionStats Stats { get; } = new();
         public List<Biome> BiomeHistory { get; } = new();

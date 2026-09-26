@@ -28,6 +28,12 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             public Sprite Trail;
             /// <summary>How far behind the body's pivot the trail's pivot sits (world units).</summary>
             public float TrailBack = 0.3f;
+            /// <summary>
+            /// Whole-number presentation scale of the sprite (1 = authored size). Boss projectiles draw at 2x so a
+            /// boss's volley reads at gameplay distance; the hitbox is the attack's own and never follows this.
+            /// </summary>
+            public int Scale = 1;
+            public int EffectiveScale => Scale < 1 ? 1 : Scale;
             public bool IsValid => !string.IsNullOrEmpty(Id) && Frames != null && Frames.Length > 0 && Frames.All(f => f != null);
         }
 

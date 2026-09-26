@@ -11,12 +11,12 @@ metadata:
 Final release-candidate audit (2026-09-25) left this tooling:
 - `scripts/run-release-smoke.sh <out> 10 [scenarios]` (fresh/returning/death/cache/longrun), `scripts/run-coop-release-smoke.sh`,
   `scripts/run-smoke-loop.sh` (repro loop, `clock` = unseeded), `scripts/release_smoke_manifest.csv` (critical path → scenario),
-  `scripts/final_release_audit.py` (builds every `TestResults/FinalReleaseAudit/*.csv` from XML/JSON evidence).
+  `production/archive/scripts/final_release_audit.py` (archived one-off: built the `TestResults/FinalReleaseAudit/*.csv` matrices).
 - `FinalReleaseCandidateValidator` (Editor) aggregates the pass validators and compares `FinalReleaseSnapshot` against the
   committed `production/FINAL_RELEASE_FROZEN_BASELINE.csv`. A deliberate value change must regenerate the baseline via
   `-executeMethod RuinRail.EditorTools.Production.FinalReleaseCandidateValidator.WriteBaselineBatch` — never silently.
-- Superseded current-status docs carry a `SUPERSEDED` banner that the validator checks; the current status is
-  `production/FINAL_RELEASE_CANDIDATE_AUDIT.md`.
+- Archived status docs (`production/archive/`) carry a `SUPERSEDED` banner that the validator checks; the current status is
+  `production/CURRENT_RELEASE_STATUS.md`.
 
 Dead seams fixed (tests had hidden them by wiring the seam themselves):
 - `PlayerImpactReceiver` never got `SetConfig`/`SetEvents` → player knockback/stagger, Resilience, Anchored/Shock

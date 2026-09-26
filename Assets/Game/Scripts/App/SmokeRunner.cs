@@ -325,6 +325,38 @@ namespace RuinRail.App
             var held = player.GetComponent<RuinRail.Presentation.Animation.HeldWeaponVisual>();
             Check("held weapon drawn (" + (held != null ? held.ShownWeaponId : "none") + ")", held != null && held.IsVisible);
             Check("no open exit into the void", run.ExitProblems.Count == 0);
+
+            // Damaging floor reads as live: every painted hazard cell is this biome's animated tile, and it advances.
+            var biomeStem = run.Expedition.State.Biome.ToString().ToLowerInvariant();
+            var hazardCells = new System.Collections.Generic.List<(UnityEngine.Tilemaps.Tilemap Map, Vector3Int Cell)>();
+            foreach (var room in run.Rooms.Values)
+            {
+                var map = RuinRail.Dungeon.Grid.RoomGridBuilder.FindLayer(room.Root.Grid, RuinRail.Dungeon.Grid.RoomTilemapLayer.Hazards);
+                if (map == null) continue;
+                foreach (var cell in map.cellBounds.allPositionsWithin) if (map.HasTile(cell)) hazardCells.Add((map, cell));
+            }
+
+            if (hazardCells.Count == 0) passed.Add("no damaging floor on this depth");
+            else
+            {
+                var stillOrForeign = hazardCells.Count(h => !(h.Map.GetTile(h.Cell) is RuinRail.Dungeon.Grid.HazardAnimatedTile t && t.IsAnimated && t.name.StartsWith(biomeStem, StringComparison.Ordinal)));
+                var probe = hazardCells[0];
+                var frames = probe.Map.GetAnimationFrameCount(probe.Cell);
+                if (SystemInfo.graphicsDeviceType == UnityEngine.Rendering.GraphicsDeviceType.Null)
+                {
+                    // -nographics: the tilemap renderer never runs, so only the binding can be checked here.
+                    Check($"damaging floor bound animated ({hazardCells.Count} cells, {frames} frames; playback needs a graphics device)", stillOrForeign == 0 && frames > 1);
+                }
+                else
+                {
+                    var before = probe.Map.GetAnimationFrame(probe.Cell);
+                    var until = Time.time + 0.4f;
+                    while (Time.time < until) yield return null;
+                    var after = probe.Map.GetAnimationFrame(probe.Cell);
+                    Check($"damaging floor animated ({hazardCells.Count} cells, {frames} frames, frame {before}->{after})",
+                        stillOrForeign == 0 && frames > 1 && after >= 0 && after != before);
+                }
+            }
             var hud = FindFirstObjectByType<RuinRail.UI.Hud.DungeonHudView>();
             Check("HUD on the pixel face", hud != null && hud.GetComponentsInChildren<UnityEngine.UI.Text>(true).All(t => t.font == RuinRail.UI.Theme.UiFont.Font() && t.font.name != "LegacyRuntime"));
             var inventory = FindFirstObjectByType<RuinRail.UI.Inventory.InventoryView>();
@@ -616,6 +648,24 @@ namespace RuinRail.App
             RuinRail.UI.Theme.CursorService.Resolve(RuinRail.UI.Theme.CursorService.Base, RuinRail.UI.Theme.CursorService.Overlays, hover: false) == RuinRail.UI.Theme.CursorKind.Pointer;
 
         private void Stage(string stage) { _result.Stage = stage; Debug.Log("[SMOKE] " + stage); }
+        /// <summary>
+        /// Entering a boss arena starts its introduction a few physics steps later; the scripted stages skip it the way a
+        /// player can (Confirm), so the stage continues with control and the camera back.
+        /// </summary>
+        private static IEnumerator SkipBossIntro()
+        {
+            for (var i = 0; i < 20; i++)
+            {
+                yield return new WaitForFixedUpdate();
+                if (BossIntroSequence.Current != null && BossIntroSequence.Current.IsPlaying)
+                {
+                    BossIntroSequence.Current.Finish();
+                    yield return null;
+                    yield break;
+                }
+            }
+        }
+
         private void Fail(string error) { _result.Error = error; Debug.LogError("[SMOKE] FAIL " + error); }
 
         private void OnLog(string condition, string stackTrace, LogType type)

@@ -20,7 +20,7 @@ There is nothing to approve yet. This is not a rejection of the visual direction
 
 ## What Is Needed To Open This Gate
 
-Deliver final art for the 23 slice roles listed in `TestResults/visual_slice.md`, following `art/106_RUINRAIL_FINAL_ART_BIBLE.md` and the pipeline in `production/136_ASSET_REPLACEMENT_WORKFLOW.md`. In summary:
+Deliver final art for the 23 slice roles listed in `TestResults/visual_slice.md`, following `docs/design/art/106_RUINRAIL_FINAL_ART_BIBLE.md` and the pipeline in `docs/technical/136_ASSET_REPLACEMENT_WORKFLOW.md`. In summary:
 
 | Subject | What is needed |
 |---|---|
@@ -36,7 +36,7 @@ Each asset needs a `production/asset_provenance.json` entry before it can claim 
 
 ## Review Procedure Once Assets Exist
 
-1. Integrate the assets per `production/136_ASSET_REPLACEMENT_WORKFLOW.md` and remove the placeholders for those roles.
+1. Integrate the assets per `docs/technical/136_ASSET_REPLACEMENT_WORKFLOW.md` and remove the placeholders for those roles.
 2. Run `RuinRail/Production/Validate Asset Pipeline` — zero problems required.
 3. Run `RuinRail/Production/Check Visual Slice Gate` — it must report every slice role as final.
 4. Capture the five standardized beats at 640×360 from the composed Dungeon scene, into `TestResults/VisualSlice/`.

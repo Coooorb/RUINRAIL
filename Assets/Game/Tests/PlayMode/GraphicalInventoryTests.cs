@@ -362,6 +362,171 @@ namespace RuinRail.Tests
             Assert.IsFalse(vm.IsOpen);
         }
 
+        /// <summary>Every worn slot occupied and all eight backpack slots full.</summary>
+        private static void FillCompletely(PlayerInventory inventory)
+        {
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("weapon_p9_ranger"), EquippedSlot.PrimaryWeapon));
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("weapon_field_knife"), EquippedSlot.SecondaryWeapon));
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("armor_scrap_vest"), EquippedSlot.Armor));
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("accessory_magnetic_coil"), EquippedSlot.Accessory));
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("consumable_bandage", 2), EquippedSlot.ActiveConsumable));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("weapon_rattler_9", 1, Rarity.Rare)));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("armor_scout_rig", 1, Rarity.Uncommon)));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("accessory_ammo_pouch", 1, Rarity.Epic)));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("consumable_medkit", 3)));
+            Assert.AreEqual(60, inventory.Add(AmmoType.Light, 60));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("weapon_p9_ranger")));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("armor_blast_suit")));
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("weapon_field_knife")));
+            Assert.IsTrue(inventory.BackpackSlots.All(s => s != null), "the backpack is completely full");
+        }
+
+        private static int IndexOf(PlayerInventory inventory, string definitionId) => inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == definitionId);
+
+        [Test]
+        public void FullBackpack_SwapsEveryEquipmentCategory_ThroughMouseKeyboardControllerAndButtons_WithoutDuplicationOrLoss()
+        {
+            var (vm, view, inventory) = Build();
+            FillCompletely(inventory);
+            vm.Open();
+            var stack = new FocusStack();
+            stack.Push(view.FocusList);
+            var ids = AllIds(inventory).OrderBy(i => i).ToList();
+
+            void AssertSwapped(EquippedSlot slot, ItemInstance incoming, ItemInstance outgoing, int index, string how)
+            {
+                Assert.AreSame(incoming, inventory.GetEquipped(slot), how + ": the backpack item is worn");
+                Assert.AreSame(outgoing, inventory.BackpackSlots[index], how + ": the worn item took exactly the slot the new one left");
+                Assert.IsTrue(vm.IsBackpackFull, how + ": the backpack is still full");
+                CollectionAssert.AreEquivalent(ids, AllIds(inventory).ToList(), how + ": every instance exactly once");
+                Assert.IsEmpty(ItemTransferService.DetectDuplicateOwnership(Containers(inventory)), how);
+                Assert.AreEqual(0, _ground.Count, how + ": nothing touched the ground");
+            }
+
+            // PRIMARY — mouse drag from the backpack onto the worn slot.
+            var i = IndexOf(inventory, "weapon_rattler_9");
+            var incoming = inventory.BackpackSlots[i];
+            var outgoing = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            view.EquipmentSlots[0].SimulateDrop(view.BackpackSlots[i]);
+            AssertSwapped(EquippedSlot.PrimaryWeapon, incoming, outgoing, i, "primary (drag)");
+
+            // SECONDARY — keyboard/controller: confirm on the backpack slot, then confirm on the worn slot.
+            i = IndexOf(inventory, "weapon_p9_ranger");
+            incoming = inventory.BackpackSlots[i];
+            outgoing = inventory.GetEquipped(EquippedSlot.SecondaryWeapon);
+            view.FocusList.Focus("backpack." + i);
+            Assert.IsTrue(stack.Activate());
+            view.FocusList.Focus("slot.SecondaryWeapon");
+            Assert.IsTrue(stack.Activate());
+            AssertSwapped(EquippedSlot.SecondaryWeapon, incoming, outgoing, i, "secondary (confirm/confirm)");
+
+            // ARMOR — the EQUIP action button on the cursor's backpack item.
+            i = IndexOf(inventory, "armor_scout_rig");
+            incoming = inventory.BackpackSlots[i];
+            outgoing = inventory.GetEquipped(EquippedSlot.Armor);
+            vm.SetCursor(Bag(i));
+            Assert.AreEqual("EQUIP", vm.PrimaryActionLabel);
+            view.Buttons[InventoryView.ActionFocusId].SimulateClick();
+            AssertSwapped(EquippedSlot.Armor, incoming, outgoing, i, "armor (EQUIP button)");
+
+            // ACCESSORY — mouse click-select, click-target.
+            i = IndexOf(inventory, "accessory_ammo_pouch");
+            incoming = inventory.BackpackSlots[i];
+            outgoing = inventory.GetEquipped(EquippedSlot.Accessory);
+            view.BackpackSlots[i].SimulateClick();
+            view.EquipmentSlots[3].SimulateClick();
+            AssertSwapped(EquippedSlot.Accessory, incoming, outgoing, i, "accessory (click/click)");
+
+            // ACTIVE CONSUMABLE — a worn item dragged onto a backpack item it can trade places with (the other direction).
+            i = IndexOf(inventory, "consumable_medkit");
+            incoming = inventory.BackpackSlots[i];
+            outgoing = inventory.GetEquipped(EquippedSlot.ActiveConsumable);
+            view.BackpackSlots[i].SimulateDrop(view.EquipmentSlots[4]);
+            AssertSwapped(EquippedSlot.ActiveConsumable, incoming, outgoing, i, "consumable (worn dragged onto the backpack item)");
+            Assert.AreEqual("x3", view.EquipmentSlots[4].CountText, "the stack keeps its quantity");
+
+            // PRIMARY <-> SECONDARY with a full backpack: a direct exchange, no parking slot needed.
+            var primary = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            var secondary = inventory.GetEquipped(EquippedSlot.SecondaryWeapon);
+            view.EquipmentSlots[1].SimulateDrop(view.EquipmentSlots[0]);
+            Assert.AreSame(primary, inventory.GetEquipped(EquippedSlot.SecondaryWeapon));
+            Assert.AreSame(secondary, inventory.GetEquipped(EquippedSlot.PrimaryWeapon));
+            CollectionAssert.AreEquivalent(ids, AllIds(inventory).ToList());
+
+            // Invalid swaps fail safely and change nothing.
+            var before = Snapshot(inventory);
+            view.EquipmentSlots[0].SimulateDrop(view.BackpackSlots[IndexOf(inventory, "armor_blast_suit")]);
+            Assert.AreEqual("That item does not fit this slot.", vm.Message, "armor onto a weapon slot");
+            view.EquipmentSlots[4].SimulateDrop(view.BackpackSlots[IndexOf(inventory, "ammo_light")]);
+            Assert.AreEqual("That item does not fit this slot.", vm.Message, "ammo onto the consumable slot");
+            view.BackpackSlots[IndexOf(inventory, "weapon_field_knife")].SimulateDrop(view.EquipmentSlots[2]);
+            Assert.AreEqual("BACKPACK FULL", vm.Message, "worn armor onto a weapon in a full backpack has no swap partner");
+            view.EquipmentSlots[2].SimulateDrop(view.EquipmentSlots[0]);
+            Assert.AreEqual("That item does not fit this slot.", vm.Message, "a weapon into the armor slot");
+            vm.SetCursor(Eq(EquippedSlot.Accessory));
+            view.Buttons[InventoryView.ActionFocusId].SimulateClick();
+            Assert.AreEqual("BACKPACK FULL", vm.Message, "UNEQUIP into a full backpack");
+            Assert.AreEqual(before, Snapshot(inventory), "every refused swap left the inventory unchanged");
+
+            // Repeated swaps back and forth never duplicate or lose anything.
+            for (var n = 0; n < 12; n++)
+            {
+                var slot = n % 2 == 0 ? EquippedSlot.Armor : EquippedSlot.PrimaryWeapon;
+                var candidate = inventory.BackpackSlots.ToList().FindIndex(b => b != null && PlayerInventory.IsSlotCompatible(Resolve(b.DefinitionId).Category, slot));
+                Assert.AreEqual(InventoryActionResult.Done, vm.MoveTo(Bag(candidate), Eq(slot)), "swap " + n);
+                CollectionAssert.AreEquivalent(ids, AllIds(inventory).ToList(), "swap " + n);
+            }
+
+            Assert.IsTrue(vm.IsBackpackFull);
+            Assert.AreEqual(0, _ground.Count);
+        }
+
+        [Test]
+        public void Drop_FromAFullBackpackAndFromAWornSlot_MovesExactlyThatItemToTheGround_AndARefusedDropKeepsIt()
+        {
+            var (vm, view, inventory) = Build();
+            FillCompletely(inventory);
+            vm.Open();
+            var stack = new FocusStack();
+            stack.Push(view.FocusList);
+
+            // DROP a stack (keyboard/controller: focus the slot, then the DROP action) — exactly its quantity reaches the ground.
+            var ammo = IndexOf(inventory, "ammo_light");
+            var quantity = inventory.BackpackSlots[ammo].Quantity;
+            var ammoBefore = inventory.Get(AmmoType.Light);
+            view.FocusList.Focus("backpack." + ammo);
+            view.FocusList.Focus(InventoryView.DropFocusId);
+            Assert.IsTrue(stack.Activate());
+            Assert.IsNull(inventory.BackpackSlots[ammo], "the dropped slot is empty");
+            Assert.AreEqual(ammoBefore - quantity, inventory.Get(AmmoType.Light));
+            Assert.AreEqual(1, _ground.Count);
+            var pickup = _ground.Tracked[0].GetComponent<WorldItemPickup>();
+            Assert.AreEqual("ammo_light", pickup.Item.DefinitionId);
+            Assert.AreEqual(quantity, pickup.Item.Quantity, "the ground stack holds exactly the dropped amount");
+
+            // DROP a worn item with the mouse (cursor + DROP button); the drop follows the same rule as any carried item.
+            var armor = inventory.GetEquipped(EquippedSlot.Armor);
+            vm.SetCursor(Eq(EquippedSlot.Armor));
+            view.Buttons[InventoryView.DropFocusId].SimulateClick();
+            Assert.IsNull(inventory.GetEquipped(EquippedSlot.Armor));
+            Assert.AreEqual(2, _ground.Count);
+            Assert.AreSame(armor, _ground.Tracked[1].GetComponent<WorldItemPickup>().Item, "the same instance, now owned by the ground pickup");
+            Assert.IsFalse(AllIds(inventory).Contains(armor.InstanceId));
+            Assert.IsEmpty(ItemTransferService.DetectDuplicateOwnership(Containers(inventory).Concat(_ground.Tracked.Select(g => (IItemContainer)g.GetComponent<WorldItemPickup>()))));
+
+            // Picking it back up and dropping again: the item is only ever in one place.
+            var groundPickup = _ground.Tracked[1].GetComponent<WorldItemPickup>();
+            Assert.IsTrue(groundPickup.TryPickUp(new BackpackContainer(inventory), new ItemTransferService()).Success);
+            var back = inventory.BackpackSlots.ToList().FindIndex(b => b != null && b.InstanceId == armor.InstanceId);
+            Assert.GreaterOrEqual(back, 0);
+            vm.SetCursor(Bag(back));
+            view.Buttons[InventoryView.DropFocusId].SimulateClick();
+            Assert.IsFalse(AllIds(inventory).Contains(armor.InstanceId));
+            Assert.AreEqual(1, _ground.Tracked.Count(g => g != null && g.GetComponent<WorldItemPickup>().Item?.InstanceId == armor.InstanceId));
+        }
+
+        private static string Snapshot(PlayerInventory inventory) => JsonUtility.ToJson(inventory.ToSnapshot());
+
         [Test]
         public void OpenClose_HoldsGameplayInput_PausesSolo_TakesThePointer_AndReopenKeepsTheState()
         {

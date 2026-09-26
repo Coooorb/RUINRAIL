@@ -36,6 +36,12 @@ namespace RuinRail.Dungeon.Runtime
 
         public bool HasSupplyChest(int nodeId) => SupplyChestRooms != null && SupplyChestRooms.Contains(nodeId);
 
+        /// <summary>
+        /// False for a co-op client's composition (82): its rooms only mirror the host's lifecycle and spawn nothing. It
+        /// still knows which rooms are Elite rooms — the same seeded graph — so their reward and clear read as Elite.
+        /// </summary>
+        public bool IsAuthoritative { get; set; } = true;
+
         /// <summary>The biome's hand-designed Elites (45: two per biome); one is picked per Elite room by seed.</summary>
         public IReadOnlyList<EliteDefinition> Elites { get; }
         public IEliteSpawner EliteSpawner { get; }
@@ -83,6 +89,12 @@ namespace RuinRail.Dungeon.Runtime
                             context.RunSeed, placement.NodeId);
                         if (services?.Expedition != null) engagement.EliteDefeated += (_, xp) => { if (services.Expedition.IsExpeditionActive) services.Expedition.RecordEliteDefeated(xp); };
                         runtime.SetEngagement(engagement);
+                    }
+                    else if (elite != null && !context.IsAuthoritative)
+                    {
+                        // A client mirrors the host's Elite room: no engagement and no encounter of its own (the host's
+                        // Elite is replicated to it); the host's room state drives activation, clear and the reward.
+                        runtime.Configure(root, placement.NodeId, context.Depth, context.PartySize, isElite: true);
                     }
                     else
                     {

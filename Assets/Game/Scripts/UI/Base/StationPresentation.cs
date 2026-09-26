@@ -8,28 +8,71 @@ using RuinRail.UI.Navigation;
 
 namespace RuinRail.UI.Base
 {
+    /// <summary>Semantic colour of a visual row: the screen maps it onto the palette.</summary>
+    public enum RowTone { Neutral, Good, Warn, Bad, Muted }
+
+    /// <summary>How a row is drawn. Pair/Heading/Text are the original text rows; the rest carry their meaning visually.</summary>
+    public enum RowKind { Pair, Heading, Text, Bar, Item, Badge, Pips }
+
     /// <summary>One line of a station's data panel. A value-less row is a heading inside the list.</summary>
     public readonly struct StationRow
     {
         public StationRow(string key, string value = null, bool isHeading = false, bool isText = false)
+            : this(isHeading ? RowKind.Heading : isText ? RowKind.Text : RowKind.Pair, key, value)
         {
-            Key = key ?? string.Empty;
-            Value = value ?? string.Empty;
-            IsHeading = isHeading;
-            IsText = isText;
         }
 
+        private StationRow(RowKind kind, string key, string value, RowTone tone = RowTone.Neutral, float fraction = 0f,
+            string itemId = null, Rarity rarity = Rarity.Common, int filled = 0, int total = 0)
+        {
+            Kind = kind;
+            Key = key ?? string.Empty;
+            Value = value ?? string.Empty;
+            Tone = tone;
+            Fraction = fraction < 0f ? 0f : fraction > 1f ? 1f : fraction;
+            ItemId = itemId ?? string.Empty;
+            Rarity = rarity;
+            Filled = filled;
+            Total = total;
+        }
+
+        public RowKind Kind { get; }
         public string Key { get; }
         public string Value { get; }
-        public bool IsHeading { get; }
+        public RowTone Tone { get; }
+        /// <summary>Bar fill, 0..1.</summary>
+        public float Fraction { get; }
+        /// <summary>Item rows: the definition id whose icon is drawn.</summary>
+        public string ItemId { get; }
+        public Rarity Rarity { get; }
+        /// <summary>Pips rows: filled of total slots.</summary>
+        public int Filled { get; }
+        public int Total { get; }
+
+        public bool IsHeading => Kind == RowKind.Heading;
 
         /// <summary>A sentence that needs the whole column rather than the key/value split (an attribute's effect line).</summary>
-        public bool IsText { get; }
+        public bool IsText => Kind == RowKind.Text;
 
         public static StationRow Heading(string text) => new(text, null, true);
 
         /// <summary>One full-width line of text inside the list; no value, no rule, no extra spacing.</summary>
         public static StationRow Text(string text) => new(text, null, false, true);
+
+        /// <summary>Key and value over a progress bar (capacity, rank, tier, XP).</summary>
+        public static StationRow Bar(string key, string value, float fraction, RowTone tone = RowTone.Warn) =>
+            new(RowKind.Bar, key, value, tone, fraction);
+
+        /// <summary>A slot/key, then the item's icon and its name in its rarity colour; an empty slot passes a null id.</summary>
+        public static StationRow Item(string key, string itemId, string name, Rarity rarity) =>
+            new(RowKind.Item, key, name, itemId == null ? RowTone.Muted : RowTone.Neutral, 0f, itemId, rarity);
+
+        /// <summary>A full-width status plate (READY / HELD, a terminal status).</summary>
+        public static StationRow Badge(string text, RowTone tone) => new(RowKind.Badge, text, null, tone);
+
+        /// <summary>Key, then one square per slot, <paramref name="filled"/> of them lit (party size, Ready count).</summary>
+        public static StationRow Pips(string key, int filled, int total, string value = null, RowTone tone = RowTone.Good) =>
+            new(RowKind.Pips, key, value, tone, 0f, null, Rarity.Common, filled, total);
     }
 
     /// <summary>What one Shelter station presents: its identity, what it is for, and the state it currently holds.</summary>
@@ -85,23 +128,26 @@ namespace RuinRail.UI.Base
             _ => string.Empty
         };
 
+        private static float Share(int part, int whole) => whole <= 0 ? 0f : part / (float)whole;
+
         private static StationView Storage(BaseHubViewModel hub)
         {
             var storage = hub.Storage;
+            var full = storage.Count >= storage.Capacity;
             var rows = new List<StationRow>
             {
-                new("CAPACITY", $"{storage.Count} / {storage.Capacity}"),
-                new("FILTER", storage.Filter?.ToString().ToUpperInvariant() ?? "ALL"),
-                new("SORT", storage.SortByRarity ? "RARITY" : "NAME")
+                StationRow.Bar("CAPACITY", $"{storage.Count} / {storage.Capacity}", Share(storage.Count, storage.Capacity), full ? RowTone.Bad : RowTone.Warn),
+                new("SHOWING", (storage.Filter?.ToString().ToUpperInvariant() ?? "ALL") + (storage.SortByRarity ? " · RARITY" : " · NAME"))
             };
 
             var items = storage.Items;
             if (items.Count > 0)
             {
                 rows.Add(StationRow.Heading("STORED"));
-                foreach (var item in items.Take(14))
-                    rows.Add(new StationRow(NameOf(hub, item), RarityStyle.For(item.Rarity).Label));
+                foreach (var item in items.Take(12))
+                    rows.Add(StationRow.Item(string.Empty, item.DefinitionId, NameOf(hub, item), item.Rarity));
             }
+            else rows.Add(StationRow.Text("Nothing stored yet."));
 
             return new StationView
             {
@@ -120,7 +166,9 @@ namespace RuinRail.UI.Base
             foreach (var slot in inventory.EquipmentSlots)
             {
                 var item = inventory.ItemAt(new InventorySlotRef(InventorySlotKind.Equipped, (int)slot));
-                rows.Add(new StationRow(SlotLabel(slot), item == null ? "—" : inventory.DisplayNameOf(item)));
+                rows.Add(item == null
+                    ? StationRow.Item(SlotLabel(slot), null, "empty", Rarity.Common)
+                    : StationRow.Item(SlotLabel(slot), item.DefinitionId, inventory.DisplayNameOf(item), item.Rarity));
             }
 
             var carried = 0;
@@ -130,12 +178,11 @@ namespace RuinRail.UI.Base
                 var item = inventory.ItemAt(new InventorySlotRef(InventorySlotKind.Backpack, i));
                 if (item == null) continue;
                 carried++;
-                backpack.Add(new StationRow($"BAG {i + 1}", inventory.DisplayNameOf(item)));
+                backpack.Add(StationRow.Item($"BAG {i + 1}", item.DefinitionId, inventory.DisplayNameOf(item), item.Rarity));
             }
 
-            rows.Add(StationRow.Heading($"BACKPACK  {carried} / {InventoryViewModel.BackpackSlots}"));
-            if (backpack.Count > 0) rows.AddRange(backpack);
-            else rows.Add(new StationRow("Empty", "—"));
+            rows.Add(StationRow.Pips("BACKPACK", carried, InventoryViewModel.BackpackSlots, $"{carried} / {InventoryViewModel.BackpackSlots}", RowTone.Warn));
+            rows.AddRange(backpack);
 
             return new StationView
             {
@@ -176,22 +223,23 @@ namespace RuinRail.UI.Base
             var character = hub.Character;
             var rows = new List<StationRow>
             {
-                new("LEVEL", sheet.Level.ToString()),
-                new("XP", sheet.IsMaxLevel ? $"{sheet.TotalXp} (max)" : $"{sheet.XpIntoLevel} / {sheet.XpToNextLevel}"),
+                StationRow.Bar("LEVEL " + sheet.Level, sheet.IsMaxLevel ? "MAX" : $"{sheet.XpIntoLevel} / {sheet.XpToNextLevel} XP",
+                    sheet.IsMaxLevel ? 1f : Share(sheet.XpIntoLevel, sheet.XpToNextLevel), RowTone.Warn),
                 new("SKILL POINTS", sheet.UnspentPoints.ToString()),
                 new("RANK COST", SkillCatalog.PointCostText),
-                // The respec price lives on its own control's caption; the rows above are the purchase economy.
                 StationRow.Heading("ATTRIBUTES")
             };
 
-            // One block per attribute: rank / cap, what it does, and — per affected stat — what it is worth now and
-            // what one more point buys, or MAX at the cap. Every number is formatted from SkillRules through
-            // SkillCatalog, so this panel can never advertise an effect the run does not produce.
+            // One compact block per attribute: its rank as a bar, then what it is worth now and what one more point
+            // buys (or MAX). The attribute's description is contextual: it is shown for the focused attribute only.
+            // Every number is formatted from SkillRules through SkillCatalog, so this panel can never advertise an
+            // effect the run does not produce.
             foreach (var skill in CharacterPanelViewModel.Attributes)
             {
-                rows.Add(new StationRow(character.NameOf(skill),
-                    character.IsMaxed(skill) ? character.RankTextOf(skill) + " " + SkillCatalog.MaxedText : character.RankTextOf(skill)));
-                rows.Add(StationRow.Text(character.DescriptionOf(skill)));
+                var maxed = character.IsMaxed(skill);
+                rows.Add(StationRow.Bar(character.NameOf(skill),
+                    maxed ? character.RankTextOf(skill) + " " + SkillCatalog.MaxedText : character.RankTextOf(skill),
+                    Share(character.RankOf(skill), character.MaxRank), maxed ? RowTone.Good : RowTone.Warn));
                 foreach (var line in character.EffectRows(skill)) rows.Add(StationRow.Text(line));
             }
 
@@ -206,16 +254,23 @@ namespace RuinRail.UI.Base
         private static StationView Workshop(BaseHubViewModel hub)
         {
             var workshop = hub.Workshop;
+            var storageMaxed = workshop.StorageTier >= workshop.MaxStorageTier;
+            var traderMaxed = workshop.NextTraderUpgradeCost <= 0;
             var rows = new List<StationRow>
             {
-                new("BANKED", hub.Session.Banked.Balance + " C"),
+                new("BANKED", workshop.Banked + " C"),
                 StationRow.Heading("STORAGE"),
-                new("TIER", workshop.StorageTier.ToString()),
-                new("SLOTS", workshop.StorageCapacity.ToString()),
-                new("NEXT", workshop.NextStorageCapacity > workshop.StorageCapacity ? $"{workshop.NextStorageCapacity} for {workshop.NextStorageUpgradeCost} C" : "max tier"),
+                StationRow.Bar($"TIER {workshop.StorageTier} / {workshop.MaxStorageTier}", workshop.StorageCapacity + " SLOTS",
+                    Share(workshop.StorageTier, workshop.MaxStorageTier), storageMaxed ? RowTone.Good : RowTone.Warn),
+                storageMaxed
+                    ? StationRow.Badge("MAX TIER", RowTone.Good)
+                    : new StationRow($"TO {workshop.NextStorageCapacity} SLOTS", workshop.NextStorageUpgradeCost + " C"),
                 StationRow.Heading("TRADER"),
-                new("LEVEL", workshop.TraderLevel.ToString()),
-                new("NEXT", workshop.NextTraderUpgradeCost > 0 ? workshop.NextTraderUpgradeCost + " C" : "max level")
+                StationRow.Bar($"LEVEL {workshop.TraderLevel} / {workshop.TraderMaxLevel}", string.Empty,
+                    Share(workshop.TraderLevel, workshop.TraderMaxLevel), traderMaxed ? RowTone.Good : RowTone.Warn),
+                traderMaxed
+                    ? StationRow.Badge("MAX LEVEL", RowTone.Good)
+                    : new StationRow($"TO LEVEL {workshop.TraderLevel + 1}", workshop.NextTraderUpgradeCost + " C")
             };
 
             return new StationView
@@ -237,8 +292,8 @@ namespace RuinRail.UI.Base
                     EmptyText = "The terminal is offline."
                 };
 
-            rows.Add(new StationRow("STATUS", terminal.StatusText));
-            rows.Add(new StationRow("PARTY", $"{terminal.Roster.Count} / {terminal.MaxPartySize}"));
+            rows.Add(StationRow.Badge(terminal.StatusText, string.IsNullOrEmpty(terminal.ErrorText) ? (terminal.IsInSession ? RowTone.Good : RowTone.Neutral) : RowTone.Bad));
+            rows.Add(StationRow.Pips("PARTY", terminal.Roster.Count, terminal.MaxPartySize, $"{terminal.Roster.Count} / {terminal.MaxPartySize}"));
             // The non-blocking notice (Starter Loadout equipped on READY) gets a full-width line, never a truncated value cell.
             if (!string.IsNullOrEmpty(terminal.Notice)) rows.Add(StationRow.Heading(terminal.Notice));
             if (!string.IsNullOrEmpty(terminal.JoinCodeToShare)) rows.Add(new StationRow("JOIN CODE", terminal.JoinCodeToShare));
@@ -246,7 +301,8 @@ namespace RuinRail.UI.Base
 
             rows.Add(StationRow.Heading("SURVIVORS"));
             foreach (var line in terminal.Roster)
-                rows.Add(new StationRow(line.Name + (line.IsHost ? " (host)" : string.Empty), line.StatusText));
+                rows.Add(StationRow.Bar(line.Name + (line.IsHost ? " (host)" : string.Empty), line.StatusText, line.IsReady ? 1f : 0f,
+                    line.IsReady ? RowTone.Good : line.HasValidLoadout ? RowTone.Warn : RowTone.Bad));
 
             return new StationView
             {
@@ -260,18 +316,25 @@ namespace RuinRail.UI.Base
         {
             var lobby = hub.Multiplayer;
             var ready = lobby.Members.Count(m => m.IsReady);
+            var canStart = hub.Transit.CanStart;
             var rows = new List<StationRow>
             {
-                new("PARTY", lobby.Members.Count.ToString()),
-                new("READY", $"{ready} / {lobby.Members.Count}"),
+                StationRow.Badge(canStart ? "CLEARED TO DEPART" : "DEPARTURE HELD", canStart ? RowTone.Good : RowTone.Warn),
+                StationRow.Pips("READY", ready, lobby.Members.Count, $"{ready} / {lobby.Members.Count}"),
                 new("YOU", lobby.LocalReady ? "READY" : "NOT READY"),
-                new("DEPARTURE", hub.Transit.CanStart ? "CLEARED" : "HELD"),
+                // 77: taken coins become Carried Coins — at risk, banked again only by a successful return.
+                StationRow.Heading("COINS FOR THE RUN"),
+                new("BANKED NOW", hub.Transit.Banked + " C"),
+                // Two bars that together are the bank: what leaves with the run (at risk) and what stays safe.
+                StationRow.Bar("TAKING", hub.Transit.CoinsToCarry + " C", Share(hub.Transit.CoinsToCarry, hub.Transit.Banked), RowTone.Warn),
+                StationRow.Bar("STAYS BANKED", hub.Transit.BankedAfterDeparture + " C", Share(hub.Transit.BankedAfterDeparture, hub.Transit.Banked), RowTone.Good),
                 StationRow.Heading("SURVIVORS")
             };
 
             foreach (var member in lobby.Members)
-                rows.Add(new StationRow(member.ParticipantId + (member.IsHost ? " (host)" : string.Empty),
-                    member.IsReady ? "READY" : member.HasValidLoadout ? "NOT READY" : "LOADOUT INVALID"));
+                rows.Add(StationRow.Bar(member.ParticipantId + (member.IsHost ? " (host)" : string.Empty),
+                    member.IsReady ? "READY" : member.HasValidLoadout ? "NOT READY" : "LOADOUT INVALID", member.IsReady ? 1f : 0f,
+                    member.IsReady ? RowTone.Good : member.HasValidLoadout ? RowTone.Warn : RowTone.Bad));
 
             return new StationView
             {

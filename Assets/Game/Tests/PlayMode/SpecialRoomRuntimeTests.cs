@@ -317,9 +317,8 @@ namespace RuinRail.Tests
             var spawner = (FakeBossSpawner)_services.BossSpawner;
             var (player, _, _) = CreatePlayer(new Vector2(2f, 2f));
             Assert.IsNotNull(binding.Boss);
-            Assert.IsNotNull(binding.BossCache);
+            Assert.IsNull(binding.BossCache, "46: the boss's death spawns the Boss Cache; it does not exist before");
             Assert.IsNotNull(binding.Transit);
-            Assert.IsTrue(binding.BossCache.IsLocked);
             Assert.IsFalse(binding.Transit.IsActivated);
             var cleared = 0;
             room.Cleared += (_, _) => cleared++;
@@ -329,7 +328,12 @@ namespace RuinRail.Tests
             Assert.IsTrue(room.NotifyPlayerEntered(player));
             Assert.AreEqual(RoomLifecycleState.Active, room.Lifecycle);
             Assert.IsTrue(room.DoorsLocked);
-            Assert.AreSame(player.transform, binding.Boss.Boss.Target, "The boss engages the entering player.");
+            // The room introduction holds the boss back (no target, so no attack) until it ends or is skipped.
+            var engagement = (BossEngagement)room.Engagement;
+            Assert.IsTrue(engagement.IsHoldingForIntro);
+            Assert.IsNull(binding.Boss.Boss.Target, "No target during the introduction.");
+            engagement.EndIntro();
+            Assert.AreSame(player.transform, binding.Boss.Boss.Target, "The boss engages the entering player once the introduction ends.");
             yield return null;
             Assert.IsTrue(binding.Boss.IsStarted);
             Assert.IsFalse(room.NotifyPlayerEntered(player));
@@ -341,7 +345,8 @@ namespace RuinRail.Tests
             Assert.AreEqual(RoomLifecycleState.Cleared, room.Lifecycle);
             Assert.IsFalse(room.DoorsLocked);
             Assert.AreEqual(1, cleared);
-            Assert.IsFalse(binding.BossCache.IsLocked, "Boss Cache unlocks on defeat.");
+            Assert.IsTrue(binding.BossCache != null && !binding.BossCache.IsLocked, "The defeat spawns one openable Boss Cache.");
+            Assert.AreEqual(1, room.GetComponentsInChildren<SupplyChest>().Length, "exactly one chest in the arena");
             Assert.IsTrue(binding.Transit.IsActivated, "Transit activates on defeat.");
             Assert.AreEqual(1, transitActivations);
             CollectionAssert.Contains(room.State.Resolved, "boss");

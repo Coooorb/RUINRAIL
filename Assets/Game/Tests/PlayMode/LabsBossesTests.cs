@@ -173,7 +173,7 @@ namespace RuinRail.Tests
             Assert.IsNotNull(binding.Boss);
             Assert.AreEqual(id, binding.Boss.Boss.Definition.Id);
             Assert.AreEqual(DepthScaling.ScaledHealth(hp, 3, 2, true), binding.Boss.Boss.Health.MaxHealth, "Boss HP on the boss curve (duo x1.65 after depth).");
-            Assert.IsTrue(binding.BossCache.IsLocked);
+            Assert.IsNull(binding.BossCache, "The Boss Cache does not exist before the boss dies (46: boss death spawns it).");
             Assert.IsFalse(binding.Transit.IsActivated);
 
             var (player, _) = SpawnPlayerDummy((Vector2)room.transform.position + new Vector2(17.5f, 1f));
@@ -194,7 +194,7 @@ namespace RuinRail.Tests
             yield return null;
             Assert.IsTrue(binding.Boss.IsDefeated);
             CollectionAssert.AreEqual(new[] { xpExpected }, defeated, "XP once.");
-            Assert.IsFalse(binding.BossCache.IsLocked, "Boss Cache unlocks on defeat.");
+            Assert.IsTrue(binding.BossCache != null && !binding.BossCache.IsLocked, "The boss's death spawns one openable Boss Cache.");
             Assert.AreEqual(1, transitActivations);
             Assert.AreEqual(1, cleared);
             Assert.IsFalse(room.DoorsLocked);

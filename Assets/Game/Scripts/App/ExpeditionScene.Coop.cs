@@ -53,6 +53,8 @@ namespace RuinRail.App
         private float _clientGameplayHeldAt;
         private LootSpawner _clientLoot;
         private readonly Dictionary<ulong, CoopMemberMirror> _mirrors = new();
+        /// <summary>Co-op member: drop requests still waiting for the host (transaction id → item instance id).</summary>
+        private readonly Dictionary<string, string> _pendingDrops = new();
         private readonly HostDecidedTransitPolicy _hostDecided = new();
         private NetworkPlayerObject _ownedNet;
         private int _mirroredCoins;
@@ -143,7 +145,9 @@ namespace RuinRail.App
                 }
 
                 coop.MemberProfiles.TryGetValue(identity.ClientId, out var profile);
-                _mirrors[identity.ClientId] = new CoopMemberMirror(go, identity.ClientId, content, app.Registry, profile, () => _services.GroundLoot.Tracked);
+                // The member's Carried wallet on the host starts with the Banked Coins its lobby entry took into the run.
+                _mirrors[identity.ClientId] = new CoopMemberMirror(go, identity.ClientId, content, app.Registry, profile, () => _services.GroundLoot.Tracked,
+                    _run.MemberFor(identity.ClientId)?.CarriedCoins ?? 0);
             });
             var grace = new ReconnectGraceService(ReconnectGraceService.DefaultGraceSeconds, () => _expedition != null && _expedition.IsExpeditionActive);
             var request = new PartyCompositionRequest
@@ -251,7 +255,8 @@ namespace RuinRail.App
             _ownedNet = player.GetComponent<NetworkPlayerObject>();
             _coopClient = new CoopClientWorld(coop.Bus, _dungeonRootParent());
             _coopClient.InstallRelays(player);
-            _coopClient.BindInventoryMirror(() => _expedition.State.Inventory.ToSnapshot(), () => CoopMemberProfile.RanksOf(app.Menu.Session?.Profile.Skills));
+            _coopClient.BindInventoryMirror(() => _expedition.State.Inventory.ToSnapshot(), () => CoopMemberProfile.RanksOf(app.Menu.Session?.Profile.Skills),
+                () => _expedition.State.CoinsBroughtIn);
             _expedition.State.Inventory.EquippedChanged += OnClientInventoryChanged;
             _expedition.State.Inventory.BackpackChanged += OnClientInventoryChanged2;
             _coopClient.ActorSpawned += BindReplicaPresentation;
@@ -265,7 +270,12 @@ namespace RuinRail.App
             _coopClient.CacheResult += OnClientCacheResult;
             _coopClient.ReviveResult += OnClientReviveResult;
             _coopClient.KillConfirmed += OnClientKillConfirmed;
-            _coopClient.Notice += n => { if (n != null) Notify(n.Text, n.IsProblem); };
+            _coopClient.Notice += n =>
+            {
+                if (n == null) return;
+                if (!string.IsNullOrEmpty(n.TransactionId)) _pendingDrops.Remove(n.TransactionId);
+                Notify(n.Text, n.IsProblem);
+            };
             _coopClient.GameplayReleased += _ => ReleaseClientGameplay();
             _coopClient.RunEnded += OnClientRunEnded;
             _coopClient.BossState += OnClientBossState;
@@ -470,9 +480,24 @@ namespace RuinRail.App
         {
             if (request == null || _lootAuthority == null) return;
             var entity = _party?.Presence.Entities.TryGetValue(clientId, out var e) == true ? e.GameObject : null;
-            if (entity == null) return;
-            var result = _lootAuthority.RequestDrop(request.TransactionId, clientId, null, request.InstanceId, request.Quantity, entity.transform.position);
-            if (result.Verdict == LootVerdict.Accepted) _coopHost.SendRevoke(clientId, request.InstanceId, result.Quantity, request.TransactionId);
+            // 84: a Downed/Dead member drops nothing — the host checks its own copy of the member, not the request.
+            var result = entity == null || entity.GetComponentInParent<IPlayerActionGate>()?.CanAct == false
+                ? null
+                : _lootAuthority.RequestDrop(request.TransactionId, clientId, null, request.InstanceId, request.Quantity, entity.transform.position);
+            // The host copy of the item is now the ground pickup; the member's own copy leaves only through this revoke.
+            if (result != null && result.Verdict == LootVerdict.Accepted) _coopHost.SendRevoke(clientId, request.InstanceId, result.Quantity, request.TransactionId);
+            else _coopHost.SendNotice(clientId, "Could not drop that.", true, request.TransactionId);
+        }
+
+        /// <summary>
+        /// The co-op member's drop route (82): the host drops from its copy of this inventory and revokes the item here.
+        /// One request per item at a time, so a drop cannot be asked twice before the host's answer arrives.
+        /// </summary>
+        private bool RequestHostDrop(string instanceId, int quantity)
+        {
+            if (_coopClient == null || string.IsNullOrEmpty(instanceId) || _pendingDrops.ContainsValue(instanceId)) return false;
+            _pendingDrops[_coopClient.SendDrop(instanceId, quantity)] = instanceId;
+            return true;
         }
 
         // ---------------------------------------------------------------- client handlers
@@ -632,13 +657,29 @@ namespace RuinRail.App
 
         private void OnClientRevoked(RevokeMessage revoke)
         {
-            if (revoke == null || _expedition?.State?.Inventory == null) return;
+            if (revoke == null) return;
+            if (!string.IsNullOrEmpty(revoke.TransactionId)) _pendingDrops.Remove(revoke.TransactionId);
+            if (_expedition?.State?.Inventory == null) return;
+            // The host already owns what it revokes (a sale, or a drop now lying on the ground): it leaves wherever this
+            // member keeps it by now — a backpack slot or a worn slot — whole, or only the revoked part of a stack.
             var inventory = _expedition.State.Inventory;
-            for (var i = 0; i < inventory.BackpackSlots.Count; i++)
+            var removed = false;
+            for (var i = 0; i < inventory.BackpackSlots.Count && !removed; i++)
             {
-                if (inventory.BackpackSlots[i] == null || inventory.BackpackSlots[i].InstanceId != revoke.InstanceId) continue;
-                inventory.RemoveFromBackpack(i);
-                break;
+                var item = inventory.BackpackSlots[i];
+                if (item == null || item.InstanceId != revoke.InstanceId) continue;
+                if (revoke.Quantity > 0 && revoke.Quantity < item.Quantity) { item.SetQuantity(item.Quantity - revoke.Quantity); _coopClient?.MarkInventoryDirty(); }
+                else inventory.RemoveFromBackpack(i);
+                removed = true;
+            }
+
+            foreach (EquippedSlot slot in Enum.GetValues(typeof(EquippedSlot)))
+            {
+                var item = removed ? null : inventory.GetEquipped(slot);
+                if (item == null || item.InstanceId != revoke.InstanceId) continue;
+                if (revoke.Quantity > 0 && revoke.Quantity < item.Quantity) { item.SetQuantity(item.Quantity - revoke.Quantity); _coopClient?.MarkInventoryDirty(); }
+                else inventory.Unequip(slot);
+                removed = true;
             }
 
             _merchant?.Refresh();
@@ -729,7 +770,9 @@ namespace RuinRail.App
             replica.gameObject.AddComponent<EnemyAnimationDriver>().ConfigureReplica(body, replica);
             if (kind == CoopActorKind.Normal) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Normal);
             else if (kind == CoopActorKind.Elite) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Elite, 1.7f, content.Feedback != null ? content.Feedback.EliteBossTelegraphColor : (Color?)null);
-            replica.gameObject.AddComponent<HitFlash>().Configure(content.Feedback, replica.Health, null, body != null ? body.Renderer : null);
+            var replicaFlash = replica.gameObject.AddComponent<HitFlash>();
+            replicaFlash.Configure(content.Feedback, replica.Health, null, body != null ? body.Renderer : null);
+            if (kind == CoopActorKind.Boss) replicaFlash.UseBossProfile(); // strength from the replicated HP drop
             replica.gameObject.AddComponent<TelegraphIndicator>().ConfigureReplica(content.Feedback, effects, replica);
             _app.AudioBinder.Attach(replica.Health, false);
             _tutorial?.ObserveEnemySpawned();
@@ -827,7 +870,7 @@ namespace RuinRail.App
         private readonly PlayerStatsBinder _binder;
 
         public CoopMemberMirror(GameObject entity, ulong clientId, GameContentCatalog content, ItemDefinitionRegistry registry, CoopMemberProfile profile,
-            Func<IEnumerable<GameObject>> groundPickups = null)
+            Func<IEnumerable<GameObject>> groundPickups = null, int coinsBroughtIn = 0)
         {
             Entity = entity;
             ClientId = clientId;
@@ -836,6 +879,11 @@ namespace RuinRail.App
             if (profile?.Loadout != null) Inventory.RestoreFromSnapshot(profile.Loadout);
             var receiver = entity.GetComponent<PlayerLootReceiver>();
             receiver?.SetInventory(Inventory);
+            // 58/84: the host holds this member's Carried Coins. Coins the member took from its bank start there, once,
+            // when the copy is composed for the run (the copy lives for the whole run; reconnects reuse it).
+            _wallet = receiver != null ? receiver.Wallet : null;
+            SeededCoins = Math.Max(0, coinsBroughtIn);
+            if (SeededCoins > 0) _wallet?.Credit(SeededCoins, "carried_in");
             // The host simulates this member's body, so enemy impacts land on this copy: it needs the same authored
             // stagger config as every other player (its resistances come from the member's stats bound below).
             entity.GetComponent<PlayerImpactReceiver>()?.SetConfig(content.Stagger);
@@ -907,10 +955,34 @@ namespace RuinRail.App
             if (Applied > 0 && message.Version <= LastVersion) { Stale++; return false; }
             LastVersion = message.Version;
             Applied++;
+            ReconcileBroughtCoins(message.CoinsBroughtIn);
             Inventory.RestoreFromSnapshot(message.Inventory);
             // A restored snapshot raises no EquippedChanged: re-read armor/accessory (an unchanged item keeps its state).
             Passives?.Refresh();
             return true;
+        }
+
+        private readonly RuinRail.Gameplay.Economy.CoinWallet _wallet;
+
+        /// <summary>Banked Coins this copy's wallet was seeded with at composition (the lobby's captured value).</summary>
+        public int SeededCoins { get; }
+        /// <summary>Coins removed again because the member's own bank could not cover the captured value (diagnostics).</summary>
+        public int CoinsShortfallRemoved { get; private set; }
+        public bool CoinsReconciled { get; private set; }
+
+        /// <summary>
+        /// Once per run: the member reports what its own Start really moved out of its bank. The seed can only come
+        /// down to that (a member's report never raises its host wallet), so a spend in the moment between the lobby
+        /// capture and the start can never leave the member with coins its bank did not pay for.
+        /// </summary>
+        private void ReconcileBroughtCoins(int reported)
+        {
+            if (CoinsReconciled || reported < 0 || _wallet == null) return;
+            CoinsReconciled = true;
+            var shortfall = SeededCoins - reported;
+            if (shortfall <= 0) return;
+            var remove = Math.Min(shortfall, _wallet.Balance);
+            if (remove > 0 && _wallet.Debit(remove, "carried_in_shortfall").Success) CoinsShortfallRemoved = remove;
         }
 
         /// <summary>The largest single hit this member's carried weapons and grenades could deal (validation ceiling).</summary>

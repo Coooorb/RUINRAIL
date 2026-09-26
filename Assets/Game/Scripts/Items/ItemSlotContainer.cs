@@ -180,6 +180,21 @@ namespace RuinRail.Gameplay.Items
             return SlotMoveResult.Swapped;
         }
 
+        /// <summary>
+        /// Puts <paramref name="replacement"/> into the occupied slot <paramref name="slotIndex"/> and returns the item
+        /// that was there, without raising Changed: the caller (an atomic exchange with another container) raises it
+        /// once both sides hold their final item. Refuses an empty slot or an instance this container already holds.
+        /// </summary>
+        internal ItemInstance ExchangeAt(int slotIndex, ItemInstance replacement)
+        {
+            if (slotIndex < 0 || slotIndex >= Capacity || _slots[slotIndex] == null || replacement == null || Contains(replacement.InstanceId)) return null;
+            var previous = _slots[slotIndex];
+            _slots[slotIndex] = replacement;
+            return previous;
+        }
+
+        internal void RaiseChanged() => Changed?.Invoke();
+
         public ItemInstance RemoveAt(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= Capacity || _slots[slotIndex] == null)

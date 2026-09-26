@@ -112,5 +112,33 @@ namespace RuinRail.Tests
             Assert.IsTrue(half.DamageMin == 17 || half.DamageMin == 18, "Half draw sits midway (17.5 rounded), strictly between quick and full.");
             Assert.AreEqual(21, half.DamageMax, "round(lerp(12,30,0.5)) = 21.");
         }
+    
+
+        [Test]
+        public void Recovery_KeepsEveryDrawLengthAtOrBelowTheFullDrawDamageRate_ForEveryShippedBow()
+        {
+            foreach (var path in new[] { RecurveBowAssetPath, "Assets/Game/ScriptableObjects/Items/CompoundBow.asset", "Assets/Game/ScriptableObjects/Items/Stormstring.asset" })
+            {
+                var bow = AssetDatabase.LoadAssetAtPath<BowWeaponDefinition>(path);
+                Assert.IsNotNull(bow, path);
+                var full = bow.FullChargeSeconds;
+                var fullRate = (bow.FullDrawDamageMin + bow.FullDrawDamageMax) * 0.5f / full;
+
+                Assert.AreEqual(0f, BowChargeResolver.RecoverySeconds(bow, 1f, full), 1e-5f, $"{bow.Id}: a full draw owes no recovery");
+                Assert.Greater(BowChargeResolver.RecoverySeconds(bow, 0f, full), 0f, $"{bow.Id}: a zero-draw tap owes recovery");
+
+                for (var c = 0f; c <= 1.0001f; c += 0.05f)
+                {
+                    var shot = BowChargeResolver.Resolve(bow, c);
+                    var cycle = c * full + BowChargeResolver.RecoverySeconds(bow, c, full);
+                    var rate = (shot.DamageMin + shot.DamageMax) * 0.5f / cycle;
+                    // Integer rounding of the interpolated damage band may add at most half a point per shot.
+                    Assert.LessOrEqual(rate, fullRate + 0.5f / cycle + 1e-3f, $"{bow.Id}: charge {c:0.00} delivers {rate:0.0}/s, above the full-draw {fullRate:0.0}/s");
+                }
+
+                // A shorter full draw (Bow Charge Speed) shortens the recovery in proportion: the ratio holds.
+                Assert.AreEqual(BowChargeResolver.RecoverySeconds(bow, 0f, full) * 0.8f, BowChargeResolver.RecoverySeconds(bow, 0f, full * 0.8f), 1e-5f);
+            }
+        }
     }
 }

@@ -326,6 +326,89 @@ namespace RuinRail.Tests
             Assert.AreEqual(SaveError.None, recorder.LastSaveError);
         }
 
+        // ---- Banked Coins taken into the run (77: they are Carried Coins from Start) ----
+
+        [TestCase(0, 0)]
+        [TestCase(40, 40)]
+        [TestCase(100, 100)]
+        [TestCase(250, 100)]
+        [TestCase(-5, 0)]
+        public void Start_MovesTheChosenBankedCoinsIntoTheCarriedWallet_ClampedToTheBank(int chosen, int moved)
+        {
+            var slot = SlotWithLoadout(); // 100 banked
+            var service = NewService();
+            var state = service.Start(slot.Profile, 5, Biome.Rustworks, 1, null, chosen);
+            Assert.AreEqual(moved, state.CarriedCoins, "exactly the chosen amount, never more than the bank holds");
+            Assert.AreEqual(moved, state.CoinsBroughtIn);
+            Assert.AreEqual(100 - moved, slot.Profile.BankedCoins, "the bank pays exactly what the run received");
+            Assert.AreEqual(100, slot.Profile.BankedCoins + state.CarriedCoins, "no coin created or destroyed");
+        }
+
+        [Test]
+        public void BroughtCoins_AreSavedWithTheOpenTransaction_AndFollowTheCarriedRules_OnReturnFailAndQuit()
+        {
+            // Return: taken + found coins are banked again, once.
+            {
+                var store = new MemorySaveStore();
+                var slot = SlotWithLoadout();
+                var saves = new SaveSlotService(store, Resolve);
+                var service = NewService();
+                using var recorder = new ExpeditionTransactionRecorder(service, slot, saves);
+                service.Start(slot.Profile, 3, Biome.OvergrownLabs, 1, null, 60);
+                var onDisk = saves.Load().Slot;
+                Assert.IsTrue(onDisk.ActiveExpedition.IsOpen);
+                Assert.AreEqual(40, onDisk.Profile.BankedCoins, "the start save holds the lower bank together with the open run");
+                service.AddCarriedCoins(25);
+                service.Return();
+                service.Return();
+                Assert.AreEqual(125, saves.Load().Slot.Profile.BankedCoins, "40 stayed + 60 taken + 25 found, banked once");
+            }
+
+            // Fail: the taken coins are lost with everything else carried.
+            {
+                var store = new MemorySaveStore();
+                var slot = SlotWithLoadout();
+                var saves = new SaveSlotService(store, Resolve);
+                var service = NewService();
+                using var recorder = new ExpeditionTransactionRecorder(service, slot, saves);
+                service.Start(slot.Profile, 3, Biome.OvergrownLabs, 1, null, 60);
+                var summary = service.Fail();
+                service.Fail();
+                Assert.AreEqual(60, summary.CoinsLost);
+                Assert.AreEqual(40, saves.Load().Slot.Profile.BankedCoins);
+            }
+
+            // Quit mid-run: the next boot resolves the run as failed; the bank is what the start save wrote.
+            {
+                var store = new MemorySaveStore();
+                var slot = SlotWithLoadout();
+                var saves = new SaveSlotService(store, Resolve);
+                Assert.AreEqual(SaveError.None, saves.Save(slot));
+                var service = NewService();
+                using (new ExpeditionTransactionRecorder(service, slot, saves)) service.Start(slot.Profile, 9, Biome.Rustworks, 1, null, 60);
+                var boot = saves.Load().Slot;
+                Assert.IsNotNull(AbandonedExpeditionResolver.Resolve(boot));
+                Assert.AreEqual(40, boot.Profile.BankedCoins, "a quit neither refunds nor duplicates the taken coins");
+                Assert.IsNull(AbandonedExpeditionResolver.Resolve(boot));
+                Assert.AreEqual(SaveError.None, saves.Save(boot));
+                Assert.AreEqual(40, saves.Load().Slot.Profile.BankedCoins);
+            }
+        }
+
+        [Test]
+        public void ReplayedStart_MovesTheCoinsOnce()
+        {
+            var slot = SlotWithLoadout();
+            var service = NewService();
+            var coordinator = new RuinRail.Networking.ExpeditionStartCoordinator();
+            var snapshot = new RuinRail.Networking.ExpeditionStartSnapshot { StartTransactionId = "start-1", RunSeed = 4, Biome = (int)Biome.Rustworks, PartySize = 1 };
+            var first = coordinator.Apply(snapshot, service, slot.Profile, null, 70);
+            var replay = coordinator.Apply(snapshot, service, slot.Profile, null, 70);
+            Assert.AreSame(first, replay);
+            Assert.AreEqual(70, first.CarriedCoins);
+            Assert.AreEqual(30, slot.Profile.BankedCoins, "a re-delivered start never debits the bank twice");
+        }
+
         [Test]
         public void Recorder_RefusesAProfileThatIsNotTheSlotsProfile()
         {

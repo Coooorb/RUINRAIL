@@ -124,7 +124,7 @@ namespace RuinRail.Dungeon.Runtime
             var count = Physics2D.OverlapBox(center, size, 0f, ContactFilter2D.noFilter, Overlaps);
             for (var i = 0; i < count; i++)
             {
-                if (Overlaps[i] != null && Overlaps[i].GetComponentInParent<PlayerMovement>() != null) return true;
+                if (RoomEntryTrigger.PlayerBodyOf(Overlaps[i]) != null) return true;
             }
 
             return false;

@@ -51,6 +51,7 @@ namespace RuinRail.Networking
         private uint _inventoryVersion;
         private Func<InventorySnapshot> _inventorySource;
         private Func<int[]> _skillsSource;
+        private Func<int> _coinsBroughtIn;
 
         public CoopClientWorld(ICoopBus bus, Transform actorRoot = null)
         {
@@ -244,10 +245,11 @@ namespace RuinRail.Networking
         /// This player's inventory stays its own (its save, its transaction); the host keeps a mirror of it for capacity
         /// checks, drops and stats. Changes are sent at most four times a second.
         /// </summary>
-        public void BindInventoryMirror(Func<InventorySnapshot> inventory, Func<int[]> skills)
+        public void BindInventoryMirror(Func<InventorySnapshot> inventory, Func<int[]> skills, Func<int> coinsBroughtIn = null)
         {
             _inventorySource = inventory;
             _skillsSource = skills;
+            _coinsBroughtIn = coinsBroughtIn;
             MarkInventoryDirty();
         }
 
@@ -262,7 +264,8 @@ namespace RuinRail.Networking
             {
                 Version = ++_inventoryVersion,
                 Inventory = _inventorySource(),
-                SkillRanks = _skillsSource?.Invoke() ?? Array.Empty<int>()
+                SkillRanks = _skillsSource?.Invoke() ?? Array.Empty<int>(),
+                CoinsBroughtIn = _coinsBroughtIn?.Invoke() ?? -1
             }));
         }
 
@@ -492,7 +495,8 @@ namespace RuinRail.Networking
             {
                 var chest = binding.Chests[i];
                 if (chest == null || chest.IsOpened) continue;
-                var id = chest == binding.BossCache ? "boss_cache" : chest.Kind == LootSourceKind.SupplyChest ? RoomCategoryComposer.SupplyChestResolvedId : $"chest:{binding.Chests.IndexOf(chest)}";
+                var id = chest == binding.RewardChest ? binding.RewardChestResolvedId
+                    : chest == binding.BossCache ? "boss_cache" : chest.Kind == LootSourceKind.SupplyChest ? RoomCategoryComposer.SupplyChestResolvedId : $"chest:{binding.Chests.IndexOf(chest)}";
                 if (resolved.Contains(id)) chest.RestoreOpened();
             }
 

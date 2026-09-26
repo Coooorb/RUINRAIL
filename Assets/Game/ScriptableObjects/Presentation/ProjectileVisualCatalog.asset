@@ -19,42 +19,49 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_smg
     Frames:
     - {fileID: -2583382585471846516, guid: baffe89d5b53e48308976f58f8124e12, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_rifle
     Frames:
     - {fileID: 7997496912455156598, guid: e18e0a521489b4409ad85c561798664a, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_battle_rifle
     Frames:
     - {fileID: 2626990357919164354, guid: 9fd4806eca401430c848228777ebb1a5, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_pellet
     Frames:
     - {fileID: -6765878384420185677, guid: d52141292f19f47ab87609e0c6dc7c12, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_sniper
     Frames:
     - {fileID: 7909103927674167467, guid: 79c61a0f04ff54cdfbf01bb2eb983015, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_arrow
     Frames:
     - {fileID: 1705113947841388118, guid: 53bf5cd583f934726b5b1fba1ddd68e9, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_energy_bolt
     Frames:
     - {fileID: 7837381527726076951, guid: 949ab270df14a48f5869d2b6d15d0617, type: 3}
@@ -62,6 +69,7 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_rocket
     Frames:
     - {fileID: -3879947901356545069, guid: 9e9a12bba167246acbd5208a9592389f, type: 3}
@@ -69,6 +77,7 @@ MonoBehaviour:
     FrameSeconds: 0.05
     Trail: {fileID: -1877242221356527350, guid: 923b6e69d958a4f83a967226f5e80407, type: 3}
     TrailBack: 0.34
+    Scale: 1
   - Id: proj_rocket_trail
     Frames:
     - {fileID: -1877242221356527350, guid: 923b6e69d958a4f83a967226f5e80407, type: 3}
@@ -76,48 +85,56 @@ MonoBehaviour:
     FrameSeconds: 0.05
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_pistol_legendary
     Frames:
     - {fileID: -112298754218716613, guid: 98004cbe19ce14757b706d3f5418caf5, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_smg_legendary
     Frames:
     - {fileID: 5128560015134235568, guid: 1952a81fdc6a54e609a332e22d4229f0, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_rifle_legendary
     Frames:
     - {fileID: 7612737204526347038, guid: 4d3b2680414824374af61b6697275db3, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_battle_rifle_legendary
     Frames:
     - {fileID: -1115739161461901360, guid: d8a70d77297b74ae9977bc001ceb890c, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_pellet_legendary
     Frames:
     - {fileID: -1442666953181037872, guid: c07a6e5f3402b46aa852c7e3f288a536, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_sniper_legendary
     Frames:
     - {fileID: 2151049532051029252, guid: c75e8c6c2749a485e9ee0a12a8dc28df, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_arrow_legendary
     Frames:
     - {fileID: 7843380171293150237, guid: a04383995c33746fb9624fa339679e62, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_energy_bolt_legendary
     Frames:
     - {fileID: -7341852104382333417, guid: 96c76a31e90ee4899913d14ed01ff793, type: 3}
@@ -125,6 +142,7 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_rocket_legendary
     Frames:
     - {fileID: -6224905054244218429, guid: d6a6940451ead4e678a128ba997d866b, type: 3}
@@ -132,6 +150,7 @@ MonoBehaviour:
     FrameSeconds: 0.05
     Trail: {fileID: 646732614684413495, guid: 638ecb790f48f4551abf7839f41fc89e, type: 3}
     TrailBack: 0.34
+    Scale: 1
   - Id: proj_rocket_trail_legendary
     Frames:
     - {fileID: 646732614684413495, guid: 638ecb790f48f4551abf7839f41fc89e, type: 3}
@@ -139,30 +158,35 @@ MonoBehaviour:
     FrameSeconds: 0.05
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_enemy_round
     Frames:
     - {fileID: -1906772339949899392, guid: 8ee0ebeeb408c430ebc65062dcde56bc, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_enemy_sniper
     Frames:
     - {fileID: 2313997262164310182, guid: 75d2fa1a37f564f1ab61a7f7edd685c3, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_enemy_rail
     Frames:
     - {fileID: 7958649229131731429, guid: d4cf0ff3ace2f47f78a2c2ee94f3ffc5, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_enemy_scrap
     Frames:
     - {fileID: -1122119256297904703, guid: 392ea448d28684315abdd2b3da8af566, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_enemy_energy
     Frames:
     - {fileID: 3387405468166323702, guid: 1d7da707bf41349c2bcd84d5e29c298d, type: 3}
@@ -170,12 +194,14 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 1
   - Id: proj_boss_scrap
     Frames:
     - {fileID: -4758835397101952422, guid: aff36760ff66f4dfc8b373f424e03caa, type: 3}
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 2
   - Id: proj_boss_arc
     Frames:
     - {fileID: 2722565058621064591, guid: 986d11e71951246fdad2e6bd7fb6da48, type: 3}
@@ -183,6 +209,7 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 2
   - Id: proj_boss_furnace
     Frames:
     - {fileID: -8301968474894552465, guid: b4761322939d2409fab1961c1299d504, type: 3}
@@ -190,6 +217,7 @@ MonoBehaviour:
     FrameSeconds: 0.08
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 2
   - Id: proj_boss_spore
     Frames:
     - {fileID: -98856017424277683, guid: c1e4be4255fbf4f869804c750b68a4dd, type: 3}
@@ -197,6 +225,7 @@ MonoBehaviour:
     FrameSeconds: 0.09
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 2
   - Id: proj_boss_energy
     Frames:
     - {fileID: 7226821507077559131, guid: e49aed09e30c744c3a2b312b76b7a9a2, type: 3}
@@ -204,6 +233,7 @@ MonoBehaviour:
     FrameSeconds: 0.06
     Trail: {fileID: 0}
     TrailBack: 0.3
+    Scale: 2
   _familyDefaults:
   - Class: 0
     ProfileId: proj_pistol

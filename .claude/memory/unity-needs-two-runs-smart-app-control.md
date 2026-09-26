@@ -21,4 +21,4 @@ versions (6000.3.24f1 and 6000.6.0f1) ship the same unsigned file, so switching 
 then the real run. Do not add a retry inside the harness (it would hide genuine failures), and do not disable Smart App
 Control without asking: it is system-wide and Windows cannot re-enable it without a reinstall. If a run reports
 compiler errors, grep the log for `error CS` before believing it. Recorded in full in
-`production/UI_AND_BIOME_POLISH_REPORT.md` section 1.
+`production/archive/UI_AND_BIOME_POLISH_REPORT.md` section 1.

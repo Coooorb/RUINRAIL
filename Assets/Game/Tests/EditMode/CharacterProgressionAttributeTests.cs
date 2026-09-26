@@ -379,7 +379,8 @@ namespace RuinRail.Tests
                     var row = rows.FirstOrDefault(r => r.Key == name);
                     Assert.AreEqual(name, row.Key, $"{skill} has a rank row");
                     StringAssert.StartsWith(character.RankTextOf(skill), row.Value);
-                    Assert.IsTrue(rows.Any(r => r.IsText && r.Key == SkillCatalog.Description(skill)), $"{skill} shows its description");
+                    // The description is contextual now (shown for the focused attribute), so it is not a permanent row.
+                    Assert.AreEqual(SkillCatalog.Description(skill), character.DescriptionOf(skill), $"{skill} has a description for the focus line");
                     foreach (var effect in character.EffectRows(skill))
                         Assert.IsTrue(rows.Any(r => r.IsText && r.Key == effect), $"{skill} shows the effect line '{effect}'");
                 }

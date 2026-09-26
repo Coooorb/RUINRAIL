@@ -274,7 +274,7 @@ namespace RuinRail.Tests
             //
             // The trustworthy measurement is the built player, and it says there is no leak: a 60 s profiling run at
             // 1280x720 with all 218 textures and 73 audio clips loaded moved the player's mono heap by +0.03 MB
-            // across 14,280 frames (production/RELEASE_CANDIDATE_REPORT.md). The object-count assertions above are
+            // across 14,280 frames (production/archive/RELEASE_CANDIDATE_REPORT.md). The object-count assertions above are
             // the leak check that still carries weight here, because object counts are exact and editor-independent.
             Assert.Less(growthMb, 64f,
                 "Editor mono heap should not run away entirely; the authoritative no-leak evidence is the built-player profile.");

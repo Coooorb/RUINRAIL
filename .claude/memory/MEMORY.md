@@ -9,7 +9,6 @@
 - [uGUI Filled image needs a sprite](ugui-filled-image-needs-sprite.md) — no sprite = full quad, fillAmount ignored; use UiBuild.Fillable
 - [Verify audio silence outside Unity](audio-silence-verify-outside-unity.md) — scripts/probe-audio-session.ps1; check the default playback endpoint
 - [Memory lives in repo](memory-lives-in-repo.md) — .claude/memory is git-tracked; ~/.claude/projects path is a junction/symlink; push/pull to sync
-- [Final audit report regenerated on Mac](final-audit-report-regenerated-on-mac.md) — EditMode rewrites production/FINAL_MVP_COMPLETION_REPORT.md; on Mac build/smoke lines are NOT RUN; git checkout the report before committing
 - [Mac has no Windows build module](mac-no-windows-build-module.md) — Windows x64 build is NOT RUN here; use BuildMacBatch + the .app smoke as the substitute
 - [CombatAim proof flake fixed](combat-aim-proof-flaky-on-mac.md) — seed 11 + clear later waves + one pursuer at wall/door; a failure now is a real regression; PlayMode before EditMode
 - [Live-run descend + pickup prompts](live-run-descend-and-pickup-prompts.md) — descend via run.Vote.Vote; dropped loot steals the interact prompt; smoke seed notes
@@ -23,3 +22,5 @@
 - [Co-op expedition proof runner](coop-expedition-proof-runner.md) — -coop-expedition host|client; seed 11; reader rebinding, link-routed proof messages, stray processes
 - [Release audit tooling + fixed dead seams](release-smoke-and-dead-seams-2026-09-25.md) — release smoke scripts, FinalReleaseCandidateValidator + frozen baseline; impact receiver / Defibrillator / AutosaveFlusher wired
 - [Batch PlayMode frame loops](batch-playmode-frame-loops.md) — uncapped fps; wait on Time.time deadlines, not frame counts
+- [Co-op proof: Discharge + Room Sweep fail](coop-proof-discharge-roomsweep-failing.md) — duo seed 11 ends 56/58 regardless of the drop step; known open issue, don't blame new work
+- [FinalPlayability boss-started assertion fails](final-playability-boss-started-on-entry-failing.md) — predates reward work; likely the boss intro hold; not caused by reward chests

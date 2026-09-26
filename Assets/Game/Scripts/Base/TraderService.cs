@@ -225,6 +225,7 @@ namespace RuinRail.Gameplay.Base
         // ---- Level ----
 
         public int NextUpgradeCost => _config.UpgradeCostFrom(Level);
+        public int MaxLevel => _config.MaxLevel;
 
         public TradeError TryUpgrade()
         {

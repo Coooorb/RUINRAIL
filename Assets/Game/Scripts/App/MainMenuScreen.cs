@@ -103,13 +103,16 @@ namespace RuinRail.App
                 new UiRect(x, 48 + UiText.Height(1, titleScale) + 10, 280, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
         }
 
-        /// <summary>PLAY, SETTINGS and QUIT. PLAY is the primary action and is visibly the heaviest control here.</summary>
+        /// <summary>
+        /// PLAY, SETTINGS, HELP and QUIT in a narrow column on the left, so the approach to the Shelter stays the
+        /// picture. PLAY is the heaviest control and carries its own one-word state (NEW / CONTINUE) inside it.
+        /// </summary>
         private void BuildActions()
         {
             _menuList = ScreenNavigation.MainMenu(Menu);
 
             const int x = 36;
-            const int width = 210;
+            const int width = 150;
             var y = 132;
 
             foreach (var item in _menuList.Items)
@@ -125,9 +128,10 @@ namespace RuinRail.App
 
                 if (primary)
                 {
-                    // A one-line explanation of what PLAY will do with the save that is on disk.
-                    _playHint = UiKit.Label(_root, string.Empty, new UiRect(x + width + 10, y + 10, 170, UiText.Height()),
-                        1, TextAnchor.UpperLeft, UiTheme.Amber);
+                    // What PLAY will do with the save on disk, as a tag inside the button rather than a sentence beside it.
+                    _playHint = UiKit.Label(control.transform, string.Empty,
+                        new UiRect(width - 70, (height - UiText.Height()) / 2, 62, UiText.Height()), 1, TextAnchor.UpperRight, UiTheme.Amber);
+                    _playHint.raycastTarget = false;
                 }
 
                 y += height + 6;
@@ -135,53 +139,84 @@ namespace RuinRail.App
         }
 
         /// <summary>
-        /// The profile card: what the single save slot on disk actually holds.
+        /// The profile badge, bottom right, clear of the Shelter door the backdrop is built around: the survivor's
+        /// name and level, then banked coins, deepest depth and equipped gear as icon/number pairs.
         ///
-        /// It reads through <see cref="GameApp.ProbeSave"/>, the same snapshot the smoke run uses, so the card can
-        /// never disagree with what PLAY is about to load. With no save it says so plainly rather than showing zeroes.
+        /// It reads through <see cref="GameApp.ProbeSave"/>, the same snapshot the smoke run uses, so it can never
+        /// disagree with what PLAY is about to load. With no save it is one tag, NEW SURVIVOR, instead of zeroes.
         /// </summary>
         private void BuildProfileCard()
         {
-            var card = new UiRect(400, 108, 204, 122);
-            UiKit.Panel(_root, card, "ProfileCard");
-            var inner = card.Inset(UiTheme.Pad);
-
-            UiKit.Label(_root, "PROFILE", new UiRect(inner.X, inner.Y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
-            UiKit.Plate(_root, new UiRect(inner.X, inner.Y + UiText.Height() + 3, inner.Width, 1), UiTheme.PanelEdge, "Rule");
-
-            var rowY = inner.Y + UiText.Height() + 10;
             var probe = _app.ProbeSave();
+            const int right = 640 - 24;
 
             if (!probe.Success)
             {
-                UiKit.Label(_root, "No profile on this machine yet.",
-                    new UiRect(inner.X, rowY, inner.Width, UiText.Height(3)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
-                UiKit.Label(_root, "PLAY creates one and opens The Shelter.",
-                    new UiRect(inner.X, rowY + UiText.LineHeight * 2, inner.Width, UiText.Height(3)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
+                const string tag = "NEW SURVIVOR";
+                var w = UiText.Width(tag) + 16;
+                var badge = new UiRect(right - w, 306, w, UiText.Height() + 10);
+                UiKit.Panel(_root, badge, "ProfileCard", UiTheme.WithAlpha(UiTheme.NearBlack, 0.8f), UiTheme.AmberDim);
+                UiKit.Label(_root, tag, new UiRect(badge.X + 8, badge.Y + 5, w - 16, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
                 return;
             }
 
-            var level = LevelCurve.LevelForTotalXp(probe.TotalXp);
-            var rows = new (string Key, string Value)[]
-            {
-                ("SURVIVOR", string.IsNullOrEmpty(probe.DisplayName) ? "unnamed" : probe.DisplayName),
-                ("LEVEL", level.ToString()),
-                ("BANKED", probe.BankedCoins + " C"),
-                // The card already had a natural key/value slot, so the record goes here rather than forcing a new
-                // element into the accepted layout. "none yet" for a profile that has not entered a depth.
-                ("DEEPEST", probe.DeepestDepthReached > 0 ? "DEPTH " + probe.DeepestDepthReached : "none yet"),
-                ("EQUIPPED", probe.EquippedInstanceIds.Length.ToString())
-            };
+            var open = probe.ExpeditionMarkerOpen;
+            var card = new UiRect(right - 176, open ? 282 : 292, 176, open ? 54 : 44);
+            UiKit.Panel(_root, card, "ProfileCard", UiTheme.WithAlpha(UiTheme.NearBlack, 0.8f), open ? UiTheme.Danger : UiTheme.PanelEdge);
+            var inner = card.Inset(UiTheme.PadSmall + 2);
 
-            foreach (var (key, value) in rows)
+            // Line 1: who, and the level as a badge.
+            var levelText = "LV " + LevelCurve.LevelForTotalXp(probe.TotalXp);
+            var levelWidth = UiText.Width(levelText) + 8;
+            var badgeRect = new UiRect(inner.Right - levelWidth, inner.Y - 1, levelWidth, UiText.Height() + 2);
+            UiKit.Plate(_root, badgeRect, UiTheme.AmberDim, "LevelBadge");
+            UiKit.Label(_root, levelText, new UiRect(badgeRect.X + 4, badgeRect.Y + 1, levelWidth - 8, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+            var name = string.IsNullOrEmpty(probe.DisplayName) ? "unnamed" : probe.DisplayName;
+            UiKit.Label(_root, UiText.Fit(name, inner.Width - levelWidth - 4), new UiRect(inner.X, inner.Y, inner.Width - levelWidth - 4, UiText.Height()),
+                1, TextAnchor.UpperLeft, UiTheme.Ink);
+
+            // Line 2: banked coins (coin icon), deepest depth, equipped gear — compact pairs, no sentences.
+            var y = inner.Y + UiText.LineHeight + 6;
+            var x = inner.X;
+            var coin = UiSkin.Load()?.CoinIcon;
+            if (coin != null)
             {
-                UiKit.StatRow(_root, new UiRect(inner.X, rowY, inner.Width, UiText.Height()), key, value);
-                rowY += UiText.LineHeight + 2;
+                var icon = UiKit.Plate(_root, new UiRect(x, y, 8, 8), Color.white, "CoinIcon");
+                icon.sprite = coin;
+                icon.preserveAspect = true;
+                x += 11;
+            }
+            else
+            {
+                x = Pair(x, y, "C", string.Empty);
             }
 
-            if (probe.ExpeditionMarkerOpen)
-                UiKit.Label(_root, "Expedition left open — it counts as failed.",
-                    new UiRect(inner.X, rowY + 2, inner.Width, UiText.Height(2)), 1, TextAnchor.UpperLeft, UiTheme.Danger, wrap: true);
+            x = Pair(x, y, probe.BankedCoins.ToString(), string.Empty) + 8;
+            x = Pair(x, y, "DEPTH ", probe.DeepestDepthReached > 0 ? probe.DeepestDepthReached.ToString() : "-") + 8;
+            Pair(x, y, "GEAR ", probe.EquippedInstanceIds.Length.ToString());
+
+            if (open)
+                UiKit.Label(_root, "LAST EXPEDITION LOST", new UiRect(inner.X, y + UiText.LineHeight + 2, inner.Width, UiText.Height()),
+                    1, TextAnchor.UpperLeft, UiTheme.Danger);
+        }
+
+        /// <summary>A muted key followed by an ink value on one line; returns the x after it.</summary>
+        private int Pair(int x, int y, string key, string value)
+        {
+            if (key.Length > 0)
+            {
+                UiKit.Label(_root, key, new UiRect(x, y, UiText.Width(key), UiText.Height()), 1, TextAnchor.UpperLeft,
+                    value.Length > 0 ? UiTheme.InkMuted : UiTheme.Ink);
+                x += UiText.Width(key);
+            }
+
+            if (value.Length > 0)
+            {
+                UiKit.Label(_root, value, new UiRect(x, y, UiText.Width(value), UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+                x += UiText.Width(value);
+            }
+
+            return x;
         }
 
         private void OnDestroy()
@@ -193,7 +228,7 @@ namespace RuinRail.App
         {
             _footer.text = _prompts.Footer();
             if (_playHint != null)
-                _playHint.text = Menu.HasSave ? "Continue your profile" : "Start a new profile";
+                _playHint.text = Menu.HasSave ? "CONTINUE" : "NEW";
         }
 
         private void OnMenuChanged(MainMenuViewModel menu)

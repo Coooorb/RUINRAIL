@@ -2,9 +2,12 @@
 set -uo pipefail
 
 PLATFORM="${1:-EditMode}"
+# Optional Unity -testFilter (semicolon-separated test/fixture/namespace names or a regex). A filtered run writes
+# <Platform>-targeted-results.xml so it never overwrites the full-suite results that audits read.
+FILTER="${2:-}"
 case "$PLATFORM" in
   EditMode|PlayMode|All) ;;
-  *) echo "Usage: $0 [EditMode|PlayMode|All]" >&2; exit 2 ;;
+  *) echo "Usage: $0 [EditMode|PlayMode|All] [testFilter]" >&2; exit 2 ;;
 esac
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -47,8 +50,10 @@ run_tests() {
   local results_dir="$PROJECT_PATH/TestResults"
   mkdir -p "$results_dir"
 
-  local result_file="$results_dir/$platform-results.xml"
-  local log_file="$results_dir/$platform-unity.log"
+  local suffix=""
+  [[ -n "$FILTER" ]] && suffix="-targeted"
+  local result_file="$results_dir/$platform$suffix-results.xml"
+  local log_file="$results_dir/$platform$suffix-unity.log"
   rm -f "$result_file"
 
   echo "Running RUINRAIL $platform tests with $unity"
@@ -60,6 +65,9 @@ run_tests() {
     -testResults "$result_file"
     -logFile "$log_file"
   )
+  if [[ -n "$FILTER" ]]; then
+    unity_args+=( -testFilter "$FILTER" )
+  fi
 
   # EditMode is safe to run headless. PlayMode intentionally keeps graphics enabled
   # because some PlayMode tests may require a graphics device/render loop.

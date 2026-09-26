@@ -123,10 +123,10 @@ namespace RuinRail.App
             var rows = StationPresentation.For(BaseStation.Character, hub, null).Rows;
             ProgressionCheck("the Character panel states the Skill Point price of a rank",
                 rows.Any(r => r.Key == "RANK COST" && r.Value == SkillCatalog.PointCostText));
-            ProgressionCheck("the Character panel shows every attribute's rank, description and effect lines",
+            ProgressionCheck("the Character panel shows every attribute's rank and effect lines (description on focus)",
                 CharacterPanelViewModel.Attributes.All(a =>
                     rows.Any(r => r.Key == SkillCatalog.DisplayName(a) && r.Value.StartsWith(character.RankTextOf(a))) &&
-                    rows.Any(r => r.IsText && r.Key == SkillCatalog.Description(a)) &&
+                    character.DescriptionOf(a) == SkillCatalog.Description(a) &&
                     character.EffectRows(a).All(e => rows.Any(r => r.IsText && r.Key == e))));
 
             // Leaving and re-entering the station runs no transaction and shows the same ranks.

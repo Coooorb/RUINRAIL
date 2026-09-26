@@ -53,7 +53,7 @@ namespace RuinRail.Tests
                 var before = _current;
                 _current = Mathf.Min(_max, _current + amount);
                 return _current - before;
-            }));
+            }, null, null, () => _current < _max));
             _use = new ConsumableUseAction(_inventory, id => _registry.TryGet(id, out var d) ? d : null, _effects);
         }
 
@@ -227,6 +227,49 @@ namespace RuinRail.Tests
             empty.SetQuantity(0);
             Assert.AreEqual(ConsumableUseResult.EmptyStack, _use.TryUse());
             Assert.IsNull(_inventory.GetEquipped(EquippedSlot.ActiveConsumable));
+        }
+
+        [Test]
+        public void HealingAtFullHp_IsRejectedBeforeStart_NothingSpentOrRaised_AndWorksOnceHpIsMissing()
+        {
+            var started = 0;
+            var healed = 0;
+            var healingHooks = 0;
+            _use.UseStarted += _ => started++;
+            _effects.Healed += (_, _) => healed++;
+            _events.HealingConsumableUsed += _ => healingHooks++;
+            var healers = _registry.Definitions.OfType<ConsumableDefinition>().Where(d => d.EffectKind == ConsumableEffectKind.Heal).Select(d => d.Id).ToList();
+            CollectionAssert.IsSupersetOf(healers, new[] { "consumable_bandage", "consumable_medkit" }, "every pure heal in the catalog is covered by kind, not by name");
+
+            foreach (var id in healers)
+            {
+                _inventory.Unequip(EquippedSlot.ActiveConsumable);
+                var stack = Equip(id, 2);
+                _current = _max;
+                Assert.AreEqual(ConsumableUseResult.NoEffect, _use.TryUse(), $"{id}: full HP");
+                Assert.IsFalse(_use.IsUsing, $"{id}: no channel");
+                Assert.AreEqual(0f, _use.RemainingSeconds);
+                _use.Tick(5f);
+                Assert.AreEqual(2, stack.Quantity, $"{id}: nothing spent");
+                Assert.AreEqual(0, started + healed + healingHooks, $"{id}: no start, heal or reactive hook");
+
+                _current = _max - 1;
+                Assert.AreEqual(ConsumableUseResult.Started, _use.TryUse(), $"{id}: missing HP");
+                _use.Tick(5f);
+                Assert.AreEqual(_max, _current);
+                Assert.AreEqual(1, stack.Quantity, $"{id}: one unit spent for a real heal");
+                started = healed = healingHooks = 0;
+            }
+
+            // Every other kind stays usable at full HP: buffs refresh, grenades are thrown, revives spend only on success.
+            _current = _max;
+            foreach (var definition in _registry.Definitions.OfType<ConsumableDefinition>().Where(d => d.EffectKind != ConsumableEffectKind.Heal))
+                Assert.IsTrue(_effects.WouldHaveEffect(definition), $"{definition.Id} is not blocked at full HP");
+            _inventory.Unequip(EquippedSlot.ActiveConsumable);
+            var stim = Equip("consumable_combat_stim", 1);
+            Assert.AreEqual(ConsumableUseResult.Started, _use.TryUse());
+            _use.Tick(0.5f);
+            Assert.AreEqual(0, stim.Quantity, "a stim at full HP is used as before");
         }
 
         [Test]

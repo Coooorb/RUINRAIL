@@ -125,6 +125,16 @@ namespace RuinRail.UI.Hud
         public Sprite ConsumableIcon;
         public int ConsumableRarity;
         public bool HasConsumable => !string.IsNullOrEmpty(ConsumableName);
+        /// <summary>A timed consumable use in progress, read from <see cref="ConsumableUseAction"/> (0/0 when none or instant).</summary>
+        public float ConsumableUseRemaining;
+        public float ConsumableUseDuration;
+        public bool ConsumableUseActive => ConsumableUseDuration > 0f && ConsumableUseRemaining > 0f;
+        /// <summary>Remaining fraction of the use (1 = just started, 0 = done).</summary>
+        public float ConsumableUse01 => ConsumableUseActive ? Mathf.Clamp01(ConsumableUseRemaining / ConsumableUseDuration) : 0f;
+        /// <summary>Remaining use time in tenths, rounded up so it never shows 0.0s before the use completes.</summary>
+        public string ConsumableUseText => ConsumableUseActive
+            ? (Mathf.Ceil(ConsumableUseRemaining * 10f) / 10f).ToString("0.0", System.Globalization.CultureInfo.InvariantCulture) + "s"
+            : string.Empty;
         public int Depth;
         public Biome Biome;
         public int Coins;
@@ -194,6 +204,7 @@ namespace RuinRail.UI.Hud
         private readonly HashSet<string> _disconnected = new(StringComparer.Ordinal);
         private Func<AmmoType, int> _reserve;
         private ConsumableEffectRunner _effects;
+        private ConsumableUseAction _use;
         private readonly List<HudStatusEffect> _statusScratch = new();
         private HealthComponent _bossHealth;
         private Func<bool> _bossActive;
@@ -310,6 +321,17 @@ namespace RuinRail.UI.Hud
         {
             _effects = effects;
             RefreshStatusEffects();
+            Raise();
+        }
+
+        /// <summary>
+        /// Binds the player's consumable channel. The consumable slot shows its remaining use time; the countdown is the
+        /// action's own timer, read every frame, so completion and cancellation clear it the same frame they happen.
+        /// </summary>
+        public void BindConsumableUse(ConsumableUseAction use)
+        {
+            _use = use;
+            RefreshConsumable();
             Raise();
         }
 
@@ -509,13 +531,16 @@ namespace RuinRail.UI.Hud
         /// <summary>The active stack: a use decrements the instance's quantity without an inventory event, so the per-frame tick re-reads it (cheap: one dictionary lookup).</summary>
         private bool RefreshConsumable()
         {
-            var before = (Snapshot.ConsumableName, Snapshot.ConsumableQuantity, Snapshot.ConsumableIcon, Snapshot.ConsumableRarity);
+            var before = (Snapshot.ConsumableName, Snapshot.ConsumableQuantity, Snapshot.ConsumableIcon, Snapshot.ConsumableRarity, Snapshot.ConsumableUseRemaining, Snapshot.ConsumableUseDuration);
             var consumable = _inventory?.GetEquipped(EquippedSlot.ActiveConsumable);
             Snapshot.ConsumableName = consumable != null ? NameOf(consumable) : string.Empty;
             Snapshot.ConsumableQuantity = consumable?.Quantity ?? 0;
             Snapshot.ConsumableIcon = consumable != null ? DefinitionOf(consumable)?.Icon : null;
             Snapshot.ConsumableRarity = consumable != null ? (int)consumable.Rarity : 0;
-            return before != (Snapshot.ConsumableName, Snapshot.ConsumableQuantity, Snapshot.ConsumableIcon, Snapshot.ConsumableRarity);
+            var channelling = _use != null && _use.IsUsing && _use.Current.UseTimeSeconds > 0f;
+            Snapshot.ConsumableUseDuration = channelling ? _use.Current.UseTimeSeconds : 0f;
+            Snapshot.ConsumableUseRemaining = channelling ? Mathf.Max(0f, _use.RemainingSeconds) : 0f;
+            return before != (Snapshot.ConsumableName, Snapshot.ConsumableQuantity, Snapshot.ConsumableIcon, Snapshot.ConsumableRarity, Snapshot.ConsumableUseRemaining, Snapshot.ConsumableUseDuration);
         }
 
         private string NameOf(ItemInstance item)
@@ -681,6 +706,7 @@ namespace RuinRail.UI.Hud
             BindPlayer(null, null);
             BindWeapons(null, null, null);
             BindInventory(null);
+            BindConsumableUse(null);
             BindExpedition(null);
             BindParty(null);
             BindBoss(null, null, null);

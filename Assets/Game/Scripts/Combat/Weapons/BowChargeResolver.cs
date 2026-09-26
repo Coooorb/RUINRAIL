@@ -30,6 +30,23 @@ namespace RuinRail.Gameplay.Combat.Weapons
             return Mathf.Clamp01(heldSeconds / Mathf.Max(0.0001f, fullChargeSeconds));
         }
 
+        /// <summary>
+        /// Seconds after a release before the next draw may begin. A shot released at charge fraction c skips
+        /// (1 - c) of the draw, so it owes back the share of that time its damage was worth:
+        /// fullCharge * (quickAverage / fullAverage) * (1 - c). Every release — a zero-draw tap, a partial draw or a
+        /// full draw (no recovery) — then delivers at most the authored full-draw damage per second, so spamming quick
+        /// shots can never out-damage deliberate full draws, and a full draw is exactly as responsive as before.
+        /// Derived only from the authored quick/full damage and charge time; no new tuning value.
+        /// </summary>
+        public static float RecoverySeconds(BowWeaponDefinition definition, float chargeFraction, float fullChargeSeconds)
+        {
+            var fullAverage = (definition.FullDrawDamageMin + definition.FullDrawDamageMax) * 0.5f;
+            if (fullAverage <= 0f) return 0f;
+            var quickAverage = (definition.QuickDamageMin + definition.QuickDamageMax) * 0.5f;
+            var quickShare = Mathf.Clamp01(quickAverage / fullAverage);
+            return Mathf.Max(0f, fullChargeSeconds) * quickShare * (1f - Mathf.Clamp01(chargeFraction));
+        }
+
         public static ShotParameters Resolve(BowWeaponDefinition definition, float chargeFraction)
         {
             var t = Mathf.Clamp01(chargeFraction);

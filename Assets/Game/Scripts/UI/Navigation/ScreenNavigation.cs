@@ -59,14 +59,16 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
-        public static FocusList Storage(StoragePanelViewModel storage, Func<string> selectedInstance)
+        /// <summary>
+        /// Storage station: OPEN STASH (the graphical survivor ↔ Storage window, where any single item is chosen and
+        /// moved) and STORE WHOLE BACKPACK (the post-run shortcut). The old DEPOSIT / WITHDRAW buttons acted on an item
+        /// the player could never choose; filter and sort now live in the stash beside the grid they change.
+        /// </summary>
+        public static FocusList Storage(Action openStash, Action storeBackpack, Func<bool> hasBackpackItems)
         {
             var list = new FocusList("Storage");
-            list.Add("storage.filter.all", "ALL", () => storage.Filter = null);
-            foreach (ItemCategory category in Enum.GetValues(typeof(ItemCategory))) list.Add("storage.filter." + category, category.ToString().ToUpperInvariant(), () => storage.Filter = category);
-            list.Add("storage.sort", "SORT BY RARITY", () => storage.SortByRarity = !storage.SortByRarity);
-            list.Add("storage.deposit", "DEPOSIT", () => storage.Deposit(selectedInstance()), () => !string.IsNullOrEmpty(selectedInstance()));
-            list.Add("storage.withdraw", "WITHDRAW", () => storage.Withdraw(selectedInstance()), () => !string.IsNullOrEmpty(selectedInstance()));
+            list.Add("storage.open", "OPEN STASH", openStash);
+            list.Add("storage.store_backpack", "STORE WHOLE BACKPACK", storeBackpack, hasBackpackItems);
             return list;
         }
 
@@ -74,18 +76,27 @@ namespace RuinRail.UI.Navigation
         public static FocusList Inventory(InventoryViewModel inventory)
         {
             var list = new FocusList("Inventory");
-            foreach (var slot in inventory.EquipmentSlots) list.Add("slot." + slot, slot.ToString(), () => { inventory.SetCursor(new InventorySlotRef(InventorySlotKind.Equipped, (int)slot)); inventory.Activate(); });
+            foreach (var slot in inventory.EquipmentSlots) list.Add("slot." + slot, SlotLabel(slot), () => { inventory.SetCursor(new InventorySlotRef(InventorySlotKind.Equipped, (int)slot)); inventory.Activate(); });
             for (var i = 0; i < InventoryViewModel.BackpackSlots; i++)
             {
                 var index = i;
-                list.Add("backpack." + index, $"Backpack {index + 1}", () => { inventory.SetCursor(new InventorySlotRef(InventorySlotKind.Backpack, index)); inventory.Activate(); });
+                list.Add("backpack." + index, $"BAG {index + 1}", () => { inventory.SetCursor(new InventorySlotRef(InventorySlotKind.Backpack, index)); inventory.Activate(); });
             }
 
-            list.Add("inventory.drop", "DROP", () => inventory.Drop(inventory.Cursor), () => inventory.ItemAt(inventory.Cursor) != null);
-            list.Add("inventory.consumable", "SET ACTIVE CONSUMABLE", () => inventory.SetActiveConsumable(inventory.Cursor), () => inventory.ItemAt(inventory.Cursor) != null);
-            list.Add("inventory.close", "CLOSE", inventory.Close);
+            // One contextual shortcut: EQUIP a backpack item into its slot (a consumable becomes the active one), UNEQUIP a
+            // worn one. The Shelter has no ground to drop onto, and Back leaves the station.
+            list.Add(LoadoutPanelView.ActionId, "EQUIP", () => inventory.PrimaryAction(), () => inventory.CanPrimaryAction);
             return list;
         }
+
+        /// <summary>Readable slot names for the loadout controls (the ids keep the enum names).</summary>
+        private static string SlotLabel(EquippedSlot slot) => slot switch
+        {
+            EquippedSlot.PrimaryWeapon => "PRIMARY",
+            EquippedSlot.SecondaryWeapon => "SECONDARY",
+            EquippedSlot.ActiveConsumable => "CONSUMABLE",
+            _ => slot.ToString().ToUpperInvariant()
+        };
 
         public static FocusList Trader(TraderPanelViewModel trader, Func<string> selectedInstance)
         {
@@ -106,7 +117,7 @@ namespace RuinRail.UI.Navigation
         /// Shelter, below the cap, with the Skill Point in hand — so a rejected purchase is never offered as available
         /// and nothing can be spent by pressing it.
         /// </summary>
-        public static FocusList Character(CharacterPanelViewModel character)
+        public static FocusList Character(CharacterPanelViewModel character, Action changeName = null)
         {
             var list = new FocusList("Character");
             foreach (var skill in CharacterPanelViewModel.Attributes)
@@ -117,6 +128,8 @@ namespace RuinRail.UI.Navigation
             }
 
             list.Add("character.respec", character.RespecLabel(), () => character.Respec(), () => character.CanRespec());
+            // player/10: the display name is changed from the survivor's own station, through the same validation.
+            if (changeName != null) list.Add("character.name", "CHANGE NAME", changeName);
             return list;
         }
 
@@ -135,11 +148,21 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
+        public const string CoinsLessId = "transit.coins.less";
+        public const string CoinsMoreId = "transit.coins.more";
+        public const string CoinsNoneId = "transit.coins.none";
+        public const string CoinsAllId = "transit.coins.all";
+
         public static FocusList Transit(TransitPanelViewModel transit, MultiplayerPanelViewModel multiplayer)
         {
             var list = new FocusList("Transit");
             list.Add("transit.ready", "READY", () => multiplayer.SetReady(true));
             list.Add("transit.start", "START EXPEDITION", () => transit.StartExpedition());
+            // Coins for the run (77): the choice only; Start moves it, exactly once.
+            list.Add(CoinsLessId, "-" + transit.CoinStep, () => transit.TakeLess(), () => transit.CanTakeLess);
+            list.Add(CoinsMoreId, "+" + transit.CoinStep, () => transit.TakeMore(), () => transit.CanTakeMore);
+            list.Add(CoinsNoneId, "NONE", () => transit.TakeNone(), () => transit.CanTakeLess);
+            list.Add(CoinsAllId, "ALL", () => transit.TakeAll(), () => transit.CanTakeMore);
             return list;
         }
 

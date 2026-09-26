@@ -44,6 +44,8 @@ namespace RuinRail.Tests
             if (_app != null) Object.DestroyImmediate(_app.gameObject);
             foreach (var screen in Object.FindObjectsByType<MainMenuScreen>(FindObjectsSortMode.None)) Object.DestroyImmediate(screen.gameObject);
             foreach (var screen in Object.FindObjectsByType<BaseHubScreen>(FindObjectsSortMode.None)) Object.DestroyImmediate(screen.gameObject);
+            foreach (var stash in Object.FindObjectsByType<RuinRail.UI.Inventory.StashView>(FindObjectsSortMode.None)) Object.DestroyImmediate(stash.gameObject);
+            foreach (var run in Object.FindObjectsByType<ExpeditionScene>(FindObjectsSortMode.None)) Object.DestroyImmediate(run.gameObject);
             Time.timeScale = 1f;
             try { Directory.Delete(_saveDir, true); } catch { /* best effort */ }
         }
@@ -490,6 +492,249 @@ namespace RuinRail.Tests
             CollectionAssert.Contains(rows, "2", "the remaining Skill Points are re-read too (3 earned - 1 spent)");
         }
 
+        // ---------------- the display name is changed from the Character station ----------------
+
+        /// <summary>
+        /// CHANGE NAME in the Character station opens the name field over the Shelter; while it is open the menu input
+        /// is suspended (WASD/Space are menu keys), an empty save is refused on screen, CANCEL keeps the old name, and
+        /// SAVE updates the header, the survivor column and the terminal's party line at once. Captures the field and
+        /// the Shelter with a normal and a maximum-length name for visual review.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator CharacterStation_ChangeName_SavesThroughTheField_AndEveryShelterNameFollows()
+        {
+            yield return OpenShelter();
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            Assert.IsTrue(hub.Onboarding.SubmitDisplayName("Rail Ghost"));
+            hub.Hub.Open(BaseStation.Character);
+            yield return null;
+
+            // Keyboard/controller path: the control sits in the station's own focus list.
+            Assert.IsTrue(hub.Input.Stack.Current.Focus("character.name"), "CHANGE NAME is reachable by focus navigation");
+            Assert.IsTrue(hub.Input.Stack.Activate());
+            yield return null;
+            Assert.IsTrue(hub.NameEntry.IsOpen);
+            Assert.IsTrue(hub.NameEntryView.IsVisible);
+            Assert.IsTrue(hub.Input.InputBlocked(), "the Shelter menu does not navigate while the player types");
+            var focusedBefore = hub.Input.Stack.Current.Focused?.Id;
+            hub.Input.Poll();
+            Assert.AreEqual(focusedBefore, hub.Input.Stack.Current.Focused?.Id);
+
+            UiControl Button(string id) => hub.GetComponentsInChildren<UiControl>(true).First(c => c.Id == id);
+
+            // Empty input: refused, reason on screen, name unchanged, field still open.
+            while (hub.NameEntry.Text.Length > 0) hub.NameEntry.Backspace();
+            Button("name.save").SimulateClick();
+            yield return null;
+            Assert.IsTrue(hub.NameEntry.IsOpen);
+            Assert.AreEqual("Enter a name.", hub.NameEntryView.ErrorText);
+            Assert.AreEqual("Rail Ghost", hub.Session.Profile.DisplayName);
+
+            // CANCEL keeps the saved name.
+            hub.NameEntry.Type("Nope");
+            Button("name.cancel").SimulateClick();
+            yield return null;
+            Assert.IsFalse(hub.NameEntry.IsOpen);
+            Assert.IsFalse(hub.NameEntryView.IsVisible);
+            Assert.AreEqual("Rail Ghost", hub.Session.Profile.DisplayName);
+            yield return null;
+            Assert.IsFalse(hub.Input.InputBlocked(), "the menu owns the input again once the field is closed");
+
+            // SAVE with a normal name: every Shelter name follows immediately, no new slot, no reload.
+            hub.OpenNameEntry();
+            while (hub.NameEntry.Text.Length > 0) hub.NameEntry.Backspace();
+            hub.NameEntry.Type("Iron Wolf");
+            yield return null;
+            Assert.IsTrue(hub.NameEntryView.IsVisible);
+            UiScreenCapture.Capture("name_entry_open_normal");
+            Button("name.save").SimulateClick();
+            yield return null;
+            Assert.AreEqual("Iron Wolf", hub.Session.Profile.DisplayName);
+            AssertShelterShows(hub, "Iron Wolf");
+            UiScreenCapture.Capture("name_saved_normal");
+
+            // A maximum-length name fits the field and every place the Shelter draws it.
+            hub.OpenNameEntry();
+            while (hub.NameEntry.Text.Length > 0) hub.NameEntry.Backspace();
+            hub.NameEntry.Type("WWWWWWWWWWWWWWWWWWWW");
+            yield return null;
+            Assert.AreEqual(16, hub.NameEntry.Text.Length);
+            UiScreenCapture.Capture("name_entry_open_max");
+            var field = hub.NameEntryView.GetComponentsInChildren<Text>(true).First(t => t.text.StartsWith("WWWW"));
+            Assert.LessOrEqual(field.preferredWidth, field.rectTransform.rect.width + 0.5f, "a 16-character name fits the field");
+            Assert.IsTrue(hub.NameEntry.Submit());
+            yield return null;
+            AssertShelterShows(hub, "WWWWWWWWWWWWWWWW");
+            hub.Hub.Open(BaseStation.Multiplayer);
+            yield return null;
+            UiScreenCapture.Capture("name_saved_max_terminal");
+        }
+
+        private static void AssertShelterShows(BaseHubScreen hub, string name)
+        {
+            var texts = hub.GetComponentsInChildren<Text>(true).Where(t => t.gameObject.activeInHierarchy).Select(t => t.text).ToList();
+            Assert.GreaterOrEqual(texts.Count(t => t == name), 2, $"header and survivor column both show '{name}': {string.Join(" | ", texts.Where(t => t.Length > 0).Take(40))}");
+            Assert.AreEqual(name, hub.Terminal.Roster.Single(l => l.IsLocal).Name, "the terminal's party line follows the rename");
+        }
+
+        // ---------------- post-run: bring the loot home and put it away ----------------
+
+        /// <summary>
+        /// The real flow: a depth-1 run (seed 11) picks up loot, the boss falls, the party returns alive and the Shelter
+        /// composes. The Shelter points at Storage; OPEN STASH (mouse) shows the survivor beside Storage; a backpack item
+        /// is stored by click, a worn weapon by keyboard/controller confirm, one is dragged back, the whole backpack is
+        /// stored by its button; a full Storage refuses with its reason on screen; CLOSE returns to the station; and
+        /// after leaving the Shelter and continuing the profile, Storage and the survivor are exactly as left.
+        /// Captures: TestResults/PolishPreview/stash_*.png.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator PostRun_Stash_MovesLootAndWornGearIntoStorage_ByMouseKeyboardAndDrag_AndItPersists()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Stash Runner");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 12; i++) yield return null;
+
+            // ---- the run: loot picked up, boss down, return alive ----
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var carried = run.Expedition.State.Inventory;
+            var smg = new RuinRail.Gameplay.Items.ItemInstance("weapon_rattler_9", 1, RuinRail.Gameplay.Items.Rarity.Rare);
+            var harness = new RuinRail.Gameplay.Items.ItemInstance("armor_combat_harness", 1, RuinRail.Gameplay.Items.Rarity.Uncommon);
+            Assert.IsTrue(carried.TryAddToBackpack(smg) && carried.TryAddToBackpack(harness), "loot picked up");
+            var bossRoom = run.Rooms.Values.First(r => r.State.RoomType == RuinRail.Dungeon.Rooms.RoomType.Boss);
+            var player = run.Rig.Player;
+            player.transform.position = bossRoom.InteriorWorldBounds.center;
+            player.GetComponent<Rigidbody2D>().position = bossRoom.InteriorWorldBounds.center;
+            for (var i = 0; i < 6; i++) yield return new WaitForFixedUpdate();
+            BossIntroSequence.Current?.Finish();
+            bossRoom.GetComponent<RuinRail.Dungeon.Runtime.RoomContentBinding>().Boss.Boss.Health.TryApplyDamage(new RuinRail.Gameplay.Combat.DamageRequest(100000000));
+            var deadline = Time.realtimeSinceStartup + 20f;
+            while (!(run.Vote != null && run.Expedition.Transit?.State == RuinRail.Gameplay.Expedition.TransitDecisionState.Open)) { Assert.Less(Time.realtimeSinceStartup, deadline, "transit opened"); yield return null; }
+            Assert.IsTrue(run.Vote.Vote(RuinRail.Gameplay.Expedition.TransitChoice.ReturnToShelter));
+            if (run.Vote.AwaitingReturnConfirmation) run.Vote.ConfirmReturn();
+            yield return WaitComposed(SceneNames.Base);
+            yield return null;
+
+            // ---- home: the Shelter points at Storage ----
+            hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            var session = hub.Session;
+            Assert.IsTrue(session.Loadout.Contains(smg.InstanceId) && session.Loadout.Contains(harness.InstanceId), "the loot came home on the survivor");
+            yield return null;
+            Assert.IsTrue(hub.LootCueVisible, "the STORAGE tab carries the loot pip");
+            StringAssert.Contains("OPEN STASH", hub.NextCardText);
+            UiScreenCapture.Capture("stash_00_shelter_loot_cue");
+
+            // ---- mouse: STORAGE tab, then OPEN STASH ----
+            Control(hub, "station." + BaseStation.Storage).SimulateClick();
+            yield return null;
+            Control(hub, "storage.open").SimulateClick();
+            yield return null;
+            Assert.IsTrue(hub.StashOpen && hub.StashView.IsVisible, "the stash window is up");
+            Assert.AreSame(hub.StashView.FocusList, hub.Input.Stack.Current, "the stash owns the keyboard/controller focus");
+            yield return null;
+            Assert.IsFalse(hub.LootCueVisible, "opening the stash acknowledges the loot");
+            var view = hub.StashView;
+            var stash = hub.Stash;
+            UiScreenCapture.Capture("stash_01_open_after_return");
+
+            RuinRail.UI.Inventory.InventorySlotRef Cell(string instanceId)
+            {
+                foreach (var slot in view.WornSlots.Concat(view.BackpackSlots).Concat(view.StorageSlots))
+                    if (stash.ItemAt(slot.Slot)?.InstanceId == instanceId) return slot.Slot;
+                Assert.Fail(instanceId + " is not on screen");
+                return default;
+            }
+
+            // ---- mouse: hover says STORE and lights Storage; click stores ----
+            var smgSlot = view.SlotFor(Cell(smg.InstanceId));
+            smgSlot.SimulateHover(true);
+            yield return null;
+            StringAssert.Contains("STORE", view.ActionText);
+            Assert.IsTrue(smgSlot.ShowsFocusBrackets, "the hovered slot is the focused one");
+            UiScreenCapture.Capture("stash_02_hover_store");
+            smgSlot.SimulateClick();
+            yield return null;
+            Assert.IsFalse(session.Loadout.Contains(smg.InstanceId));
+            Assert.IsNotNull(session.Storage.Find(smg.InstanceId), "stored by click");
+
+            // ---- keyboard / controller: step to the worn primary and confirm ----
+            var primary = session.Loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon);
+            view.FocusList.Focus("stash.worn.4");
+            Assert.IsTrue(hub.Input.Stack.Navigate(Vector2Int.left), "arrows step the worn row");
+            for (var i = 0; i < 3; i++) hub.Input.Stack.Navigate(Vector2Int.left);
+            Assert.AreEqual("stash.worn.0", view.FocusList.Focused.Id);
+            Assert.IsTrue(hub.Input.Stack.Activate(), "Enter / A moves the focused item");
+            yield return null;
+            Assert.IsNull(session.Loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon), "the worn weapon left the slot");
+            Assert.IsNotNull(session.Storage.Find(primary.InstanceId), "stored by keyboard/controller");
+            view.FocusList.Focus("stash.worn.4");
+            Assert.IsTrue(hub.Input.Stack.Navigate(Vector2Int.right), "right from the survivor crosses into Storage");
+            StringAssert.StartsWith("stash.store.", view.FocusList.Focused.Id);
+
+            // ---- drag: the stored weapon back onto the primary slot ----
+            var primarySlot = view.SlotFor(new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Equipped, 0));
+            primarySlot.SimulateDrop(view.SlotFor(Cell(primary.InstanceId)));
+            yield return null;
+            Assert.AreEqual(primary.InstanceId, session.Loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon)?.InstanceId, "dragged from Storage onto the worn slot: equipped");
+
+            // ---- STORE WHOLE BACKPACK ----
+            view.Buttons[RuinRail.UI.Inventory.StashView.StoreBackpackId].SimulateClick();
+            yield return null;
+            Assert.AreEqual(0, session.Loadout.BackpackSlots.Count(i => i != null), "the whole backpack went into Storage");
+            UiScreenCapture.Capture("stash_03_backpack_stored");
+
+            // ---- a full Storage refuses, with the reason on screen ----
+            var expectedStorage = session.Storage.Items.Select(i => i.InstanceId).OrderBy(x => x).ToList();
+            var expectedWorn = System.Enum.GetValues(typeof(RuinRail.Gameplay.Items.EquippedSlot)).Cast<RuinRail.Gameplay.Items.EquippedSlot>().Select(session.Loadout.GetEquipped).Where(i => i != null).Select(i => i.InstanceId).OrderBy(x => x).ToList();
+            var filler = new List<RuinRail.Gameplay.Items.ItemInstance>();
+            while (session.Storage.Items.Count() < session.Storage.Capacity) { var f = new RuinRail.Gameplay.Items.ItemInstance("weapon_kestrel_12"); Assert.IsTrue(session.Storage.TryAdd(f)); filler.Add(f); }
+            var spare = new RuinRail.Gameplay.Items.ItemInstance("weapon_wasp_45");
+            Assert.IsTrue(session.Loadout.TryAddToBackpack(spare));
+            yield return null;
+            var spareSlot = view.SlotFor(Cell(spare.InstanceId));
+            spareSlot.SimulateHover(true);
+            yield return null;
+            StringAssert.Contains("STORAGE FULL", view.ActionText);
+            Assert.AreEqual(UiTheme.Danger, view.ActionColor, "a refusal is drawn as a refusal");
+            StringAssert.Contains("FULL", view.StorageCountText);
+            UiScreenCapture.Capture("stash_04_storage_full_refused");
+            spareSlot.SimulateClick();
+            yield return null;
+            Assert.IsTrue(session.Loadout.Contains(spare.InstanceId), "the refused item stays on the survivor");
+
+            // Undo the test-only filler so the persistence check below is about the real moves.
+            foreach (var f in filler) session.Storage.TryRemove(f.InstanceId);
+            session.Loadout.RemoveFromBackpack(session.Loadout.BackpackSlots.ToList().FindIndex(i => i?.InstanceId == spare.InstanceId));
+
+            // ---- CLOSE returns to the Storage station ----
+            view.Buttons[RuinRail.UI.Inventory.StashView.CloseId].SimulateClick();
+            yield return null;
+            Assert.IsFalse(hub.StashOpen);
+            Assert.AreEqual(BaseStation.Storage, hub.Hub.Current, "still at the Storage station");
+            Assert.AreSame(hub.PanelList, hub.Input.Stack.Current, "focus is back on the station controls");
+
+            // ---- persistence: leave the Shelter, continue the profile ----
+            _app.Menu.LeaveBase();
+            _app.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            Assert.AreEqual(RuinRail.UI.Base.PlayOutcome.Continued, _app.Menu.Play());
+            yield return WaitComposed(SceneNames.Base);
+            var again = _app.Menu.Session;
+            CollectionAssert.AreEqual(expectedStorage, again.Storage.Items.Select(i => i.InstanceId).OrderBy(x => x).ToList(), "Storage came back as left");
+            CollectionAssert.AreEqual(expectedWorn, System.Enum.GetValues(typeof(RuinRail.Gameplay.Items.EquippedSlot)).Cast<RuinRail.Gameplay.Items.EquippedSlot>().Select(again.Loadout.GetEquipped).Where(i => i != null).Select(i => i.InstanceId).OrderBy(x => x).ToList(), "the survivor came back as left");
+            Assert.IsNotNull(again.Storage.Find(smg.InstanceId), "the stored loot persisted");
+        }
+
         /// <summary>Every string the open station's data column is currently drawing.</summary>
         private static string[] StationRows(BaseHubScreen hub) =>
             AllChildren(hub.transform).Where(t => t != null && t.name == "StationData")
@@ -509,5 +754,275 @@ namespace RuinRail.Tests
 
         private static IEnumerable<Transform> AllChildren(Transform root) =>
             root.GetComponentsInChildren<Transform>(true);
+
+        /// <summary>
+        /// LOADOUT in the stash's graphical language (94): worn slots and the backpack grid instead of slot-name buttons,
+        /// one details strip for the pointed-at item, picked-up items mark the worn slots they fit; mouse click-to-move,
+        /// drag, keyboard/controller confirm and the EQUIP / UNEQUIP shortcut all move items through the same view model;
+        /// refusals (wrong slot, full backpack) show on the strip; Back first puts a picked-up item down.
+        /// Captures: TestResults/PolishPreview/loadout_*.png.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LoadoutTab_IsGraphical_AndEveryInputMovesItemsThroughTheSameRules()
+        {
+            yield return OpenShelter();
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Loadout Tester");
+            hub.Onboarding.AcknowledgeStarterKit();
+            var loadout = hub.Session.Loadout;
+            var smg = new RuinRail.Gameplay.Items.ItemInstance("weapon_rattler_9", 1, RuinRail.Gameplay.Items.Rarity.Rare);
+            var rig = new RuinRail.Gameplay.Items.ItemInstance("armor_scout_rig", 1, RuinRail.Gameplay.Items.Rarity.Uncommon);
+            Assert.IsTrue(loadout.TryAddToBackpack(smg) && loadout.TryAddToBackpack(rig));
+            Control(hub, "station." + BaseStation.Loadout).SimulateClick();
+            yield return null;
+
+            var view = hub.LoadoutView;
+            var vm = hub.Hub.Loadout.Inventory;
+            Assert.IsNotNull(view, "LOADOUT draws the graphical body");
+            Assert.AreSame(view.FocusList, hub.Input.Stack.Current, "the loadout owns keyboard/controller focus");
+            Assert.AreEqual(5, view.WornSlots.Count);
+            Assert.AreEqual(8, view.BackpackSlots.Count);
+            Assert.IsTrue(view.WornSlots[0].IsOccupied && view.WornSlots[2].IsOccupied && !view.WornSlots[3].IsOccupied, "worn slots read at a glance (starter gear, empty accessory)");
+            StringAssert.StartsWith("BACKPACK  3/8", view.BackpackHeaderText);
+            Assert.IsFalse(hub.Controls.Any(c => c.Id == "inventory.drop" || c.Id == "inventory.consumable" || c.Id == "slot.PrimaryWeapon"), "no slot-name text buttons, no DROP that the Shelter always refuses");
+            Assert.GreaterOrEqual(((RectTransform)view.transform).sizeDelta.y, RuinRail.UI.Inventory.LoadoutPanelView.RequiredHeight, "the body fits the station panel");
+            AssertInsideScreen(view);
+            UiScreenCapture.Capture("loadout_01_open");
+
+            int IndexOf(RuinRail.Gameplay.Items.ItemInstance item) => loadout.BackpackSlots.ToList().FindIndex(i => i != null && i.InstanceId == item.InstanceId);
+            RuinRail.UI.Inventory.InventorySlotRef Bag(int i) => new(RuinRail.UI.Inventory.InventorySlotKind.Backpack, i);
+            RuinRail.UI.Inventory.InventorySlotRef Worn(RuinRail.Gameplay.Items.EquippedSlot slot) => new(RuinRail.UI.Inventory.InventorySlotKind.Equipped, (int)slot);
+
+            // ---- mouse: hover shows the item; click picks it up and marks where it fits; click on PRIMARY swaps ----
+            var smgSlot = view.SlotFor(Bag(IndexOf(smg)));
+            smgSlot.SimulateHover(true);
+            yield return null;
+            StringAssert.Contains("Rattler", view.DetailTitleText, "details follow the pointer");
+            StringAssert.EndsWith("· BACKPACK", view.DetailSubtitleText);
+            Assert.IsTrue(view.IsMarkedTarget(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon) || view.IsMarkedTarget(RuinRail.Gameplay.Items.EquippedSlot.SecondaryWeapon), "the slot EQUIP would fill is marked");
+            smgSlot.SimulateClick();
+            yield return null;
+            Assert.IsTrue(smgSlot.ShowsSelectedFrame, "the picked-up item shows the selected frame");
+            Assert.IsTrue(view.IsMarkedTarget(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon) && view.IsMarkedTarget(RuinRail.Gameplay.Items.EquippedSlot.SecondaryWeapon), "both weapon slots are marked");
+            Assert.IsFalse(view.IsMarkedTarget(RuinRail.Gameplay.Items.EquippedSlot.Armor), "a weapon never marks the armor slot");
+            StringAssert.StartsWith("CHOOSE A SLOT", view.ActionText);
+            Assert.IsFalse(view.ActionText.EndsWith("…"), "the action line fits");
+            UiScreenCapture.Capture("loadout_02_picked_up");
+            var pistol = loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon);
+            var smgIndex = IndexOf(smg);
+            view.SlotFor(Worn(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon)).SimulateClick();
+            yield return null;
+            Assert.AreSame(smg, loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon), "click-to-move swapped the SMG in");
+            Assert.AreSame(pistol, loadout.BackpackSlots[smgIndex], "the pistol took the SMG's backpack slot");
+            Assert.IsFalse(vm.Selected.HasValue);
+
+            // ---- keyboard / controller: arrows to the rig, confirm, arrows to ARMOR, confirm ----
+            ActiveInputDevice.Set(InputDeviceKind.Gamepad);
+            var rigIndex = IndexOf(rig);
+            view.FocusList.Focus("backpack.0");
+            for (var guard = 0; guard < 8 && view.FocusList.Focused.Id != "backpack." + rigIndex; guard++) hub.Input.Stack.Navigate(Vector2Int.right);
+            Assert.AreEqual("backpack." + rigIndex, view.FocusList.Focused.Id, "arrows step the backpack grid");
+            hub.Input.Stack.Activate();
+            yield return null;
+            StringAssert.Contains("B: CANCEL", view.ActionText, "controller wording on the strip");
+            for (var guard = 0; guard < 4 && !view.FocusList.Focused.Id.StartsWith("slot."); guard++) hub.Input.Stack.Navigate(Vector2Int.up);
+            StringAssert.StartsWith("slot.", view.FocusList.Focused.Id, "up from the backpack reaches the worn row");
+            view.FocusList.Focus("slot.Armor");
+            var vest = loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor);
+            hub.Input.Stack.Activate();
+            yield return null;
+            ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
+            Assert.AreSame(rig, loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor), "confirm / confirm swapped the rig in");
+            Assert.AreSame(vest, loadout.BackpackSlots[rigIndex]);
+
+            // ---- EQUIP / UNEQUIP shortcut and drag ----
+            view.FocusList.Focus("slot.Armor");
+            yield return null;
+            Assert.AreEqual("UNEQUIP", view.ActionButtonText);
+            view.ActionButton.SimulateClick();
+            yield return null;
+            Assert.IsNull(loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor), "UNEQUIP returned the rig to the backpack");
+            view.SlotFor(Worn(RuinRail.Gameplay.Items.EquippedSlot.Armor)).SimulateDrop(view.SlotFor(Bag(IndexOf(vest))));
+            yield return null;
+            Assert.AreSame(vest, loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor), "dragging the vest onto ARMOR wears it");
+
+            // ---- a refusal reads on the strip and changes nothing ----
+            var before = JsonUtility.ToJson(loadout.ToSnapshot());
+            view.SlotFor(Worn(RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon)).SimulateDrop(view.SlotFor(Bag(IndexOf(rig))));
+            yield return null;
+            Assert.AreEqual("That item does not fit this slot.", view.ActionText);
+            Assert.AreEqual(UiTheme.Danger, view.ActionColor);
+            Assert.AreEqual(before, JsonUtility.ToJson(loadout.ToSnapshot()));
+            UiScreenCapture.Capture("loadout_03_refused_wrong_slot");
+
+            // ---- full backpack: the header says so, a worn item says how to change it, UNEQUIP is refused ----
+            while (loadout.BackpackSlots.Any(i => i == null)) Assert.IsTrue(loadout.TryAddToBackpack(new RuinRail.Gameplay.Items.ItemInstance("weapon_field_knife")));
+            view.FocusList.Focus("slot.Armor");
+            yield return null;
+            StringAssert.Contains("FULL", view.BackpackHeaderText);
+            StringAssert.Contains("BACKPACK FULL", view.ActionText);
+            Assert.IsFalse(view.ActionText.EndsWith("…") || view.DetailSubtitleText.EndsWith("…"), "no clipped strip text");
+            UiScreenCapture.Capture("loadout_04_full_backpack");
+            view.ActionButton.SimulateClick();
+            yield return null;
+            Assert.AreEqual("BACKPACK FULL", view.ActionText);
+            Assert.AreSame(vest, loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor), "refused, still worn");
+            // A swap still works with the backpack full.
+            view.SlotFor(Worn(RuinRail.Gameplay.Items.EquippedSlot.Armor)).SimulateDrop(view.SlotFor(Bag(IndexOf(rig))));
+            yield return null;
+            Assert.AreSame(rig, loadout.GetEquipped(RuinRail.Gameplay.Items.EquippedSlot.Armor));
+
+            // ---- Back puts a picked-up item down first, then leaves the station ----
+            view.SlotFor(Bag(0)).SimulateClick();
+            yield return null;
+            Assert.IsTrue(vm.Selected.HasValue);
+            var back = typeof(BaseHubScreen).GetMethod("OnBack", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            back.Invoke(hub, null); // what Esc / B raises through MenuInput.Back
+            yield return null;
+            Assert.IsFalse(vm.Selected.HasValue, "Back cancels the pick-up");
+            Assert.AreEqual(BaseStation.Loadout, hub.Hub.Current, "and the station stays open");
+            back.Invoke(hub, null);
+            yield return null;
+            Assert.IsNull(hub.Hub.Current, "the next Back leaves LOADOUT");
+        }
+
+        /// <summary>
+        /// Coins for the run through the real flow: chosen on the TRANSIT tab with mouse and keyboard/controller (banked,
+        /// taking and what stays banked on screen), START moves exactly that amount into the run's Carried Coins, a
+        /// return banks them again, and a death loses them — with the bank on disk matching every step.
+        /// Captures: TestResults/PolishPreview/coins_*.png.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator CoinsForTheRun_ChosenAtTransit_MovedOnceAtStart_BankedOnReturn_LostOnDeath()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Coin Carrier");
+            hub.Onboarding.AcknowledgeStarterKit();
+            var session = hub.Session;
+            session.Banked.Credit(1000, "test");
+            session.SaveNow("test");
+
+            Control(hub, "station." + BaseStation.Transit).SimulateClick();
+            yield return null;
+            var transit = hub.Hub.Transit;
+            var step = transit.CoinStep;
+            Assert.AreEqual("0 C", hub.CoinSelectorText, "nothing is taken unless chosen");
+            Assert.IsFalse(Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsLessId).Item.IsEnabled, "- is disabled at zero");
+            UiScreenCapture.Capture("coins_01_transit_nothing_taken");
+
+            // Mouse: + twice, ALL, then - once.
+            Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsMoreId).SimulateClick();
+            Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsMoreId).SimulateClick();
+            yield return null;
+            Assert.AreEqual(step * 2, session.CoinsToCarry);
+            Assert.AreEqual((step * 2) + " C", hub.CoinSelectorText);
+            Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsAllId).SimulateClick();
+            yield return null;
+            Assert.AreEqual(1000, session.CoinsToCarry);
+            Assert.IsFalse(Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsMoreId).Item.IsEnabled, "+ is disabled at the whole bank");
+            UiScreenCapture.Capture("coins_02_transit_all_taken");
+            Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsNoneId).SimulateClick();
+            yield return null;
+            Assert.AreEqual(0, session.CoinsToCarry);
+
+            // Keyboard / controller: focus + and confirm three times.
+            ActiveInputDevice.Set(InputDeviceKind.Gamepad);
+            hub.Input.Stack.Current.Focus(RuinRail.UI.Navigation.ScreenNavigation.CoinsMoreId);
+            for (var i = 0; i < 6; i++) { hub.Input.Stack.Activate(); }
+            ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
+            yield return null;
+            var taking = System.Math.Min(step * 6, 1000);
+            Assert.AreEqual(taking, session.CoinsToCarry);
+            Assert.AreEqual(1000, session.Profile.BankedCoins, "choosing moved nothing");
+            UiScreenCapture.Capture("coins_03_transit_partial");
+
+            // READY, START: exactly the chosen amount becomes Carried Coins; the start save holds the lower bank.
+            Control(hub, "transit.ready").SimulateClick();
+            yield return null;
+            Control(hub, "transit.start").SimulateClick();
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 12; i++) yield return null;
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            Assert.AreEqual(taking, run.Expedition.State.CarriedCoins);
+            Assert.AreEqual(1000 - taking, session.Profile.BankedCoins);
+            Assert.AreEqual(1000 - taking, _app.Saves.Load().Slot.Profile.BankedCoins, "the debit is on disk with the open run");
+            Assert.AreEqual(taking.ToString(), run.HudView.CoinsText, "the HUD shows the carried coins");
+            LiveDungeonCapture.Capture("TestResults/PolishPreview", "coins_04_run_hud_carried", run.Camera.Camera, run.Camera.Config.PixelsPerUnit, includeUi: true);
+
+            // Return alive: the taken coins come home, once.
+            var bossRoom = run.Rooms.Values.First(r => r.State.RoomType == RuinRail.Dungeon.Rooms.RoomType.Boss);
+            var player = run.Rig.Player;
+            player.transform.position = bossRoom.InteriorWorldBounds.center;
+            player.GetComponent<Rigidbody2D>().position = bossRoom.InteriorWorldBounds.center;
+            for (var i = 0; i < 6; i++) yield return new WaitForFixedUpdate();
+            BossIntroSequence.Current?.Finish();
+            bossRoom.GetComponent<RuinRail.Dungeon.Runtime.RoomContentBinding>().Boss.Boss.Health.TryApplyDamage(new RuinRail.Gameplay.Combat.DamageRequest(100000000));
+            var deadline = Time.realtimeSinceStartup + 20f;
+            while (!(run.Vote != null && run.Expedition.Transit?.State == RuinRail.Gameplay.Expedition.TransitDecisionState.Open)) { Assert.Less(Time.realtimeSinceStartup, deadline, "transit opened"); yield return null; }
+            var carriedAtReturn = run.Expedition.State.CarriedCoins;
+            Assert.GreaterOrEqual(carriedAtReturn, taking);
+            Assert.IsTrue(run.Vote.Vote(RuinRail.Gameplay.Expedition.TransitChoice.ReturnToShelter));
+            if (run.Vote.AwaitingReturnConfirmation) run.Vote.ConfirmReturn();
+            yield return WaitComposed(SceneNames.Base);
+            yield return null;
+            hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            session = hub.Session;
+            var home = 1000 - taking + carriedAtReturn;
+            Assert.AreEqual(home, session.Profile.BankedCoins, "stayed + taken + found, banked once");
+            Assert.AreEqual(home, _app.Saves.Load().Slot.Profile.BankedCoins);
+            Assert.AreEqual(0, session.CoinsToCarry, "the next preparation starts with nothing taken");
+
+            // A second run takes everything and dies: the taken coins are lost, the bank stays as the start save wrote it.
+            Control(hub, "station." + BaseStation.Transit).SimulateClick();
+            yield return null;
+            Control(hub, RuinRail.UI.Navigation.ScreenNavigation.CoinsAllId).SimulateClick();
+            Control(hub, "transit.ready").SimulateClick();
+            yield return null;
+            Control(hub, "transit.start").SimulateClick();
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 12; i++) yield return null;
+            run = Object.FindFirstObjectByType<ExpeditionScene>();
+            Assert.AreEqual(home, run.Expedition.State.CarriedCoins);
+            Assert.AreEqual(0, session.Profile.BankedCoins);
+            var health = run.Rig.Player.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>();
+            health.SetInvulnerabilityState(null);
+            deadline = Time.realtimeSinceStartup + 10f;
+            while (run.Expedition.IsExpeditionActive)
+            {
+                Assert.Less(Time.realtimeSinceStartup, deadline, "the death closed the run");
+                health.TryApplyDamage(new RuinRail.Gameplay.Combat.DamageRequest(100000));
+                yield return null;
+            }
+
+            Assert.AreEqual(home, run.Expedition.LastSummary.CoinsLost, "the taken coins were lost with the run");
+            Assert.AreEqual(0, _app.Saves.Load().Slot.Profile.BankedCoins, "the loss is saved; nothing refunded or duplicated");
+            yield return null;
+            run.RunFailed.ReturnToShelter();
+            yield return WaitComposed(SceneNames.Base);
+            yield return null;
+            Assert.AreEqual(0, Object.FindFirstObjectByType<BaseHubScreen>().Session.Profile.BankedCoins);
+        }
+
+        private static void AssertInsideScreen(RuinRail.UI.Inventory.LoadoutPanelView view)
+        {
+            var corners = new Vector3[4];
+            foreach (var rect in view.GetComponentsInChildren<RectTransform>())
+            {
+                rect.GetWorldCorners(corners);
+                foreach (var corner in corners)
+                {
+                    Assert.GreaterOrEqual(corner.x, -0.5f, rect.name);
+                    Assert.GreaterOrEqual(corner.y, -0.5f, rect.name);
+                    Assert.LessOrEqual(corner.x, Screen.width + 0.5f, rect.name);
+                    Assert.LessOrEqual(corner.y, Screen.height + 0.5f, rect.name);
+                }
+            }
+        }
     }
 }

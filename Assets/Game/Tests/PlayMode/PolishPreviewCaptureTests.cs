@@ -90,6 +90,27 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
+        public IEnumerator Capture_MainMenu_WithProfile()
+        {
+            // A real save on disk, so the profile badge shows name, level, coins, depth and gear.
+            var slot = RuinRail.Persistence.SaveSlotService.CreateNew();
+            slot.Profile.DisplayName = "WWWWWWWWWWWWWWWW";
+            slot.Profile.TotalXp = RuinRail.Gameplay.Progression.LevelCurve.TotalXpForLevel(12);
+            slot.Profile.BankedCoins = 12345;
+            slot.Profile.DeepestDepthReached = 7;
+            var saves = new RuinRail.Persistence.SaveSlotService(
+                new RuinRail.Persistence.FileSaveStore(System.IO.Path.Combine(_saveDir, RuinRail.Persistence.SaveSlotService.SlotFileName)), _ => null);
+            Assert.AreEqual(RuinRail.Persistence.SaveError.None, saves.Save(slot));
+
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            yield return null;
+            var shot = UiScreenCapture.Capture("ui_main_menu_profile");
+            AssertLooksLikeARenderedScreen("Main Menu (profile)", shot);
+        }
+
+        [UnityTest]
         public IEnumerator Capture_ShelterAndEveryStation()
         {
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);

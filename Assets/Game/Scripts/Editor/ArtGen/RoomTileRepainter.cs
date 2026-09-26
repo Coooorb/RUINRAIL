@@ -52,7 +52,7 @@ namespace RuinRail.EditorTools.ArtGen
                 FloorFamilyCounts.ToDictionary(kv => kv.Key, kv => FloorCells == 0 ? 0f : kv.Value / (float)FloorCells);
         }
 
-        public static Result RepaintAll(Dictionary<(TileFactory.Biome, TileRole, int), Tile> finalTiles)
+        public static Result RepaintAll(Dictionary<(TileFactory.Biome, TileRole, int), TileBase> finalTiles)
         {
             var result = new Result();
 
@@ -113,7 +113,7 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         private static int RepaintPrefab(GameObject root, TileFactory.Biome biome, int seed,
-            Dictionary<(TileFactory.Biome, TileRole, int), Tile> finalTiles, Result result)
+            Dictionary<(TileFactory.Biome, TileRole, int), TileBase> finalTiles, Result result)
         {
             var repainted = 0;
 
@@ -136,7 +136,7 @@ namespace RuinRail.EditorTools.ArtGen
 
                 if (cellsByRole.Count == 0) continue;
 
-                var swaps = new List<(Vector3Int pos, Tile tile)>();
+                var swaps = new List<(Vector3Int pos, TileBase tile)>();
 
                 foreach (var (role, cells) in cellsByRole)
                 {
@@ -191,8 +191,8 @@ namespace RuinRail.EditorTools.ArtGen
             return repainted;
         }
 
-        private static bool TryResolve(Dictionary<(TileFactory.Biome, TileRole, int), Tile> finalTiles,
-            TileFactory.Biome biome, TileRole role, int variant, Result result, out Tile tile)
+        private static bool TryResolve(Dictionary<(TileFactory.Biome, TileRole, int), TileBase> finalTiles,
+            TileFactory.Biome biome, TileRole role, int variant, Result result, out TileBase tile)
         {
             if (finalTiles.TryGetValue((biome, role, variant), out tile) && tile != null) return true;
 

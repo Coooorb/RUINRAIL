@@ -36,7 +36,7 @@ namespace RuinRail.Gameplay.Player
                 var before = health.CurrentHealth;
                 health.Heal(amount);
                 return health.CurrentHealth - before;
-            }, throwGrenade, requestRevive));
+            }, throwGrenade, requestRevive, () => health.CurrentHealth < health.MaxHealth));
             _useAction = new ConsumableUseAction(inventory, resolveDefinition, _effects);
         }
 

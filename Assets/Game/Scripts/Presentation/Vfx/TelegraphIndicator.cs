@@ -1,3 +1,4 @@
+using System.Linq;
 using RuinRail.Gameplay;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Enemies;
@@ -24,6 +25,12 @@ namespace RuinRail.Presentation.Vfx
         private bool _wasTelegraphing;
 
         public bool IsShowing => _marker != null && _marker.IsActive;
+        /// <summary>How many danger markers are on the ground for the current telegraph.</summary>
+        public int MarkerCount => IsShowing ? 1 + _extra.Count(m => m != null && m.IsActive) : 0;
+
+        // Fans and rings: one lane per projectile beyond the first marker.
+        private readonly System.Collections.Generic.List<PooledEffect> _extra = new();
+        private readonly System.Collections.Generic.List<DangerShape> _shapes = new();
         public float Fill01 { get; private set; }
         public Vector2 MarkerScale { get; private set; }
         public Color MarkerColor { get; private set; }
@@ -98,6 +105,7 @@ namespace RuinRail.Presentation.Vfx
             {
                 if (_marker != null && _marker.IsActive) _pool?.Return(_marker);
                 _marker = null;
+                ReturnExtra(0);
                 Fill01 = 0f;
                 return;
             }
@@ -110,6 +118,11 @@ namespace RuinRail.Presentation.Vfx
             color.a = Mathf.Lerp(color.a * 0.5f, color.a, Fill01);
 
             var shape = _replica != null ? ShapeOf(_replica, transform.position) : _actor != null ? ShapeOf(_actor) : ShapeOf(_enemy, transform.position);
+            // For a fan the first marker is the first lane (the rest are drawn below), not a lane straight ahead.
+            _shapes.Clear();
+            var fanAttack = _replica != null ? (_replica.IsMoveset ? _replica.CurrentAttack : null) : _actor != null ? _actor.CurrentAttack : null;
+            if (fanAttack != null) LanesFor(fanAttack, transform.position, _replica != null ? _replica.Facing : _actor.LockedDirection, _shapes);
+            if (_shapes.Count > 0) shape = _shapes[0];
             MarkerScale = shape.Size;
             MarkerKind = shape.Kind;
             if (_pool == null) return;
@@ -128,6 +141,66 @@ namespace RuinRail.Presentation.Vfx
 
             // The marker is drawn at the real world footprint of the mechanic, whatever the sprite's pixel size.
             _marker.SetWorldSize(shape.Size);
+
+            // A fan or ring of projectiles: every further lane gets its own marker, so the telegraph shows where each
+            // projectile will fly instead of one lane straight ahead.
+            var attack = _replica != null ? (_replica.IsMoveset ? _replica.CurrentAttack : null) : _actor != null ? _actor.CurrentAttack : null;
+            var facing = _replica != null ? _replica.Facing : _actor != null ? _actor.LockedDirection : Vector2.zero;
+            _shapes.Clear();
+            if (attack != null) LanesFor(attack, transform.position, facing, _shapes);
+            for (var i = 1; i < _shapes.Count; i++)
+            {
+                var lane = _shapes[i];
+                var extra = i - 1 < _extra.Count ? _extra[i - 1] : null;
+                if (extra == null || !extra.IsActive)
+                {
+                    extra = _pool.Spawn(lane.Kind, lane.Centre, seconds > 0f ? seconds + 0.5f : 1f, color, 1f, lane.AngleDegrees);
+                    if (i - 1 < _extra.Count) _extra[i - 1] = extra; else _extra.Add(extra);
+                }
+                else
+                {
+                    extra.transform.position = new Vector3(lane.Centre.x, lane.Centre.y, 0f);
+                    extra.transform.rotation = Quaternion.Euler(0f, 0f, lane.AngleDegrees);
+                    extra.Renderer.color = color;
+                }
+
+                extra?.SetWorldSize(lane.Size);
+            }
+
+            ReturnExtra(Mathf.Max(0, _shapes.Count - 1));
+        }
+
+        private void ReturnExtra(int keep)
+        {
+            for (var i = _extra.Count - 1; i >= keep; i--)
+            {
+                if (_extra[i] != null && _extra[i].IsActive) _pool?.Return(_extra[i]);
+                _extra.RemoveAt(i);
+            }
+        }
+
+        /// <summary>
+        /// The lanes of a projectile fan or ring, fanned exactly as the attack resolver fires them (even fan over
+        /// SpreadDegrees around the locked direction). Fills nothing for any other attack. The first lane equals the
+        /// single-lane shape's direction only when the fan has one projectile.
+        /// </summary>
+        public static void LanesFor(EnemyAttackDefinition attack, Vector2 origin, Vector2 direction, System.Collections.Generic.List<DangerShape> lanes)
+        {
+            if (attack == null || attack.Motion != AttackMotion.Projectile) return;
+            var count = attack.ProjectileCount;
+            var spread = attack.SpreadDegrees;
+            if (count <= 1 || spread <= 0f) return;
+            var dir = direction.sqrMagnitude > 0.0001f ? direction.normalized : Vector2.right;
+            var length = Mathf.Max(1f, attack.ProjectileRange);
+            var width = Mathf.Max(0.5f, attack.HitRadius * 2f);
+            // A full ring repeats its first lane at +180/-180: draw it once.
+            var lanes360 = spread >= 359.5f ? count - 1 : count;
+            for (var i = 0; i < lanes360; i++)
+            {
+                var offset = Mathf.Lerp(-spread * 0.5f, spread * 0.5f, i / (float)(count - 1));
+                var laneDir = (Vector2)(Quaternion.Euler(0f, 0f, offset) * dir);
+                lanes.Add(new DangerShape(KindProjectile, new Vector2(length, width), origin + laneDir * (length * 0.5f), AngleOf(laneDir)));
+            }
         }
 
         /// <summary>The effect kind ('telegraph_*') the current marker uses (tests/diagnostics).</summary>
@@ -283,6 +356,7 @@ namespace RuinRail.Presentation.Vfx
         {
             if (_marker != null && _marker.IsActive) _pool?.Return(_marker);
             _marker = null;
+            ReturnExtra(0);
         }
     }
 }

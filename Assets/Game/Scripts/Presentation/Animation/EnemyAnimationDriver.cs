@@ -142,7 +142,7 @@ namespace RuinRail.Presentation.Animation
             {
                 State = _replica.IsMoveset ? Resolve(_replica.MovesetState, moving, striking) : Resolve(_replica.EnemyState, moving, striking);
                 var replicaFacing = moving ? velocity : _replica.Facing;
-                if (replicaFacing.sqrMagnitude > 0.0001f) Facing = BodyFacingResolver.Resolve(replicaFacing.normalized);
+                if (State != EnemyAnimState.Death && replicaFacing.sqrMagnitude > 0.0001f) Facing = BodyFacingResolver.Resolve(replicaFacing.normalized);
                 _animator?.Play(State.ToString(), Facing);
                 _animator?.Tick(deltaTime);
                 return;
@@ -154,7 +154,8 @@ namespace RuinRail.Presentation.Animation
 
             var target = _actor != null ? _actor.Target : _enemy != null ? _enemy.Target : null;
             var facingDirection = moving ? velocity : target != null ? (Vector2)(target.position - transform.position) : Vector2.zero;
-            if (facingDirection.sqrMagnitude > 0.0001f) Facing = BodyFacingResolver.Resolve(facingDirection.normalized);
+            // A corpse keeps the facing it died with: the death animation plays in place, never turned toward the target.
+            if (State != EnemyAnimState.Death && facingDirection.sqrMagnitude > 0.0001f) Facing = BodyFacingResolver.Resolve(facingDirection.normalized);
 
             _animator?.Play(State.ToString(), Facing);
             _animator?.Tick(deltaTime);

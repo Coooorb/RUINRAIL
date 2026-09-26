@@ -167,8 +167,8 @@ namespace RuinRail.Tests
             }
 
             var bossBinding = bindings.First(b => b.room.State.RoomType == RoomType.Boss).binding;
-            Assert.IsNotNull(bossBinding.BossCache);
-            Assert.IsTrue(bossBinding.BossCache.IsLocked && bossBinding.BossCache.Visual.Key == WorldObjectArt.BossCacheGate);
+            Assert.IsNull(bossBinding.BossCache, "the Boss Cache appears only when the boss dies (46), never before");
+            Assert.IsNotNull(bossBinding.Boss, "the boss is composed; its death spawns the cache");
             var supply = bindings.Where(b => b.binding != null && b.binding.SupplyChest != null).ToList();
             Assert.GreaterOrEqual(supply.Count, SupplyChestPlanner.MinimumPerDepth, "ordinary rooms carry the guaranteed floor of supply chests");
             Assert.IsTrue(supply.All(b => b.room.State.RoomType == RoomType.Combat));

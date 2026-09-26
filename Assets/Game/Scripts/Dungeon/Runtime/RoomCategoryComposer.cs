@@ -63,6 +63,7 @@ namespace RuinRail.Dungeon.Runtime
                     break;
                 case RoomType.Combat:
                     if (context.HasSupplyChest(room.State.NodeId)) BindSupplyChest(room, binding, context, services);
+                    if (room.State.IsElite) BindEliteReward(room, binding, context, services);
                     break;
             }
 
@@ -99,6 +100,7 @@ namespace RuinRail.Dungeon.Runtime
         /// </summary>
         public const int SupplyChestSourceSlot = ChestSourceStride - 1;
         public const string SupplyChestResolvedId = "chest:supply";
+        public const string BossCacheResolvedId = "boss_cache";
 
         private static void BindSupplyChest(RoomRuntime room, RoomContentBinding binding, DungeonRuntimeContext context, DungeonRuntimeServices services)
         {
@@ -120,6 +122,26 @@ namespace RuinRail.Dungeon.Runtime
             chest.Opened += (_, _) => room.State.MarkResolved(SupplyChestResolvedId);
             binding.SupplyChestCell = cell;
             binding.Chests.Add(chest);
+        }
+
+        // ---- Elite (mini-boss) reward ----
+
+        /// <summary>Loot-seed slot of an Elite room's reward chest (apart from the marker chests 0..13 and the supply slot).</summary>
+        public const int EliteRewardSourceSlot = ChestSourceStride - 2;
+        public const string EliteRewardResolvedId = "chest:elite_reward";
+
+        /// <summary>45: defeating the room's Elite leaves exactly one normal chest (a Supply Chest) at the room's playable centre.</summary>
+        private static void BindEliteReward(RoomRuntime room, RoomContentBinding binding, DungeonRuntimeContext context, DungeonRuntimeServices services)
+        {
+            if (!services.HasLoot)
+            {
+                binding.Skipped.Add("elite_reward:no_loot_catalog");
+                return;
+            }
+
+            EncounterRewardChest.Bind(room, binding, EliteRewardResolvedId,
+                () => room.State.State == RoomLifecycleState.Cleared,
+                position => CreateChest(room, services, position, "EliteRewardChest", LootSourceKind.SupplyChest, context, room.State.NodeId * ChestSourceStride + EliteRewardSourceSlot));
         }
 
         private static SupplyChest CreateChest(RoomRuntime room, DungeonRuntimeServices services, RoomMarker marker, string name, LootSourceKind kind, DungeonRuntimeContext context, int sourceIndex) =>
@@ -319,7 +341,7 @@ namespace RuinRail.Dungeon.Runtime
                             };
                         }
 
-                        room.SetEngagement(new BossEngagement(encounter));
+                        room.SetEngagement(new BossEngagement(encounter, BossEngagement.DefaultIntroHoldSeconds));
                         encounter.BossDefeated += (_, _) => room.State.MarkResolved("boss");
                     }
                     else
@@ -329,21 +351,21 @@ namespace RuinRail.Dungeon.Runtime
                 }
             }
 
-            // Boss Cache (58/46): locked until the boss falls; one-time like every source.
-            var cacheMarker = room.Root.GetMarkers(RoomMarkerRole.ChestSpawn).FirstOrDefault();
-            if (cacheMarker != null && services.HasLoot)
+            // Boss Cache (58/46 "boss death spawns a high-quality Boss Cache"): the boss's one reward chest, created by the
+            // shared encounter-reward path when the boss dies, at the arena's playable centre. Same loot kind and seed
+            // slot as always, so its contents are unchanged; one-time like every source.
+            if (services.HasLoot)
             {
-                var cache = CreateChest(room, services, cacheMarker, "BossCache", LootSourceKind.BossCache, context, room.State.NodeId * ChestSourceStride);
-                var gate = cache.gameObject.AddComponent<BossCacheGate>();
-                if (binding.Boss != null) gate.Bind(binding.Boss);
-                if (alreadyBeaten) cache.SetLocked(false);
-                if (room.State.IsResolved("boss_cache")) cache.RestoreOpened();
-                cache.Opened += (_, _) => room.State.MarkResolved("boss_cache");
-                binding.BossCache = cache;
+                var boss = binding.Boss;
+                var reward = EncounterRewardChest.Bind(room, binding, BossCacheResolvedId,
+                    () => room.State.State == RoomLifecycleState.Cleared || room.State.IsResolved("boss") || (boss != null && boss.IsDefeated),
+                    position => CreateChest(room, services, position, "BossCache", LootSourceKind.BossCache, context, room.State.NodeId * ChestSourceStride));
+                // The defeat itself is a trigger too (after the "boss" marker above), so the cache never waits on the room.
+                if (boss != null) boss.BossDefeated += (_, _) => reward.TrySpawn();
             }
             else
             {
-                binding.Skipped.Add("boss_cache:no_chest_marker_or_loot");
+                binding.Skipped.Add("boss_cache:no_loot_catalog");
             }
 
             // Transit Car: activates on boss defeat and records the defeat on the expedition (TransitCar owns that hook).

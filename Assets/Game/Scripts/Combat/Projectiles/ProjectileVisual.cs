@@ -72,6 +72,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             _body.enabled = true;
             _body.transform.localPosition = Vector3.zero;
             _body.transform.localRotation = Quaternion.identity;
+            _body.transform.localScale = Vector3.one * _profile.EffectiveScale;
             if (_profile.Trail != null)
             {
                 _trail.sprite = _profile.Trail;
@@ -92,7 +93,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             _profile = null;
             _frame = 0;
             _frameClock = 0f;
-            if (_body != null) { _body.sprite = null; _body.enabled = false; }
+            if (_body != null) { _body.sprite = null; _body.enabled = false; _body.transform.localScale = Vector3.one; }
             if (_trail != null) { _trail.sprite = null; _trail.enabled = false; }
         }
 

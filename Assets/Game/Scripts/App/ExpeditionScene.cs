@@ -82,7 +82,10 @@ namespace RuinRail.App
         private ExpeditionTutorialBinder _tutorial;
         private TransitVoteViewModel _vote;
         private Text _promptText;
-        private Text _voteText;
+        private TransitDecisionView _voteView;
+        /// <summary>The Transit decision panel owns keyboard/controller focus (engaged) or holds input because the pointer is on it.</summary>
+        private bool _voteEngaged;
+        private bool _voteHoverHeld;
         private Canvas _canvas;
         private FocusList _voteList;
         private MenuInput _menuInput;
@@ -233,7 +236,8 @@ namespace RuinRail.App
             // role, so a client build would have applied damage itself; solo and host stay authoritative as before.
             DamageAuthority.LocalIsAuthoritative = Mode != CoopRunMode.Client && (app.Network == null || app.Network.Controller == null || app.Network.Controller.IsHostAuthority);
             _lootAuthority = new LootAuthorityService(Mode == CoopRunMode.Solo ? (app.Network?.Controller?.Authority ?? LocalAuthorityContext.Instance) : CoopAuthority());
-            _lootAuthority.SetDropService(new ItemDropService(_services.CreateLootSpawner(gameObject)));
+            var drops = new ItemDropService(_services.CreateLootSpawner(gameObject));
+            _lootAuthority.SetDropService(drops);
             GameObject player;
             switch (Mode)
             {
@@ -304,6 +308,7 @@ namespace RuinRail.App
             _hud.BindInventory(state.Inventory);
             // Timed effects: the HUD reads the runner that owns their countdowns, so a chip cannot outlive its buff.
             _hud.BindStatusEffects(_rig.Consumables != null ? _rig.Consumables.Effects : null);
+            _hud.BindConsumableUse(_rig.Consumables != null ? _rig.Consumables.UseAction : null);
             _hud.BindExpedition(_expedition);
             _hud.BindParty(_roster);
             _hud.SetDisplayName(_expedition.State.TransactionId, session.Profile.DisplayName);
@@ -330,8 +335,13 @@ namespace RuinRail.App
             // One map model for the run; BuildDepth fills it from the generated layout and the room-entry events feed it.
             _minimap = new MinimapModel();
             HudView.BindMinimap(_minimap);
+            // 32 dropping: solo and the host drop into the same tracked ground loot the loot authority drops into (the
+            // host's co-op sync replicates it); a co-op member asks the host, which drops from its copy and revokes.
+            var lootReceiver = player.GetComponent<PlayerLootReceiver>();
+            if (Mode == CoopRunMode.Client) lootReceiver?.SetHostDrop(RequestHostDrop);
+            else lootReceiver?.SetDropService(drops);
             _inventory = new InventoryViewModel();
-            _inventory.Bind(state.Inventory, player.GetComponent<PlayerLootReceiver>(), () => state.CarriedCoins, app.Specials);
+            _inventory.Bind(state.Inventory, lootReceiver, () => state.CarriedCoins, app.Specials);
             // 84/86: in co-op the shared world must keep running while one player is in a menu — a client can never
             // stop the host simulation, and the host opening Pause is local UI too. Solo keeps the accepted
             // time-scale pause. The flag is the actually composed party size, never a literal.
@@ -367,6 +377,7 @@ namespace RuinRail.App
             _pause.BeforePauseToggle = () =>
             {
                 if (_runFailed != null && _runFailed.IsOpen) return true; // Esc never opens the pause menu over the Run Lost screen
+                if (_voteEngaged) { RequestVoteRelease(); return true; } // Esc hands focus back from the Transit panel first
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return true; }
                 if (_merchant.IsOpen) { _merchant.Close(); return true; }
                 if (!_inventory.IsOpen) return false;
@@ -380,6 +391,7 @@ namespace RuinRail.App
             {
                 if (_runFailed.IsOpen) return; // the Run Lost screen has no back: one of its two exits must be chosen
                 if (_pause.IsOpen) { _pause.Back(); return; }
+                if (_voteEngaged) { if (_vote != null && _vote.AwaitingReturnConfirmation) _vote.CancelReturn(); else RequestVoteRelease(); return; }
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return; }
                 if (_merchant.IsOpen) { _merchant.Close(); return; }
                 if (_inventory.IsOpen) { if (_inventory.Selected.HasValue) _inventory.CancelSelection(); else _inventory.Close(); }
@@ -392,7 +404,6 @@ namespace RuinRail.App
             _tutorial = new ExpeditionTutorialBinder(_prompts, _rig.Reader).Attach(_expedition).Attach(player.GetComponent<HealthComponent>(), state.Inventory).Attach(_rig.Loadout);
             _disposables.Add(_tutorial);
             _promptText = UiKit.Label(_canvas.transform, string.Empty, TutorialPromptRect, 1, TextAnchor.UpperCenter, wrap: true);
-            _voteText = UiKit.Label(_canvas.transform, string.Empty, new UiRect(120, 150, 400, 80), 1, TextAnchor.UpperCenter, wrap: true);
             _prompts.Changed += () => _promptText.text = _prompts.ActiveText;
             _tutorial.ObserveExpeditionStarted();
             // The one interaction prompt (ui/90): what the Interact press would do to the nearest usable world object.
@@ -485,7 +496,10 @@ namespace RuinRail.App
                 eliteSpawner = null;
             }
 
-            var context = new DungeonRuntimeContext(state.RunSeed, state.Depth, partySize, content.Enemies, roomSpawner, content.DepthScaling, content.Elites, eliteSpawner);
+            var context = new DungeonRuntimeContext(state.RunSeed, state.Depth, partySize, content.Enemies, roomSpawner, content.DepthScaling, content.Elites, eliteSpawner)
+            {
+                IsAuthoritative = Mode != CoopRunMode.Client
+            };
             Rooms = DungeonRoomRuntimeComposer.Attach(Generation.Layout, rooms, context, _services);
             if (Mode == CoopRunMode.Client) foreach (var runtime in Rooms.Values) runtime.SetAuthoritative(false);
             foreach (var runtime in Rooms.Values)
@@ -506,6 +520,14 @@ namespace RuinRail.App
                         // "Active encounter" is the boss room being entered and unresolved (the boss acquires its target from BossEngagement.Begin on that entry).
                         var bossRoom = runtime;
                         _hud.BindBoss(boss.Boss.Definition != null ? boss.Boss.Definition.DisplayName : "BOSS", boss.Boss.Health, () => bossRoom.Lifecycle == RoomLifecycleState.Active && !boss.IsDefeated);
+                        // The room introduction plays for this peer's own survivor while the engagement holds the boss back.
+                        if (runtime.Engagement is BossEngagement bossEngagement)
+                            bossEngagement.IntroStarted += (engagement, entering) =>
+                            {
+                                if (_rig?.Player == null || entering != _rig.Player) return;
+                                BossIntroSequence.Play(_camera, boss.Boss, entering.transform, engagement,
+                                    RoomDisplayNames.BiomeName(_expedition.State.Biome) + "  -  BOSS");
+                            };
                     }
                 }
 
@@ -567,6 +589,24 @@ namespace RuinRail.App
             // Elites carry the stronger world bar in the Elite accent; bosses use the screen bar instead.
             if (isElite && actor.GetComponent<WorldHealthBar>() == null)
                 actor.gameObject.AddComponent<WorldHealthBar>().Configure(actor.Health, WorldHealthBar.Style.Elite, 1.7f, _app.Content.Feedback != null ? _app.Content.Feedback.EliteBossTelegraphColor : (Color?)null);
+            // Bosses get the same combat read as every normal enemy: the ground danger marker for each telegraphed move
+            // (without it a boss's slams, zones and dashes had no marker at all outside a co-op client), the hit flash,
+            // damage numbers and impact feedback. Presentation only: it reads the actor's state, never drives it.
+            if (actor is BossController && actor.GetComponent<TelegraphIndicator>() == null)
+            {
+                var effects = FindFirstObjectByType<EffectPool>();
+                actor.gameObject.AddComponent<TelegraphIndicator>().Configure(_app.Content.Feedback, effects, null, actor);
+                var bossFlash = actor.gameObject.AddComponent<HitFlash>();
+                bossFlash.Configure(_app.Content.Feedback, actor.Health, actor.Impact, body != null ? body.Renderer : null);
+                bossFlash.UseBossProfile(); // the tint's strength follows each hit's effective damage
+                effects?.GetComponent<DamageNumberPool>()?.Bind(actor.Health);
+                effects?.GetComponent<CombatFeedback>()?.Attach(actor.Impact);
+            }
+
+            // Elites flash red on an applied hit like every normal enemy (they had no hit flash at all).
+            if (isElite && actor.GetComponent<HitFlash>() == null)
+                actor.gameObject.AddComponent<HitFlash>().Configure(_app.Content.Feedback, actor.Health, actor.Impact, body != null ? body.Renderer : null);
+
             // Audio: telegraph / death / phase cues and the hit cue for Elites and Bosses; the Elite encounter stinger.
             _app.AudioBinder.Attach(actor).Attach(actor.Health, false);
             if (actor is EliteController eliteActor) _app.MusicBinder.Attach(eliteActor);
@@ -643,7 +683,8 @@ namespace RuinRail.App
             if (binding != null)
             {
                 foreach (var chest in binding.Chests) _app.AudioBinder.Attach(chest);
-                if (binding.BossCache != null) _app.AudioBinder.Attach(binding.BossCache);
+                // An Elite's or boss's reward chest appears only when the encounter is won.
+                binding.RewardChestSpawned += chest => _app.AudioBinder.Attach(chest);
                 _app.AudioBinder.Attach(binding.Merchant);
             }
 
@@ -925,6 +966,8 @@ namespace RuinRail.App
             _revealedRoom = nodeId;
             var definition = room.Root != null ? room.Root.Definition : null;
             var type = definition != null ? definition.RoomType : room.State.RoomType;
+            // A boss room is named by its introduction card; the room-title banner would say it a second time.
+            if (type == RoomType.Boss && room.Engagement is BossEngagement introduced && introduced.IntroHoldSeconds > 0f) return;
             HudView?.RoomTitle?.Reveal(RoomDisplayNames.NameOf(room.State.RoomId, type), RoleLineOf(room, type));
         }
 
@@ -1050,9 +1093,7 @@ namespace RuinRail.App
             HudView?.Notice?.Clear();
             HudView?.RoomTitle?.Clear();
             HudView?.Vignette?.Reset();
-            _vote?.Dispose();
-            _vote = null;
-            _voteText.text = string.Empty;
+            CloseVotePanel();
             BuildDepth();
             // The one place the new-depth heal runs (dungeon/60): after the next depth exists, every living participant
             // starts it at their own effective maximum. A room entry, a revisit, the Transit vote, a rebuild inside the
@@ -1074,16 +1115,95 @@ namespace RuinRail.App
             var vote = new TransitVoteViewModel(decision, _expedition.State.TransactionId);
             _vote = vote;
             _voteList = ScreenNavigation.TransitVote(_vote);
-            // The resolving vote descends (the next depth is built and this vote disposed) before the view model
-            // raises its last Changed: a stale vote never writes to the panel of the depth that replaced it.
-            vote.Changed += _ => { if (_vote != vote || _voteText == null) return; _voteText.text = vote.StatusText + (vote.AwaitingReturnConfirmation ? "\n" + vote.ReturnWarningText : string.Empty); };
-            // Factual context only (Phase 5): depth, next depth, personal best, coins at risk and any live deep-depth
-            // bonus. No recommendation, no prediction — the choice stays the player's.
-            _voteText.text = "Transit ready — RETURN TO SHELTER or DESCEND DEEPER (1 / 2)\n"
-                             + string.Join("\n", TransitContext.Lines(_expedition));
-            _menuInput.Stack.Push(_voteList);
+            if (_voteView != null) Destroy(_voteView.gameObject);
+            // The decision as a panel at the top of the screen (ui/91). Its buttons activate the decision's existing
+            // focus list, so the vote, its authority and its outcome are unchanged; the world keeps running (the Boss
+            // Cache is still to be opened) and the panel only owns input when the player takes it (F / D-pad up, or
+            // the pointer on it). Factual context only (Phase 5): no recommendation, the choice stays the player's.
+            _voteView = TransitDecisionView.Create(_canvas.transform, vote, _voteList, TransitPanelContext);
+            _voteView.transform.SetSiblingIndex(_promptText.transform.GetSiblingIndex() + 1); // under the pause / Run Lost screens
+            // A choice made (or the Return confirmation asked) hands focus back to the game; a resolution closes the panel.
+            vote.Changed += _ => { if (_vote == vote) OnVoteChanged(vote); };
+            _promptText.enabled = false; // the panel explains itself; the tutorial line would sit under it
             _tutorial.ObserveTransitOpened(decision);
         }
+
+        /// <summary>The panel's two context lines: where the party is and where descending leads; the facts at stake.</summary>
+        private (string depth, string detail) TransitPanelContext()
+        {
+            var state = _expedition?.State;
+            if (state == null) return (string.Empty, string.Empty);
+            var best = _expedition.DeepestDepthReached > 0 ? $"BEST DEPTH {_expedition.DeepestDepthReached}" : "NO BEST YET";
+            var detail = $"{best}  ·  {state.CarriedCoins} C AT RISK";
+            var bonus = TransitContext.Lines(_expedition).Skip(4).FirstOrDefault(); // the live deep-depth bonus, when in force
+            if (!string.IsNullOrEmpty(bonus)) detail += "  ·  " + bonus.ToUpperInvariant();
+            return ($"DEPTH {state.Depth}  >  {state.Depth + 1}", detail);
+        }
+
+        private void OnVoteChanged(TransitVoteViewModel vote)
+        {
+            if (vote.IsResolved) { CloseVotePanel(keepVote: true); return; }
+            if (vote.AwaitingReturnConfirmation) { EngageVotePanel(); return; } // the warning needs an answer
+            if (_voteEngaged && vote.LocalVote.HasValue) RequestVoteRelease();
+        }
+
+        private int _voteReleaseFrame = -1;
+
+        /// <summary>
+        /// Focus goes back to the game on the NEXT frame: the press that confirmed or backed out (Space / pad A / pad B)
+        /// is still "pressed this frame" and would otherwise also reach gameplay as a dash or an interaction.
+        /// </summary>
+        private void RequestVoteRelease()
+        {
+            if (_voteEngaged) _voteReleaseFrame = Time.frameCount + 1;
+        }
+
+        /// <summary>F / D-pad up (or the Return warning): the panel takes keyboard/controller focus and gameplay input is held.</summary>
+        private void EngageVotePanel()
+        {
+            if (_voteView == null || !_voteView.IsVisible || _voteEngaged || _vote == null || !_vote.HasVoteControls) return;
+            _voteEngaged = true;
+            _voteReleaseFrame = -1;
+            GameplayInputGate.Hold();
+            if (!_menuInput.Stack.Contains(_voteList)) _menuInput.Stack.Push(_voteList);
+            _voteView.SetEngaged(true);
+        }
+
+        private void ReleaseVotePanel()
+        {
+            _voteReleaseFrame = -1;
+            if (!_voteEngaged) return;
+            _voteEngaged = false;
+            GameplayInputGate.Release();
+            _menuInput?.Stack.Remove(_voteList);
+            _voteView?.SetEngaged(false);
+        }
+
+        /// <summary>The pointer on the panel: gameplay input is held (a click never also fires) and the pointer cursor shows.</summary>
+        private void SyncVoteHover()
+        {
+            var over = _voteView != null && _voteView.IsPointerOver && !_pause.IsOpen;
+            if (over == _voteHoverHeld) return;
+            _voteHoverHeld = over;
+            if (over) { GameplayInputGate.Hold(); CursorService.PushOverlay(); }
+            else { GameplayInputGate.Release(); CursorService.PopOverlay(); }
+        }
+
+        /// <summary>Resolution or a new depth: the panel goes and every hold it took is returned.</summary>
+        private void CloseVotePanel(bool keepVote = false)
+        {
+            ReleaseVotePanel();
+            if (_voteHoverHeld) { _voteHoverHeld = false; GameplayInputGate.Release(); CursorService.PopOverlay(); }
+            if (_voteView != null) { _voteView.Hide(); Destroy(_voteView.gameObject); _voteView = null; }
+            if (_promptText != null) _promptText.enabled = !(_pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _runFailedOverlay);
+            if (keepVote) return;
+            _vote?.Dispose();
+            _vote = null;
+        }
+
+        /// <summary>The Transit panel as seen by tests: visible, engaged, and its buttons.</summary>
+        public TransitDecisionView TransitDecisionView => _voteView;
+        public bool TransitPanelEngaged => _voteEngaged;
 
         private bool _pauseOverlay;
         private bool _inventoryOverlay;
@@ -1144,12 +1264,21 @@ namespace RuinRail.App
 
         private void Update()
         {
-            if (_vote != null && !_vote.IsResolved && _rig?.Reader != null)
+            if (_voteReleaseFrame >= 0 && Time.frameCount >= _voteReleaseFrame) ReleaseVotePanel();
+            if (_voteView != null && _vote != null && !_vote.IsResolved)
             {
+                // Taking the decision: F or D-pad up — keys no gameplay action uses (1/2 are the weapon slots, Space
+                // dashes, E / A interact), and only while no menu owns the screen.
                 var kb = UnityEngine.InputSystem.Keyboard.current;
-                if (kb != null && kb.digit1Key.wasPressedThisFrame) _vote.Vote(TransitChoice.ReturnToShelter);
-                if (kb != null && kb.digit2Key.wasPressedThisFrame) _vote.Vote(TransitChoice.DescendDeeper);
-                if (kb != null && kb.enterKey.wasPressedThisFrame && _vote.AwaitingReturnConfirmation) _vote.ConfirmReturn();
+                var pad = UnityEngine.InputSystem.Gamepad.current;
+                var take = (kb != null && kb.fKey.wasPressedThisFrame) || (pad != null && pad.dpad.up.wasPressedThisFrame);
+                if (take && !_voteEngaged && !(_pause.IsOpen || _inventory.IsOpen || _merchant.IsOpen || _weaponCache.IsOpen || _runFailed.IsOpen))
+                {
+                    if (pad != null && pad.dpad.up.wasPressedThisFrame) RuinRail.Core.Input.ActiveInputDevice.Set(RuinRail.Core.Input.InputDeviceKind.Gamepad);
+                    EngageVotePanel();
+                }
+
+                SyncVoteHover();
             }
 
             _tutorial?.Tick();

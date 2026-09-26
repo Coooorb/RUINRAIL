@@ -332,12 +332,12 @@ namespace RuinRail.Tests
             player.transform.position = new Vector2(161f, 1f);
             Assert.IsTrue(bossRoom.NotifyPlayerEntered(player));
             Assert.IsTrue(bossRoom.DoorsLocked);
-            Assert.IsTrue(binding.BossCache.IsLocked);
+            Assert.IsNull(binding.BossCache, "the Boss Cache appears only when the boss dies (46)");
             yield return null;
             binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(99999));
             yield return null;
             Assert.AreEqual(RoomLifecycleState.Cleared, bossRoom.Lifecycle);
-            Assert.IsFalse(binding.BossCache.IsLocked);
+            Assert.IsTrue(binding.BossCache != null && !binding.BossCache.IsLocked);
             Assert.IsTrue(binding.Transit.IsActivated);
             Assert.IsTrue(state.BossDefeatedThisDepth, "TransitCar recorded the defeat on the expedition.");
             Assert.AreEqual(1, state.Stats.BossesDefeated);

@@ -8,7 +8,9 @@ namespace RuinRail.Gameplay.Items.Consumables
         NothingEquipped,
         EmptyStack,
         AlreadyUsing,
-        UnsupportedEffect
+        UnsupportedEffect,
+        /// <summary>The effect would do nothing right now (a heal at full HP): no channel, no spend.</summary>
+        NoEffect
     }
 
     /// <summary>
@@ -67,6 +69,7 @@ namespace RuinRail.Gameplay.Items.Consumables
             if (_resolveDefinition(stack.DefinitionId) is not ConsumableDefinition definition) return ConsumableUseResult.UnsupportedEffect;
             if (definition.EffectKind == ConsumableEffectKind.Grenade && !_effects.CanThrowGrenades) return ConsumableUseResult.UnsupportedEffect;
             if (definition.EffectKind == ConsumableEffectKind.Revive && !_effects.CanRequestRevives) return ConsumableUseResult.UnsupportedEffect;
+            if (!_effects.WouldHaveEffect(definition)) return ConsumableUseResult.NoEffect;
 
             _stack = stack;
             _definition = definition;

@@ -31,7 +31,7 @@ namespace RuinRail.EditorTools.Production
         public const string ReportPath = "TestResults/final_release_candidate.md";
         public const string BaselinePath = "production/FINAL_RELEASE_FROZEN_BASELINE.csv";
         public const string SmokeManifestPath = "scripts/release_smoke_manifest.csv";
-        public const string CurrentStatusPath = "production/FINAL_RELEASE_CANDIDATE_AUDIT.md";
+        public const string CurrentStatusPath = "production/CURRENT_RELEASE_STATUS.md";
         public const string SupersededMarker = "SUPERSEDED";
 
         /// <summary>Deterministic release-smoke scenarios that must exist in the manifest.</summary>
@@ -62,13 +62,13 @@ namespace RuinRail.EditorTools.Production
         /// </summary>
         public static readonly string[] DocumentedFixedActions = { "Pause", "Aim" };
 
-        /// <summary>Current-status documents a later pass superseded: each must carry the banner pointing to the current audit.</summary>
+        /// <summary>Archived status documents a later pass superseded: each must carry the banner pointing to the current status.</summary>
         public static readonly string[] SupersededCurrentDocs =
         {
-            "production/131_CURRENT_PRODUCTION_STATE_AFTER_TASK_148.md", "production/AUDIO_EVENT_AUDIT.md", "production/MUSIC_ASSET_AUDIT.md",
-            "production/ANIMATION_ASSET_AUDIT.md", "production/FULL_GAME_COMPREHENSIVE_REVIEW.md", "production/FINAL_RELEASE_COMPLETION_REPORT.md",
-            "production/FINAL_SHIPPABLE_V1_REPORT.md", "production/RELEASE_CANDIDATE_REPORT.md", "production/RELEASE_VALIDATION_REPORT.md",
-            "production/MULTIPLAYER_GATE_REPORT.md", "production/COOP_RUNTIME_COMPOSITION_REPORT.md"
+            "production/archive/131_CURRENT_PRODUCTION_STATE_AFTER_TASK_148.md", "production/archive/AUDIO_EVENT_AUDIT.md", "production/archive/MUSIC_ASSET_AUDIT.md",
+            "production/archive/ANIMATION_ASSET_AUDIT.md", "production/archive/FULL_GAME_COMPREHENSIVE_REVIEW.md", "production/archive/FINAL_RELEASE_COMPLETION_REPORT.md",
+            "production/archive/FINAL_SHIPPABLE_V1_REPORT.md", "production/archive/RELEASE_CANDIDATE_REPORT.md", "production/archive/RELEASE_VALIDATION_REPORT.md",
+            "production/archive/MULTIPLAYER_GATE_REPORT.md", "production/archive/COOP_RUNTIME_COMPOSITION_REPORT.md"
         };
 
         public sealed class Facts
@@ -122,7 +122,7 @@ namespace RuinRail.EditorTools.Production
         /// <summary>The fixed (non-rebindable) scheme bindings technical/116 documents: Pause, Aim, and the gamepad Move stick.</summary>
         public static readonly string[] DocumentedFixedBindings = { "Keyboard&Mouse:Aim", "Keyboard&Mouse:Pause", "Gamepad:Move", "Gamepad:Aim", "Gamepad:Pause" };
 
-        public const string InputDocPath = "technical/116_INPUT_SYSTEM.md";
+        public const string InputDocPath = "docs/technical/116_INPUT_SYSTEM.md";
         public const string ReactivePassiveTestPath = "Assets/Game/Tests/PlayMode/CoopReactivePassiveTests.cs";
         public const string CoopProofPath = "Assets/Game/Scripts/App/CoopExpeditionProof.cs";
 

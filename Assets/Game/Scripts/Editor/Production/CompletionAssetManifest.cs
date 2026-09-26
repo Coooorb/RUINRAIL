@@ -26,7 +26,7 @@ namespace RuinRail.EditorTools.Production
     /// </summary>
     public static class CompletionAssetManifest
     {
-        public const string ReportPath = "production/COMPLETION_ASSET_MANIFEST.md";
+        public const string ReportPath = "TestResults/completion_asset_manifest.md";
         /// <summary>The generated pixel font, which replaces the builtin LegacyRuntime.ttf in the release path.</summary>
         public const string PixelFontPath = "Assets/Game/Resources/Fonts/ruinrail_pixel.fontsettings";
         /// <summary>production/134 status vocabulary.</summary>

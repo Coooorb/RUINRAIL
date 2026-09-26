@@ -199,6 +199,7 @@ namespace RuinRail.App
                 boss.SetTarget(null);
                 boss.SuppressAttacks = false;
                 boss.enabled = false; // the arena fight itself is not this stage's business
+                BossIntroSequence.Current?.Finish(); // skipped as a player would: this stage is about the arena edge
             }
             else passed.Add("no boss arena bound on this depth (proven by the PlayMode suite)");
 
@@ -364,6 +365,7 @@ namespace RuinRail.App
                     var anchor = anchorMarker != null ? (Vector2)bossRoom.Root.transform.TransformPoint(anchorMarker.WorldCenter) : bossRoom.InteriorWorldBounds.center;
                     boss.transform.position = anchor; boss.GetComponent<Rigidbody2D>().position = anchor; Physics2D.SyncTransforms();
                     Put(anchor + Vector2.right * 5f);
+                    yield return SkipBossIntro(); // entering the arena starts the introduction: skipped, as a player can
                     for (var i = 0; i < 30; i++) yield return null; // the camera settles on the player first
                     var resolver = boss.Resolver;
                     resolver.Begin(volley, Vector2.right);

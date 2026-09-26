@@ -13,7 +13,9 @@ namespace RuinRail.UI.Inventory
     public enum InventorySlotKind
     {
         Equipped,
-        Backpack
+        Backpack,
+        /// <summary>A cell of the Shelter stash's Storage grid (index = cell on the current page); never an inventory slot.</summary>
+        Storage
     }
 
     public readonly struct InventorySlotRef : IEquatable<InventorySlotRef>
@@ -61,8 +63,8 @@ namespace RuinRail.UI.Inventory
     /// <summary>
     /// The Tab inventory (92) over the existing inventory/transfer services: five equipment slots, exactly eight
     /// backpack slots, Carried Coins shown separately. Every equip/unequip/move/drop goes through ItemTransferService
-    /// (equipped-slot containers, backpack container, ground via PlayerLootReceiver); the UI never edits a container
-    /// list. Opening pauses only in solo. A cursor gives keyboard/controller navigation; the mouse sets it directly.
+    /// (equipped-slot containers, backpack container, ground via PlayerLootReceiver) and every swap through the
+    /// inventory's own atomic exchange; the UI never edits a container list. Opening pauses only in solo. A cursor gives keyboard/controller navigation; the mouse sets it directly.
     /// </summary>
     public sealed class InventoryViewModel : IDisposable
     {
@@ -317,32 +319,22 @@ namespace RuinRail.UI.Inventory
 
         // ---- Transfers: always through ItemTransferService ----
 
-        /// <summary>Equip/Swap/Move between any two slots. A swap empties the target into the backpack first (92: swapping through the inventory).</summary>
+        /// <summary>
+        /// Equip/Swap/Move between any two slots. Swapping a worn item with a backpack item (either drag direction) or
+        /// the two weapon slots is one atomic inventory exchange, so it works with a full backpack (20, 92).
+        /// </summary>
         public InventoryActionResult MoveTo(InventorySlotRef from, InventorySlotRef to)
         {
             var item = ItemAt(from);
             if (item == null) return Fail(InventoryActionResult.NothingSelected, "Nothing to move.");
             if (to.Kind == InventorySlotKind.Equipped)
             {
-                if (!PlayerInventory.IsSlotCompatible(_inventory.Resolve(item.DefinitionId)?.Category ?? ItemCategory.Ammo, to.EquippedSlot)) return Fail(InventoryActionResult.IncompatibleSlot, "That item does not fit this slot.");
-                var occupant = _inventory.GetEquipped(to.EquippedSlot);
-                if (occupant != null)
+                if (!Fits(item, to.EquippedSlot)) return Fail(InventoryActionResult.IncompatibleSlot, "That item does not fit this slot.");
+                if (_inventory.GetEquipped(to.EquippedSlot) != null)
                 {
                     if (from.Kind == InventorySlotKind.Equipped) return Swap(from, to);
-                    // Backpack -> occupied slot: the occupant needs the backpack room the candidate frees up.
-                    var moved = _transfer.Transfer(_backpack, item.InstanceId, _equipped[to.EquippedSlot]);
-                    if (moved.Success) return Done();
-                    if (moved.Error != TransferError.DestinationRejected) return Fail(InventoryActionResult.Refused, moved.Error.ToString());
-                    var parked = _transfer.Transfer(_equipped[to.EquippedSlot], occupant.InstanceId, _backpack);
-                    if (!parked.Success) return Fail(InventoryActionResult.BackpackFull, "BACKPACK FULL");
-                    var placed = _transfer.Transfer(_backpack, item.InstanceId, _equipped[to.EquippedSlot]);
-                    if (!placed.Success)
-                    {
-                        _transfer.Transfer(_backpack, occupant.InstanceId, _equipped[to.EquippedSlot]);
-                        return Fail(InventoryActionResult.Refused, placed.Error.ToString());
-                    }
-
-                    return Done();
+                    // Backpack -> occupied slot: the worn item takes exactly the backpack slot the candidate leaves.
+                    return _inventory.TrySwapEquippedWithBackpack(to.EquippedSlot, from.Index) ? Done() : Fail(InventoryActionResult.Refused, "That item cannot be swapped in.");
                 }
 
                 var result = _transfer.Transfer(SourceOf(from), item.InstanceId, _equipped[to.EquippedSlot]);
@@ -351,9 +343,14 @@ namespace RuinRail.UI.Inventory
 
             if (from.Kind == InventorySlotKind.Equipped)
             {
-                if (IsBackpackFull) return Fail(InventoryActionResult.BackpackFull, "BACKPACK FULL");
-                var result = _transfer.Transfer(_equipped[from.EquippedSlot], item.InstanceId, _backpack);
-                return result.Success ? Done() : Fail(InventoryActionResult.Refused, result.Error.ToString());
+                // Worn item dropped onto a backpack item that can be worn in its place: the same atomic exchange.
+                var target = ItemAt(to);
+                if (target != null && Fits(target, from.EquippedSlot))
+                {
+                    return _inventory.TrySwapEquippedWithBackpack(from.EquippedSlot, to.Index) ? Done() : Fail(InventoryActionResult.Refused, "That item cannot be swapped in.");
+                }
+
+                return UnequipToBackpack(from.EquippedSlot);
             }
 
             // Backpack -> backpack: a manual reorder. The item lands in exactly the slot the player chose — an empty
@@ -379,26 +376,21 @@ namespace RuinRail.UI.Inventory
 
         private InventoryActionResult Swap(InventorySlotRef a, InventorySlotRef b)
         {
-            var itemA = ItemAt(a);
-            var itemB = ItemAt(b);
-            if (!PlayerInventory.IsSlotCompatible(_inventory.Resolve(itemA.DefinitionId)?.Category ?? ItemCategory.Ammo, b.EquippedSlot) || !PlayerInventory.IsSlotCompatible(_inventory.Resolve(itemB.DefinitionId)?.Category ?? ItemCategory.Ammo, a.EquippedSlot))
-            {
-                return Fail(InventoryActionResult.IncompatibleSlot, "That item does not fit this slot.");
-            }
-
-            if (IsBackpackFull) return Fail(InventoryActionResult.BackpackFull, "BACKPACK FULL");
-            var parked = _transfer.Transfer(_equipped[b.EquippedSlot], itemB.InstanceId, _backpack);
-            if (!parked.Success) return Fail(InventoryActionResult.Refused, parked.Error.ToString());
-            var moved = _transfer.Transfer(_equipped[a.EquippedSlot], itemA.InstanceId, _equipped[b.EquippedSlot]);
-            if (!moved.Success)
-            {
-                _transfer.Transfer(_backpack, itemB.InstanceId, _equipped[b.EquippedSlot]);
-                return Fail(InventoryActionResult.Refused, moved.Error.ToString());
-            }
-
-            var back = _transfer.Transfer(_backpack, itemB.InstanceId, _equipped[a.EquippedSlot]);
-            return back.Success ? Done() : Fail(InventoryActionResult.Refused, back.Error.ToString());
+            if (!Fits(ItemAt(a), b.EquippedSlot) || !Fits(ItemAt(b), a.EquippedSlot)) return Fail(InventoryActionResult.IncompatibleSlot, "That item does not fit this slot.");
+            return _inventory.TrySwapEquipped(a.EquippedSlot, b.EquippedSlot) ? Done() : Fail(InventoryActionResult.Refused, "Those items cannot be swapped.");
         }
+
+        /// <summary>Taking a worn item off has no swap partner, so it needs a free backpack slot.</summary>
+        private InventoryActionResult UnequipToBackpack(EquippedSlot slot)
+        {
+            var item = _inventory.GetEquipped(slot);
+            if (item == null) return Fail(InventoryActionResult.NothingSelected, "Nothing to move.");
+            if (IsBackpackFull) return Fail(InventoryActionResult.BackpackFull, "BACKPACK FULL");
+            var result = _transfer.Transfer(_equipped[slot], item.InstanceId, _backpack);
+            return result.Success ? Done() : Fail(InventoryActionResult.Refused, result.Error.ToString());
+        }
+
+        private bool Fits(ItemInstance item, EquippedSlot slot) => item != null && PlayerInventory.IsSlotCompatible(_inventory.Resolve(item.DefinitionId)?.Category ?? ItemCategory.Ammo, slot);
 
         public InventoryActionResult Equip(InventorySlotRef from)
         {
@@ -408,7 +400,7 @@ namespace RuinRail.UI.Inventory
             return slot == null ? Fail(InventoryActionResult.IncompatibleSlot, "That item cannot be equipped.") : MoveTo(from, new InventorySlotRef(InventorySlotKind.Equipped, (int)slot.Value));
         }
 
-        public InventoryActionResult Unequip(EquippedSlot slot) => MoveTo(new InventorySlotRef(InventorySlotKind.Equipped, (int)slot), new InventorySlotRef(InventorySlotKind.Backpack, 0));
+        public InventoryActionResult Unequip(EquippedSlot slot) => UnequipToBackpack(slot);
 
         public InventoryActionResult SetActiveConsumable(InventorySlotRef from) => MoveTo(from, new InventorySlotRef(InventorySlotKind.Equipped, (int)EquippedSlot.ActiveConsumable));
 
@@ -418,8 +410,10 @@ namespace RuinRail.UI.Inventory
             var item = ItemAt(from);
             if (item == null) return Fail(InventoryActionResult.NothingSelected, "Nothing to drop.");
             if (_drops == null) return Fail(InventoryActionResult.Refused, "Dropping is unavailable here.");
+            // The receiver moves the item into a ground pickup in one transfer (or, for a co-op member, asks the host,
+            // which revokes it): a refused drop leaves the item exactly where it was.
             var result = _drops.TryDrop(item.InstanceId);
-            if (!result.Success) return Fail(InventoryActionResult.Refused, result.Transfer.Error.ToString());
+            if (!result.Success) return Fail(InventoryActionResult.Refused, result.Transfer.Error == TransferError.InvalidRequest ? "You cannot drop that right now." : "Could not drop that.");
             Selected = null;
             return Done();
         }

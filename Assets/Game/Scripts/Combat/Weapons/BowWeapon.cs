@@ -12,6 +12,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
     /// <summary>
     /// Hold-to-draw bow: Fire pressed starts charging, Fire released fires one pooled projectile whose damage/speed/range
     /// come from the clamped charge. Unequip cancels a pending draw without firing. No ammo, magazine or reload.
+    /// A release short of full draw is followed by a recovery (<see cref="BowChargeResolver.RecoverySeconds"/>) before
+    /// the next draw can begin, so click-spammed quick shots cannot exceed the full-draw damage rate. A press during
+    /// recovery is kept: the draw starts the moment recovery ends, and a tap released meanwhile fires then.
     /// </summary>
     public sealed class BowWeapon : MonoBehaviour, IEquippableWeapon
     {
@@ -45,6 +48,15 @@ namespace RuinRail.Gameplay.Combat.Weapons
         private readonly ProjectileEmitter _emitter = new();
         private readonly List<Projectile> _lastSpawnedProjectiles = new();
         private bool _fireHeldLastFrame;
+        private bool _drawQueued;
+        private bool _releaseQueued;
+
+        /// <summary>Seconds before the next draw may begin (0 after a full draw).</summary>
+        public float RecoveryRemaining { get; private set; }
+
+        /// <summary>Accepted releases (one projectile each) since this component was created.</summary>
+        public int ShotsFired { get; private set; }
+        public bool IsRecovering => RecoveryRemaining > 0f;
 
         public bool IsCharging { get; private set; }
         public float ChargeSeconds { get; private set; }
@@ -69,6 +81,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
         {
             IsEquipped = false;
             CancelCharge();
+            // Recovery is kept (it runs on while holstered): a swap must not clear what the last release owes.
+            _drawQueued = false;
+            _releaseQueued = false;
         }
 
         public void SetDefinition(BowWeaponDefinition definition)
@@ -139,6 +154,8 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 ChargeSeconds += Time.deltaTime;
             }
 
+            TickRecovery(Time.deltaTime);
+
             if (_inputReader == null)
             {
                 return;
@@ -149,20 +166,38 @@ namespace RuinRail.Gameplay.Combat.Weapons
             {
                 if (held && !_fireHeldLastFrame)
                 {
-                    TryStartCharge();
+                    // A new press during recovery is the player's latest intent: a draw, even if an earlier tap was queued.
+                    if (!TryStartCharge() && IsRecovering) { _drawQueued = true; _releaseQueued = false; }
                 }
                 else if (!held && _fireHeldLastFrame)
                 {
-                    TryRelease();
+                    if (IsCharging) TryRelease();
+                    else if (_drawQueued) _releaseQueued = true;
+                }
+
+                // Recovery over: the press made during it becomes a draw, and a tap already released fires now.
+                if (_drawQueued && !IsRecovering && TryStartCharge())
+                {
+                    _drawQueued = false;
+                    if (_releaseQueued)
+                    {
+                        _releaseQueued = false;
+                        TryRelease();
+                    }
                 }
             }
 
             _fireHeldLastFrame = held;
         }
 
+        private void TickRecovery(float deltaTime)
+        {
+            if (RecoveryRemaining > 0f) RecoveryRemaining = Mathf.Max(0f, RecoveryRemaining - deltaTime);
+        }
+
         public bool TryStartCharge()
         {
-            if (!IsEquipped || _definition == null || IsCharging || !_actionGate.CanAct(this))
+            if (!IsEquipped || _definition == null || IsCharging || IsRecovering || !_actionGate.CanAct(this))
             {
                 return false;
             }
@@ -183,6 +218,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
             var shot = BowChargeResolver.Resolve(_definition, ChargeFraction);
             var fullDraw = ChargeFraction >= 1f;
+            RecoveryRemaining = BowChargeResolver.RecoverySeconds(_definition, ChargeFraction, CurrentFullChargeSeconds);
             CancelCharge();
             // Archer's Ring (a full draw pierces its first target) and the per-attack damage hooks of the wearer.
             var pierce = _combatEvents != null ? _combatEvents.RaiseBowShotFired(fullDraw).Penetrations : 0;
@@ -205,6 +241,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 ProjectileVisualCatalog.ResolveWeaponVisualId(_definition),
                 pierce);
             LastSpawnedProjectile = _lastSpawnedProjectiles[_lastSpawnedProjectiles.Count - 1];
+            ShotsFired++;
 
             return true;
         }
@@ -214,6 +251,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
             IsCharging = false;
             ChargeSeconds = 0f;
         }
+
+        /// <summary>Test seam: lets a fixed amount of recovery time pass.</summary>
+        public void AdvanceRecovery(float seconds) => TickRecovery(Mathf.Max(0f, seconds));
 
         /// <summary>Test/HUD seam: advances the draw by a fixed amount of time.</summary>
         public void AdvanceCharge(float seconds)

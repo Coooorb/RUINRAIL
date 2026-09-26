@@ -183,6 +183,99 @@ namespace RuinRail.EditorTools.ArtGen
                 var canvas = TileFactory.Build(biome, role, variant);
                 WriteSprite(canvas, $"{ArtRoot}/Tiles/{biome}/{TileStem(biome, role, variant)}.png");
             }
+
+            WriteHazardSheets();
+        }
+
+        // ---------- animated damaging-floor hazards ----------
+
+        /// <summary>The loop sheet beside a biome's static hazard sprite: <c>&lt;biome&gt;_hazard_anim.png</c>, one row of frames.</summary>
+        public static string HazardSheetPath(TileFactory.Biome biome) => $"{ArtRoot}/Tiles/{biome}/{TileStem(biome, TileRole.Hazard, 0)}_anim.png";
+
+        public static string HazardTilePath(TileFactory.Biome biome) => $"{ArtRoot}/Tiles/{biome}/{TileStem(biome, TileRole.Hazard, 0)}.asset";
+
+        /// <summary>
+        /// Per-biome playback: the Metro current flickers quickly and in unison along a rail; heat and acid move
+        /// slower and out of step cell to cell, which is what makes a pool read as a liquid rather than a pattern.
+        /// </summary>
+        public static (float Fps, bool Desync) HazardPlayback(TileFactory.Biome biome) => biome switch
+        {
+            TileFactory.Biome.RuinedMetro => (10f, false),
+            TileFactory.Biome.Rustworks => (6f, true),
+            _ => (5f, true)
+        };
+
+        private static void WriteHazardSheets()
+        {
+            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            {
+                var sheet = new PixelCanvas(TileFactory.Size * TileFactory.HazardFrames, TileFactory.Size);
+                for (var f = 0; f < TileFactory.HazardFrames; f++) sheet.Blit(TileFactory.BuildHazardFrame(biome, f), f * TileFactory.Size, 0);
+                WriteSheet(sheet, HazardSheetPath(biome), TileFactory.Size, TileFactory.Size, 32, new Vector2(0.5f, 0.5f));
+            }
+        }
+
+        /// <summary>The loop's frames in play order (the sheet is sliced <c>_0_0 … _0_7</c>).</summary>
+        public static Sprite[] HazardFrames(TileFactory.Biome biome) =>
+            AssetDatabase.LoadAllAssetsAtPath(HazardSheetPath(biome)).OfType<Sprite>()
+                .OrderBy(sprite => int.Parse(sprite.name.Substring(sprite.name.LastIndexOf('_') + 1)))
+                .ToArray();
+
+        /// <summary>
+        /// Makes each biome's hazard tile the animated tile, in place: the asset keeps its path and GUID, so every room
+        /// prefab that paints it animates without being touched. A static <see cref="Tile"/> found there is replaced by
+        /// rewriting the asset file (a type cannot change through the asset API without a new GUID).
+        /// </summary>
+        public static void BindHazardTiles()
+        {
+            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            {
+                var frames = HazardFrames(biome);
+                if (frames.Length != TileFactory.HazardFrames) throw new InvalidOperationException($"{HazardSheetPath(biome)}: {frames.Length} frames, expected {TileFactory.HazardFrames}.");
+                var (fps, desync) = HazardPlayback(biome);
+                var path = HazardTilePath(biome);
+                var tile = AssetDatabase.LoadAssetAtPath<TileBase>(path) as RuinRail.Dungeon.Grid.HazardAnimatedTile;
+                if (tile == null)
+                {
+                    var temp = $"{ArtRoot}/Tiles/{biome}/_hazard_convert.asset";
+                    var created = ScriptableObject.CreateInstance<RuinRail.Dungeon.Grid.HazardAnimatedTile>();
+                    created.name = Path.GetFileNameWithoutExtension(path);
+                    created.Configure(frames, fps, desync);
+                    AssetDatabase.CreateAsset(created, temp);
+                    AssetDatabase.SaveAssets();
+                    // The file takes the temp asset's serialized form; only its name is corrected to the stem.
+                    var yaml = File.ReadAllText(temp).Replace("m_Name: _hazard_convert", "m_Name: " + Path.GetFileNameWithoutExtension(path));
+                    AssetDatabase.DeleteAsset(temp);
+                    File.WriteAllText(path, yaml);
+                    AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+                    tile = AssetDatabase.LoadAssetAtPath<TileBase>(path) as RuinRail.Dungeon.Grid.HazardAnimatedTile;
+                    if (tile == null) throw new InvalidOperationException($"{path} did not become a HazardAnimatedTile.");
+                }
+
+                tile.Configure(frames, fps, desync);
+                EditorUtility.SetDirty(tile);
+            }
+
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>Batch entry: writes the hazard loop sheets, imports them and binds the three biome hazard tiles.</summary>
+        public static void GenerateAnimatedHazardTilesBatch()
+        {
+            try
+            {
+                Pending.Clear();
+                WriteHazardSheets();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyPendingImports();
+                AssetDatabase.SaveAssets();
+                BindHazardTiles();
+                var ok = Enum.GetValues(typeof(TileFactory.Biome)).Cast<TileFactory.Biome>()
+                    .All(b => AssetDatabase.LoadAssetAtPath<TileBase>(HazardTilePath(b)) is RuinRail.Dungeon.Grid.HazardAnimatedTile t && t.IsAnimated);
+                Debug.Log("Animated hazard tiles bound: " + ok);
+                EditorApplication.Exit(ok ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
         }
 
         private static string RoleStem(TileRole role) => role switch
@@ -469,6 +562,7 @@ namespace RuinRail.EditorTools.ArtGen
         public static void BindEverything()
         {
             BindTiles();
+            BindHazardTiles();
             BindItemIcons();
             BindUiSkin();
             AssetDatabase.SaveAssets();
@@ -623,7 +717,7 @@ namespace RuinRail.EditorTools.ArtGen
         /// </summary>
         public static void BindTiles()
         {
-            var tiles = new Dictionary<(TileFactory.Biome, TileRole, int), Tile>();
+            var tiles = new Dictionary<(TileFactory.Biome, TileRole, int), TileBase>();
 
             foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
             foreach (TileRole role in Enum.GetValues(typeof(TileRole)))
@@ -635,6 +729,13 @@ namespace RuinRail.EditorTools.ArtGen
                 if (sprite == null) continue;
 
                 var tilePath = $"{ArtRoot}/Tiles/{biome}/{stem}.asset";
+                // An animated hazard tile is owned by BindHazardTiles; recreating a static Tile here would overwrite it.
+                if (AssetDatabase.LoadAssetAtPath<TileBase>(tilePath) is RuinRail.Dungeon.Grid.HazardAnimatedTile animated)
+                {
+                    tiles[(biome, role, variant)] = animated;
+                    continue;
+                }
+
                 var tile = AssetDatabase.LoadAssetAtPath<Tile>(tilePath);
                 if (tile == null)
                 {

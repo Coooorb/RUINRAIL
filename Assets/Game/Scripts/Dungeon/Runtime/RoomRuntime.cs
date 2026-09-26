@@ -440,14 +440,26 @@ namespace RuinRail.Dungeon.Runtime
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var player = other.GetComponentInParent<PlayerMovement>();
-            if (player != null && _runtime != null) _runtime.NotifyPlayerEntered(player.gameObject);
+            var player = PlayerBodyOf(other);
+            if (player != null && _runtime != null) _runtime.NotifyPlayerEntered(player);
         }
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            var player = other.GetComponentInParent<PlayerMovement>();
-            if (player != null && _runtime != null) _runtime.NotifyPlayerLeft(player.gameObject);
+            var player = PlayerBodyOf(other);
+            if (player != null && _runtime != null) _runtime.NotifyPlayerLeft(player);
+        }
+
+        /// <summary>
+        /// The player whose own body this collider is, or null. Only the solid body collider on the player root counts:
+        /// the player's pooled projectiles, hurtbox and any other trigger parented under the player share its
+        /// hierarchy (and its Rigidbody2D), so a bullet fired into an unentered room used to "enter" it for the player
+        /// and lock the doors with the player still outside. Anything that is not a player body is never an entry.
+        /// </summary>
+        public static GameObject PlayerBodyOf(Collider2D other)
+        {
+            if (other == null || other.isTrigger) return null;
+            return other.GetComponent<PlayerMovement>() != null ? other.gameObject : null;
         }
     }
 }

@@ -8,14 +8,18 @@ namespace RuinRail.Gameplay.Items.Consumables
     /// <summary>Player-side sinks a consumable effect writes to.</summary>
     public sealed class ConsumableTargets
     {
-        public ConsumableTargets(PlayerStats stats, PlayerCombatEvents events, Func<int, int> heal, Func<GrenadeData, bool> throwGrenade = null, Func<ReviveRequest, bool> requestRevive = null)
+        public ConsumableTargets(PlayerStats stats, PlayerCombatEvents events, Func<int, int> heal, Func<GrenadeData, bool> throwGrenade = null, Func<ReviveRequest, bool> requestRevive = null, Func<bool> canReceiveHealing = null)
         {
             Stats = stats ?? throw new ArgumentNullException(nameof(stats));
             Events = events;
             Heal = heal ?? throw new ArgumentNullException(nameof(heal));
             ThrowGrenade = throwGrenade;
             RequestRevive = requestRevive;
+            CanReceiveHealing = canReceiveHealing;
         }
+
+        /// <summary>True while the player is below maximum effective HP (a heal would restore something); null = unknown, treated as yes.</summary>
+        public Func<bool> CanReceiveHealing { get; }
 
         /// <summary>Launches a grenade with the authored data toward the player's aim; null = throwing unsupported here.</summary>
         public Func<GrenadeData, bool> ThrowGrenade { get; }
@@ -79,6 +83,21 @@ namespace RuinRail.Gameplay.Items.Consumables
         public event Action<ConsumableDefinition, int> Healed;
         public event Action<ConsumableDefinition> BuffStarted;
         public event Action<string> BuffExpired;
+
+        /// <summary>
+        /// Use-start eligibility: would the complete effect do anything right now? Only a heal can be a total no-op
+        /// (the player is already at maximum effective HP — its reactive bonuses scale that same heal). Timed buffs
+        /// refresh their duration, grenades are thrown, and a revive with no valid target already spends nothing.
+        /// </summary>
+        public bool WouldHaveEffect(ConsumableDefinition definition)
+        {
+            if (definition == null) return false;
+            return definition.EffectKind switch
+            {
+                ConsumableEffectKind.Heal => _targets.CanReceiveHealing == null || _targets.CanReceiveHealing(),
+                _ => true
+            };
+        }
 
         /// <summary>Applies the definition's effect. Returns false only for effect kinds this runner does not handle (grenades).</summary>
         public bool Apply(ConsumableDefinition definition)

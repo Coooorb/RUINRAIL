@@ -314,16 +314,19 @@ namespace RuinRail.Tests
                 case RoomType.Boss:
                 {
                     var player = CreatePlayer(centre, 0);
-                    var cache = binding.BossCache;
                     var transit = binding.Transit;
-                    if (cache == null || transit == null || binding.Boss == null) { Fail("boss room without cache/transit/boss"); Record(room, category, "Boss Cache + Transit", "", false, false, false, false, false, result); break; }
-                    var art = HasVisibleArt(cache) && HasVisibleArt(transit);
-                    if (!art) Fail("cache/transit without visible art");
-                    if (cache.CanInteract(player) || transit.CanInteract(player) || Prompt(cache, player) != "LOCKED" || Prompt(transit, player) != string.Empty) Fail("cache/transit usable before the boss fell");
+                    if (transit == null || binding.Boss == null) { Fail("boss room without transit/boss"); Record(room, category, "Boss Cache + Transit", "", false, false, false, false, false, result); break; }
+                    // 46: the boss's death spawns the Boss Cache — nothing to open (or find) before it falls.
+                    if (binding.BossCache != null) Fail("a Boss Cache existed before the boss fell");
+                    if (transit.CanInteract(player) || Prompt(transit, player) != string.Empty) Fail("transit usable before the boss fell");
                     runtime.NotifyPlayerEntered(player);
                     yield return null;
                     binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(99999));
                     yield return null;
+                    var cache = binding.BossCache;
+                    if (cache == null) { Fail("the boss's death spawned no Boss Cache"); Record(room, category, "Boss Cache + Transit", "", false, false, false, false, false, result); break; }
+                    var art = HasVisibleArt(cache) && HasVisibleArt(transit);
+                    if (!art) Fail("cache/transit without visible art");
                     var unlocked = !cache.IsLocked && transit.IsActivated && runtime.Lifecycle == RoomLifecycleState.Cleared;
                     if (!unlocked) Fail("defeat did not unlock the cache / activate the transit");
                     var prompt = Prompt(cache, player);

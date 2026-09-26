@@ -173,6 +173,74 @@ namespace RuinRail.Tests
             }
         }
 
+        /// <summary>A ground that refuses every drop: the pickup it hands out is already holding something.</summary>
+        private sealed class OccupiedGroundFactory : IWorldPickupFactory
+        {
+            private readonly List<Object> _created;
+            public OccupiedGroundFactory(List<Object> created) => _created = created;
+            public int Created;
+
+            public WorldItemPickup CreateItemPickup(Vector2 position, Transform parent = null)
+            {
+                Created++;
+                var go = new GameObject("OccupiedPickup");
+                _created.Add(go);
+                var pickup = go.AddComponent<WorldItemPickup>();
+                pickup.Hold(new ItemInstance("ammo_light", 5), ItemCategory.Ammo);
+                return pickup;
+            }
+
+            public ItemCategory? CategoryOf(ItemInstance item) => null;
+        }
+
+        [Test]
+        public void Drop_RefusedByTheWorld_KeepsTheItemExactlyWhereItWas()
+        {
+            var (vm, inventory, receiver) = Build(withDrops: false);
+            var factory = new OccupiedGroundFactory(_created);
+            receiver.SetDropService(new ItemDropService(factory));
+            var rifle = new ItemInstance("weapon_p9_ranger");
+            Assert.IsTrue(inventory.TryEquip(rifle, EquippedSlot.PrimaryWeapon));
+            Assert.AreEqual(60, inventory.Add(AmmoType.Light, 60));
+            var ammo = inventory.BackpackSlots[0];
+            var before = JsonUtility.ToJson(inventory.ToSnapshot());
+
+            Assert.AreEqual(InventoryActionResult.Refused, vm.Drop(Bag(0)));
+            Assert.AreEqual("Could not drop that.", vm.Message);
+            Assert.AreEqual(InventoryActionResult.Refused, vm.Drop(Eq(EquippedSlot.PrimaryWeapon)));
+            Assert.AreEqual(2, factory.Created, "the world was asked both times");
+            Assert.AreSame(ammo, inventory.BackpackSlots[0], "the stack stays in its slot");
+            Assert.AreEqual(60, ammo.Quantity, "with its full quantity");
+            Assert.AreSame(rifle, inventory.GetEquipped(EquippedSlot.PrimaryWeapon), "the worn item stays worn");
+            Assert.AreEqual(before, JsonUtility.ToJson(inventory.ToSnapshot()), "a refused drop changes nothing");
+
+            // No drop path at all (the Shelter): refused, nothing removed.
+            var (shelter, shelterInventory, _) = Build(withDrops: false);
+            Assert.IsTrue(shelterInventory.TryAddToBackpack(new ItemInstance("weapon_p9_ranger")));
+            Assert.AreEqual(InventoryActionResult.Refused, shelter.Drop(Bag(0)));
+            Assert.IsNotNull(shelterInventory.BackpackSlots[0]);
+        }
+
+        [Test]
+        public void Drop_AsACoopMember_AsksTheHost_AndLeavesRemovalToTheHostsRevoke()
+        {
+            var (vm, inventory, receiver) = Build(withDrops: false);
+            var requests = new List<(string id, int quantity)>();
+            receiver.SetHostDrop((id, quantity) => { requests.Add((id, quantity)); return requests.Count == 1; });
+            Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance("consumable_bandage", 3)));
+            var bandage = inventory.BackpackSlots[0];
+
+            Assert.AreEqual(InventoryActionResult.Done, vm.Drop(Bag(0)));
+            Assert.AreEqual(1, requests.Count);
+            Assert.AreEqual((bandage.InstanceId, 3), requests[0], "the whole stack is requested");
+            Assert.AreSame(bandage, inventory.BackpackSlots[0], "nothing leaves locally: the host owns the drop and revokes the item");
+            Assert.AreEqual(0, _ground.Count, "a member never spawns ground loot itself");
+
+            Assert.AreEqual(InventoryActionResult.Refused, vm.Drop(Bag(0)), "a request that could not go out is refused");
+            Assert.AreSame(bandage, inventory.BackpackSlots[0]);
+            Assert.AreEqual(3, bandage.Quantity);
+        }
+
         // ---- Req 4 / Acceptance 2: solo pauses, co-op never ----
 
         [Test]

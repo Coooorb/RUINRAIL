@@ -39,6 +39,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
         public int HitCountThisSwing => _hitThisSwing.Count;
         public bool IsEquipped { get; private set; } = true;
 
+        /// <summary>Accepted swings since this component was created.</summary>
+        public int AttacksStarted { get; private set; }
+
         public void OnEquipped()
         {
             IsEquipped = true;
@@ -50,11 +53,16 @@ namespace RuinRail.Gameplay.Combat.Weapons
             CancelAttack();
         }
 
+        /// <summary>
+        /// Drops a swing in progress. A swing cancelled while still winding up never hit, so its cooldown is refunded;
+        /// once the hit has landed the cooldown is kept — clearing it let a swap out and straight back skip the swing's
+        /// recovery and the attack interval.
+        /// </summary>
         private void CancelAttack()
         {
+            if (State == MeleeAttackState.WindUp) _cooldownRemaining = 0f;
             State = MeleeAttackState.Idle;
             _phaseTimeRemaining = 0f;
-            _cooldownRemaining = 0f;
             _hitThisSwing.Clear();
         }
 
@@ -112,13 +120,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
 
         private void Update()
         {
-            if (!IsEquipped)
-            {
-                return;
-            }
-
             var deltaTime = Time.deltaTime;
 
+            // The attack interval runs on while holstered, exactly as a firearm's fire cooldown does.
             if (_cooldownRemaining > 0f)
             {
                 _cooldownRemaining -= deltaTime;
@@ -126,6 +130,11 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 {
                     _cooldownRemaining = 0f;
                 }
+            }
+
+            if (!IsEquipped)
+            {
+                return;
             }
 
             TickLifecycle(deltaTime);
@@ -183,6 +192,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
             _hitThisSwing.Clear();
             State = MeleeAttackState.WindUp;
             _phaseTimeRemaining = CurrentWindUpSeconds;
+            AttacksStarted++;
             _cooldownRemaining = Mathf.Max(
                 CurrentWindUpSeconds + CurrentRecoverySeconds,
                 1f / CurrentAttackRate);

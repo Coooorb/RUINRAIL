@@ -17,6 +17,8 @@ namespace RuinRail.Networking
         public bool Ready;
         public InventorySnapshot Loadout;
         public int[] SkillRanks = Array.Empty<int>();
+        /// <summary>Banked Coins the member said it takes into the run (the lobby captures it at start).</summary>
+        public int CarriedCoins;
 
         public SkillAllocation Skills()
         {
@@ -49,6 +51,7 @@ namespace RuinRail.Networking
         private CoopRunLink _link;
         private PartyLobby _hostLobby;
         private ExpeditionService _hostExpedition;
+        private Func<string> _hostDisplayName;
         private PartyLobby _clientLobby;
         private ulong _clientLobbyMemberId;
         private Func<LobbyMemberMessage> _clientProfile;
@@ -117,8 +120,11 @@ namespace RuinRail.Networking
         /// Host: joined clients' Ready/loadout feed this lobby, and this expedition's start becomes the published start.
         /// Called by the Shelter composition each time it builds (idempotent for the same lobby).
         /// </summary>
-        public void BindHost(PartyLobby lobby, ExpeditionService expedition)
+        public void BindHost(PartyLobby lobby, ExpeditionService expedition, Func<string> localDisplayName = null)
         {
+            // The host's own lobby line and run member carry its saved profile name. Its participant id was fixed when
+            // the Shelter session was created (before the name step), so it is identity, not a name to show.
+            _hostDisplayName = localDisplayName;
             if (_hostExpedition != null) _hostExpedition.ExpeditionStarted -= OnHostExpeditionStarted;
             if (_hostLobby != null) _hostLobby.MemberChanged -= OnHostLobbyChanged;
             _hostLobby = lobby;
@@ -141,7 +147,7 @@ namespace RuinRail.Networking
                 state.Members.Add(new LobbyStateMessage.LobbyLine
                 {
                     ClientId = member.ClientId,
-                    Name = _profiles.TryGetValue(member.ClientId, out var p) ? p.DisplayName : member.ParticipantId,
+                    Name = NameOf(member.ClientId, member.ParticipantId),
                     IsHost = member.IsHost,
                     Ready = member.IsReady,
                     ValidLoadout = member.HasValidLoadout
@@ -178,8 +184,9 @@ namespace RuinRail.Networking
                 {
                     ClientId = member.ClientId,
                     ParticipantId = isHost ? state.TransactionId : Guid.NewGuid().ToString("N"),
-                    DisplayName = _profiles.TryGetValue(member.ClientId, out var p) ? p.DisplayName : member.ParticipantId,
-                    IsHost = isHost
+                    DisplayName = NameOf(member.ClientId, member.ParticipantId),
+                    IsHost = isHost,
+                    CarriedCoins = member.CarriedCoins
                 });
             }
 
@@ -187,6 +194,17 @@ namespace RuinRail.Networking
             RunStartsPublished++;
             Link.SendToClients(CoopKinds.RunStart, CoopJson.Write(run));
             Debug.Log($"COOP-SESSION host published run {run.StartId} seed={run.RunSeed} biome={(Biome)run.Biome} party={run.PartySize}.");
+        }
+
+        private string NameOf(ulong clientId, string participantId)
+        {
+            if (clientId == LocalClientId && _hostDisplayName != null)
+            {
+                var own = _hostDisplayName();
+                if (!string.IsNullOrEmpty(own)) return own;
+            }
+
+            return _profiles.TryGetValue(clientId, out var p) && !string.IsNullOrEmpty(p.DisplayName) ? p.DisplayName : participantId;
         }
 
         /// <summary>Host: the expedition ended for the party (wipe/quit = failed, return = extracted).</summary>
@@ -221,10 +239,12 @@ namespace RuinRail.Networking
             profile.Loadout = message.Loadout;
             profile.SkillRanks = message.SkillRanks ?? Array.Empty<int>();
             profile.Ready = message.Ready;
+            profile.CarriedCoins = Math.Max(0, message.CarriedCoins);
             if (_hostLobby == null || _hostLobby.HasStarted) return;
             // The lobby validates the loadout itself (81); a changed loadout clears Ready exactly as a local edit does.
             if (_hostLobby.Get(clientId) == null) return;
             _hostLobby.SetLoadout(clientId, message.Loadout);
+            _hostLobby.SetCarriedCoins(clientId, message.CarriedCoins);
             _hostLobby.SetReady(clientId, message.Ready);
             LobbyMessagesApplied++;
         }
@@ -260,6 +280,7 @@ namespace RuinRail.Networking
             var message = _clientProfile?.Invoke() ?? new LobbyMemberMessage();
             message.Ready = member != null && member.IsReady;
             message.Loadout ??= member?.Loadout;
+            message.CarriedCoins = member?.CarriedCoins ?? 0;
             Link.SendToHost(CoopKinds.LobbyMember, CoopJson.Write(message));
         }
 
@@ -274,7 +295,9 @@ namespace RuinRail.Networking
             if (me == null) { Debug.LogError($"COOP-SESSION run {run.StartId} does not include client {LocalClientId}."); return null; }
             if (_clientExpedition.IsExpeditionActive && _clientExpedition.State.TransactionId == me.ParticipantId) return _clientExpedition.State;
             var snapshot = new ExpeditionStartSnapshot { StartTransactionId = run.StartId, RunSeed = run.RunSeed, Biome = run.Biome, PartySize = run.PartySize };
-            return _coordinator.Apply(snapshot, _clientExpedition, _clientPlayerProfile, me.ParticipantId);
+            // The coins are the amount the host captured for this member at start, so the host's seed of its wallet for
+            // this member and this peer's own banked debit start from the same number.
+            return _coordinator.Apply(snapshot, _clientExpedition, _clientPlayerProfile, me.ParticipantId, me.CarriedCoins);
         }
 
         // ---------------------------------------------------------------- dispatch

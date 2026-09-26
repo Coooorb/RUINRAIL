@@ -252,7 +252,15 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             State = MovesetActorState.Dead;
             Resolver.Cancel();
             _currentAttack = null;
-            if (_rigidbody2D != null) _rigidbody2D.linearVelocity = Vector2.zero;
+            if (_rigidbody2D != null)
+            {
+                // Stationary corpse, as for EnemyController: out of the simulation, so nothing moves or turns it again.
+                _rigidbody2D.linearVelocity = Vector2.zero;
+                _rigidbody2D.angularVelocity = 0f;
+                _rigidbody2D.simulated = false;
+            }
+
+            if (_impact != null) _impact.MakeInert();
             OnDied();
             Died?.Invoke(this);
         }

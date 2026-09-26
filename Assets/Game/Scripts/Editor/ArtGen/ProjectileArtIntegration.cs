@@ -47,7 +47,7 @@ namespace RuinRail.EditorTools.ArtGen
                 var frames = FramesOf(spec.Id);
                 if (frames.Length == 0) { Debug.LogError($"No frames for projectile profile {spec.Id} at {SheetPath(spec.Id)}"); continue; }
                 var trail = string.IsNullOrEmpty(spec.TrailId) ? null : FramesOf(spec.TrailId).FirstOrDefault();
-                profiles.Add(new ProjectileVisualCatalog.Profile { Id = spec.Id, Frames = frames, FrameSeconds = spec.FrameSeconds, Trail = trail, TrailBack = spec.TrailBack });
+                profiles.Add(new ProjectileVisualCatalog.Profile { Id = spec.Id, Frames = frames, FrameSeconds = spec.FrameSeconds, Trail = trail, TrailBack = spec.TrailBack, Scale = spec.Scale });
             }
 
             var families = ProjectileFactory.FamilyDefaults.Select(kv => new ProjectileVisualCatalog.FamilyDefault { Class = kv.Key, ProfileId = kv.Value }).ToList();

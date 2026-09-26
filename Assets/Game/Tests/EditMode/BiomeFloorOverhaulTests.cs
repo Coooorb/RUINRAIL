@@ -464,5 +464,67 @@ namespace RuinRail.Tests.EditMode
             Assert.AreNotEqual(a, b, "Two rooms must not receive the same floor plan.");
             Assert.GreaterOrEqual(a, 0);
         }
+    
+
+        // ---------------- damaging floor hazards animate, per biome ----------------
+
+        [Test]
+        public void EveryBiomeHazard_IsAnAnimatedLoop_OfItsOwnArt_AndShipsAsTheAnimatedTile()
+        {
+            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            {
+                // Frame 0 is exactly the accepted static tile, so the loop is that art brought to life, not new art.
+                var still = TileFactory.Build(biome, TileRole.Hazard);
+                var first = TileFactory.BuildHazardFrame(biome, 0);
+                Assert.AreEqual(0, Differing(still, first), $"{biome}: frame 0 is not the accepted hazard tile");
+
+                // Every step of the loop, including the wrap back to frame 0, visibly changes the tile.
+                for (var f = 0; f < TileFactory.HazardFrames; f++)
+                {
+                    var next = (f + 1) % TileFactory.HazardFrames;
+                    var changed = Differing(TileFactory.BuildHazardFrame(biome, f), TileFactory.BuildHazardFrame(biome, next));
+                    Assert.Greater(changed, TileFactory.Size * TileFactory.Size / 20, $"{biome}: frame {f}->{next} changes only {changed} pixels");
+                }
+
+                // The shipped tile the room prefabs paint is the animated tile with the whole loop bound.
+                var tile = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Tilemaps.TileBase>(ArtIntegration.HazardTilePath(biome)) as RuinRail.Dungeon.Grid.HazardAnimatedTile;
+                Assert.IsNotNull(tile, $"{biome}: {ArtIntegration.HazardTilePath(biome)} is not a HazardAnimatedTile");
+                Assert.IsTrue(tile.IsAnimated);
+                Assert.AreEqual(TileFactory.HazardFrames, tile.Frames.Length);
+                Assert.AreEqual(ArtIntegration.HazardPlayback(biome).Fps, tile.FramesPerSecond);
+                Assert.AreEqual(ArtIntegration.HazardPlayback(biome).Desync, tile.DesyncCells);
+            }
+
+            // The three biomes do not share one animation.
+            Assert.Greater(Differing(TileFactory.BuildHazardFrame(TileFactory.Biome.RuinedMetro, 3), TileFactory.BuildHazardFrame(TileFactory.Biome.Rustworks, 3)), 500);
+            Assert.Greater(Differing(TileFactory.BuildHazardFrame(TileFactory.Biome.Rustworks, 3), TileFactory.BuildHazardFrame(TileFactory.Biome.OvergrownLabs, 3)), 500);
+        }
+
+        [Test]
+        public void HazardTile_NeighbouringCellsNeverStartOnTheSameFrame()
+        {
+            for (var x = -20; x < 20; x++)
+            for (var y = -20; y < 20; y++)
+            {
+                var here = RuinRail.Dungeon.Grid.HazardAnimatedTile.StartFrame(new Vector3Int(x, y, 0), TileFactory.HazardFrames);
+                Assert.That(here, Is.InRange(0, TileFactory.HazardFrames - 1));
+                Assert.AreNotEqual(here, RuinRail.Dungeon.Grid.HazardAnimatedTile.StartFrame(new Vector3Int(x + 1, y, 0), TileFactory.HazardFrames));
+                Assert.AreNotEqual(here, RuinRail.Dungeon.Grid.HazardAnimatedTile.StartFrame(new Vector3Int(x, y + 1, 0), TileFactory.HazardFrames));
+            }
+        }
+
+        private static int Differing(PixelCanvas a, PixelCanvas b)
+        {
+            var count = 0;
+            for (var y = 0; y < a.Height; y++)
+            for (var x = 0; x < a.Width; x++)
+            {
+                var p = a.Get(x, y);
+                var q = b.Get(x, y);
+                if (p.r != q.r || p.g != q.g || p.b != q.b || p.a != q.a) count++;
+            }
+
+            return count;
+        }
     }
 }

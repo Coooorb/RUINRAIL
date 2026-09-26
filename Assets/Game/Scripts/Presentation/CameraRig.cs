@@ -92,6 +92,12 @@ namespace RuinRail.Presentation
         /// <summary>Whole-pixel screen-shake offset (art/104) applied after framing; set by CameraShake, never part of the framed position.</summary>
         public Vector2 ShakeOffset { get; set; }
 
+        /// <summary>
+        /// While set, the camera frames this point instead of the follow target (no aim offset): a short cinematic
+        /// such as a boss introduction. Clearing it returns to the follow target through the normal smoothing.
+        /// </summary>
+        public Func<Vector2> FocusOverride { get; set; }
+
         public Vector2 HalfExtents
         {
             get
@@ -156,7 +162,7 @@ namespace RuinRail.Presentation
             if (_followPosition == null || _config == null) return;
             var target = _followPosition();
             var aim = _aimPosition != null ? _aimPosition() - target : Vector2.zero;
-            var desired = target + CameraFraming.AimOffset(aim, _config.AimOffsetFraction, _config.AimOffsetMaxTiles);
+            var desired = FocusOverride != null ? FocusOverride() : target + CameraFraming.AimOffset(aim, _config.AimOffsetFraction, _config.AimOffsetMaxTiles);
             // The smoothed position stays unsnapped so the follow converges fully; only what is applied to the transform is on the pixel grid.
             if (_snapNext)
             {

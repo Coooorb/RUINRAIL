@@ -98,8 +98,8 @@ namespace RuinRail.Tests.EditMode
             string selected = session.Loadout.GetEquipped(EquippedSlot.Armor)?.InstanceId;
             var screens = new (string name, FocusList list, string[] mustContain)[]
             {
-                ("Storage", ScreenNavigation.Storage(hub.Storage, () => selected), new[] { "storage.filter.all", "storage.filter.Weapon", "storage.sort", "storage.deposit", "storage.withdraw" }),
-                ("Inventory", ScreenNavigation.Inventory(hub.Loadout.Inventory), new[] { "slot.PrimaryWeapon", "slot.ActiveConsumable", "backpack.0", "backpack.7", "inventory.drop", "inventory.consumable", "inventory.close" }),
+                ("Storage", ScreenNavigation.Storage(() => { }, () => { }, () => true), new[] { "storage.open", "storage.store_backpack" }),
+                ("Inventory", ScreenNavigation.Inventory(hub.Loadout.Inventory), new[] { "slot.PrimaryWeapon", "slot.ActiveConsumable", "backpack.0", "backpack.7", "loadout.action" }),
                 ("Trader", ScreenNavigation.Trader(hub.Trader, () => selected), new[] { "trader.buy.0", "trader.sell" }),
                 ("Character", ScreenNavigation.Character(hub.Character), CharacterPanelViewModel.Attributes.Select(a => "character.allocate." + a).Append("character.respec").ToArray()),
                 ("Workshop", ScreenNavigation.Workshop(hub.Workshop), new[] { "workshop.storage", "workshop.trader" }),
@@ -115,12 +115,12 @@ namespace RuinRail.Tests.EditMode
                 Assert.IsTrue(list.Items.All(i => !string.IsNullOrWhiteSpace(i.Label)), $"{name}: every control has an English label.");
             }
 
-            // Disabled controls are skipped but come back when enabled (Deposit needs a selection).
-            selected = null;
-            var storage = ScreenNavigation.Storage(hub.Storage, () => selected);
-            CollectionAssert.DoesNotContain(Walk(storage), "storage.deposit");
-            selected = "x";
-            CollectionAssert.Contains(Walk(storage), "storage.deposit");
+            // Disabled controls are skipped but come back when enabled (STORE WHOLE BACKPACK needs a backpack item).
+            var carrying = false;
+            var storage = ScreenNavigation.Storage(() => { }, () => { }, () => carrying);
+            CollectionAssert.DoesNotContain(Walk(storage), "storage.store_backpack");
+            carrying = true;
+            CollectionAssert.Contains(Walk(storage), "storage.store_backpack");
 
             // Settings (with a live rebinder) and Pause.
             var settingsService = new UserSettingsService(new MemorySaveStore());

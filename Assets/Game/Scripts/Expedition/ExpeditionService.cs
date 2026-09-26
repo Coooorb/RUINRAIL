@@ -182,7 +182,17 @@ namespace RuinRail.Gameplay.Expedition
         /// owns its own at-risk state and save, and the id is what the host's roster, revive and vote lookups use for
         /// this player. Null draws a fresh id, as solo always has.
         /// </summary>
-        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize, string transactionId)
+        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize, string transactionId) =>
+            Start(profile, runSeed, firstBiome, partySize, transactionId, 0);
+
+        /// <summary>
+        /// <paramref name="coinsBroughtIn"/>: Banked Coins the player chose to take (77: during an expedition coins are
+        /// Carried Coins). Clamped to [0, banked] and moved by the one cross-domain path, exactly once, inside this start
+        /// transaction — before <see cref="ExpeditionStarted"/>, so the start save writes the lower banked balance together
+        /// with the open transaction. From here they are ordinary Carried Coins: banked again by Return, lost by Fail or
+        /// an abandoned run.
+        /// </summary>
+        public ExpeditionState Start(PlayerProfile profile, int runSeed, Biome firstBiome, int partySize, string transactionId, int coinsBroughtIn)
         {
             if (profile == null) throw new ArgumentNullException(nameof(profile));
             if (IsExpeditionActive) throw new InvalidOperationException("An expedition is already active.");
@@ -203,6 +213,8 @@ namespace RuinRail.Gameplay.Expedition
             inventory.MarksIncomingAtRisk = true;
 
             State = new ExpeditionState(runSeed, firstBiome, inventory, transactionId, partySize);
+            var brought = Math.Min(Math.Max(0, coinsBroughtIn), BankedWallet.Balance);
+            if (brought > 0 && CoinTransfer.Move(BankedWallet, State.CarriedWallet, brought, "carried_in").Success) State.CoinsBroughtIn = brought;
             DeepestDepthAtExpeditionStart = profile.DeepestDepthReached;
             Transit = null;
             LastSummary = null;

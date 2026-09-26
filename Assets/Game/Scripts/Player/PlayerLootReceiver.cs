@@ -32,6 +32,7 @@ namespace RuinRail.Gameplay.Player
         private readonly List<IItemContainer> _carried = new();
         private readonly ActionGateLookup _actionGate = new();
         private ItemDropService _drops;
+        private Func<string, int, bool> _hostDrop;
 
         public IItemContainer Backpack => _backpack;
         public ItemTransferService TransferService => _transferService;
@@ -83,6 +84,13 @@ namespace RuinRail.Gameplay.Player
         /// <summary>Binds the drop path (ground pickup factory); without it TryDrop reports InvalidRequest.</summary>
         public void SetDropService(ItemDropService drops) => _drops = drops;
 
+        /// <summary>
+        /// 82 co-op member: the host resolves the drop from its copy of this inventory, owns the ground pickup and revokes
+        /// the item here, so nothing leaves this inventory locally. The request returns false when it could not be sent
+        /// (for example while an earlier drop of the same item is still waiting for the host).
+        /// </summary>
+        public void SetHostDrop(Func<string, int, bool> request) => _hostDrop = request;
+
         /// <summary>32: drops the whole carried instance (backpack or equipped) to the ground at the player's position.</summary>
         public DropResult TryDrop(string instanceId) => TryDrop(instanceId, FindCarried(instanceId)?.Quantity ?? 0);
 
@@ -90,9 +98,19 @@ namespace RuinRail.Gameplay.Player
         public DropResult TryDrop(string instanceId, int quantity)
         {
             // 84: Downed/Dead players drop nothing (carried gear never reaches teammates through the ground).
-            if (_drops == null || _inventory == null || !_actionGate.CanAct(this))
+            if (_inventory == null || !_actionGate.CanAct(this) || (_drops == null && _hostDrop == null))
             {
                 return new DropResult(TransferResult.Fail(TransferError.InvalidRequest, instanceId), null);
+            }
+
+            if (_hostDrop != null)
+            {
+                var carried = FindCarried(instanceId);
+                if (carried == null) return new DropResult(TransferResult.Fail(TransferError.SourceMissingItem, instanceId), null);
+                if (quantity <= 0 || quantity > carried.Quantity) return new DropResult(TransferResult.Fail(TransferError.InvalidQuantity, instanceId), null);
+                return _hostDrop(instanceId, quantity)
+                    ? new DropResult(TransferResult.Ok(instanceId, quantity), null, requested: true)
+                    : new DropResult(TransferResult.Fail(TransferError.InvalidRequest, instanceId), null);
             }
 
             var result = _drops.DropFromAny(_carried, instanceId, quantity, transform.position);

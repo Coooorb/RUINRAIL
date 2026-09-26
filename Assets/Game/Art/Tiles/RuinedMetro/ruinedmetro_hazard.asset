@@ -9,28 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
+  m_Script: {fileID: 11500000, guid: 6dd876a4d4f194f04a31a9cf97683491, type: 3}
   m_Name: ruinedmetro_hazard
-  m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.Tilemaps.Tile
-  m_Sprite: {fileID: 21300000, guid: 0ebcc4b2a1047fb459ef7a48a1b045ee, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Transform:
-    e00: 1
-    e01: 0
-    e02: 0
-    e03: 0
-    e10: 0
-    e11: 1
-    e12: 0
-    e13: 0
-    e20: 0
-    e21: 0
-    e22: 1
-    e23: 0
-    e30: 0
-    e31: 0
-    e32: 0
-    e33: 1
-  m_InstancedGameObject: {fileID: 0}
-  m_Flags: 1
-  m_ColliderType: 0
+  m_EditorClassIdentifier: Game.Dungeon::RuinRail.Dungeon.Grid.HazardAnimatedTile
+  _frames:
+  - {fileID: 4996992364321115078, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: -7827849996715546149, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: -3242639557426610672, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: 3231312114978030332, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: -6545115592256957727, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: -949572771304836421, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: 9056914574065731552, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  - {fileID: -7752554256146295888, guid: e442ac059c52740d38ad8d9211f1544c, type: 3}
+  _framesPerSecond: 10
+  _desyncCells: 0

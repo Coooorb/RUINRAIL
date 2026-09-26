@@ -1,6 +1,9 @@
 ﻿param(
     [ValidateSet("EditMode", "PlayMode", "All")]
     [string]$TestPlatform = "EditMode",
+    # Optional Unity -testFilter. A filtered run writes <Platform>-targeted-results.xml so it never overwrites the
+    # full-suite results that audits read.
+    [string]$TestFilter = "",
     [string]$ProjectPath = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
 )
 
@@ -28,8 +31,9 @@ function Invoke-UnityTests([string]$Platform, [string]$UnityExecutable) {
     $resultsDir = Join-Path $ProjectPath "TestResults"
     New-Item -ItemType Directory -Path $resultsDir -Force | Out-Null
 
-    $resultFile = Join-Path $resultsDir "$Platform-results.xml"
-    $logFile = Join-Path $resultsDir "$Platform-unity.log"
+    $suffix = if ($TestFilter) { "-targeted" } else { "" }
+    $resultFile = Join-Path $resultsDir "$Platform$suffix-results.xml"
+    $logFile = Join-Path $resultsDir "$Platform$suffix-unity.log"
     Remove-Item $resultFile -Force -ErrorAction SilentlyContinue
 
     Write-Host "Running RUINRAIL $Platform tests with $UnityExecutable"
@@ -41,6 +45,9 @@ function Invoke-UnityTests([string]$Platform, [string]$UnityExecutable) {
         "-testResults", $resultFile,
         "-logFile", $logFile
     )
+    if ($TestFilter) {
+        $unityArgs += @("-testFilter", $TestFilter)
+    }
 
     # EditMode is safe to run headless. PlayMode intentionally keeps graphics enabled
     # because some PlayMode tests may require a graphics device/render loop.

@@ -28,6 +28,16 @@ namespace RuinRail.App
                     reader ?? player.GetComponent<PlayerInput>()?.Reader, player.GetComponent<Rigidbody2D>());
             }
 
+            // Taking damage reads on the survivor itself: a short red tint of the body on every applied hit
+            // (HealthComponent.Damaged — replicated health drives it on remote peers too). No stagger tint: the player's
+            // own impact reactions are the camera and the damage indicator's business.
+            if (body != null && player.GetComponent<RuinRail.Presentation.Vfx.HitFlash>() == null && player.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>() != null)
+            {
+                var flash = player.AddComponent<RuinRail.Presentation.Vfx.HitFlash>();
+                flash.Configure(content.Feedback, player.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>(), null, body.Renderer);
+                flash.UsePlayerProfile();
+            }
+
             var loadout = player.GetComponent<WeaponLoadout>();
             var weaponDriver = player.GetComponent<WeaponVisualDriver>();
             if (weaponDriver == null) weaponDriver = player.AddComponent<WeaponVisualDriver>();

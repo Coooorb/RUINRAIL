@@ -241,5 +241,180 @@ namespace RuinRail.Tests
             Assert.IsFalse(view.IsVisible);
             Note("coherence: Esc closes the inventory (no pause), Tab is a no-op under the pause, reopen keeps the loadout, one window instance");
         }
+
+        [UnityTest]
+        public IEnumerator LiveRun_CompletelyFullBackpack_SwapsEveryWornCategoryInPlace_AndDropsARealPickupThatCanBeTakenBack()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(SeedFor(Biome.Rustworks));
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Full Pack Proof");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 12; i++) yield return null;
+
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var vm = run.Inventory;
+            var view = run.InventoryView;
+            var inventory = run.Expedition.State.Inventory;
+            var menuInput = Object.FindFirstObjectByType<MenuInput>();
+            var stats = run.Rig.StatsBinder.Stats;
+
+            // The starter loadout plus a worn accessory, and a backpack filled to the last slot.
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("accessory_magnetic_coil"), EquippedSlot.Accessory));
+            var smg = new ItemInstance("weapon_rattler_9", 1, Rarity.Rare);
+            var rig = new ItemInstance("armor_scout_rig", 1, Rarity.Uncommon);
+            var pouch = new ItemInstance("accessory_ammo_pouch", 1, Rarity.Epic);
+            foreach (var item in new[] { smg, rig, pouch, new ItemInstance("consumable_medkit", 3) }) Assert.IsTrue(inventory.TryAddToBackpack(item));
+            var medkits = inventory.BackpackSlots.First(b => b != null && b.DefinitionId == "consumable_medkit"); // a stack is re-instanced as it enters
+            while (inventory.BackpackSlots.Any(b => b == null)) Assert.IsTrue(inventory.TryAddToBackpack(new ItemInstance(StarterKitService.KnifeId)));
+            vm.Open();
+            yield return null;
+            Assert.IsTrue(vm.IsBackpackFull, "the backpack is completely full");
+            var ids = AllIds(inventory);
+            int IndexOfId(string id) => inventory.BackpackSlots.ToList().FindIndex(b => b != null && b.InstanceId == id);
+            void AssertSwapped(EquippedSlot slot, ItemInstance incoming, ItemInstance outgoing, int index, string how)
+            {
+                Assert.AreSame(incoming, inventory.GetEquipped(slot), how);
+                Assert.AreSame(outgoing, inventory.BackpackSlots[index], how + ": the worn item took the freed slot");
+                Assert.IsTrue(vm.IsBackpackFull, how);
+                CollectionAssert.AreEquivalent(ids, AllIds(inventory), how + ": nothing duplicated or lost");
+                Note($"{how}: {incoming.DefinitionId} worn, {outgoing.DefinitionId} -> backpack {index + 1}, backpack {inventory.BackpackSlots.Count(b => b != null)}/8");
+            }
+
+            // PRIMARY by keyboard (confirm on the backpack slot, confirm on PRIMARY): the rig re-mounts the new weapon.
+            var mountedBefore = run.Rig.Loadout.GetSlot(RuinRail.Gameplay.Combat.Weapons.WeaponSlot.Primary) as Component;
+            var pistol = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            var index = IndexOfId(smg.InstanceId);
+            view.FocusList.Focus("backpack." + index);
+            menuInput.Stack.Activate();
+            view.FocusList.Focus("slot.PrimaryWeapon");
+            menuInput.Stack.Activate();
+            yield return null;
+            AssertSwapped(EquippedSlot.PrimaryWeapon, smg, pistol, index, "primary (keyboard)");
+            var mountedAfter = run.Rig.Loadout.GetSlot(RuinRail.Gameplay.Combat.Weapons.WeaponSlot.Primary) as Component;
+            Assert.IsTrue(mountedBefore == null && mountedAfter != null, "the composed rig re-mounted PRIMARY from the swapped item");
+
+            // ARMOR by drag: the run's stats now come from the new armor, not the old one.
+            var vest = inventory.GetEquipped(EquippedSlot.Armor);
+            index = IndexOfId(rig.InstanceId);
+            view.EquipmentSlots[2].SimulateDrop(view.BackpackSlots[index]);
+            yield return null;
+            AssertSwapped(EquippedSlot.Armor, rig, vest, index, "armor (drag)");
+            CollectionAssert.Contains(stats.SourceIds, RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(rig));
+            CollectionAssert.DoesNotContain(stats.SourceIds, RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(vest));
+
+            // ACCESSORY by the EQUIP button.
+            var coil = inventory.GetEquipped(EquippedSlot.Accessory);
+            index = IndexOfId(pouch.InstanceId);
+            vm.SetCursor(new InventorySlotRef(InventorySlotKind.Backpack, index));
+            view.Buttons[InventoryView.ActionFocusId].SimulateClick();
+            yield return null;
+            AssertSwapped(EquippedSlot.Accessory, pouch, coil, index, "accessory (EQUIP button)");
+
+            // ACTIVE CONSUMABLE by mouse click-select / click-target.
+            var bandage = inventory.GetEquipped(EquippedSlot.ActiveConsumable);
+            index = IndexOfId(medkits.InstanceId);
+            view.BackpackSlots[index].SimulateClick();
+            view.EquipmentSlots[4].SimulateClick();
+            yield return null;
+            AssertSwapped(EquippedSlot.ActiveConsumable, medkits, bandage, index, "consumable (click/click)");
+
+            // SECONDARY by controller: D-pad focus and confirm; the old knife takes the pistol's slot.
+            ActiveInputDevice.Set(InputDeviceKind.Gamepad);
+            var knife = inventory.GetEquipped(EquippedSlot.SecondaryWeapon);
+            index = IndexOfId(pistol.InstanceId);
+            view.FocusList.Focus("backpack." + index);
+            menuInput.Stack.Activate();
+            view.FocusList.Focus("slot.SecondaryWeapon");
+            menuInput.Stack.Activate();
+            yield return null;
+            ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
+            AssertSwapped(EquippedSlot.SecondaryWeapon, pistol, knife, index, "secondary (controller)");
+            LiveDungeonCapture.Capture(Folder, "fullpack_01_after_swaps", run.Camera.Camera, run.Camera.Config.PixelsPerUnit, includeUi: true);
+
+            // Max HP follows the worn armor through the real window: full stays full, damage is never healed by a swap.
+            var health = run.Rig.Player.GetComponent<RuinRail.Gameplay.Combat.HealthComponent>();
+            health.SetInvulnerabilityState(null);
+            health.Heal(10000);
+            Assert.AreEqual(health.MaxHealth, health.CurrentHealth);
+            var rigMax = health.MaxHealth;
+            view.EquipmentSlots[2].SimulateDrop(view.BackpackSlots[IndexOfId(vest.InstanceId)]);
+            yield return null;
+            Assert.AreSame(vest, inventory.GetEquipped(EquippedSlot.Armor));
+            Assert.Greater(health.MaxHealth, rigMax, "the vest raises Max HP over the rig");
+            Assert.AreEqual(health.MaxHealth, health.CurrentHealth, $"full stays full: {rigMax}/{rigMax} -> {health.CurrentHealth}/{health.MaxHealth}");
+            var vestMax = health.MaxHealth;
+            Assert.IsTrue(health.TryApplyDamage(new RuinRail.Gameplay.Combat.DamageRequest(15)));
+            var damaged = health.CurrentHealth;
+            for (var n = 0; n < 5; n++)
+            {
+                var other = n % 2 == 0 ? rig : vest;
+                view.EquipmentSlots[2].SimulateDrop(view.BackpackSlots[IndexOfId(other.InstanceId)]);
+                yield return null;
+                Assert.AreSame(other, inventory.GetEquipped(EquippedSlot.Armor));
+                Assert.AreEqual(Mathf.Min(damaged, health.MaxHealth), health.CurrentHealth, $"swap {n}: damaged HP kept (clamped only to the maximum), never healed");
+            }
+
+            Assert.AreSame(rig, inventory.GetEquipped(EquippedSlot.Armor), "the rig is worn again for the steps below");
+            Note($"max hp: full {rigMax}/{rigMax} -> vest {vestMax}/{vestMax}; damaged {damaged}/{vestMax} kept through 5 armor swaps -> {health.CurrentHealth}/{health.MaxHealth}");
+
+            // An invalid swap in the full backpack changes nothing.
+            var before = JsonUtility.ToJson(inventory.ToSnapshot());
+            view.EquipmentSlots[0].SimulateDrop(view.BackpackSlots[IndexOfId(vest.InstanceId)]);
+            Assert.AreEqual(before, JsonUtility.ToJson(inventory.ToSnapshot()), "armor onto PRIMARY is refused unchanged");
+            StringAssert.Contains("does not fit", view.MessageText);
+
+            // DROP from the full backpack (DROP button): a real run pickup at the player's feet holds exactly that item.
+            var ground = run.GroundLoot;
+            var groundBefore = ground.Tracked.Count(g => g != null);
+            index = IndexOfId(vest.InstanceId);
+            vm.SetCursor(new InventorySlotRef(InventorySlotKind.Backpack, index));
+            view.Buttons[InventoryView.DropFocusId].SimulateClick();
+            yield return null;
+            Assert.IsNull(inventory.BackpackSlots[index], "the dropped slot is free");
+            var dropped = ground.Tracked.Where(g => g != null).Select(g => g.GetComponent<WorldItemPickup>()).Where(p => p != null && p.Item == vest).ToList();
+            Assert.AreEqual(1, dropped.Count, "exactly one ground pickup holds the dropped instance");
+            Assert.AreEqual(groundBefore + 1, ground.Tracked.Count(g => g != null));
+            Assert.Less(Vector2.Distance(dropped[0].transform.position, run.Rig.Player.transform.position), 0.5f, "dropped at the player");
+            Assert.IsFalse(AllIds(inventory).Contains(vest.InstanceId));
+
+            // DROP a worn item (keyboard: focus the slot, then the DROP action).
+            view.FocusList.Focus("slot.Accessory");
+            view.FocusList.Focus(InventoryView.DropFocusId);
+            menuInput.Stack.Activate();
+            yield return null;
+            Assert.IsNull(inventory.GetEquipped(EquippedSlot.Accessory));
+            Assert.AreEqual(1, ground.Tracked.Where(g => g != null).Count(g => g.GetComponent<WorldItemPickup>()?.Item == pouch));
+            CollectionAssert.DoesNotContain(stats.SourceIds, RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(pouch), "a dropped accessory stops feeding the stats");
+            LiveDungeonCapture.Capture(Folder, "fullpack_02_after_drops", run.Camera.Camera, run.Camera.Config.PixelsPerUnit, includeUi: true);
+            vm.Close();
+            yield return null;
+
+            // Back in the world, the dropped items are ordinary pickups: interacting takes one back into the backpack.
+            var interactor = run.Rig.Player.GetComponent<RuinRail.Gameplay.Player.PlayerInteractor>();
+            var deadline = Time.realtimeSinceStartup + 3f;
+            while (!interactor.TryInteract() && Time.realtimeSinceStartup < deadline) yield return null;
+            yield return null;
+            var taken = new[] { vest, pouch }.Where(i => AllIds(inventory).Contains(i.InstanceId)).ToList();
+            Assert.AreEqual(1, taken.Count, "one interaction takes exactly one of the two dropped items back");
+            var onGround = ground.Tracked.Where(g => g != null).Select(g => g.GetComponent<WorldItemPickup>()).Count(p => p != null && !p.IsConsumed && (p.Item == vest || p.Item == pouch));
+            Assert.AreEqual(1, onGround, "the other stays on the ground; the taken one is gone from it");
+            Note($"drop: vest and pouch dropped as run pickups at the player; interaction took back {taken[0].DefinitionId}; backpack {inventory.BackpackSlots.Count(b => b != null)}/8; ground +{ground.Tracked.Count(g => g != null) - groundBefore}");
+        }
+
+        private static System.Collections.Generic.List<string> AllIds(PlayerInventory inventory)
+        {
+            var ids = inventory.BackpackSlots.Where(b => b != null).Select(b => b.InstanceId).ToList();
+            foreach (EquippedSlot slot in System.Enum.GetValues(typeof(EquippedSlot))) if (inventory.GetEquipped(slot) != null) ids.Add(inventory.GetEquipped(slot).InstanceId);
+            return ids;
+        }
     }
 }

@@ -314,6 +314,66 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
+        public IEnumerator LiveRun_Corpses_StayWhereAndHowTheyDied_UnderPlayerEnemyBlastAndKnockbackPressure()
+        {
+            yield return EnterDungeon();
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var ppu = run.Camera.Config.PixelsPerUnit;
+            var player = run.Rig.Player;
+            var combatNode = run.Generation.Graph.Nodes.First(n => n.Type == RoomType.Combat && !n.IsElite);
+            var combatRoom = run.Rooms[combatNode.Id];
+            yield return Teleport(run, InteriorCentre(run, combatNode.Id));
+            var enemies = Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Where(e => e != null && e.IsAlive).ToList();
+            Assert.GreaterOrEqual(enemies.Count, 2, "a victim and at least one living enemy to press against it");
+
+            // A composed room enemy and a composed Elite (moveset path), each with a knockback still in flight when it dies.
+            var grunt = enemies.OrderBy(e => Vector2.Distance(e.transform.position, player.transform.position)).First();
+            var eliteDefinition = _app.Content.Elites.First(d => d.Biome == run.Expedition.State.Biome);
+            var elite = new DefaultEliteSpawner(_app.Content.Stagger).Spawn(eliteDefinition, (Vector2)grunt.transform.position + Vector2.right * 2f, combatRoom.transform, player.transform).Elite;
+            run.BindActorPresentation(elite, eliteDefinition.Id, isElite: true);
+            yield return new WaitForFixedUpdate();
+            var corpses = new List<GameObject> { grunt.gameObject, elite.gameObject };
+            foreach (var corpse in corpses)
+            {
+                RuinRail.Gameplay.Combat.Impact.ImpactDispatcher.Apply(corpse.GetComponent<Collider2D>(), new RuinRail.Gameplay.Combat.Impact.ImpactRequest(Vector2.up, 12f, 0f, DamageKind.Normal, null, null));
+                var health = corpse.GetComponent<HealthComponent>();
+                Assert.IsTrue(health.TryApplyDamage(new DamageRequest(health.CurrentHealth + 1)));
+            }
+
+            yield return null;
+            var positions = corpses.Select(c => c.transform.position).ToList();
+            var rotations = corpses.Select(c => c.transform.rotation).ToList();
+            var facings = corpses.Select(c => c.GetComponent<EnemyAnimationDriver>().Facing).ToList();
+            LiveDungeonCapture.Capture(Folder, "20_corpses_at_death", run.Camera.Camera, ppu);
+
+            // The player stands on each corpse, living enemies chase into it, a player-team blast and a direct knockback hit it.
+            var pressureUntil = Time.time + 1.2f;
+            var next = 0;
+            while (Time.time < pressureUntil)
+            {
+                var at = (Vector2)positions[next++ % positions.Count];
+                player.GetComponent<Rigidbody2D>().position = at + Vector2.left * 0.1f;
+                RuinRail.Gameplay.Combat.Impact.ShockwaveResolver.Emit(at + new Vector2(0.4f, 0.4f), 3f, 12f, 30f, DamageTeam.Player);
+                foreach (var corpse in corpses)
+                    RuinRail.Gameplay.Combat.Impact.ImpactDispatcher.Apply(corpse.GetComponent<Collider2D>(), new RuinRail.Gameplay.Combat.Impact.ImpactRequest(Vector2.left, 12f, 30f, DamageKind.Normal, null, null));
+                for (var i = 0; i < 6; i++) yield return new WaitForFixedUpdate();
+            }
+
+            yield return null;
+            LiveDungeonCapture.Capture(Folder, "21_corpses_after_pressure_player_on_corpse", run.Camera.Camera, ppu);
+            Debug.Log($"[PROOF] corpses {string.Join(" ", corpses.Select((c, i) => c.name + "@" + positions[i].ToString("F4") + "->" + c.transform.position.ToString("F4") + " facing " + facings[i] + "->" + c.GetComponent<EnemyAnimationDriver>().Facing))}");
+            for (var i = 0; i < corpses.Count; i++)
+            {
+                var corpse = corpses[i];
+                Assert.AreEqual(0f, Vector3.Distance(positions[i], corpse.transform.position), 1e-5f, $"{corpse.name}: the corpse must not move after death");
+                Assert.AreEqual(0f, Quaternion.Angle(rotations[i], corpse.transform.rotation), 1e-3f, $"{corpse.name}: the corpse must not turn after death");
+                Assert.AreEqual(facings[i], corpse.GetComponent<EnemyAnimationDriver>().Facing, $"{corpse.name}: the corpse keeps its death facing");
+                Assert.AreEqual(EnemyAnimState.Death, corpse.GetComponent<EnemyAnimationDriver>().State);
+                Assert.IsNotNull(CharacterVisual.RendererOf(corpse)?.sprite, $"{corpse.name}: the corpse is still drawn");
+            }
+        }
+
+        [UnityTest]
         public IEnumerator ReturnToMainMenu_FromAnActiveExpedition_FailsTheRunOnce_KeepsSafeState_AndLoadsTheMainMenu()
         {
             yield return EnterDungeon();

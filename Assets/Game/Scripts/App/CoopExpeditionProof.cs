@@ -108,6 +108,8 @@ namespace RuinRail.App
             public string TransitVotes = "";
             public int DeepestDepth;
             public int GroundLoot;
+            /// <summary>Every encounter reward chest this peer holds: "node@room-local x,y:kind" (sorted).</summary>
+            public string RewardChests = "";
             public int SpawnedNetworkObjects;
             public float TimeScale;
             public bool GameplayHeld;
@@ -200,7 +202,7 @@ namespace RuinRail.App
             proof._size = Mathf.Clamp(IntArg(args, CoopPeerRunner.SizeArgument, 2), 1, ExpeditionParty.MaxPartySize);
             proof._port = (ushort)IntArg(args, CoopPeerRunner.PortArgument, 7920);
             proof._scenario = TextArg(args, ScenarioArgument, proof._size >= 3 ? "trio" : "duo");
-            proof._name = proof._isHost ? "Host" : "Client" + IntArg(args, "-coop-index", 1);
+            proof._name = proof._isHost ? HostName : ClientName(IntArg(args, "-coop-index", 1));
             proof._out = TextArg(args, CoopPeerRunner.OutArgument, Path.Combine(app.SaveDirectory, $"coop_expedition_{(proof._isHost ? "host" : "client")}.json"));
             proof._report.Role = proof._isHost ? "host" : "client";
             proof._report.Scenario = proof._scenario;
@@ -314,6 +316,28 @@ namespace RuinRail.App
             {
                 Debug.LogError("COOP-PROOF report could not be written: " + e.Message);
             }
+        }
+
+        /// <summary>Custom display names each peer chooses in its own Shelter before connecting (never "Runner").</summary>
+        public const string HostName = "Rail Host";
+        public static string ClientName(int index) => "Rail Client " + index;
+
+        /// <summary>
+        /// Chooses this peer's display name the way a player does: Character station, CHANGE NAME, type, save. The
+        /// connection payload, lobby line and run member then carry it — nothing in the proof sets a name on the wire.
+        /// </summary>
+        private void ChooseDisplayName()
+        {
+            var screen = FindFirstObjectByType<BaseHubScreen>();
+            var session = _app.Menu.Session;
+            screen.Hub.Open(BaseStation.Character);
+            var opened = screen.PanelList.Focus("character.name") && screen.PanelList.ActivateFocused() && screen.NameEntry.IsOpen;
+            while (screen.NameEntry.Text.Length > 0) screen.NameEntry.Backspace();
+            screen.NameEntry.Type(_name);
+            var saved = opened && screen.NameEntry.Submit();
+            screen.Hub.Close();
+            Record("display name chosen through the Shelter name field", saved && session.Profile.DisplayName == _name,
+                $"opened={opened} saved={saved} profile='{session.Profile.DisplayName}' error='{screen.NameEntry.Error}'");
         }
 
         private IEnumerator EnterShelter()
@@ -438,6 +462,11 @@ namespace RuinRail.App
                 view.GroundLoot = run.GroundLoot != null ? run.GroundLoot.Tracked.Count(t => t != null) : 0;
             }
 
+            view.RewardChests = run.Rooms == null ? "" : string.Join(";", run.Rooms.Values
+                .Select(r => (room: r, chest: r.GetComponent<RoomContentBinding>()?.RewardChest))
+                .Where(t => t.chest != null)
+                .Select(t => $"{t.room.State.NodeId}@{t.chest.transform.position.x - t.room.Root.transform.position.x:0.0},{t.chest.transform.position.y - t.room.Root.transform.position.y:0.0}:{t.chest.Kind}")
+                .OrderBy(s => s, StringComparer.Ordinal));
             var transit = expedition.Transit;
             view.TransitState = transit == null ? "none" : transit.State + (transit.Result.HasValue ? ":" + transit.Result.Value : string.Empty);
             view.TransitVotes = transit == null ? "" : string.Join(",", transit.Choices.Select(c => c.Key.Substring(0, Math.Min(6, c.Key.Length)) + "=" + c.Value));
@@ -447,6 +476,12 @@ namespace RuinRail.App
 
         // ================================================================ client
 
+        /// <summary>Proof harness banks (not design values): something to take into the run.</summary>
+        private const int ClientBankedForProof = 400;
+        private const int HostBankedForProof = 500;
+        private int _clientCoinsChosen;
+        private int _clientBankBeforeStart;
+
         private IEnumerator RunClient()
         {
             _started = Time.realtimeSinceStartup;
@@ -454,8 +489,8 @@ namespace RuinRail.App
             if (!string.IsNullOrEmpty(_report.Error)) yield break;
             var driver = _app.Network?.Driver as NgoNetworkDriver;
             if (driver == null) { Finish("connect", "no live NGO driver (run without -offline-multiplayer)"); yield break; }
+            ChooseDisplayName();
             driver.SetDirectAddress("127.0.0.1", _port, false);
-            driver.SetConnectionPayload(_name);
             var started = driver.StartClient();
             if (!started.Success) { Finish("connect", "StartClient refused: " + started.Error + " " + started.Message); yield break; }
             yield return WaitFor(() => _app.Coop != null && _app.Coop.IsClient, 90f);
@@ -463,18 +498,41 @@ namespace RuinRail.App
             if (!_waitOk) { Finish("connect", "never connected to the host"); yield break; }
 
             var screen = FindFirstObjectByType<BaseHubScreen>();
+            // Coins for the run (77): a bank to take from (proof harness), then the real Transit selector picks 3 steps.
+            if (screen != null)
+            {
+                screen.Session.Banked.Credit(ClientBankedForProof, "proof_bank");
+                screen.Hub.Transit.TakeNone();
+                for (var i = 0; i < 3; i++) screen.Hub.Transit.TakeMore();
+                _clientCoinsChosen = screen.Session.CoinsToCarry;
+                _clientBankBeforeStart = screen.Session.Banked.Balance;
+            }
+
             var ready = screen != null && screen.Hub.Multiplayer.SetReady(true);
             Record("client Ready in its own Shelter lobby (relayed to the host)", ready, "SetReady(true) " + (ready ? "accepted" : "refused"));
             var startGate = screen != null && !screen.Hub.Transit.StartExpedition();
             Record("client cannot start an expedition of its own", startGate, screen != null ? screen.Hub.Transit.Feedback.Text : "no screen");
+            yield return WaitFor(() => _app.Coop.LastLobbyState != null && _app.Coop.LastLobbyState.Members.Any(l => l.IsHost && l.Name == HostName), 30f);
+            Record("client sees the host's custom name in the lobby", _waitOk,
+                string.Join("; ", _app.Coop.LastLobbyState?.Members.Select(l => $"{l.ClientId}:{l.Name}:host={l.IsHost}") ?? Enumerable.Empty<string>()));
 
             yield return WaitFor(() => _composed.Contains(SceneNames.Dungeon), 180f);
             if (!_waitOk) { Finish("start", "the host's start never reached this client (no Dungeon)"); yield break; }
             yield return WaitFor(() => (_run = FindFirstObjectByType<ExpeditionScene>()) != null && _run.Rooms != null && _run.CoopClient != null, 90f);
             if (!_waitOk) { Finish("compose", "the client expedition never composed: " + (_run != null ? _run.LastDepthDesync : "no scene")); yield break; }
+            var hostMember = _app.Coop.CurrentRun?.Members.FirstOrDefault(m => m.IsHost);
+            yield return WaitFor(() => CoopPlayerDirectory.All().Any(p => !p.IsOwner && p.DisplayName == HostName), 30f);
+            Record("client sees the host's custom name in the run start and on the host's player", _waitOk && hostMember?.DisplayName == HostName,
+                $"runHost='{hostMember?.DisplayName}' players={string.Join(";", CoopPlayerDirectory.All().Select(p => $"{p.OwnerClientId}:{p.DisplayName}:owner={p.IsOwner}"))}");
             Record("client composed the host's expedition", _run.Mode == CoopRunMode.Client, $"mode={_run.Mode} depth={_run.Expedition.State.Depth} biome={_run.Expedition.State.Biome} seed={_run.Expedition.State.RunSeed} layout={_run.LayoutFingerprint} rooms={_run.Rooms.Count}");
             _run.Expedition.ExpeditionEnded += summary => _summary = summary;
             _report.BankedCoinsBefore = _app.Menu.Session?.Banked.Balance ?? 0;
+            // The host's wallet for this member is authoritative and mirrored here; it must hold exactly the chosen coins.
+            yield return WaitFor(() => _run.Expedition.State.CarriedCoins == _clientCoinsChosen, 10f);
+            Record("client took exactly its chosen coins from its own bank; the host-held wallet it mirrors agrees",
+                _clientCoinsChosen > 0 && _run.Expedition.State.CoinsBroughtIn == _clientCoinsChosen && _run.Expedition.State.CarriedCoins == _clientCoinsChosen
+                && _app.Menu.Session.Profile.BankedCoins == _clientBankBeforeStart - _clientCoinsChosen && _app.ProbeSave().BankedCoins == _clientBankBeforeStart - _clientCoinsChosen,
+                $"chosen={_clientCoinsChosen} broughtIn={_run.Expedition.State.CoinsBroughtIn} carried={_run.Expedition.State.CarriedCoins} bank {_clientBankBeforeStart}->{_app.Menu.Session.Profile.BankedCoins} onDisk={_app.ProbeSave().BankedCoins}");
             SubscribeClientCommands();
 
             var deadline = Time.realtimeSinceStartup + 1500f;
@@ -573,6 +631,9 @@ namespace RuinRail.App
                     break;
                 case "sell":
                     yield return ClientSell(command);
+                    break;
+                case "drop":
+                    yield return ClientDrop(command);
                     break;
                 case "defib":
                     yield return ClientDefibrillator(command);
@@ -940,6 +1001,49 @@ namespace RuinRail.App
             Ack(command, detail);
         }
 
+        /// <summary>
+        /// Full-backpack swap and drop through the member's real inventory window (92/32): the backpack is filled
+        /// completely (proof harness), a backpack weapon is swapped into the worn primary, DROP is pressed twice in one
+        /// frame on a backpack item (the second must be refused while the host's answer is pending), then the worn
+        /// weapon is dropped. Reported: the instance ids and whether each left this inventory only through the revoke.
+        /// </summary>
+        private IEnumerator ClientDrop(ProofMessage command)
+        {
+            var inventory = _run.Expedition.State.Inventory;
+            var vm = _run.Inventory;
+            var candidate = new ItemInstance("weapon_rattler_9");
+            inventory.TryAddToBackpack(candidate);
+            while (inventory.BackpackSlots.Any(i => i == null) && inventory.TryAddToBackpack(new ItemInstance("weapon_field_knife"))) { }
+            var full = inventory.BackpackSlots.All(i => i != null);
+            var slot = inventory.BackpackSlots.ToList().IndexOf(candidate);
+            var worn = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            vm.Open();
+            var swap = vm.MoveTo(new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Backpack, slot), new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Equipped, (int)EquippedSlot.PrimaryWeapon));
+            var swapped = swap == RuinRail.UI.Inventory.InventoryActionResult.Done && inventory.GetEquipped(EquippedSlot.PrimaryWeapon) == candidate && inventory.BackpackSlots[slot] == worn && inventory.BackpackSlots.All(i => i != null);
+            yield return Seconds(0.5f);
+
+            bool Carried(string id) => inventory.BackpackSlots.Any(i => i != null && i.InstanceId == id) || Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Any(e => inventory.GetEquipped(e)?.InstanceId == id);
+            var dropIndex = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == "weapon_field_knife");
+            var x = inventory.BackpackSlots[dropIndex];
+            var dropSlot = new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Backpack, dropIndex);
+            var firstPress = vm.Drop(dropSlot);
+            var stillCarried = Carried(x.InstanceId);
+            var secondPress = vm.Drop(dropSlot);
+            yield return WaitFor(() => !Carried(x.InstanceId), 10f);
+            var xGone = !Carried(x.InstanceId);
+            yield return Seconds(0.5f);
+
+            var y = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            var wornPress = vm.Drop(new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Equipped, (int)EquippedSlot.PrimaryWeapon));
+            yield return WaitFor(() => !Carried(y.InstanceId), 10f);
+            var yGone = !Carried(y.InstanceId);
+            // Wear the old primary again so the later steps fight with a weapon (an empty slot takes a plain transfer).
+            var rewear = vm.MoveTo(new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Backpack, inventory.BackpackSlots.ToList().IndexOf(worn)), new RuinRail.UI.Inventory.InventorySlotRef(RuinRail.UI.Inventory.InventorySlotKind.Equipped, (int)EquippedSlot.PrimaryWeapon));
+            vm.Close();
+            yield return Seconds(1.0f);
+            Ack(command, $"x={x.InstanceId} y={y.InstanceId} full={full} swapped={swapped} first={firstPress} keptUntilRevoke={stillCarried} second={secondPress} xGone={xGone} worn={wornPress} yGone={yGone} rewear={rewear} backpack={inventory.BackpackSlots.Count(i => i != null)} message='{vm.Message}'");
+        }
+
         private IEnumerator ClientFinish()
         {
             // The Return (or failure) is this peer's own transaction: wait for it and for the Shelter.
@@ -992,8 +1096,8 @@ namespace RuinRail.App
             if (!string.IsNullOrEmpty(_report.Error)) yield break;
             var driver = _app.Network?.Driver as NgoNetworkDriver;
             if (driver == null) { Finish("host", "no live NGO driver (run without -offline-multiplayer)"); yield break; }
+            ChooseDisplayName();
             driver.SetDirectAddress("127.0.0.1", _port, true);
-            driver.SetConnectionPayload(_name);
             var started = driver.StartHost();
             if (!started.Success) { Finish("host", "StartHost refused: " + started.Error + " " + started.Message); yield break; }
             yield return WaitFor(() => _app.Coop != null && _app.Coop.IsHost, 20f);
@@ -1006,8 +1110,18 @@ namespace RuinRail.App
                 string.Join("; ", session.Lobby.Members.Select(m => $"{m.ClientId}:{m.ParticipantId}:ready={m.IsReady}:valid={m.HasValidLoadout}")));
             if (!_waitOk) { Finish("lobby", "not every client joined and readied"); yield break; }
             var screen = FindFirstObjectByType<BaseHubScreen>();
+            var clientNames = Enumerable.Range(1, _size - 1).Select(ClientName).ToList();
+            yield return WaitFor(() => clientNames.All(n => screen.Terminal.Roster.Any(l => !l.IsLocal && l.Name == n)
+                && _app.Coop.MemberProfiles.Values.Any(p => p.DisplayName == n)), 30f);
+            Record("host sees every client's custom name in its Shelter party", _waitOk,
+                string.Join("; ", screen.Terminal.Roster.Select(l => $"{l.Name}:host={l.IsHost}")) + " | profiles=" + string.Join(",", _app.Coop.MemberProfiles.Values.Select(p => p.DisplayName)));
             screen.Hub.Multiplayer.SetReady(true);
             screen.Hub.Open(BaseStation.Transit);
+            session.Banked.Credit(HostBankedForProof, "proof_bank");
+            screen.Hub.Transit.TakeNone();
+            for (var i = 0; i < 4; i++) screen.Hub.Transit.TakeMore();
+            var hostChosen = session.CoinsToCarry;
+            var hostBankBefore = session.Banked.Balance;
             _report.BankedCoinsBefore = session.Banked.Balance;
             var startedRun = screen.Hub.Transit.StartExpedition();
             Record("host started the party's expedition", startedRun && _app.Coop.CurrentRun != null, screen.Hub.Transit.Feedback.Text + $" run={_app.Coop.CurrentRun?.StartId} party={_app.Coop.CurrentRun?.PartySize}");
@@ -1020,9 +1134,20 @@ namespace RuinRail.App
             // the Return has already torn the expedition down).
             if (CoopRunLink.Current != null) CoopRunLink.Current.Received += (sender, kind, json) => { if (kind == CoopKinds.ProofReport) OnProofReport(sender, CoopJson.Read<ProofMessage>(json)); };
             _run.Expedition.ExpeditionEnded += summary => _summary = summary;
+            yield return WaitFor(() => Enumerable.Range(1, _size - 1).Select(ClientName).All(n => CoopPlayerDirectory.All().Any(p => !p.IsOwner && p.DisplayName == n)), 30f);
+            Record("host sees every client's custom name on their player objects", _waitOk,
+                string.Join(";", CoopPlayerDirectory.All().Select(p => $"{p.OwnerClientId}:{p.DisplayName}:owner={p.IsOwner}")));
             yield return WaitFor(() => _run.CoopHost.GameplayReleases > 0, 60f);
             Record("every client built the depth and gameplay was released together", _waitOk && _run.CoopHost.DepthReadyPeers.Count == _size - 1,
                 $"readyPeers={_run.CoopHost.DepthReadyPeers.Count} releases={_run.CoopHost.GameplayReleases}");
+            // Coins for the run: the host's own start moved its choice; its wallet for every member holds that member's.
+            yield return Seconds(1.5f);
+            var memberCoins = Clients.Select(c => (c, taken: _app.Coop.CurrentRun?.MemberFor(c)?.CarriedCoins ?? -1, held: _run.MemberEntity(c)?.GetComponent<PlayerLootReceiver>()?.Wallet.Balance ?? -1)).ToList();
+            Record("each player's chosen coins moved once: the host's from its bank into its run, every member's into the host-held wallet for it",
+                hostChosen > 0 && _run.Expedition.State.CoinsBroughtIn == hostChosen && session.Profile.BankedCoins == hostBankBefore - hostChosen && _app.ProbeSave().BankedCoins == hostBankBefore - hostChosen
+                && memberCoins.All(m => m.taken > 0 && m.held == m.taken),
+                $"host chosen={hostChosen} broughtIn={_run.Expedition.State.CoinsBroughtIn} bank {hostBankBefore}->{session.Profile.BankedCoins} onDisk={_app.ProbeSave().BankedCoins}; "
+                + string.Join(" ", memberCoins.Select(m => $"c{m.c}: captured={m.taken} hostWallet={m.held}")));
 
             yield return HostScenario();
         }
@@ -1256,6 +1381,7 @@ namespace RuinRail.App
             if (!trio) yield return MerchantSteps(first);
             if (!trio) yield return NonCombatSteps(first);
             yield return MenuSteps(first);
+            yield return DropSteps(first);
 
             // ---- 6. Downed / revive both ways ----
             yield return ReviveSteps(first);
@@ -1786,6 +1912,41 @@ namespace RuinRail.App
                 $"host={hostResult.Verdict} soldOnce={soldOnce} clientCoins {clientCoins}->{ViewOf(client)?.Coins} ledger={_run.LootAuthority.Ledger.Count} ack='{contestedAck}'");
         }
 
+        /// <summary>32/82: a member's drop is resolved by the host — one ground pickup per dropped item, seen by the member, the item revoked from the member's inventory and gone from the host's copy; a double press drops once.</summary>
+        private IEnumerator DropSteps(ulong client)
+        {
+            var start = StartRoom();
+            var centre = start != null ? start.InteriorWorldBounds.center : (Vector2)HostPlayer.transform.position;
+            IsolateAllBut(client, centre);
+            Teleport(_run.MemberEntity(client), centre);
+            yield return Seconds(1.0f);
+            yield return ReportAll();
+            var revokes = _run.CoopHost.RevokesSent;
+            var clientGround = ViewOf(client)?.GroundLoot ?? 0;
+            yield return Command(new ProofMessage { Step = "drop" }, new[] { client }, 40f);
+            var ack = _acks.TryGetValue(client, out var a) ? a.Arg : "";
+            yield return Seconds(1.0f);
+            yield return ReportAll();
+            string Field(string name) => ack.Split(' ').FirstOrDefault(f => f.StartsWith(name + "=", StringComparison.Ordinal))?.Substring(name.Length + 1) ?? "";
+            var x = Field("x");
+            var y = Field("y");
+            var pickups = _run.GroundLoot.Tracked.Where(g => g != null).Select(g => g.GetComponent<WorldItemPickup>()).Where(p => p != null && p.Item != null).ToList();
+            var xOnGround = pickups.Count(p => p.Item.InstanceId == x);
+            var yOnGround = pickups.Count(p => p.Item.InstanceId == y);
+            var mirror = _run.MirrorInventoryOf(client);
+            bool InMirror(string id) => mirror != null && (mirror.BackpackSlots.Any(i => i != null && i.InstanceId == id) || Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Any(e => mirror.GetEquipped(e)?.InstanceId == id));
+            var clientSees = (ViewOf(client)?.GroundLoot ?? 0) - clientGround;
+            Record("full backpack: the member swaps a backpack weapon with its worn one in place, no free slot needed",
+                Field("full") == "True" && Field("swapped") == "True", ack);
+            Record("member drop: the host creates exactly one ground pickup per item (backpack and worn), revokes it once, the member keeps it until the revoke, a double press drops once, and the host's copy no longer holds it",
+                !string.IsNullOrEmpty(x) && !string.IsNullOrEmpty(y) && xOnGround == 1 && yOnGround == 1 && _run.CoopHost.RevokesSent - revokes == 2
+                && Field("first") == "Done" && Field("keptUntilRevoke") == "True" && Field("second") == "Refused" && Field("xGone") == "True" && Field("worn") == "Done" && Field("yGone") == "True"
+                && !InMirror(x) && !InMirror(y) && clientSees == 2,
+                $"xOnGround={xOnGround} yOnGround={yOnGround} revokes=+{_run.CoopHost.RevokesSent - revokes} mirrorHas x={InMirror(x)} y={InMirror(y)} clientSeesNew={clientSees} ack='{ack}'");
+            foreach (var p in pickups.Where(p => p.Item.InstanceId == x || p.Item.InstanceId == y)) Destroy(p.gameObject);
+            yield return Seconds(0.5f);
+        }
+
         private IEnumerator ReviveSteps(ulong client)
         {
             var start = StartRoom();
@@ -1877,6 +2038,13 @@ namespace RuinRail.App
             yield return ReportAll();
             var transitOnClients = clients.All(c => ViewOf(c) is { } v && v.TransitState.StartsWith("Open"));
             var cacheUnlocked = binding.BossCache != null && !binding.BossCache.IsLocked;
+            // Encounter rewards: the host's chests (boss cache, any Elite chest) exist on every peer at the same room cell.
+            var hostRewards = View("host-rewards").RewardChests;
+            var centre = EncounterRewardPlacement.WorldCenter(bossRoom.Root);
+            Record("the boss's death leaves exactly one Boss Cache at the arena's playable centre, and every peer holds the same reward chests",
+                binding.BossCache != null && bossRoom.GetComponentsInChildren<RuinRail.Gameplay.Loot.SupplyChest>(true).Length == 1 && centre.HasValue
+                && Vector2.Distance(binding.BossCache.transform.position, centre.Value) < 0.01f && hostRewards.Length > 0 && clients.All(c => ViewOf(c)?.RewardChests == hostRewards),
+                $"host=[{hostRewards}] " + string.Join(" ", clients.Select(c => $"c{c}=[{ViewOf(c)?.RewardChests}]")) + $" cache={binding.BossCache?.transform.position} centre={centre}");
             Record("boss dies once on the host; the arena clears once; Transit opens on every peer", defeats == 1 && encounter.IsDefeated && transitOnClients && _run.Expedition.Transit != null,
                 $"defeats={defeats} hostFinished={finished} transitHost={_run.Expedition.Transit?.State} clients=" + string.Join(",", clients.Select(c => ViewOf(c)?.TransitState)) + $" cacheUnlocked={cacheUnlocked}");
 

@@ -83,6 +83,8 @@ namespace RuinRail.Networking
         public string LoadoutFingerprint { get; internal set; } = "none";
         public string InvalidReason { get; internal set; }
         public InventorySnapshot Loadout { get; internal set; }
+        /// <summary>Banked Coins this member will take into the run (its own choice; captured once at start).</summary>
+        public int CarriedCoins { get; internal set; }
     }
 
     public enum LobbyStartError
@@ -112,7 +114,11 @@ namespace RuinRail.Networking
             public string ParticipantId;
             public string LoadoutFingerprint;
             public InventorySnapshot Loadout;
+            /// <summary>Banked Coins this member takes into the run, as captured at start (every peer uses this value).</summary>
+            public int CarriedCoins;
         }
+
+        public int CarriedCoinsOf(ulong clientId) => Members.Find(m => m.ClientId == clientId)?.CarriedCoins ?? 0;
     }
 
     /// <summary>
@@ -201,6 +207,21 @@ namespace RuinRail.Networking
             return true;
         }
 
+        /// <summary>
+        /// A member states how many Banked Coins it takes into the run. Never negative; locked once the expedition
+        /// started. The value is only a request: each peer's own Start clamps it to that peer's banked balance.
+        /// </summary>
+        public bool SetCarriedCoins(ulong clientId, int coins)
+        {
+            var member = Get(clientId);
+            if (member == null || HasStarted) return false;
+            coins = Math.Max(0, coins);
+            if (member.CarriedCoins == coins) return true;
+            member.CarriedCoins = coins;
+            MemberChanged?.Invoke(member);
+            return true;
+        }
+
         public bool SetReady(ulong clientId, bool ready)
         {
             var member = Get(clientId);
@@ -235,7 +256,7 @@ namespace RuinRail.Networking
             };
             foreach (var member in _members.OrderBy(m => m.ClientId))
             {
-                snapshot.Members.Add(new ExpeditionStartSnapshot.MemberRisk { ClientId = member.ClientId, ParticipantId = member.ParticipantId, LoadoutFingerprint = member.LoadoutFingerprint, Loadout = member.Loadout });
+                snapshot.Members.Add(new ExpeditionStartSnapshot.MemberRisk { ClientId = member.ClientId, ParticipantId = member.ParticipantId, LoadoutFingerprint = member.LoadoutFingerprint, Loadout = member.Loadout, CarriedCoins = member.CarriedCoins });
             }
 
             StartSnapshot = snapshot;
@@ -298,7 +319,11 @@ namespace RuinRail.Networking
         /// A co-op client applies the host's start with the participant id the host assigned it, so this peer's
         /// transaction, roster entry and vote id are the ones every other peer uses for it.
         /// </summary>
-        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile, string transactionId)
+        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile, string transactionId) =>
+            Apply(snapshot, expedition, profile, transactionId, 0);
+
+        /// <summary><paramref name="coinsBroughtIn"/>: this peer's captured coins-for-the-run (clamped to its banked balance by Start).</summary>
+        public ExpeditionState Apply(ExpeditionStartSnapshot snapshot, ExpeditionService expedition, PlayerProfile profile, string transactionId, int coinsBroughtIn)
         {
             if (snapshot == null || expedition == null || profile == null) return null;
             if (!_applied.Add(snapshot.StartTransactionId))
@@ -308,7 +333,7 @@ namespace RuinRail.Networking
             }
 
             Applied++;
-            return expedition.Start(profile, snapshot.RunSeed, (Biome)snapshot.Biome, snapshot.PartySize, transactionId);
+            return expedition.Start(profile, snapshot.RunSeed, (Biome)snapshot.Biome, snapshot.PartySize, transactionId, coinsBroughtIn);
         }
     }
 }

@@ -261,5 +261,70 @@ namespace RuinRail.Tests
             Assert.AreEqual(30, _inventory.Get(AmmoType.Light));
             Assert.AreEqual(0, other.Get(AmmoType.Light));
         }
+
+        private string State() => JsonUtility.ToJson(_inventory.ToSnapshot());
+
+        [Test]
+        public void SwapEquippedWithBackpack_FullBackpack_ExchangesInPlace_AndNeverShowsAnItemTwice()
+        {
+            var worn = new ItemInstance("armor_scrap_vest");
+            Assert.IsTrue(_inventory.TryEquip(worn, EquippedSlot.Armor));
+            for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) Assert.IsTrue(_inventory.TryAddToBackpack(new ItemInstance(i == 5 ? "armor_scrap_vest" : "weapon_p9_ranger")));
+            var incoming = _inventory.BackpackSlots[5];
+            var seen = new System.Collections.Generic.List<string>();
+            void Check() => seen.Add(string.Join(",", _inventory.BackpackSlots.Select(b => b.InstanceId).Append(_inventory.GetEquipped(EquippedSlot.Armor)?.InstanceId).GroupBy(x => x).Where(g => g.Key != null && g.Count() > 1).Select(g => g.Key)));
+            _inventory.EquippedChanged += (_, _) => Check();
+            _inventory.BackpackChanged += Check;
+
+            Assert.IsTrue(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.Armor, 5));
+            Assert.AreSame(incoming, _inventory.GetEquipped(EquippedSlot.Armor));
+            Assert.AreSame(worn, _inventory.BackpackSlots[5]);
+            Assert.IsTrue(_inventory.BackpackSlots.All(b => b != null));
+            Assert.AreEqual(2, seen.Count, "one EquippedChanged, one BackpackChanged");
+            Assert.IsTrue(seen.All(string.IsNullOrEmpty), "listeners only ever see the final state: " + string.Join(" | ", seen));
+        }
+
+        [Test]
+        public void SwapEquippedWithBackpack_InvalidRequests_ChangeNothing()
+        {
+            Assert.IsTrue(_inventory.TryEquip(new ItemInstance("weapon_p9_ranger"), EquippedSlot.PrimaryWeapon));
+            Assert.IsTrue(_inventory.TryEquip(new ItemInstance("consumable_bandage", 2), EquippedSlot.ActiveConsumable));
+            Assert.IsTrue(_inventory.TryAddToBackpack(new ItemInstance("armor_scrap_vest")));
+            Assert.AreEqual(30, _inventory.Add(AmmoType.Light, 30));
+            var before = State();
+            var events = 0;
+            _inventory.EquippedChanged += (_, _) => events++;
+            _inventory.BackpackChanged += () => events++;
+
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.PrimaryWeapon, 0), "armor into a weapon slot");
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.ActiveConsumable, 1), "ammo into the consumable slot");
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.Armor, 0), "an empty worn slot has nothing to swap");
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.PrimaryWeapon, 4), "an empty backpack slot");
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.PrimaryWeapon, -1));
+            Assert.IsFalse(_inventory.TrySwapEquippedWithBackpack(EquippedSlot.PrimaryWeapon, PlayerInventory.BackpackCapacity));
+            Assert.IsFalse(_inventory.TrySwapEquipped(EquippedSlot.PrimaryWeapon, EquippedSlot.ActiveConsumable), "weapon and consumable never trade slots");
+            Assert.IsFalse(_inventory.TrySwapEquipped(EquippedSlot.PrimaryWeapon, EquippedSlot.SecondaryWeapon), "an empty weapon slot is a move, not a swap");
+            Assert.IsFalse(_inventory.TrySwapEquipped(EquippedSlot.PrimaryWeapon, EquippedSlot.PrimaryWeapon));
+            Assert.AreEqual(before, State());
+            Assert.AreEqual(0, events, "a refused swap raises nothing");
+        }
+
+        [Test]
+        public void SwapWeaponSlots_KeepsOneStatSourcePerWornWeapon()
+        {
+            var p9 = new ItemInstance("weapon_p9_ranger");
+            var knife = new ItemInstance("weapon_field_knife");
+            Assert.IsTrue(_inventory.TryEquip(p9, EquippedSlot.PrimaryWeapon));
+            Assert.IsTrue(_inventory.TryEquip(knife, EquippedSlot.SecondaryWeapon));
+            var stats = new RuinRail.Gameplay.Stats.PlayerStats(null);
+            using var registrar = new RuinRail.Gameplay.Stats.LoadoutStatRegistrar(_inventory, stats, id => _registry.TryGet(id, out var d) ? d : null, null);
+
+            Assert.IsTrue(_inventory.TrySwapEquipped(EquippedSlot.PrimaryWeapon, EquippedSlot.SecondaryWeapon));
+            Assert.AreSame(knife, _inventory.GetEquipped(EquippedSlot.PrimaryWeapon));
+            Assert.AreSame(p9, _inventory.GetEquipped(EquippedSlot.SecondaryWeapon));
+            Assert.AreEqual(RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(knife), registrar.RegisteredSources[EquippedSlot.PrimaryWeapon]);
+            Assert.AreEqual(RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(p9), registrar.RegisteredSources[EquippedSlot.SecondaryWeapon]);
+            CollectionAssert.IsSupersetOf(stats.SourceIds, new[] { RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(knife), RuinRail.Gameplay.Stats.EquippedItemStatSource.SourceIdFor(p9) }, "both worn weapons still feed the stats");
+        }
     }
 }

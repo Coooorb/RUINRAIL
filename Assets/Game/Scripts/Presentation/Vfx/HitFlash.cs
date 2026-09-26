@@ -6,8 +6,11 @@ using UnityEngine;
 namespace RuinRail.Presentation.Vfx
 {
     /// <summary>
-    /// art/104 enemy hit flash: tints the body renderers for a few frames after an applied hit (HealthComponent.Damaged)
-    /// and a warmer tint on stagger (ImpactReceiver.Staggered). Off via the accessibility setting; never changes state.
+    /// art/104 hit flash: tints the body renderers for a few frames after an applied hit (HealthComponent.Damaged — the
+    /// one event that fires only when HP actually went down, so blocked, invulnerable, i-framed or fully mitigated hits
+    /// never flash) and a warmer tint on stagger (ImpactReceiver.Staggered). Enemies use the config's hit flash; the
+    /// survivor uses its own red damage profile (<see cref="UsePlayerProfile"/>). A new hit restarts the flash; the
+    /// renderers always return to their cached colours. Off via the accessibility setting; never changes state.
     /// </summary>
     public sealed class HitFlash : MonoBehaviour
     {
@@ -19,6 +22,11 @@ namespace RuinRail.Presentation.Vfx
         private Color[] _original;
         private float _remaining;
         private float _seconds = 0.06f;
+        private bool _playerProfile;
+        private bool _bossProfile;
+
+        /// <summary>0..1 strength of the last boss flash (tests / diagnostics); 0 for other profiles.</summary>
+        public float LastIntensity { get; private set; }
 
         public bool IsFlashing => _remaining > 0f;
         public int Flashes { get; private set; }
@@ -65,7 +73,29 @@ namespace RuinRail.Presentation.Vfx
             if (_impact != null) _impact.Staggered -= OnStaggered;
         }
 
-        private void OnDamaged(int _) => Flash(_config != null ? _config.HitFlashColor : Color.white);
+        /// <summary>The survivor's damage read: the config's red player tint and duration instead of the enemy flash.</summary>
+        public void UsePlayerProfile() => _playerProfile = true;
+
+        /// <summary>A boss's damage read: the red tint scales with the effective damage of each hit (see FeedbackConfig).</summary>
+        public void UseBossProfile() => _bossProfile = true;
+
+        public bool IsBossProfile => _bossProfile;
+
+        // `applied` is HealthComponent.Damaged's amount: what the hit actually took off after invulnerability,
+        // mitigation and clamping (the replicated HP drop on a co-op client), never the weapon's nominal damage.
+        private void OnDamaged(int applied)
+        {
+            if (_bossProfile && _config != null)
+            {
+                LastIntensity = _config.BossFlashIntensity(applied, _health != null ? _health.MaxHealth : 0);
+                Flash(_config.BossFlashColor(applied, _health != null ? _health.MaxHealth : 0));
+                return;
+            }
+
+            Flash(_playerProfile
+                ? (_config != null ? _config.PlayerHitFlashColor : new Color(1f, 0.32f, 0.32f))
+                : (_config != null ? _config.HitFlashColor : new Color(1f, 0.38f, 0.38f)));
+        }
         private void OnStaggered(ImpactReceiver _) => Flash(_config != null ? _config.StaggerFlashColor : new Color(1f, 0.85f, 0.4f));
 
         public void Flash(Color color)
@@ -76,7 +106,8 @@ namespace RuinRail.Presentation.Vfx
                 return;
             }
 
-            _seconds = _config != null ? _config.HitFlashSeconds : 0.06f;
+            _seconds = _config == null ? (_playerProfile || _bossProfile ? 0.12f : 0.1f)
+                : _playerProfile ? _config.PlayerHitFlashSeconds : _bossProfile ? _config.BossFlashSeconds : _config.HitFlashSeconds;
             _remaining = _seconds;
             CurrentColor = color;
             Flashes++;
@@ -98,8 +129,15 @@ namespace RuinRail.Presentation.Vfx
 
         private void Restore()
         {
+            _remaining = 0f;
             if (_renderers == null) return;
             for (var i = 0; i < _renderers.Length; i++) if (_renderers[i] != null) _renderers[i].color = _original[i];
+        }
+
+        /// <summary>A flash never outlives its component: disabling mid-flash puts the colours back.</summary>
+        private void OnDisable()
+        {
+            if (IsFlashing) Restore();
         }
 
         private void Update() => Tick(Time.deltaTime);

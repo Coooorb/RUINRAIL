@@ -80,7 +80,7 @@ namespace RuinRail.EditorTools.Production
                 foreach (var problem in Problems) sb.AppendLine($"- ERROR {problem}");
                 if (Problems.Count > 0) sb.AppendLine();
 
-                sb.AppendLine("Delivery follows `production/136_ASSET_REPLACEMENT_WORKFLOW.md`. A role becomes INTEGRATED only when the asset is bound at its existing seam, imports cleanly, carries a provenance entry, and its placeholder has left the release path. Visual quality is approved by a human, never here.");
+                sb.AppendLine("Delivery follows `docs/technical/136_ASSET_REPLACEMENT_WORKFLOW.md`. A role becomes INTEGRATED only when the asset is bound at its existing seam, imports cleanly, carries a provenance entry, and its placeholder has left the release path. Visual quality is approved by a human, never here.");
                 return sb.ToString();
             }
         }

@@ -50,6 +50,7 @@ namespace RuinRail.Gameplay.Base
         public int NextStorageCapacity => _config.StorageCapacityForTier(_state.StorageTier + 1);
         public int NextStorageUpgradeCost => _config.StorageUpgradeCostFrom(_state.StorageTier);
         public bool IsStorageMaxed => _state.StorageTier >= _config.MaxStorageTier;
+        public int MaxStorageTier => _config.MaxStorageTier;
         public int TraderLevel => _trader?.Level ?? 1;
         public int NextTraderUpgradeCost => _trader?.NextUpgradeCost ?? 0;
 

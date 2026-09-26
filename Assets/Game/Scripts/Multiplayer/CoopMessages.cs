@@ -86,6 +86,8 @@ namespace RuinRail.Networking
         public InventorySnapshot Loadout;
         /// <summary>Permanent attribute ranks (player/13), indexed by SkillId, so the host's copy of this member has the same stats.</summary>
         public int[] SkillRanks = Array.Empty<int>();
+        /// <summary>Banked Coins this member chose to take into the run (the host captures it at start).</summary>
+        public int CarriedCoins;
     }
 
     [Serializable]
@@ -123,6 +125,8 @@ namespace RuinRail.Networking
             public string ParticipantId;
             public string DisplayName;
             public bool IsHost;
+            /// <summary>Banked Coins this member takes into the run, captured by the host's lobby at start.</summary>
+            public int CarriedCoins;
         }
 
         public RunMember MemberFor(ulong clientId) => Members.Find(m => m.ClientId == clientId);
@@ -291,6 +295,8 @@ namespace RuinRail.Networking
     {
         public string Text;
         public bool IsProblem;
+        /// <summary>The request this notice answers (a refused drop), so the member can release it; empty otherwise.</summary>
+        public string TransactionId;
     }
 
     // ---------------------------------------------------------------- requests
@@ -373,6 +379,12 @@ namespace RuinRail.Networking
         public uint Version;
         public InventorySnapshot Inventory;
         public int[] SkillRanks = Array.Empty<int>();
+        /// <summary>
+        /// The Banked Coins this member's own Start actually moved into its Carried wallet (-1 = not reported). The host
+        /// seeds its authoritative wallet for the member from the captured start value; this report can only lower that
+        /// seed, once, when the member's own banked balance could not cover it.
+        /// </summary>
+        public int CoinsBroughtIn = -1;
     }
 
     [Serializable]

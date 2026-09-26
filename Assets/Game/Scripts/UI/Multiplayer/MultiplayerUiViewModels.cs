@@ -110,9 +110,12 @@ namespace RuinRail.UI.Multiplayer
             _ => !IsBusy
         };
 
+        /// <summary>Optional name source for joined members (host: the name each client reported); null falls back to the roster.</summary>
+        public Func<ulong, string> MemberName { get; set; }
+
         public IReadOnlyList<TerminalRosterLine> Roster => _lobby.Members.Select(m => new TerminalRosterLine
         {
-            Name = _roster?.Get(m.ClientId)?.DisplayName ?? m.ParticipantId,
+            Name = MemberName?.Invoke(m.ClientId) ?? _roster?.Get(m.ClientId)?.DisplayName ?? m.ParticipantId,
             IsHost = m.IsHost,
             IsReady = m.IsReady,
             HasValidLoadout = m.HasValidLoadout,
@@ -305,6 +308,10 @@ namespace RuinRail.UI.Multiplayer
         public TransitChoice? LocalVote => _decision.Choices.TryGetValue(_localId ?? string.Empty, out var c) ? c : null;
         public IReadOnlyList<string> PendingVoterNames => _decision.PendingVoters.Select(_displayName).ToList();
         public bool AwaitingReturnConfirmation { get; private set; }
+        /// <summary>Players with a vote (the living party at the decision).</summary>
+        public int VoterCount => _decision.LivingPlayers.Count;
+        /// <summary>Votes cast so far for one option (presentation of the existing tally; never a rule).</summary>
+        public int VotesFor(TransitChoice choice) => _decision.Choices.Values.Count(c => c == choice);
         public string ReturnWarningText => _decision.RequiresReturnWarning ? new TransitReturnWarning(_decision.DeadPlayers.Select(_displayName).ToList()).Message : string.Empty;
         public string NoVoteText => HasVoteControls ? string.Empty : IsResolved ? string.Empty : "Dead players have no vote.";
 

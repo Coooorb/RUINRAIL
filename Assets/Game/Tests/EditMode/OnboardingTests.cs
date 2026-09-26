@@ -138,6 +138,90 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(ShelterOnboardingStep.Complete, legacyVm.Step, "Kit already granted: nothing else to walk through.");
         }
 
+        // ---- Display name: the Character station's name field renames through the one validated, saved path ----
+
+        [Test]
+        public void NameEntry_RenamesAndPersists_RejectsEmptyInput_AndLeavesProgressionAndItemsAlone()
+        {
+            var (menu, store, _) = Menu();
+            menu.Play();
+            var session = menu.Session;
+            using var onboarding = new ShelterOnboardingViewModel(session, _policy);
+            Assert.IsTrue(onboarding.SubmitDisplayName("Rail Ghost"));
+            session.Progression.AddXp(500);
+            session.Banked.Credit(123, "test");
+            session.SaveNow("test");
+            var before = session.Slot.Profile;
+            var (xp, coins, points, loadout, storage) = (before.TotalXp, before.BankedCoins, before.UnspentSkillPoints,
+                JsonUtility.ToJson(before.SafeLoadout), JsonUtility.ToJson(session.Slot.Storage));
+
+            string saved = null;
+            onboarding.DisplayNameChanged += n => saved = n;
+            var entry = new DisplayNameEntry(onboarding);
+            Assert.IsTrue(entry.Open());
+            Assert.AreEqual("Rail Ghost", entry.Text, "the field opens on the saved name");
+
+            // Empty (and whitespace-only) input never replaces a valid name; the field stays open and says why.
+            while (entry.Text.Length > 0) entry.Backspace();
+            Assert.IsFalse(entry.Submit());
+            Assert.AreEqual("Enter a name.", entry.Error);
+            entry.Type("    ");
+            Assert.IsFalse(entry.Submit());
+            Assert.IsTrue(entry.IsOpen);
+            Assert.AreEqual("Rail Ghost", session.Profile.DisplayName);
+            Assert.IsNull(saved);
+
+            // Typing is filtered to the allowed set and capped at the policy maximum (16), so the HUD never overflows.
+            while (entry.Text.Length > 0) entry.Backspace();
+            entry.Type("<b>Iron!</b>");
+            Assert.AreEqual("bIronb", entry.Text, "markup and punctuation are never typed into the field");
+            while (entry.Text.Length > 0) entry.Backspace();
+            entry.Type(new string('W', 30));
+            Assert.AreEqual(16, entry.Text.Length);
+
+            // Controller editing: Up/Down steps the last character, Right adds one.
+            while (entry.Text.Length > 0) entry.Backspace();
+            entry.Cycle(+1);
+            Assert.AreEqual("A", entry.Text);
+            entry.Cycle(+1);
+            entry.AddCharacter();
+            Assert.AreEqual("BB", entry.Text);
+            entry.Cycle(-1);
+            Assert.AreEqual("BA", entry.Text);
+
+            // Save: trimmed and collapsed, stored, autosaved, announced.
+            while (entry.Text.Length > 0) entry.Backspace();
+            entry.Type("  Iron   Wolf ");
+            Assert.IsTrue(entry.Submit(), entry.Error);
+            Assert.IsFalse(entry.IsOpen);
+            Assert.AreEqual("Iron Wolf", session.Profile.DisplayName);
+            Assert.AreEqual("Iron Wolf", saved);
+            StringAssert.Contains("\"DisplayName\":\"Iron Wolf\"", store.Document, "the rename was flushed to the save");
+
+            // Only the name changed: progression, coins, points, loadout and storage are exactly as they were.
+            var after = session.Slot.Profile;
+            Assert.AreEqual(xp, after.TotalXp);
+            Assert.AreEqual(coins, after.BankedCoins);
+            Assert.AreEqual(points, after.UnspentSkillPoints);
+            Assert.AreEqual(loadout, JsonUtility.ToJson(after.SafeLoadout));
+            Assert.AreEqual(storage, JsonUtility.ToJson(session.Slot.Storage));
+            menu.LeaveBase();
+
+            // Restart: the saved name is restored automatically, no name step, same progression.
+            var (again, _, _) = Menu(store);
+            Assert.AreEqual(PlayOutcome.Continued, again.Play());
+            Assert.AreEqual("Iron Wolf", again.Session.Profile.DisplayName);
+            Assert.AreEqual(xp, again.Session.Profile.TotalXp);
+            Assert.AreEqual(coins, again.Session.Profile.BankedCoins);
+            using var relaunched = new ShelterOnboardingViewModel(again.Session, _policy);
+            Assert.IsFalse(relaunched.NeedsDisplayName);
+
+            // While a live session fixed the party's names, the field refuses to open.
+            var blocked = new DisplayNameEntry(relaunched, () => "Leave the party to change your name.");
+            Assert.IsFalse(blocked.Open());
+            Assert.IsFalse(blocked.IsOpen);
+        }
+
         // ---- Acceptance 2 + Req 3: persisted completion suppresses repeats; settings reset/re-enable ----
 
         [Test]

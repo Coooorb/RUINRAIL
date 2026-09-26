@@ -58,7 +58,7 @@ namespace RuinRail.Gameplay.Combat.Hazards
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            var damageable = other.GetComponentInParent<IDamageable>();
+            var damageable = BodyOf(other);
             if (damageable == null) return;
             if (_occupants.TryGetValue(damageable, out var occupant))
             {
@@ -80,10 +80,22 @@ namespace RuinRail.Gameplay.Combat.Hazards
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            var damageable = other.GetComponentInParent<IDamageable>();
+            var damageable = BodyOf(other);
             if (damageable == null || !_occupants.TryGetValue(damageable, out var occupant)) return;
             occupant.ColliderCount--;
             if (occupant.ColliderCount <= 0) _occupants.Remove(damageable);
+        }
+
+        /// <summary>
+        /// The damageable whose own body this collider is, or null. Only an actor's solid body collider (on the object
+        /// that carries its IDamageable) occupies a hazard. Pooled projectiles, hurtboxes and any other collider
+        /// parented under an actor share its hierarchy, so a player's bullet fired across a hazard used to enrol the
+        /// player as an occupant and tick hazard damage onto them while they stood outside it.
+        /// </summary>
+        public static IDamageable BodyOf(Collider2D other)
+        {
+            if (other == null || other.isTrigger) return null;
+            return other.GetComponent<IDamageable>();
         }
 
         private void FixedUpdate()

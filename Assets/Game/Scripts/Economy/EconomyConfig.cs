@@ -81,6 +81,8 @@ namespace RuinRail.Gameplay.Economy
 
         [Header("Base services")]
         [SerializeField] private int _skillRespecPrice = 2500;
+        [Tooltip("TUNABLE (temporary UI value, not an approved design number): the step of the Transit's coins-for-the-run selector. NONE and ALL always reach 0 and the whole banked balance.")]
+        [SerializeField, Min(1)] private int _carryCoinStep = 50;
 
         [Header("Coin reward depth scaling hook (percent per depth above 1; 0 = flat, V1 FINAL (TASK 179) until approved)")]
         [SerializeField, Min(0)] private int _coinRewardPercentPerDepth;
@@ -102,6 +104,8 @@ namespace RuinRail.Gameplay.Economy
         public int RoundingStep => Mathf.Max(1, _roundingStep);
         public int AccessoryBasePrice => _accessoryBasePrice;
         public int SkillRespecPrice => _skillRespecPrice;
+        /// <summary>Step of the Shelter's coins-for-the-run selector (tunable, temporary; see the field tooltip).</summary>
+        public int CarryCoinStep => Mathf.Max(1, _carryCoinStep);
         public IReadOnlyList<AmmoBundle> AmmoBundles => _ammoBundles;
 
         public int RarityPercent(Rarity rarity)

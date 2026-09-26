@@ -206,7 +206,7 @@ namespace RuinRail.Tests
             Assert.IsNotNull(binding.Boss);
             Assert.AreEqual("boss_tunnel_maw", binding.Boss.Boss.Definition.Id, "The arena tag binds the Tunnel Maw.");
             Assert.AreEqual(DepthScaling.ScaledHealth(1150, 3, 1, true), binding.Boss.Boss.Health.MaxHealth, "Boss HP scaled by depth on the boss curve.");
-            Assert.IsTrue(binding.BossCache.IsLocked);
+            Assert.IsNull(binding.BossCache, "The Boss Cache does not exist before the boss dies (46: boss death spawns it).");
             Assert.IsFalse(binding.Transit.IsActivated);
 
             var other = CreateArena(new[] { "metro", "boss", "boss:the_conductor" }, new Vector2(80f, 0f));
@@ -226,7 +226,7 @@ namespace RuinRail.Tests
             binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(99999));
             yield return null;
             Assert.IsTrue(binding.Boss.IsDefeated);
-            if (!binding.BossCache.IsLocked) cacheUnlocks++;
+            if (binding.BossCache != null && !binding.BossCache.IsLocked) cacheUnlocks++;
             Assert.AreEqual(1, cacheUnlocks);
             Assert.AreEqual(1, transitActivations);
             Assert.AreEqual(1, cleared);

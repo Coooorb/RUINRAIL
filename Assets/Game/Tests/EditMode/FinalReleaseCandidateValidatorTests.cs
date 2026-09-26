@@ -67,7 +67,7 @@ namespace RuinRail.Tests.EditMode
             f.Snapshot["loot.supply_chest.light_ammo"] = "1-2 weight 4";
             f.Snapshot["blaster.heat.weapon_redline"] = "heat/shot 1";
             f.SmokeManifest = f.SmokeManifest.Where(r => r.Scenario != "returning" && r.Path != "boss").ToList();
-            f.SupersededBanners["production/AUDIO_EVENT_AUDIT.md"] = false;
+            f.SupersededBanners["production/archive/AUDIO_EVENT_AUDIT.md"] = false;
             f.RemoteMirrorComposesImpactPassives = false;
             f.RemoteMirrorDerivesFromMirroredEquipment = false;
             f.ClientRigExcludesImpactPassives = false;

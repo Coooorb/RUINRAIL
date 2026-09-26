@@ -80,6 +80,9 @@ namespace RuinRail.Gameplay.Combat.Weapons
             IsEquipped = true;
         }
 
+        /// <summary>Accepted shots since this component was created.</summary>
+        public int ShotsFired { get; private set; }
+
         public void OnUnequipped()
         {
             // Heat is deliberately untouched: a holstered blaster keeps its heat and keeps cooling.
@@ -201,6 +204,7 @@ namespace RuinRail.Gameplay.Combat.Weapons
             }
 
             _fireCooldownRemaining = CurrentFireInterval;
+            ShotsFired++;
             // Heat and damage hooks of the wearer (Cooling Module, Steady Aim / Fresh Mag); the overheat is announced once.
             var shotHeat = _combatEvents != null ? _combatEvents.RaiseBlasterShotHeatRolling(CurrentHeatPerShot).FinalHeat : CurrentHeatPerShot;
             var wasOverheated = Heat.IsOverheated;

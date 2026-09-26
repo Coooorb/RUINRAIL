@@ -74,6 +74,17 @@ namespace RuinRail.Networking
             return identity;
         }
 
+        /// <summary>
+        /// Re-sanitizes a member's name (the local player renamed before hosting). Identity and host flag are kept.
+        /// </summary>
+        public bool Rename(ulong clientId, string rawName)
+        {
+            var member = Get(clientId);
+            if (member == null) return false;
+            member.DisplayName = Sanitize(rawName, clientId);
+            return true;
+        }
+
         public bool Remove(ulong clientId)
         {
             var member = Get(clientId);

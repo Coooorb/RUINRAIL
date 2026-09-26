@@ -100,6 +100,209 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
+        public IEnumerator LiveRun_ConsumableSlot_ShowsTheRealRemainingUseTime_ClearsOnCompletionAndCancel_InstantUnchanged()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("HUD Proof");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 6; i++) yield return null;
+
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var hud = run.HudView;
+            var slot = hud.ConsumableSlot;
+            var player = run.Rig.Player;
+            var user = player.GetComponent<PlayerConsumableUser>();
+            var use = user.UseAction;
+            var health = player.GetComponent<HealthComponent>();
+            var inventory = run.Expedition.State.Inventory;
+            var ppu = run.Camera.Config.PixelsPerUnit;
+            var camera = run.Camera.Camera;
+
+            IEnumerator Equip(string id, int quantity)
+            {
+                var old = inventory.Unequip(EquippedSlot.ActiveConsumable);
+                Assert.IsTrue(inventory.TryEquip(new ItemInstance(id, quantity), EquippedSlot.ActiveConsumable), id);
+                yield return null;
+                yield return null;
+            }
+
+            // Follows the action's own timer frame by frame until the use ends; the display must never lead or trail it by a frame's worth.
+            IEnumerator Channel(string id, float expectedSeconds, string capture)
+            {
+                yield return Equip(id, 3);
+                health.TryApplyDamage(new DamageRequest(40));
+                Assert.AreEqual(string.Empty, slot.UseTimeText, $"{id}: nothing shown before the use");
+                Assert.IsTrue(user.TryUse(), $"{id}: use started");
+                Assert.AreEqual(expectedSeconds, use.Current.UseTimeSeconds, 1e-4f, $"{id}: data duration");
+                var started = Time.time;
+                var captured = false;
+                var frames = 0;
+                var lastShown = float.MaxValue;
+                while (use.IsUsing)
+                {
+                    yield return null;
+                    if (!use.IsUsing) break;
+                    frames++;
+                    var shown = float.Parse(slot.UseTimeText.TrimEnd('s'), System.Globalization.CultureInfo.InvariantCulture);
+                    Assert.AreEqual(Mathf.Ceil(use.RemainingSeconds * 10f) / 10f, shown, 0.1001f, $"{id}: the slot shows the action's remaining time");
+                    Assert.LessOrEqual(shown, lastShown, $"{id}: the countdown never goes up");
+                    Assert.AreEqual(use.RemainingSeconds / expectedSeconds, slot.UseBar01, 0.05f, $"{id}: the bar follows the same timer");
+                    lastShown = shown;
+                    if (!captured && use.RemainingSeconds < expectedSeconds * 0.6f)
+                    {
+                        captured = true;
+                        Note($"{id} mid-use: slot '{slot.UseTimeText}' bar {slot.UseBar01:F2}, action remaining {use.RemainingSeconds:F2}s");
+                        LiveDungeonCapture.Capture(Folder, capture, camera, ppu, includeUi: true);
+                    }
+                }
+
+                var took = Time.time - started;
+                yield return null;
+                Assert.AreEqual(string.Empty, slot.UseTimeText, $"{id}: the countdown disappears on completion");
+                Assert.AreEqual(0f, slot.UseBar01, $"{id}: the bar clears on completion");
+                Assert.AreEqual(expectedSeconds, took, 0.1f, $"{id}: the channel lasted its data duration");
+                Assert.Greater(frames, 5);
+                Assert.AreEqual("x2", hud.ConsumableText, $"{id}: one unit spent");
+                Note($"{id}: {frames} frames, completed after {took:F2}s, countdown cleared");
+            }
+
+            yield return Channel("consumable_bandage", 1.5f, "live_16_bandage_mid_use_countdown");
+            yield return Channel("consumable_medkit", 3f, "live_17_medkit_mid_use_countdown");
+
+            // The countdown is sized inside the 40x40 slot and clear of the stack chip.
+            var slotRect = slot.Rect;
+            Assert.IsTrue(Contains(slotRect, slot.UseTimeRect), "the countdown strip stays inside the slot");
+            Assert.IsFalse(Overlaps(slot.UseTimeRect, slot.CountRect), "the countdown never covers the stack chip");
+
+            // Interrupt: the countdown clears the frame the channel is cancelled; nothing is spent (OnCompletion).
+            yield return Equip("consumable_medkit", 3);
+            health.TryApplyDamage(new DamageRequest(40)); // a heal only starts with HP missing
+            Assert.IsTrue(user.TryUse());
+            for (var i = 0; i < 10; i++) yield return null;
+            Assert.AreNotEqual(string.Empty, slot.UseTimeText);
+            Assert.IsTrue(use.Cancel());
+            yield return null;
+            Assert.AreEqual(string.Empty, slot.UseTimeText, "cancelled: the countdown disappears");
+            Assert.AreEqual(0f, slot.UseBar01);
+            Assert.AreEqual("x3", hud.ConsumableText);
+
+            // Instant consumable: resolves on the press, no countdown ever appears.
+            yield return Equip("consumable_frag_grenade", 3);
+            Assert.AreEqual(0f, _app.Content.Items.OfType<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition>().First(d => d.Id == "consumable_frag_grenade").UseTimeSeconds);
+            Assert.IsTrue(user.TryUse(), "the grenade is thrown");
+            Assert.IsFalse(use.IsUsing);
+            for (var i = 0; i < 3; i++)
+            {
+                yield return null;
+                Assert.AreEqual(string.Empty, slot.UseTimeText, "instant use: no countdown");
+            }
+
+            Assert.AreEqual("x2", hud.ConsumableText);
+            LiveDungeonCapture.Capture(Folder, "live_18_after_instant_grenade_no_countdown", camera, ppu, includeUi: true);
+            File.WriteAllText(Path.Combine(Folder, "consumable_use_countdown_evidence.txt"), _evidence.ToString());
+        }
+
+        [UnityTest]
+        public IEnumerator LiveRun_HealingAtFullHp_IsRejected_NoChannelNoCountdownNoSpend_StimStillUsable()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("HUD Proof");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 6; i++) yield return null;
+
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var slot = run.HudView.ConsumableSlot;
+            var player = run.Rig.Player;
+            var user = player.GetComponent<PlayerConsumableUser>();
+            var use = user.UseAction;
+            var health = player.GetComponent<HealthComponent>();
+            var inventory = run.Expedition.State.Inventory;
+            var started = 0;
+            use.UseStarted += _ => started++;
+
+            foreach (var id in new[] { "consumable_bandage", "consumable_medkit" })
+            {
+                inventory.Unequip(EquippedSlot.ActiveConsumable);
+                Assert.IsTrue(inventory.TryEquip(new ItemInstance(id, 2), EquippedSlot.ActiveConsumable));
+                yield return null;
+                Assert.AreEqual(health.MaxHealth, health.CurrentHealth, "precondition: full effective HP");
+
+                // The composed player's use entry point (what the Consumable input handler calls).
+                Assert.IsFalse(user.TryUse(), $"{id}: rejected at full HP");
+                for (var i = 0; i < 5; i++)
+                {
+                    yield return null;
+                    Assert.IsFalse(use.IsUsing, $"{id}: no channel");
+                    Assert.AreEqual(string.Empty, slot.UseTimeText, $"{id}: no countdown for a rejected use");
+                }
+
+                Assert.AreEqual(0, started, $"{id}: UseStarted never raised");
+                Assert.AreEqual(2, inventory.GetEquipped(EquippedSlot.ActiveConsumable).Quantity, $"{id}: nothing spent");
+                Assert.AreEqual(health.MaxHealth, health.CurrentHealth);
+
+                health.TryApplyDamage(new DamageRequest(10));
+                yield return null;
+                var before = health.CurrentHealth;
+                Assert.IsTrue(user.TryUse(), $"{id}: usable once HP is missing");
+                yield return null;
+                Assert.AreNotEqual(string.Empty, slot.UseTimeText, $"{id}: the countdown runs for a real use");
+                var deadline = Time.realtimeSinceStartup + 10f;
+                while (use.IsUsing && Time.realtimeSinceStartup < deadline) yield return null;
+                Assert.Greater(health.CurrentHealth, before, $"{id}: healed");
+                Assert.AreEqual(1, inventory.GetEquipped(EquippedSlot.ActiveConsumable).Quantity, $"{id}: one unit spent");
+                started = 0;
+                health.Heal(health.MaxHealth);
+                Note($"{id}: rejected at {health.MaxHealth}/{health.MaxHealth} with no channel/countdown/spend; healed from {before} when damaged");
+            }
+
+            // A non-healing consumable at full HP is used exactly as before.
+            inventory.Unequip(EquippedSlot.ActiveConsumable);
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("consumable_combat_stim", 2), EquippedSlot.ActiveConsumable));
+            yield return null;
+            Assert.IsTrue(user.TryUse(), "a stim at full HP starts");
+            var stimDeadline = Time.realtimeSinceStartup + 5f;
+            while (use.IsUsing && Time.realtimeSinceStartup < stimDeadline) yield return null;
+            Assert.AreEqual(1, inventory.GetEquipped(EquippedSlot.ActiveConsumable).Quantity);
+            Assert.Greater(user.Effects.RemainingSeconds("consumable_combat_stim"), 0f, "the buff is running");
+        }
+
+        private static Rect WorldRect(RectTransform rect)
+        {
+            var corners = new Vector3[4];
+            rect.GetWorldCorners(corners);
+            return Rect.MinMaxRect(corners[0].x, corners[0].y, corners[2].x, corners[2].y);
+        }
+
+        private static bool Contains(RectTransform outer, RectTransform inner)
+        {
+            var o = WorldRect(outer);
+            var i = WorldRect(inner);
+            return i.xMin >= o.xMin - 0.01f && i.yMin >= o.yMin - 0.01f && i.xMax <= o.xMax + 0.01f && i.yMax <= o.yMax + 0.01f;
+        }
+
+        private static bool Overlaps(RectTransform a, RectTransform b) => WorldRect(a).Overlaps(WorldRect(b));
+
+        [UnityTest]
         public IEnumerator LiveRun_StartsFull_DashIcon_GraphicalHudSlots_AndMerchantTradeFlow()
         {
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);

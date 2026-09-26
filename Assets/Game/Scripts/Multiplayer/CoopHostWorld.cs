@@ -900,10 +900,10 @@ namespace RuinRail.Networking
         }
 
         /// <summary>Tells one member what its interaction on the host did (the same notice line a local press shows).</summary>
-        public void SendNotice(ulong clientId, string text, bool isProblem)
+        public void SendNotice(ulong clientId, string text, bool isProblem, string transactionId = null)
         {
             if (string.IsNullOrEmpty(text) || clientId == _bus.LocalClientId) return;
-            _bus.SendToClient(clientId, CoopKinds.Notice, CoopJson.Write(new NoticeMessage { Text = text, IsProblem = isProblem }));
+            _bus.SendToClient(clientId, CoopKinds.Notice, CoopJson.Write(new NoticeMessage { Text = text, IsProblem = isProblem, TransactionId = transactionId }));
         }
 
         private void HandleDepthReady(ulong sender, DepthReadyMessage ready)

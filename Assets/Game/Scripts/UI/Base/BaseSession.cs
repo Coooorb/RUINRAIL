@@ -81,6 +81,9 @@ namespace RuinRail.UI.Base
             Lobby = new PartyLobby(LocalClientId, configs.Resolve);
             Lobby.Join(LocalClientId, Profile.DisplayName ?? "Player 1");
             _loadoutBinder = new LobbyLoadoutBinder(Lobby, LocalClientId, Loadout);
+            // Spending at the Trader / Workshop / Character Station can lower the bank under the chosen amount: the
+            // lobby always sees the clamped value.
+            Banked.Changed += _ => SyncCoinsToCarry();
 
             // The economy config carries the bounded deep-depth reward curve, so XP earned past its start depth scales
             // through the one seam in ExpeditionService.AddXp.
@@ -89,6 +92,8 @@ namespace RuinRail.UI.Base
             // While a run is active the Base loadout is empty (the gear is at risk in the expedition); on return it is the
             // secured loadout. Subscribed BEFORE the recorder so the restore runs before the end-of-run save.
             Expedition.ExpeditionStarted += _ => { _loadoutSynced = false; Loadout.RestoreFromSnapshot(null); };
+            // The chosen coins were consumed by that start; the next preparation begins from nothing taken.
+            Expedition.ExpeditionStarted += _ => { _coinsToCarry = 0; CoinsToCarryChanged?.Invoke(); };
             // The party reopens first so the restored Base loadout is re-submitted to the lobby (a closed party refuses
             // loadout updates), and the next run starts from the loadout the player actually has, never a stale copy.
             Expedition.ExpeditionEnded += _ => { Lobby.Reopen(); Loadout.RestoreFromSnapshot(Profile.SafeLoadout); _loadoutSynced = true; _loadoutBinder.Submit(); };
@@ -131,6 +136,38 @@ namespace RuinRail.UI.Base
             return session;
         }
 
+        private int _coinsToCarry;
+
+        /// <summary>
+        /// Banked Coins the player chose to take into the next expedition (77: they become Carried Coins at Start). A
+        /// preparation choice only — nothing moves until the start transaction, so changing or abandoning it can never
+        /// lose or duplicate a coin, and it is never saved. Always within [0, banked balance].
+        /// </summary>
+        public int CoinsToCarry => Math.Min(_coinsToCarry, Banked.Balance);
+
+        /// <summary>What stays banked once the chosen coins leave with the expedition.</summary>
+        public int BankedAfterDeparture => Banked.Balance - CoinsToCarry;
+
+        public event Action CoinsToCarryChanged;
+
+        /// <summary>Chooses the amount to take (clamped to [0, banked]); returns the amount now chosen.</summary>
+        public int SetCoinsToCarry(int coins)
+        {
+            if (Expedition.IsExpeditionActive) return CoinsToCarry;
+            _coinsToCarry = Math.Max(0, Math.Min(coins, Banked.Balance));
+            SyncCoinsToCarry();
+            CoinsToCarryChanged?.Invoke();
+            return CoinsToCarry;
+        }
+
+        /// <summary>Re-states the (clamped) choice to the lobby, which captures it at start.</summary>
+        public void SyncCoinsToCarry()
+        {
+            if (Expedition.IsExpeditionActive) return;
+            _coinsToCarry = Math.Min(_coinsToCarry, Banked.Balance);
+            Lobby.SetCarriedCoins(LocalClientId, _coinsToCarry);
+        }
+
         /// <summary>Commits the edited loadout to the profile (what Start moves into the at-risk inventory).</summary>
         public void CommitLoadoutToProfile()
         {
@@ -152,6 +189,29 @@ namespace RuinRail.UI.Base
             StarterLoadoutFallbacks++;
             Autosave.MarkDirty("starter_loadout_fallback");
             return true;
+        }
+
+        /// <summary>
+        /// The extraction whose loot the player has already looked at in the stash (UI state only, not saved): the
+        /// Shelter stops pointing at Storage once the stash was opened for that run.
+        /// </summary>
+        public string StashAcknowledgedTransaction { get; set; }
+
+        /// <summary>
+        /// True while the last expedition was a successful extraction, some of what it secured is still in the survivor's
+        /// backpack (where loot lands; the gear worn into the run is not "loot to stash") and the stash has not been
+        /// opened since: the Shelter points the player at Storage.
+        /// </summary>
+        public bool HasLootToStash
+        {
+            get
+            {
+                var summary = Expedition.LastSummary;
+                if (summary == null || !summary.IsSuccess || Expedition.IsExpeditionActive) return false;
+                if (StashAcknowledgedTransaction == summary.TransactionId) return false;
+                var secured = summary.ExtractedItemIds;
+                return secured.Length > 0 && Loadout.BackpackSlots.Any(i => i != null && System.Array.IndexOf(secured, i.InstanceId) >= 0);
+            }
         }
 
         /// <summary>Writes the current Base state (storage, loadout, coins, progression) as one safe point.</summary>

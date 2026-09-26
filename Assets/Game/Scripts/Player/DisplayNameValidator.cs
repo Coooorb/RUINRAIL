@@ -87,6 +87,9 @@ namespace RuinRail.Gameplay.Player
             return sb.ToString();
         }
 
+        /// <summary>True for the characters a display name may contain (A-Z a-z 0-9 space _ -); entry UIs filter typing with it.</summary>
+        public static bool IsAllowedCharacter(char c) => IsAllowed(c);
+
         private static bool IsAllowed(char c)
         {
             return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') || (c >= '0' && c <= '9') || c == ' ' || c == '_' || c == '-';

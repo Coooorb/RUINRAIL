@@ -174,7 +174,7 @@ namespace RuinRail.App
             var special = bindings.Where(b => b.room.State.RoomType == RoomType.Loot || b.room.State.RoomType == RoomType.Treasure).ToList();
             Check($"loot/treasure rooms carry their reward source ({special.Count} on this depth)", special.All(b => b.binding != null && b.binding.Chests.Count > 0 && b.binding.Chests.All(c => c.Visual != null && c.Visual.IsVisible)));
             var boss = bindings.FirstOrDefault(b => b.room.State.RoomType == RoomType.Boss);
-            Check("boss room carries a locked Boss Cache drawn as the cache gate", boss.binding != null && boss.binding.BossCache != null && boss.binding.BossCache.IsLocked && boss.binding.BossCache.Visual != null && boss.binding.BossCache.Visual.Key == WorldObjectArt.BossCacheGate);
+            Check("boss room holds its boss and no Boss Cache until the boss dies (46: its death spawns the cache)", boss.binding != null && boss.binding.Boss != null && boss.binding.BossCache == null);
             var supplyRooms = bindings.Where(b => b.binding != null && b.binding.SupplyChest != null).ToList();
             var chestTotal = bindings.Sum(b => b.binding != null ? b.binding.Chests.Count : 0);
             Check($"depth has meaningful loot before the boss ({supplyRooms.Count} supply chests in ordinary rooms, {chestTotal} chests total)", supplyRooms.Count >= SupplyChestPlanner.MinimumPerDepth);

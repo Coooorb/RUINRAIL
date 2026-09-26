@@ -497,6 +497,44 @@ namespace RuinRail.Tests
             Assert.IsNull(mirror.Inventory.GetEquipped(EquippedSlot.PrimaryWeapon));
         }
 
+        [Test]
+        public void MemberMirror_SeedsTheMembersCarriedWalletWithItsTakenCoins_Once_AndAReportOnlyLowersIt()
+        {
+            var registry = _content.BuildRegistry();
+            PlayerInventory Kit()
+            {
+                var kit = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+                kit.TryEquip(new ItemInstance(_content.Items.OfType<RangedWeaponDefinition>().First().Id, 1), EquippedSlot.PrimaryWeapon);
+                return kit;
+            }
+
+            // The member's own Start moved the full captured amount: the seed stands, a repeated report changes nothing.
+            var copy = Track(PlayerEntityBuilder.Build(new PlayerEntityBuilder.Options { Name = "HostCopyCoins", IsLocal = false, BalanceConfig = _content.PlayerBalance, Caps = _content.StatCaps }));
+            var mirror = Own(new CoopMemberMirror(copy, 1, _content, registry, new CoopMemberProfile { ClientId = 1, Loadout = Kit().ToSnapshot() }, null, 300));
+            var wallet = copy.GetComponent<PlayerLootReceiver>().Wallet;
+            Assert.AreEqual(300, wallet.Balance, "the host holds the member's taken coins as its Carried Coins");
+            Assert.IsTrue(mirror.Apply(new InventorySnapshotMessage { Version = 1, Inventory = Kit().ToSnapshot(), CoinsBroughtIn = 300 }));
+            Assert.IsTrue(mirror.Apply(new InventorySnapshotMessage { Version = 2, Inventory = Kit().ToSnapshot(), CoinsBroughtIn = 999 }));
+            Assert.AreEqual(300, wallet.Balance, "a report never raises the host's wallet");
+
+            // The member's bank could only cover 120 (it spent between the capture and the start): the seed comes down once.
+            var short1 = Track(PlayerEntityBuilder.Build(new PlayerEntityBuilder.Options { Name = "HostCopyShort", IsLocal = false, BalanceConfig = _content.PlayerBalance, Caps = _content.StatCaps }));
+            var shortMirror = Own(new CoopMemberMirror(short1, 2, _content, registry, new CoopMemberProfile { ClientId = 2, Loadout = Kit().ToSnapshot() }, null, 300));
+            var shortWallet = short1.GetComponent<PlayerLootReceiver>().Wallet;
+            Assert.IsTrue(shortMirror.Apply(new InventorySnapshotMessage { Version = 1, Inventory = Kit().ToSnapshot(), CoinsBroughtIn = -1 }), "an unreported amount leaves the seed");
+            Assert.AreEqual(300, shortWallet.Balance);
+            Assert.IsTrue(shortMirror.Apply(new InventorySnapshotMessage { Version = 2, Inventory = Kit().ToSnapshot(), CoinsBroughtIn = 120 }));
+            Assert.AreEqual(120, shortWallet.Balance, "exactly what the member's bank paid");
+            Assert.AreEqual(180, shortMirror.CoinsShortfallRemoved);
+            Assert.IsTrue(shortMirror.Apply(new InventorySnapshotMessage { Version = 3, Inventory = Kit().ToSnapshot(), CoinsBroughtIn = 0 }));
+            Assert.AreEqual(120, shortWallet.Balance, "reconciled once per run");
+
+            // Nothing taken: nothing seeded.
+            var none = Track(PlayerEntityBuilder.Build(new PlayerEntityBuilder.Options { Name = "HostCopyNone", IsLocal = false, BalanceConfig = _content.PlayerBalance, Caps = _content.StatCaps }));
+            Own(new CoopMemberMirror(none, 3, _content, registry, new CoopMemberProfile { ClientId = 3, Loadout = Kit().ToSnapshot() }));
+            Assert.AreEqual(0, none.GetComponent<PlayerLootReceiver>().Wallet.Balance);
+        }
+
         // ---------------------------------------------------------------- every actor type
 
         [UnityTest]

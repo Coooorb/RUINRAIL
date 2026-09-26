@@ -308,6 +308,9 @@ namespace RuinRail.UI.Base
         public int NextStorageUpgradeCost => _session.Workshop.NextStorageUpgradeCost;
         public int TraderLevel => _session.Trader.Level;
         public int NextTraderUpgradeCost => _session.Trader.NextUpgradeCost;
+        public int MaxStorageTier => _session.Workshop.MaxStorageTier;
+        public int TraderMaxLevel => _session.Trader.MaxLevel;
+        public int Banked => _session.Banked.Balance;
 
         public bool BuyStorageUpgrade() => Report(_session.Workshop.BuyStorageUpgrade(), $"Storage expanded to {_session.Workshop.StorageCapacity} slots.");
         public bool BuyTraderUpgrade() => Report(_session.Workshop.BuyTraderUpgrade(), $"Trader upgraded to level {_session.Trader.Level}.");
@@ -376,6 +379,24 @@ namespace RuinRail.UI.Base
         }
 
         public StationFeedback Feedback { get; }
+
+        // ---- Coins for the run (77: Banked Coins taken become Carried Coins at Start) ----
+
+        public int Banked => _session.Banked.Balance;
+        public int CoinsToCarry => _session.CoinsToCarry;
+        public int BankedAfterDeparture => _session.BankedAfterDeparture;
+        /// <summary>The selector's step (EconomyConfig, tunable). NONE and ALL always reach 0 and the full balance.</summary>
+        public int CoinStep => _session.Configs.Economy != null ? _session.Configs.Economy.CarryCoinStep : 1;
+        public bool CanTakeMore => !_session.Expedition.IsExpeditionActive && CoinsToCarry < Banked;
+        public bool CanTakeLess => !_session.Expedition.IsExpeditionActive && CoinsToCarry > 0;
+
+        /// <summary>One step more; the last step lands exactly on the whole balance.</summary>
+        public int TakeMore() => _session.SetCoinsToCarry((CoinsToCarry / CoinStep + 1) * CoinStep);
+        /// <summary>One step less; from an off-step amount (e.g. ALL) it drops to the step below.</summary>
+        public int TakeLess() => _session.SetCoinsToCarry(CoinsToCarry % CoinStep != 0 ? CoinsToCarry / CoinStep * CoinStep : CoinsToCarry - CoinStep);
+        public int TakeNone() => _session.SetCoinsToCarry(0);
+        public int TakeAll() => _session.SetCoinsToCarry(Banked);
+
         public bool CanStart => _session.Lobby.AllReady && !_session.Expedition.IsExpeditionActive && StartGate?.Invoke() == null;
         public ExpeditionStartSnapshot Started => _session.Lobby.StartSnapshot;
 
@@ -393,6 +414,7 @@ namespace RuinRail.UI.Base
             // Resolve → validate → preserve or fall back: a loadout with nothing equipped gets the Starter Loadout before launch.
             var starter = _session.EnsureStarterLoadoutIfEmpty();
             _session.CommitLoadoutToProfile();
+            _session.SyncCoinsToCarry();
             var error = _session.Lobby.TryStart(BaseSession.LocalClientId, _runSeed(), out var snapshot);
             if (error != LobbyStartError.None && error != LobbyStartError.AlreadyStarted)
             {
@@ -406,9 +428,11 @@ namespace RuinRail.UI.Base
                 return false;
             }
 
-            var state = _coordinator.Apply(snapshot, _session.Expedition, _session.Profile);
+            // The coins are the amount the lobby captured for this player at start: the same number every peer uses.
+            var state = _coordinator.Apply(snapshot, _session.Expedition, _session.Profile, null, snapshot.CarriedCoinsOf(BaseSession.LocalClientId));
             if (state == null) { Feedback.Error("The expedition cannot start."); return false; }
-            Feedback.Ok((starter ? MultiplayerPanelViewModel.StarterLoadoutEquippedMessage + " " : string.Empty) + $"Expedition started: Depth 1, {HudBiomeName((Biome)snapshot.Biome)}.");
+            var coins = state.CoinsBroughtIn > 0 ? $" {state.CoinsBroughtIn} C taken." : string.Empty;
+            Feedback.Ok((starter ? MultiplayerPanelViewModel.StarterLoadoutEquippedMessage + " " : string.Empty) + $"Expedition started: Depth 1, {HudBiomeName((Biome)snapshot.Biome)}.{coins}");
             return true;
         }
 

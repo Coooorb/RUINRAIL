@@ -5,17 +5,22 @@ using UnityEngine;
 
 namespace RuinRail.Gameplay.Loot
 {
-    /// <summary>Outcome of a drop: the transfer result plus the ground pickup now owning the item (null on failure).</summary>
+    /// <summary>
+    /// Outcome of a drop: the transfer result plus the ground pickup now owning the item (null on failure). A co-op
+    /// member's drop is <see cref="IsRequested"/>: the request reached the host, which owns the pickup and revokes the item.
+    /// </summary>
     public readonly struct DropResult
     {
-        public DropResult(TransferResult transfer, WorldItemPickup pickup)
+        public DropResult(TransferResult transfer, WorldItemPickup pickup, bool requested = false)
         {
             Transfer = transfer;
             Pickup = pickup;
+            IsRequested = requested;
         }
 
         public TransferResult Transfer { get; }
         public WorldItemPickup Pickup { get; }
+        public bool IsRequested { get; }
         public bool Success => Transfer.Success;
     }
 
@@ -65,6 +70,7 @@ namespace RuinRail.Gameplay.Loot
             }
 
             var pickup = _factory.CreateItemPickup(position);
+            if (pickup == null) return new DropResult(TransferResult.Fail(TransferError.DestinationRejected, instanceId), null);
             var result = _transfer.TransferQuantity(source, instanceId, quantity, pickup);
             if (!result.Success)
             {

@@ -108,6 +108,7 @@ namespace RuinRail.Tests
             var seen = new HashSet<int>();
             for (var i = 0; i < 200; i++)
             {
+                _bow.AdvanceRecovery(1f); // damage distribution, not cadence: let each quick shot's recovery pass
                 Assert.IsTrue(_bow.TryStartCharge());
                 Assert.IsTrue(_bow.IsCharging);
                 Assert.IsTrue(_bow.TryRelease());
@@ -149,6 +150,7 @@ namespace RuinRail.Tests
             var seen = new HashSet<int>();
             for (var i = 0; i < 100; i++)
             {
+                _bow.AdvanceRecovery(1f);
                 _bow.TryStartCharge();
                 _bow.AdvanceCharge(0.325f);
                 _bow.TryRelease();

@@ -137,6 +137,42 @@ namespace RuinRail.Tests
             Assert.IsFalse(new DisplayNameService(migrated.Slot, _policy).NeedsDisplayName);
         }
 
+        [Test]
+        public void CurrentSaveWithoutAName_KeepsTheDefault_AndABlankNameFallsBackInsteadOfBlankingTheHud()
+        {
+            var store = new MemorySaveStore();
+            var saves = new SaveSlotService(store, Resolve);
+            var slot = SaveSlotService.CreateNew();
+            slot.Profile.TotalXp = 777;
+            Assert.AreEqual(SaveError.None, saves.Save(slot));
+            var full = store.Document;
+            StringAssert.Contains("\"DisplayName\":\"Runner\"", full);
+
+            // A current-version document with no name field at all (an existing player who never named themselves).
+            store.Document = System.Text.RegularExpressions.Regex.Replace(full, "\"DisplayName\":\"[^\"]*\",", string.Empty);
+            StringAssert.DoesNotContain("DisplayName\"", store.Document);
+            var missing = saves.Load();
+            Assert.IsTrue(missing.Success, missing.Diagnostics.ToString());
+            Assert.AreEqual(PlayerProfile.DefaultDisplayName, missing.Slot.Profile.DisplayName);
+            Assert.AreEqual(777, missing.Slot.Profile.TotalXp);
+            Assert.IsTrue(new DisplayNameService(missing.Slot, _policy).NeedsDisplayName);
+
+            // A blank name that claims to be confirmed is repaired to the default and asked for again.
+            var blankSlot = SaveSlotService.CreateNew();
+            blankSlot.Profile.DisplayName = "   ";
+            blankSlot.FirstLaunch.DisplayNameConfirmed = true;
+            store.Document = JsonUtility.ToJson(blankSlot);
+            var blank = saves.Load();
+            Assert.IsTrue(blank.Success, blank.Diagnostics.ToString());
+            Assert.AreEqual(PlayerProfile.DefaultDisplayName, blank.Slot.Profile.DisplayName);
+            Assert.IsTrue(new DisplayNameService(blank.Slot, _policy).NeedsDisplayName);
+
+            // Once a custom name is saved it round-trips normally.
+            Assert.IsTrue(new DisplayNameService(blank.Slot, _policy).TrySet("Dust Walker").IsValid);
+            Assert.AreEqual(SaveError.None, saves.Save(blank.Slot));
+            Assert.AreEqual("Dust Walker", saves.Load().Slot.Profile.DisplayName);
+        }
+
         // ---- Acceptance 3: settings and gameplay are saved/reset independently ----
 
         [Test]

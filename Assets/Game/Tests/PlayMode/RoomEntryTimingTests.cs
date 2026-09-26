@@ -8,6 +8,7 @@ using RuinRail.Dungeon.Grid;
 using RuinRail.Dungeon.Rooms;
 using RuinRail.Dungeon.Runtime;
 using RuinRail.Gameplay.Combat;
+using RuinRail.Gameplay.Combat.Projectiles;
 using RuinRail.Gameplay.Enemies;
 using RuinRail.Gameplay.Enemies.Encounters;
 using RuinRail.Gameplay.Player;
@@ -178,6 +179,108 @@ namespace RuinRail.Tests
 
                 Object.DestroyImmediate(player);
                 foreach (var enemy in spawner.Spawned) if (enemy != null) Object.DestroyImmediate(enemy.gameObject);
+                Object.DestroyImmediate(root.gameObject);
+            }
+        }
+
+        /// <summary>
+        /// Only a real player body entering activates a combat room. With the player outside the open door, the player's
+        /// own projectiles flown through the doorway into the interior, a trigger child of the player reaching inside
+        /// (what the hurtbox and every pooled projectile are), an enemy body and a loose dropped-item body placed inside
+        /// all leave the room Unentered with its doors open and nothing spawned. The player walking in afterwards
+        /// activates, locks and spawns exactly as before, and clearing the encounter unlocks the doors again.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator NonPlayerObjects_EnteringFirst_NeverActivateTheRoom_ThePlayerStillDoes_AndItStillClears()
+        {
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            {
+                var definition = _catalog.Rooms.First(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium);
+                var origin = new Vector2(900f + (int)biome * 80f, 900f);
+                var (runtime, root, spawner) = CombatRoom(definition, origin);
+                var socket = root.GetSockets().First();
+                var (doorway, _, interior) = SocketPoints(root, socket);
+                var outward = (Vector2)DoorDirections.Step(socket.Direction);
+                var label = $"{definition.Id} {socket.Direction}";
+                var activations = 0;
+                runtime.Activated += _ => activations++;
+
+                var (player, body) = Player(doorway + outward * 3f, "Shooter_" + biome);
+                var pool = player.AddComponent<ProjectilePool>();
+                yield return new WaitForFixedUpdate();
+
+                // 1. The player's own shots, fired from outside through the open door, fly deep into the interior.
+                var projectiles = new List<Projectile>();
+                for (var i = 0; i < 4; i++)
+                {
+                    var from = doorway + outward * 2.5f;
+                    var direction = (interior - from).normalized;
+                    projectiles.Add(pool.Spawn(from, new ProjectileSpawnData(5, 20f, 12f, 0f, 0f, direction, player, null, 0f, DamageTeam.Player)));
+                }
+
+                var until = Time.time + 0.6f;
+                var reachedInside = false;
+                var volume = RoomEntryTrigger.InteriorVolume(root.Size);
+                while (Time.time < until)
+                {
+                    yield return new WaitForFixedUpdate();
+                    reachedInside |= projectiles.Any(p => p != null && p.gameObject.activeInHierarchy && volume.Contains((Vector2)root.transform.InverseTransformPoint(p.transform.position)));
+                }
+
+                Assert.IsTrue(reachedInside, $"{label}: a projectile really crossed into the interior (the scenario is real)");
+                Assert.AreEqual(RoomLifecycleState.Unentered, runtime.Lifecycle, $"{label}: a projectile entering first does not activate the room");
+                Assert.IsFalse(runtime.DoorsLocked, $"{label}: a projectile does not lock the doors");
+                Assert.AreEqual(0, spawner.Spawned.Count, $"{label}: nothing spawned");
+
+                // 2. Any trigger parented under the player (the hurtbox, a pooled projectile) reaching into the interior.
+                var probe = new GameObject("PlayerChildTrigger");
+                probe.transform.SetParent(player.transform, false);
+                var probeCollider = probe.AddComponent<BoxCollider2D>();
+                probeCollider.isTrigger = true;
+                probeCollider.size = Vector2.one * 0.6f;
+                probe.transform.position = interior;
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.AreEqual(RoomLifecycleState.Unentered, runtime.Lifecycle, $"{label}: a player-parented trigger is not the player");
+                Object.DestroyImmediate(probe);
+
+                // 3. Other bodies crossing in: an enemy and a loose dropped-item style physics body.
+                var enemy = new DefaultEnemySpawner().Spawn(_archetypes.Single(a => a.Id == "grunt"), interior + Vector2.right, null);
+                var drop = new GameObject("LooseDrop");
+                drop.transform.position = interior + Vector2.left;
+                var dropBody = drop.AddComponent<Rigidbody2D>();
+                dropBody.gravityScale = 0f;
+                drop.AddComponent<CircleCollider2D>().radius = 0.25f;
+                _created.Add(drop);
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.AreEqual(RoomLifecycleState.Unentered, runtime.Lifecycle, $"{label}: an enemy or a dropped item is not an entry");
+                Assert.AreEqual(0, activations, $"{label}: never activated by a non-player");
+                Object.DestroyImmediate(enemy.gameObject);
+                Object.DestroyImmediate(drop);
+
+                // 4. The player walking in afterwards activates, locks and spawns exactly as before.
+                body.position = doorway;
+                yield return new WaitForFixedUpdate();
+                body.position = interior;
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.AreEqual(RoomLifecycleState.Active, runtime.Lifecycle, $"{label}: the player's entry activates the room");
+                Assert.AreEqual(1, activations, $"{label}: exactly once");
+                Assert.IsTrue(runtime.DoorsLocked, $"{label}: doors locked behind the player");
+                yield return null;
+                Assert.Greater(spawner.Spawned.Count, 0, $"{label}: the encounter spawned");
+
+                // 5. Clearing the encounter still unlocks the doors.
+                foreach (var spawned in spawner.Spawned.Where(e => e != null))
+                    spawned.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(99999));
+                var clearBy = Time.time + 3f;
+                while (runtime.Lifecycle != RoomLifecycleState.Cleared && Time.time < clearBy) yield return null;
+                Assert.AreEqual(RoomLifecycleState.Cleared, runtime.Lifecycle, $"{label}: the room clears");
+                Assert.IsFalse(runtime.DoorsLocked, $"{label}: and the doors reopen");
+
+                Object.DestroyImmediate(player);
+                foreach (var e in spawner.Spawned) if (e != null) Object.DestroyImmediate(e.gameObject);
                 Object.DestroyImmediate(root.gameObject);
             }
         }

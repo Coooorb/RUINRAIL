@@ -10,6 +10,13 @@ namespace RuinRail.Gameplay.Combat
         private IInvulnerabilityState _invulnerabilityState;
         private IInvulnerabilityState[] _composedInvulnerability = System.Array.Empty<IInvulnerabilityState>();
         private IIncomingDamageModifier _incomingDamageModifier;
+        // The health state a run of maximum changes started from (the last damage, heal or refill). One equipment change
+        // can move the maximum several times (the old item's modifiers leave before the new item's arrive), so every
+        // resize is measured against this anchor, never against an intermediate clamp.
+        private int _anchorHealth;
+        private int _anchorMax;
+        private int _resizedHealth = -1;
+        private int _resizedMax = -1;
 
         public int MaxHealth => _maxHealth;
         public int CurrentHealth { get; private set; }
@@ -36,14 +43,28 @@ namespace RuinRail.Gameplay.Combat
             _incomingDamageModifier = modifier;
         }
 
-        /// <summary>Changes the maximum without refilling; current health is clamped and never dropped below 1 while alive.</summary>
+        /// <summary>
+        /// Changes the maximum (equipment, attributes, affixes, passives) without ever healing damage: a player at full
+        /// health stays at full health against the new maximum, a damaged player keeps their current HP, and a lower
+        /// maximum clamps it (never below 1 while alive). Consecutive resizes with no damage or healing in between are
+        /// one change, so an intermediate lower maximum (armor A off before armor B on) neither loses nor grants HP.
+        /// </summary>
         public void ResizeMaxHealth(int maxHealth)
         {
+            if (CurrentHealth != _resizedHealth || _maxHealth != _resizedMax)
+            {
+                _anchorHealth = CurrentHealth;
+                _anchorMax = _maxHealth;
+            }
+
             _maxHealth = Mathf.Max(1, maxHealth);
             if (IsAlive)
             {
-                CurrentHealth = Mathf.Clamp(CurrentHealth, 1, _maxHealth);
+                CurrentHealth = _anchorHealth >= _anchorMax ? _maxHealth : Mathf.Clamp(_anchorHealth, 1, _maxHealth);
             }
+
+            _resizedHealth = CurrentHealth;
+            _resizedMax = _maxHealth;
         }
 
         private void Awake()

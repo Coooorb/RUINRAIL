@@ -182,6 +182,7 @@ namespace RuinRail.App
             var bossBinding = bossRoom.GetComponent<RoomContentBinding>();
             Put(Centre(bossRoom));
             yield return Settle();
+            yield return SkipBossIntro(); // skip the room introduction, as a player can
             Check("Boss arena active with the boss bar and NO enemy chip", run.CurrentRoom == bossRoom && bossRoom.Lifecycle == RoomLifecycleState.Active && hud.BossVisible && !hud.EnemyCountVisible);
             yield return CaptureHud("dsnc_13_boss_room_no_enemy_hud");
             bossBinding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(999999));

@@ -15,8 +15,11 @@ namespace RuinRail.Gameplay.Expedition
     {
         public const int CurrentVersion = 1;
 
+        /// <summary>Name a profile carries until the player chooses one (also the fallback for a blank saved name).</summary>
+        public const string DefaultDisplayName = "Runner";
+
         public int Version = CurrentVersion;
-        public string DisplayName = "Runner";
+        public string DisplayName = DefaultDisplayName;
 
         /// <summary>Stable per-profile seed for deterministic base services (trader refreshes).</summary>
         public int ProfileSeed = Environment.TickCount;

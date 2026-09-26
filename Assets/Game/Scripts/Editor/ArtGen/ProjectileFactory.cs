@@ -28,6 +28,8 @@ namespace RuinRail.EditorTools.ArtGen
             public string TrailId;
             public float TrailBack = 0.3f;
             public string Description = string.Empty;
+            /// <summary>Presentation scale bound into the catalog profile (boss volleys draw at 2x).</summary>
+            public int Scale = 1;
         }
 
         /// <summary>Family default profile per ranged weapon class.</summary>
@@ -109,6 +111,8 @@ namespace RuinRail.EditorTools.ArtGen
             Add("proj_boss_furnace", 7, 7, "Foundry Titan ember: molten chunk with a dark crust, 2-frame glow", frames: 2, pivotX: 0.6f, frameSeconds: 0.08f);
             Add("proj_boss_spore", 6, 6, "Subject Omega spore: toxic green bulb with a pale core, 2-frame pulse", frames: 2, pivotX: 0.6f, frameSeconds: 0.09f);
             Add("proj_boss_energy", 9, 5, "Aegis Core lab energy: teal-green bolt with a white core, 2-frame flicker", frames: 2, pivotX: 0.75f);
+            // Boss volleys draw at twice their pixel size so they read at gameplay distance (the hitbox is unchanged).
+            foreach (var spec in list) if (spec.Id.StartsWith("proj_boss_", System.StringComparison.Ordinal)) spec.Scale = 2;
             return list;
         }
 

@@ -316,9 +316,14 @@ namespace RuinRail.Gameplay.Enemies
             (_attack as IEnemyContinuousAttack)?.Cancel();
             if (_rigidbody2D != null)
             {
+                // The corpse is stationary: leaving the simulation means no body, knockback, blast or hazard moves or
+                // turns it again (the renderer stays; lifetime rules are unchanged).
                 _rigidbody2D.linearVelocity = Vector2.zero;
+                _rigidbody2D.angularVelocity = 0f;
+                _rigidbody2D.simulated = false;
             }
 
+            if (_impact != null) _impact.MakeInert();
             Died?.Invoke(this);
         }
 

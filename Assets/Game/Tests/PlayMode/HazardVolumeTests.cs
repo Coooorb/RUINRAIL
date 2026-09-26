@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
@@ -103,6 +104,79 @@ namespace RuinRail.Tests
             Assert.AreEqual(0, hazard.OccupantCount);
             Assert.AreEqual(4, ticks.Count);
             Assert.IsTrue(health.IsAlive);
+        }
+
+        /// <summary>
+        /// Only an actor's own body in the hazard is an occupant. The player's bullets flown across the hazard, a trigger
+        /// parented under the player reaching into it, an enemy's own bullets crossing it and a loose dropped-item body
+        /// lying in it cause no damage to anyone; the player walking in is ticked as before and walking out stops it.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator ProjectilesAndOtherNonBodies_CrossingAHazard_NeverDamageTheirOwner_TheBodyStillDoes()
+        {
+            var hazard = Hazard(Def(DamageKind.Hazard, 5, 8, 0.5f), Vector2.zero, new Vector2(3f, 3f));
+            var ticks = 0;
+            hazard.Ticked += (_, _) => ticks++;
+            var (player, playerHealth) = Actor("Player", new Vector2(-6f, 0f), DamageTeam.Player);
+            var (enemy, enemyHealth) = Actor("Enemy", new Vector2(6f, 0f), DamageTeam.Enemy);
+            var playerPool = player.AddComponent<RuinRail.Gameplay.Combat.Projectiles.ProjectilePool>();
+            var enemyPool = enemy.AddComponent<RuinRail.Gameplay.Combat.Projectiles.ProjectilePool>();
+            yield return new WaitForFixedUpdate();
+
+            // 1. Both sides fire straight across the hazard (the shots travel the whole width, nothing to hit).
+            var crossed = false;
+            for (var volley = 0; volley < 3; volley++)
+            {
+                playerPool.Spawn(new Vector2(-4f, 0.2f), new RuinRail.Gameplay.Combat.Projectiles.ProjectileSpawnData(5, 16f, 5f, 0f, 0f, Vector2.right, player, null, 0f, DamageTeam.Player));
+                enemyPool.Spawn(new Vector2(4f, -0.2f), new RuinRail.Gameplay.Combat.Projectiles.ProjectileSpawnData(5, 16f, 5f, 0f, 0f, Vector2.left, enemy, null, 0f, DamageTeam.Enemy));
+                for (var i = 0; i < 10; i++)
+                {
+                    yield return new WaitForFixedUpdate();
+                    crossed |= player.GetComponentsInChildren<RuinRail.Gameplay.Combat.Projectiles.Projectile>(false).Any(p => Mathf.Abs(p.transform.position.x) < 1.2f);
+                }
+            }
+
+            yield return FixedSeconds(0.6f); // every shot has run its range out
+            Assert.IsTrue(crossed, "a player bullet really flew through the hazard");
+            Assert.AreEqual(0, ticks, "no hazard tick from bullets");
+            Assert.AreEqual(100, playerHealth.CurrentHealth, "the player's own bullets never proxy hazard damage onto the player");
+            Assert.AreEqual(100, enemyHealth.CurrentHealth, "nor an enemy's onto the enemy");
+
+            // 2. A trigger parented under the player (a hurtbox, a pooled projectile) reaching into the hazard.
+            var child = new GameObject("PlayerChildTrigger");
+            child.transform.SetParent(player.transform, false);
+            var childCollider = child.AddComponent<BoxCollider2D>();
+            childCollider.isTrigger = true;
+            child.transform.position = Vector2.zero;
+            yield return FixedSeconds(0.6f);
+            Assert.AreEqual(0, ticks, "a player-parented trigger is not the player's body");
+            Assert.AreEqual(100, playerHealth.CurrentHealth, "no damage from it");
+            Object.DestroyImmediate(child);
+
+            // 3. A loose dropped-item body in the hazard: not damageable, nothing enrolled.
+            var drop = new GameObject("LooseDrop");
+            _created.Add(drop);
+            var dropBody = drop.AddComponent<Rigidbody2D>();
+            dropBody.gravityScale = 0f;
+            drop.AddComponent<CircleCollider2D>().radius = 0.25f;
+            yield return FixedSeconds(0.3f);
+            Assert.AreEqual(0, hazard.OccupantCount, "no occupant from bullets, triggers or loose bodies");
+            Assert.AreEqual(0, ticks, "no tick at all");
+
+            // 4. The player's body walking in is ticked at the authored cadence; walking out stops it.
+            player.GetComponent<Rigidbody2D>().position = Vector2.zero;
+            player.transform.position = Vector2.zero;
+            yield return new WaitForFixedUpdate();
+            yield return new WaitForFixedUpdate();
+            Assert.AreEqual(1, hazard.OccupantCount);
+            Assert.AreEqual(94, playerHealth.CurrentHealth, "immediate first tick on entry");
+            yield return FixedSeconds(0.5f);
+            Assert.AreEqual(88, playerHealth.CurrentHealth, "second tick after the interval");
+            player.GetComponent<Rigidbody2D>().position = new Vector2(-6f, 0f);
+            player.transform.position = new Vector2(-6f, 0f);
+            yield return FixedSeconds(1.0f);
+            Assert.AreEqual(0, hazard.OccupantCount, "leaving ends the occupancy");
+            Assert.AreEqual(88, playerHealth.CurrentHealth, "and further damage");
         }
 
         [UnityTest]

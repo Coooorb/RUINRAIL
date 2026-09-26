@@ -53,6 +53,8 @@ namespace RuinRail.Gameplay.Combat.Impact
         public StaggerMeter Meter => _meter ??= new StaggerMeter(_config);
         public bool IsStaggered => _meter != null && _meter.IsStaggered;
         public bool IsKnockbackActive => _knockbackRemaining > 0f || _knockbackStopPending;
+        /// <summary>The owner died: the body is a stationary corpse that no later impact displaces or staggers.</summary>
+        public bool IsInert { get; private set; }
         public int WallImpacts { get; private set; }
         public int KnockbacksApplied { get; private set; }
         /// <summary>Knockbacks cut short at the encounter room's legal edge (diagnostics).</summary>
@@ -144,7 +146,7 @@ namespace RuinRail.Gameplay.Combat.Impact
 
         public StaggerResult ApplyStagger(ImpactRequest request)
         {
-            if (_config == null || !request.HasStagger) return StaggerResult.None;
+            if (IsInert || _config == null || !request.HasStagger) return StaggerResult.None;
             var result = Meter.Apply(request.StaggerPower, _profile.StaggerResistancePercent);
             if (result.Triggered)
             {
@@ -159,7 +161,7 @@ namespace RuinRail.Gameplay.Combat.Impact
 
         public KnockbackResult ApplyKnockback(ImpactRequest request)
         {
-            if (_config == null || !request.HasKnockback || !_profile.IsDisplaceable) return KnockbackResult.None;
+            if (IsInert || _config == null || !request.HasKnockback || !_profile.IsDisplaceable) return KnockbackResult.None;
             var distance = KnockbackMath.Distance(request.Knockback, _profile.KnockbackResistancePercent, _config);
             if (distance <= 0f) return KnockbackResult.None;
 
@@ -214,6 +216,13 @@ namespace RuinRail.Gameplay.Combat.Impact
             {
                 ApplyStagger(new ImpactRequest(Vector2.zero, 0f, _config.HighStaggerPower, DamageKind.Normal, null, feedback));
             }
+        }
+
+        /// <summary>Death: any knockback in flight ends now and every later impact is refused.</summary>
+        public void MakeInert()
+        {
+            IsInert = true;
+            EndKnockback();
         }
 
         private void EndKnockback()

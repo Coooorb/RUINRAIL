@@ -33,3 +33,10 @@ crashlytics-build.properties
 
 # Packages lock file (leave tracked so approved pins stay reproducible)
 !Packages/packages-lock.json
+
+# Claude temporary task work (plans, notes, probes, scratch captures)
+.claude/work/
+
+# OS / IDE noise
+.DS_Store
+*.slnx

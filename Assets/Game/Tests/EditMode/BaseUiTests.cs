@@ -298,6 +298,254 @@ namespace RuinRail.Tests.EditMode
             menu.LeaveBase();
         }
 
+        // ---- Shelter stash: bring loot home and put it away ----
+
+        /// <summary>Every item id the survivor and Storage hold, with its owner (a duplicate would appear twice).</summary>
+        private static System.Collections.Generic.List<string> Owned(BaseSession session) =>
+            session.Loadout.BackpackSlots.Where(i => i != null).Select(i => i.InstanceId)
+                .Concat(System.Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Select(session.Loadout.GetEquipped).Where(i => i != null).Select(i => i.InstanceId))
+                .Concat(session.Storage.Items.Select(i => i.InstanceId)).ToList();
+
+        /// <summary>
+        /// What the survivor and Storage hold together: unique items by instance id, stackables by total quantity per
+        /// definition (Storage re-cuts a stack into its own instances when it accepts it, so a stack's id may change).
+        /// </summary>
+        private (System.Collections.Generic.List<string> Unique, System.Collections.Generic.Dictionary<string, int> Stacks) Holdings(BaseSession session)
+        {
+            var all = session.Loadout.BackpackSlots.Where(i => i != null)
+                .Concat(System.Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Select(session.Loadout.GetEquipped).Where(i => i != null))
+                .Concat(session.Storage.Items).ToList();
+            var unique = all.Where(i => !Resolve(i.DefinitionId).IsStackable).Select(i => i.InstanceId).OrderBy(x => x).ToList();
+            var stacks = all.Where(i => Resolve(i.DefinitionId).IsStackable).GroupBy(i => i.DefinitionId).ToDictionary(g => g.Key, g => g.Sum(i => i.Quantity));
+            return (unique, stacks);
+        }
+
+        private static InventorySlotRef CellOf(StashViewModel stash, string instanceId)
+        {
+            for (var i = 0; i < StashViewModel.EquippedSlots; i++)
+                if (stash.ItemAt(new InventorySlotRef(InventorySlotKind.Equipped, i))?.InstanceId == instanceId) return new InventorySlotRef(InventorySlotKind.Equipped, i);
+            for (var i = 0; i < PlayerInventory.BackpackCapacity; i++)
+                if (stash.ItemAt(new InventorySlotRef(InventorySlotKind.Backpack, i))?.InstanceId == instanceId) return new InventorySlotRef(InventorySlotKind.Backpack, i);
+            for (var page = 0; page < stash.PageCount; page++)
+            {
+                while (stash.Page < page) stash.NextPage();
+                for (var i = 0; i < StashViewModel.PageSize; i++)
+                    if (stash.ItemAt(StashViewModel.StorageCell(i))?.InstanceId == instanceId) return StashViewModel.StorageCell(i);
+            }
+
+            Assert.Fail($"{instanceId} is nowhere in the stash");
+            return default;
+        }
+
+        [Test]
+        public void Stash_AfterReturningAlive_MovesWornAndBackpackLootIntoStorage_WithoutLossOrDuplication_ExplainsBlockedMoves_AndPersists()
+        {
+            var (menu, store, saves) = Menu();
+            menu.Play();
+            var session = menu.Session;
+            using var hub = new BaseHubViewModel(session, null, () => 5);
+            Assert.IsTrue(hub.Multiplayer.SetReady(true));
+            Assert.IsTrue(hub.Transit.StartExpedition(), hub.Transit.Feedback.Text);
+
+            // Loot picked up on the run: carried at risk while the expedition lasts.
+            var carried = session.Expedition.State.Inventory;
+            var smg = new ItemInstance("weapon_rattler_9", 1, Rarity.Rare);
+            var harness = new ItemInstance("armor_combat_harness", 1, Rarity.Uncommon);
+            var stim = new ItemInstance("consumable_combat_stim", 2);
+            Assert.IsTrue(carried.TryAddToBackpack(smg) && carried.TryAddToBackpack(harness) && carried.TryAddToBackpack(stim));
+            Assert.IsTrue(smg.IsAtRisk, "run loot is at risk while carried");
+
+            // 1. Returning alive secures it: it is on the survivor, no longer at risk, and the Shelter points at Storage.
+            session.Expedition.Return();
+            foreach (var item in new[] { smg, harness, stim })
+                Assert.IsTrue(session.Loadout.Contains(item.InstanceId) || Resolve(item.DefinitionId).IsStackable && session.Loadout.BackpackSlots.Any(i => i?.DefinitionId == item.DefinitionId),
+                    $"{item.DefinitionId} {item.InstanceId} came home (loadout: {string.Join(", ", Owned(session).Select(id => id.Substring(0, 6)))}; backpack defs: {string.Join(", ", session.Loadout.BackpackSlots.Where(i => i != null).Select(i => i.DefinitionId + "/" + i.InstanceId.Substring(0, 6)))})");
+            Assert.IsTrue(session.HasLootToStash, "the Shelter points at the stash after a successful return with loot");
+
+            using var stash = new StashViewModel(session, hub.Storage, hub.Loadout);
+            var owned = Holdings(session);
+            CollectionAssert.AllItemsAreUnique(owned.Unique);
+
+            // 2. A backpack item: STORE, and it moves (not copied).
+            var smgCell = CellOf(stash, smg.InstanceId);
+            Assert.AreEqual(StashAction.Store, stash.IntentFor(smgCell).Action);
+            Assert.IsTrue(stash.Activate(smgCell), stash.Message);
+            Assert.IsFalse(session.Loadout.Contains(smg.InstanceId));
+            Assert.IsTrue(session.Storage.Items.Any(i => i.InstanceId == smg.InstanceId));
+
+            // 3. Worn gear: the equipped weapon and a worn armour go into Storage too (existing rule: allowed).
+            var primary = session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon);
+            Assert.IsNotNull(primary);
+            var wornCell = new InventorySlotRef(InventorySlotKind.Equipped, (int)EquippedSlot.PrimaryWeapon);
+            Assert.AreEqual(StashAction.Store, stash.IntentFor(wornCell).Action);
+            Assert.IsTrue(stash.Activate(wornCell), stash.Message);
+            Assert.IsNull(session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon), "the slot is empty, not a ghost");
+            Assert.IsTrue(session.Storage.Items.Any(i => i.InstanceId == primary.InstanceId));
+
+            // 4. Take back into the backpack, and drop a stored weapon straight onto the worn slot to equip it.
+            var takeCell = CellOf(stash, smg.InstanceId);
+            Assert.AreEqual(StashAction.Take, stash.IntentFor(takeCell).Action);
+            Assert.IsTrue(stash.Activate(takeCell), stash.Message);
+            Assert.IsTrue(session.Loadout.BackpackSlots.Any(i => i?.InstanceId == smg.InstanceId));
+            Assert.IsTrue(stash.Drop(CellOf(stash, primary.InstanceId), wornCell), stash.Message);
+            Assert.AreEqual(primary.InstanceId, session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon)?.InstanceId, "equipped straight from Storage");
+
+            // 5. STORE WHOLE BACKPACK: everything carried in the bag goes in at once.
+            var bagBefore = session.Loadout.BackpackSlots.Count(i => i != null);
+            Assert.Greater(bagBefore, 0);
+            Assert.AreEqual(bagBefore, stash.StoreBackpack(), stash.Message);
+            Assert.AreEqual(0, session.Loadout.BackpackSlots.Count(i => i != null));
+            Assert.IsFalse(session.HasLootToStash, "all secured loot is put away: no more pointer");
+
+            // No loss, no duplication across every move above: the same unique items, the same stack totals.
+            var after = Holdings(session);
+            CollectionAssert.AllItemsAreUnique(after.Unique);
+            CollectionAssert.AreEqual(owned.Unique, after.Unique, "every unique item still exists exactly once");
+            CollectionAssert.AreEquivalent(owned.Stacks, after.Stacks, "every stack total is unchanged");
+            Assert.AreEqual(2, session.Storage.Items.Where(i => i.DefinitionId == "consumable_combat_stim").Sum(i => i.Quantity), "the stim stack arrived whole");
+
+            // 6. Blocked moves explain themselves and change nothing: a full backpack refuses TAKE ...
+            for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) Assert.IsTrue(session.Loadout.TryAddToBackpack(new ItemInstance("weapon_p9_ranger")));
+            var anyStored = StashViewModel.StorageCell(0);
+            while (stash.Page > 0) stash.PrevPage();
+            var refused = stash.IntentFor(anyStored);
+            Assert.AreEqual(StashAction.Blocked, refused.Action);
+            Assert.AreEqual("BACKPACK FULL", refused.Label);
+            Assert.IsNotEmpty(refused.Reason);
+            var storedBefore = session.Storage.Items.Count();
+            Assert.IsFalse(stash.Activate(anyStored));
+            Assert.AreEqual(storedBefore, session.Storage.Items.Count(), "a refused take moves nothing");
+            Assert.IsTrue(stash.MessageIsError);
+
+            // ... and a full Storage refuses STORE.
+            while (session.Storage.Items.Count() < session.Storage.Capacity) Assert.IsTrue(session.Storage.TryAdd(new ItemInstance("weapon_kestrel_12")));
+            Assert.IsTrue(stash.StorageFull);
+            var bagCell = new InventorySlotRef(InventorySlotKind.Backpack, 0);
+            var full = stash.IntentFor(bagCell);
+            Assert.AreEqual(StashAction.Blocked, full.Action);
+            Assert.AreEqual("STORAGE FULL", full.Label);
+            var bagItem = stash.ItemAt(bagCell).InstanceId;
+            Assert.IsFalse(stash.Activate(bagCell));
+            Assert.IsTrue(session.Loadout.Contains(bagItem), "a refused store leaves the item on the survivor");
+            CollectionAssert.AllItemsAreUnique(Holdings(session).Unique);
+
+            // 7. Persistence: the Shelter's own safe point, leave, continue: Storage and the loadout come back as left.
+            var expectedStorage = session.Storage.Items.Select(i => i.InstanceId).OrderBy(x => x).ToList();
+            var expectedLoadout = Owned(session).Except(expectedStorage).OrderBy(x => x).ToList();
+            menu.LeaveBase();
+            var again = new MainMenuViewModel(saves, _configs);
+            Assert.AreEqual(PlayOutcome.Continued, again.Play());
+            CollectionAssert.AreEqual(expectedStorage, again.Session.Storage.Items.Select(i => i.InstanceId).OrderBy(x => x).ToList(), "Storage persisted");
+            CollectionAssert.AreEqual(expectedLoadout, Owned(again.Session).Except(expectedStorage).OrderBy(x => x).ToList(), "the survivor persisted");
+            Assert.AreEqual(primary.InstanceId, again.Session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon)?.InstanceId, "the re-equipped weapon is still worn");
+            again.LeaveBase();
+        }
+
+        // ---- Coins for the run (77): chosen at Transit, moved exactly once by the start transaction ----
+
+        [Test]
+        public void CoinsForTheRun_AreChosenAtTransit_ClampedToTheBank_MovedOnceAtStart_AndCancellingMovesNothing()
+        {
+            var (menu, _, saves) = Menu();
+            menu.Play();
+            var session = menu.Session;
+            session.Banked.Credit(1000, "test");
+            using (var hub = new BaseHubViewModel(session, null, () => 11))
+            {
+                var transit = hub.Transit;
+                var step = transit.CoinStep;
+                Assert.Greater(step, 0);
+                Assert.AreEqual(0, transit.CoinsToCarry, "nothing is taken unless the player chooses it");
+                Assert.AreEqual(1000, transit.BankedAfterDeparture);
+
+                Assert.AreEqual(step, transit.TakeMore());
+                Assert.AreEqual(step * 2, transit.TakeMore());
+                Assert.AreEqual(step, transit.TakeLess());
+                Assert.AreEqual(1000, transit.TakeAll());
+                Assert.IsFalse(transit.CanTakeMore);
+                Assert.AreEqual(1000, transit.TakeMore(), "never above the bank");
+                Assert.AreEqual(0, transit.BankedAfterDeparture);
+                Assert.AreEqual((1000 - 1) / step * step, transit.TakeLess(), "from ALL one step down lands on the step grid");
+                Assert.AreEqual(0, transit.TakeNone());
+                Assert.IsFalse(transit.CanTakeLess);
+                Assert.AreEqual(0, transit.TakeLess(), "never below zero");
+                Assert.AreEqual(0, session.SetCoinsToCarry(-25));
+                Assert.AreEqual(1000, session.SetCoinsToCarry(99999));
+                Assert.AreEqual(1000, session.Profile.BankedCoins, "choosing moves nothing");
+                Assert.AreEqual(1000, session.Lobby.Get(BaseSession.LocalClientId).CarriedCoins, "the lobby holds the choice it captures at start");
+
+                // Spending in the Shelter lowers the bank under the choice: the choice (and the lobby) follow it down.
+                Assert.IsTrue(session.Banked.Debit(400, "test_spend").Success);
+                Assert.AreEqual(600, transit.CoinsToCarry);
+                Assert.AreEqual(600, session.Lobby.Get(BaseSession.LocalClientId).CarriedCoins);
+                Assert.AreEqual(0, transit.BankedAfterDeparture);
+
+                // Cancelling preparation: change the choice, close the station — the bank is untouched.
+                transit.TakeNone();
+                transit.TakeMore();
+                transit.TakeMore();
+                hub.Open(BaseStation.Transit);
+                hub.Close();
+                Assert.AreEqual(600, session.Profile.BankedCoins);
+                Assert.AreEqual(step * 2, transit.CoinsToCarry);
+            }
+
+            // Leaving the Shelter abandons the choice without moving a coin; it is never saved.
+            menu.LeaveBase();
+            var again = new MainMenuViewModel(saves, _configs);
+            Assert.AreEqual(PlayOutcome.Continued, again.Play());
+            session = again.Session;
+            Assert.AreEqual(600, session.Profile.BankedCoins);
+            Assert.AreEqual(0, session.CoinsToCarry, "a new visit starts with nothing taken");
+
+            using (var hub = new BaseHubViewModel(session, null, () => 11))
+            {
+                var transit = hub.Transit;
+                transit.TakeNone();
+                session.SetCoinsToCarry(250);
+                Assert.IsTrue(session.Lobby.SetReady(BaseSession.LocalClientId, true));
+                Assert.IsTrue(transit.StartExpedition(), transit.Feedback.Text);
+                StringAssert.Contains("250 C taken", transit.Feedback.Text);
+                var state = session.Expedition.State;
+                Assert.AreEqual(250, state.CarriedCoins, "exactly the chosen amount became Carried Coins");
+                Assert.AreEqual(350, session.Profile.BankedCoins);
+                Assert.AreEqual(0, session.CoinsToCarry, "the choice was consumed by that start");
+                var onDisk = saves.Load().Slot;
+                Assert.IsTrue(onDisk.ActiveExpedition.IsOpen);
+                Assert.AreEqual(350, onDisk.Profile.BankedCoins, "the debit is saved together with the open run");
+
+                Assert.IsFalse(transit.StartExpedition(), "a second start is refused");
+                Assert.AreEqual(350, session.Profile.BankedCoins, "and moves nothing");
+                Assert.AreEqual(250, state.CarriedCoins);
+
+                session.Expedition.Return();
+                Assert.AreEqual(600, session.Profile.BankedCoins, "returning alive banks the taken coins again, once");
+                Assert.AreEqual(600, saves.Load().Slot.Profile.BankedCoins);
+            }
+
+            again.LeaveBase();
+        }
+
+        [Test]
+        public void CoopLobby_CapturesEachMembersCoins_OnceAtStart_AndTheRunStartCarriesThem()
+        {
+            var lobby = new PartyLobby(0, Resolve);
+            lobby.Join(0, "host");
+            lobby.Join(7, "client");
+            var loadout = new InventorySnapshot { Equipped = new[] { new InventorySnapshot.Entry { Slot = (int)EquippedSlot.PrimaryWeapon, Item = new ItemInstance("weapon_p9_ranger").ToSnapshot() } } };
+            foreach (var id in new ulong[] { 0, 7 }) { lobby.SetLoadout(id, loadout); lobby.SetReady(id, true); }
+            Assert.IsTrue(lobby.SetCarriedCoins(0, 120));
+            Assert.IsTrue(lobby.SetCarriedCoins(7, -40), "a negative request is stored as zero");
+            Assert.AreEqual(0, lobby.Get(7).CarriedCoins);
+            Assert.IsTrue(lobby.SetCarriedCoins(7, 300));
+            Assert.IsTrue(lobby.Get(7).IsReady, "changing the coins keeps Ready: the start captures the current value");
+            Assert.AreEqual(LobbyStartError.None, lobby.TryStart(0, 5, out var snapshot));
+            Assert.AreEqual(120, snapshot.CarriedCoinsOf(0));
+            Assert.AreEqual(300, snapshot.CarriedCoinsOf(7));
+            Assert.IsFalse(lobby.SetCarriedCoins(7, 999), "locked once the expedition started");
+            Assert.AreEqual(300, lobby.StartSnapshot.CarriedCoinsOf(7));
+        }
+
         // ---- Acceptance 4 + Req 5: no economy constants in UI; English text ----
 
         [Test]

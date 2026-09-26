@@ -296,7 +296,8 @@ namespace RuinRail.UI.Hud
 
     /// <summary>
     /// The bottom-right active consumable (91 Active Consumable) as an icon slot with a stack chip ("x3"). An empty
-    /// slot shows the neutral plate and centre mark; there is no permanent text.
+    /// slot shows the neutral plate and centre mark; there is no permanent text. While a timed use channels, a top strip
+    /// shows the remaining seconds over a draining amber bar, both from the use action's timer.
     /// </summary>
     public sealed class HudConsumableSlotView : MonoBehaviour
     {
@@ -310,10 +311,19 @@ namespace RuinRail.UI.Hud
         private Image _emptyMark;
         private Image _countBack;
         private Text _count;
+        private Image _useBar;
+        private Image _useBack;
+        private Text _useTime;
         private System.Func<int, Sprite> _rarityFrame;
 
         public bool IsEmpty { get; private set; } = true;
         public string CountText => _count != null && _count.enabled ? _count.text : string.Empty;
+        /// <summary>The remaining-use countdown shown on the slot ("1.4s"), empty when no timed use is running.</summary>
+        public string UseTimeText => _useTime != null && _useTime.enabled ? _useTime.text : string.Empty;
+        /// <summary>Remaining fraction drawn by the use bar (0 when hidden).</summary>
+        public float UseBar01 => _useBar != null && _useBar.enabled ? _useBar.fillAmount : 0f;
+        public RectTransform UseTimeRect => _useBack != null ? _useBack.rectTransform : null;
+        public RectTransform CountRect => _countBack != null ? _countBack.rectTransform : null;
         public Sprite IconSprite => _icon != null && _icon.enabled ? _icon.sprite : null;
         public bool IconVisible => _icon != null && _icon.enabled;
         public Sprite FrameSprite => _rarity != null && _rarity.enabled ? _rarity.sprite : null;
@@ -346,6 +356,16 @@ namespace RuinRail.UI.Hud
             _countBack.enabled = false;
             _count = UiBuild.Label(transform, string.Empty, chip, 1, TextAnchor.UpperRight, UiTheme.Ink, false, "Count");
             _count.enabled = false;
+
+            // Timed use: the remaining seconds on a dark strip along the top edge (clear of the chip, the icon stays
+            // readable below it) over a 2px amber bar that drains toward the left as the use completes.
+            var strip = new UiRect(Inset, Inset, width - Inset * 2, UiText.LineHeight + 3);
+            _useBack = UiBuild.Plate(transform, strip, UiTheme.WithAlpha(UiTheme.NearBlack, 0.85f), "UseTimeBack");
+            _useBack.enabled = false;
+            _useTime = UiBuild.Label(transform, string.Empty, new UiRect(strip.X, strip.Y, strip.Width, UiText.LineHeight), 1, TextAnchor.UpperCenter, UiTheme.Amber, false, "UseTime");
+            _useTime.enabled = false;
+            _useBar = UiBuild.Fillable(transform, new UiRect(strip.X + 1, strip.Y + UiText.LineHeight, strip.Width - 2, 2), UiTheme.Amber, Image.FillMethod.Horizontal, (int)Image.OriginHorizontal.Left, "UseBar");
+            _useBar.enabled = false;
         }
 
         public void Show(HudSnapshot s)
@@ -362,6 +382,13 @@ namespace RuinRail.UI.Hud
             _countBack.enabled = showsCount;
             _count.enabled = showsCount;
             if (showsCount) _count.text = $"x{s.ConsumableQuantity}";
+
+            var channelling = s.ConsumableUseActive;
+            _useBar.enabled = channelling;
+            _useBar.fillAmount = s.ConsumableUse01;
+            _useBack.enabled = channelling;
+            _useTime.enabled = channelling;
+            _useTime.text = s.ConsumableUseText;
         }
     }
 }

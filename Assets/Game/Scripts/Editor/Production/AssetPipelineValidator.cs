@@ -162,6 +162,14 @@ namespace RuinRail.EditorTools.Production
                     report.Problems.Add($"{AssetDatabase.GetAssetPath(tile)}: Tile has no sprite; it will render as nothing.");
             }
 
+            // Damaging floor must never ship as a still tile: each biome's hazard is the animated loop, fully framed.
+            foreach (RuinRail.EditorTools.ArtGen.TileFactory.Biome biome in Enum.GetValues(typeof(RuinRail.EditorTools.ArtGen.TileFactory.Biome)))
+            {
+                var hazardPath = RuinRail.EditorTools.ArtGen.ArtIntegration.HazardTilePath(biome);
+                if (AssetDatabase.LoadAssetAtPath<TileBase>(hazardPath) is not RuinRail.Dungeon.Grid.HazardAnimatedTile hazard || !hazard.IsAnimated)
+                    report.Problems.Add($"{hazardPath}: the {biome} damaging-floor hazard is not an animated HazardAnimatedTile with every frame bound.");
+            }
+
             var catalog = AssetDatabase.LoadAssetAtPath<AudioEventCatalog>(AudioAssetAudit.CatalogPath);
             if (catalog != null)
             {

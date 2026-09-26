@@ -132,6 +132,46 @@ namespace RuinRail.Gameplay.Items
             return item;
         }
 
+        /// <summary>
+        /// Atomic worn-slot swap (20: equipment may be swapped during a dungeon): the backpack item at
+        /// <paramref name="backpackIndex"/> is equipped in <paramref name="slot"/> and the item worn there takes exactly
+        /// that backpack slot. No free backpack slot is needed and nothing passes through an intermediate state — if the
+        /// slot is empty, the backpack slot is empty or the incoming item does not fit the slot, nothing changes.
+        /// </summary>
+        public bool TrySwapEquippedWithBackpack(EquippedSlot slot, int backpackIndex)
+        {
+            if (!_equipped.TryGetValue(slot, out var outgoing) || backpackIndex < 0 || backpackIndex >= _backpack.Capacity) return false;
+            var incoming = _backpack.Slots[backpackIndex];
+            var definition = incoming != null ? _resolveDefinition(incoming.DefinitionId) : null;
+            if (definition == null || !IsSlotCompatible(definition.Category, slot)) return false;
+            if (_backpack.ExchangeAt(backpackIndex, outgoing) != incoming) return false;
+            _equipped[slot] = incoming;
+            if (MarksIncomingAtRisk) { incoming.IsAtRisk = true; outgoing.IsAtRisk = true; }
+            EquippedChanged?.Invoke(slot, incoming);
+            _backpack.RaiseChanged();
+            return true;
+        }
+
+        /// <summary>Atomic exchange of two occupied worn slots (primary ⇄ secondary); refused unchanged unless each item fits the other slot.</summary>
+        public bool TrySwapEquipped(EquippedSlot a, EquippedSlot b)
+        {
+            if (a == b || !_equipped.TryGetValue(a, out var itemA) || !_equipped.TryGetValue(b, out var itemB)) return false;
+            var definitionA = _resolveDefinition(itemA.DefinitionId);
+            var definitionB = _resolveDefinition(itemB.DefinitionId);
+            if (definitionA == null || definitionB == null || !IsSlotCompatible(definitionA.Category, b) || !IsSlotCompatible(definitionB.Category, a)) return false;
+            // Listeners key per-slot state by instance id (stat sources, passives), so both slots report empty before
+            // either reports its new item; there is no failure point between the two assignments.
+            _equipped.Remove(a);
+            _equipped.Remove(b);
+            EquippedChanged?.Invoke(a, null);
+            EquippedChanged?.Invoke(b, null);
+            _equipped[a] = itemB;
+            _equipped[b] = itemA;
+            EquippedChanged?.Invoke(a, itemB);
+            EquippedChanged?.Invoke(b, itemA);
+            return true;
+        }
+
         public bool CanAddToBackpack(ItemInstance item, bool ignoreCurrentOwnership = false)
         {
             if (item == null || (!ignoreCurrentOwnership && Contains(item.InstanceId)))

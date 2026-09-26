@@ -8,7 +8,7 @@ metadata:
   modified: 2026-09-16T20:00:58.027Z
 ---
 
-Two gotchas from the 2026-09-16 regression pass (see `production/POST_POLISH_REGRESSION_FIX_REPORT.md`):
+Two gotchas from the 2026-09-16 regression pass (see `production/archive/POST_POLISH_REGRESSION_FIX_REPORT.md`):
 
 1. A PlayMode test that plays into the Dungeon scene and does not `Expedition.Return()` leaves the room tilemaps,
    player and camera loaded; later physics tests (ImpactReceiver, LegendarySpecials, NetworkCombat…) then collide with

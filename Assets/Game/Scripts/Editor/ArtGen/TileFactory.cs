@@ -458,15 +458,7 @@ namespace RuinRail.EditorTools.ArtGen
                     break;
 
                 case TileRole.Hazard:
-                    // Electrified rail panel. Loudest thing in the Metro set by design (24.5).
-                    Material(c, RuinPalette.RampOf(RuinPalette.Hex("#2A2F31"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.36f, lightAt: 0.82f);
-                    for (var x = 2; x < Size; x += 8)
-                    {
-                        c.Rect(x, 2, 4, Size - 4, RuinPalette.Darken(RuinPalette.MidSteel, 0.2f));
-                        c.Line(x + 1, 4, x + 1, Size - 5, RuinPalette.ElectricCyan);
-                    }
-                    Arc(c, RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.5f), rng, 4);
-                    c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.ElectricCyan, 0.4f));
+                    MetroHazard(c, seed, rng, 0);
                     break;
             }
         }
@@ -500,17 +492,7 @@ namespace RuinRail.EditorTools.ArtGen
                     break;
 
                 case TileRole.Hazard:
-                    // Molten / hot surface. Bright orange is reserved for exactly this (spec 20).
-                    Material(c, RuinPalette.RampOf(RuinPalette.Hex("#3A2318"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.38f, lightAt: 0.84f);
-                    for (var y = 0; y < Size; y++)
-                    for (var x = 0; x < Size; x++)
-                    {
-                        var n = (Mathf.Sin(x * 0.55f + y * 0.31f) + Mathf.Sin(y * 0.47f - x * 0.19f)) * 0.5f;
-                        if (n > 0.45f) c.Set(x, y, RuinPalette.OxideOrange);
-                        else if (n > 0.12f) c.Set(x, y, RuinPalette.Darken(RuinPalette.OxideOrange, 0.35f));
-                    }
-                    Blobs(c, RuinPalette.Lighten(RuinPalette.AmberActive, 0.45f), rng, 5, 2);
-                    c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.BurntRustDark, 0.3f));
+                    RustworksHazard(c, seed, rng, 0);
                     break;
             }
         }
@@ -542,19 +524,131 @@ namespace RuinRail.EditorTools.ArtGen
                     break;
 
                 case TileRole.Hazard:
-                    // Contamination pool: the only place toxic green appears at full strength.
-                    Material(c, RuinPalette.RampOf(RuinPalette.Hex("#2E3A2A"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.38f, lightAt: 0.84f);
-                    for (var y = 0; y < Size; y++)
-                    for (var x = 0; x < Size; x++)
-                    {
-                        var n = (Mathf.Sin(x * 0.4f + y * 0.26f) + Mathf.Sin(y * 0.52f - x * 0.23f)) * 0.5f;
-                        if (n > 0.5f) c.Set(x, y, RuinPalette.PaleToxic);
-                        else if (n > 0.08f) c.Set(x, y, RuinPalette.SickGreen);
-                    }
-                    Blobs(c, RuinPalette.Lighten(RuinPalette.PaleToxic, 0.4f), rng, 4, 2);
-                    c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.DeepOlive, 0.3f));
+                    LabsHazard(c, seed, rng, 0);
                     break;
             }
+        }
+
+        // =====================================================================
+        //  Damaging floor hazards (animated)
+        // =====================================================================
+
+        /// <summary>Frames in every hazard loop. Frame 0 is the static tile <see cref="Build"/> has always produced.</summary>
+        public const int HazardFrames = 8;
+
+        /// <summary>
+        /// One frame of a biome's damaging floor hazard loop. The hazard is the one floor surface that must never be
+        /// read as floor, and a still tile is exactly what the eye learns to ignore, so each biome's hazard moves in
+        /// the way its material would: the Metro rail flickers with current and throws sparks, the Rustworks grate
+        /// flows with heat, the Labs pool churns and bubbles. Every loop closes (phase is a whole turn over
+        /// <see cref="HazardFrames"/>), the palette is the tile's own, and frame 0 equals the static tile exactly.
+        /// </summary>
+        public static PixelCanvas BuildHazardFrame(Biome biome, int frame)
+        {
+            var c = new PixelCanvas(Size, Size);
+            var seed = (int)biome * 977 + (int)TileRole.Hazard * 131 + 5;
+            var rng = new System.Random(seed);
+            frame = ((frame % HazardFrames) + HazardFrames) % HazardFrames;
+            switch (biome)
+            {
+                case Biome.RuinedMetro: MetroHazard(c, seed, rng, frame); break;
+                case Biome.Rustworks: RustworksHazard(c, seed, rng, frame); break;
+                default: LabsHazard(c, seed, rng, frame); break;
+            }
+
+            return c;
+        }
+
+        private static float HazardPhase(int frame) => frame * Mathf.PI * 2f / HazardFrames;
+
+        /// <summary>0 at frame 0, 1 half way through the loop: how far a frame is from the static tile.</summary>
+        private static float HazardSwing(int frame) => 0.5f - 0.5f * Mathf.Cos(HazardPhase(frame));
+
+        // Irregular so the current reads as a flicker rather than a smooth breathing glow.
+        private static readonly float[] MetroCurrent = { 0f, 0.45f, 0.12f, 0.6f, 0.05f, 0.32f, 0.7f, 0.18f };
+
+        private static void MetroHazard(PixelCanvas c, int seed, System.Random rng, int frame)
+        {
+            // Electrified rail panel. Loudest thing in the Metro set by design (24.5).
+            Material(c, RuinPalette.RampOf(RuinPalette.Hex("#2A2F31"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.36f, lightAt: 0.82f);
+            var current = MetroCurrent[frame];
+            var rail = RuinPalette.Lighten(RuinPalette.ElectricCyan, current);
+            var rails = 0;
+            for (var x = 2; x < Size; x += 8, rails++)
+            {
+                c.Rect(x, 2, 4, Size - 4, RuinPalette.Darken(RuinPalette.MidSteel, 0.2f));
+                c.Line(x + 1, 4, x + 1, Size - 5, rail);
+                if (frame == 0) continue;
+                // A pulse of current running down each rail, staggered so neighbouring rails never move in step.
+                var y = 4 + (frame * 5 + rails * 9) % (Size - 11);
+                c.Line(x + 1, y, x + 1, y + 2, RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.8f));
+                c.Set(x + 2, y + 1, RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.55f));
+            }
+
+            // Arcs jump to new places every frame (frame 0 keeps the static tile's arcs).
+            Arc(c, RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.5f + current * 0.4f), frame == 0 ? rng : new System.Random(seed + frame * 7919), frame % 2 == 0 ? 4 : 3);
+            c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.ElectricCyan, 0.4f - current * 0.3f));
+        }
+
+        private static void RustworksHazard(PixelCanvas c, int seed, System.Random rng, int frame)
+        {
+            // Molten / hot surface. Bright orange is reserved for exactly this (spec 20).
+            Material(c, RuinPalette.RampOf(RuinPalette.Hex("#3A2318"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.38f, lightAt: 0.84f);
+            var w = HazardPhase(frame);
+            var swing = HazardSwing(frame);
+            for (var y = 0; y < Size; y++)
+            for (var x = 0; x < Size; x++)
+            {
+                // Both waves advance by a whole turn over the loop: the heat flows across the grate and comes back.
+                var n = (Mathf.Sin(x * 0.55f + y * 0.31f + w) + Mathf.Sin(y * 0.47f - x * 0.19f + w)) * 0.5f;
+                if (swing > 0f && n > 1f - 0.16f * swing) c.Set(x, y, RuinPalette.Lighten(RuinPalette.AmberActive, 0.2f));
+                else if (n > 0.45f) c.Set(x, y, RuinPalette.OxideOrange);
+                else if (n > 0.12f) c.Set(x, y, RuinPalette.Darken(RuinPalette.OxideOrange, 0.35f));
+            }
+
+            // The embers stay where they are and breathe: bright at rest, dimmer as the flow peaks.
+            Blobs(c, RuinPalette.Lighten(RuinPalette.AmberActive, 0.45f - 0.25f * swing), rng, 5, 2);
+            c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.BurntRustDark, 0.3f));
+        }
+
+        private static void LabsHazard(PixelCanvas c, int seed, System.Random rng, int frame)
+        {
+            // Contamination pool: the only place toxic green appears at full strength.
+            Material(c, RuinPalette.RampOf(RuinPalette.Hex("#2E3A2A"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.38f, lightAt: 0.84f);
+            var w = HazardPhase(frame);
+            for (var y = 0; y < Size; y++)
+            for (var x = 0; x < Size; x++)
+            {
+                // Two waves turning against each other: the surface churns in place instead of sliding like the heat.
+                var n = (Mathf.Sin(x * 0.4f + y * 0.26f + w) + Mathf.Sin(y * 0.52f - x * 0.23f - w)) * 0.5f;
+                if (n > 0.5f) c.Set(x, y, RuinPalette.PaleToxic);
+                else if (n > 0.08f) c.Set(x, y, RuinPalette.SickGreen);
+            }
+
+            Blobs(c, RuinPalette.Lighten(RuinPalette.PaleToxic, 0.4f), rng, 4, 2);
+
+            // Bubbles rise and pop at fixed spots, each on its own third of the loop.
+            if (frame > 0)
+            {
+                var spots = new System.Random(seed + 101);
+                var t = frame / (float)HazardFrames;
+                for (var i = 0; i < 3; i++)
+                {
+                    var bx = 5 + spots.Next(Size - 10);
+                    var by = 5 + spots.Next(Size - 10);
+                    var p = (t + i / 3f) % 1f;
+                    var rim = RuinPalette.Lighten(RuinPalette.PaleToxic, 0.55f);
+                    if (p < 0.3f) c.Set(bx, by, rim);
+                    else if (p < 0.6f) { c.Set(bx - 1, by, rim); c.Set(bx + 1, by, rim); c.Set(bx, by - 1, rim); c.Set(bx, by + 1, rim); }
+                    else if (p < 0.8f)
+                    {
+                        // Popped: a few droplets thrown out from where the bubble was.
+                        c.Set(bx - 2, by, rim); c.Set(bx + 2, by, rim); c.Set(bx, by - 2, rim); c.Set(bx, by + 2, rim);
+                    }
+                }
+            }
+
+            c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.DeepOlive, 0.3f));
         }
 
         // =====================================================================

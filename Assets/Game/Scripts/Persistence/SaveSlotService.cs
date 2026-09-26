@@ -1,4 +1,5 @@
 using System;
+using RuinRail.Gameplay.Expedition;
 using RuinRail.Gameplay.Items;
 using UnityEngine;
 
@@ -120,6 +121,16 @@ namespace RuinRail.Persistence
             if (error != SaveError.None)
             {
                 return SaveLoadResult.Fail(error, version, diagnostics);
+            }
+
+            // A blank name (never written by the game, but possible in an edited or damaged document) must not blank the
+            // HUD and party lines: the profile falls back to the default and the name step asks for a real one again.
+            if (string.IsNullOrWhiteSpace(slot.Profile.DisplayName))
+            {
+                slot.Profile.DisplayName = PlayerProfile.DefaultDisplayName;
+                slot.FirstLaunch ??= new FirstLaunchFlags();
+                slot.FirstLaunch.DisplayNameConfirmed = false;
+                diagnostics.Info("load.display_name", $"[{name}] Blank display name replaced by the default.");
             }
 
             return SaveLoadResult.Ok(slot, version, migrated, diagnostics, name);
