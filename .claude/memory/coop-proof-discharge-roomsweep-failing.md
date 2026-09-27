@@ -1,16 +1,14 @@
 ---
 name: coop-proof-discharge-roomsweep-failing
-description: Duo co-op expedition proof (seed 11) deterministically fails 2 steps — Discharge impactsSent=+0 and Room Sweep coinsCollected=False — independent of the inventory drop step
+description: Duo proof Discharge, Room Sweep and Adrenaline failures all FIXED 2026-09-26; baseline is host 66/66, client 10/10 — any of them failing now is a regression
 metadata:
-  node_type: memory
   type: project
-  originSessionId: 9c5f8ead-3365-45b8-8b36-6144500b01e0
-  modified: 2026-09-25T22:12:21.911Z
 ---
 
-As of 2026-09-26 the built-player duo proof (`run-coop-expedition-proof.sh <out> 2 11`) ends host 56/58: "Discharge on a remote client" (client shockwave hits 3 targets but sends 0 impact requests) and "Room Sweep on a remote client" (pile swept, ammo consumed, coin pile never collected). Reproduced identically 3 times, including a build with the new `DropSteps` disabled (54/56), so the inventory swap/drop work did not cause it. Not bisected against the pre-session tree (the tree carries uncommitted earlier passes, e.g. ImpactReceiver `IsInert`).
+Fixed 2026-09-26; duo proof (`run-coop-expedition-proof.sh <out> 2 11`) now ends host 64/64, client 10/10, reproduced twice.
 
-**Why:** a later session will see these two failures and could wrongly blame its own change or retry until green.
-**How to apply:** treat them as a known open issue until fixed; compare the failing set against this before attributing a proof failure to new work. See [[coop-expedition-proof-runner]].
+- **Discharge (proof bug):** the client walked straight at the nearest replica, got pinned against an `Obstacles` collider 2.78 tiles short, and dashed into the wall (both bodies v=0). The shockwave fired correctly out of reach. Its `targets=+3` count was walls/triggers/hazards, because `ShockwaveResolver` counts any untagged collider. The host now places the member on an open lane with `DischargeLane`, inside the room's entry volume, and the client releases move right after `PressDash`.
+- **Room Sweep (product bug):** the host player and the member's host copy stood 1 tile apart. Both `PickupAttractor`s pulled the coin toward themselves every step, so it stalled between them, outside both 0.35 collect distances. Now a static claim lets only one attractor pull a pickup at a time.
 
-Update (same day, encounter-reward task): reproduced again at host 57/59 and 59/61 (steps added since). "Adrenaline on a remote client" failed once and passed on an identical rerun of the same build — treat it as intermittent (timing), not a regression, but classify with one rerun rather than ignoring it.
+**Why:** a later session must not treat a new Discharge/Room Sweep failure as the old known issue. It is a regression now.
+**How to apply:** room membership now lasts until the body leaves the whole interior (`RoomMembershipVolume`, 2026-09-26); entry/activation still needs the 2-tile-inset `RoomEntryTrigger`. "Adrenaline on a remote client" flake FIXED 2026-09-26 (product bug): the client stands pressed under an obstacle at (24.50, 5.60); its hand-height aim pivot (+0.55) was inside the wall, ShotSolver pulled the spawn back to it, and every shot died on the wall at distance 0 unless an enemy walked to 0.4 tiles. ShotSolver now spawns from the body when the spawn is inside an obstacle (DirectAimHitTests.PressedUnderAWall_*). A new Adrenaline failure is a regression. The grenade steps run after the reconnect step on purpose. See [[coop-expedition-proof-runner]].

@@ -254,8 +254,9 @@ namespace RuinRail.Gameplay.Combat.Impact
                 if (!seen.Add(root)) continue;
 
                 var direction = (Vector2)root.position - center;
-                ImpactDispatcher.Apply(collider, new ImpactRequest(direction, knockback, staggerPower, DamageKind.Normal, source, feedback));
-                affected++;
+                // Counted only when an actor could take the impact (or a client forwarded it): walls, room triggers and
+                // hazards in the circle are not targets.
+                if (ImpactDispatcher.Apply(collider, new ImpactRequest(direction, knockback, staggerPower, DamageKind.Normal, source, feedback))) affected++;
             }
 
             return affected;

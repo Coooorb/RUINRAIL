@@ -501,35 +501,62 @@ namespace RuinRail.Tests
         [UnityTest]
         public IEnumerator ComposedBoss_IsBoundToItsArena_AndDoesNotChaseBeforeThePlayerEnters()
         {
-            var arena = BossArena(Biome.RuinedMetro, new Vector2(5000f, 1000f));
-            var maw = AssetDatabase.LoadAssetAtPath<BossDefinition>("Assets/Game/ScriptableObjects/Enemies/Bosses/Boss_TunnelMaw.asset");
-            var services = new DungeonRuntimeServices
+            // Every shipped boss goes through the same arena composition, containment and intro hold → engagement handoff.
+            var bosses = AssetDatabase.FindAssets("t:BossDefinition", new[] { "Assets/Game/ScriptableObjects/Enemies/Bosses" })
+                .Select(g => AssetDatabase.LoadAssetAtPath<BossDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(b => b != null).OrderBy(b => b.Id).ToList();
+            Assert.AreEqual(6, bosses.Count, "the six shipped bosses");
+            var index = 0;
+            foreach (var definition in bosses)
             {
-                LootCatalog = AssetDatabase.LoadAssetAtPath<LootSourceCatalog>("Assets/Game/ScriptableObjects/Loot/LootSourceCatalog.asset"),
-                GroundLoot = new GroundLootRegistry(),
-                BossSpawner = new RosterBossSpawner(new DefaultBossSpawner(new[] { maw }))
-            };
-            // A "player" already exists elsewhere on the depth when the arena is composed — exactly the live situation.
-            var player = PlayerBody(new Vector2(5000f - 30f, 1000f));
-            player.AddComponent<PlayerInput>();
-            var context = new DungeonRuntimeContext(11, 1, 1, System.Array.Empty<EnemyDefinition>(), new DefaultEnemySpawner());
-            var binding = RoomCategoryComposer.Compose(arena, context, services);
-            Assert.IsNotNull(binding.Boss);
-            var boss = binding.Boss.Boss;
-            Assert.IsNotNull(boss.Bounds, "the arena owns the boss");
-            Assert.IsTrue(boss.Bounds.IsBound);
-            Assert.AreEqual(arena.InteriorWorldBounds, boss.Bounds.Interior);
-            Assert.IsNull(boss.Target, "no target before the arena is entered: the boss does not leave to meet a player elsewhere");
-            var start = boss.transform.position;
-            yield return Steps(30);
-            Assert.AreEqual(MovesetActorState.Idle, boss.State);
-            Assert.IsFalse(boss.EncounterStarted);
-            Assert.Less(Vector2.Distance(start, boss.transform.position), 0.05f, "it has not moved");
+                var origin = new Vector2(5000f + index * 200f, 1000f);
+                index++;
+                var arena = BossArena(definition.Biome, origin);
+                var services = new DungeonRuntimeServices
+                {
+                    LootCatalog = AssetDatabase.LoadAssetAtPath<LootSourceCatalog>("Assets/Game/ScriptableObjects/Loot/LootSourceCatalog.asset"),
+                    GroundLoot = new GroundLootRegistry(),
+                    BossSpawner = new RosterBossSpawner(new DefaultBossSpawner(new[] { definition }))
+                };
+                // A "player" already exists elsewhere on the depth when the arena is composed — exactly the live situation.
+                var player = PlayerBody(origin + Vector2.left * 30f);
+                player.AddComponent<PlayerInput>();
+                var context = new DungeonRuntimeContext(11, 1, 1, System.Array.Empty<EnemyDefinition>(), new DefaultEnemySpawner());
+                var binding = RoomCategoryComposer.Compose(arena, context, services);
+                Assert.IsNotNull(binding.Boss, definition.Id);
+                var boss = binding.Boss.Boss;
+                Assert.IsNotNull(boss.Bounds, definition.Id + ": the arena owns the boss");
+                Assert.IsTrue(boss.Bounds.IsBound);
+                Assert.AreEqual(arena.InteriorWorldBounds, boss.Bounds.Interior);
+                Assert.IsNull(boss.Target, definition.Id + ": no target before the arena is entered: the boss does not leave to meet a player elsewhere");
+                var start = boss.transform.position;
+                yield return Steps(30);
+                Assert.AreEqual(MovesetActorState.Idle, boss.State, definition.Id);
+                Assert.IsFalse(boss.EncounterStarted, definition.Id);
+                Assert.Less(Vector2.Distance(start, boss.transform.position), 0.05f, definition.Id + ": it has not moved");
 
-            Assert.IsTrue(arena.NotifyPlayerEntered(player));
-            Assert.AreSame(player.transform, boss.Target, "entering the arena hands the boss its target");
-            yield return Steps(3);
-            Assert.IsTrue(boss.EncounterStarted);
+                Assert.IsTrue(arena.NotifyPlayerEntered(player), definition.Id);
+                // The room introduction holds the boss first (BossEngagement.DefaultIntroHoldSeconds): no target, so no chase and no attack.
+                var engagement = (BossEngagement)arena.Engagement;
+                Assert.IsTrue(engagement.IsHoldingForIntro, definition.Id + ": entering starts the intro hold");
+                Assert.IsNull(boss.Target, definition.Id + ": held: the boss has no target during the intro");
+                var entered = boss.transform.position;
+                var playerHp = player.GetComponent<HealthComponent>()?.CurrentHealth ?? -1;
+                yield return Steps(20);
+                Assert.AreEqual(MovesetActorState.Idle, boss.State, definition.Id + ": held: it neither chases nor telegraphs");
+                Assert.IsFalse(boss.EncounterStarted, definition.Id);
+                Assert.Less(Vector2.Distance(entered, boss.transform.position), 0.05f, definition.Id + ": held: it has not moved");
+                Assert.AreEqual(playerHp, player.GetComponent<HealthComponent>()?.CurrentHealth ?? -1, definition.Id + ": held: no damage");
+
+                var deadline = Time.time + engagement.IntroHoldSeconds + 1f;
+                while (engagement.IsHoldingForIntro && Time.time < deadline) yield return null;
+                Assert.IsFalse(engagement.IsHoldingForIntro, definition.Id + ": the hold ends on its own time");
+                Assert.AreSame(player.transform, boss.Target, definition.Id + ": then the boss acquires the player who entered the arena");
+                yield return Steps(3);
+                Assert.IsTrue(boss.EncounterStarted, definition.Id);
+                Object.Destroy(arena.gameObject);
+                Object.Destroy(player);
+                yield return null;
+            }
         }
 
         // ---- door timing: a pending lock is not a gap ------------------------------------------------------------

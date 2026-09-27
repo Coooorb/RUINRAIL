@@ -151,6 +151,69 @@ namespace RuinRail.Networking
         /// <summary>A projectile presentation from a client arrived (host draws it, zero damage).</summary>
         public event Action<ShotNetRecord> RemoteShot;
 
+        // ---- grenade presentation (items/31 over 82): drawn by every peer but the thrower; never a second grenade ----
+
+        /// <summary>A member's throw passed validation: the host draws it (the composition root binds the presentation).</summary>
+        public event Action<GrenadeShowMessage> GrenadeShown;
+        public int GrenadesShown { get; private set; }
+        public int GrenadesRejected { get; private set; }
+        public string LastGrenadeRejection { get; private set; } = string.Empty;
+        /// <summary>How far the announced origin may sit from the member's host position (owner prediction drift, tiles).</summary>
+        public const float GrenadeOriginToleranceTiles = 1.5f;
+        /// <summary>Faster than any consumable use can repeat: a flood of announcements is dropped, not drawn.</summary>
+        public const float GrenadeMinIntervalSeconds = 0.2f;
+        private readonly Dictionary<ulong, (uint sequence, float at)> _lastGrenade = new();
+
+        /// <summary>The host player's own throw: every client draws it (the host's run resolves the grenade itself).</summary>
+        public void AnnounceLocalGrenade(string consumableId, Vector2 origin, Vector2 landing)
+        {
+            if (_disposed || !_bus.IsHost || _bus.RemoteClients.Count == 0) return;
+            var show = new GrenadeShowMessage
+            {
+                Thrower = (long)_bus.LocalClientId, ConsumableId = consumableId,
+                OriginX = origin.x, OriginY = origin.y, LandingX = landing.x, LandingY = landing.y, ThrownAt = _bus.NetworkTime
+            };
+            GrenadesShown++;
+            _bus.SendToClients(CoopKinds.GrenadeShown, CoopJson.Write(show));
+        }
+
+        /// <summary>
+        /// A client's throw: the sender must be a living member that may act, the consumable a grenade in the host's own
+        /// catalog, the origin at the member's host position and the landing inside that grenade's throw range. A valid
+        /// throw is drawn here and sent to every other client; the thrower already draws its own. A rejected one is drawn
+        /// nowhere — nothing gameplay-relevant depends on it either way (the thrower's hits are validated separately).
+        /// </summary>
+        public bool HandleGrenadeThrow(ulong sender, GrenadeThrowMessage throwMessage)
+        {
+            bool Refuse(string reason) { GrenadesRejected++; LastGrenadeRejection = reason; return false; }
+            if (throwMessage == null || string.IsNullOrEmpty(throwMessage.ConsumableId)) return Refuse("empty");
+            if (_resolve(throwMessage.ConsumableId) is not RuinRail.Gameplay.Items.Consumables.ConsumableDefinition definition
+                || definition.EffectKind != RuinRail.Gameplay.Items.Consumables.ConsumableEffectKind.Grenade) return Refuse("not a grenade");
+            var entity = _party.EntityOf(sender);
+            if (entity == null) return Refuse("unknown member");
+            var gate = entity.GetComponent<IPlayerActionGate>();
+            if (gate != null && !gate.CanAct) return Refuse("member cannot act");
+            var now = Time.realtimeSinceStartup;
+            if (_lastGrenade.TryGetValue(sender, out var last) && (throwMessage.Sequence <= last.sequence || now - last.at < GrenadeMinIntervalSeconds)) return Refuse("duplicate or too fast");
+            var origin = new Vector2(throwMessage.OriginX, throwMessage.OriginY);
+            var landing = new Vector2(throwMessage.LandingX, throwMessage.LandingY);
+            if (Vector2.Distance(origin, entity.transform.position) > GrenadeOriginToleranceTiles) return Refuse("origin away from the member");
+            if (Vector2.Distance(origin, landing) > definition.Grenade.ThrowRangeTiles + 0.05f) return Refuse("beyond throw range");
+            _lastGrenade[sender] = (throwMessage.Sequence, now);
+
+            var show = new GrenadeShowMessage
+            {
+                Thrower = (long)sender, Sequence = throwMessage.Sequence, ConsumableId = definition.Id,
+                OriginX = origin.x, OriginY = origin.y, LandingX = landing.x, LandingY = landing.y, ThrownAt = _bus.NetworkTime
+            };
+            GrenadesShown++;
+            GrenadeShown?.Invoke(show);
+            var json = CoopJson.Write(show);
+            foreach (var client in _bus.RemoteClients)
+                if (client != sender) _bus.SendToClient(client, CoopKinds.GrenadeShown, json);
+            return true;
+        }
+
         // ---------------------------------------------------------------- depth binding
 
         /// <summary>
@@ -528,6 +591,7 @@ namespace RuinRail.Networking
             public uint LootId;
             public GameObject Go;
             public Vector2 LastPosition;
+            public int LastQuantity;
         }
 
         private void SyncLoot()
@@ -540,7 +604,7 @@ namespace RuinRail.Networking
                 if (_lootIds.ContainsKey(key)) continue;
                 var message = LootMessageOf(go);
                 if (message == null) continue;
-                var tracked = new TrackedLoot { LootId = ++_nextLootId, Go = go, LastPosition = go.transform.position };
+                var tracked = new TrackedLoot { LootId = ++_nextLootId, Go = go, LastPosition = go.transform.position, LastQuantity = go.GetComponent<WorldItemPickup>()?.Item?.Quantity ?? 0 };
                 message.LootId = tracked.LootId;
                 _loot2[tracked.LootId] = tracked;
                 _lootIds[key] = tracked.LootId;
@@ -562,10 +626,15 @@ namespace RuinRail.Networking
                 }
 
                 var position = (Vector2)tracked.Go.transform.position;
-                if ((position - tracked.LastPosition).sqrMagnitude > 0.09f)
+                // A partial pickup leaves the rest on the ground: every peer's copy shows the remaining quantity.
+                var quantity = tracked.Go.GetComponent<WorldItemPickup>()?.Item?.Quantity ?? 0;
+                var moved = (position - tracked.LastPosition).sqrMagnitude > 0.09f;
+                var recounted = quantity > 0 && quantity != tracked.LastQuantity;
+                if (moved || recounted)
                 {
                     tracked.LastPosition = position;
-                    _bus.SendToClients(CoopKinds.LootMove, CoopJson.Write(new LootMoveMessage { LootId = tracked.LootId, X = position.x, Y = position.y }));
+                    tracked.LastQuantity = quantity;
+                    _bus.SendToClients(CoopKinds.LootMove, CoopJson.Write(new LootMoveMessage { LootId = tracked.LootId, X = position.x, Y = position.y, Quantity = recounted ? quantity : -1 }));
                 }
             }
         }
@@ -574,7 +643,11 @@ namespace RuinRail.Networking
         {
             var item = go.GetComponent<WorldItemPickup>();
             if (item != null && item.Item != null && !item.IsConsumed)
-                return new LootSpawnMessage { Depth = _depth, Item = item.Item.ToSnapshot(), X = go.transform.position.x, Y = go.transform.position.y };
+            {
+                // A member's drop names the member, so its own replica is held back from its local attraction too.
+                var dropper = item.DroppedBy != null ? item.DroppedBy.GetComponent<NetworkPlayerObject>() : null;
+                return new LootSpawnMessage { Depth = _depth, Item = item.Item.ToSnapshot(), X = go.transform.position.x, Y = go.transform.position.y, DroppedBy = dropper != null ? (long)dropper.OwnerClientId : -1 };
+            }
             var coins = go.GetComponent<CoinPickup>();
             if (coins != null && !coins.IsCollected && coins.Amount > 0)
                 return new LootSpawnMessage { Depth = _depth, Coins = coins.Amount, X = go.transform.position.x, Y = go.transform.position.y };
@@ -700,10 +773,12 @@ namespace RuinRail.Networking
                 case CoopKinds.Hit: HandleHit(sender, CoopJson.Read<HitRequestMessage>(json)); break;
                 case CoopKinds.Impact: HandleImpact(sender, CoopJson.Read<ImpactRequestMessage>(json)); break;
                 case CoopKinds.Heal: HandleHeal(sender, CoopJson.Read<HealRequestMessage>(json)); break;
+                case CoopKinds.GrenadeThrow: HandleGrenadeThrow(sender, CoopJson.Read<GrenadeThrowMessage>(json)); break;
                 case CoopKinds.Vote: HandleVote(sender, CoopJson.Read<VoteRequestMessage>(json)); break;
                 case CoopKinds.Buy: HandleBuy(sender, CoopJson.Read<TradeRequestMessage>(json)); break;
                 case CoopKinds.Sell: HandleSell(sender, CoopJson.Read<TradeRequestMessage>(json)); break;
                 case CoopKinds.CacheChoose: HandleCache(sender, CoopJson.Read<TradeRequestMessage>(json)); break;
+                case CoopKinds.RelaySecure: HandleRelay(sender, CoopJson.Read<TradeRequestMessage>(json)); break;
                 case CoopKinds.Drop: DropRequested?.Invoke(sender, CoopJson.Read<TradeRequestMessage>(json)); break;
                 case CoopKinds.Revive: ReviveRequested?.Invoke(sender, CoopJson.Read<ReviveRequestMessage>(json)); break;
                 case CoopKinds.InventorySnapshot: InventoryMirrorReceived?.Invoke(sender, CoopJson.Read<InventorySnapshotMessage>(json)); break;
@@ -875,6 +950,57 @@ namespace RuinRail.Networking
                 ItemName = choice?.Definition != null ? choice.Definition.DisplayName : string.Empty, RoomNode = request.RoomNode
             }));
         }
+
+        /// <summary>
+        /// 57.7 Secure Relay: the member's single use of the relay in the named room, decided here once per participant;
+        /// the accepted unit already left the host's copy of the member's inventory, the member stores it at home.
+        /// </summary>
+        private void HandleRelay(ulong sender, TradeRequestMessage request)
+        {
+            if (request == null || _loot == null) return;
+            if (_expedition != null && !_expedition.IsExpeditionActive)
+            {
+                // The run is over on the host (Return resolved / party failed): nothing is decided any more. Every earlier
+                // verdict already left ahead of the run-end message on the same ordered link, so a member still waiting
+                // at its own run end knows none of its requests was accepted.
+                RelaysAfterRunEnd++;
+                _bus.SendToClient(sender, CoopKinds.RelayResult, CoopJson.Write(new RelayResultMessage { TransactionId = request.TransactionId, Final = false, Refusal = "run_ended", InstanceId = request.InstanceId, RoomNode = request.RoomNode }));
+                return;
+            }
+
+            var relay = request.Depth == 0 || request.Depth == _depth ? BindingAt(request.RoomNode)?.EventInstance as SecureRelayEvent : null;
+            var result = _loot.RequestRelaySecure(request.TransactionId, sender, relay, request.InstanceId);
+            RelaysResolved++;
+            if (result.Verdict == LootVerdict.Accepted) RelaysAccepted++;
+            var message = new RelayResultMessage
+            {
+                TransactionId = request.TransactionId, Accepted = result.Verdict == LootVerdict.Accepted, Final = LootAuthorityService.IsFinalRelayVerdict(result.Verdict),
+                Refusal = result.Verdict == LootVerdict.Accepted ? SecureRelayRefusal.None.ToString() : result.Detail,
+                InstanceId = request.InstanceId, Quantity = result.Quantity, RoomNode = request.RoomNode
+            };
+            if (HoldRelayResults)
+            {
+                // Proof-only: the verdict is decided and recorded, but this reply is never delivered (a link lost
+                // right after the host's acceptance). The member recovers it by re-sending after its reconnect.
+                RelayResultsHeld++;
+                return;
+            }
+
+            _bus.SendToClient(sender, CoopKinds.RelayResult, CoopJson.Write(message));
+        }
+
+        /// <summary>Relay requests that arrived after the host's run ended and were left undecided (diagnostics / tests).</summary>
+        public int RelaysAfterRunEnd { get; private set; }
+
+        /// <summary>Secure Relay transfers this host accepted for members (diagnostics / proof).</summary>
+        public int RelaysAccepted { get; private set; }
+
+        /// <summary>Proof-only fault injection: decide relay requests but deliver no verdict (see <see cref="RelayResultsHeld"/>).</summary>
+        public bool HoldRelayResults { get; set; }
+        public int RelayResultsHeld { get; private set; }
+
+        /// <summary>Secure Relay requests this host resolved (diagnostics / proof).</summary>
+        public int RelaysResolved { get; private set; }
 
         /// <summary>The host's verdict on a member's Defibrillator use (the member spends the unit only when accepted).</summary>
         public void SendReviveResult(ulong clientId, ReviveResultMessage result)

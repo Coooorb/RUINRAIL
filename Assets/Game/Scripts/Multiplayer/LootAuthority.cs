@@ -171,10 +171,12 @@ namespace RuinRail.Networking
             if (pickup == null || pickup.IsConsumed || pickup.Item == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.AlreadyTaken });
 
             var instanceId = pickup.Item.InstanceId;
-            var quantity = pickup.Item.Quantity;
-            var transfer = pickup.TryPickUp(participant.Backpack, _transfer);
+            // The same transaction as a solo pickup: the member's own pickup hook sizes a whole stack, and a stack that
+            // only partly fits the member's backpack gives exactly the part that fits (the rest stays on the ground).
+            var hook = participant.Entity != null ? participant.Entity.GetComponent<IPickupQuantityHook>() : null;
+            var transfer = pickup.Collect(participant.Backpack, _transfer, hook);
             var verdict = transfer.Success ? LootVerdict.Accepted : transfer.Error == TransferError.SourceMissingItem ? LootVerdict.AlreadyTaken : LootVerdict.Rejected;
-            return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = transfer.Error.ToString(), InstanceId = instanceId, Quantity = transfer.Success ? quantity : 0 });
+            return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = transfer.Error.ToString(), InstanceId = transfer.Success ? transfer.InstanceId : instanceId, Quantity = transfer.Success ? transfer.Quantity : 0 });
         }
 
         /// <summary>
@@ -188,7 +190,8 @@ namespace RuinRail.Networking
             if (_drops == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Rejected, Detail = "no drop service" });
             var owned = _participants.TryGetValue(clientId, out var owner) ? owner.Carried : null;
             if (owned == null) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown, Detail = "unknown participant" });
-            var drop = _drops.DropFromAny(owned, instanceId, quantity, position);
+            // The member's own body on the host is the dropper: its attraction (resolved here) holds the drop back.
+            var drop = _drops.DropFromAny(owned, instanceId, quantity, position, owner.Entity);
             return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = drop.Success ? LootVerdict.Accepted : LootVerdict.Rejected, Detail = drop.Transfer.Error.ToString(), InstanceId = drop.Success ? drop.Pickup.Item.InstanceId : instanceId, Quantity = drop.Transfer.Quantity });
         }
 
@@ -281,6 +284,42 @@ namespace RuinRail.Networking
             var verdict = result.Outcome == DungeonEventOutcome.Success ? LootVerdict.Accepted : cache.IsConsumed ? LootVerdict.AlreadyTaken : LootVerdict.Rejected;
             return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = result.Outcome + (string.IsNullOrEmpty(result.Detail) ? string.Empty : ":" + result.Detail), InstanceId = choice?.Item.InstanceId, Quantity = verdict == LootVerdict.Accepted ? 1 : 0 });
         }
+
+        /// <summary>
+        /// 57.7 Secure Relay in co-op: the sender may secure one unit of an item from its own carried containers (never a
+        /// container the request names), once per participant id for this relay. The host's copy of the unit leaves the
+        /// member's mirrored inventory here (so it can no longer be dropped or sold), the use is recorded, and the member
+        /// commits the unit into its own Storage when the accepted result arrives. Replays of the transaction id return
+        /// the stored result.
+        /// </summary>
+        public LootTransactionResult RequestRelaySecure(string transactionId, ulong clientId, SecureRelayEvent relay, string instanceId)
+        {
+            // A grant is the member's, not the connection's: the same request re-sent after a reconnect (new client id,
+            // maybe another depth, maybe Downed by now) gets the verdict it already had and is never decided again.
+            if (HostAuthorityContract.CanDecide(_authority, AuthoritativeDomain.WorldPickupValidity))
+            {
+                if (_ledger.TryGet(clientId, transactionId, out var sameConnection)) return sameConnection;
+                if (_participants.TryGetValue(clientId, out var member) && _relayGrants.TryGetValue(RelayGrantKey(member.ParticipantId, transactionId), out var granted))
+                    return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = granted.Verdict, Detail = granted.Detail, InstanceId = granted.InstanceId, Quantity = granted.Quantity });
+            }
+
+            if (!Gate(transactionId, clientId, out var cached)) return cached;
+            if (relay == null || !_participants.TryGetValue(clientId, out var participant)) return Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = LootVerdict.Unknown, InstanceId = instanceId });
+            // The member's Storage lives on its own machine: the host only needs somewhere to put its copy of the unit.
+            var result = relay.Secure(participant.ParticipantId, participant.Carried, instanceId, new ListItemContainer("relay_host_copy:" + participant.ParticipantId));
+            var verdict = result.Success ? LootVerdict.Accepted : result.Refusal == SecureRelayRefusal.AlreadySecured ? LootVerdict.AlreadyTaken : LootVerdict.Rejected;
+            var resolved = Finish(new LootTransactionResult { TransactionId = transactionId, ClientId = clientId, Verdict = verdict, Detail = result.Refusal.ToString(), InstanceId = instanceId, Quantity = result.Success ? result.Quantity : 0 });
+            if (result.Success) _relayGrants[RelayGrantKey(participant.ParticipantId, transactionId)] = resolved;
+            return resolved;
+        }
+
+        /// <summary>Secure Relay grants of this run by (participant, transaction): the host's memory of what it already accepted.</summary>
+        private readonly Dictionary<string, LootTransactionResult> _relayGrants = new(StringComparer.Ordinal);
+
+        private static string RelayGrantKey(string participantId, string transactionId) => (participantId ?? string.Empty) + "\n" + (transactionId ?? string.Empty);
+
+        /// <summary>Whether this verdict decided the request (the member may act on it) or only said "not now" (retry later).</summary>
+        public static bool IsFinalRelayVerdict(LootVerdict verdict) => verdict == LootVerdict.Accepted || verdict == LootVerdict.AlreadyTaken || verdict == LootVerdict.Rejected;
     }
 
     /// <summary>Serializable ground state for late joiners: every unresolved pickup of the current depth.</summary>

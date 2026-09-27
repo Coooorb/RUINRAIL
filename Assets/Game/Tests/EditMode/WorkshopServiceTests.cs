@@ -138,7 +138,7 @@ namespace RuinRail.Tests
         // ---- Acceptance 4 ----
 
         [Test]
-        public void TraderUpgrade_ThroughWorkshop_TakesEffectOnNextRefresh()
+        public void TraderUpgrade_ThroughWorkshop_TakesEffectAtOnce()
         {
             var (workshop, profile, _, trader) = Build(2500);
             var events = 0;
@@ -149,9 +149,9 @@ namespace RuinRail.Tests
             Assert.AreEqual(2, trader.Level);
             Assert.AreEqual(2, profile.Trader.Level, "Persisted.");
             Assert.AreEqual(1, events);
-            Assert.AreEqual(4, trader.Offers.Count);
+            Assert.AreEqual(5, trader.Offers.Count, "The upgraded count is on the counter at once.");
             trader.RefreshForEndedExpedition(1);
-            Assert.AreEqual(5, trader.Offers.Count, "Upgraded count on the next applicable refresh.");
+            Assert.AreEqual(5, trader.Offers.Count);
             Assert.AreEqual(7000, workshop.NextTraderUpgradeCost);
             Assert.AreEqual(UpgradeError.InsufficientFunds, workshop.BuyTraderUpgrade());
             Assert.AreEqual(2, trader.Level, "Duplicate/unaffordable purchase charges nothing.");

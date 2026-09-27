@@ -24,7 +24,7 @@ namespace RuinRail.Gameplay.Items
         Merged
     }
 
-    public sealed class ItemSlotContainer : IItemContainer
+    public sealed class ItemSlotContainer : IItemContainer, IStackRoom
     {
         private ItemInstance[] _slots;
         private readonly Func<string, ItemDefinition> _resolveDefinition;
@@ -77,6 +77,14 @@ namespace RuinRail.Gameplay.Items
         }
 
         public bool CanAccept(ItemInstance item) => CanAdd(item);
+
+        /// <summary>Units of this item that fit now: matching-stack room plus free slots at the stack cap (single items: 1 or 0).</summary>
+        public int RoomFor(ItemInstance item)
+        {
+            var definition = item != null ? _resolveDefinition(item.DefinitionId) : null;
+            if (definition == null || Contains(item.InstanceId)) return 0;
+            return definition.IsStackable ? CapacityForStack(definition.Id, MaxStackFor(definition)) : FindEmptySlot() >= 0 ? 1 : 0;
+        }
 
         public bool CanAdd(ItemInstance item)
         {

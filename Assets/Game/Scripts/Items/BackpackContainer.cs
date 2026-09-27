@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RuinRail.Gameplay.Items
 {
-    public sealed class BackpackContainer : IItemContainer
+    public sealed class BackpackContainer : IItemContainer, IStackRoom
     {
         private readonly PlayerInventory _inventory;
 
@@ -31,6 +31,8 @@ namespace RuinRail.Gameplay.Items
         {
             return _inventory.TryAddToBackpack(item);
         }
+
+        public int RoomFor(ItemInstance item) => _inventory.BackpackRoomFor(item);
 
         public ItemInstance TryRemove(string instanceId)
         {

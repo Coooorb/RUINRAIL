@@ -221,24 +221,35 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void Upgrade_Costs2500Then7000_AndRaisesOffersOnNextRefresh()
+        public void Upgrade_Costs2500Then7000_AndTheNewLevelsStockIsOnTheCounterAtOnce()
         {
             var (trader, profile, _) = NewTrader(2499);
             Assert.AreEqual(TradeError.InsufficientFunds, trader.TryUpgrade());
             Assert.AreEqual(1, trader.Level);
+            Assert.AreEqual(2499, profile.BankedCoins, "an unaffordable upgrade charges nothing");
             profile.BankedCoins = 2500 + 7000;
+            Assert.AreEqual(TradeError.None, trader.Buy(trader.Offers.OrderBy(o => o.Price).First().Index, new ListItemContainer("dest")), "one offer bought from the level-1 stock");
+            profile.BankedCoins = 2500 + 7000;
+            var refreshed = 0;
+            trader.Refreshed += () => refreshed++;
             Assert.AreEqual(TradeError.None, trader.TryUpgrade());
             Assert.AreEqual(2, trader.Level);
             Assert.AreEqual(7000, profile.BankedCoins);
-            Assert.AreEqual(4, trader.Offers.Count, "Current stock unchanged until the next refresh.");
-            trader.RefreshForEndedExpedition(1);
-            Assert.AreEqual(5, trader.Offers.Count);
+            Assert.AreEqual(5, trader.Offers.Count, "the level-2 stock is on the counter now");
+            Assert.AreEqual(1, refreshed, "the counter is told its stock changed");
+            Assert.IsTrue(trader.Offers.All(o => !o.IsSold), "the old stock's sold marks do not carry onto the new stock");
+            // Reload equivalence: the stock after the upgrade is exactly what a fresh load of this state builds.
+            var reloaded = new TraderService(_config, _prices, new CoinWallet(CoinDomain.Banked, () => profile.BankedCoins, v => profile.BankedCoins = v),
+                profile.Trader, profile.ProfileSeed, _catalog, id => _registry.TryGet(id, out var d) ? d : null);
+            Assert.AreEqual(Signature(trader), Signature(reloaded));
             Assert.AreEqual(TradeError.None, trader.TryUpgrade());
             Assert.AreEqual(3, trader.Level);
             Assert.AreEqual(0, profile.BankedCoins);
-            trader.RefreshForEndedExpedition(2);
             Assert.AreEqual(6, trader.Offers.Count);
             Assert.AreEqual(TradeError.AlreadyMaxLevel, trader.TryUpgrade());
+            Assert.AreEqual(0, profile.BankedCoins);
+            trader.RefreshForEndedExpedition(1);
+            Assert.AreEqual(6, trader.Offers.Count, "refreshes keep the level's count");
         }
 
         private static string Signature(TraderService trader) =>

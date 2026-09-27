@@ -379,6 +379,15 @@ namespace RuinRail.Tests
                     if (choice.Outcome == DungeonEventOutcome.Success) Assert.AreEqual(DungeonEventOutcome.None, cache.Choose(DungeonEventInteractable.ActorFor(run.Player), 1).Outcome);
                     run.EventsResolved.Add(DungeonEventKind.WeaponCache);
                     break;
+                case SecureRelayEvent relay:
+                    // 57.7: a per-member choice screen (the transfer is proved in SecureRelayTests / SecureRelayLiveProofTests);
+                    // a press without a screen moves nothing, so this run's conservation checks stay exact.
+                    Assert.IsTrue(binding.Event.Interact(run.Player), "the relay answers with its screen");
+                    Assert.AreEqual(DungeonEventDetails.ChoiceRequired, binding.Event.LastResult.Detail);
+                    Assert.AreEqual(DungeonEventPhase.Available, relay.Phase, "the relay stays open for every member");
+                    Assert.AreEqual(0, relay.SecuredCount);
+                    run.EventsResolved.Add(DungeonEventKind.SecureRelay);
+                    break;
                 default:
                     Assert.IsTrue(binding.Event.Interact(run.Player), $"{instance.Kind} activation");
                     if (instance is CursedChestEvent || instance is SupplySignalEvent)

@@ -291,10 +291,15 @@ namespace RuinRail.Tests
             var east = NewReceiver("east", new Vector2(1f, 0f), 0, 0, true, false);
             var north = NewReceiver("north", new Vector2(0f, 1f), 0, 0, true, false);
             var far = NewReceiver("far", new Vector2(10f, 0f), 0, 0, true, false);
+            // Untagged environment in the circle (a wall, a room trigger, a hazard volume): never counted as targets.
+            var wall = new GameObject("Wall"); wall.transform.position = new Vector2(-1.5f, 0f); wall.AddComponent<BoxCollider2D>(); wall.AddComponent<EnvironmentObstacle>();
+            var trigger = new GameObject("RoomTrigger"); trigger.AddComponent<BoxCollider2D>().isTrigger = true; trigger.transform.position = new Vector2(0f, -1f);
+            var hazard = new GameObject("Hazard"); hazard.AddComponent<CircleCollider2D>().isTrigger = true; hazard.transform.position = new Vector2(-1f, -1f);
             yield return null;
 
             var affected = ShockwaveResolver.Emit(Vector2.zero, 2.5f, 8f, 8f, DamageTeam.Player, source);
-            Assert.AreEqual(2, affected);
+            Object.Destroy(wall); Object.Destroy(trigger); Object.Destroy(hazard);
+            Assert.AreEqual(2, affected, "the two enemies in reach, not the wall/trigger/hazard");
             Assert.AreEqual(8f, east.Meter.Pressure, 1e-4f, "Stagger pressure landed as well (decays afterwards).");
             Assert.AreEqual(0f, allyReceiver.Meter.Pressure);
             yield return FixedSteps(15);

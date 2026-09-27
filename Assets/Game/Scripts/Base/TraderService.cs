@@ -234,6 +234,11 @@ namespace RuinRail.Gameplay.Base
             if (!_banked.CanAfford(cost)) return TradeError.InsufficientFunds;
             if (!_banked.Debit(cost, "trader_upgrade").Success) return TradeError.InsufficientFunds;
             _state.Level++;
+            // The stock is a function of (profile seed, refresh count, level): the new level's offer count and quality
+            // apply now, and this is the same stock a reload rebuilds. The old sold marks named the old stock's slots.
+            _state.SoldOfferIndices.Clear();
+            Regenerate();
+            Refreshed?.Invoke();
             return TradeError.None;
         }
     }

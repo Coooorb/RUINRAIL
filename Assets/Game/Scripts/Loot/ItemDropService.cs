@@ -42,16 +42,18 @@ namespace RuinRail.Gameplay.Loot
         }
 
         /// <summary>Drops the whole instance/stack.</summary>
-        public DropResult Drop(IItemContainer source, string instanceId, Vector2 position)
+        public DropResult Drop(IItemContainer source, string instanceId, Vector2 position, GameObject dropper = null)
         {
             var stack = source?.Find(instanceId);
             return stack == null
                 ? new DropResult(TransferResult.Fail(TransferError.SourceMissingItem, instanceId), null)
-                : Drop(source, instanceId, stack.Quantity, position);
+                : Drop(source, instanceId, stack.Quantity, position, dropper);
         }
 
         /// <summary>Drops a quantity of a stack (the whole instance when quantity equals the stack size).</summary>
-        public DropResult Drop(IItemContainer source, string instanceId, int quantity, Vector2 position)
+        /// <param name="dropper">The dropping player: its own attraction leaves the new pickup alone until it has walked
+        /// out of reach once, so a dropped ammo stack is not pulled straight back from under its feet.</param>
+        public DropResult Drop(IItemContainer source, string instanceId, int quantity, Vector2 position, GameObject dropper = null)
         {
             if (source == null || string.IsNullOrEmpty(instanceId))
             {
@@ -78,19 +80,20 @@ namespace RuinRail.Gameplay.Loot
                 return new DropResult(result, null);
             }
 
+            pickup.MarkDroppedBy(dropper);
             pickup.name = $"Pickup_{pickup.Item.DefinitionId}";
             pickup.SetCategory(_factory.CategoryOf(pickup.Item));
             return new DropResult(result, pickup);
         }
 
         /// <summary>Drops from the first of several carried containers (backpack, equipped slots) holding the instance.</summary>
-        public DropResult DropFromAny(IEnumerable<IItemContainer> sources, string instanceId, int quantity, Vector2 position)
+        public DropResult DropFromAny(IEnumerable<IItemContainer> sources, string instanceId, int quantity, Vector2 position, GameObject dropper = null)
         {
             if (sources != null)
             {
                 foreach (var source in sources)
                 {
-                    if (source?.Find(instanceId) != null) return Drop(source, instanceId, quantity, position);
+                    if (source?.Find(instanceId) != null) return Drop(source, instanceId, quantity, position, dropper);
                 }
             }
 

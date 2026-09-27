@@ -435,6 +435,7 @@ namespace RuinRail.Dungeon.Runtime
             collider.offset = volume.center;
             var trigger = go.AddComponent<RoomEntryTrigger>();
             trigger.Bind(runtime);
+            RoomMembershipVolume.Attach(runtime);
             return trigger;
         }
 
@@ -442,12 +443,6 @@ namespace RuinRail.Dungeon.Runtime
         {
             var player = PlayerBodyOf(other);
             if (player != null && _runtime != null) _runtime.NotifyPlayerEntered(player);
-        }
-
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            var player = PlayerBodyOf(other);
-            if (player != null && _runtime != null) _runtime.NotifyPlayerLeft(player);
         }
 
         /// <summary>
@@ -460,6 +455,49 @@ namespace RuinRail.Dungeon.Runtime
         {
             if (other == null || other.isTrigger) return null;
             return other.GetComponent<PlayerMovement>() != null ? other.gameObject : null;
+        }
+    }
+
+    /// <summary>
+    /// How long a player stays a member (occupant) of a room they entered: until their body has left the room's whole
+    /// playable interior (the bounds minus the wall ring, <see cref="RoomRuntime.InteriorWorldBounds"/>).
+    ///
+    /// Entry stays with the inset <see cref="RoomEntryTrigger"/> volume, so activation and lockdown are unchanged. Leaving
+    /// used to be that same volume's exit, so a player standing within ~2 tiles of a wall of a room they were fighting in
+    /// dropped out of it and missed its clear (Patchwork, Room Sweep, the once-per-room resets). The wall ring holds the
+    /// door cells, so walking out through a door still ends membership; the interior never overlaps another room.
+    /// </summary>
+    [RequireComponent(typeof(BoxCollider2D))]
+    public sealed class RoomMembershipVolume : MonoBehaviour
+    {
+        private RoomRuntime _runtime;
+
+        /// <summary>Pure: the membership volume (local tiles) for a room of this size — the interior inside the wall ring.</summary>
+        public static Rect Volume(Vector2Int roomSize)
+        {
+            var ring = RoomRuntime.WallRingTiles;
+            var size = new Vector2(Mathf.Max(0f, roomSize.x - ring * 2f), Mathf.Max(0f, roomSize.y - ring * 2f)) * GridConstants.TileWorldSize;
+            return new Rect(new Vector2(ring, ring) * GridConstants.TileWorldSize, size);
+        }
+
+        public static RoomMembershipVolume Attach(RoomRuntime runtime)
+        {
+            var go = new GameObject("RoomMembershipVolume");
+            go.transform.SetParent(runtime.transform, false);
+            var collider = go.AddComponent<BoxCollider2D>();
+            collider.isTrigger = true;
+            var volume = Volume(runtime.Root.Size);
+            collider.size = volume.size;
+            collider.offset = volume.center;
+            var membership = go.AddComponent<RoomMembershipVolume>();
+            membership._runtime = runtime;
+            return membership;
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            var player = RoomEntryTrigger.PlayerBodyOf(other);
+            if (player != null && _runtime != null) _runtime.NotifyPlayerLeft(player);
         }
     }
 }

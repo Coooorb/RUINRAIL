@@ -1,0 +1,339 @@
+fileFormatVersion: 2
+guid: 67544d13d3804438d835d269748e31f9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1038399519157118345
+    second: vfx_shock_0
+  - first:
+      213: 1641589161269421222
+    second: vfx_shock_1
+  - first:
+      213: 2983417484942602565
+    second: vfx_shock_2
+  - first:
+      213: -1886553334904017527
+    second: vfx_shock_3
+  - first:
+      213: 9174247003183767239
+    second: vfx_shock_4
+  - first:
+      213: -168761184410090067
+    second: vfx_shock_5
+  - first:
+      213: 5719158853274021552
+    second: vfx_shock_6
+  - first:
+      213: 7401785225906762734
+    second: vfx_shock_7
+  - first:
+      213: -645536619057956387
+    second: vfx_shock_8
+  - first:
+      213: 2724064318248411541
+    second: vfx_shock_9
+  - first:
+      213: -8128488829888305361
+    second: vfx_shock_10
+  - first:
+      213: -1785010221045803138
+    second: vfx_shock_11
+  - first:
+      213: -4713508067509991866
+    second: vfx_shock_12
+  - first:
+      213: -4098069260132782249
+    second: vfx_shock_13
+  - first:
+      213: 1416071464027735762
+    second: vfx_shock_14
+  - first:
+      213: 3016874978270074332
+    second: vfx_shock_15
+  - first:
+      213: -6413844469700793984
+    second: vfx_shock_16
+  - first:
+      213: 8569925673155065598
+    second: vfx_shock_17
+  - first:
+      213: 7297635975608640757
+    second: vfx_shock_18
+  - first:
+      213: 3163583479972593516
+    second: vfx_shock_19
+  - first:
+      213: -395147241156711622
+    second: vfx_shock_20
+  - first:
+      213: 470858851940518672
+    second: vfx_shock_21
+  - first:
+      213: -1943170469377081416
+    second: vfx_shock_22
+  - first:
+      213: 7984003094456384988
+    second: vfx_shock_0_0
+  - first:
+      213: 2803073147932440279
+    second: vfx_shock_0_1
+  - first:
+      213: -7203322622091581043
+    second: vfx_shock_0_2
+  - first:
+      213: 5064867289712273357
+    second: vfx_shock_0_3
+  - first:
+      213: 855845424325339774
+    second: vfx_shock_0_4
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vfx_shock_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cdd31ba6380ecce60800000000000000
+      internalID: 7984003094456384988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_shock_0_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d6f2fd3d2486e620800000000000000
+      internalID: 2803073147932440279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_shock_0_2
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8922b37d38a80c90800000000000000
+      internalID: -7203322622091581043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_shock_0_3
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dc7abc517f50a4640800000000000000
+      internalID: 5064867289712273357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_shock_0_4
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 160
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a2e8301e290eb00800000000000000
+      internalID: 855845424325339774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      vfx_shock_0: 1038399519157118345
+      vfx_shock_0_0: 7984003094456384988
+      vfx_shock_0_1: 2803073147932440279
+      vfx_shock_0_2: -7203322622091581043
+      vfx_shock_0_3: 5064867289712273357
+      vfx_shock_0_4: 855845424325339774
+      vfx_shock_1: 1641589161269421222
+      vfx_shock_10: -8128488829888305361
+      vfx_shock_11: -1785010221045803138
+      vfx_shock_12: -4713508067509991866
+      vfx_shock_13: -4098069260132782249
+      vfx_shock_14: 1416071464027735762
+      vfx_shock_15: 3016874978270074332
+      vfx_shock_16: -6413844469700793984
+      vfx_shock_17: 8569925673155065598
+      vfx_shock_18: 7297635975608640757
+      vfx_shock_19: 3163583479972593516
+      vfx_shock_2: 2983417484942602565
+      vfx_shock_20: -395147241156711622
+      vfx_shock_21: 470858851940518672
+      vfx_shock_22: -1943170469377081416
+      vfx_shock_3: -1886553334904017527
+      vfx_shock_4: 9174247003183767239
+      vfx_shock_5: -168761184410090067
+      vfx_shock_6: 5719158853274021552
+      vfx_shock_7: 7401785225906762734
+      vfx_shock_8: -645536619057956387
+      vfx_shock_9: 2724064318248411541
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -412,6 +412,59 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
+        public IEnumerator Solo_WorldActions_RoomSweep_ReachesAWearerStandingAtTheWall()
+        {
+            yield return EnterRun();
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var player = run.Rig.Player;
+            var world = run.Rig.PassiveWorld;
+            var relay = player.GetComponent<PlayerRoomEventsRelay>();
+            Wear(run.Rig.Inventory, "accessory_magnetic_coil", EquippedSlot.Accessory);
+            var room = run.Rooms.Values.First(r => r.State.RoomType == RoomType.Combat && !r.State.IsElite && r.Lifecycle == RoomLifecycleState.Unentered && r.HasEncounter);
+            var bounds = room.InteriorWorldBounds;
+            Place(player, bounds.center);
+            for (var i = 0; i < 4; i++) yield return new WaitForFixedUpdate();
+            yield return null;
+            Assert.AreEqual(RoomLifecycleState.Active, room.Lifecycle);
+            foreach (var e in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) if (e != null) { e.enabled = false; e.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic; }
+
+            // Walk to the wall: a free floor spot with the body against the west wall face — fully outside the inset
+            // entry volume, which used to end room membership there.
+            var radius = player.GetComponents<CircleCollider2D>().First(c => !c.isTrigger).radius;
+            var wallSpot = Enumerable.Range(0, (int)bounds.height).Select(y => new Vector2(bounds.xMin + radius + 0.1f, bounds.yMin + 0.5f + y))
+                .First(p => !Physics2D.OverlapCircleAll(p, radius + 0.05f).Any(c => c.GetComponentInParent<EnvironmentObstacle>() != null));
+            Place(player, wallSpot);
+            for (var i = 0; i < 6; i++) yield return new WaitForFixedUpdate();
+            Assert.Less(player.transform.position.x - bounds.xMin, RoomEntryTrigger.InteriorMarginTiles - RuinRail.Dungeon.Runtime.RoomRuntime.WallRingTiles - radius,
+                "precondition: the wearer stands outside the entry volume, near the wall");
+            Assert.IsTrue(room.Occupants.Contains(player), "still a member of the room at the wall");
+
+            var spawnerHost = new GameObject("TestSweepSpawner");
+            var spawner = run.CreateLootSpawnerFor(spawnerHost);
+            var coins = spawner.CreateCoinPickup(new Vector2(bounds.xMax - 0.7f, bounds.yMax - 0.7f));
+            coins.SetAmount(7);
+            var ammo = spawner.CreateItemPickup(new Vector2(bounds.xMax - 0.7f, bounds.yMin + 0.7f));
+            ammo.Hold(new ItemInstance("ammo_light", 6), ItemCategory.Ammo);
+            var cleared0 = relay.RoomsCleared;
+
+            for (var t = Time.time + 10f; Time.time < t && room.Lifecycle != RoomLifecycleState.Cleared;)
+            {
+                foreach (var e in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                    if (e != null && e.IsAlive && bounds.Contains(e.transform.position)) e.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(999999));
+                yield return null;
+            }
+
+            Assert.AreEqual(RoomLifecycleState.Cleared, room.Lifecycle);
+            Assert.AreEqual(cleared0 + 1, relay.RoomsCleared, "the clear reached the wearer at the wall");
+            Assert.AreEqual(1, world.Sweeps, "one sweep per clear");
+            Assert.AreEqual(2, world.SweptPickups);
+            for (var t = Time.time + 5f; Time.time < t && !(coins.IsCollected && ammo.IsConsumed);) yield return null;
+            Assert.IsTrue(coins.IsCollected, "coins pulled to the wearer at the wall");
+            Assert.IsTrue(ammo.IsConsumed, "ammo pulled to the wearer at the wall");
+            Object.DestroyImmediate(spawnerHost);
+        }
+
+        [UnityTest]
         public IEnumerator Solo_WorldActions_EmergencyVentDischargeArcStagger_ActOnTheEnemiesAroundTheWearer()
         {
             yield return EnterRun();

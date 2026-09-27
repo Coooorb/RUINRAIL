@@ -217,6 +217,87 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
+        public IEnumerator PressedUnderAWall_ShootingAwayFromIt_StillHits([Values(false, true)] bool assist)
+        {
+            // The co-op proof's geometry (Adrenaline step): the shooter's body pressed against the underside of an
+            // obstacle, the target 4.1 tiles away down-right with nothing in between.
+            var (player, reader, aiming, _) = Player(Vector2.zero);
+            var weapon = Mount(player, "weapon_p9_ranger", assist);
+            var body = player.GetComponents<CircleCollider2D>().First(c => !c.isTrigger);
+            var wall = new GameObject("WallAbove");
+            _created.Add(wall);
+            wall.transform.position = new Vector3(0f, body.radius + 0.5f + body.offset.y, 0f);
+            wall.AddComponent<BoxCollider2D>().size = new Vector2(3f, 1f);
+            wall.AddComponent<EnvironmentObstacle>();
+            var enemy = Enemy(new Vector2(3.59f, -1.91f));
+            var health = enemy.GetComponent<HealthComponent>();
+            var before = health.CurrentHealth;
+            yield return AimAt(reader, enemy.GetComponent<CombatHurtbox>().AimPoint);
+            Assert.IsTrue(Fire(weapon));
+            var shot = ((RangedWeapon)weapon).LastShot;
+            var wallCollider = wall.GetComponent<BoxCollider2D>();
+            var detail = $"pivot={aiming.AimOrigin - (Vector2)player.transform.position} spawn={shot.SpawnPosition} pulledBack={shot.SpawnPulledBack} spawnInWall={wallCollider.OverlapPoint(shot.SpawnPosition)} pivotInWall={wallCollider.OverlapPoint(aiming.AimOrigin)} dir={shot.Direction}";
+            yield return Settle(1.5f);
+            Assert.Less(health.CurrentHealth, before, "a clear shot away from the wall hits: " + detail);
+        }
+
+        [UnityTest]
+        public IEnumerator PressedUnderAWall_OnAClient_TheHitIsForwardedOnce_AndNeverAppliedLocally()
+        {
+            // The remote-client form of the same shot (82): the hit reaches the relay (the host request) exactly once.
+            var (player, reader, _, _) = Player(Vector2.zero);
+            var weapon = Mount(player, "weapon_p9_ranger", assist: true);
+            var body = player.GetComponents<CircleCollider2D>().First(c => !c.isTrigger);
+            var wall = new GameObject("WallAbove");
+            _created.Add(wall);
+            wall.transform.position = new Vector3(0f, body.radius + 0.5f + body.offset.y, 0f);
+            wall.AddComponent<BoxCollider2D>().size = new Vector2(3f, 1f);
+            wall.AddComponent<EnvironmentObstacle>();
+            var enemy = Enemy(new Vector2(3.59f, -1.91f));
+            var health = enemy.GetComponent<HealthComponent>();
+            var before = health.CurrentHealth;
+            var forwarded = new List<HealthComponent>();
+            yield return AimAt(reader, enemy.GetComponent<CombatHurtbox>().AimPoint);
+            var previousRelay = DamageAuthority.RemoteDamageRelay;
+            DamageAuthority.LocalIsAuthoritative = false;
+            DamageAuthority.RemoteDamageRelay = (target, _) => { forwarded.Add(target); return true; };
+            try
+            {
+                Assert.IsTrue(Fire(weapon));
+                yield return Settle(1.5f);
+            }
+            finally
+            {
+                DamageAuthority.LocalIsAuthoritative = true;
+                DamageAuthority.RemoteDamageRelay = previousRelay;
+            }
+
+            Assert.AreEqual(1, forwarded.Count, "one shot, one hit request");
+            Assert.AreSame(health, forwarded[0], "for the enemy aimed at");
+            Assert.AreEqual(before, health.CurrentHealth, "a client never applies damage locally");
+        }
+
+        [UnityTest]
+        public IEnumerator PressedUnderAWall_ShootingIntoIt_TheWallStillTakesTheShot()
+        {
+            var (player, reader, _, _) = Player(Vector2.zero);
+            var weapon = Mount(player, "weapon_p9_ranger", assist: true);
+            var body = player.GetComponents<CircleCollider2D>().First(c => !c.isTrigger);
+            var wall = new GameObject("WallAbove");
+            _created.Add(wall);
+            wall.transform.position = new Vector3(0f, body.radius + 0.5f + body.offset.y, 0f);
+            wall.AddComponent<BoxCollider2D>().size = new Vector2(3f, 1f);
+            wall.AddComponent<EnvironmentObstacle>();
+            var enemy = Enemy(new Vector2(0.5f, 3.5f)); // beyond the wall
+            var health = enemy.GetComponent<HealthComponent>();
+            var before = health.CurrentHealth;
+            yield return AimAt(reader, enemy.GetComponent<CombatHurtbox>().AimPoint);
+            Assert.IsTrue(Fire(weapon));
+            yield return Settle(1.5f);
+            Assert.AreEqual(before, health.CurrentHealth, "no shot passes through the wall the shooter is pressed against");
+        }
+
+        [UnityTest]
         public IEnumerator CloseTarget_ProjectileIsNotSpawnedPastIt()
         {
             var (player, reader, aiming, held) = Player(Vector2.zero);

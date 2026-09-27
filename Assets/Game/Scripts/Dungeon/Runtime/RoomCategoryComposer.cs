@@ -18,13 +18,14 @@ namespace RuinRail.Dungeon.Runtime
     /// Binds each room's category behaviour from its RoomDefinition metadata (55) — never from prefab or scene names:
     /// Loot/Treasure → one-time chests at ChestSpawn markers; Merchant → the depth's single merchant stock at the
     /// MerchantAnchor; Event → exactly one authored event at the EventAnchor (kind pinned by an "event:&lt;kind&gt;" tag
-    /// or picked by seed); Medical/Recovery → the Medical Station; Boss → boss engagement, Boss Cache and Transit Car.
+    /// or picked by seed, rarely the Secure Relay); Medical/Recovery → the Medical Station; Boss → boss engagement, Boss Cache and Transit Car.
     /// Resolved interactions are recorded in the room state, so a revisit restores them instead of regenerating.
     /// </summary>
     public static class RoomCategoryComposer
     {
         public const string EventTagPrefix = "event:";
         private const int EventKindSalt = 0x4B4E; // "KN"
+        private const int SecureRelaySalt = 0x5352; // "SR"
         public const int ChestSourceStride = 16;
 
         public static readonly DungeonEventKind[] RandomEventKinds =
@@ -53,7 +54,7 @@ namespace RuinRail.Dungeon.Runtime
                     BindMerchant(room, binding, context, services);
                     break;
                 case RoomType.Event:
-                    BindEvent(room, binding, context, services, ResolveEventKind(room, context));
+                    BindEvent(room, binding, context, services, ResolveEventKind(room, context, services.EventConfig != null ? services.EventConfig.SecureRelayChancePercent : DungeonEventConfig.DefaultSecureRelayChancePercent));
                     break;
                 case RoomType.MedicalRecovery:
                     BindEvent(room, binding, context, services, DungeonEventKind.MedicalStation);
@@ -190,11 +191,16 @@ namespace RuinRail.Dungeon.Runtime
 
         // ---- Event / Medical ----
 
-        public static DungeonEventKind ResolveEventKind(RoomRuntime room, DungeonRuntimeContext context) =>
-            ResolveEventKind(room.Root.Definition != null ? room.Root.Definition.Tags : Array.Empty<string>(), context.RunSeed, context.Depth, room.State.NodeId);
+        public static DungeonEventKind ResolveEventKind(RoomRuntime room, DungeonRuntimeContext context, int secureRelayChancePercent = DungeonEventConfig.DefaultSecureRelayChancePercent) =>
+            ResolveEventKind(room.Root.Definition != null ? room.Root.Definition.Tags : Array.Empty<string>(), context.RunSeed, context.Depth, room.State.NodeId, secureRelayChancePercent);
 
-        /// <summary>Pure form (planning / simulation): the authored "event:&lt;kind&gt;" tag wins, otherwise the seeded pick on the Loot stream.</summary>
-        public static DungeonEventKind ResolveEventKind(IReadOnlyList<string> tags, int runSeed, int depth, int nodeId)
+        /// <summary>
+        /// Pure form (planning / simulation): the authored "event:&lt;kind&gt;" tag wins; otherwise the rare Secure Relay
+        /// (57.7) roll on its own salted draw, and failing that the seeded pick of the six approved events on the Loot
+        /// stream. The relay roll never consumes the pick's stream, so every room the relay does not claim keeps the event
+        /// it always had.
+        /// </summary>
+        public static DungeonEventKind ResolveEventKind(IReadOnlyList<string> tags, int runSeed, int depth, int nodeId, int secureRelayChancePercent = DungeonEventConfig.DefaultSecureRelayChancePercent)
         {
             tags ??= Array.Empty<string>();
             foreach (var tag in tags)
@@ -205,6 +211,12 @@ namespace RuinRail.Dungeon.Runtime
                 {
                     if (string.Equals(kind.ToString(), name, StringComparison.OrdinalIgnoreCase)) return kind;
                 }
+            }
+
+            if (secureRelayChancePercent > 0)
+            {
+                var relay = new SeededRandom(SeededRandom.MixSeed(runSeed, depth, (int)RngStream.Loot, SecureRelaySalt, nodeId));
+                if (relay.NextInt(100) < secureRelayChancePercent) return DungeonEventKind.SecureRelay;
             }
 
             var random = new SeededRandom(SeededRandom.MixSeed(runSeed, depth, (int)RngStream.Loot, EventKindSalt, nodeId));
@@ -239,6 +251,7 @@ namespace RuinRail.Dungeon.Runtime
                 DungeonEventKind.BrokenMachine => new BrokenMachineEvent(eventContext, services.EventConfig, services.Prices, rewards, deliverer),
                 DungeonEventKind.SupplySignal => new SupplySignalEvent(eventContext, services.EventConfig, rewards, deliverer, context.Archetypes, tags),
                 DungeonEventKind.MedicalStation => new MedicalStationEvent(eventContext, services.EventConfig, services.Prices, services.ReviveAuthority),
+                DungeonEventKind.SecureRelay => new SecureRelayEvent(eventContext, services.ResolveDefinition),
                 _ => new WeaponCacheEvent(eventContext, services.EventConfig, services.Items, services.RarityTables)
             };
 
@@ -253,6 +266,15 @@ namespace RuinRail.Dungeon.Runtime
             {
                 restorable.RestoreResolved(room.State.IsResolved(resolvedId + ":success"));
                 visual?.SetTint(WorldObjectVisual.ResolvedTint);
+            }
+
+            if (instance is SecureRelayEvent relay)
+            {
+                // Per-member single use (57.7): each member's use is its own resolved id, so a revisit or a co-op resync
+                // restores exactly who has used the relay while it stays open for everyone else.
+                foreach (var id in room.State.Resolved.Where(r => r.StartsWith(SecureRelayEvent.ResolvedPrefix, StringComparison.Ordinal)))
+                    relay.RestoreSecured(id.Substring(SecureRelayEvent.ResolvedPrefix.Length));
+                relay.Secured += (_, participant, _) => room.State.MarkResolved(SecureRelayEvent.ResolvedIdFor(participant));
             }
 
             instance.Completed += (_, result) =>

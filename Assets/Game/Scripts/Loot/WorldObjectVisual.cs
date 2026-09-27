@@ -25,7 +25,8 @@ namespace RuinRail.Gameplay.Loot
         {
             SupplyChest, SupplyChestOpen, BossCacheGate, ItemPickup, CoinPickup, DungeonMerchant, TransitCar,
             EventPrefix + "CursedChest", EventPrefix + "LockedVault", EventPrefix + "BrokenMachine",
-            EventPrefix + "SupplySignal", EventPrefix + "MedicalStation", EventPrefix + "WeaponCache"
+            EventPrefix + "SupplySignal", EventPrefix + "MedicalStation", EventPrefix + "WeaponCache",
+            EventPrefix + "SecureRelay", EventPrefix + "SecureRelay_secured"
         };
 
         public static Func<string, Sprite> Resolver { get; set; }

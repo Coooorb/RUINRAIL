@@ -211,6 +211,7 @@ namespace RuinRail.EditorTools.Production
                          "Assets/Game/Scripts/UI/Inventory/InventoryViewModel.cs",
                          "Assets/Game/Scripts/UI/Merchant/MerchantViewModel.cs",
                          "Assets/Game/Scripts/UI/WeaponCache/WeaponCacheViewModel.cs",
+                         "Assets/Game/Scripts/UI/SecureRelay/SecureRelayViewModel.cs",
                          "Assets/Game/Scripts/UI/RunEnd/RunFailedViewModel.cs"
                      })
             {

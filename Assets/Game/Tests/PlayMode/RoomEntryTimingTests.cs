@@ -333,5 +333,59 @@ namespace RuinRail.Tests
             runtime.UnlockDoors();
             Assert.IsTrue(RuinRail.Dungeon.Generation.RoomExitSealer.IsSealed(root, spare), "locking never reopens a sealed exit");
         }
-    }
+    
+        [UnityTest]
+        public IEnumerator Player_NearAWall_StaysARoomMember_UntilLeavingThroughADoor_ForEverySizeAndBiome()
+        {
+            var rooms = Cases().Select(c => c.room).Distinct().ToList();
+            Assert.GreaterOrEqual(rooms.Count, 3, "every size class × biome");
+            var index = 0;
+            foreach (var definition in rooms)
+            {
+                var origin = new Vector2(-400f - (index % 6) * 60f, 200f + (index / 6) * 40f);
+                index++;
+                var (runtime, root, _) = CombatRoom(definition, origin);
+                var interior = runtime.InteriorWorldBounds;
+                var label = definition.Id;
+
+                var (outsider, _) = Player(interior.center + Vector2.right * (interior.width + 6f), "Outsider_" + index);
+                var (player, body) = Player(interior.center, "Member_" + index);
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.IsTrue(runtime.Occupants.Contains(player), $"{label}: entered at the centre");
+                Assert.AreEqual(RoomLifecycleState.Active, runtime.Lifecycle, $"{label}: activation unchanged");
+
+                // Within 1–2 tiles of every wall (the body touching the wall face, and 1.5 tiles off it): still a member.
+                foreach (var offset in new[] { 0.45f, 1.5f })
+                foreach (var at in new[]
+                         {
+                             new Vector2(interior.xMin + offset, interior.center.y), new Vector2(interior.xMax - offset, interior.center.y),
+                             new Vector2(interior.center.x, interior.yMin + offset), new Vector2(interior.center.x, interior.yMax - offset),
+                             new Vector2(interior.xMin + offset, interior.yMin + offset), new Vector2(interior.xMax - offset, interior.yMax - offset)
+                         })
+                {
+                    body.position = at;
+                    yield return new WaitForFixedUpdate();
+                    yield return new WaitForFixedUpdate();
+                    Assert.IsTrue(runtime.Occupants.Contains(player), $"{label}: still a member at {at - interior.min} (interior {interior.size})");
+                }
+
+                // Out through a door and away: no longer a member. Nobody outside ever was.
+                runtime.UnlockDoors();
+                var socket = root.GetSockets().First();
+                var (doorway, _, _) = SocketPoints(root, socket);
+                body.position = doorway + (Vector2)DoorDirections.Step(socket.Direction) * 3f;
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.IsFalse(runtime.Occupants.Contains(player), $"{label}: left through the {socket.Direction} door");
+                Assert.IsFalse(runtime.Occupants.Contains(outsider), $"{label}: a player outside is never a member");
+
+                // Back in: a member again.
+                body.position = interior.center;
+                yield return new WaitForFixedUpdate();
+                yield return new WaitForFixedUpdate();
+                Assert.IsTrue(runtime.Occupants.Contains(player), $"{label}: re-entered");
+            }
+        }
+}
 }

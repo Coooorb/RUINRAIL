@@ -57,6 +57,26 @@ namespace RuinRail.UI.Base
             return int.TryParse(focusId.Substring(prefix.Length), out var index) ? index : -1;
         }
 
+        /// <summary>The list row a counter control stands for: an offer (BUY) or a held item (SELL); -1 otherwise.</summary>
+        public static int RowIndexOf(string focusId)
+        {
+            var offer = OfferIndexOf(focusId);
+            if (offer >= 0) return offer;
+            const string prefix = ScreenNavigation.TraderSellItemPrefix;
+            if (string.IsNullOrEmpty(focusId) || !focusId.StartsWith(prefix, StringComparison.Ordinal)) return -1;
+            return int.TryParse(focusId.Substring(prefix.Length), out var index) ? index : -1;
+        }
+
+        /// <summary>The SELL details line: rarity · category · quantity · what the Trader pays (or why it will not).</summary>
+        public static string SellSubtitle(MerchantRow row, ItemTooltip tooltip)
+        {
+            if (row == null || tooltip == null) return string.Empty;
+            var text = RarityStyle.For(tooltip.Rarity).Label + " · " + tooltip.CategoryText;
+            if (tooltip.Quantity.HasValue && tooltip.Quantity.Value > 1) text += $" · x{tooltip.Quantity.Value}";
+            text += row.IsUnsellable ? " · STARTER GEAR, CANNOT BE SOLD" : row.Price > 0 ? $" · SELLS FOR {row.Price} C" : " · NO SALE VALUE";
+            return text;
+        }
+
         public static ItemTooltip TooltipFor(MerchantRow row, PlayerInventory loadout, LegendarySpecialRegistry specials = null) =>
             row?.Item == null ? null : ItemTooltip.Build(row.Item, row.Definition ?? loadout?.Resolve(row.Item.DefinitionId), specials);
 

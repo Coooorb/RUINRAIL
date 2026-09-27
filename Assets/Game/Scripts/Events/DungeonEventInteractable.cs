@@ -22,7 +22,7 @@ namespace RuinRail.Gameplay.Events
         public event Action<DungeonEventInteractable, DungeonEventResult> Activated;
 
         /// <summary>
-        /// The one seam from the world into a choice screen (57.6 Weapon Cache), the counterpart of the merchant's
+        /// The one seam from the world into a choice screen (57.6 Weapon Cache, 57.7 Secure Relay), the counterpart of the merchant's
         /// <c>Opened</c>: the bound event answered the Interact press with
         /// <see cref="DungeonEventDetails.ChoiceRequired"/>, so the press opened a selection rather than resolving the
         /// event. The event is untouched and still Available; the screen calls its Choose when the player picks.
@@ -84,6 +84,7 @@ namespace RuinRail.Gameplay.Events
             var text = prompt.ActionLabel + " " + prompt.Title;
             if (prompt.HasCost) text += $" ({prompt.CostCoins} COINS)";
             var refusal = RefusalFor(interactor);
+            if (string.IsNullOrEmpty(refusal)) refusal = EventPromptBuilder.StatusOf(_event, ActorFor(interactor));
             if (!string.IsNullOrEmpty(refusal)) text += " — " + refusal;
             return text.ToUpperInvariant();
         }

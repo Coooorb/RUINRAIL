@@ -26,6 +26,9 @@
 - Max-HP changes (equipment, attributes, affixes, passives) never heal damage: a full-health player stays full against
   the new maximum, a damaged player keeps their current HP, a lower maximum clamps (never below 1 while alive). One
   equipment change is one change — the old item's modifiers leaving first never costs or grants HP. (`HealthComponent.ResizeMaxHealth`)
+- A Trader upgrade applies at once: the counter's stock is rebuilt for the new level (offer count and quality) from the
+  same (profile seed, refresh count, level) inputs a reload uses, and the old stock's sold marks are cleared. The Shelter
+  counter sells any held item the player picks (backpack or Storage); Starter Kit items are listed but cannot be sold. (`design/base/72_TRADER.md`)
 
 ## Balance
 - Approved V1 baselines stay data-driven and are **frozen** in `../production/FINAL_RELEASE_FROZEN_BASELINE.csv`

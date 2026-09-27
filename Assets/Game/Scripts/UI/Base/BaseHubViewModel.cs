@@ -8,6 +8,7 @@ using RuinRail.Gameplay.Items;
 using RuinRail.Gameplay.Progression;
 using RuinRail.Networking;
 using RuinRail.UI.Inventory;
+using RuinRail.UI.Merchant;
 
 namespace RuinRail.UI.Base
 {
@@ -178,6 +179,32 @@ namespace RuinRail.UI.Base
             var item = _backpack.Find(instanceId) ?? _session.Storage.Find(instanceId);
             return item == null ? 0 : _session.Trader.QuoteSellValue(item);
         }
+
+        /// <summary>
+        /// Everything the survivor could offer the counter (72: safe items): the backpack in slot order, then Storage.
+        /// Starter Kit items are listed as unsellable, so the rule is visible rather than a surprise rejection.
+        /// </summary>
+        public List<MerchantRow> SellRows()
+        {
+            var rows = new List<MerchantRow>();
+            foreach (var item in _session.Loadout.BackpackSlots.Where(i => i != null).Concat(_session.Storage.Items.Where(i => i != null)))
+            {
+                rows.Add(new MerchantRow
+                {
+                    Tab = MerchantTab.Sell,
+                    Index = rows.Count,
+                    Item = item,
+                    Definition = _session.Loadout.Resolve(item.DefinitionId),
+                    Price = _session.Trader.QuoteSellValue(item),
+                    IsUnsellable = item.IsUnsellable
+                });
+            }
+
+            return rows;
+        }
+
+        /// <summary>True when the item sits in Storage rather than the backpack (the counter labels it).</summary>
+        public bool IsInStorage(string instanceId) => _backpack.Find(instanceId) == null && _session.Storage.Find(instanceId) != null;
 
         public bool Sell(string instanceId)
         {

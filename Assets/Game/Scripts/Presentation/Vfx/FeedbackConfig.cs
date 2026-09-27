@@ -51,6 +51,16 @@ namespace RuinRail.Presentation.Vfx
         [SerializeField] private float _damageNumberSeconds = 0.7f;
         [SerializeField] private float _damageNumberRisePixels = 12f;
         [SerializeField] private int _damageNumberCapacity = 48;
+        [Tooltip("Presentation: integer pixel scale of the pixel-font digits (1 = the UI text size, 7 px tall at 640x360).")]
+        [SerializeField, Range(1, 3)] private int _damageNumberPixelScale = 1;
+        [Tooltip("Presentation: damage the player deals (warm off-white).")]
+        [SerializeField] private Color _damageDealtColor = new(0.96f, 0.92f, 0.82f, 1f);
+        [Tooltip("Presentation: damage the local player takes (hurt salmon: reads on dark floors and over the red hit flash).")]
+        [SerializeField] private Color _damageTakenColor = new(1f, 0.52f, 0.44f, 1f);
+        [Tooltip("Presentation: healing received.")]
+        [SerializeField] private Color _healNumberColor = new(0.55f, 0.95f, 0.55f, 1f);
+        [Tooltip("Presentation: the one-pixel outline that keeps every number readable on any floor, effect or body.")]
+        [SerializeField] private Color _damageNumberOutlineColor = new(0.04f, 0.05f, 0.06f, 1f);
 
         [Header("Telegraphs")]
         [SerializeField] private Color _enemyTelegraphColor = new(1f, 0.45f, 0.1f, 0.55f);
@@ -103,6 +113,11 @@ namespace RuinRail.Presentation.Vfx
         public float DamageNumberSeconds => _damageNumberSeconds;
         public float DamageNumberRisePixels => _damageNumberRisePixels;
         public int DamageNumberCapacity => _damageNumberCapacity;
+        public int DamageNumberPixelScale => Mathf.Clamp(_damageNumberPixelScale, 1, 3);
+        public Color DamageDealtColor => _damageDealtColor;
+        public Color DamageTakenColor => _damageTakenColor;
+        public Color HealNumberColor => _healNumberColor;
+        public Color DamageNumberOutlineColor => _damageNumberOutlineColor;
         public Color EnemyTelegraphColor => _enemyTelegraphColor;
         public Color EliteBossTelegraphColor => _eliteBossTelegraphColor;
         public float LegendaryGlowScale => _legendaryGlowScale;

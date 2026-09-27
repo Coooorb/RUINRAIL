@@ -18,6 +18,14 @@ namespace RuinRail.Gameplay.Loot
         public bool IsCollected => _collected;
         public bool IsAttractionEligible => !_collected && _amount > 0;
 
+        /// <summary>Coin piles are never dropped by a player (coins only come from loot sources), so nothing is held back.</summary>
+        public bool IsHeldBackFrom(GameObject collector) => false;
+
+        /// <summary>Coins go to a wallet, which has no capacity: a pile always fits whole.</summary>
+        public bool FitsWhollyFor(GameObject interactor) => CanBeCollectedBy(interactor);
+
+        public void ReleaseHoldBack(GameObject collector) { }
+
         public event Action<CoinPickup, int> Collected;
 
         public void SetAmount(int amount)

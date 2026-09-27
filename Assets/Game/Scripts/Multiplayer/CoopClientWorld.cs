@@ -101,6 +101,7 @@ namespace RuinRail.Networking
         public event Action<RevokeMessage> Revoked;
         public event Action<TradeResultMessage> TradeResult;
         public event Action<CacheResultMessage> CacheResult;
+        public event Action<RelayResultMessage> RelayResult;
         public event Action<ReviveResultMessage> ReviveResult;
         public event Action<KillMessage> KillConfirmed;
         public event Action<NoticeMessage> Notice;
@@ -138,6 +139,28 @@ namespace RuinRail.Networking
 
         /// <summary>Asks the host for everything as it stands now (after composing late or reconnecting).</summary>
         public void RequestResync() => _bus.SendToHost(CoopKinds.Resync, "{}");
+
+        // ---- grenade presentation (items/31 over 82) ----
+
+        private uint _grenadeSequence;
+        public int GrenadesAnnounced { get; private set; }
+        public int GrenadesShown { get; private set; }
+        /// <summary>Another peer's validated throw to draw (never this peer's own; never a second grenade).</summary>
+        public event Action<GrenadeShowMessage> GrenadeShown;
+        /// <summary>The clock the host stamps a shown throw with (a late message draws only what is left of it).</summary>
+        public double NetworkTime => _bus.NetworkTime;
+
+        /// <summary>This member threw a grenade: its own run resolves it; the host validates the throw and shows it to the others.</summary>
+        public void AnnounceGrenade(string consumableId, Vector2 origin, Vector2 landing)
+        {
+            if (string.IsNullOrEmpty(consumableId)) return;
+            GrenadesAnnounced++;
+            _bus.SendToHost(CoopKinds.GrenadeThrow, CoopJson.Write(new GrenadeThrowMessage
+            {
+                Sequence = ++_grenadeSequence, ConsumableId = consumableId,
+                OriginX = origin.x, OriginY = origin.y, LandingX = landing.x, LandingY = landing.y
+            }));
+        }
 
         /// <summary>A Defibrillator use: the host picks the Dead teammate in reach and answers with the verdict.</summary>
         public void RequestRevive(string consumableId, string transactionId) =>
@@ -296,6 +319,14 @@ namespace RuinRail.Networking
             return tx;
         }
 
+        /// <summary>57.7: asks the host to secure one unit of this member's carried item at the room's Secure Relay.</summary>
+        public string SendRelaySecure(int roomNode, string instanceId, string transactionId = null, int depth = 0)
+        {
+            var tx = transactionId ?? NewTransactionId();
+            _bus.SendToHost(CoopKinds.RelaySecure, CoopJson.Write(new TradeRequestMessage { TransactionId = tx, Depth = depth > 0 ? depth : _depth, RoomNode = roomNode, InstanceId = instanceId, Quantity = 1 }));
+            return tx;
+        }
+
         public string SendDrop(string instanceId, int quantity, string transactionId = null)
         {
             var tx = transactionId ?? NewTransactionId();
@@ -369,9 +400,18 @@ namespace RuinRail.Networking
                     break;
                 case CoopKinds.TradeResult: TradeResult?.Invoke(CoopJson.Read<TradeResultMessage>(json)); break;
                 case CoopKinds.CacheResult: CacheResult?.Invoke(CoopJson.Read<CacheResultMessage>(json)); break;
+                case CoopKinds.RelayResult: RelayResult?.Invoke(CoopJson.Read<RelayResultMessage>(json)); break;
                 case CoopKinds.ReviveResult: ReviveResult?.Invoke(CoopJson.Read<ReviveResultMessage>(json)); break;
                 case CoopKinds.Kill: KillConfirmed?.Invoke(CoopJson.Read<KillMessage>(json)); break;
                 case CoopKinds.Notice: Notice?.Invoke(CoopJson.Read<NoticeMessage>(json)); break;
+                case CoopKinds.GrenadeShown:
+                {
+                    var show = CoopJson.Read<GrenadeShowMessage>(json);
+                    if (show == null || show.Thrower == (long)_bus.LocalClientId) break; // this peer draws its own throw locally
+                    GrenadesShown++;
+                    GrenadeShown?.Invoke(show);
+                    break;
+                }
                 case CoopKinds.GameplayRelease: GameplayReleased?.Invoke(CoopJson.Read<GameplayReleaseMessage>(json)); break;
                 case CoopKinds.RunEnded: RunEnded?.Invoke(CoopJson.Read<RunEndedMessage>(json)); break;
                 case CoopKinds.ProofCommand: ProofCommand?.Invoke(CoopJson.Read<ProofMessage>(json)); break;
@@ -516,6 +556,13 @@ namespace RuinRail.Networking
                 }
             }
 
+            // 57.7: the relay stays open for the party; each member's use arrives as its own "relay:<participant>" id.
+            if (binding.EventInstance is SecureRelayEvent relay)
+            {
+                foreach (var id in resolved.Where(r => r.StartsWith(SecureRelayEvent.ResolvedPrefix, StringComparison.Ordinal)))
+                    relay.RestoreSecured(id.Substring(SecureRelayEvent.ResolvedPrefix.Length));
+            }
+
             var merchant = binding.Merchant?.Merchant;
             if (merchant != null && message.MerchantSold != null)
             {
@@ -541,6 +588,9 @@ namespace RuinRail.Networking
                 var pickup = _lootSpawner.CreateItemPickup(message.Position);
                 var definition = _resolve(message.Item.DefinitionId);
                 pickup.Hold(ItemInstance.FromSnapshot(message.Item), definition != null ? definition.Category : null);
+                // This player's own drop: the host holds it back from this player's body, so the local attraction must
+                // not glue the replica to this player's feet either (32).
+                if (message.DroppedBy >= 0 && (ulong)message.DroppedBy == _bus.LocalClientId && _localPlayer != null) pickup.MarkDroppedBy(_localPlayer);
                 if (definition != null) pickup.SetDisplayName(definition.DisplayName);
                 go = pickup.gameObject;
             }
@@ -564,6 +614,9 @@ namespace RuinRail.Networking
         {
             if (message == null || !_loot.TryGetValue(message.LootId, out var go) || go == null) return;
             go.transform.position = new Vector3(message.X, message.Y, go.transform.position.z);
+            // The host took part of the stack: this copy shows exactly what is left (presentation of the host's pickup).
+            var pickup = message.Quantity > 0 ? go.GetComponent<WorldItemPickup>() : null;
+            if (pickup != null && pickup.Item != null && pickup.Item.Quantity != message.Quantity) pickup.Item.SetQuantity(message.Quantity);
         }
 
         public void Dispose()

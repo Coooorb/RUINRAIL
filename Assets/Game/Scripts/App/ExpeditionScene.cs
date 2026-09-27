@@ -286,13 +286,25 @@ namespace RuinRail.App
             var effects = new GameObject("Effects").AddComponent<EffectPool>();
             effects.Configure(64);
             effects.SetSpriteResolver(content.VfxFramesFor); // the accepted effect art, never the placeholder quad
+            // Lasting ground effects (the Incendiary's burning area) draw on the hazard layer, under the actors.
+            var groundEffects = new GameObject("GroundEffects").AddComponent<EffectPool>();
+            groundEffects.transform.SetParent(effects.transform, false);
+            groundEffects.Configure(8, RuinRail.Core.Rendering.SortingRole.Hazard);
+            groundEffects.SetSpriteResolver(content.VfxFramesFor);
             var feedback = effects.gameObject.AddComponent<CombatFeedback>();
-            feedback.Configure(content.Feedback, effects, shake);
+            feedback.Configure(content.Feedback, effects, shake, groundEffects);
+            _effects = effects;
+            _feedback = feedback;
             var numbers = effects.gameObject.AddComponent<DamageNumberPool>();
             numbers.Configure(content.Feedback);
-            numbers.Bind(player.GetComponent<HealthComponent>());
+            numbers.Bind(player.GetComponent<HealthComponent>(), null, isLocalPlayer: true); // damage taken reads red
             feedback.Attach(player.GetComponent<HealthComponent>());
             feedback.Attach(player.GetComponent<WeaponVisualDriver>());
+            // Consumables (items/31): the grenades this player throws, and the buff marker of a stim or injector.
+            feedback.Attach(player.GetComponent<RuinRail.Gameplay.Combat.Area.GrenadeLauncher>());
+            feedback.Attach(_rig.Consumables != null ? _rig.Consumables.Effects : null, player.transform);
+            // Co-op: this player's throws are announced so the other peers draw them (their runs never simulate them).
+            if (_rig.Consumables?.Effects != null) _rig.Consumables.Effects.GrenadeThrown += AnnounceLocalGrenade;
             app.AudioBinder.Attach(_rig.Loadout.GetComponent<WeaponVisualDriver>()).Attach(player.GetComponent<HealthComponent>(), true).Attach(player.GetComponent<PlayerDash>()).Attach(_roster).Attach(_expedition).Attach(_rig.Special);
             AttachFirearmAudio();
             state.Inventory.EquippedChanged += (_, _) => AttachFirearmAudio();
@@ -365,6 +377,7 @@ namespace RuinRail.App
             _disposables.Add(_weaponCache);
             _weaponCache.Changed += RefreshWeaponCacheUi;
             WeaponCacheView = WeaponCacheView.Create(_weaponCache);
+            ComposeSecureRelayUi(worldPause, isCoop);
             _pause = new PauseMenuViewModel(_rig.Reader, worldPause, isCoop, app.SettingsScreen, app.Quit, ReturnToMainMenu, () => _expedition != null && _expedition.IsExpeditionActive);
             _disposables.Add(_pause);
             // The Run Lost screen: the existing failure transaction decides the loss; this only shows its summary and offers the two exits.
@@ -373,12 +386,13 @@ namespace RuinRail.App
             _disposables.Add(_runFailed);
             _runFailed.Changed += RefreshRunFailedUi;
             // Tab never opens the inventory under the pause menu or the Run Lost screen; Esc with the inventory open closes the inventory instead of pausing.
-            _rig.Reader.InventoryToggled += () => { if (!_pause.IsOpen && !_merchant.IsOpen && !_weaponCache.IsOpen && !_runFailed.IsOpen) _inventory.Toggle(); };
+            _rig.Reader.InventoryToggled += () => { if (!_pause.IsOpen && !_merchant.IsOpen && !_weaponCache.IsOpen && !RelayOpen && !_runFailed.IsOpen) _inventory.Toggle(); };
             _pause.BeforePauseToggle = () =>
             {
                 if (_runFailed != null && _runFailed.IsOpen) return true; // Esc never opens the pause menu over the Run Lost screen
                 if (_voteEngaged) { RequestVoteRelease(); return true; } // Esc hands focus back from the Transit panel first
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return true; }
+                if (RelayOpen) { _relay.Close(); return true; }
                 if (_merchant.IsOpen) { _merchant.Close(); return true; }
                 if (!_inventory.IsOpen) return false;
                 _inventory.Close();
@@ -393,6 +407,7 @@ namespace RuinRail.App
                 if (_pause.IsOpen) { _pause.Back(); return; }
                 if (_voteEngaged) { if (_vote != null && _vote.AwaitingReturnConfirmation) _vote.CancelReturn(); else RequestVoteRelease(); return; }
                 if (_weaponCache.IsOpen) { _weaponCache.Close(); return; }
+                if (RelayOpen) { _relay.Close(); return; }
                 if (_merchant.IsOpen) { _merchant.Close(); return; }
                 if (_inventory.IsOpen) { if (_inventory.Selected.HasValue) _inventory.CancelSelection(); else _inventory.Close(); }
             };
@@ -421,6 +436,7 @@ namespace RuinRail.App
 
         private void BuildDepth()
         {
+            _feedback?.ClearRemoteGrenades(); // another peer's grenade never lingers into a new depth
             var content = _app.Content;
             var state = _expedition.State;
             // 82: a client never rolls a depth. It waits for the host's payload for exactly this depth and rebuilds
@@ -535,6 +551,7 @@ namespace RuinRail.App
                 AttachRoomAudio(runtime);
                 AttachMerchant(runtime);
                 AttachWeaponCache(runtime);
+                AttachSecureRelay(runtime);
                 AttachEventNotices(runtime);
                 AttachRoomPresence(runtime);
             }
@@ -594,7 +611,7 @@ namespace RuinRail.App
             // damage numbers and impact feedback. Presentation only: it reads the actor's state, never drives it.
             if (actor is BossController && actor.GetComponent<TelegraphIndicator>() == null)
             {
-                var effects = FindFirstObjectByType<EffectPool>();
+                var effects = _effects;
                 actor.gameObject.AddComponent<TelegraphIndicator>().Configure(_app.Content.Feedback, effects, null, actor);
                 var bossFlash = actor.gameObject.AddComponent<HitFlash>();
                 bossFlash.Configure(_app.Content.Feedback, actor.Health, actor.Impact, body != null ? body.Renderer : null);
@@ -612,11 +629,17 @@ namespace RuinRail.App
             if (actor is EliteController eliteActor) _app.MusicBinder.Attach(eliteActor);
         }
 
+        // The run's world-effect pool and its feedback (there is also a ground-layer pool, so never look these up by type).
+        private EffectPool _effects;
+        private CombatFeedback _feedback;
+        /// <summary>The run's combat feedback (diagnostics / proof).</summary>
+        public CombatFeedback Feedback => _feedback;
+
         /// <summary>The presentation of one normal enemy (body, bar, flash, telegraph marker, animation, audio); public for the proof tests that spawn extra enemies into a live run.</summary>
         public void BindEnemyPresentation(EnemyController enemy)
         {
             if (enemy == null) return;
-            var effects = FindFirstObjectByType<EffectPool>();
+            var effects = _effects;
             var feedback = effects != null ? effects.GetComponent<CombatFeedback>() : null;
             var numbers = effects != null ? effects.GetComponent<DamageNumberPool>() : null;
             numbers?.Bind(enemy.GetComponent<HealthComponent>());
@@ -774,7 +797,7 @@ namespace RuinRail.App
             // The screen belongs to whoever pressed Interact on their own machine: a joined member's press replayed on
             // the host never opens the host's screen (that member opened its own).
             if (Mode != CoopRunMode.Solo && actor.GameObject != null && _rig?.Player != null && actor.GameObject != _rig.Player) return;
-            if (_weaponCache.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false) || (_merchant?.IsOpen ?? false)) return;
+            if (_weaponCache.IsOpen || RelayOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false) || (_merchant?.IsOpen ?? false)) return;
             if (_openCache != interactable)
             {
                 _openCache = interactable;
@@ -880,9 +903,17 @@ namespace RuinRail.App
                 if (clientId == null) return null;
                 var granted = pickup.Item != null ? pickup.Item.ToSnapshot() : null;
                 var transaction = NewTransactionId();
-                var accepted = _lootAuthority.RequestPickup(transaction, clientId.Value, pickup).Verdict == LootVerdict.Accepted;
-                // A joined member's pickup lands in the host's mirror of its backpack; the member's own inventory gets it here.
-                if (accepted && _coopHost != null) _coopHost.SendGrant(clientId.Value, granted, transaction, "pickup");
+                var result = _lootAuthority.RequestPickup(transaction, clientId.Value, pickup);
+                var accepted = result.Verdict == LootVerdict.Accepted;
+                // A joined member's pickup lands in the host's mirror of its backpack; the member's own inventory gets
+                // exactly what the host moved there — a whole (sized) stack, or only the part that fitted.
+                if (accepted && _coopHost != null && granted != null)
+                {
+                    granted.InstanceId = result.InstanceId;
+                    granted.Quantity = result.Quantity;
+                    _coopHost.SendGrant(clientId.Value, granted, transaction, "pickup");
+                }
+
                 return accepted;
             };
             PickupArbiter.Coins = (pile, interactor) =>
@@ -1033,7 +1064,7 @@ namespace RuinRail.App
         private void OnMerchantOpened(DungeonMerchantInteractable merchant, GameObject interactor)
         {
             if (_merchant == null || merchant == null || merchant.Merchant == null || _expedition?.State == null) return;
-            if (_merchant.IsOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false)) return;
+            if (_merchant.IsOpen || RelayOpen || (_pause?.IsOpen ?? false) || (_inventory?.IsOpen ?? false)) return;
             // A joined member's press replayed on the host never opens the host's trade screen.
             if (Mode != CoopRunMode.Solo && interactor != null && _rig?.Player != null && interactor != _rig.Player) return;
             var state = _expedition.State;
@@ -1061,20 +1092,30 @@ namespace RuinRail.App
         {
             if (_interactText == null) return;
             var text = string.Empty;
-            if (_interactor != null && !(_pause?.IsOpen ?? false) && !(_inventory?.IsOpen ?? false) && !(_merchant?.IsOpen ?? false) && !(_weaponCache?.IsOpen ?? false))
+            var shown = string.Empty;
+            if (_interactor != null && !(_pause?.IsOpen ?? false) && !(_inventory?.IsOpen ?? false) && !(_merchant?.IsOpen ?? false) && !(_weaponCache?.IsOpen ?? false) && !RelayOpen)
             {
                 var target = _interactor.FindNearestInteractable();
                 if (target is IInteractionPrompt prompt)
                 {
                     var line = prompt.PromptFor(_interactor.gameObject);
-                    if (!string.IsNullOrEmpty(line)) text = "[" + _glyphs.For("Interact") + "] " + line;
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        text = "[" + _glyphs.For("Interact") + "] " + line;
+                        shown = text;
+                        // A ground item's name is drawn in its rarity colour (the canonical RarityStyle); the verb stays ink.
+                        const string verb = "TAKE ";
+                        if (target is WorldItemPickup pickup && pickup.Item != null && line.StartsWith(verb, StringComparison.Ordinal))
+                            shown = "[" + _glyphs.For("Interact") + "] " + verb + "<color=#" + ColorUtility.ToHtmlStringRGB(RarityStyle.For(pickup.Item.Rarity).TextColor) + ">" + line.Substring(verb.Length) + "</color>";
+                    }
                 }
             }
 
-            if (text != CurrentInteractionPrompt)
+            if (text != CurrentInteractionPrompt || shown != _interactText.text)
             {
                 CurrentInteractionPrompt = text;
-                _interactText.text = text;
+                _interactText.supportRichText = true;
+                _interactText.text = shown;
             }
         }
 
@@ -1086,6 +1127,7 @@ namespace RuinRail.App
             _openMerchant = null;
             if (_weaponCache != null && _weaponCache.IsOpen) _weaponCache.Close();
             _openCache = null;
+            CloseSecureRelayForDepthChange();
             CurrentRoom = null;
             _revealedRoom = null;
             _signals.Clear();
@@ -1195,7 +1237,7 @@ namespace RuinRail.App
             ReleaseVotePanel();
             if (_voteHoverHeld) { _voteHoverHeld = false; GameplayInputGate.Release(); CursorService.PopOverlay(); }
             if (_voteView != null) { _voteView.Hide(); Destroy(_voteView.gameObject); _voteView = null; }
-            if (_promptText != null) _promptText.enabled = !(_pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _runFailedOverlay);
+            if (_promptText != null) _promptText.enabled = !(_pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _relayOverlay || _runFailedOverlay);
             if (keepVote) return;
             _vote?.Dispose();
             _vote = null;
@@ -1257,7 +1299,7 @@ namespace RuinRail.App
             if (open) CursorService.PushOverlay(); else CursorService.PopOverlay();
             // While any window owns the screen the low-HP frame stands down (it must never tint a menu), and the
             // contextual tutorial line hides too (it shares the run canvas and would otherwise draw through a panel).
-            var anyOverlay = _pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _runFailedOverlay;
+            var anyOverlay = _pauseOverlay || _inventoryOverlay || _merchantOverlay || _weaponCacheOverlay || _relayOverlay || _runFailedOverlay;
             _hud?.SetOverlayOpen(anyOverlay);
             if (_promptText != null) _promptText.enabled = !anyOverlay;
         }
@@ -1272,7 +1314,7 @@ namespace RuinRail.App
                 var kb = UnityEngine.InputSystem.Keyboard.current;
                 var pad = UnityEngine.InputSystem.Gamepad.current;
                 var take = (kb != null && kb.fKey.wasPressedThisFrame) || (pad != null && pad.dpad.up.wasPressedThisFrame);
-                if (take && !_voteEngaged && !(_pause.IsOpen || _inventory.IsOpen || _merchant.IsOpen || _weaponCache.IsOpen || _runFailed.IsOpen))
+                if (take && !_voteEngaged && !(_pause.IsOpen || _inventory.IsOpen || _merchant.IsOpen || _weaponCache.IsOpen || RelayOpen || _runFailed.IsOpen))
                 {
                     if (pad != null && pad.dpad.up.wasPressedThisFrame) RuinRail.Core.Input.ActiveInputDevice.Set(RuinRail.Core.Input.InputDeviceKind.Gamepad);
                     EngageVotePanel();
@@ -1282,6 +1324,8 @@ namespace RuinRail.App
             }
 
             _tutorial?.Tick();
+            SyncRelayVisuals();
+            TickRelayEscrow();
             RefreshInteractionPrompt();
             RefreshHeldNotice();
             TickCoop(Time.deltaTime);

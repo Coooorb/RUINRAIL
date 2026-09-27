@@ -39,6 +39,8 @@ namespace RuinRail.Networking
         public const string TransitVotes = "transit.votes";
         public const string TransitResolved = "transit.resolved";
         public const string Notice = "notice";
+        /// <summary>A validated grenade throw to draw (presentation only: flight, landing effect, lasting area visuals).</summary>
+        public const string GrenadeShown = "grenade.show";
 
         // requests (client -> host)
         public const string Hit = "req.hit";
@@ -48,17 +50,22 @@ namespace RuinRail.Networking
         public const string Buy = "req.buy";
         public const string Sell = "req.sell";
         public const string CacheChoose = "req.cache";
+        /// <summary>57.7 Secure Relay: this member asks to secure one of its carried items (host decides the single use).</summary>
+        public const string RelaySecure = "req.relay";
         public const string Drop = "req.drop";
         public const string InventorySnapshot = "inv.snapshot";
         public const string Resync = "req.resync";
         /// <summary>A Defibrillator use (84): the host revives the closest Dead teammate in the sender's reach.</summary>
         public const string Revive = "req.revive";
+        /// <summary>This member threw a grenade (its own run resolves it): the host validates it and shows it to the others.</summary>
+        public const string GrenadeThrow = "req.grenade";
 
         // replies (host -> one client)
         public const string Grant = "res.grant";
         public const string Revoke = "res.revoke";
         public const string TradeResult = "res.trade";
         public const string CacheResult = "res.cache";
+        public const string RelayResult = "res.relay";
         public const string ReviveResult = "res.revive";
         /// <summary>The host's verdict that this member's validated hit took an enemy's last health (Adrenaline / Flow State).</summary>
         public const string Kill = "res.kill";
@@ -69,7 +76,7 @@ namespace RuinRail.Networking
 
         private static readonly HashSet<string> ToHost = new(StringComparer.Ordinal)
         {
-            LobbyMember, DepthReady, Hit, Impact, Heal, Vote, Buy, Sell, CacheChoose, Drop, InventorySnapshot, Resync, Revive, ProofReport
+            LobbyMember, DepthReady, Hit, Impact, Heal, Vote, Buy, Sell, CacheChoose, RelaySecure, Drop, InventorySnapshot, Resync, Revive, GrenadeThrow, ProofReport
         };
 
         /// <summary>True for the kinds a client may send; the host drops anything else arriving from a client.</summary>
@@ -240,6 +247,8 @@ namespace RuinRail.Networking
         public ItemInstanceSnapshot Item;
         public float X;
         public float Y;
+        /// <summary>Client id of the player whose manual drop this is, while it is still held back from them (-1 = none).</summary>
+        public long DroppedBy = -1;
         public Vector2 Position => new(X, Y);
     }
 
@@ -256,6 +265,8 @@ namespace RuinRail.Networking
         public uint LootId;
         public float X;
         public float Y;
+        /// <summary>The pickup's quantity after a partial pickup left the rest on the ground (-1 = unchanged).</summary>
+        public int Quantity = -1;
     }
 
     [Serializable]
@@ -328,6 +339,36 @@ namespace RuinRail.Networking
     public sealed class HealRequestMessage
     {
         public int Amount;
+    }
+
+    /// <summary>
+    /// A member's own grenade throw, announced for presentation. The thrower's run already resolves the grenade (its
+    /// damage reaches the host only as validated hit requests); this carries no numbers beyond where it left and landed —
+    /// radius, speed and durations come from each peer's own catalog by the consumable id.
+    /// </summary>
+    [Serializable]
+    public sealed class GrenadeThrowMessage
+    {
+        public uint Sequence;
+        public string ConsumableId;
+        public float OriginX;
+        public float OriginY;
+        public float LandingX;
+        public float LandingY;
+    }
+
+    /// <summary>A host-validated throw every other peer draws: the thrower, the host's clamped landing and the host time it left.</summary>
+    [Serializable]
+    public sealed class GrenadeShowMessage
+    {
+        public long Thrower = -1;
+        public uint Sequence;
+        public string ConsumableId;
+        public float OriginX;
+        public float OriginY;
+        public float LandingX;
+        public float LandingY;
+        public double ThrownAt;
     }
 
     /// <summary>A member's Defibrillator use; the host resolves the consumable from its own catalog, never the sender's numbers.</summary>
@@ -424,6 +465,25 @@ namespace RuinRail.Networking
         public bool AlreadyTaken;
         public string ItemName;
         public int RoomNode;
+    }
+
+    /// <summary>
+    /// The host's verdict on a Secure Relay request (57.7). Accepted: the host took one unit of <see cref="InstanceId"/>
+    /// out of its copy of the member's inventory and recorded the member's single use; the member now moves its escrowed
+    /// unit into its own Shelter Storage. A final refusal returns the unit to the member's run. Refusal is the
+    /// <c>SecureRelayRefusal</c> name.
+    /// </summary>
+    [Serializable]
+    public sealed class RelayResultMessage
+    {
+        public string TransactionId;
+        public bool Accepted;
+        public string Refusal;
+        public string InstanceId;
+        public int Quantity;
+        public int RoomNode;
+        /// <summary>True when the host decided (accepted or refused); false for "not now" (unknown member/relay): retry later.</summary>
+        public bool Final;
     }
 
     [Serializable]

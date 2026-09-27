@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RuinRail.Gameplay.Combat;
+using RuinRail.Gameplay.Combat.Area;
 using RuinRail.Gameplay.Combat.Impact;
 using RuinRail.Gameplay.Combat.Projectiles;
 using RuinRail.Gameplay.Combat.Weapons;
@@ -27,6 +29,24 @@ namespace RuinRail.Presentation.Vfx
         private readonly List<(WeaponVisualDriver driver, int shots, int swings)> _weapons = new();
         private readonly Dictionary<WorldItemPickup, PooledEffect> _glows = new();
         private readonly Dictionary<string, int> _counts = new();
+        private readonly List<(ThrownGrenade grenade, PooledEffect visual)> _grenades = new();
+        // Another peer's throws: presentation-only flights (no ThrownGrenade, no zone, no damage) and their lasting areas.
+        private sealed class RemoteFlight
+        {
+            public GrenadeData Data;
+            public Vector2 Origin;
+            public Vector2 Landing;
+            public float Flight;
+            public float Elapsed;
+            public PooledEffect Visual;
+        }
+
+        private readonly List<RemoteFlight> _remoteFlights = new();
+        private readonly List<(PooledEffect effect, string kind)> _remoteAreas = new();
+        public int RemoteAreasShowing => _remoteAreas.Count(a => a.effect != null && a.effect.IsActive && a.effect.Kind == a.kind);
+        public int RemoteGrenadesShown { get; private set; }
+        public int RemoteFlightsInAir => _remoteFlights.Count;
+        private EffectPool _groundPool;
 
         public FeedbackConfig Config => _config;
         public EffectPool Pool => _pool;
@@ -34,11 +54,12 @@ namespace RuinRail.Presentation.Vfx
         public IReadOnlyDictionary<string, int> Counts => _counts;
         public int CountOf(string kind) => _counts.TryGetValue(kind, out var c) ? c : 0;
 
-        public void Configure(FeedbackConfig config, EffectPool pool, CameraShake shake)
+        public void Configure(FeedbackConfig config, EffectPool pool, CameraShake shake, EffectPool groundPool = null)
         {
             _config = config;
             _pool = pool;
             _shake = shake;
+            _groundPool = groundPool;
         }
 
         // ---- Effects (pooled; explicit placeholder sprites) ----
@@ -56,6 +77,126 @@ namespace RuinRail.Presentation.Vfx
         public void MeleeArc(Vector2 position, Vector2 direction, float arcDegrees, float reachTiles) => Play("melee", position + direction.normalized * (reachTiles * 0.5f), _config.MeleeArcSeconds, new Color(0.9f, 0.95f, 1f, 0.8f), Mathf.Max(0.5f, reachTiles) * 4f, Angle(direction));
         public void Stagger(Vector2 position) => Play("stagger", position + Vector2.up * 0.6f, _config.StaggerSeconds, new Color(1f, 0.85f, 0.4f), 0.6f);
         public void Heal(Vector2 position) => Play("heal", position + Vector2.up * 0.4f, _config.HealSeconds, new Color(0.55f, 1f, 0.55f, 0.8f), 1f);
+        // ---- Consumable world effects (items/31): drawn from the grenade's own data, so size and time are the gameplay's ----
+
+        /// <summary>Longest a thrown grenade can be in the air before it lands (its visual is returned on landing).</summary>
+        private const float GrenadeFlightCapSeconds = 5f;
+
+        private PooledEffect PlayArea(EffectPool pool, string kind, Vector2 position, float seconds, Color color, float radiusTiles)
+        {
+            _counts[kind] = CountOf(kind) + 1;
+            var effect = pool != null ? pool.Spawn(kind, position, seconds, color) : null;
+            effect?.SetWorldSize(Vector2.one * (radiusTiles * 2f));
+            return effect;
+        }
+
+        /// <summary>
+        /// What a grenade shows where it lands: the blast at its real radius, and the lasting area for exactly its duration.
+        /// <paramref name="lateSeconds"/> is how long ago it actually landed (a late co-op message): a burst that is already
+        /// over is not drawn, and a lasting area shows only what is left of it. Returns the lasting area's effect, if any.
+        /// </summary>
+        public PooledEffect GrenadeLanded(GrenadeData data, Vector2 at, float lateSeconds = 0f)
+        {
+            var burstOver = lateSeconds > _config.ExplosionSeconds;
+            switch (data.Kind)
+            {
+                case GrenadeEffectKind.Frag:
+                    if (burstOver) return null;
+                    Explosion(at, data.RadiusTiles);
+                    _shake?.Request(ShakeKind.Explosion);
+                    return null;
+                case GrenadeEffectKind.Shock:
+                    if (burstOver) return null;
+                    PlayArea(_pool, "shock", at, _config.ExplosionSeconds, Color.white, data.RadiusTiles);
+                    _shake?.Request(ShakeKind.Explosion);
+                    return null;
+                case GrenadeEffectKind.Incendiary:
+                {
+                    if (!burstOver)
+                    {
+                        Explosion(at, data.RadiusTiles);
+                        _shake?.Request(ShakeKind.Explosion);
+                    }
+
+                    // Burning ground sits under the actors (a hazard, not a cloud); it lasts the burn's whole-second ticks.
+                    var left = Mathf.Max(0f, Mathf.Round(data.BurnDurationSeconds)) - lateSeconds;
+                    return left > 0.05f ? PlayArea(_groundPool != null ? _groundPool : _pool, "fire_zone", at, left, Color.white, data.RadiusTiles) : null;
+                }
+                case GrenadeEffectKind.Smoke:
+                {
+                    // A translucent cloud over the area: dithered art plus alpha keeps actors inside readable.
+                    var left = data.SmokeDurationSeconds - lateSeconds;
+                    return left > 0.05f ? PlayArea(_pool, "smoke_cloud", at, left, new Color(1f, 1f, 1f, 0.82f), data.RadiusTiles) : null;
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Another peer's grenade (co-op): drawn from the host-validated throw — origin, the host's landing and how long
+        /// ago it left — flying at the grenade's real speed, then the same landing effect a local throw shows. It is
+        /// presentation only: no grenade, no zone and no damage exist for it on this peer.
+        /// </summary>
+        public void ShowRemoteGrenade(GrenadeData data, Vector2 origin, Vector2 landing, float elapsedSeconds)
+        {
+            RemoteGrenadesShown++;
+            var flight = data.ThrowSpeed > 0.01f ? Vector2.Distance(origin, landing) / data.ThrowSpeed : 0f;
+            var elapsed = Mathf.Max(0f, elapsedSeconds);
+            if (elapsed >= flight)
+            {
+                TrackRemoteArea(GrenadeLanded(data, landing, elapsed - flight));
+                return;
+            }
+
+            _counts["grenade"] = CountOf("grenade") + 1;
+            var visual = _pool != null ? _pool.Spawn("grenade", Vector2.Lerp(origin, landing, elapsed / flight), GrenadeFlightCapSeconds, Color.white, 1f) : null;
+            visual?.SetWorldSize(Vector2.one * 0.375f);
+            _remoteFlights.Add(new RemoteFlight { Data = data, Origin = origin, Landing = landing, Flight = flight, Elapsed = elapsed, Visual = visual });
+        }
+
+        private void TrackRemoteArea(PooledEffect area)
+        {
+            if (area != null) _remoteAreas.Add((area, area.Kind));
+        }
+
+        /// <summary>A new depth (or the run's end): other peers' grenades in the air and their lasting areas are cleared.</summary>
+        public void ClearRemoteGrenades()
+        {
+            foreach (var flight in _remoteFlights) if (flight.Visual != null && flight.Visual.IsActive) _pool?.Return(flight.Visual);
+            _remoteFlights.Clear();
+            foreach (var (area, kind) in _remoteAreas)
+            {
+                if (area == null || !area.IsActive || area.Kind != kind) continue; // recycled into something else meanwhile
+                if (kind == "fire_zone" && _groundPool != null) _groundPool.Return(area); else _pool?.Return(area);
+            }
+
+            _remoteAreas.Clear();
+        }
+
+        /// <summary>A thrower's grenades: the canister is drawn along its real flight, then its landing effect plays once.</summary>
+        public CombatFeedback Attach(GrenadeLauncher launcher)
+        {
+            if (launcher == null) return this;
+            Action<ThrownGrenade> thrown = grenade =>
+            {
+                if (grenade == null) return;
+                _counts["grenade"] = CountOf("grenade") + 1;
+                var visual = _pool != null ? _pool.Spawn("grenade", grenade.transform.position, GrenadeFlightCapSeconds, Color.white, 1f) : null;
+                visual?.SetWorldSize(Vector2.one * 0.375f);
+                _grenades.Add((grenade, visual));
+                grenade.Resolved += (g, _) =>
+                {
+                    var i = _grenades.FindIndex(e => e.grenade == g);
+                    if (i >= 0) { if (_grenades[i].visual != null && _grenades[i].visual.IsActive) _pool?.Return(_grenades[i].visual); _grenades.RemoveAt(i); }
+                    GrenadeLanded(g.Data, g.LandingPoint);
+                };
+            };
+            launcher.Thrown += thrown;
+            _unsubscribe.Add(() => launcher.Thrown -= thrown);
+            return this;
+        }
+
         public void Status(Vector2 position) => Play("status", position + Vector2.up * 0.9f, _config.StatusSeconds, new Color(0.6f, 0.8f, 1f, 0.8f), 0.5f);
 
         /// <summary>art/104: Legendary glow clearly stronger than lower rarities, never overwhelming; Common gets none.</summary>
@@ -142,6 +283,30 @@ namespace RuinRail.Presentation.Vfx
 
         public void Tick(float deltaTime)
         {
+            for (var i = _grenades.Count - 1; i >= 0; i--)
+            {
+                var (grenade, visual) = _grenades[i];
+                if (grenade == null || visual == null || !visual.IsActive) { _grenades.RemoveAt(i); continue; }
+                visual.transform.position = grenade.transform.position;
+            }
+
+            for (var i = _remoteFlights.Count - 1; i >= 0; i--)
+            {
+                var flight = _remoteFlights[i];
+                flight.Elapsed += deltaTime;
+                if (flight.Elapsed < flight.Flight)
+                {
+                    if (flight.Visual != null && flight.Visual.IsActive) flight.Visual.transform.position = Vector2.Lerp(flight.Origin, flight.Landing, flight.Elapsed / flight.Flight);
+                    continue;
+                }
+
+                _remoteFlights.RemoveAt(i);
+                if (flight.Visual != null && flight.Visual.IsActive) _pool?.Return(flight.Visual);
+                TrackRemoteArea(GrenadeLanded(flight.Data, flight.Landing, flight.Elapsed - flight.Flight));
+            }
+
+            _remoteAreas.RemoveAll(a => a.effect == null || !a.effect.IsActive || a.effect.Kind != a.kind);
+
             for (var i = 0; i < _weapons.Count; i++)
             {
                 var (driver, shots, swings) = _weapons[i];

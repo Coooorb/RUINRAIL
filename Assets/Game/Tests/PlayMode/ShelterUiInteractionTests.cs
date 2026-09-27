@@ -1024,5 +1024,192 @@ namespace RuinRail.Tests
                 }
             }
         }
-    }
+    
+        // ---------------- TRADER → SELL and WORKSHOP → UPGRADE TRADER through the real screen ----------------
+
+        private BaseHubScreen Hub() => Object.FindFirstObjectByType<BaseHubScreen>();
+
+        private static string ScreenText(BaseHubScreen hub) =>
+            string.Join(" | ", hub.GetComponentsInChildren<Text>().Select(t => t.text).Where(t => !string.IsNullOrEmpty(t)));
+
+        private IEnumerator Restart()
+        {
+            // A fresh process view of the same save folder: everything below is read back from disk.
+            Object.DestroyImmediate(_app.gameObject);
+            foreach (var screen in Object.FindObjectsByType<BaseHubScreen>(FindObjectsSortMode.None)) Object.DestroyImmediate(screen.gameObject);
+            foreach (var screen in Object.FindObjectsByType<MainMenuScreen>(FindObjectsSortMode.None)) Object.DestroyImmediate(screen.gameObject);
+            yield return null;
+            yield return OpenShelter();
+        }
+
+        private static MerchantRowViewRef RowFor(BaseHubScreen hub, string instanceId) =>
+            new(hub.TraderRows.FirstOrDefault(r => r.gameObject.activeSelf && r.Row?.Item?.InstanceId == instanceId));
+
+        private readonly struct MerchantRowViewRef
+        {
+            public MerchantRowViewRef(RuinRail.UI.Merchant.MerchantRowView view) { View = view; }
+            public RuinRail.UI.Merchant.MerchantRowView View { get; }
+        }
+
+        [UnityTest]
+        public IEnumerator TraderSell_SellsExactlyThePickedItem_FromBackpackAndStorage_ByMouseAndKeyboard_AndSurvivesReload()
+        {
+            yield return OpenShelter();
+            var hub = Hub();
+            hub.Onboarding.SubmitDisplayName("Seller");
+            hub.Onboarding.AcknowledgeStarterKit();
+            var session = hub.Session;
+            var definitions = session.Configs.Registry.Definitions;
+            var weaponDef = definitions.OfType<RuinRail.Gameplay.Items.EquipmentItemDefinition>().First(d => d.Category == RuinRail.Gameplay.Items.ItemCategory.Weapon && d.IsAcquirableInV1);
+            var consumableDef = definitions.OfType<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition>().First(d => d.IsStackable);
+            var weapon = new RuinRail.Gameplay.Items.ItemInstance(weaponDef.Id, 1, RuinRail.Gameplay.Items.Rarity.Rare);
+            var starter = new RuinRail.Gameplay.Items.ItemInstance(weaponDef.Id, 1) { IsUnsellable = true };
+            var storedSource = new RuinRail.Gameplay.Items.ItemInstance(consumableDef.Id, 2);
+            Assert.IsTrue(session.Loadout.TryAddToBackpack(starter));
+            Assert.IsTrue(session.Loadout.TryAddToBackpack(weapon));
+            Assert.IsTrue(session.Storage.TryAdd(storedSource));
+            // A stackable is re-instanced on add (the source is zeroed): the stack to sell is the one Storage holds.
+            var stored = session.Storage.Items.Single(i => i.DefinitionId == consumableDef.Id);
+            Assert.AreEqual(2, stored.Quantity);
+            session.Banked.Credit(1000, "test_funds");
+            var weaponQuote = session.Trader.QuoteSellValue(weapon);
+            var storedQuote = session.Trader.QuoteSellValue(stored);
+            Assert.Greater(weaponQuote, 0);
+            Assert.Greater(storedQuote, 0);
+
+            Control(hub, "station." + BaseStation.Trader).SimulateClick();
+            yield return null;
+            // SELL turns the counter to the survivor's items (mouse).
+            Control(hub, "trader.sell").SimulateClick();
+            yield return null;
+            Assert.IsTrue(hub.TraderSelling, "SELL shows what can be sold");
+            var held = session.Loadout.BackpackSlots.Count(i => i != null) + session.Storage.Items.Count();
+            Assert.AreEqual(held, hub.Input.Stack.Current.Items.Count(i => i.Id.StartsWith(RuinRail.UI.Navigation.ScreenNavigation.TraderSellItemPrefix)), "every held item is a row (backpack, then Storage)");
+            UiScreenCapture.Capture("trader_sell_list");
+
+            // The starter item is listed but disabled: nothing happens when it is pressed.
+            var starterItem = hub.Input.Stack.Current.Items.First(i => i.Label == "SELL " + weaponDef.DisplayName && !i.IsEnabled);
+            var banked0 = session.Banked.Balance;
+            Assert.IsFalse(starterItem.TryActivate(), "a disabled row does not activate");
+            RowFor(hub, starter.InstanceId).View?.Control.SimulateClick();
+            yield return null;
+            Assert.AreEqual(banked0, session.Banked.Balance, "a Starter Kit item pays nothing");
+            Assert.IsNotNull(session.Loadout.BackpackSlots.FirstOrDefault(i => i?.InstanceId == starter.InstanceId), "and stays in the backpack");
+
+            // Mouse: click the rare weapon's row — exactly that item, exactly its quote.
+            var weaponRow = RowFor(hub, weapon.InstanceId).View;
+            if (weaponRow == null)
+            {
+                // Scroll the counter until the row is on screen (the list pages four rows at a time).
+                var id = hub.Input.Stack.Current.Items.First(i => i.Label == "SELL " + weaponDef.DisplayName && i.IsEnabled).Id;
+                hub.Input.Stack.Current.Focus(id);
+                yield return null;
+                weaponRow = RowFor(hub, weapon.InstanceId).View;
+            }
+
+            Assert.IsNotNull(weaponRow, "the weapon has a row on the counter");
+            weaponRow.Control.SimulateClick();
+            Assert.AreEqual(banked0 + weaponQuote, session.Banked.Balance, "paid the quote once");
+            Assert.IsNull(session.Loadout.BackpackSlots.FirstOrDefault(i => i?.InstanceId == weapon.InstanceId), "the sold weapon left the backpack");
+            StringAssert.Contains("Sold for " + weaponQuote, hub.Hub.Trader.Feedback.Text);
+            // The same activation again in the same frame (a double press): nothing more is paid.
+            hub.Input.Stack.Activate();
+            Assert.AreEqual(banked0 + weaponQuote, session.Banked.Balance, "a repeated press never pays twice");
+            yield return null;
+            yield return null;
+            Assert.IsTrue(hub.TraderSelling);
+            Assert.IsNull(RowFor(hub, weapon.InstanceId).View, "the counter updated: the sold item is gone from the list");
+
+            // Keyboard: the Storage stack.
+            var storedId = hub.Input.Stack.Current.Items.First(i => i.Label == "SELL " + consumableDef.DisplayName && i.IsEnabled).Id;
+            hub.Input.Stack.Current.Focus(storedId);
+            hub.Input.Stack.Activate();
+            Assert.AreEqual(banked0 + weaponQuote + storedQuote, session.Banked.Balance, "the Storage stack paid its quote (the whole stack)");
+            Assert.IsNull(session.Storage.Find(stored.InstanceId), "the whole stack left Storage");
+            yield return null;
+            yield return null;
+
+            // Back returns to the offers, the next Back leaves the Trader.
+            typeof(BaseHubScreen).GetMethod("OnBack", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Invoke(hub, null);
+            yield return null;
+            yield return null;
+            Assert.IsFalse(hub.TraderSelling);
+            Assert.AreEqual(BaseStation.Trader, hub.Hub.Current);
+            var expected = session.Banked.Balance;
+
+            yield return null;
+            yield return Restart();
+            var reloaded = Hub().Session;
+            Assert.AreEqual(expected, reloaded.Banked.Balance, "the coins survived the reload");
+            Assert.IsNull(reloaded.Loadout.BackpackSlots.FirstOrDefault(i => i?.InstanceId == weapon.InstanceId), "the sold weapon stays sold");
+            Assert.IsNull(reloaded.Storage.Find(stored.InstanceId), "the sold stack stays sold");
+            Assert.IsNotNull(reloaded.Loadout.BackpackSlots.FirstOrDefault(i => i?.InstanceId == starter.InstanceId), "the unsellable item is still there");
+        }
+
+        [UnityTest]
+        public IEnumerator WorkshopUpgradeTrader_ChargesOnce_RaisesTheLevel_ShowsTheNewStockAndPanel_AndSurvivesReload()
+        {
+            yield return OpenShelter();
+            var hub = Hub();
+            hub.Onboarding.SubmitDisplayName("Upgrader");
+            hub.Onboarding.AcknowledgeStarterKit();
+            var session = hub.Session;
+            var config = session.Configs.Trader;
+            var toTwo = config.UpgradeCostFrom(1);
+            var toThree = config.UpgradeCostFrom(2);
+            session.Banked.Credit(toTwo + 100 - session.Banked.Balance, "test_funds");
+
+            Control(hub, "station." + BaseStation.Workshop).SimulateClick();
+            yield return null;
+            // Keyboard / controller confirm.
+            hub.Input.Stack.Current.Focus("workshop.trader");
+            hub.Input.Stack.Activate();
+            yield return null;
+            Assert.AreEqual(2, session.Trader.Level, "one confirm, one level");
+            Assert.AreEqual(100, session.Banked.Balance, "charged the level-2 cost once");
+            Assert.AreEqual(config.GetLevel(2).Offers, session.Trader.Offers.Count, "the new level's stock is on the counter now");
+            var text = ScreenText(hub);
+            StringAssert.Contains("LEVEL 2 / 3", text, "the Workshop panel shows the new level without reopening");
+            StringAssert.Contains("TO LEVEL 3", text);
+            StringAssert.Contains(toThree + " C", text);
+            StringAssert.Contains("100 C", text);
+            UiScreenCapture.Capture("workshop_trader_upgraded");
+
+            // Unaffordable: nothing is spent.
+            hub.Input.Stack.Activate();
+            yield return null;
+            Assert.AreEqual(2, session.Trader.Level);
+            Assert.AreEqual(100, session.Banked.Balance, "an unaffordable upgrade spends nothing");
+            Assert.IsTrue(hub.Hub.Workshop.Feedback.IsError);
+
+            // Mouse, to the top level; then MAX refuses without charging.
+            session.Banked.Credit(toThree, "test_funds");
+            Control(hub, "workshop.trader").SimulateClick();
+            yield return null;
+            Assert.AreEqual(3, session.Trader.Level);
+            Assert.AreEqual(100, session.Banked.Balance);
+            Assert.AreEqual(config.GetLevel(3).Offers, session.Trader.Offers.Count);
+            StringAssert.Contains("MAX LEVEL", ScreenText(hub));
+            session.Banked.Credit(50000, "test_funds");
+            var rich = session.Banked.Balance;
+            Control(hub, "workshop.trader").SimulateClick();
+            yield return null;
+            Assert.AreEqual(3, session.Trader.Level);
+            Assert.AreEqual(rich, session.Banked.Balance, "the max level never charges");
+
+            // The counter shows the level-3 stock; reload rebuilds exactly that stock.
+            var liveStock = session.Trader.Offers.Select(o => $"{o.Definition.Id}:{o.Item.Rarity}:{o.Price}").ToList();
+            Control(hub, "station." + BaseStation.Trader).SimulateClick();
+            yield return null;
+            Assert.AreEqual(config.GetLevel(3).Offers, hub.Input.Stack.Current.Items.Count(i => i.Id.StartsWith("trader.buy.")));
+            hub.Hub.Close();
+            yield return null;
+            yield return null;
+            yield return Restart();
+            var reloaded = Hub().Session;
+            Assert.AreEqual(3, reloaded.Trader.Level, "the level survived the reload");
+            Assert.AreEqual(rich, reloaded.Banked.Balance);
+            CollectionAssert.AreEqual(liveStock, reloaded.Trader.Offers.Select(o => $"{o.Definition.Id}:{o.Item.Rarity}:{o.Price}").ToList(), "the reloaded counter is the stock the upgrade showed");
+        }
+}
 }

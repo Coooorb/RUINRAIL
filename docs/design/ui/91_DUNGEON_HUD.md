@@ -32,7 +32,7 @@ The active stack is an icon slot with an `xN` chip; there is no permanent text l
 Normal-enemy HP bars appear after taking damage and fade later. Elites and Bosses get prominent top-screen bars with names.
 
 ## Damage Numbers
-Small normal damage numbers, no crit styling. Setting allows ON/OFF.
+Small normal damage numbers, no crit styling. Setting allows ON/OFF. Drawn in the RUINRAIL pixel font at an integer pixel scale (1 = UI text size) on the pixel grid with a one-pixel dark outline; damage dealt is warm white, damage the local player takes is hurt salmon, heals green (colours and scale are presentation data on FeedbackConfig).
 
 ## Enemies Remaining (implementation note 2026-09-20)
 - In an active standard combat room (a director encounter or an Elite encounter) the top-right shows, under the coin readout, a compact hostile token plus `xN`: the room encounter's own remaining count (living members plus queued reinforcements; summons once they exist). It updates the moment an encounter enemy dies and disappears when the room clears.

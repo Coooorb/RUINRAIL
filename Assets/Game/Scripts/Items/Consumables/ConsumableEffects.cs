@@ -83,6 +83,8 @@ namespace RuinRail.Gameplay.Items.Consumables
         public event Action<ConsumableDefinition, int> Healed;
         public event Action<ConsumableDefinition> BuffStarted;
         public event Action<string> BuffExpired;
+        /// <summary>A grenade consumable left the hand (co-op announces it for the other peers' presentation).</summary>
+        public event Action<ConsumableDefinition> GrenadeThrown;
 
         /// <summary>
         /// Use-start eligibility: would the complete effect do anything right now? Only a heal can be a total no-op
@@ -112,7 +114,9 @@ namespace RuinRail.Gameplay.Items.Consumables
                     ApplyBuff(definition);
                     return true;
                 case ConsumableEffectKind.Grenade:
-                    return _targets.ThrowGrenade != null && _targets.ThrowGrenade(definition.Grenade);
+                    if (_targets.ThrowGrenade == null || !_targets.ThrowGrenade(definition.Grenade)) return false;
+                    GrenadeThrown?.Invoke(definition);
+                    return true;
                 case ConsumableEffectKind.Revive:
                     return _targets.RequestRevive != null && _targets.RequestRevive(new ReviveRequest(definition.Id, definition.ReviveHealthPercent));
                 default:

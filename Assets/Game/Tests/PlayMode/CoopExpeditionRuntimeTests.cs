@@ -132,7 +132,7 @@ namespace RuinRail.Tests
         }
 
         /// <summary>A host with one combat room and a client with its own copy of the same room (same node id), over loopback.</summary>
-        private World Compose(int enemies = 2, CoopHostParty party = null)
+        private World Compose(int enemies = 2, CoopHostParty party = null, Func<string, ItemDefinition> resolve = null, LootAuthorityService loot = null, ExpeditionService expedition = null)
         {
             var w = new World();
             w.HostBus = LoopbackCoopBus.CreateHost(out w.Network);
@@ -156,7 +156,7 @@ namespace RuinRail.Tests
                 MaxHitOf = _ => 200
             };
             w.HostGround = new GroundLootRegistry();
-            w.Host = Own(new CoopHostWorld(w.HostBus, party, null, null, null));
+            w.Host = Own(new CoopHostWorld(w.HostBus, party, loot, expedition, resolve));
             w.Client = Own(new CoopClientWorld(w.ClientBus));
             var lootHost = Track(new GameObject("ClientLoot"));
             w.ClientLoot = lootHost.AddComponent<LootSpawner>();
@@ -277,6 +277,70 @@ namespace RuinRail.Tests
 
             // A heal request only ever heals the sender's own character.
             Assert.IsFalse(w.Host.HandleHeal(9, new HealRequestMessage { Amount = 10 }));
+        }
+
+        // ---------------------------------------------------------------- grenade presentation
+
+        [UnityTest]
+        public IEnumerator Grenades_AreShownToEveryOtherPeer_FromTheHostsValidation_AndNeverSimulatedTwice()
+        {
+            var w = Compose(0, resolve: id => _content.Items.FirstOrDefault(i => i.Id == id));
+            var otherBus = LoopbackCoopBus.Join(w.Network, 2);
+            var other = Own(new CoopClientWorld(otherBus));
+            var hostShown = new List<GrenadeShowMessage>();
+            var throwerShown = new List<GrenadeShowMessage>();
+            var otherShown = new List<GrenadeShowMessage>();
+            w.Host.GrenadeShown += hostShown.Add;
+            w.Client.GrenadeShown += throwerShown.Add;
+            other.GrenadeShown += otherShown.Add;
+            var grenades = _content.Items.OfType<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition>()
+                .Where(c => c.EffectKind == RuinRail.Gameplay.Items.Consumables.ConsumableEffectKind.Grenade).ToList();
+            Assert.AreEqual(4, grenades.Count);
+            var origin = (Vector2)w.ClientCopy.transform.position;
+
+            // Every shipped grenade from the client: the host draws it and forwards it to the other client, never back.
+            foreach (var grenade in grenades)
+            {
+                var landing = origin + Vector2.right * (grenade.Grenade.ThrowRangeTiles - 0.5f);
+                w.Client.AnnounceGrenade(grenade.Id, origin, landing);
+                yield return new WaitForSecondsRealtime(CoopHostWorld.GrenadeMinIntervalSeconds + 0.02f);
+            }
+
+            Assert.AreEqual(4, hostShown.Count, "the host draws each validated throw once");
+            Assert.AreEqual(4, otherShown.Count, "the other client draws each throw once");
+            Assert.AreEqual(0, throwerShown.Count, "the thrower is never sent its own throw (it draws it locally)");
+            CollectionAssert.AreEqual(grenades.Select(g => g.Id), otherShown.Select(s => s.ConsumableId));
+            Assert.IsTrue(otherShown.All(s => s.Thrower == 1));
+            Assert.AreEqual(origin.x + grenades[0].Grenade.ThrowRangeTiles - 0.5f, otherShown[0].LandingX, 1e-4f, "the host's landing is shown");
+            Assert.AreEqual(0, UnityEngine.Object.FindObjectsByType<RuinRail.Gameplay.Combat.Area.ThrownGrenade>(FindObjectsSortMode.None).Length, "no grenade is simulated for a shown throw");
+            Assert.AreEqual(0, UnityEngine.Object.FindObjectsByType<RuinRail.Gameplay.Combat.Area.SmokeZone>(FindObjectsSortMode.None).Length, "no smoke zone either");
+            Assert.AreEqual(0, UnityEngine.Object.FindObjectsByType<RuinRail.Gameplay.Combat.Area.BurnZone>(FindObjectsSortMode.None).Length, "no burn zone either");
+
+            // Refused throws are drawn nowhere.
+            var frag = grenades.First(g => g.Grenade.Kind == RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind.Frag);
+            GrenadeThrowMessage Throw(uint seq, string id, Vector2 from, Vector2 to) =>
+                new() { Sequence = seq, ConsumableId = id, OriginX = from.x, OriginY = from.y, LandingX = to.x, LandingY = to.y };
+            yield return new WaitForSecondsRealtime(CoopHostWorld.GrenadeMinIntervalSeconds + 0.02f);
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(4, frag.Id, origin, origin + Vector2.up)), "a replayed sequence");
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(9, Throw(50, frag.Id, origin, origin + Vector2.up)), "an unknown sender");
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(50, "consumable_medkit", origin, origin + Vector2.up)), "not a grenade");
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(50, frag.Id, origin, origin + Vector2.up * 40f)), "beyond the throw range");
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(50, frag.Id, origin + Vector2.right * 20f, origin + Vector2.right * 22f)), "not thrown from the member's position");
+            Assert.IsTrue(w.Host.HandleGrenadeThrow(1, Throw(50, frag.Id, origin, origin + Vector2.up)), "a valid throw");
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(51, frag.Id, origin, origin + Vector2.up)), "a flood faster than any use");
+            w.ClientCopy.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(100000));
+            yield return new WaitForSecondsRealtime(CoopHostWorld.GrenadeMinIntervalSeconds + 0.02f);
+            Assert.IsFalse(w.Host.HandleGrenadeThrow(1, Throw(60, frag.Id, origin, origin + Vector2.up)), "a Downed/Dead member throws nothing");
+            Assert.AreEqual(5, otherShown.Count, "only the one valid throw reached the other client");
+            Assert.AreEqual(7, w.Host.GrenadesRejected, "replay, unknown sender, not a grenade, range, origin, flood, Downed");
+
+            // The host's own throw: every client draws it; the host does not draw it twice.
+            var hostOrigin = (Vector2)w.HostPlayer.transform.position;
+            w.Host.AnnounceLocalGrenade(frag.Id, hostOrigin, hostOrigin + Vector2.left * 3f);
+            Assert.AreEqual(1, throwerShown.Count, "client 1 draws the host's throw");
+            Assert.AreEqual(6, otherShown.Count, "client 2 draws the host's throw");
+            Assert.AreEqual(0, throwerShown[0].Thrower);
+            Assert.AreEqual(5, hostShown.Count, "the host draws its own throw locally, not through the relay");
         }
 
         [Test]
@@ -643,6 +707,213 @@ namespace RuinRail.Tests
                 Assert.IsTrue(CoopKinds.IsClientToHost(kind), kind);
             foreach (var kind in new[] { CoopKinds.EnemySpawn, CoopKinds.RoomState, CoopKinds.LootSpawn, CoopKinds.Grant, CoopKinds.TransitResolved, CoopKinds.RunStart, CoopKinds.RunEnded, CoopKinds.GameplayRelease })
                 Assert.IsFalse(CoopKinds.IsClientToHost(kind), kind + " can never be authored by a client");
+        }
+
+        // ---------------------------------------------------------------- 57.7 Secure Relay
+
+        private static IReadOnlyList<IItemContainer> CarriedOf(PlayerInventory inventory)
+        {
+            var list = new List<IItemContainer> { new BackpackContainer(inventory) };
+            foreach (EquippedSlot slot in Enum.GetValues(typeof(EquippedSlot))) list.Add(new EquippedSlotContainer(inventory, slot));
+            return list;
+        }
+
+        [Test]
+        public void SecureRelay_AcceptedTransfer_IsSecuredEvenWhenTheVerdictIsLost_ReconnectReplaysIt_AndNothingRepeats()
+        {
+            Func<string, ItemDefinition> resolve = id => _content.Items.FirstOrDefault(i => i.Id == id);
+            var registry = _content.BuildRegistry();
+            var weapons = _content.Items.OfType<WeaponDefinition>().Where(d => d.Id != StarterKitService.PistolId && d.Id != StarterKitService.KnifeId).Take(2).ToList();
+            var armor = _content.Items.First(d => d.Category == ItemCategory.Armor && d.Id != StarterKitService.VestId);
+
+            // The member's own run inventory, and the host's mirrored copy of it (same instances by id, as the mirror applies).
+            var memberInventory = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+            var rifle = new ItemInstance(weapons[0].Id, 1, Rarity.Epic) { IsAtRisk = true };
+            var vest = new ItemInstance(armor.Id, 1, Rarity.Rare) { IsAtRisk = true };
+            memberInventory.TryEquip(rifle, EquippedSlot.PrimaryWeapon);
+            memberInventory.TryAddToBackpack(vest);
+            var hostCopy = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+            hostCopy.RestoreFromSnapshot(memberInventory.ToSnapshot());
+            var hostOwn = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+            var hostWeapon = new ItemInstance(weapons[1].Id, 1, Rarity.Rare) { IsAtRisk = true };
+            hostOwn.TryAddToBackpack(hostWeapon);
+            var memberStorage = new Storage(resolve, _content.AmmoBalance);
+
+            var loot = new LootAuthorityService(CoopHostAuthority.Instance);
+            var hostCarried = CarriedOf(hostOwn);
+            var copyCarried = CarriedOf(hostCopy);
+            loot.RegisterParticipant(new LootParticipant(0, "host", hostCarried[0], new CoinWallet(CoinDomain.Carried), null, hostCarried));
+            loot.RegisterParticipant(new LootParticipant(1, "client", copyCarried[0], new CoinWallet(CoinDomain.Carried), null, copyCarried));
+            var w = Compose(resolve: resolve, loot: loot);
+
+            // Both peers compose the same relay in room 4; the host's records each use in the room state (as the composer does).
+            var hostRelay = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+            hostRelay.Secured += (_, participant, _) => w.HostRoom.State.MarkResolved(SecureRelayEvent.ResolvedIdFor(participant));
+            RoomContentBinding.For(w.HostRoom).EventInstance = hostRelay;
+            var replica = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+            RoomContentBinding.For(w.ClientRoom).EventInstance = replica;
+
+            // The member's side of ExpeditionScene.SecureRelay: the unit is escrowed (out of the run) before the request;
+            // a final verdict resolves the escrow once — accepted → Storage, refused → back into the run.
+            var escrows = new List<SecureRelayEscrow>();
+            void OnVerdict(RelayResultMessage r)
+            {
+                var escrow = escrows.FirstOrDefault(e => e.TransactionId == r.TransactionId);
+                if (escrow == null || escrow.State != SecureRelayEscrowState.Pending || !r.Final) return;
+                escrow.State = r.Accepted ? SecureRelayEscrowState.Accepted : SecureRelayEscrowState.Refused;
+                escrows.Remove(escrow);
+                if (r.Accepted) Assert.IsTrue(SecureRelayEscrows.Release(escrow, memberStorage));
+                else Assert.IsTrue(SecureRelayEscrows.Return(escrow, CarriedOf(memberInventory)));
+            }
+
+            SecureRelayEscrow Escrow(SecureRelayEvent memberRelay, ItemInstance item, string tx)
+            {
+                Assert.AreEqual(SecureRelayRefusal.None, SecureRelayEscrows.Open(memberRelay, "client", CarriedOf(memberInventory), item.InstanceId, memberStorage, out var e));
+                e.TransactionId = tx;
+                escrows.Add(e);
+                return e;
+            }
+
+            var results = new List<RelayResultMessage>();
+            w.Client.RelayResult += results.Add;
+            w.Client.RelayResult += OnVerdict;
+
+            // Wrong owner: a request naming the host's own weapon is refused and touches nobody's item.
+            w.Client.SendRelaySecure(4, hostWeapon.InstanceId, "tx-wrong");
+            Assert.IsFalse(results.Last().Accepted);
+            Assert.IsTrue(results.Last().Final);
+            Assert.AreEqual(SecureRelayRefusal.NoItem.ToString(), results.Last().Refusal);
+            Assert.IsTrue(hostOwn.BackpackSlots.Contains(hostWeapon));
+            Assert.IsFalse(hostRelay.HasSecured("client"));
+
+            // The host accepts, but the verdict is lost with the link (never delivered).
+            w.Host.HoldRelayResults = true;
+            var rifleEscrow = Escrow(replica, rifle, "tx-1");
+            Assert.IsNull(memberInventory.GetEquipped(EquippedSlot.PrimaryWeapon), "escrowed: out of the run before the request");
+            var delivered = results.Count;
+            w.Client.SendRelaySecure(4, rifle.InstanceId, "tx-1");
+            Assert.AreEqual(delivered, results.Count, "no verdict reached the member");
+            Assert.AreEqual(1, w.Host.RelayResultsHeld);
+            Assert.IsTrue(hostRelay.HasSecured("client"), "the host accepted and recorded the use");
+            Assert.IsNull(hostCopy.GetEquipped(EquippedSlot.PrimaryWeapon), "and took its copy of the unit");
+            Assert.AreEqual(0, memberStorage.OccupiedSlots);
+            Assert.Contains(rifleEscrow, escrows, "the member still holds the escrow: not in the run, not lost");
+
+            // Reconnect: the same participant under a new client id, a freshly composed relay; the pending request is re-sent.
+            w.Host.HoldRelayResults = false;
+            var rejoinBus = LoopbackCoopBus.Join(w.Network, 5);
+            loot.UnregisterParticipant(1); // as ExpeditionScene rebinds a reconnecting member: the old client id lets go first
+            loot.RegisterParticipant(new LootParticipant(5, "client", copyCarried[0], new CoinWallet(CoinDomain.Carried), null, copyCarried));
+            var rejoinRoot = CreateRoom(RoomType.Combat, new Vector2Int(16, 12), new[] { new Vector2Int(2, 2) }, new Vector2(400f, 3000f));
+            var rejoinRoom = rejoinRoot.gameObject.AddComponent<RoomRuntime>();
+            rejoinRoom.Configure(rejoinRoot, 4, 1, 2);
+            var fresh = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+            RoomContentBinding.For(rejoinRoom).EventInstance = fresh;
+            var rejoined = Own(new CoopClientWorld(rejoinBus));
+            rejoined.BindDepth(1, new Dictionary<int, RoomRuntime> { [4] = rejoinRoom }, w.ClientLoot, resolve);
+            var rejoinResults = new List<RelayResultMessage>();
+            rejoined.RelayResult += rejoinResults.Add;
+            rejoined.RelayResult += OnVerdict;
+            rejoined.RequestResync();
+            Assert.IsTrue(fresh.HasSecured("client"), "the resync restores this member's spent use");
+
+            rejoined.SendRelaySecure(4, rifle.InstanceId, "tx-1");
+            Assert.IsTrue(rejoinResults.Last().Accepted && rejoinResults.Last().Final, "the host replays the verdict it already gave");
+            Assert.AreEqual(rifle.InstanceId, memberStorage.Find(rifle.InstanceId)?.InstanceId, "the accepted unit is in the member's Storage");
+            Assert.IsFalse(memberStorage.Find(rifle.InstanceId).IsAtRisk);
+            Assert.IsEmpty(escrows);
+            Assert.IsNull(memberInventory.GetEquipped(EquippedSlot.PrimaryWeapon), "never restored to the run");
+            Assert.AreEqual(1, hostRelay.SecuredCount, "decided once");
+
+            // Duplicate delivery of the same request: the stored verdict again, nothing moves.
+            rejoined.SendRelaySecure(4, rifle.InstanceId, "tx-1");
+            Assert.IsTrue(rejoinResults.Last().Accepted);
+            Assert.AreEqual(1, memberStorage.OccupiedSlots);
+
+            // A stale copy of the relay lets the member escrow a second item: the host refuses it, and it goes back into the run.
+            var stale = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+            Escrow(stale, vest, "tx-2");
+            Assert.IsFalse(memberInventory.BackpackSlots.Contains(vest));
+            rejoined.SendRelaySecure(4, vest.InstanceId, "tx-2");
+            Assert.IsFalse(rejoinResults.Last().Accepted);
+            Assert.IsTrue(rejoinResults.Last().Final);
+            Assert.AreEqual(SecureRelayRefusal.AlreadySecured.ToString(), rejoinResults.Last().Refusal, "one use per member, across the reconnect");
+            var vestBack = memberInventory.BackpackSlots.FirstOrDefault(i => i != null && i.InstanceId == vest.InstanceId);
+            Assert.IsNotNull(vestBack, "a refused unit returns to the run");
+            Assert.IsTrue(vestBack.IsAtRisk);
+            Assert.IsNotNull(hostCopy.BackpackSlots.FirstOrDefault(i => i != null && i.InstanceId == vest.InstanceId), "the host's copy never lost it");
+            Assert.AreEqual(1, memberStorage.OccupiedSlots);
+            Assert.IsFalse(hostRelay.HasSecured("host"), "the host keeps its own independent use");
+        }
+
+        [Test]
+        public void SecureRelay_RequestTheHostNeverReceived_IsNeverSecured_TheResendIsDecidedByTheHost_AndAnEndedRunDecidesNothing()
+        {
+            Func<string, ItemDefinition> resolve = id => _content.Items.FirstOrDefault(i => i.Id == id);
+            var registry = _content.BuildRegistry();
+            var weapon = _content.Items.OfType<WeaponDefinition>().First(d => d.Id != StarterKitService.PistolId && d.Id != StarterKitService.KnifeId);
+            var memberInventory = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+            var rifle = new ItemInstance(weapon.Id, 1, Rarity.Epic) { IsAtRisk = true };
+            memberInventory.TryAddToBackpack(rifle);
+            var hostCopy = PlayerInventory.FromRegistry(registry, _content.AmmoBalance);
+            hostCopy.RestoreFromSnapshot(memberInventory.ToSnapshot());
+            var memberStorage = new Storage(resolve, _content.AmmoBalance);
+            var loot = new LootAuthorityService(CoopHostAuthority.Instance);
+            var copyCarried = CarriedOf(hostCopy);
+            loot.RegisterParticipant(new LootParticipant(1, "client", copyCarried[0], new CoinWallet(CoinDomain.Carried), null, copyCarried));
+            var expedition = new ExpeditionService(resolve, t => _content.Items.OfType<AmmoItemDefinition>().FirstOrDefault(a => a.AmmoType == t), _content.AmmoBalance);
+            expedition.Start(new PlayerProfile(), 7, Biome.RuinedMetro, 2, "host");
+            var w = Compose(resolve: resolve, loot: loot, expedition: expedition);
+            var hostRelay = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+            RoomContentBinding.For(w.HostRoom).EventInstance = hostRelay;
+            var replica = new SecureRelayEvent(new DungeonEventContext(7, 1, 4), resolve);
+
+            var results = new List<RelayResultMessage>();
+            SecureRelayEscrow escrow = null;
+            w.Client.RelayResult += r =>
+            {
+                results.Add(r);
+                if (escrow == null || escrow.TransactionId != r.TransactionId || escrow.State != SecureRelayEscrowState.Pending || !r.Final) return;
+                escrow.State = r.Accepted ? SecureRelayEscrowState.Accepted : SecureRelayEscrowState.Refused;
+                Assert.IsTrue(r.Accepted ? SecureRelayEscrows.Release(escrow, memberStorage) : SecureRelayEscrows.Return(escrow, CarriedOf(memberInventory)));
+            };
+
+            // The member escrows its rifle; the request is lost before the host ever sees it. Its inventory report does
+            // arrive (the host's copy follows the member: the rifle is gone from it).
+            Assert.AreEqual(SecureRelayRefusal.None, SecureRelayEscrows.Open(replica, "client", CarriedOf(memberInventory), rifle.InstanceId, memberStorage, out escrow));
+            escrow.TransactionId = "tx-lost";
+            hostCopy.RestoreFromSnapshot(memberInventory.ToSnapshot());
+            Assert.AreEqual(SecureRelayEscrowState.Pending, escrow.State, "unresolved, and recorded as such");
+            Assert.IsFalse(hostRelay.HasSecured("client"));
+            Assert.AreEqual(0, memberStorage.OccupiedSlots, "nothing is secured without the host");
+
+            // The re-send (after the member's reconnect) is a new decision for the host, taken on what the host holds: the
+            // rifle is not in the member's carried state as the host knows it, so it is refused — and the unit goes back.
+            w.Client.SendRelaySecure(4, rifle.InstanceId, "tx-lost");
+            Assert.IsTrue(results.Last().Final);
+            Assert.IsFalse(results.Last().Accepted);
+            Assert.AreEqual(SecureRelayEscrowState.Refused, escrow.State);
+            Assert.AreEqual(0, memberStorage.OccupiedSlots, "never secured");
+            var back = memberInventory.BackpackSlots.FirstOrDefault(i => i != null && i.InstanceId == rifle.InstanceId);
+            Assert.IsNotNull(back, "the refusal restores the held item to the run");
+            Assert.IsTrue(back.IsAtRisk);
+            Assert.IsFalse(hostRelay.HasSecured("client"), "the member's one use is untouched");
+
+            // Pressing again works on the host's real decision (the host's copy has the rifle back from the member's report).
+            hostCopy.RestoreFromSnapshot(memberInventory.ToSnapshot());
+            Assert.AreEqual(SecureRelayRefusal.None, SecureRelayEscrows.Open(replica, "client", CarriedOf(memberInventory), rifle.InstanceId, memberStorage, out escrow));
+            escrow.TransactionId = "tx-again";
+
+            // The host's run ends before this request reaches it: nothing is decided after the run is over.
+            expedition.Fail();
+            var decidedBefore = w.Host.RelaysResolved;
+            w.Client.SendRelaySecure(4, rifle.InstanceId, "tx-again");
+            Assert.IsFalse(results.Last().Final, "an ended run answers 'not now', never a verdict");
+            Assert.AreEqual(decidedBefore, w.Host.RelaysResolved);
+            Assert.AreEqual(1, w.Host.RelaysAfterRunEnd);
+            Assert.IsFalse(hostRelay.HasSecured("client"));
+            Assert.AreEqual(SecureRelayEscrowState.Pending, escrow.State, "still unresolved: the member's own run end returns it to the run (BaseSession)");
+            Assert.AreEqual(0, memberStorage.OccupiedSlots);
         }
     }
 }

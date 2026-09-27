@@ -53,6 +53,23 @@ namespace RuinRail.Gameplay.Base
 
         public ItemInstance TryRemove(string instanceId) => _slots.TryRemove(instanceId);
 
+        /// <summary>
+        /// 57.7 Secure Relay: the one mid-expedition path into Storage. Whether the carried item would fit once secured
+        /// (same slots and stacking as <see cref="CanAccept"/>, the at-risk flag being what the relay clears).
+        /// </summary>
+        internal bool CanAcceptSecured(ItemInstance item) => item != null && _slots.CanAdd(item);
+
+        /// <summary>Stores a carried item the relay secures: its at-risk flag is cleared only when it actually lands here.</summary>
+        internal bool TryAddSecured(ItemInstance item)
+        {
+            if (!CanAcceptSecured(item)) return false;
+            var wasAtRisk = item.IsAtRisk;
+            item.IsAtRisk = false;
+            if (_slots.TryAdd(item)) return true;
+            item.IsAtRisk = wasAtRisk;
+            return false;
+        }
+
         public int CountOf(string definitionId) => _slots.CountOf(definitionId);
 
         /// <summary>Applies an approved capacity upgrade; never shrinks and never touches items (71: items are never lost).</summary>

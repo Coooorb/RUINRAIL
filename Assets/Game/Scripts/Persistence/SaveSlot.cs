@@ -69,6 +69,12 @@ namespace RuinRail.Persistence
         /// <summary>Open expedition transaction, if any (never a resumable run: only a pending failure).</summary>
         public ExpeditionMarker ActiveExpedition = new();
 
+        /// <summary>
+        /// 57.7 Secure Relay units a co-op member sent to its host and has not had a verdict for yet. The unit is out of
+        /// the run; the Shelter releases any left over into Storage (end of run, next boot). Empty in every older save.
+        /// </summary>
+        public List<RuinRail.Gameplay.Events.SecureRelayEscrow> RelayEscrow = new();
+
         /// <summary>Items whose definition could not be resolved at load; preserved so a later build/fix can restore them.</summary>
         public List<QuarantinedItem> Quarantine = new();
     }

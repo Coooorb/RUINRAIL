@@ -22,5 +22,5 @@
 - [Co-op expedition proof runner](coop-expedition-proof-runner.md) — -coop-expedition host|client; seed 11; reader rebinding, link-routed proof messages, stray processes
 - [Release audit tooling + fixed dead seams](release-smoke-and-dead-seams-2026-09-25.md) — release smoke scripts, FinalReleaseCandidateValidator + frozen baseline; impact receiver / Defibrillator / AutosaveFlusher wired
 - [Batch PlayMode frame loops](batch-playmode-frame-loops.md) — uncapped fps; wait on Time.time deadlines, not frame counts
-- [Co-op proof: Discharge + Room Sweep fail](coop-proof-discharge-roomsweep-failing.md) — duo seed 11 ends 56/58 regardless of the drop step; known open issue, don't blame new work
-- [FinalPlayability boss-started assertion fails](final-playability-boss-started-on-entry-failing.md) — predates reward work; likely the boss intro hold; not caused by reward chests
+- [Co-op proof flakes fixed](coop-proof-discharge-roomsweep-failing.md) — Discharge/Room Sweep/Adrenaline fixed; duo seed 11 = host 66/66, client 10/10
+- [UI text must be PixelText](pixel-font-bottom-row-loss-global.md) — plain Text on a pixel-perfect canvas drops pixel-font rows; use UiBuild.Label / PixelText

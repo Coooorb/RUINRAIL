@@ -205,10 +205,10 @@ namespace RuinRail.Tests
         // ---- Acceptance 4: exactly the six approved event kinds ----
 
         [Test]
-        public void ExactlySixApprovedEventKinds_Exist()
+        public void ExactlyTheApprovedEventKinds_Exist_SixMvpPlusTheSecureRelay()
         {
             CollectionAssert.AreEquivalent(
-                new[] { "CursedChest", "LockedVault", "BrokenMachine", "SupplySignal", "MedicalStation", "WeaponCache" },
+                new[] { "CursedChest", "LockedVault", "BrokenMachine", "SupplySignal", "MedicalStation", "WeaponCache", "SecureRelay" },
                 System.Enum.GetNames(typeof(DungeonEventKind)));
         }
     }

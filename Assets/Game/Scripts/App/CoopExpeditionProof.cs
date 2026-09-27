@@ -6,6 +6,7 @@ using System.Linq;
 using RuinRail.Core;
 using RuinRail.Dungeon.Rooms;
 using RuinRail.Dungeon.Runtime;
+using RuinRail.Gameplay.Base;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Combat.Impact;
 using RuinRail.Gameplay.Combat.Weapons;
@@ -27,13 +28,15 @@ namespace RuinRail.App
 {
     /// <summary>
     /// Built-player co-op expedition proof (`-coop-expedition host|client -coop-port P -coop-size N -coop-out f.json
-    /// [-seed S] [-coop-scenario duo|trio]`): two or three processes of the shipped player play one real expedition over
+    /// [-seed S] [-coop-scenario duo|trio|relay]`): two or three processes of the shipped player play one real expedition over
     /// UnityTransport on loopback — Shelter lobby, the host's start, identical D1 on every peer, a real combat room,
     /// pickup and coin races, a merchant trade, Downed/revive both ways, the boss, the Transit vote, a networked
     /// descend to D2, and the Return with its save. Every step drives the shipping paths: the player input the host
     /// validates, the loot authority, the vote, the transactions. The script only decides <i>what</i> each player does
     /// and when, and — like the solo smoke — moves players between rooms and keeps them alive during scripted fights so
     /// the run is bounded; every such shortcut is host-authoritative and named in the report.
+    /// The <c>relay</c> scenario (a seed with a Secure Relay on D1) instead proves the 57.7 transaction across processes:
+    /// each player secures one item, the client's verdict is withheld by the host and recovered after a real reconnect.
     /// </summary>
     public sealed class CoopExpeditionProof : MonoBehaviour
     {
@@ -571,8 +574,12 @@ namespace RuinRail.App
             };
         }
 
+        // A step the host runs on itself (the host's own throws) reports here instead of over the link.
+        private string _selfAck = string.Empty;
+
         private void Ack(ProofMessage command, string detail = null)
         {
+            if (_run != null && _run.CoopHost != null) { _selfAck = detail ?? string.Empty; return; }
             var view = View("client");
             _report.Views.Add(view);
             CoopRunLink.Current?.SendToHost(CoopKinds.ProofReport, CoopJson.Write(new ProofMessage { Step = "ack:" + command.Step, Arg = detail ?? string.Empty, Number = command.Number, Json = JsonUtility.ToJson(view) }));
@@ -626,6 +633,12 @@ namespace RuinRail.App
                 case "reconnect":
                     yield return ClientReconnect(command);
                     break;
+                case "relay-secure":
+                    yield return ClientRelaySecure(command);
+                    break;
+                case "relay-check":
+                    yield return ClientRelayCheck(command);
+                    break;
                 case "cache":
                     yield return ClientCache(command);
                     break;
@@ -635,6 +648,30 @@ namespace RuinRail.App
                 case "drop":
                     yield return ClientDrop(command);
                     break;
+                case "drop-ammo":
+                    yield return ClientDropAmmo(command);
+                    break;
+                case "fill-partial":
+                    yield return ClientFillPartial(command);
+                    break;
+                case "loot-qty":
+                {
+                    var light = _app.Content.Items.OfType<AmmoItemDefinition>().First(a => a.AmmoType == AmmoType.Light);
+                    var replica = FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).FirstOrDefault(p => p != null && !p.IsConsumed && p.Item != null && p.Item.DefinitionId == light.Id);
+                    Ack(command, $"replicaQty={(replica != null ? replica.Item.Quantity : -1)} light={_run.Expedition.State.Inventory.Get(AmmoType.Light)}");
+                    break;
+                }
+                case "unfill":
+                {
+                    var inventory = _run.Expedition.State.Inventory;
+                    var removed = 0;
+                    for (var i = inventory.BackpackSlots.Count - 1; i >= 0 && removed < _proofFillers; i--)
+                        if (inventory.BackpackSlots[i] != null && inventory.BackpackSlots[i].DefinitionId == "weapon_field_knife") { inventory.RemoveFromBackpack(i); removed++; }
+                    _proofFillers = 0;
+                    yield return Seconds(0.5f);
+                    Ack(command, "removed=" + removed);
+                    break;
+                }
                 case "defib":
                     yield return ClientDefibrillator(command);
                     break;
@@ -649,6 +686,12 @@ namespace RuinRail.App
                 }
                 case "equip":
                     yield return ClientEquipArmor(command);
+                    break;
+                case "grenades":
+                    yield return ThrowEveryGrenade(command);
+                    break;
+                case "grenade-view":
+                    Ack(command, GrenadeView());
                     break;
                 case "kill-passive":
                     yield return ClientKillPassive(command);
@@ -724,6 +767,12 @@ namespace RuinRail.App
         private IEnumerator ClientKillPassive(ProofMessage command)
         {
             var k0 = _run.ClientKillsConfirmed;
+            var shots0 = _run.CoopClient.ShotsSent;
+            var hits0 = _run.CoopClient.HitsSent;
+            var sawTarget = false;
+            var blockedFrames = 0;
+            var frames = 0;
+            var lastTarget = "";
             var killed = 0;
             void OnKilled() => killed++;
             _run.Rig.CombatEvents.EnemyKilled += OnKilled;
@@ -732,24 +781,38 @@ namespace RuinRail.App
             while (Time.realtimeSinceStartup < until && _run.ClientKillsConfirmed == k0)
             {
                 var player = LocalPlayer;
-                var target = NearestReplica(player, command.Number);
+                // A target behind cover soaks every shot (the room's pillars sit between the party and some enemies):
+                // shoot one in the open, or walk toward the nearest until the line clears.
+                var target = player != null ? ClearShotReplica(player, command.Number) : null;
+                var open = target != null;
+                target ??= NearestReplica(player, command.Number);
                 if (player != null && target != null)
                 {
+                    sawTarget = true;
+                    frames++;
+                    var from = (Vector2)player.transform.position;
+                    var to = (Vector2)target.transform.position;
+                    if (!open) blockedFrames++;
+                    lastTarget = $"{target.Kind}@room{target.RoomNode}/{command.Number} d={Vector2.Distance(from, to):0.0}";
                     var hurt = target.GetComponent<CombatHurtbox>();
-                    _reader.AimAt((hurt != null ? hurt.AimPoint : (Vector2)target.transform.position) - (Vector2)player.transform.position);
-                    _reader.SetFire(true);
+                    _reader.AimAt((hurt != null ? hurt.AimPoint : to) - from);
+                    _reader.SetMove(open ? Vector2.zero : to - from);
+                    _reader.SetFire(open);
                 }
-                else _reader.SetFire(false);
+                else { _reader.SetFire(false); _reader.SetMove(Vector2.zero); }
                 yield return null;
             }
 
             _reader.SetFire(false);
+            _reader.SetMove(Vector2.zero);
+            var reserve = Enum.GetValues(typeof(AmmoType)).Cast<AmmoType>().Sum(t => _run.Expedition.State.Inventory.Get(t));
+            var fireDetail = $"target={sawTarget} last={lastTarget} wallBlocked={blockedFrames}/{frames} shots=+{_run.CoopClient.ShotsSent - shots0} hitsSent=+{_run.CoopClient.HitsSent - hits0} reserve={reserve} weapon={_run.Rig.Loadout?.ActiveWeapon?.GetType().Name}";
             var adrenaline = _run.Rig.Passives?.GetActive(EquippedSlot.Armor) as AdrenalinePassive;
             var buff = adrenaline != null && adrenaline.IsBuffActive;
             _run.Rig.CombatEvents.EnemyKilled -= OnKilled;
             _run.Rig.CombatEvents.MeleeKill -= OnKilled;
             var confirmed = _run.ClientKillsConfirmed - k0;
-            Ack(command, $"kills=+{confirmed} killEvents={killed} once={confirmed >= 1 && killed == confirmed} adrenaline={buff}");
+            Ack(command, $"kills=+{confirmed} killEvents={killed} once={confirmed >= 1 && killed == confirmed} adrenaline={buff} {fireDetail}");
         }
 
         /// <summary>
@@ -763,12 +826,19 @@ namespace RuinRail.App
             var shock0 = world.Shockwaves;
             var targets0 = world.ShockwaveTargets;
             var sent0 = _run.CoopClient.ImpactsSent;
-            // The dash covers speed × duration (~3 tiles): close to that range, then dash straight at the (host-frozen)
-            // enemy so the endpoint lands inside the 1.5-tile shockwave whether the body stops on it or passes it.
+            // The dash covers speed × duration (~3 tiles): dash straight at the (host-frozen) enemy from a little under
+            // that range, so the endpoint lands inside the 1.5-tile shockwave whether the body stops on it or passes it.
             var dash = LocalPlayer.GetComponent<PlayerDash>();
             var reach = dash != null ? dash.CurrentDashSpeed * 0.18f : 3f;
             var until = Time.realtimeSinceStartup + 8f;
             EnemyReplica target = null;
+            // The host placed this member on an open lane to a chosen enemy: dash from where it stands.
+            if (command.Arg == "lane")
+            {
+                target = NearestReplicaTo(new Vector2(command.X, command.Y), command.Number);
+                until = 0f;
+            }
+
             while (Time.realtimeSinceStartup < until)
             {
                 target = NearestReplica(LocalPlayer, command.Number);
@@ -788,11 +858,17 @@ namespace RuinRail.App
             }
 
             yield return null;
+            var gap = target != null ? Vector2.Distance(target.transform.position, LocalPlayer.transform.position) : -1f;
+            var endGap = -1f;
+            void OnDashEnded() { if (target != null) endGap = Vector2.Distance(target.transform.position, LocalPlayer.transform.position); }
+            _run.Rig.CombatEvents.DashEnded += OnDashEnded;
             _reader.PressDash();
-            yield return Seconds(0.7f);
+            // The dash latched its direction at the press; walking on after it would carry the member past the enemy
+            // to the wall and out of the room's entry volume (no longer an occupant, deaf to the next step's clear).
             _reader.SetMove(Vector2.zero);
-            yield return Seconds(0.3f);
-            Ack(command, $"shockwaves=+{world.Shockwaves - shock0} targets=+{world.ShockwaveTargets - targets0} impactsSent=+{_run.CoopClient.ImpactsSent - sent0} reach={reach:0.00} target={(target != null)}");
+            yield return Seconds(1.0f);
+            _run.Rig.CombatEvents.DashEnded -= OnDashEnded;
+            Ack(command, $"shockwaves=+{world.Shockwaves - shock0} targets=+{world.ShockwaveTargets - targets0} impactsSent=+{_run.CoopClient.ImpactsSent - sent0} reach={reach:0.00} target={(target != null)} lane={command.Arg == "lane"} gap={gap:0.00} endGap={endGap:0.00}");
         }
 
         /// <summary>Quickdraw Holster (Hot Swap) on this member's own rig: one real weapon swap, the buff, then swap back.</summary>
@@ -880,6 +956,81 @@ namespace RuinRail.App
             Ack(command, $"old={oldId} new={_app.Coop.LocalClientId}");
         }
 
+        // ---------------------------------------------------------------- 57.7 Secure Relay (client)
+
+        /// <summary>The instance this client sent to its relay (checked again after the reconnect and after the run).</summary>
+        private string _relayItemId;
+
+        private SecureRelayEvent RunRelay(out WorldObjectVisual visual)
+        {
+            var binding = _run?.Rooms?.Values.Select(r => r != null ? r.GetComponent<RoomContentBinding>() : null).FirstOrDefault(b => b != null && b.EventInstance is SecureRelayEvent);
+            visual = binding?.Event != null ? binding.Event.GetComponent<WorldObjectVisual>() : null;
+            return binding?.EventInstance as SecureRelayEvent;
+        }
+
+        private bool CarriesInRun(string instanceId)
+        {
+            var inventory = _run?.Expedition?.State?.Inventory;
+            if (inventory == null || string.IsNullOrEmpty(instanceId)) return false;
+            return inventory.BackpackSlots.Any(i => i != null && i.InstanceId == instanceId)
+                   || Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Any(slot => inventory.GetEquipped(slot)?.InstanceId == instanceId);
+        }
+
+        /// <summary>Opens the relay with Interact and sends the named item through the real screen (SECURE, CONFIRM).</summary>
+        private IEnumerator ClientRelaySecure(ProofMessage command)
+        {
+            _relayItemId = command.Arg;
+            var interactor = LocalPlayer != null ? LocalPlayer.GetComponent<PlayerInteractor>() : null;
+            var opened = interactor != null && interactor.TryInteract();
+            yield return WaitFor(() => _run.SecureRelay != null && _run.SecureRelay.IsOpen, 5f);
+            var vm = _run.SecureRelay;
+            var detail = $"opened={opened && _waitOk}";
+            if (vm != null && vm.IsOpen)
+            {
+                var cell = vm.Cells.ToList().FindIndex(c => !c.IsEmpty && c.Item.InstanceId == _relayItemId);
+                if (cell >= 0) vm.SetCursor(cell);
+                var armed = cell >= 0 && vm.Secure();
+                var sent = armed && vm.Secure();
+                yield return Seconds(2.0f);
+                var disk = _app.Menu.Session.Saves.Load();
+                detail += $" cell={cell} armed={armed} sent={sent} stage={vm.Stage} pending={_run.PendingRelayEscrows.Count} inRun={CarriesInRun(_relayItemId)}"
+                          + $" inStorage={_app.Menu.Session.Storage.Find(_relayItemId) != null} diskEscrow={(disk.Success ? disk.Slot.RelayEscrow.Count(e => e.SourceInstanceId == _relayItemId) : -1)}";
+                vm.Close();
+            }
+
+            Ack(command, detail);
+        }
+
+        /// <summary>After the reconnect: the escrow resolved from the host's replayed verdict; the use shows; a second item is refused.</summary>
+        private IEnumerator ClientRelayCheck(ProofMessage command)
+        {
+            yield return WaitFor(() => _run.PendingRelayEscrows.Count == 0, 30f);
+            var resolved = _waitOk;
+            yield return Seconds(0.5f);
+            var session = _app.Menu.Session;
+            var disk = session.Saves.Load();
+            var onDisk = disk.Success && disk.Slot.Storage.Slots.Any(e => e.Item != null && e.Item.InstanceId == _relayItemId && !e.Item.IsAtRisk);
+            var diskEscrow = disk.Success ? disk.Slot.RelayEscrow.Count : -1;
+            var participant = DungeonEventInteractable.ActorFor(LocalPlayer)?.ParticipantId;
+            var relay = RunRelay(out var visual);
+            var storageBefore = session.Storage.OccupiedSlots;
+            var interactor = LocalPlayer != null ? LocalPlayer.GetComponent<PlayerInteractor>() : null;
+            var prompt = _run.CurrentInteractionPrompt;
+            var opened = interactor != null && interactor.TryInteract();
+            yield return WaitFor(() => _run.SecureRelay != null && _run.SecureRelay.IsOpen, 5f);
+            var vm = _run.SecureRelay;
+            var stage = vm != null ? vm.Stage.ToString() : "none";
+            var again = vm != null && vm.Secure();
+            if (vm != null && vm.IsOpen) vm.Close();
+            var receiver = LocalPlayer != null ? LocalPlayer.GetComponent<PlayerLootReceiver>() : null;
+            var second = command.Arg;
+            var secondRefusal = relay != null && receiver != null ? SecureRelayEscrows.Open(relay, participant, receiver.CarriedContainers, second, session.Storage, out _) : SecureRelayRefusal.NotEligible;
+            yield return Seconds(0.5f);
+            Ack(command, $"resolved={resolved} inStorage={session.Storage.Find(_relayItemId) != null} onDisk={onDisk} diskEscrow={diskEscrow} inRun={CarriesInRun(_relayItemId)}"
+                         + $" transfers={_run.RelayTransfers} resends={_run.RelayResends} used={relay != null && relay.HasSecured(participant)} visual={visual?.Key} prompt='{prompt}'"
+                         + $" opened={opened} stage={stage} secureAgain={again} secondRefusal={secondRefusal} secondInRun={CarriesInRun(second)} storage {storageBefore}->{session.Storage.OccupiedSlots}");
+        }
+
         /// <summary>Holds fire at the nearest living enemy replica (the room's, when given) for a while — real weapon, real ammo.</summary>
         private IEnumerator Fight(float seconds, int roomNode)
         {
@@ -902,12 +1053,26 @@ namespace RuinRail.App
             _reader.SetFire(false);
         }
 
-        private EnemyReplica NearestReplica(GameObject player, int roomNode)
+        /// <summary>The nearest live replica of the room with no wall or pillar between it and the player; null when every one is behind cover.</summary>
+        private EnemyReplica ClearShotReplica(GameObject player, int roomNode)
         {
             if (player == null || _run?.CoopClient == null) return null;
+            var from = (Vector2)player.transform.position;
+            return _run.CoopClient.Replicas.Replicas.Values
+                .Where(r => r != null && !r.IsDead && (roomNode < 0 || r.RoomNode == roomNode))
+                .OrderBy(r => Vector2.Distance(r.transform.position, from))
+                .FirstOrDefault(r => !Physics2D.LinecastAll(from, r.transform.position).Any(h => h.collider != null && h.collider.GetComponentInParent<EnvironmentObstacle>() != null));
+        }
+
+        private EnemyReplica NearestReplica(GameObject player, int roomNode) =>
+            player != null ? NearestReplicaTo(player.transform.position, roomNode) : null;
+
+        private EnemyReplica NearestReplicaTo(Vector2 point, int roomNode)
+        {
+            if (_run?.CoopClient == null) return null;
             return _run.CoopClient.Replicas.Replicas.Values
                 .Where(r => r != null && !r.IsDead && (roomNode < 0 || r.RoomNode == roomNode || r.Kind == CoopActorKind.Boss))
-                .OrderBy(r => Vector2.Distance(r.transform.position, player.transform.position))
+                .OrderBy(r => Vector2.Distance(r.transform.position, point))
                 .FirstOrDefault();
         }
 
@@ -1044,6 +1209,59 @@ namespace RuinRail.App
             Ack(command, $"x={x.InstanceId} y={y.InstanceId} full={full} swapped={swapped} first={firstPress} keptUntilRevoke={stillCarried} second={secondPress} xGone={xGone} worn={wornPress} yGone={yGone} rewear={rewear} backpack={inventory.BackpackSlots.Count(i => i != null)} message='{vm.Message}'");
         }
 
+        /// <summary>
+        /// 32/30: this member drops its ammo stack through its real inventory window and stands on it. Reported: the
+        /// reserve before / after the host's revoke / after two seconds, and whether its own replica stayed put (held
+        /// back from its local attraction) instead of following its feet.
+        /// </summary>
+        private IEnumerator ClientDropAmmo(ProofMessage command)
+        {
+            var inventory = _run.Expedition.State.Inventory;
+            var ammoIds = _app.Content.Items.OfType<AmmoItemDefinition>().ToDictionary(a => a.Id, a => a.AmmoType);
+            var index = inventory.BackpackSlots.ToList().FindIndex(i => i != null && ammoIds.ContainsKey(i.DefinitionId));
+            if (index < 0) { Ack(command, "noammo=True"); yield break; }
+            var stack = inventory.BackpackSlots[index];
+            var type = ammoIds[stack.DefinitionId];
+            var before = inventory.Get(type);
+            // Part of the stack (a partial drop through the member's drop route, revoked by quantity): the rest keeps the
+            // member's weapon fed for the later steps. The whole-stack DROP button is covered by the live-run test.
+            var quantity = Math.Max(1, Math.Min(10, stack.Quantity / 2));
+            var receiver = LocalPlayer != null ? LocalPlayer.GetComponent<PlayerLootReceiver>() : null;
+            var dropped = receiver != null && receiver.TryDrop(stack.InstanceId, quantity).Success ? "Done" : "Refused";
+            yield return WaitFor(() => inventory.Get(type) == before - quantity, 10f);
+            var afterRevoke = inventory.Get(type);
+            WorldItemPickup Replica() => FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).FirstOrDefault(p => p != null && !p.IsConsumed && p.Item != null && p.Item.DefinitionId == stack.DefinitionId);
+            yield return WaitFor(() => Replica() != null, 5f);
+            var replica = Replica();
+            var firstSeen = replica != null ? (Vector2)replica.transform.position : Vector2.zero;
+            yield return Seconds(2f);
+            var afterWait = inventory.Get(type);
+            replica = Replica();
+            var moved = replica != null ? Vector2.Distance(replica.transform.position, firstSeen) : -1f;
+            var held = replica != null && replica.DroppedBy == LocalPlayer;
+            Ack(command, $"def={stack.DefinitionId} qty={quantity} dropped={dropped} reserve={before}>{afterRevoke}>{afterWait} replica={(replica != null)} replicaHeld={held} replicaMoved={moved:0.00}");
+        }
+
+        private int _proofFillers;
+
+        /// <summary>
+        /// Proof harness: every free backpack slot is filled with single items and the light-ammo stacks are left with
+        /// exactly 5 rounds of room, so a 20-round pickup can only partly fit. Reported: the room and the light reserve.
+        /// </summary>
+        private IEnumerator ClientFillPartial(ProofMessage command)
+        {
+            var inventory = _run.Expedition.State.Inventory;
+            var light = _app.Content.Items.OfType<AmmoItemDefinition>().First(a => a.AmmoType == AmmoType.Light);
+            if (inventory.Get(AmmoType.Light) == 0) inventory.Add(AmmoType.Light, 1);
+            while (inventory.BackpackSlots.Any(s => s == null) && inventory.TryAddToBackpack(new ItemInstance("weapon_field_knife"))) _proofFillers++;
+            var room = inventory.BackpackRoomFor(new ItemInstance(light.Id, 1));
+            if (room > 5) inventory.Add(AmmoType.Light, room - 5);
+            else if (room < 5) inventory.Consume(AmmoType.Light, 5 - room);
+            room = inventory.BackpackRoomFor(new ItemInstance(light.Id, 1));
+            yield return Seconds(1f); // the host's copy of this backpack follows (inventory mirror)
+            Ack(command, $"room={room} light={inventory.Get(AmmoType.Light)} free={inventory.BackpackSlots.Count(s => s == null)}");
+        }
+
         private IEnumerator ClientFinish()
         {
             // The Return (or failure) is this peer's own transaction: wait for it and for the Shelter.
@@ -1069,6 +1287,13 @@ namespace RuinRail.App
             _report.DeepestDepthOnDisk = probe.DeepestDepthReached;
             _report.PlayerObjectsAfterReturn = CoopPlayerDirectory.Count;
             _report.SpawnedObjectsAfterReturn = CoopPlayerDirectory.SpawnedObjects();
+            if (_scenario == "relay")
+            {
+                var disk = _app.Menu.Session.Saves.Load();
+                Record("client: the secured item is still in Shelter Storage on disk after the run, once", disk.Success && disk.Slot.Storage.Slots.Count(e => e.Item != null && e.Item.InstanceId == _relayItemId) == 1 && disk.Slot.RelayEscrow.Count == 0,
+                    $"item={_relayItemId} storageCopies={(disk.Success ? disk.Slot.Storage.Slots.Count(e => e.Item != null && e.Item.InstanceId == _relayItemId) : -1)} escrow={(disk.Success ? disk.Slot.RelayEscrow.Count : -1)}");
+            }
+
             var expectSuccess = _scenario != "trio";
             Record("client left the expedition: own transaction, save, Shelter", summary != null && summary.IsSuccess == expectSuccess && !probe.ExpeditionMarkerOpen && _composed.EndsWith(SceneNames.Base + ";"),
                 $"outcome={_report.SummaryOutcome} coinsExtracted={_report.SummaryCoinsExtracted} secured={_report.SummarySecuredItems} deepest={_report.SummaryDeepestDepth} marker={probe.ExpeditionMarkerOpen} banked={_report.BankedCoinsBefore}->{probe.BankedCoins} playerObjects={_report.PlayerObjectsAfterReturn}");
@@ -1293,6 +1518,11 @@ namespace RuinRail.App
             var clients = Clients;
             var first = clients.FirstOrDefault();
             var trio = _size >= 3;
+            if (_scenario == "relay")
+            {
+                yield return RelayScenario(clients);
+                yield break;
+            }
 
             // ---- 1. identical D1 on every peer ----
             yield return ReportAll();
@@ -1410,8 +1640,135 @@ namespace RuinRail.App
             clients = Clients;
             yield return ReactivePassiveAfterReconnect(clients[0]);
 
+            // ---- 9b. grenades across peers (after the existing flow, so it shifts none of the timings above) ----
+            yield return GrenadeSteps(clients[0]);
+
             // ---- 10. D2 boss, RETURN vote, extraction and save on every peer ----
             yield return ReturnSteps(clients);
+        }
+
+        // ---------------------------------------------------------------- 57.7 Secure Relay (host)
+
+        /// <summary>
+        /// Two real processes on a seed whose D1 rolled a Secure Relay: the host secures one item through its own screen;
+        /// the client secures one through its screen while the host withholds the verdict it recorded (the link then drops
+        /// for real and the client reconnects with its token), the client's re-sent request gets the recorded verdict, and
+        /// both players see their own spent use and are refused a second item. The run then ends with the D1 Return.
+        /// Proof shortcuts (named): found items are placed in the host's run / granted to the client through the real grant.
+        /// </summary>
+        private IEnumerator RelayScenario(List<ulong> clients)
+        {
+            var client = clients.First();
+            yield return ReportAll();
+            var host = View("host");
+            _report.Views.Add(host);
+            Record("identical D1 on both peers", clients.All(c => ViewOf(c) is { } v && v.LayoutFingerprint == host.LayoutFingerprint && v.RoomSignature == host.RoomSignature),
+                $"host={host.Seed}/{host.LayoutFingerprint} " + string.Join(" ", clients.Select(c => $"c{c}={ViewOf(c)?.LayoutFingerprint}")));
+
+            var binding = _run.Rooms.Values.Select(r => r.GetComponent<RoomContentBinding>()).FirstOrDefault(b => b != null && b.EventInstance is SecureRelayEvent && b.Event != null);
+            var relay = binding?.EventInstance as SecureRelayEvent;
+            Record("the seed's D1 carries a Secure Relay (the 8% roll, shipped config)", relay != null && _app.Content.Events.SecureRelayChancePercent == DungeonEventConfig.DefaultSecureRelayChancePercent,
+                $"relayRoom={(binding != null ? binding.GetComponent<RoomRuntime>()?.State.NodeId.ToString() : "none")} chance={_app.Content.Events.SecureRelayChancePercent}%");
+            if (relay == null) { Finish("relay", "no Secure Relay on this seed's D1"); yield break; }
+            var relayRoom = binding.GetComponent<RoomRuntime>();
+            var at = (Vector2)binding.Event.transform.position;
+            var hostPid = DungeonEventInteractable.ActorFor(HostPlayer)?.ParticipantId;
+            var clientPid = _run.CoopRun.MemberFor(client)?.ParticipantId;
+            var weapons = _app.Content.Items.OfType<WeaponDefinition>().Where(w => w.Id != StarterKitService.PistolId && w.Id != StarterKitService.KnifeId).ToList();
+            var armor = _app.Content.Items.First(d => d.Category == ItemCategory.Armor && d.Id != StarterKitService.VestId);
+            TeleportParty(relayRoom.InteriorWorldBounds.center, 1.0f);
+            yield return Seconds(1.0f);
+
+            // ---- the host secures one item through its own terminal ----
+            var hostItem = new ItemInstance(weapons[0].Id, 1, Rarity.Rare);
+            var hostSecond = new ItemInstance(armor.Id, 1, Rarity.Rare);
+            _run.Expedition.State.Inventory.TryAddToBackpack(hostItem);
+            _run.Expedition.State.Inventory.TryAddToBackpack(hostSecond);
+            Teleport(HostPlayer, at + new Vector2(-0.5f, -1.1f));
+            Teleport(_run.MemberEntity(client), at + new Vector2(2.5f, -1.5f));
+            yield return Seconds(1.0f);
+            var hostPrompt = _run.CurrentInteractionPrompt;
+            var opened = HostPlayer.GetComponent<PlayerInteractor>().TryInteract();
+            yield return WaitFor(() => _run.SecureRelay.IsOpen, 5f);
+            var vm = _run.SecureRelay;
+            var cell = vm.Cells.ToList().FindIndex(c => c.Item == hostItem);
+            vm.SetCursor(cell);
+            var hostSecured = vm.Secure() && vm.Secure() && vm.Stage == UI.SecureRelay.SecureRelayStage.Secured;
+            vm.Close();
+            yield return Seconds(1.0f);
+            var session = _app.Menu.Session;
+            var hostDisk = session.Saves.Load();
+            var hostOnDisk = hostDisk.Success && hostDisk.Slot.Storage.Slots.Any(e => e.Item != null && e.Item.InstanceId == hostItem.InstanceId && !e.Item.IsAtRisk);
+            Record("host secures one item through its terminal: out of its run, into its Storage, on disk; the relay stays open for the client",
+                opened && hostSecured && hostOnDisk && session.Storage.Find(hostItem.InstanceId) != null && !_run.Expedition.State.Inventory.BackpackSlots.Contains(hostItem)
+                && relay.HasSecured(hostPid) && !relay.HasSecured(clientPid) && relay.Phase == DungeonEventPhase.Available,
+                $"prompt='{hostPrompt}' opened={opened} secured={hostSecured} onDisk={hostOnDisk} usedBy={string.Join(",", relay.SecuredBy)}");
+
+            // Host: its own used state, and a second item is refused by every route.
+            var hostVisual = binding.Event.GetComponent<WorldObjectVisual>()?.Key;
+            yield return Seconds(0.5f);
+            var usedPrompt = _run.CurrentInteractionPrompt;
+            HostPlayer.GetComponent<PlayerInteractor>().TryInteract();
+            yield return WaitFor(() => _run.SecureRelay.IsOpen, 5f);
+            var hostStage = vm.Stage;
+            var hostAgain = vm.Secure();
+            vm.Close();
+            var hostDirect = relay.Secure(hostPid, HostPlayer.GetComponent<PlayerLootReceiver>().CarriedContainers, hostSecond.InstanceId, new SecureRelayStorageTarget(session.Storage));
+            Record("host sees its own spent use (ITEM SECURED card, secured sprite, prompt) and cannot secure a second item",
+                hostStage == UI.SecureRelay.SecureRelayStage.Secured && !hostAgain && hostDirect.Refusal == SecureRelayRefusal.AlreadySecured && hostVisual == "event_SecureRelay_secured" && usedPrompt.Contains("ITEM SECURED")
+                && _run.Expedition.State.Inventory.BackpackSlots.Contains(hostSecond),
+                $"stage={hostStage} again={hostAgain} direct={hostDirect.Refusal} visual={hostVisual} prompt='{usedPrompt}'");
+
+            // ---- the client secures one item; the host records the grant but its verdict never reaches the client ----
+            var clientItem = new ItemInstance(weapons[1].Id, 1, Rarity.Epic);
+            var clientSecond = new ItemInstance(armor.Id, 1, Rarity.Rare);
+            _run.CoopHost.SendGrant(client, clientItem.ToSnapshot(), _run.Expedition.State.TransactionId, "proof_relay_1");
+            _run.CoopHost.SendGrant(client, clientSecond.ToSnapshot(), _run.Expedition.State.TransactionId, "proof_relay_2");
+            yield return WaitFor(() => MirrorOf(client)?.Inventory.BackpackSlots.Any(i => i != null && i.InstanceId == clientItem.InstanceId) == true, 15f);
+            var mirrored = _waitOk;
+            Teleport(HostPlayer, at + new Vector2(-2.5f, -1.5f));
+            Teleport(_run.MemberEntity(client), at + new Vector2(0.5f, -1.1f));
+            yield return Seconds(1.0f);
+            _run.CoopHost.HoldRelayResults = true;
+            var heldBefore = _run.CoopHost.RelayResultsHeld;
+            yield return Command(new ProofMessage { Step = "relay-secure", Arg = clientItem.InstanceId }, new[] { client }, 20f);
+            var ack = _acks.TryGetValue(client, out var a) ? a.Arg : "";
+            var hostAccepted = relay.HasSecured(clientPid) && _run.CoopHost.RelayResultsHeld == heldBefore + 1;
+            Record("client sends one item from its terminal; the host accepts and records it, the verdict is lost; the client holds it in a saved escrow (out of its run, not yet stored)",
+                mirrored && hostAccepted && ack.Contains("sent=True") && ack.Contains("stage=Pending") && ack.Contains("pending=1") && ack.Contains("inRun=False") && ack.Contains("inStorage=False") && ack.Contains("diskEscrow=1"),
+                $"mirrored={mirrored} hostRecorded={relay.HasSecured(clientPid)} held={_run.CoopHost.RelayResultsHeld - heldBefore} accepted={_run.CoopHost.RelaysAccepted}; client: {ack}");
+
+            // ---- the link drops right after the acceptance; the client reconnects with its token ----
+            _run.CoopHost.HoldRelayResults = false;
+            _acks.Clear();
+            SendProof(client, new ProofMessage { Step = "reconnect" });
+            yield return WaitFor(() => _run.HostReconnects >= 1 && _acks.Values.Any(r => r.Step == "ack:reconnect"), 150f);
+            var newId = _acks.FirstOrDefault(pair => pair.Value.Step == "ack:reconnect").Key;
+            Record("client dropped after the acceptance and reconnected with its token", _waitOk && newId != 0, $"client {client}->{newId} reconnects={_run.HostReconnects}");
+            if (!_waitOk) { Finish("relay", "client did not reconnect"); yield break; }
+            client = newId;
+            Teleport(_run.MemberEntity(client), at + new Vector2(0.5f, -1.1f));
+            yield return Seconds(2.0f);
+            yield return Command(new ProofMessage { Step = "relay-check", Arg = clientSecond.InstanceId }, new[] { client }, 45f);
+            var check = _acks.TryGetValue(client, out var c2) ? c2.Arg : "";
+            Record("after the reconnect the re-sent request gets the recorded verdict: the item is in the client's Storage and on disk, never back in its run, escrow empty",
+                check.Contains("resolved=True") && check.Contains("inStorage=True") && check.Contains("onDisk=True") && check.Contains("diskEscrow=0") && check.Contains("inRun=False") && check.Contains("transfers=1") && !check.Contains("resends=0"),
+                check);
+            Record("client sees its own spent use (card, secured sprite, prompt) and cannot secure a second item; the host decided each use once",
+                check.Contains("used=True") && check.Contains("visual=event_SecureRelay_secured") && check.Contains("ITEM SECURED") && check.Contains("stage=Secured") && check.Contains("secureAgain=False")
+                && check.Contains("secondRefusal=AlreadySecured") && check.Contains("secondInRun=True") && relay.SecuredCount == 2 && relay.HasSecured(hostPid) && relay.HasSecured(clientPid),
+                $"hostRelay usedBy={string.Join(",", relay.SecuredBy)} count={relay.SecuredCount}; client: {check}");
+
+            // ---- end: the D1 boss, the Return vote, extraction and save on both peers ----
+            yield return BossSteps(Clients, true);
+            yield return Command(new ProofMessage { Step = "vote", Arg = "return" }, new[] { client }, 20f);
+            yield return WaitFor(() => _summary != null, 20f);
+            var afterRun = session.Saves.Load();
+            Record("RETURN resolves once; the host's secured item is still in its Storage on disk after the run, once",
+                _summary != null && _summary.IsSuccess && afterRun.Success && afterRun.Slot.Storage.Slots.Count(e => e.Item != null && e.Item.InstanceId == hostItem.InstanceId) == 1,
+                $"outcome={_summary?.Outcome} hostCopies={(afterRun.Success ? afterRun.Slot.Storage.Slots.Count(e => e.Item != null && e.Item.InstanceId == hostItem.InstanceId) : -1)}");
+            foreach (var member in Clients) SendProof(member, new ProofMessage { Step = "finish" });
+            yield return HostEnd(Clients);
         }
 
         // ---------------------------------------------------------------- reactive armor passives (final release cleanup)
@@ -1622,12 +1979,22 @@ namespace RuinRail.App
             var mirrorShock = mirror.World.Shockwaves;
             FreezeRoomEnemies(combat); // a still target, so the dash endpoint is predictable (the passive is not changed)
             KeepPartyAlive();
-            yield return Command(new ProofMessage { Step = "discharge", Number = combat.State.NodeId }, new[] { client }, 20f);
+            // Walking straight at the nearest enemy can park the member against a pillar, where the dash is (rightly)
+            // blocked and its endpoint shockwave lands out of reach. The member is placed (host-authoritative; its own
+            // body reconciles) a little under one dash from a still enemy, on a lane no wall crosses.
+            var lane = DischargeLane(_run.MemberEntity(client), combat);
+            if (lane.HasValue)
+            {
+                Teleport(_run.MemberEntity(client), lane.Value.start);
+                yield return Seconds(0.8f);
+            }
+
+            yield return Command(new ProofMessage { Step = "discharge", Number = combat.State.NodeId, Arg = lane.HasValue ? "lane" : null, X = lane?.target.x ?? 0f, Y = lane?.target.y ?? 0f }, new[] { client }, 20f);
             var dischargeAck = ClientAck(client);
             yield return Seconds(0.5f);
             Record("Discharge on a remote client: the dash endpoint shockwave runs once on the member's rig and reaches the enemies only as host-validated impacts; the host copy emits nothing of its own",
                 dischargeAck.Contains("shockwaves=+1 ") && !dischargeAck.Contains("impactsSent=+0") && _run.CoopHost.ImpactsApplied > impacts0 && mirror.World.Shockwaves == mirrorShock && equipAck.Contains("discharge") && MirrorAccessoryPassive(client) == "none",
-                $"client {dischargeAck}; hostImpactsApplied=+{_run.CoopHost.ImpactsApplied - impacts0} hostCopyShockwaves=+{mirror.World.Shockwaves - mirrorShock}; client {equipAck}");
+                $"lane={lane.HasValue} client {dischargeAck}; hostImpactsApplied=+{_run.CoopHost.ImpactsApplied - impacts0} hostCopyShockwaves=+{mirror.World.Shockwaves - mirrorShock}; client {equipAck}");
 
             // ---- Room Sweep (Magnetic Coil): on the host-decided clear, the host copy pulls the room's coins and ammo ----
             yield return WearArmor(client, "accessory_magnetic_coil", "room_sweep");
@@ -1647,6 +2014,9 @@ namespace RuinRail.App
             var ammoBefore = before?.AmmoTotal ?? 0;
             var coinsBefore = before?.Coins ?? 0;
             var sweeps0 = mirror.World.Sweeps;
+            var relay = body.GetComponent<PlayerRoomEventsRelay>();
+            var relayCleared0 = relay != null ? relay.RoomsCleared : -1;
+            var stateBefore = $"{combat.Lifecycle} occupant={combat.Occupants.Contains(body)} at={(Vector2)body.transform.position}";
             // The host decides the clear (authoritative), exactly as any clear: every enemy of the room is resolved.
             for (var until = Time.realtimeSinceStartup + 20f; Time.realtimeSinceStartup < until && combat.Lifecycle != RoomLifecycleState.Cleared;)
             {
@@ -1663,8 +2033,50 @@ namespace RuinRail.App
             Record("Room Sweep on a remote client: the host-decided clear pulls the room's coin pile and ammo stack to the member's host copy once; the member's own wallet and reserve receive them",
                 combat.Lifecycle == RoomLifecycleState.Cleared && mirror.World.Sweeps == sweeps0 + 1 && coins.IsCollected && ammo.IsConsumed && (after?.AmmoTotal ?? 0) - ammoBefore >= 6 && mirror.World.SweptPickups >= 2 && (after?.Coins ?? 0) > coinsBefore
                 && MirrorAccessoryPassive(client) == "room_sweep" && !equipAck.Contains("room_sweep"),
-                $"cleared={combat.Lifecycle} hostSweeps=+{mirror.World.Sweeps - sweeps0} swept={mirror.World.SweptPickups} coinsCollected={coins.IsCollected} ammoConsumed={ammo.IsConsumed} client ammo {ammoBefore}->{after?.AmmoTotal} coins {coinsBefore}->{after?.Coins}; hostPassive={MirrorAccessoryPassive(client)}; client {equipAck}");
+                $"before=[{stateBefore}] relayCleared=+{(relay != null ? relay.RoomsCleared - relayCleared0 : -1)} cleared={combat.Lifecycle} hostSweeps=+{mirror.World.Sweeps - sweeps0} swept={mirror.World.SweptPickups} coinsCollected={coins.IsCollected} ammoConsumed={ammo.IsConsumed} client ammo {ammoBefore}->{after?.AmmoTotal} coins {coinsBefore}->{after?.Coins}; hostPassive={MirrorAccessoryPassive(client)}; client {equipAck}");
             Destroy(spawnerHost);
+        }
+
+        /// <summary>
+        /// A start point a little under one dash (speed × 0.18 s) from a live enemy of the room, from which the straight
+        /// dash through that enemy crosses no wall, plus the enemy's position. Null when the room offers none.
+        /// </summary>
+        private static (Vector2 start, Vector2 target)? DischargeLane(GameObject member, RoomRuntime room)
+        {
+            var dash = member != null ? member.GetComponent<PlayerDash>() : null;
+            if (dash == null) return null;
+            var travel = dash.CurrentDashSpeed * 0.18f;
+            var startGap = travel - 0.8f; // the endpoint lands past the enemy, well inside the 1.5-tile shockwave either way
+            var radius = member.GetComponents<CircleCollider2D>().Where(c => !c.isTrigger).Select(c => c.radius).DefaultIfEmpty(0.35f).First();
+            var interior = room.InteriorWorldBounds;
+            // The member stays a room occupant (inside its entry volume) at both ends of the dash, so it still hears the
+            // room's clear afterwards (Room Sweep, the next step).
+            var entry = room.GetComponentInChildren<RoomEntryTrigger>()?.GetComponent<Collider2D>();
+            if (entry == null) return null;
+            var margin = radius + 0.3f;
+            var volume = Rect.MinMaxRect(entry.bounds.min.x + margin, entry.bounds.min.y + margin, entry.bounds.max.x - margin, entry.bounds.max.y - margin);
+            bool InVolume(Vector2 p) => volume.Contains(p);
+            var hits = new RaycastHit2D[16];
+            var enemies = FindObjectsByType<HealthComponent>(FindObjectsSortMode.None)
+                .Where(hp => hp != null && hp.IsAlive && hp.GetComponent<PlayerLifeStateComponent>() == null && interior.Contains(hp.transform.position))
+                .OrderBy(hp => Vector2.Distance(hp.transform.position, member.transform.position));
+            foreach (var enemy in enemies)
+            {
+                Vector2 target = enemy.transform.position;
+                for (var i = 0; i < 8; i++)
+                {
+                    var direction = new Vector2(Mathf.Cos(i * Mathf.PI / 4f), Mathf.Sin(i * Mathf.PI / 4f));
+                    var start = target + direction * startGap;
+                    if (!InVolume(start) || !InVolume(start - direction * travel)) continue;
+                    if (Physics2D.OverlapCircleAll(start, radius).Any(c => c.GetComponentInParent<EnvironmentObstacle>() != null)) continue;
+                    var count = Physics2D.CircleCast(start, radius, -direction, RuinRail.Gameplay.Physics2DQueries.LegacyQueryFilter(), hits, travel);
+                    var blocked = false;
+                    for (var h = 0; h < count; h++) blocked |= hits[h].collider != null && hits[h].collider.GetComponentInParent<EnvironmentObstacle>() != null;
+                    if (!blocked) return (start, target);
+                }
+            }
+
+            return null;
         }
 
         private void FreezeRoomEnemies(RoomRuntime room)
@@ -1913,6 +2325,97 @@ namespace RuinRail.App
         }
 
         /// <summary>32/82: a member's drop is resolved by the host — one ground pickup per dropped item, seen by the member, the item revoked from the member's inventory and gone from the host's copy; a double press drops once.</summary>
+        private List<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition> ShippedGrenades() => _app.Content.Items
+            .OfType<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition>()
+            .Where(c => c.EffectKind == RuinRail.Gameplay.Items.Consumables.ConsumableEffectKind.Grenade).OrderBy(c => c.Grenade.Kind).ToList();
+
+        private static int GrenadeGameplayObjects() =>
+            FindObjectsByType<RuinRail.Gameplay.Combat.Area.ThrownGrenade>(FindObjectsSortMode.None).Length
+            + FindObjectsByType<RuinRail.Gameplay.Combat.Area.SmokeZone>(FindObjectsSortMode.None).Length
+            + FindObjectsByType<RuinRail.Gameplay.Combat.Area.BurnZone>(FindObjectsSortMode.None).Length;
+
+        /// <summary>This peer's view of other peers' grenades: presentations drawn, and grenade gameplay objects on this peer.</summary>
+        private string GrenadeView() =>
+            $"remoteShown={_run.Feedback?.RemoteGrenadesShown} areas={_run.Feedback?.RemoteAreasShowing} gameplayObjects={GrenadeGameplayObjects()}";
+
+        /// <summary>
+        /// This peer throws every shipped grenade through its real quick-grenade path (Frag, Shock, Incendiary, Smoke),
+        /// one at a time, then restores its consumable slot. Reported: throws, local canister draws, and the smoke's landing.
+        /// </summary>
+        private IEnumerator ThrowEveryGrenade(ProofMessage command)
+        {
+            var inventory = _run.Expedition.State.Inventory;
+            var kept = inventory.Unequip(EquippedSlot.ActiveConsumable);
+            var launcher = _run.Rig.Player.GetComponent<RuinRail.Gameplay.Combat.Area.GrenadeLauncher>();
+            var local0 = _run.Feedback != null ? _run.Feedback.CountOf("grenade") : 0;
+            var announced0 = _run.CoopClient?.GrenadesAnnounced ?? 0;
+            var thrown = 0;
+            var smokeLanding = Vector2.zero;
+            foreach (var grenade in ShippedGrenades())
+            {
+                inventory.Unequip(EquippedSlot.ActiveConsumable);
+                inventory.TryEquip(new ItemInstance(grenade.Id, 1), EquippedSlot.ActiveConsumable);
+                yield return null;
+                if (_run.Rig.Consumables.TryQuickGrenade()) thrown++;
+                if (grenade.Grenade.Kind == RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind.Smoke && launcher.LastThrown != null) smokeLanding = launcher.LastThrown.LandingPoint;
+                yield return Seconds(1.0f);
+            }
+
+            inventory.Unequip(EquippedSlot.ActiveConsumable);
+            if (kept != null) inventory.TryEquip(kept, EquippedSlot.ActiveConsumable);
+            var local = (_run.Feedback != null ? _run.Feedback.CountOf("grenade") : 0) - local0;
+            var announced = (_run.CoopClient?.GrenadesAnnounced ?? 0) - announced0;
+            Ack(command, $"thrown={thrown} localCanisters=+{local} announced=+{announced} smokeX={smokeLanding.x:0.000} smokeY={smokeLanding.y:0.000}");
+        }
+
+        /// <summary>
+        /// Grenades across peers (items/31 over 82): each peer's throws are simulated by that peer only and drawn by the
+        /// others from the host's validation — flight, landing effect, lasting area — with no second grenade anywhere.
+        /// </summary>
+        private IEnumerator GrenadeSteps(ulong client)
+        {
+            var start = StartRoom();
+            var centre = start != null ? start.InteriorWorldBounds.center : (Vector2)HostPlayer.transform.position;
+            IsolateAllBut(client, centre);
+            Teleport(_run.MemberEntity(client), centre + Vector2.left * 3f);
+            Teleport(HostPlayer, centre + Vector2.right * 3f);
+            yield return Seconds(1.0f);
+
+            // ---- the client throws: the host draws each once, creates nothing ----
+            var hostShown0 = _run.CoopHost.GrenadesShown;
+            var hostRejected0 = _run.CoopHost.GrenadesRejected;
+            var hostRemote0 = _run.Feedback.RemoteGrenadesShown;
+            var hostObjects0 = GrenadeGameplayObjects();
+            yield return Command(new ProofMessage { Step = "grenades" }, new[] { client }, 30f);
+            var throwAck = ClientAck(client);
+            string Field(string ack, string name) => ack.Split(' ').FirstOrDefault(f => f.StartsWith(name + "=", StringComparison.Ordinal))?.Substring(name.Length + 1) ?? "";
+            var smoke = new Vector2(float.Parse(Field(throwAck, "smokeX"), System.Globalization.CultureInfo.InvariantCulture), float.Parse(Field(throwAck, "smokeY"), System.Globalization.CultureInfo.InvariantCulture));
+            var cloud = FindObjectsByType<RuinRail.Presentation.Vfx.PooledEffect>(FindObjectsSortMode.None).Where(e => e.IsActive && e.Kind == "smoke_cloud")
+                .OrderBy(e => Vector2.Distance(e.transform.position, smoke)).FirstOrDefault();
+            var cloudOff = cloud != null ? Vector2.Distance(cloud.transform.position, smoke) : -1f;
+            var hostRemote = _run.Feedback.RemoteGrenadesShown - hostRemote0;
+            var hostObjects = GrenadeGameplayObjects() - hostObjects0;
+            Record("grenades from a remote client: each of the four is simulated only on the client, validated once by the host, and drawn on the host once (flight, landing, lasting area at the client's landing point) with no grenade or zone created on the host",
+                throwAck.Contains("thrown=4 ") && throwAck.Contains("localCanisters=+4 ") && throwAck.Contains("announced=+4 ")
+                && _run.CoopHost.GrenadesShown - hostShown0 == 4 && _run.CoopHost.GrenadesRejected == hostRejected0 && hostRemote == 4 && hostObjects == 0 && cloudOff >= 0f && cloudOff < 0.05f,
+                $"client {throwAck}; host validated=+{_run.CoopHost.GrenadesShown - hostShown0} rejected=+{_run.CoopHost.GrenadesRejected - hostRejected0} drawn=+{hostRemote} hostGrenadeObjects=+{hostObjects} smokeCloudOffset={cloudOff:0.000}");
+
+            // ---- the host throws: the client draws each once, creates nothing ----
+            yield return Seconds(7.0f); // the client's own zones have expired, so any zone on it now would be a duplicate
+            yield return Command(new ProofMessage { Step = "grenade-view" }, new[] { client }, 10f);
+            var view0 = ClientAck(client);
+            var hostThrow = new ProofMessage { Step = "host-grenades" };
+            yield return ThrowEveryGrenade(hostThrow);
+            var hostAck = _selfAck;
+            yield return Command(new ProofMessage { Step = "grenade-view" }, new[] { client }, 10f);
+            var view1 = ClientAck(client);
+            int Int(string ack, string name) => int.TryParse(Field(ack, name), out var v) ? v : -999;
+            var clientDrawn = Int(view1, "remoteShown") - Int(view0, "remoteShown");
+            Record("grenades from the host: each of the four is simulated only on the host and drawn on the client once (flight, landing, lasting areas) with no grenade or zone created on the client",
+                hostAck.Contains("thrown=4 ") && hostAck.Contains("localCanisters=+4 ") && clientDrawn == 4 && Int(view1, "gameplayObjects") == 0 && Int(view1, "areas") >= 1,
+                $"host {hostAck}; client before '{view0}' after '{view1}'");
+        }
+
         private IEnumerator DropSteps(ulong client)
         {
             var start = StartRoom();
@@ -1945,6 +2448,66 @@ namespace RuinRail.App
                 $"xOnGround={xOnGround} yOnGround={yOnGround} revokes=+{_run.CoopHost.RevokesSent - revokes} mirrorHas x={InMirror(x)} y={InMirror(y)} clientSeesNew={clientSees} ack='{ack}'");
             foreach (var p in pickups.Where(p => p.Item.InstanceId == x || p.Item.InstanceId == y)) Destroy(p.gameObject);
             yield return Seconds(0.5f);
+
+            // ---- partial ammo pickup: a full backpack whose light stack has 5 rounds of room takes exactly 5 of 20 ----
+            IsolateAllBut(client, centre);
+            Teleport(_run.MemberEntity(client), centre);
+            yield return Seconds(0.5f);
+            yield return Command(new ProofMessage { Step = "fill-partial" }, new[] { client }, 20f);
+            var fillAck = _acks.TryGetValue(client, out var fa) ? fa.Arg : "";
+            string FillField(string name) => fillAck.Split(' ').FirstOrDefault(f => f.StartsWith(name + "=", StringComparison.Ordinal))?.Substring(name.Length + 1) ?? "";
+            var lightBefore = int.TryParse(FillField("light"), out var lb) ? lb : -1;
+            var lightDef = _app.Content.Items.OfType<AmmoItemDefinition>().First(a => a.AmmoType == AmmoType.Light);
+            var spawnerHostPartial = new GameObject("ProofPartialAmmo");
+            var partialSpawner = _run.CreateLootSpawnerFor(spawnerHostPartial);
+            var partialSpot = (Vector2)_run.MemberEntity(client).transform.position + Vector2.right * 0.8f;
+            var partialPickup = partialSpawner.CreateItemPickup(partialSpot);
+            partialPickup.Hold(new ItemInstance(lightDef.Id, 20), ItemCategory.Ammo);
+            yield return Seconds(2.5f);
+            yield return Command(new ProofMessage { Step = "loot-qty" }, new[] { client }, 15f);
+            var qtyAck = _acks.TryGetValue(client, out var qa) ? qa.Arg : "";
+            string QtyField(string name) => qtyAck.Split(' ').FirstOrDefault(f => f.StartsWith(name + "=", StringComparison.Ordinal))?.Substring(name.Length + 1) ?? "";
+            var lightAfter = int.TryParse(QtyField("light"), out var la) ? la : -1;
+            var hostRemainder = partialPickup != null && !partialPickup.IsConsumed && partialPickup.Item != null ? partialPickup.Item.Quantity : -1;
+            var stayedPut = partialPickup != null && Vector2.Distance(partialPickup.transform.position, partialSpot) < 0.05f;
+            Record("partial ammo pickup with a full backpack: the member receives exactly the 5 that fit its light stack, the host keeps the other 15 on the ground where it lay, and the member's copy shows 15",
+                FillField("room") == "5" && FillField("free") == "0" && lightAfter - lightBefore == 5 && hostRemainder == 15 && stayedPut && QtyField("replicaQty") == "15",
+                $"fill='{fillAck}' client light {lightBefore}->{lightAfter} hostRemainder={hostRemainder} stayedPut={stayedPut} replica='{qtyAck}'");
+            Destroy(spawnerHostPartial);
+            if (partialPickup != null) Destroy(partialPickup.gameObject);
+            yield return Command(new ProofMessage { Step = "unfill" }, new[] { client }, 15f);
+            yield return Seconds(0.5f);
+
+            // ---- dropped ammo: held back from the dropper's own body (host copy and its replica), a teammate takes it ----
+            IsolateAllBut(client, centre);
+            Teleport(_run.MemberEntity(client), centre);
+            yield return Seconds(0.8f);
+            yield return Command(new ProofMessage { Step = "drop-ammo" }, new[] { client }, 40f);
+            var ammoAck = _acks.TryGetValue(client, out var aa) ? aa.Arg : "";
+            string AmmoField(string name) => ammoAck.Split(' ').FirstOrDefault(f => f.StartsWith(name + "=", StringComparison.Ordinal))?.Substring(name.Length + 1) ?? "";
+            var def = AmmoField("def");
+            var qty = int.TryParse(AmmoField("qty"), out var q) ? q : 0;
+            var reserve = AmmoField("reserve").Split('>');
+            var member = _run.MemberEntity(client);
+            var ammoPickup = _run.GroundLoot.Tracked.Where(g => g != null).Select(g => g.GetComponent<WorldItemPickup>())
+                .FirstOrDefault(p => p != null && !p.IsConsumed && p.Item != null && p.Item.DefinitionId == def);
+            var heldOnHost = ammoPickup != null && ammoPickup.DroppedBy == member && ammoPickup.Item.Quantity == qty;
+            Record("a member's dropped ammo stays on the ground: its own body on the host and its own replica hold it back, the reserve dropped by exactly the stack and nothing came back",
+                qty > 0 && heldOnHost && reserve.Length == 3 && reserve[1] == reserve[2] && int.Parse(reserve[0]) - int.Parse(reserve[1]) == qty
+                && AmmoField("replicaHeld") == "True" && float.TryParse(AmmoField("replicaMoved"), System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var movedBy) && movedBy < 0.05f,
+                $"hostPickup={(ammoPickup != null)} droppedByMember={(ammoPickup != null && ammoPickup.DroppedBy == member)} ack='{ammoAck}'");
+            if (ammoPickup != null)
+            {
+                // The host's own player (a teammate of the dropper) walks onto it: collected at once, exactly the stack.
+                var hostType = _app.Content.Items.OfType<AmmoItemDefinition>().First(a => a.Id == def).AmmoType;
+                var hostBefore = _run.Expedition.State.Inventory.Get(hostType);
+                Teleport(HostPlayer, ammoPickup.transform.position);
+                yield return WaitFor(() => ammoPickup == null || ammoPickup.IsConsumed, 5f);
+                yield return Seconds(0.5f);
+                var gained = _run.Expedition.State.Inventory.Get(hostType) - hostBefore;
+                Record("a teammate collects the dropped ammo at once through the ordinary pickup path", (ammoPickup == null || ammoPickup.IsConsumed) && gained == qty,
+                    $"hostGained={gained} qty={qty}");
+            }
         }
 
         private IEnumerator ReviveSteps(ulong client)

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using RuinRail.Gameplay.Events;
 using RuinRail.Gameplay.Base;
 using RuinRail.Gameplay.Economy;
 using RuinRail.Gameplay.Expedition;
@@ -97,6 +99,9 @@ namespace RuinRail.UI.Base
             // The party reopens first so the restored Base loadout is re-submitted to the lobby (a closed party refuses
             // loadout updates), and the next run starts from the loadout the player actually has, never a stale copy.
             Expedition.ExpeditionEnded += _ => { Lobby.Reopen(); Loadout.RestoreFromSnapshot(Profile.SafeLoadout); _loadoutSynced = true; _loadoutBinder.Submit(); };
+            // 57.7: when the run ends, an escrow the host accepted goes into Storage; one without an acceptance rejoins the
+            // run just before the Return / failure transaction and shares the fate of everything else carried.
+            Expedition.Ending += SettleRelayEscrowAtRunEnd;
             Recorder = new ExpeditionTransactionRecorder(Expedition, slot, Autosave);
         }
 
@@ -131,9 +136,72 @@ namespace RuinRail.UI.Base
             if (session.GrantedFirstKit) session.Loadout.RestoreFromSnapshot(session.Profile.SafeLoadout);
             session.GrantedRescueKit = session.StarterKit.EnsureStartableLoadout(session.Profile, session.Storage);
             if (session.GrantedRescueKit) session.Loadout.RestoreFromSnapshot(session.Profile.SafeLoadout);
+            session.SettleRelayEscrowAfterRestart(); // a run that ended with the process (crash, quit) left its escrow behind
             session.Autosave.MarkDirty("base_entered");
             session.Autosave.Flush();
             return session;
+        }
+
+        /// <summary>Unresolved Secure Relay escrows (no host acceptance) lost with a run abandoned mid-way (diagnostics / tests).</summary>
+        public int RelayEscrowsLostWithAbandonedRun { get; private set; }
+
+        /// <summary>
+        /// 57.7 at the start of the Return / failure transaction. <see cref="SecureRelayEscrowState.Accepted"/> escrows go into
+        /// Storage (kept for the Shelter to retry if Storage cannot take them). Every other escrow never became the host's:
+        /// its unit goes back into the carried inventory, so the transaction treats it like any carried item — home with an
+        /// extraction, lost with a failure. Only when the run has no room left for it does an extraction bring it home to
+        /// Storage directly (a failure loses it); nothing here secures a unit the host did not accept.
+        /// </summary>
+        private void SettleRelayEscrowAtRunEnd(ExpeditionState state, bool extracting)
+        {
+            var escrows = Slot.RelayEscrow;
+            if (escrows == null || escrows.Count == 0 || state?.Inventory == null) return;
+            var carried = new List<IItemContainer> { new BackpackContainer(state.Inventory) };
+            foreach (EquippedSlot slot in Enum.GetValues(typeof(EquippedSlot))) carried.Add(new EquippedSlotContainer(state.Inventory, slot));
+            for (var i = escrows.Count - 1; i >= 0; i--)
+            {
+                var escrow = escrows[i];
+                if (escrow == null) { escrows.RemoveAt(i); continue; }
+                if (escrow.State == SecureRelayEscrowState.Accepted)
+                {
+                    if (SecureRelayEscrows.Release(escrow, Storage)) escrows.RemoveAt(i);
+                    else UnityEngine.Debug.LogWarning($"Secure Relay escrow {escrow.TransactionId} (accepted) could not enter Storage; the Shelter retries.");
+                    continue;
+                }
+
+                escrows.RemoveAt(i);
+                if (SecureRelayEscrows.Return(escrow, carried)) continue;
+                if (extracting && !SecureRelayEscrows.Release(escrow, Storage))
+                    Slot.Quarantine.Add(new QuarantinedItem { Source = "RelayEscrow", Reason = "extracted without room in the run or Storage", Item = escrow.Unit });
+            }
+
+            Autosave.MarkDirty("secure_relay_escrow_settled");
+        }
+
+        /// <summary>
+        /// 57.7 when the profile opens: an <see cref="SecureRelayEscrowState.Accepted"/> escrow still waiting for Storage is
+        /// released now. Any other escrow belonged to a run the process left mid-way — resolved as failure on boot — and no
+        /// host acceptance ever reached this member, so its unit is lost with that run like everything else it carried.
+        /// </summary>
+        public void SettleRelayEscrowAfterRestart()
+        {
+            var escrows = Slot.RelayEscrow;
+            if (escrows == null || escrows.Count == 0 || Expedition.IsExpeditionActive) return;
+            for (var i = escrows.Count - 1; i >= 0; i--)
+            {
+                var escrow = escrows[i];
+                if (escrow != null && escrow.State == SecureRelayEscrowState.Accepted)
+                {
+                    if (SecureRelayEscrows.Release(escrow, Storage)) escrows.RemoveAt(i);
+                    continue;
+                }
+
+                escrows.RemoveAt(i);
+                RelayEscrowsLostWithAbandonedRun++;
+                UnityEngine.Debug.Log($"Secure Relay escrow {escrow?.TransactionId} had no host acceptance when the run was abandoned: lost with the run.");
+            }
+
+            Autosave.MarkDirty("secure_relay_escrow_settled");
         }
 
         private int _coinsToCarry;

@@ -249,7 +249,20 @@ namespace RuinRail.Tests
             Assert.IsNotNull(bossBinding?.Boss?.Boss, "boss composed for the depth");
             Assert.IsFalse(run.Hud.Snapshot.BossVisible, "no boss bar before the encounter");
             yield return Teleport(run, InteriorCentre(run, bossNode));
-            Assert.IsTrue(bossBinding.Boss.IsStarted, "the boss engagement started on entry");
+            // Entry plays the room introduction: the boss is held (no target, no attack) and player input is held with it.
+            var bossEngagement = (BossEngagement)run.Rooms[bossNode].Engagement;
+            var intro = BossIntroSequence.Current;
+            Assert.IsTrue(intro != null && intro.IsPlaying && bossEngagement.IsHoldingForIntro, "entry starts the boss introduction and its hold");
+            Assert.IsNull(bossBinding.Boss.Boss.Target, "held: no target during the intro");
+            Assert.IsFalse(bossBinding.Boss.IsStarted, "held: the fight has not begun");
+            Assert.IsTrue(RuinRail.Core.Input.GameplayInputGate.IsHeld, "the intro holds player control");
+            var introEnd = Time.time + bossEngagement.IntroHoldSeconds + 2f;
+            while ((bossEngagement.IsHoldingForIntro || (intro != null && intro.IsPlaying)) && Time.time < introEnd) yield return null;
+            for (var i = 0; i < 3; i++) yield return new WaitForFixedUpdate();
+            Assert.IsFalse(bossEngagement.IsHoldingForIntro, "the intro ends");
+            Assert.IsFalse(RuinRail.Core.Input.GameplayInputGate.IsHeld, "player control is restored");
+            Assert.AreSame(run.Rig.Player.transform, bossBinding.Boss.Boss.Target, "the boss acquires the survivor who entered");
+            Assert.IsTrue(bossBinding.Boss.IsStarted, "the boss engagement started once the intro released it");
             run.Hud.Tick();
             Assert.IsTrue(run.Hud.Snapshot.BossVisible, "the boss bar is up during the encounter");
             bossBinding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(Mathf.Max(1, bossBinding.Boss.Boss.Health.MaxHealth / 4)));

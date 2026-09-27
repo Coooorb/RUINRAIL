@@ -237,6 +237,7 @@ namespace RuinRail.App
                 _coopHost.DropRequested += OnClientDropRequested;
                 _coopHost.ReviveRequested += OnClientReviveRequested;
                 _coopHost.RemoteShot += DrawRemoteShot;
+                _coopHost.GrenadeShown += show => DrawRemoteGrenade(show, 0f); // validated on arrival: it left just now
                 _coopHost.ProofReportReceived += (clientId, report) => CoopProofReport?.Invoke(clientId, report);
                 _party.Presence.Reconnected += OnHostMemberReconnected;
                 if (_party.Presence.Grace != null)
@@ -268,8 +269,10 @@ namespace RuinRail.App
             _coopClient.Revoked += OnClientRevoked;
             _coopClient.TradeResult += OnClientTradeResult;
             _coopClient.CacheResult += OnClientCacheResult;
+            _coopClient.RelayResult += OnClientRelayResult;
             _coopClient.ReviveResult += OnClientReviveResult;
             _coopClient.KillConfirmed += OnClientKillConfirmed;
+            _coopClient.GrenadeShown += show => DrawRemoteGrenade(show, (float)(_coopClient.NetworkTime - show.ThrownAt));
             _coopClient.Notice += n =>
             {
                 if (n == null) return;
@@ -285,7 +288,7 @@ namespace RuinRail.App
             // Only purely local presentation runs on this peer when Interact is pressed (opening a trade or choice
             // screen); chests, events, pickups, transit and revives are resolved by the host from the same press.
             PlayerInteractor.LocalInteractionFilter = (target, interactor) => target is DungeonMerchantInteractable
-                || (target is DungeonEventInteractable ev && ev.Event is WeaponCacheEvent);
+                || (target is DungeonEventInteractable ev && (ev.Event is WeaponCacheEvent || ev.Event is SecureRelayEvent));
             if (_ownedNet != null)
             {
                 _ownedNet.CarriedCoinsChanged += OnOwnedCoinsChanged;
@@ -763,7 +766,7 @@ namespace RuinRail.App
 
             replica.ConfigureCombatPresence(kind, spawn.RoomNode, enemy, moveset);
             replica.gameObject.name = $"Replica_{spawn.NetId}_{displayName}";
-            var effects = FindFirstObjectByType<EffectPool>();
+            var effects = _effects;
             var numbers = effects != null ? effects.GetComponent<DamageNumberPool>() : null;
             numbers?.Bind(replica.Health);
             var body = CharacterVisual.Attach(replica.gameObject, content.AnimationSetFor(spawn.DefinitionId));
@@ -776,6 +779,27 @@ namespace RuinRail.App
             replica.gameObject.AddComponent<TelegraphIndicator>().ConfigureReplica(content.Feedback, effects, replica);
             _app.AudioBinder.Attach(replica.Health, false);
             _tutorial?.ObserveEnemySpawned();
+        }
+
+        /// <summary>
+        /// This player threw a grenade (its own run resolves it): the host shows it to every client; a client announces it
+        /// to the host, which validates it and shows it to the others. Solo sends nothing.
+        /// </summary>
+        private void AnnounceLocalGrenade(RuinRail.Gameplay.Items.Consumables.ConsumableDefinition definition)
+        {
+            var grenade = _rig?.Player != null ? _rig.Player.GetComponent<RuinRail.Gameplay.Combat.Area.GrenadeLauncher>()?.LastThrown : null;
+            if (definition == null || grenade == null) return;
+            if (_coopHost != null) _coopHost.AnnounceLocalGrenade(definition.Id, grenade.Origin, grenade.LandingPoint);
+            else _coopClient?.AnnounceGrenade(definition.Id, grenade.Origin, grenade.LandingPoint);
+        }
+
+        /// <summary>Another peer's validated throw: flight, landing effect and lasting area from this peer's own catalog; nothing else.</summary>
+        private void DrawRemoteGrenade(GrenadeShowMessage show, float elapsedSeconds)
+        {
+            if (show == null || _feedback == null) return;
+            if (_app.Configs.Resolve(show.ConsumableId) is not RuinRail.Gameplay.Items.Consumables.ConsumableDefinition definition
+                || definition.EffectKind != RuinRail.Gameplay.Items.Consumables.ConsumableEffectKind.Grenade) return;
+            _feedback.ShowRemoteGrenade(definition.Grenade, new Vector2(show.OriginX, show.OriginY), new Vector2(show.LandingX, show.LandingY), elapsedSeconds);
         }
 
         /// <summary>Another peer's shot, drawn on this peer: zero damage, the real path and art.</summary>

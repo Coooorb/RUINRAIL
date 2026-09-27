@@ -55,7 +55,11 @@ namespace RuinRail.App
         private Text _feedback;
         private Text _footer;
         private Text _onboardingText;
-        private string _selectedInstance;
+        // The Trader counter's side: false = the offers (BUY), true = the survivor's own items (SELL).
+        private bool _traderSelling;
+        private List<MerchantRow> _traderSellRows = new();
+        private bool _traderRebuildPending;
+        private int _traderRefocusRow = -1;
         private readonly UiPrompts _prompts = new();
         private readonly List<UiControl> _controls = new();
         private readonly List<UiControl> _panelControls = new();
@@ -505,6 +509,7 @@ namespace RuinRail.App
         private void OnStationChanged(BaseStation? station)
         {
             if (StashOpen && station != BaseStation.Storage) CloseStash(); // the stash belongs to the Storage station
+            if (station != BaseStation.Trader) _traderSelling = false; // the counter always opens on its offers
             if (_panel != null)
             {
                 if (_panelList != null) _panelList.FocusChanged -= OnPanelFocusChanged;
@@ -718,8 +723,16 @@ namespace RuinRail.App
         /// </summary>
         private void BuildTraderPanel(UiRect region)
         {
-            _panelList = ScreenNavigation.Trader(_hub.Trader, () => _selectedInstance);
-            _selectedInstance = FirstSelectable(BaseStation.Trader);
+            if (_traderSelling)
+            {
+                _traderSellRows = _hub.Trader.SellRows();
+                _panelList = ScreenNavigation.TraderSell(_hub.Trader, _traderSellRows, QueueTraderRebuild, () => SetTraderSelling(false));
+            }
+            else
+            {
+                _traderSellRows = new List<MerchantRow>();
+                _panelList = ScreenNavigation.Trader(_hub.Trader, () => SetTraderSelling(true));
+            }
 
             var rowPitch = MerchantRowView.Height + 2;
             var listHeight = TraderVisibleRows * rowPitch;
@@ -728,7 +741,7 @@ namespace RuinRail.App
             var detailTop = sellY + sellHeight + 6;
 
             var skin = UiSkin.Load();
-            var offerItems = _panelList.Items.Where(i => ShelterTraderPresentation.OfferIndexOf(i.Id) >= 0).ToList();
+            var offerItems = _panelList.Items.Where(i => ShelterTraderPresentation.RowIndexOf(i.Id) >= 0).ToList();
             var window = _traderWindow = new FocusWindow(_panelList, TraderVisibleRows, offerItems.Count);
             for (var slot = 0; slot < TraderVisibleRows; slot++)
             {
@@ -742,7 +755,7 @@ namespace RuinRail.App
                 _panelControls.Add(row.Control);
             }
 
-            var sellItem = _panelList.Find("trader.sell");
+            var sellItem = _panelList.Find(_traderSelling ? ScreenNavigation.TraderBuyTabId : "trader.sell");
             if (sellItem != null)
             {
                 var sell = UiKit.Control(_panel.transform, _panelList, sellItem,
@@ -768,8 +781,46 @@ namespace RuinRail.App
             _panel.AddComponent<FocusWindowDriver>().Bind(window);
             _panelList.FocusChanged += OnTraderFocusChanged;
             _input.Stack.Push(_panelList);
+            // After a sale the rebuilt list keeps the cursor where it was (the next item moves up into that row).
+            if (_traderRefocusRow >= 0 && offerItems.Count > 0)
+            {
+                var target = offerItems.Skip(Mathf.Min(_traderRefocusRow, offerItems.Count - 1)).FirstOrDefault(i => i.IsEnabled)
+                             ?? offerItems.FirstOrDefault(i => i.IsEnabled);
+                if (target != null) _panelList.Focus(target.Id);
+            }
+
+            _traderRefocusRow = -1;
             RenderTrader();
         }
+
+        /// <summary>The counter's BUY/SELL switch (SELL, BUY, and Back from the sell list): the panel is rebuilt next frame.</summary>
+        private void SetTraderSelling(bool selling)
+        {
+            if (_traderSelling == selling) return;
+            _traderSelling = selling;
+            _traderRefocusRow = -1;
+            _traderRebuildPending = true;
+        }
+
+        /// <summary>A sale changed what the survivor holds: rebuild the sell list next frame, cursor on the same row.</summary>
+        private void QueueTraderRebuild()
+        {
+            _traderRefocusRow = ShelterTraderPresentation.RowIndexOf(_panelList?.Focused?.Id);
+            _traderRebuildPending = true;
+        }
+
+        /// <summary>Rebuilt outside the activation that asked for it, so no control is torn down mid-callback.</summary>
+        private void ApplyTraderRebuild()
+        {
+            if (!_traderRebuildPending) return;
+            _traderRebuildPending = false;
+            if (_panelStation != BaseStation.Trader || _hub.Current != BaseStation.Trader) return;
+            OnStationChanged(BaseStation.Trader);
+            _traderRefocusRow = -1;
+        }
+
+        /// <summary>Which counter side is showing (tests / diagnostics).</summary>
+        public bool TraderSelling => _traderSelling;
 
         private void OnTraderFocusChanged(FocusItem _) => RenderTrader();
 
@@ -789,7 +840,7 @@ namespace RuinRail.App
         private void RenderTrader()
         {
             if (_traderRows.Count == 0 || _hub == null) return;
-            var rows = ShelterTraderPresentation.Rows(_hub.Trader.Offers);
+            var rows = _traderSelling ? _traderSellRows : ShelterTraderPresentation.Rows(_hub.Trader.Offers);
             var banked = _hub.Trader.Banked;
             var loadout = Session?.Loadout;
             var skin = UiSkin.Load();
@@ -799,7 +850,7 @@ namespace RuinRail.App
             // The focus window owns which offers are on screen; reading its offset (rather than recomputing one) is
             // what keeps the row art and the focused control looking at the same entry on the frame focus moves.
             _traderWindow?.Refresh();
-            var focusedIndex = ShelterTraderPresentation.OfferIndexOf(_panelList?.Focused?.Id);
+            var focusedIndex = ShelterTraderPresentation.RowIndexOf(_panelList?.Focused?.Id);
             var first = _traderWindow != null ? _traderWindow.Offset : 0;
 
             for (var slot = 0; slot < _traderRows.Count; slot++)
@@ -808,6 +859,12 @@ namespace RuinRail.App
                 var row = at < rows.Count ? rows[at] : null;
                 _traderRows[slot].Show(row, rarityFrame, rowWidth);
                 if (row == null) continue;
+                if (_traderSelling)
+                {
+                    if (!row.IsUnsellable && _hub.Trader.IsInStorage(row.Item.InstanceId)) _traderRows[slot].Annotate("STORAGE", UiTheme.Cyan);
+                    continue;
+                }
+
                 // The counter says what the Dungeon Merchant's subtitle cannot: whether the coins are there and
                 // whether this definition is already worn, so a duplicate buy is a decision rather than a surprise.
                 if (!row.IsSold && row.Price > banked) _traderRows[slot].Annotate("NO COINS", UiTheme.Danger);
@@ -828,24 +885,27 @@ namespace RuinRail.App
             {
                 _traderDetails.SetRows(null, false);
                 _traderDetailKey = null;
-                _traderDetailTitle.text = rows.Count == 0 ? "THE COUNTER IS BARE" : "SELECT AN OFFER";
+                _traderDetailTitle.text = _traderSelling
+                    ? rows.Count == 0 ? "NOTHING TO SELL" : "SELECT AN ITEM"
+                    : rows.Count == 0 ? "THE COUNTER IS BARE" : "SELECT AN OFFER";
                 _traderDetailTitle.color = UiTheme.InkMuted;
-                _traderDetailSubtitle.text = rows.Count == 0
-                    ? "Stock rotates as the Trader is upgraded."
-                    : "Its stats, affixes and comparison show here.";
+                _traderDetailSubtitle.text = _traderSelling
+                    ? rows.Count == 0 ? "Your backpack and Storage are empty." : "What the Trader pays for it shows here."
+                    : rows.Count == 0 ? "Stock rotates as the Trader is upgraded." : "Its stats, affixes and comparison show here.";
                 return;
             }
 
-            var affordable = row.IsSold || row.Price <= banked;
+            var affordable = _traderSelling ? !row.IsUnsellable && row.Price > 0 : row.IsSold || row.Price <= banked;
             _traderDetailTitle.text = UiText.Fit(tooltip.Name, width);
             _traderDetailTitle.color = UiTheme.Ink;
-            _traderDetailSubtitle.text = UiText.Fit(ShelterTraderPresentation.DetailSubtitle(row, tooltip, affordable), width);
+            _traderDetailSubtitle.text = UiText.Fit(_traderSelling ? ShelterTraderPresentation.SellSubtitle(row, tooltip) : ShelterTraderPresentation.DetailSubtitle(row, tooltip, affordable), width);
             _traderDetailSubtitle.color = affordable ? UiTheme.InkMuted : UiTheme.Danger;
 
             var key = row.Item != null ? row.Item.InstanceId : row.Index.ToString();
             var sameItem = key == _traderDetailKey;
             _traderDetailKey = key;
-            _traderDetails.SetRows(ItemDetailLayout.Compose(tooltip, ShelterTraderPresentation.CompareFor(row, loadout, _app != null ? _app.Specials : null), width), sameItem);
+            var compare = _traderSelling ? (IReadOnlyList<ComparisonLine>)System.Array.Empty<ComparisonLine>() : ShelterTraderPresentation.CompareFor(row, loadout, _app != null ? _app.Specials : null);
+            _traderDetails.SetRows(ItemDetailLayout.Compose(tooltip, compare, width), sameItem);
             var visible = _traderDetails.Visible(DetailPagingInput.Hint());
             for (var i = 0; i < _traderDetailLines.Count && i < visible.Count; i++)
             {
@@ -860,14 +920,12 @@ namespace RuinRail.App
             {
                 BaseStation.Storage => ScreenNavigation.Storage(OpenStash, StoreWholeBackpack, () => Session != null && Session.Loadout.BackpackSlots.Any(i => i != null)),
                 BaseStation.Loadout => ScreenNavigation.Inventory(_hub.Loadout.Inventory),
-                BaseStation.Trader => ScreenNavigation.Trader(_hub.Trader, () => _selectedInstance),
+                BaseStation.Trader => ScreenNavigation.Trader(_hub.Trader, () => SetTraderSelling(true)),
                 BaseStation.Character => ScreenNavigation.Character(_hub.Character, OpenNameEntry),
                 BaseStation.Workshop => ScreenNavigation.Workshop(_hub.Workshop),
                 BaseStation.Multiplayer => ScreenNavigation.Multiplayer(_terminal),
                 _ => ScreenNavigation.Transit(_hub.Transit, _hub.Multiplayer)
             };
-
-            _selectedInstance = FirstSelectable(station);
 
             // Transit's and Storage's controls are the primary actions of their stations (depart; open the stash).
             var prominent = station == BaseStation.Transit || station == BaseStation.Storage;
@@ -1134,6 +1192,11 @@ namespace RuinRail.App
             var width = ScreenLayout.Width - UiTheme.ScreenMargin - (UiTheme.ScreenMargin + UiText.Width(_prompts.Footer()) + 8 + UiTheme.Pad);
             _feedback.text = UiText.Fit(feedback.Text, width);
             _feedback.color = feedback.IsError ? UiTheme.Danger : UiTheme.Terminal;
+            // Every station action reports here, whichever input ran it. A confirm from the keyboard or a controller
+            // has no click handler behind it, so this is where the open station re-reads what the action changed
+            // (the Workshop's level, cost and Banked Coins, the counter's stock and prices).
+            RefreshStationData();
+            if (_panelStation.HasValue && _panelStation.Value != BaseStation.Trader) OnPanelFocusChanged(_panelList?.Focused);
         }
 
         // ---------------- refresh ----------------
@@ -1183,6 +1246,7 @@ namespace RuinRail.App
         private void Update()
         {
             _footer.text = _prompts.Footer();
+            ApplyTraderRebuild();
             RefreshTexts();
             // The counter's details page with the same wheel / PageUp-Down / right-stick input the merchant uses.
             if (_panelStation == BaseStation.Trader && _traderDetails.Overflows)
@@ -1219,13 +1283,6 @@ namespace RuinRail.App
             if (_terminal != null) _terminal.Changed -= OnTerminalChanged;
             _terminal?.Dispose();
         }
-
-        private string FirstSelectable(BaseStation station) => station switch
-        {
-            BaseStation.Storage => Session.Loadout.BackpackSlots.FirstOrDefault(i => i != null)?.InstanceId ?? Session.Storage.Items.FirstOrDefault()?.InstanceId,
-            BaseStation.Trader => Session.Loadout.BackpackSlots.FirstOrDefault(i => i != null)?.InstanceId,
-            _ => null
-        };
 
         private void OnExpeditionStarted(ExpeditionState state) => _app.LoadScene(SceneNames.Dungeon);
 
@@ -1276,6 +1333,8 @@ namespace RuinRail.App
             if (StashOpen) { CloseStash(); return; }
             // A picked-up loadout item is put down first; the next Back leaves the station.
             if (_hub.Current == BaseStation.Loadout && _hub.Loadout.Inventory.Selected.HasValue) { _hub.Loadout.Inventory.CancelSelection(); return; }
+            // The sell list steps back to the offers first; the next Back leaves the Trader.
+            if (_hub.Current == BaseStation.Trader && _traderSelling) { SetTraderSelling(false); return; }
             if (_hub.Current != null) { _hub.Close(); return; }
             _app.Menu.LeaveBase();
             _app.LoadScene(SceneNames.MainMenu);

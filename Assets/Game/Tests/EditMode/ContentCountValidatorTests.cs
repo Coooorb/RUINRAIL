@@ -48,7 +48,7 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(9, Actual("Normal enemy archetypes", "all"));
             Assert.AreEqual(6, Actual("Elites", "all"));
             Assert.AreEqual(6, Actual("Bosses", "all"));
-            Assert.AreEqual(6, Actual("Dungeon event kinds", "all"));
+            Assert.AreEqual(7, Actual("Dungeon event kinds", "all")); // 57.1–57.6 + the rare Secure Relay (57.7)
             Assert.IsEmpty(report.Problems);
         }
 
@@ -90,7 +90,7 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(9, ContentCountValidator.NormalEnemies);
             Assert.AreEqual(6, ContentCountValidator.Elites);
             Assert.AreEqual(6, ContentCountValidator.Bosses);
-            Assert.AreEqual(6, ContentCountValidator.DungeonEvents);
+            Assert.AreEqual(7, ContentCountValidator.DungeonEvents);
             Assert.AreEqual(21, ContentCountValidator.RoomDistribution.Sum(d => d.count));
         }
     }

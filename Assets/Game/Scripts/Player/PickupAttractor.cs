@@ -40,6 +40,15 @@ namespace RuinRail.Gameplay.Player
         private readonly HashSet<IAttractablePickup> _pulled = new();
         private readonly List<IAttractablePickup> _scratch = new();
         private readonly RaycastHit2D[] _obstructions = new RaycastHit2D[16];
+        // This player's own drops, still under their reach: held back until the reach has left them once.
+        private readonly HashSet<IAttractablePickup> _heldBack = new();
+        private readonly HashSet<IAttractablePickup> _inReach = new();
+
+        // One attractor pulls a pickup at a time. In co-op two players' reaches overlap: when both pulled the same pile
+        // toward themselves every step it stopped on the line between them, outside both collect distances, and was
+        // never taken. The first attractor to pull a pile keeps it until it collects or drops it; a holder that can no
+        // longer pull (disabled, Downed/Dead) no longer blocks anyone.
+        private static readonly Dictionary<IAttractablePickup, PickupAttractor> Claims = new();
 
         public float BaseRadiusTiles => _baseRadiusTiles;
         public float PullSpeedTilesPerSecond => _pullSpeedTilesPerSecond;
@@ -50,8 +59,31 @@ namespace RuinRail.Gameplay.Player
 
         public int Collected { get; private set; }
         public int PulledCount => _pulled.Count;
+        /// <summary>This player's own drops currently held back from their attraction (diagnostics/tests).</summary>
+        public int HeldBackCount => _heldBack.Count;
 
         public void SetStats(IPlayerStatsProvider stats) => _stats = stats;
+
+        private bool CanPull => isActiveAndEnabled && _actionGate.CanAct(this);
+
+        private bool TryClaim(IAttractablePickup pickup)
+        {
+            if (Claims.TryGetValue(pickup, out var holder) && holder != this && holder != null && holder.CanPull) return false;
+            Claims[pickup] = this;
+            return true;
+        }
+
+        private bool Holds(IAttractablePickup pickup) => Claims.TryGetValue(pickup, out var holder) && holder == this;
+
+        private void Release(IAttractablePickup pickup)
+        {
+            if (Holds(pickup)) Claims.Remove(pickup);
+        }
+
+        private void OnDisable()
+        {
+            foreach (var pickup in _pulled) Release(pickup);
+        }
 
         /// <summary>Sets the baseline reach, clamped to <see cref="MaxBaseRadiusTiles"/>.</summary>
         public void SetBaseRadius(float tiles) => _baseRadiusTiles = Mathf.Clamp(tiles, 0f, MaxBaseRadiusTiles);
@@ -79,12 +111,32 @@ namespace RuinRail.Gameplay.Player
             return false;
         }
 
+        /// <summary>
+        /// A held-back drop whose position is no longer inside this player's reach has been left: the hold ends and the
+        /// pickup attracts to this player normally from then on (walking back over it collects it).
+        /// </summary>
+        private void ReleaseDropsOutOfReach()
+        {
+            if (_heldBack.Count == 0) return;
+            _scratch.Clear();
+            _scratch.AddRange(_heldBack);
+            foreach (var pickup in _scratch)
+            {
+                if (pickup == null || (pickup is Component c && c == null) || !pickup.IsHeldBackFrom(gameObject)) { _heldBack.Remove(pickup); continue; }
+                if (_inReach.Contains(pickup)) continue;
+                pickup.ReleaseHoldBack(gameObject);
+                _heldBack.Remove(pickup);
+            }
+        }
+
         /// <summary>Pulls one eligible pickup regardless of distance (Room Sweep).</summary>
         public bool Pull(IAttractablePickup pickup)
         {
             // Room Sweep (34) deliberately ignores radius and line of sight, but not capacity: a stack that cannot be
             // taken is not swept onto the player either.
-            if (pickup == null || !pickup.IsAttractionEligible) return false;
+            if (pickup == null || !pickup.IsAttractionEligible || pickup.IsHeldBackFrom(gameObject)) return false;
+            // A pile a teammate is already pulling goes to that teammate.
+            if (!TryClaim(pickup)) return false;
             return _pulled.Add(pickup);
         }
 
@@ -114,19 +166,35 @@ namespace RuinRail.Gameplay.Player
             // 84: Downed/Dead players attract nothing (attraction is a pickup interaction).
             if (!_actionGate.CanAct(this)) return;
             var radius = Radius;
+            _inReach.Clear();
             if (radius > 0f)
             {
                 var count = Physics2D.OverlapCircle(transform.position, radius, Physics2DQueries.LegacyQueryFilter(), _hits);
                 for (var i = 0; i < count; i++)
                 {
                     var pickup = _hits[i].GetComponentInParent<IAttractablePickup>();
+                    if (pickup == null) continue;
+                    _inReach.Add(pickup);
+                    // This player's own drop (32) stays on the ground while it is still under their reach.
+                    if (pickup.IsHeldBackFrom(gameObject)) { _heldBack.Add(pickup); continue; }
                     // CanBeCollectedBy, not CanInteract: a stack the backpack has no room for must stay where it fell,
                     // or it would be dragged onto the player and then hold the interaction prompt hostage.
-                    if (pickup == null || !pickup.IsAttractionEligible || !pickup.CanBeCollectedBy(gameObject)) continue;
+                    if (!pickup.IsAttractionEligible || !pickup.CanBeCollectedBy(gameObject)) continue;
                     if (IsObstructed(pickup.transform.position)) continue;
-                    _pulled.Add(pickup);
+                    // Only part of the stack fits (the matching stack is nearly full, no free slot): take that part
+                    // where the pickup lies. Pulling it would park the remainder at the player's feet, where it would
+                    // hold the interaction prompt hostage.
+                    if (!pickup.FitsWhollyFor(gameObject))
+                    {
+                        if (!_pulled.Contains(pickup) && pickup.Interact(gameObject)) Collected++;
+                        continue;
+                    }
+
+                    if (TryClaim(pickup)) _pulled.Add(pickup);
                 }
             }
+
+            ReleaseDropsOutOfReach();
 
             if (_pulled.Count == 0) return;
             _scratch.Clear();
@@ -135,9 +203,10 @@ namespace RuinRail.Gameplay.Player
             {
                 // Stops pulling the moment it stops being takeable — a backpack that filled up mid-pull releases it
                 // rather than parking it on the player.
-                if (pickup == null || (pickup is Component c && c == null) || !pickup.IsAttractionEligible || !pickup.CanBeCollectedBy(gameObject))
+                if (pickup == null || (pickup is Component c && c == null) || !pickup.IsAttractionEligible || !pickup.FitsWhollyFor(gameObject) || pickup.IsHeldBackFrom(gameObject) || !Holds(pickup))
                 {
                     _pulled.Remove(pickup);
+                    Release(pickup);
                     continue;
                 }
 
@@ -148,6 +217,7 @@ namespace RuinRail.Gameplay.Player
                 if ((next - target).sqrMagnitude > _collectDistance * _collectDistance) continue;
 
                 _pulled.Remove(pickup);
+                Release(pickup);
                 if (pickup.Interact(gameObject)) Collected++;
             }
         }

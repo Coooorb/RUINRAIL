@@ -50,6 +50,8 @@ namespace RuinRail.EditorTools.ArtGen
                 case 13: Workbench(c, d, body, w, h, rng); break;
                 case 14: Hazard(c, d, body, w, h, rng); break;
                 case 15: CrateOpen(c, d, body, w, h, rng); break;
+                case 16: Relay(c, d, body, w, h, false); break;
+                case 17: Relay(c, d, body, w, h, true); break;
                 default: Crate(c, d, body, w, h, rng); break;
             }
 
@@ -303,6 +305,64 @@ namespace RuinRail.EditorTools.ArtGen
             c.Rect(w - 10, 4, 7, 4, d.Glow);
         }
 
+        // Secure Relay (57.7): a squat uplink cabinet with a deposit drawer and a dish mast — the only event with a mast
+        // AND a drawer, so it never reads as the merchant terminal or the supply antenna. The secured state (motif 17)
+        // swaps the screen to a check and closes the drawer with a lock bar.
+        private static void Relay(PixelCanvas c, ObjectDesign d, RuinPalette.Ramp body, int w, int h, bool secured)
+        {
+            var cabinetTop = h - 20;
+            var mid = w / 2;
+            // Cabinet on two feet.
+            c.Rect(4, 3, w - 8, cabinetTop - 3, body.Base);
+            c.ShadeForm(4, 3, w - 8, cabinetTop - 3, body.Base, body);
+            c.Rect(5, 0, 5, 3, RuinPalette.Darken(d.Trim, 0.3f));
+            c.Rect(w - 10, 0, 5, 3, RuinPalette.Darken(d.Trim, 0.3f));
+            c.RectOutline(4, 3, w - 8, cabinetTop - 3, RuinPalette.Darken(d.Trim, 0.35f));
+            // Deposit drawer: hazard-striped lip around a dark slot.
+            for (var x = 7; x < w - 7; x++) c.Set(x, 13, ((x / 2) % 2 == 0) ? RuinPalette.WarningOchre : RuinPalette.Darken(d.Trim, 0.4f));
+            c.Rect(8, 6, w - 16, 6, RuinPalette.Darken(d.Body, 0.6f));
+            if (secured)
+            {
+                c.Rect(8, 8, w - 16, 2, RuinPalette.Darken(RuinPalette.MidSteel, 0.1f)); // lock bar across the drawer
+                c.Rect(mid - 1, 7, 3, 4, d.Glow);
+            }
+            else
+            {
+                // Up-arrow into the drawer: "put it in, it goes up the mast".
+                c.Line(mid, 7, mid, 11, d.Glow);
+                c.Line(mid - 2, 9, mid, 11, d.Glow);
+                c.Line(mid + 2, 9, mid, 11, d.Glow);
+            }
+
+            // Screen.
+            var screenY = cabinetTop - 11;
+            c.Rect(7, screenY, w - 14, 8, RuinPalette.Darken(d.Glow, 0.72f));
+            for (var y = screenY + 1; y < screenY + 8; y += 2) c.Line(8, y, w - 9, y, RuinPalette.Darken(d.Glow, 0.4f));
+            if (secured)
+            {
+                // Check mark.
+                c.Line(mid - 4, screenY + 4, mid - 2, screenY + 2, d.Glow);
+                c.Line(mid - 2, screenY + 2, mid + 3, screenY + 7, d.Glow);
+            }
+            else
+            {
+                c.Rect(9, screenY + 3, (w - 18) / 2, 2, d.Glow);
+                c.Set(w - 11, screenY + 5, d.Glow);
+            }
+
+            // Mast with a tilted dish and a beacon.
+            c.Rect(mid - 3, cabinetTop, 7, 2, RuinPalette.Darken(d.Trim, 0.2f));
+            c.Line(mid, cabinetTop + 2, mid, h - 5, RuinPalette.Darken(d.Trim, 0.1f), 2);
+            // Dish: a pale bowl facing up-left with its dark concave face, a feed arm and the beacon at the feed.
+            c.Ellipse(mid - 3, h - 9, 6.5f, 4f, body.Light);
+            c.Ellipse(mid - 4, h - 8, 5f, 2.5f, RuinPalette.Darken(d.Body, 0.35f));
+            c.Line(mid - 3, h - 9, mid + 3, h - 3, RuinPalette.Darken(d.Trim, 0.1f));
+            c.Ellipse(mid + 3, h - 3, 1.5f, 1.5f, d.Glow);
+            c.Set(mid + 3, h - 2, RuinPalette.Lighten(d.Glow, 0.5f));
+            // Side conduit.
+            c.Line(w - 5, 5, w - 3, cabinetTop - 4, RuinPalette.Darken(RuinPalette.Rust, 0.15f));
+        }
+
         // A generic hazard prop (unstable debris, pressure vent) used by room dressing.
         private static void Hazard(PixelCanvas c, ObjectDesign d, RuinPalette.Ramp body, int w, int h, System.Random rng)
         {
@@ -332,13 +392,15 @@ namespace RuinRail.EditorTools.ArtGen
             new() { Id = "world_room_hazard", Motif = 14, Width = 32, Height = 24, Body = RuinPalette.Hex("#5A5148"), Glow = RuinPalette.EmergencyRed, Seed = 17 },
             new() { Id = "world_transit_car", Motif = 5, Width = 64, Height = 40, Body = RuinPalette.Hex("#44504E"), Trim = RuinPalette.DarkSteel, Glow = RuinPalette.AmberActive, Seed = 18 },
 
-            // --- dungeon event objects (spec 17, six kinds) ---
+            // --- dungeon event objects (spec 17, six kinds + the Secure Relay and its secured state) ---
             new() { Id = "event_LockedVault", Motif = 7, Width = 40, Height = 40, Body = RuinPalette.Hex("#4A5254"), Glow = RuinPalette.WarningOchre, Seed = 21 },
             new() { Id = "event_CursedChest", Motif = 0, Body = RuinPalette.Hex("#3E3646"), Trim = RuinPalette.Hex("#6B5A7A"), Glow = RuinPalette.Hex("#8C6BB1"), Seed = 22 },
             new() { Id = "event_BrokenMachine", Motif = 8, Width = 40, Height = 32, Body = RuinPalette.Hex("#4E4840"), Glow = RuinPalette.ElectricCyan, Seed = 23 },
             new() { Id = "event_SupplySignal", Motif = 9, Width = 32, Height = 40, Body = RuinPalette.Hex("#4C5450"), Glow = RuinPalette.TerminalGreen, Seed = 24 },
             new() { Id = "event_MedicalStation", Motif = 4, Width = 32, Height = 40, Body = RuinPalette.Hex("#6E7472"), Glow = RuinPalette.TerminalGreen, Seed = 25 },
             new() { Id = "event_WeaponCache", Motif = 10, Width = 40, Height = 32, Body = RuinPalette.Hex("#4A4A44"), Glow = RuinPalette.AmberActive, Seed = 26 },
+            new() { Id = "event_SecureRelay", Motif = 16, Width = 32, Height = 48, Body = RuinPalette.Hex("#44504E"), Glow = RuinPalette.ElectricCyan, Seed = 27 },
+            new() { Id = "event_SecureRelay_secured", Motif = 17, Width = 32, Height = 48, Body = RuinPalette.Hex("#44504E"), Glow = RuinPalette.TerminalGreen, Seed = 27 },
 
             // --- Shelter stations (spec 16) ---
             new() { Id = "base_storage", Motif = 11, Width = 40, Height = 40, Body = RuinPalette.Hex("#4E5250"), Glow = RuinPalette.AmberActive, Seed = 31 },

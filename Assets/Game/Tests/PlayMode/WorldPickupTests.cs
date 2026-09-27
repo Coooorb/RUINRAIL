@@ -369,5 +369,55 @@ namespace RuinRail.Tests
             Assert.IsNotNull(rifle);
             Assert.AreEqual(0, attractor.PulledCount);
         }
+
+        // ---- Co-op: two players' reaches overlap (one attractor per pile) ----
+
+        private static void StepBoth(PickupAttractor a, PickupAttractor b, int steps = 400)
+        {
+            for (var i = 0; i < steps; i++)
+            {
+                Physics2D.SyncTransforms();
+                a.Step(0.02f);
+                b.Step(0.02f);
+            }
+        }
+
+        [UnityTest]
+        public IEnumerator TwoPlayersReach_OnePile_IsCollectedOnceInsteadOfStallingBetweenThem()
+        {
+            // One tile apart, the pile inside both reaches: each attractor used to pull it toward its own player every
+            // step, so it stopped on the line between them, out of both collect distances, and was never taken.
+            var first = CreateAttractingPlayer(Vector2.zero);
+            var second = CreateAttractingPlayer(new Vector2(1f, 0f));
+            var coins = _spawner.CreateCoinPickup(new Vector2(0.5f, 0.6f));
+            coins.SetAmount(9);
+
+            StepBoth(first.attractor, second.attractor);
+            yield return null;
+
+            Assert.IsTrue(coins == null, "The pile is collected, not left hanging between the two players.");
+            Assert.AreEqual(9, first.receiver.CarriedCoins + second.receiver.CarriedCoins, "Collected exactly once, nothing lost or doubled.");
+            Assert.AreEqual(1, first.attractor.Collected + second.attractor.Collected);
+            Assert.AreEqual(0, first.attractor.PulledCount + second.attractor.PulledCount);
+        }
+
+        [UnityTest]
+        public IEnumerator RoomSweep_PileCrossingATeammatesReach_StillReachesTheSweeper()
+        {
+            // The duo proof's layout: the sweeper stands one tile from a teammate, and the swept pile's path passes
+            // through the teammate's reach on the way in.
+            var teammate = CreateAttractingPlayer(Vector2.zero);
+            var sweeper = CreateAttractingPlayer(new Vector2(1f, 0f));
+            var coins = _spawner.CreateCoinPickup(new Vector2(-6.8f, 4.7f));
+            coins.SetAmount(9);
+
+            Assert.AreEqual(1, sweeper.attractor.SweepAll(_ground.Tracked));
+            StepBoth(sweeper.attractor, teammate.attractor);
+            yield return null;
+
+            Assert.IsTrue(coins == null, "The swept pile arrives instead of stalling between the two players.");
+            Assert.AreEqual(9, sweeper.receiver.CarriedCoins, "Room Sweep delivers the pile to its wearer.");
+            Assert.AreEqual(0, teammate.receiver.CarriedCoins);
+        }
     }
 }

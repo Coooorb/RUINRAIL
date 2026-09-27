@@ -70,6 +70,27 @@ namespace RuinRail.Gameplay.Combat.Weapons
                 pulledBack = true;
             }
 
+            // A body pressed against the underside of a wall puts the hand-height pivot (and the muzzle) inside the
+            // wall's footprint. A shot spawned there was resolved by that wall at distance zero whichever way it
+            // pointed, so a player hugging a wall could not hit anything. The shot leaves from the body instead — the
+            // body is never inside geometry — aimed at the same crosshair; a shot aimed into the wall is still stopped.
+            if (shooter != null && InsideObstacle(spawn))
+            {
+                // The weapon may sit on a child object at the hand: the body is the shooter's physics body.
+                var rigidbody = shooter.GetComponentInParent<Rigidbody2D>();
+                var body = rigidbody != null ? rigidbody.position : (Vector2)shooter.transform.position;
+                if (!InsideObstacle(body))
+                {
+                    spawn = body;
+                    pulledBack = true;
+                    if (aiming != null && aiming.HasPointerAim)
+                    {
+                        var toCrosshair = aiming.AimWorldPoint - body;
+                        if (toCrosshair.sqrMagnitude > 0.0001f) direction = toCrosshair.normalized;
+                    }
+                }
+            }
+
             // One gate for every weapon that fires: no configured assist, or the player turned it off in Settings, and
             // the shot leaves on the raw aim with no bend and no proximity pull. There is no second assist path.
             if (assist == null || !RuinRail.Core.Rendering.AssistPreferences.AimAssist) return new ShotSolution(spawn, direction, pulledBack, null, Vector2.zero);
@@ -85,6 +106,15 @@ namespace RuinRail.Gameplay.Combat.Weapons
             var assisted = best.AimPoint - spawn;
             if (assisted.sqrMagnitude < 0.0001f) return new ShotSolution(spawn, direction, pulledBack, null, Vector2.zero);
             return new ShotSolution(spawn, assisted.normalized, pulledBack, best.Target, best.AimPoint);
+        }
+
+        /// <summary>True when the point lies inside solid level geometry (an <see cref="EnvironmentObstacle"/> collider).</summary>
+        public static bool InsideObstacle(Vector2 point)
+        {
+            var count = Physics2D.OverlapPoint(point, Physics2DQueries.LegacyQueryFilter(), Overlaps);
+            for (var i = 0; i < count; i++)
+                if (Overlaps[i] != null && !Overlaps[i].isTrigger && Overlaps[i].GetComponentInParent<EnvironmentObstacle>() != null) return true;
+            return false;
         }
 
         /// <summary>A hostile hurtbox/body or a wall on the segment hand→muzzle (the muzzle would be past it).</summary>

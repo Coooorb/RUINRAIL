@@ -20,6 +20,8 @@ The host decides/validates:
 
 Clients send inputs/requests such as move/aim/fire/interact/open/pickup; they do not authoritatively declare loot or kills.
 
+Another peer's shots and grenade throws are presentation only on every other peer: each is drawn from the thrower's announcement — grenades after the host validates the throw (a grenade in its catalog, a living member at that position, a landing inside the throw range) — with its real path, landing effect and lasting area, and never simulated a second time. Damage and zones exist only in the thrower's own run and reach the host as validated requests.
+
 ## Feel
 
 Player movement should remain locally responsive. This is a small PvE game, so do not build competitive-shooter-grade anti-cheat/prediction complexity before it is necessary.

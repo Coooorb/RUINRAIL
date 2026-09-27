@@ -130,6 +130,9 @@ namespace RuinRail.UI.Navigation
         /// <summary>"◆◆ RARE Name" — the name line every list, tooltip and drop label uses.</summary>
         public string Decorate(string name) => string.IsNullOrEmpty(Marker) ? $"{Label} {name}" : $"{Marker} {Label} {name}";
 
+        /// <summary>The rarity colour lifted just enough to read as text on the dark HUD / panels (same rule the inventory uses).</summary>
+        public Color TextColor => Luminance < 0.45f ? Color.Lerp(Color, Color.white, (0.45f - Luminance) / 0.45f) : Color;
+
         public static RarityStyle For(Rarity rarity) => rarity switch
         {
             Rarity.Common => new RarityStyle(rarity, "COMMON", new Color(0.40f, 0.40f, 0.40f), "none", ""),

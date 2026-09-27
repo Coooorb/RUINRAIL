@@ -39,7 +39,8 @@ namespace RuinRail.UI.Theme
         /// Unity puts the first baseline at (rect top − the face's ascent). A <see cref="UnityEngine.Font"/> assembled
         /// in script reports an ascent of zero, so the baseline sits on the rect's top edge and the entire line is
         /// drawn *above* the rectangle. Deriving the nudge from the face's own ascent means a font that later carries
-        /// a real one needs no change here.
+        /// a real one needs no change here. (The remaining sub-row placement — glyph cell top vs ascent line — is
+        /// <see cref="PixelText"/>'s, so the label's rect stays exactly its layout box.)
         /// </summary>
         public static int TopOffset => Mathf.Max(0, UiText.GlyphHeight - Mathf.RoundToInt(Font().ascent));
     }

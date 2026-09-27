@@ -339,6 +339,37 @@ namespace RuinRail.EditorTools.ArtGen
             }
         }
 
+        /// <summary>Writes the consumable world-effect sheets only (grenade, Shock burst, smoke cloud, burn area).</summary>
+        public static void GenerateConsumableVfx()
+        {
+            foreach (var role in VfxFactory.ConsumableRoles)
+            {
+                var frames = new List<PixelCanvas>();
+                for (var f = 0; f < VfxFactory.FrameCount(role); f++) frames.Add(VfxFactory.Build(role, f));
+                var size = VfxFactory.SizeOf(role);
+                WriteSheet(PixelCanvas.Row(frames), $"{ArtRoot}/Vfx/vfx_{role}.png", size, size, 32, new Vector2(0.5f, 0.5f));
+            }
+        }
+
+        /// <summary>Batch: generate the consumable effect sheets, import them, and rebind the content catalog.</summary>
+        public static void GenerateConsumableVfxBatch()
+        {
+            try
+            {
+                Pending.Clear();
+                GenerateConsumableVfx();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyPendingImports();
+                var catalog = RuinRail.EditorTools.Production.GameContentCatalogBuilder.Build();
+                AssetDatabase.SaveAssets();
+                ProvenanceRecorder.Record();
+                var missing = VfxFactory.ConsumableRoles.Where(r => catalog.VfxFramesFor(r).Count != VfxFactory.FrameCount(r)).ToList();
+                Debug.Log("Consumable VFX: " + (missing.Count == 0 ? "all frames bound" : "missing " + string.Join(",", missing)));
+                EditorApplication.Exit(missing.Count == 0 ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
         /// <summary>Every in-flight projectile profile (player families, Legendary variants, hostile rounds, Boss attacks) as frame strips.</summary>
         public static void GenerateProjectileVisuals()
         {

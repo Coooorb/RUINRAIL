@@ -95,12 +95,12 @@ namespace RuinRail.Tests.EditMode
             // Skill Point in hand (progression pass). Give the fixture profile the levels that make them purchasable.
             session.Progression.AddXp(RuinRail.Gameplay.Progression.LevelCurve.TotalXpForLevel(4));
 
-            string selected = session.Loadout.GetEquipped(EquippedSlot.Armor)?.InstanceId;
             var screens = new (string name, FocusList list, string[] mustContain)[]
             {
                 ("Storage", ScreenNavigation.Storage(() => { }, () => { }, () => true), new[] { "storage.open", "storage.store_backpack" }),
                 ("Inventory", ScreenNavigation.Inventory(hub.Loadout.Inventory), new[] { "slot.PrimaryWeapon", "slot.ActiveConsumable", "backpack.0", "backpack.7", "loadout.action" }),
-                ("Trader", ScreenNavigation.Trader(hub.Trader, () => selected), new[] { "trader.buy.0", "trader.sell" }),
+                ("Trader", ScreenNavigation.Trader(hub.Trader, () => { }), new[] { "trader.buy.0", "trader.sell" }),
+                ("TraderSell", ScreenNavigation.TraderSell(hub.Trader, hub.Trader.SellRows(), () => { }, () => { }), new[] { ScreenNavigation.TraderBuyTabId }),
                 ("Character", ScreenNavigation.Character(hub.Character), CharacterPanelViewModel.Attributes.Select(a => "character.allocate." + a).Append("character.respec").ToArray()),
                 ("Workshop", ScreenNavigation.Workshop(hub.Workshop), new[] { "workshop.storage", "workshop.trader" }),
                 ("Multiplayer", ScreenNavigation.Multiplayer(new TerminalViewModel(terminal, session.Lobby, BaseSession.LocalClientId)), new[] { "terminal.Solo", "terminal.Host", "terminal.Join" }),

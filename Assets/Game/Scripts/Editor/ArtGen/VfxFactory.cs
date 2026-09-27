@@ -23,6 +23,13 @@ namespace RuinRail.EditorTools.ArtGen
             "telegraph_stationary", "telegraph_dash", "telegraph_projectile", "telegraph_zone", "telegraph_slam"
         };
 
+        /// <summary>
+        /// Consumable world effects (items/31): the thrown grenade, the Shock burst, and the two lasting areas. The
+        /// areas are drawn at native density for their authored radius (radius × 64 px at 32 px/tile), every frame at
+        /// the full radius with a readable rim — the gameplay area is full from the first frame to the last.
+        /// </summary>
+        public static readonly IReadOnlyList<string> ConsumableRoles = new[] { "grenade", "shock", "smoke_cloud", "fire_zone" };
+
         public static int FrameCount(string role) => role switch
         {
             "muzzle" => 3,
@@ -33,6 +40,10 @@ namespace RuinRail.EditorTools.ArtGen
             "heal" => 4,
             "status" => 3,
             "loot_glow" => 4,
+            "grenade" => 2,
+            "shock" => 5,
+            "smoke_cloud" => 6,
+            "fire_zone" => 5,
             _ => 2   // telegraphs pulse rather than play out
         };
 
@@ -41,6 +52,10 @@ namespace RuinRail.EditorTools.ArtGen
             "explosion" => 32,
             "melee" => 24,
             "loot_glow" => 24,
+            "grenade" => 12,
+            "shock" => 160,        // Shock Grenade: 2.5-tile radius
+            "smoke_cloud" => 256,  // Smoke Grenade: 4-tile radius
+            "fire_zone" => 160,    // Incendiary burn area: 2.5-tile radius
             _ when role.StartsWith("telegraph") => 32,
             _ => 16
         };
@@ -63,6 +78,10 @@ namespace RuinRail.EditorTools.ArtGen
                 case "heal": Heal(c, size, mid, t); break;
                 case "status": Status(c, mid, t); break;
                 case "loot_glow": LootGlow(c, mid, t); break;
+                case "grenade": Grenade(c, mid, frame); break;
+                case "shock": ShockBurst(c, mid, t); break;
+                case "smoke_cloud": SmokeCloud(c, mid, frame, frames); break;
+                case "fire_zone": FireZone(c, mid, frame, frames); break;
                 case "telegraph_zone": TelegraphBox(c, size, frame); break;
                 case "telegraph_dash": TelegraphDash(c, size, mid, frame); break;
                 case "telegraph_projectile": TelegraphLine(c, size, mid, frame); break;
@@ -71,6 +90,148 @@ namespace RuinRail.EditorTools.ArtGen
             }
 
             return c;
+        }
+
+        // ---- consumables (items/31) ----
+
+        private static float Hash(int a, int b) => Mathf.Abs(Mathf.Sin(a * 12.9898f + b * 78.233f) * 43758.547f) % 1f;
+
+        // The thrown grenade: a small dark canister with an ochre band; two frames read as a tumble in flight.
+        private static void Grenade(PixelCanvas c, int mid, int frame)
+        {
+            var body = RuinPalette.DarkSteel;
+            if (frame == 0)
+            {
+                c.Ellipse(mid, mid, 3.5f, 3f, RuinPalette.OutlineCharcoal);
+                c.Ellipse(mid, mid, 2.6f, 2.1f, body);
+                c.Rect(mid - 1, mid - 3, 2, 6, RuinPalette.WarningOchre);
+                c.Set(mid - 2, mid + 1, RuinPalette.PaleSteel);
+            }
+            else
+            {
+                c.Ellipse(mid, mid, 3f, 3.5f, RuinPalette.OutlineCharcoal);
+                c.Ellipse(mid, mid, 2.1f, 2.6f, body);
+                c.Rect(mid - 3, mid - 1, 6, 2, RuinPalette.WarningOchre);
+                c.Set(mid + 1, mid + 2, RuinPalette.PaleSteel);
+            }
+        }
+
+        // Shock Grenade: a cold electric ring that reaches the real radius at once, jagged arcs inside, then breaks up.
+        private static void ShockBurst(PixelCanvas c, int mid, float t)
+        {
+            var r = mid - 1f;
+            var ring = t < 0.5f ? RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.35f) : RuinPalette.ColdBlue;
+            for (var a = 0; a < 720; a++)
+            {
+                var ang = a * Mathf.PI / 360f;
+                for (var w = 0; w < (t < 0.5f ? 3 : 2); w++)
+                    c.Set(mid + Mathf.RoundToInt(Mathf.Cos(ang) * (r - w)), mid + Mathf.RoundToInt(Mathf.Sin(ang) * (r - w)), ring);
+            }
+
+            var arcs = t < 0.3f ? 14 : t < 0.7f ? 10 : 6;
+            for (var i = 0; i < arcs; i++)
+            {
+                var ang = (i + Hash(i, 7) * 0.6f) * Mathf.PI * 2f / arcs + t;
+                int px = mid, py = mid;
+                var steps = 8;
+                for (var s = 1; s <= steps; s++)
+                {
+                    var rr = r * s / steps * (0.35f + 0.65f * Mathf.Min(1f, 0.4f + t));
+                    var jitter = (Hash(i, s + Mathf.RoundToInt(t * 10f)) - 0.5f) * 0.5f;
+                    var nx = mid + Mathf.RoundToInt(Mathf.Cos(ang + jitter) * rr);
+                    var ny = mid + Mathf.RoundToInt(Mathf.Sin(ang + jitter) * rr);
+                    c.Line(px, py, nx, ny, s < steps / 2 ? RuinPalette.Lighten(RuinPalette.ElectricCyan, 0.5f) : RuinPalette.ElectricCyan);
+                    px = nx; py = ny;
+                }
+            }
+
+            if (t < 0.25f) c.Ellipse(mid, mid, 6f, 6f, RuinPalette.Hex("#E6FBFF"));
+            if (t > 0.6f)
+                for (var y = 0; y < c.Height; y++)
+                for (var x = 0; x < c.Width; x++)
+                    if (c.IsOpaque(x, y) && (x * 7 + y * 3) % 5 < (t > 0.85f ? 3 : 1)) c.Erase(x, y);
+        }
+
+        // Smoke Grenade: overlapping shaded puffs clipped to the exact radius, a 50 % dither so actors inside stay
+        // readable, and a denser rim that marks the area's real edge. The puffs drift frame to frame; the last frame
+        // thins (the cloud is about to lift) but keeps the full rim.
+        private static void SmokeCloud(PixelCanvas c, int mid, int frame, int frames)
+        {
+            var r = mid - 0.5f;
+            var shadow = RuinPalette.ConcreteShadow;
+            var body = RuinPalette.Concrete;
+            var light = RuinPalette.ConcreteLight;
+            var puffs = new PixelCanvas(c.Width, c.Height);
+            for (var i = 0; i < 46; i++)
+            {
+                var ang = Hash(i, 1) * Mathf.PI * 2f + frame * 0.09f * (i % 2 == 0 ? 1f : -1f);
+                var dist = Mathf.Sqrt(Hash(i, 2)) * (r - 14f);
+                var pr = 14f + Hash(i, 3) * 18f;
+                var cx = mid + Mathf.Cos(ang) * dist;
+                var cy = mid + Mathf.Sin(ang) * dist;
+                puffs.Ellipse(cx, cy - 2f, pr, pr * 0.85f, shadow);
+                puffs.Ellipse(cx, cy, pr * 0.92f, pr * 0.78f, body);
+                puffs.Ellipse(cx - pr * 0.25f, cy + pr * 0.25f, pr * 0.45f, pr * 0.35f, light);
+            }
+
+            var thin = frame == frames - 1;
+            for (var y = 0; y < c.Height; y++)
+            for (var x = 0; x < c.Width; x++)
+            {
+                var dx = x + 0.5f - mid;
+                var dy = y + 0.5f - mid;
+                var d = Mathf.Sqrt(dx * dx + dy * dy);
+                if (d > r) continue;
+                if (d > r - 2.5f) { c.Set(x, y, RuinPalette.Darken(body, 0.15f)); continue; }        // the real edge
+                if (d > r - 6f) { if ((x + y) % 2 == 0) c.Set(x, y, body); continue; }
+                var col = puffs.IsOpaque(x, y) ? puffs.Get(x, y) : body;
+                var keep = thin ? (x + y * 2) % 4 == 0 : (x + y) % 2 == 0;
+                if (keep) c.Set(x, y, col);
+            }
+        }
+
+        // Incendiary burn area: a scorched rim at the real radius, sparse char inside, flame tongues that flicker
+        // frame to frame; the last frame is embers (the burn is ending) with the rim kept.
+        private static void FireZone(PixelCanvas c, int mid, int frame, int frames)
+        {
+            var r = mid - 0.5f;
+            var embers = frame == frames - 1;
+            for (var y = 0; y < c.Height; y++)
+            for (var x = 0; x < c.Width; x++)
+            {
+                var dx = x + 0.5f - mid;
+                var dy = y + 0.5f - mid;
+                var d = Mathf.Sqrt(dx * dx + dy * dy);
+                if (d > r) continue;
+                if (d > r - 2f) { c.Set(x, y, RuinPalette.Rust); continue; }
+                if (d > r - 3f) { c.Set(x, y, RuinPalette.BurntRustDark); continue; }
+                if ((x * 3 + y * 5) % 11 == 0) c.Set(x, y, RuinPalette.BurntRustDark);
+            }
+
+            var count = embers ? 34 : 38;
+            for (var i = 0; i < count; i++)
+            {
+                var ang = Hash(i, 11) * Mathf.PI * 2f;
+                var dist = Mathf.Sqrt(Hash(i, 12)) * (r - 10f);
+                var fx = mid + Mathf.RoundToInt(Mathf.Cos(ang) * dist);
+                var fy = mid + Mathf.RoundToInt(Mathf.Sin(ang) * dist);
+                if (embers)
+                {
+                    c.Set(fx, fy, RuinPalette.OxideOrange);
+                    if (Hash(i, 13) > 0.5f) c.Set(fx + 1, fy, RuinPalette.WarningOchre);
+                    continue;
+                }
+
+                var height = 9 + Mathf.RoundToInt(Hash(i, 20 + frame) * 8f);
+                var half = 3 + Mathf.RoundToInt(Hash(i, 14) * 2f);
+                for (var h = 0; h < height; h++)
+                {
+                    var w = Mathf.Max(0, Mathf.RoundToInt(half * (1f - (float)h / height)));
+                    var sway = Mathf.RoundToInt(Mathf.Sin((h + frame * 2 + i) * 0.9f) * (h > height / 2 ? 1f : 0f));
+                    var col = h < height * 0.4f ? RuinPalette.OxideOrange : h < height * 0.8f ? RuinPalette.AmberActive : RuinPalette.Hex("#FFF3C8");
+                    for (var xx = -w; xx <= w; xx++) c.Set(fx + xx + sway, fy + h, Mathf.Abs(xx) == w && w > 0 ? RuinPalette.Rust : col);
+                }
+            }
         }
 
         // 19.1 muzzle flash: warm white core, orange edge, 3 frames

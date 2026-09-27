@@ -98,7 +98,8 @@ namespace RuinRail.UI.Navigation
             _ => slot.ToString().ToUpperInvariant()
         };
 
-        public static FocusList Trader(TraderPanelViewModel trader, Func<string> selectedInstance)
+        /// <summary>The counter's BUY side: one row per offer, then SELL, which turns the counter to the sell list.</summary>
+        public static FocusList Trader(TraderPanelViewModel trader, Action openSell)
         {
             var list = new FocusList("Trader");
             for (var i = 0; i < trader.Offers.Count; i++)
@@ -107,7 +108,29 @@ namespace RuinRail.UI.Navigation
                 list.Add("trader.buy." + index, "BUY " + (trader.Offers[index].Definition != null ? trader.Offers[index].Definition.DisplayName : "offer"), () => trader.Buy(index));
             }
 
-            list.Add("trader.sell", "SELL", () => trader.Sell(selectedInstance()), () => !string.IsNullOrEmpty(selectedInstance()));
+            list.Add("trader.sell", "SELL", () => openSell?.Invoke());
+            return list;
+        }
+
+        public const string TraderSellItemPrefix = "trader.sellitem.";
+        public const string TraderBuyTabId = "trader.buytab";
+
+        /// <summary>
+        /// The counter's SELL side: one row per item the survivor holds (backpack, then Storage) — the row sells exactly
+        /// that item, by its instance id — then BUY back to the offers. A row the Trader would refuse (Starter Kit, no
+        /// value) is disabled, so it is never offered as a sale.
+        /// </summary>
+        public static FocusList TraderSell(TraderPanelViewModel trader, System.Collections.Generic.IReadOnlyList<RuinRail.UI.Merchant.MerchantRow> rows, Action afterSale, Action openBuy)
+        {
+            var list = new FocusList("TraderSell");
+            foreach (var row in rows)
+            {
+                var instanceId = row.Item.InstanceId;
+                var sellable = !row.IsUnsellable && row.Price > 0;
+                list.Add(TraderSellItemPrefix + row.Index, "SELL " + row.Name, () => { trader.Sell(instanceId); afterSale?.Invoke(); }, () => sellable);
+            }
+
+            list.Add(TraderBuyTabId, "BUY", () => openBuy?.Invoke());
             return list;
         }
 

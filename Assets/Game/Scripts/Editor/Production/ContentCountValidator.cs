@@ -100,7 +100,7 @@ namespace RuinRail.EditorTools.Production
         public const int Bosses = 6;
         public const int ElitesPerBiome = 2;
         public const int BossesPerBiome = 2;
-        public const int DungeonEvents = 6;
+        public const int DungeonEvents = 7; // the six MVP events (57.1–57.6) + the rare Secure Relay (57.7)
 
         public static readonly (RoomType type, RoomSizeClass? size, int count)[] RoomDistribution =
         {
@@ -231,7 +231,7 @@ namespace RuinRail.EditorTools.Production
                 }
             }
 
-            // ---- Dungeon events: exactly the six approved kinds ----
+            // ---- Dungeon events: exactly the approved kinds (57) ----
             lines.Add(new ContentCountLine("Dungeon event kinds", "all", DungeonEvents, Enum.GetValues(typeof(DungeonEventKind)).Length));
 
             return new ContentCountReport(lines, problems);

@@ -320,7 +320,7 @@ namespace RuinRail.UI.Hud
         {
             var rect = Panel(name, parent, anchor, offset, size);
             rect.anchoredPosition = offset + new Vector2(0f, -UiFont.TopOffset);
-            var text = rect.gameObject.AddComponent<Text>();
+            var text = rect.gameObject.AddComponent<PixelText>();
             text.font = _font;
             text.fontSize = FontSize;
             text.lineSpacing = 1f;

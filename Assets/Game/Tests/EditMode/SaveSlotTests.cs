@@ -269,7 +269,7 @@ namespace RuinRail.Tests
         public void Slot_ContainsNoSettingsAndNoExpeditionState()
         {
             var names = typeof(SaveSlot).GetFields(BindingFlags.Public | BindingFlags.Instance).Select(f => f.Name.ToLowerInvariant()).ToList();
-            CollectionAssert.AreEquivalent(new[] { "saveversion", "profile", "storage", "firstlaunch", "activeexpedition", "quarantine" }, names);
+            CollectionAssert.AreEquivalent(new[] { "saveversion", "profile", "storage", "firstlaunch", "activeexpedition", "relayescrow", "quarantine" }, names); // relayescrow: a pending Storage delivery (57.7), not run state
             Assert.IsFalse(names.Any(n => n.Contains("setting") || n.Contains("volume") || n.Contains("binding") || n.Contains("resolution")));
 
             var allTypes = new[] { typeof(SaveSlot), typeof(PlayerProfile), typeof(FirstLaunchFlags) }

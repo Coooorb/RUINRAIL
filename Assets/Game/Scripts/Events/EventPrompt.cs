@@ -35,6 +35,7 @@ namespace RuinRail.Gameplay.Events
             DungeonEventKind.SupplySignal => "Supply Signal",
             DungeonEventKind.MedicalStation => "Medical Station",
             DungeonEventKind.WeaponCache => "Weapon Cache",
+            DungeonEventKind.SecureRelay => "Secure Relay",
             _ => kind.ToString()
         };
 
@@ -46,6 +47,7 @@ namespace RuinRail.Gameplay.Events
             DungeonEventKind.SupplySignal => "Activate",
             DungeonEventKind.MedicalStation => "Use",
             DungeonEventKind.WeaponCache => "Choose",
+            DungeonEventKind.SecureRelay => "Access",
             _ => "Use"
         };
 
@@ -70,6 +72,10 @@ namespace RuinRail.Gameplay.Events
 
             return dungeonEvent.CanActivate(actor) ? string.Empty : "UNAVAILABLE";
         }
+
+        /// <summary>A per-member state an open event shows after its prompt (the Secure Relay this member already used); empty otherwise.</summary>
+        public static string StatusOf(IDungeonEvent dungeonEvent, EventActor actor) =>
+            dungeonEvent is SecureRelayEvent relay && actor != null && relay.HasSecured(actor.ParticipantId) ? "ITEM SECURED" : string.Empty;
 
         public static EventPrompt Build(IDungeonEvent dungeonEvent, int carriedCoins)
         {

@@ -19,6 +19,8 @@ namespace RuinRail.Gameplay.Combat.Area
 
         public GrenadeData Data => _data;
         public Vector2 LandingPoint => _landing;
+        /// <summary>Where it left the thrower's hand.</summary>
+        public Vector2 Origin { get; private set; }
         public bool IsResolved => _resolved;
         public GameObject SpawnedZone { get; private set; }
 
@@ -31,6 +33,7 @@ namespace RuinRail.Gameplay.Combat.Area
             _roller = roller ?? new UnityRandomDamageRoller();
             _resolved = false;
             transform.position = origin;
+            Origin = origin;
             var toTarget = landing - origin;
             _landing = toTarget.magnitude <= data.ThrowRangeTiles ? landing : origin + toTarget.normalized * data.ThrowRangeTiles;
         }
@@ -98,6 +101,9 @@ namespace RuinRail.Gameplay.Combat.Area
 
         public ThrownGrenade LastThrown { get; private set; }
 
+        /// <summary>A grenade left this thrower's hand (presentation draws it and its effect; gameplay ignores it).</summary>
+        public event Action<ThrownGrenade> Thrown;
+
         public void SetDamageRoller(IDamageRoller roller)
         {
             _roller = roller;
@@ -110,6 +116,7 @@ namespace RuinRail.Gameplay.Combat.Area
             var grenade = new GameObject($"Grenade_{data.Kind}").AddComponent<ThrownGrenade>();
             grenade.Launch(data, origin, origin + direction * data.ThrowRangeTiles, _sourceTeam, _roller);
             LastThrown = grenade;
+            Thrown?.Invoke(grenade);
             return grenade;
         }
     }

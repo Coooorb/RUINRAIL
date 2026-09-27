@@ -113,7 +113,7 @@ namespace RuinRail.Gameplay.Player
                     : new DropResult(TransferResult.Fail(TransferError.InvalidRequest, instanceId), null);
             }
 
-            var result = _drops.DropFromAny(_carried, instanceId, quantity, transform.position);
+            var result = _drops.DropFromAny(_carried, instanceId, quantity, transform.position, gameObject);
             if (result.Success) Dropped?.Invoke(result);
             return result;
         }

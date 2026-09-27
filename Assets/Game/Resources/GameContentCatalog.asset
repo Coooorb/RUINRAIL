@@ -273,6 +273,13 @@ MonoBehaviour:
   - {fileID: 8426590309104981291, guid: 1a1cd56e2be860b47b9791fe345440d2, type: 3}
   - {fileID: -8729012828057125647, guid: 1a1cd56e2be860b47b9791fe345440d2, type: 3}
   - {fileID: -1655443196321909659, guid: 1a1cd56e2be860b47b9791fe345440d2, type: 3}
+  - {fileID: -4701173438218928727, guid: 4a594f2c27e4a4489bad98193c051129, type: 3}
+  - {fileID: -5489506947820906571, guid: 4a594f2c27e4a4489bad98193c051129, type: 3}
+  - {fileID: -7681792543878311029, guid: 4a594f2c27e4a4489bad98193c051129, type: 3}
+  - {fileID: 1633861855356472298, guid: 4a594f2c27e4a4489bad98193c051129, type: 3}
+  - {fileID: 531723706968777074, guid: 4a594f2c27e4a4489bad98193c051129, type: 3}
+  - {fileID: 5388686525742953564, guid: 4ca48063fb1374b7880f858c9738366e, type: 3}
+  - {fileID: -2211821031092969809, guid: 4ca48063fb1374b7880f858c9738366e, type: 3}
   - {fileID: 7785496371426096523, guid: 5873e3ac01a416b44912909f5d52e4b2, type: 3}
   - {fileID: -6056443444352120237, guid: 5873e3ac01a416b44912909f5d52e4b2, type: 3}
   - {fileID: -6859688800370335925, guid: 5873e3ac01a416b44912909f5d52e4b2, type: 3}
@@ -333,6 +340,17 @@ MonoBehaviour:
   - {fileID: 5128560015134235568, guid: 1952a81fdc6a54e609a332e22d4229f0, type: 3}
   - {fileID: 7909103927674167467, guid: 79c61a0f04ff54cdfbf01bb2eb983015, type: 3}
   - {fileID: 2151049532051029252, guid: c75e8c6c2749a485e9ee0a12a8dc28df, type: 3}
+  - {fileID: 7984003094456384988, guid: 67544d13d3804438d835d269748e31f9, type: 3}
+  - {fileID: 2803073147932440279, guid: 67544d13d3804438d835d269748e31f9, type: 3}
+  - {fileID: -7203322622091581043, guid: 67544d13d3804438d835d269748e31f9, type: 3}
+  - {fileID: 5064867289712273357, guid: 67544d13d3804438d835d269748e31f9, type: 3}
+  - {fileID: 855845424325339774, guid: 67544d13d3804438d835d269748e31f9, type: 3}
+  - {fileID: 4278533566099030880, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
+  - {fileID: 7169444454707475985, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
+  - {fileID: -4836396878177699978, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
+  - {fileID: -7344639986186629238, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
+  - {fileID: -8126269066482645401, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
+  - {fileID: 5946241889896587364, guid: 96e9aa50656704fcf9821df3ce919a2a, type: 3}
   - {fileID: 6064660849772116386, guid: 30be35049a0931d4eae69bb6bc792afc, type: 3}
   - {fileID: 3943941019869714401, guid: 30be35049a0931d4eae69bb6bc792afc, type: 3}
   - {fileID: -94041051514959337, guid: 30be35049a0931d4eae69bb6bc792afc, type: 3}
@@ -394,6 +412,10 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: e87a258dac1f1254291ce36a5a3f97c5, type: 3}
   - Key: event_MedicalStation
     Sprite: {fileID: 21300000, guid: aaa34b7780257a443b5cc560adc8923f, type: 3}
+  - Key: event_SecureRelay
+    Sprite: {fileID: 21300000, guid: 96cea7a63be764640bbcd6b4f59bf6fd, type: 3}
+  - Key: event_SecureRelay_secured
+    Sprite: {fileID: 21300000, guid: eb530a8807efa463d83a5fb7bb772901, type: 3}
   - Key: event_SupplySignal
     Sprite: {fileID: 21300000, guid: 11f123a37ef16df4b821ca5698bad191, type: 3}
   - Key: event_WeaponCache

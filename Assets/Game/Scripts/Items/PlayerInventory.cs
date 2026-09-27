@@ -182,6 +182,9 @@ namespace RuinRail.Gameplay.Items
             return _backpack.CanAdd(item);
         }
 
+        /// <summary>How much of this item the backpack could take now (see <see cref="IStackRoom"/>).</summary>
+        public int BackpackRoomFor(ItemInstance item) => item == null ? 0 : _backpack.RoomFor(item);
+
         public bool TryAddToBackpack(ItemInstance item)
         {
             if (!CanAddToBackpack(item)) return false;

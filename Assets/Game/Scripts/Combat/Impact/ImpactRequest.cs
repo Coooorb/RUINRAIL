@@ -116,17 +116,19 @@ namespace RuinRail.Gameplay.Combat.Impact
         /// </summary>
         public static System.Func<Component, ImpactRequest, bool> RemoteImpactRelay { get; set; }
 
-        public static void Apply(Component struck, ImpactRequest request)
+        /// <summary>Applies (or, on a client, forwards) the impact. True when something could receive it: a stagger or
+        /// knockback receiver here, or a request the relay forwarded — walls, triggers and hazards return false.</summary>
+        public static bool Apply(Component struck, ImpactRequest request)
         {
-            if (struck == null) return;
+            if (struck == null) return false;
             if (!DamageAuthority.LocalIsAuthoritative)
-            {
-                RemoteImpactRelay?.Invoke(struck, request);
-                return;
-            }
+                return RemoteImpactRelay?.Invoke(struck, request) ?? false;
 
-            if (request.HasStagger) struck.GetComponentInParent<IStaggerReceiver>()?.ApplyStagger(request);
-            if (request.HasKnockback) struck.GetComponentInParent<IKnockbackReceiver>()?.ApplyKnockback(request);
+            var stagger = struck.GetComponentInParent<IStaggerReceiver>();
+            var knockback = struck.GetComponentInParent<IKnockbackReceiver>();
+            if (request.HasStagger) stagger?.ApplyStagger(request);
+            if (request.HasKnockback) knockback?.ApplyKnockback(request);
+            return (request.HasStagger && stagger != null) || (request.HasKnockback && knockback != null);
         }
     }
 }

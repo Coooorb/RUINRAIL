@@ -75,6 +75,74 @@ namespace RuinRail.Tests
             Assert.IsNotNull(effect.Renderer.sprite, "Explicit placeholder sprite.");
         }
 
+        [UnityTest]
+        public IEnumerator DamageNumbers_ArePixelFontDigits_OutlinedOnTheGrid_AndDealtTakenHealReadApart()
+        {
+            var numbers = New<DamageNumberPool>("PixelNumbers");
+            numbers.Configure(_config);
+            var enemy = New<HealthComponent>("Enemy");
+            enemy.SetMaxHealth(100000);
+            enemy.transform.position = new Vector3(3.37f, 2.11f, 0f); // off-grid on purpose
+            var player = New<HealthComponent>("LocalPlayer");
+            player.SetMaxHealth(100000);
+            player.transform.position = new Vector3(-2.2f, 1.03f, 0f);
+            numbers.Bind(enemy);
+            numbers.Bind(player, null, isLocalPlayer: true);
+
+            enemy.TryApplyDamage(new DamageRequest(5));
+            enemy.TryApplyDamage(new DamageRequest(12345));
+            player.TryApplyDamage(new DamageRequest(18));
+            player.Heal(9);
+            yield return null;
+
+            var dealt = numbers.LiveNumbers[0];
+            var big = numbers.LiveNumbers[1];
+            var taken = numbers.LiveNumbers[2];
+            var heal = numbers.LiveNumbers[3];
+            var scale = _config.DamageNumberPixelScale;
+            foreach (var n in numbers.LiveNumbers)
+            {
+                Assert.IsTrue(n.UsesPixelFont, "the RUINRAIL pixel face, never the builtin font");
+                Assert.AreEqual(FilterMode.Point, n.Text.font.material.mainTexture.filterMode, "point-filtered: crisp, no blur");
+                Assert.AreEqual(8, n.Outline.Count, "a one-pixel outline on every side");
+                Assert.IsTrue(n.Outline.All(o => o.text == n.Text.text), "the outline tracks the figure");
+                Assert.AreSame(n.Shadow, n.Outline[0]);
+                Assert.AreEqual(scale, n.PixelScale);
+            }
+
+            Assert.AreEqual(DamageNumberKind.Dealt, dealt.Kind);
+            Assert.AreEqual(DamageNumberKind.Taken, taken.Kind, "the local player's own damage reads as damage taken");
+            Assert.AreEqual(DamageNumberKind.Heal, heal.Kind);
+            // TextMesh stores 8-bit colour: compare within one step.
+            void SameColour(Color expected, Color actual, string what) => Assert.IsTrue(Mathf.Abs(expected.r - actual.r) < 0.005f && Mathf.Abs(expected.g - actual.g) < 0.005f && Mathf.Abs(expected.b - actual.b) < 0.005f, $"{what}: {expected} vs {actual}");
+            SameColour(_config.DamageDealtColor, dealt.Text.color, "dealt");
+            SameColour(_config.DamageTakenColor, taken.Text.color, "taken");
+            SameColour(_config.HealNumberColor, heal.Text.color, "heal");
+            Assert.Greater(Mathf.Abs(dealt.Text.color.g - taken.Text.color.g), 0.3f, "dealt and taken are clearly different");
+
+            // Exact pixel size: a 6-pixel advance per digit and 7-pixel glyphs times the integer scale, small or large value.
+            const float ppu = 32f;
+            float Px(float world) => world * ppu;
+            var smallBounds = dealt.Text.GetComponent<MeshRenderer>().bounds;
+            var bigBounds = big.Text.GetComponent<MeshRenderer>().bounds;
+            Assert.AreEqual(6 * scale, Px(smallBounds.size.x), 0.05f, "'5' is exactly one glyph wide");
+            Assert.AreEqual(5 * 6 * scale, Px(bigBounds.size.x), 0.05f, "'12345' is exactly five glyphs wide: no squeeze, no clipping");
+            Assert.AreEqual(7 * scale, Px(bigBounds.size.y), 0.05f);
+
+            // On the grid: every glyph block starts on a whole screen pixel, before and during the rise.
+            void AssertOnGrid(DamageNumber n, string when)
+            {
+                var min = n.Text.GetComponent<MeshRenderer>().bounds.min;
+                Assert.AreEqual(Mathf.Round(Px(min.x)), Px(min.x), 0.02f, $"{n.Text.text} x on the pixel grid ({when})");
+                Assert.AreEqual(Mathf.Round(Px(min.y)), Px(min.y), 0.02f, $"{n.Text.text} y on the pixel grid ({when})");
+            }
+
+            foreach (var n in numbers.LiveNumbers) AssertOnGrid(n, "spawn");
+            numbers.TickAll(_config.DamageNumberSeconds * 0.37f);
+            yield return null;
+            foreach (var n in numbers.LiveNumbers) AssertOnGrid(n, "rising");
+        }
+
         [Test]
         public void DamageNumbers_ShowExactAppliedIntegers_HealsAsPlus_PooledAndSettingControlled()
         {
@@ -513,5 +581,93 @@ namespace RuinRail.Tests
         {
             public int ModifyIncomingDamage(DamageRequest request) => request.Amount / 2;
         }
-    }
+    
+        // ---- another peer's grenade (co-op presentation only) ----
+
+        private static List<PooledEffect> LiveEffects(string kind) =>
+            Object.FindObjectsByType<PooledEffect>(FindObjectsSortMode.None).Where(e => e.IsActive && e.Kind == kind).ToList();
+
+        [Test]
+        public void RemoteGrenade_IsPresentationOnly_FliesThenShowsItsRealArea_ForTheLifetimeThatIsLeft()
+        {
+            var content = RuinRail.App.GameContentCatalog.Load();
+            var pool = New<EffectPool>("Pool");
+            pool.Configure(64);
+            pool.SetSpriteResolver(content.VfxFramesFor);
+            var ground = New<EffectPool>("Ground");
+            ground.Configure(8, SortingRole.Hazard);
+            ground.SetSpriteResolver(content.VfxFramesFor);
+            var feedback = pool.gameObject.AddComponent<CombatFeedback>();
+            feedback.Configure(_config, pool, null, ground);
+            RuinRail.Gameplay.Items.Consumables.GrenadeData Data(RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind kind) => content.Items
+                .OfType<RuinRail.Gameplay.Items.Consumables.ConsumableDefinition>().First(c => c.EffectKind == RuinRail.Gameplay.Items.Consumables.ConsumableEffectKind.Grenade && c.Grenade.Kind == kind).Grenade;
+            void Step(float seconds)
+            {
+                for (var left = seconds; left > 1e-5f; left -= 0.05f)
+                {
+                    var dt = Mathf.Min(0.05f, left);
+                    feedback.Tick(dt); pool.TickAll(dt); ground.TickAll(dt);
+                }
+            }
+
+            var smoke = Data(RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind.Smoke);
+            var origin = new Vector2(100f, 100f);
+            var landing = origin + Vector2.right * 5f;
+            var flight = 5f / smoke.ThrowSpeed;
+            feedback.ShowRemoteGrenade(smoke, origin, landing, 0f);
+            Assert.AreEqual(1, feedback.RemoteFlightsInAir);
+            Assert.AreEqual(1, LiveEffects("grenade").Count, "the canister is drawn in flight");
+            Step(flight * 0.5f);
+            Assert.AreEqual(Vector2.Lerp(origin, landing, 0.5f).x, LiveEffects("grenade")[0].transform.position.x, 0.2f, "along the real path at the real speed");
+            Step(flight * 0.5f + 0.1f);
+            Assert.AreEqual(0, LiveEffects("grenade").Count);
+            var cloud = LiveEffects("smoke_cloud").Single();
+            Assert.Less(Vector2.Distance(cloud.transform.position, landing), 0.01f, "at the host's landing point");
+            Assert.AreEqual(smoke.RadiusTiles * 2f, cloud.Renderer.bounds.size.x, 0.05f, "the real area");
+            Assert.AreEqual(0, Object.FindObjectsByType<RuinRail.Gameplay.Combat.Area.SmokeZone>(FindObjectsSortMode.None).Length, "no gameplay zone on this peer");
+            Assert.AreEqual(0, Object.FindObjectsByType<RuinRail.Gameplay.Combat.Area.ThrownGrenade>(FindObjectsSortMode.None).Length, "and no grenade");
+            Step(smoke.SmokeDurationSeconds - 0.4f);
+            Assert.IsTrue(cloud.IsActive, "still there before its duration ends");
+            Step(0.5f);
+            Assert.IsFalse(cloud.IsActive, "gone when its duration ends");
+
+            // Frag on time: one burst, once.
+            var frag = Data(RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind.Frag);
+            var explosions = feedback.CountOf("explosion");
+            feedback.ShowRemoteGrenade(frag, origin, landing, 0f);
+            Step(1f);
+            Assert.AreEqual(explosions + 1, feedback.CountOf("explosion"), "one burst at landing");
+
+            // A late message: the burst is already over (not drawn); the burning ground shows what is left of it.
+            var incendiary = Data(RuinRail.Gameplay.Items.Consumables.GrenadeEffectKind.Incendiary);
+            explosions = feedback.CountOf("explosion");
+            feedback.ShowRemoteGrenade(incendiary, origin, landing, 5f / incendiary.ThrowSpeed + 3f);
+            Assert.AreEqual(explosions, feedback.CountOf("explosion"), "a burst that is over is not replayed");
+            var fire = LiveEffects("fire_zone").Single();
+            Assert.AreEqual(ground.transform, fire.transform.parent, "burning ground draws in the ground-layer pool");
+            Step(Mathf.Round(incendiary.BurnDurationSeconds) - 3f - 0.2f);
+            Assert.IsTrue(fire.IsActive);
+            Step(0.3f);
+            Assert.IsFalse(fire.IsActive, "it ends when the real burn ends, not a full duration after the late message");
+
+            // So late that everything is over: nothing is drawn at all (no orphan).
+            var areas = feedback.RemoteAreasShowing;
+            feedback.ShowRemoteGrenade(smoke, origin, landing, 60f);
+            Assert.AreEqual(areas, feedback.RemoteAreasShowing);
+            Assert.AreEqual(0, LiveEffects("smoke_cloud").Count);
+
+            // A new depth clears another peer's grenades in the air and on the ground; nothing lands afterwards.
+            feedback.ShowRemoteGrenade(smoke, origin, landing, flight + 0.1f);
+            feedback.ShowRemoteGrenade(frag, origin, landing, 0f);
+            Assert.AreEqual(1, feedback.RemoteAreasShowing);
+            Assert.AreEqual(1, feedback.RemoteFlightsInAir);
+            explosions = feedback.CountOf("explosion");
+            feedback.ClearRemoteGrenades();
+            Step(1f);
+            Assert.AreEqual(0, feedback.RemoteAreasShowing);
+            Assert.AreEqual(0, feedback.RemoteFlightsInAir);
+            Assert.AreEqual(0, LiveEffects("smoke_cloud").Count + LiveEffects("grenade").Count);
+            Assert.AreEqual(explosions, feedback.CountOf("explosion"), "a cleared flight never lands");
+        }
+}
 }

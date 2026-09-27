@@ -168,6 +168,12 @@ namespace RuinRail.Gameplay.Expedition
         public event Action<TransitDecision> TransitOpened;
         public event Action<ExpeditionSummary> ExpeditionEnded;
 
+        /// <summary>
+        /// Raised once at the start of the Return (<c>true</c>) or failure (<c>false</c>) transaction, before it reads the
+        /// carried state: the last moment anything held outside the run (a Secure Relay escrow) can rejoin it and share its fate.
+        /// </summary>
+        public event Action<ExpeditionState, bool> Ending;
+
         // ---- Start transaction ----
 
         private int _levelAtStart;
@@ -366,6 +372,7 @@ namespace RuinRail.Gameplay.Expedition
             if (TryGetClosedSummary(out var replayed)) return replayed;
             EnsureActive();
             var state = State;
+            Ending?.Invoke(state, true);
             var transfer = CoinTransfer.MoveAll(state.CarriedWallet, BankedWallet, "extraction");
             var secured = AllItems(state.Inventory).Select(Line).ToList();
             foreach (var item in AllItems(state.Inventory)) item.IsAtRisk = false;
@@ -388,6 +395,7 @@ namespace RuinRail.Gameplay.Expedition
             if (TryGetClosedSummary(out var replayed)) return replayed;
             EnsureActive();
             var state = State;
+            Ending?.Invoke(state, false);
             var lost = AllItems(state.Inventory).Select(Line).ToList();
             var coinsLost = state.CarriedWallet.TakeAll("expedition_failed");
             state.Inventory.RestoreFromSnapshot(null); // at-risk carried assets are destroyed

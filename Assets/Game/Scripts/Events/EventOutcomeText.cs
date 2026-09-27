@@ -48,6 +48,7 @@ namespace RuinRail.Gameplay.Events
                         DungeonEventKind.CursedChest => "CURSED CHEST CLEARED: " + (loot.Length > 0 ? loot : "LOOT DROPPED"),
                         DungeonEventKind.MedicalStation => HealText(result),
                         DungeonEventKind.WeaponCache => "WEAPON TAKEN",
+                        DungeonEventKind.SecureRelay => "ITEM SECURED",
                         _ => $"{title}: DONE"
                     };
                 case DungeonEventOutcome.Failed:

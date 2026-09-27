@@ -294,7 +294,11 @@ namespace RuinRail.Tests
         public void NoMidExpeditionResumeData_IsIntroduced()
         {
             var fields = typeof(SaveSlot).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Select(f => f.Name).ToList();
-            CollectionAssert.AreEquivalent(new[] { "SaveVersion", "Profile", "Storage", "FirstLaunch", "ActiveExpedition", "Quarantine" }, fields);
+            CollectionAssert.AreEquivalent(new[] { "SaveVersion", "Profile", "Storage", "FirstLaunch", "ActiveExpedition", "RelayEscrow", "Quarantine" }, fields);
+            // 57.7: a pending Secure Relay delivery is one item unit bound for Storage plus the ids that route its verdict —
+            // it only ever resolves into Storage (or back into the live run on a refusal), never resumes a run.
+            var escrowFields = typeof(RuinRail.Gameplay.Events.SecureRelayEscrow).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Select(f => f.Name).ToList();
+            CollectionAssert.AreEquivalent(new[] { "State", "TransactionId", "RunTransactionId", "ParticipantId", "Depth", "RoomNode", "SourceContainerId", "SourceInstanceId", "Unit" }, escrowFields, "no inventory, coins, HP or world state rides along");
             var markerFields = typeof(ExpeditionMarker).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance).Select(f => f.Name).ToList();
             CollectionAssert.AreEquivalent(new[] { "TransactionId", "RunSeed", "StartedUtcTicks", "AtRiskInstanceIds" }, markerFields, "The marker records the open transaction only; no depth, inventory, coins or HP.");
         }

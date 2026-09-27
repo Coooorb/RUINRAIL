@@ -280,3 +280,139 @@ namespace RuinRail.Tests
         }
     }
 }
+
+namespace RuinRail.Tests
+{
+    /// <summary>
+    /// Consumable world effects in the shipped runtime (boot → Shelter → dungeon): each grenade is thrown through the
+    /// player's real quick-grenade path, drawn along its flight, and shows its landing effect at the gameplay's radius for
+    /// the gameplay's duration. Captures: TestResults/RegressionProof/consumable_vfx_*.png.
+    /// </summary>
+    public sealed class ConsumableVfxLiveTests
+    {
+        private string _saveDir;
+        private RuinRail.App.GameApp _app;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _saveDir = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "ruinrail_cvfx_" + System.Guid.NewGuid().ToString("N"));
+            System.IO.Directory.CreateDirectory(_saveDir);
+            System.IO.Directory.CreateDirectory("TestResults/RegressionProof");
+            RuinRail.Core.Input.GameplayInputGate.Reset();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            if (_app != null) Object.DestroyImmediate(_app.gameObject);
+            foreach (var root in UnityEngine.SceneManagement.SceneManager.GetActiveScene().GetRootGameObjects())
+            {
+                if (root == null || root.name.IndexOf("tests runner", System.StringComparison.OrdinalIgnoreCase) >= 0) continue;
+                if (root.GetComponents<Component>().Any(c => c != null && (c.GetType().Namespace ?? string.Empty).StartsWith("UnityEngine.TestTools"))) continue;
+                Object.DestroyImmediate(root);
+            }
+
+            Time.timeScale = 1f;
+            RuinRail.Networking.NetworkPlayerObject.VisualComposer = null;
+            RuinRail.Core.Input.GameplayInputGate.Reset();
+            try { System.IO.Directory.Delete(_saveDir, true); } catch { /* best effort */ }
+        }
+
+        private static List<RuinRail.Presentation.Vfx.PooledEffect> Live(string kind) =>
+            Object.FindObjectsByType<RuinRail.Presentation.Vfx.PooledEffect>(FindObjectsSortMode.None).Where(e => e.IsActive && e.Kind == kind).ToList();
+
+        [UnityTest]
+        public IEnumerator EveryGrenade_IsDrawnInFlight_AndItsLandingEffectMatchesTheRealAreaAndDuration()
+        {
+            _app = RuinRail.App.GameApp.Ensure(RuinRail.App.GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(RuinRail.Core.SceneNames.MainMenu);
+            for (var t = Time.realtimeSinceStartup + 30f; _app.ComposedScene != RuinRail.Core.SceneNames.MainMenu;) { Assert.Less(Time.realtimeSinceStartup, t); yield return null; }
+            _app.Menu.Play();
+            for (var t = Time.realtimeSinceStartup + 30f; _app.ComposedScene != RuinRail.Core.SceneNames.Base;) { Assert.Less(Time.realtimeSinceStartup, t); yield return null; }
+            var hub = Object.FindFirstObjectByType<RuinRail.App.BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Thrower");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(RuinRail.UI.Base.BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            for (var t = Time.realtimeSinceStartup + 30f; _app.ComposedScene != RuinRail.Core.SceneNames.Dungeon;) { Assert.Less(Time.realtimeSinceStartup, t); yield return null; }
+            for (var i = 0; i < 12; i++) yield return null;
+
+            var run = Object.FindFirstObjectByType<RuinRail.App.ExpeditionScene>();
+            var player = run.Rig.Player;
+            var inventory = run.Rig.Inventory;
+            var start = run.Rooms.Values.First(r => r.State.RoomType == RuinRail.Dungeon.Rooms.RoomType.Start).InteriorWorldBounds;
+            var from = new Vector2(start.xMin + 1.5f, start.center.y);
+            var grenades = _app.Content.Items.OfType<ConsumableDefinition>().Where(c => c.EffectKind == ConsumableEffectKind.Grenade).OrderBy(c => c.Grenade.Kind).ToList();
+            Assert.AreEqual(4, grenades.Count, "Frag, Shock, Incendiary, Smoke");
+
+            foreach (var definition in grenades)
+            {
+                var data = definition.Grenade;
+                player.transform.position = from;
+                player.GetComponent<Rigidbody2D>().position = from;
+                inventory.Unequip(EquippedSlot.ActiveConsumable);
+                for (var slot = 0; slot < inventory.BackpackSlots.Count; slot++)
+                    if (inventory.BackpackSlots[slot] != null && inventory.BackpackSlots[slot].DefinitionId.Contains("grenade")) inventory.RemoveFromBackpack(slot);
+                Assert.IsTrue(inventory.TryEquip(new ItemInstance(definition.Id, 1), EquippedSlot.ActiveConsumable), definition.Id);
+                yield return null;
+
+                var launcher = player.GetComponent<GrenadeLauncher>();
+                Assert.IsTrue(run.Rig.Consumables.TryQuickGrenade(), definition.Id + " thrown through the quick-grenade path");
+                var grenade = launcher.LastThrown;
+                yield return null;
+                var inFlight = Live("grenade");
+                Assert.AreEqual(1, inFlight.Count, $"{definition.Id}: the canister is drawn in flight");
+                Assert.Less(Vector2.Distance(inFlight[0].transform.position, grenade.transform.position), 0.05f, "and follows the real grenade");
+                var landing = grenade.LandingPoint;
+                for (var t = Time.time + 3f; grenade != null && Time.time < t;) yield return null;
+                yield return null;
+                Assert.AreEqual(0, Live("grenade").Count, $"{definition.Id}: the canister is gone on landing");
+
+                string area = data.Kind switch { GrenadeEffectKind.Shock => "shock", GrenadeEffectKind.Smoke => "smoke_cloud", GrenadeEffectKind.Incendiary => "fire_zone", _ => "explosion" };
+                var effect = Live(area).SingleOrDefault();
+                Assert.IsNotNull(effect, $"{definition.Id}: {area} shows where it landed");
+                Assert.Less(Vector2.Distance(effect.transform.position, landing), 0.01f, "at the landing point");
+                if (area != "explosion")
+                    Assert.AreEqual(data.RadiusTiles * 2f, effect.Renderer.bounds.size.x, 0.05f, $"{definition.Id}: drawn exactly as wide as the gameplay area");
+                if (data.Kind == GrenadeEffectKind.Incendiary) Assert.AreEqual(1, Live("explosion").Count, "the Incendiary also bursts");
+                if (data.Kind == GrenadeEffectKind.Frag || data.Kind == GrenadeEffectKind.Incendiary)
+                    Assert.AreEqual(data.RadiusTiles * 2f, Live("explosion")[0].Renderer.bounds.size.x, 0.2f, "the blast reads its real radius");
+
+                var cam = run.Camera.Camera.transform;
+                cam.position = new Vector3(landing.x, landing.y, cam.position.z);
+                for (var i = 0; i < 3; i++) yield return null;
+                RuinRail.Tests.LiveDungeonCapture.Capture("TestResults/RegressionProof", "consumable_vfx_" + data.Kind, run.Camera.Camera, run.Camera.Config.PixelsPerUnit, includeUi: false);
+
+                // Lasting areas: the effect lives exactly as long as the zone that does the gameplay.
+                if (data.Kind == GrenadeEffectKind.Smoke || data.Kind == GrenadeEffectKind.Incendiary)
+                {
+                    var zone = data.Kind == GrenadeEffectKind.Smoke ? (Component)Object.FindObjectsByType<SmokeZone>(FindObjectsSortMode.None).Single() : Object.FindObjectsByType<BurnZone>(FindObjectsSortMode.None).Single();
+                    Assert.Less(Vector2.Distance(zone.transform.position, effect.transform.position), 0.01f, "one area, one effect, same place");
+                    var seconds = data.Kind == GrenadeEffectKind.Smoke ? data.SmokeDurationSeconds : data.BurnDurationSeconds;
+                    var landedAt = Time.time;
+                    for (var t = Time.time + seconds + 2f; zone != null && Time.time < t;) yield return null;
+                    var zoneEnded = Time.time - landedAt;
+                    for (var t = Time.time + 1f; effect.IsActive && Time.time < t;) yield return null;
+                    var effectEnded = Time.time - landedAt;
+                    Assert.IsTrue(zone == null, "the zone ended");
+                    Assert.AreEqual(zoneEnded, effectEnded, 0.25f, $"{definition.Id}: the effect ends with the area ({zoneEnded:0.00}s vs {effectEnded:0.00}s)");
+                }
+                else
+                {
+                    for (var t = Time.time + 1.5f; effect.IsActive && Time.time < t;) yield return null;
+                    Assert.IsFalse(effect.IsActive, "the burst is brief");
+                }
+            }
+            // A stim's buff (the composed ConsumableEffectRunner binding): one status marker over the user.
+            inventory.Unequip(EquippedSlot.ActiveConsumable);
+            Assert.IsTrue(inventory.TryEquip(new ItemInstance("consumable_combat_stim", 1), EquippedSlot.ActiveConsumable));
+            var statusBefore = Object.FindFirstObjectByType<RuinRail.Presentation.Vfx.CombatFeedback>().CountOf("status");
+            Assert.IsTrue(run.Rig.Consumables.TryUse(), "the stim is used");
+            for (var t = Time.time + 5f; Object.FindFirstObjectByType<RuinRail.Presentation.Vfx.CombatFeedback>().CountOf("status") == statusBefore && Time.time < t;) yield return null;
+            Assert.AreEqual(statusBefore + 1, Object.FindFirstObjectByType<RuinRail.Presentation.Vfx.CombatFeedback>().CountOf("status"), "the buff shows its marker once");
+        }
+    }
+}

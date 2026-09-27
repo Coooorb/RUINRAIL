@@ -23,4 +23,6 @@ Traps found the hard way:
 - A `MonoBehaviour` on a prefab must live in a file named after it (`NetworkDungeonSync` was inside `DungeonNetSync.cs` → "missing script" on the link prefab).
 - Stray client processes survive a failed proof; `pgrep -fl RUINRAIL.app` and kill them before the next run.
 
+Secure Relay scenario (2026-09-27): `./scripts/run-coop-expedition-proof.sh <out> 2 79 <port> relay` (seed 79 rolls a relay on D1, ~45 s). The host withholds the client's verdict (`CoopHostWorld.HoldRelayResults`, proof-only) and forces a real token reconnect; expected host 26/26, client 11/11.
+
 See [[coop-peer-proof-gotchas]] and [[built-player-smoke-seed-flaky-on-mac]].

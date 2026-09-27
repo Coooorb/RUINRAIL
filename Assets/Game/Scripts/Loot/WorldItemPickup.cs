@@ -38,6 +38,19 @@ namespace RuinRail.Gameplay.Loot
 
         public event Action<WorldItemPickup> PickedUp;
 
+        /// <summary>The player whose drop this is, while their attraction still holds it back (null otherwise).</summary>
+        public GameObject DroppedBy { get; private set; }
+
+        /// <summary>Marks a manual drop (32): the dropper's attraction leaves it alone until their reach has left it once.</summary>
+        public void MarkDroppedBy(GameObject dropper) => DroppedBy = dropper;
+
+        public bool IsHeldBackFrom(GameObject collector) => collector != null && DroppedBy != null && DroppedBy == collector;
+
+        public void ReleaseHoldBack(GameObject collector)
+        {
+            if (IsHeldBackFrom(collector)) DroppedBy = null;
+        }
+
         public IEnumerable<ItemInstance> Items
         {
             get
@@ -87,34 +100,74 @@ namespace RuinRail.Gameplay.Loot
 
         public bool CanInteract(GameObject interactor) => _item != null && !_resolving && !_consumed && interactor != null && interactor.GetComponent<IItemReceiver>() != null;
 
-        /// <summary>Takeable right now: an interactor that can receive it, and a backpack with room for this stack.</summary>
-        public bool CanBeCollectedBy(GameObject interactor) =>
-            CanInteract(interactor) && interactor.GetComponent<IItemReceiver>()?.Backpack?.CanAccept(_item) == true;
+        /// <summary>
+        /// How much of this pickup <paramref name="destination"/> could take right now: the whole stack, the part that
+        /// fits its matching stacks and free slots (a stack only), or nothing.
+        /// </summary>
+        public int CollectableInto(IItemContainer destination)
+        {
+            if (_item == null || _resolving || _consumed || destination == null) return 0;
+            if (destination is IStackRoom room) return Mathf.Clamp(room.RoomFor(_item), 0, _item.Quantity);
+            return destination.CanAccept(_item) ? _item.Quantity : 0;
+        }
 
-        /// <summary>Moves the held item into the interactor's inventory via the central transfer service.</summary>
+        /// <summary>Takeable right now: an interactor that can receive it, and a backpack with room for at least part of this stack.</summary>
+        public bool CanBeCollectedBy(GameObject interactor) =>
+            CanInteract(interactor) && CollectableInto(interactor.GetComponent<IItemReceiver>()?.Backpack) > 0;
+
+        /// <summary>True when the whole stack fits (attraction pulls only those; a partial fit is taken where it lies).</summary>
+        public bool FitsWhollyFor(GameObject interactor) =>
+            CanInteract(interactor) && CollectableInto(interactor.GetComponent<IItemReceiver>()?.Backpack) >= _item.Quantity;
+
+        /// <summary>Raised when a partial pickup leaves the rest here (the new remaining quantity).</summary>
+        public event Action<WorldItemPickup, int> QuantityChanged;
+
+        /// <summary>Moves the held item (or the part that fits) into the interactor's inventory via the central transfer service.</summary>
         public bool Interact(GameObject interactor)
         {
             if (!CanInteract(interactor)) return false;
-            // The collector's pickup hooks (Ammo Pouch / Scavenger's Reserve) size the stack before it moves, so the
-            // solo transfer, the host arbiter and the grant it sends a co-op member all carry the same final quantity.
-            // A pickup that does not happen is put back exactly as it was.
-            var baseQuantity = _item.Quantity;
-            var hook = interactor.GetComponent<IPickupQuantityHook>();
-            var sized = hook != null ? hook.PickupQuantityFor(_item) : baseQuantity;
-            if (sized != baseQuantity) _item.SetQuantity(sized);
             // In co-op the run installs the host arbiter here, so a shared pickup is resolved once for the whole party
-            // instead of by whichever player's collider got there first (82). Solo installs nothing and is unchanged.
+            // instead of by whichever player's collider got there first (82); it ends in the same Collect below.
             var arbitrated = PickupArbiter.Items?.Invoke(this, interactor);
-            bool taken;
-            if (arbitrated.HasValue) taken = arbitrated.Value;
-            else
+            if (arbitrated.HasValue) return arbitrated.Value;
+            var receiver = interactor.GetComponent<IItemReceiver>();
+            return Collect(receiver.Backpack, receiver.TransferService, interactor.GetComponent<IPickupQuantityHook>()).Success;
+        }
+
+        /// <summary>
+        /// The one pickup transaction — a manual interaction, the auto-pickup pull and the co-op host arbiter all end here.
+        /// Whole stack fits: the collector's pickup hook (Ammo Pouch / Scavenger's Reserve) sizes it, clipped to the room
+        /// there is, and the whole pickup moves (and despawns). Only part fits: exactly that part moves into the
+        /// matching stacks / free slots, and the rest stays in this pickup with its exact remaining quantity (the bonus
+        /// hook applies to whole pickups; the remainder gets it when it is taken). Nothing fits: nothing changes.
+        /// </summary>
+        public TransferResult Collect(IItemContainer destination, ItemTransferService transferService, IPickupQuantityHook hook = null)
+        {
+            if (_item == null || _resolving || _consumed) return TransferResult.Fail(TransferError.SourceMissingItem);
+            var room = CollectableInto(destination);
+            if (room <= 0) return TransferResult.Fail(TransferError.DestinationRejected, _item.InstanceId);
+            var baseQuantity = _item.Quantity;
+            if (room >= baseQuantity)
             {
-                var receiver = interactor.GetComponent<IItemReceiver>();
-                taken = TryPickUp(receiver.Backpack, receiver.TransferService).Success;
+                var sized = hook != null ? hook.PickupQuantityFor(_item) : baseQuantity;
+                if (sized > baseQuantity && destination is IStackRoom stackRoom) sized = Mathf.Max(baseQuantity, Mathf.Min(sized, stackRoom.RoomFor(_item)));
+                if (sized != baseQuantity) _item.SetQuantity(sized);
+                var whole = TryPickUp(destination, transferService);
+                if (!whole.Success && _item != null && !_consumed) _item.SetQuantity(baseQuantity); // not taken: exactly as it was
+                return whole;
             }
 
-            if (!taken && _item != null && sized != baseQuantity) _item.SetQuantity(baseQuantity);
-            return taken;
+            _resolving = true;
+            try
+            {
+                var part = (transferService ?? new ItemTransferService()).TransferQuantity(this, _item.InstanceId, room, destination);
+                if (part.Success) QuantityChanged?.Invoke(this, _item.Quantity);
+                return part;
+            }
+            finally
+            {
+                _resolving = false;
+            }
         }
 
         public TransferResult TryPickUp(IItemContainer destination, ItemTransferService transferService)
@@ -174,6 +227,19 @@ namespace RuinRail.Gameplay.Loot
         /// they are standing at. A pickup that cannot be taken is left exactly where it fell.
         /// </summary>
         bool CanBeCollectedBy(GameObject interactor);
+
+        /// <summary>True when the whole pickup fits the interactor now; a pickup that only partly fits is taken where it lies, never pulled.</summary>
+        bool FitsWhollyFor(GameObject interactor);
+
+        /// <summary>
+        /// True while this pickup is held back from one collector's attraction: a player who dropped it (32) does not
+        /// pull their own drop straight back from under their feet. Everyone else may collect it at once, and a
+        /// deliberate interaction is never held back.
+        /// </summary>
+        bool IsHeldBackFrom(GameObject collector);
+
+        /// <summary>The collector's reach has left the pickup once: from now on it attracts to them like any other.</summary>
+        void ReleaseHoldBack(GameObject collector);
 
         Transform transform { get; }
     }

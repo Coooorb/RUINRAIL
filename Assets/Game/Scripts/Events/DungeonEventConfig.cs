@@ -4,7 +4,7 @@ using UnityEngine;
 namespace RuinRail.Gameplay.Events
 {
     /// <summary>
-    /// Data behind the six approved events (57): which loot source/quality each reward uses and the few tunables the
+    /// Data behind the approved events (57): which loot source/quality each reward uses and the few tunables the
     /// spec marks as such. Prices are NOT here — they come from EconomyConfig through PriceService (77).
     /// </summary>
     [CreateAssetMenu(fileName = "DungeonEventConfig", menuName = "RuinRail/Events/Dungeon Event Config")]
@@ -47,6 +47,13 @@ namespace RuinRail.Gameplay.Events
         [Tooltip("V1 FINAL (TASK 179): rarity table quality for the presented weapons.")]
         [SerializeField] private LootQuality _weaponCacheQuality = LootQuality.Improved;
 
+        [Header("Secure Relay (57.7): rare; each player secures one carried item into Shelter Storage")]
+        [Tooltip("TEMPORARY (Secure Relay pass, 2026-09-26): chance in percent that an Event room without an authored event tag rolls the Secure Relay instead of its seeded event.")]
+        [SerializeField, Range(0, 100)] private int _secureRelayChancePercent = DefaultSecureRelayChancePercent;
+
+        /// <summary>TEMPORARY default of the Secure Relay roll (57.7 says only "rare"); planning code without the asset uses it too.</summary>
+        public const int DefaultSecureRelayChancePercent = 8;
+
         public LootSourceKind CursedChestLootSource => _cursedChestLootSource;
         public LootQuality CursedChestQuality => _cursedChestQuality;
         public float CursedChestThreatScale => _cursedChestThreatScale;
@@ -64,6 +71,7 @@ namespace RuinRail.Gameplay.Events
         public int ReviveHealthPercent => _reviveHealthPercent;
         public int WeaponCacheChoices => _weaponCacheChoices;
         public LootQuality WeaponCacheQuality => _weaponCacheQuality;
+        public int SecureRelayChancePercent => _secureRelayChancePercent;
 
         public static DungeonEventConfig Create() => CreateInstance<DungeonEventConfig>();
     }

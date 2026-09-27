@@ -261,7 +261,7 @@ namespace RuinRail.Tests
             var objectsAfterFirst = samples[0].objects;
             var objectsLast = samples[^1].objects;
             Assert.LessOrEqual(objectsLast, objectsAfterFirst + 8, "Object count is flat across depth transitions (pools warmed up on the first cycle, nothing leaks after).");
-            Assert.LessOrEqual(objectsAfterFirst, baselineObjects + effects.Capacity + numbers.Capacity + 24 + 64, "Growth after the first cycle is only the warmed-up pools.");
+            Assert.LessOrEqual(objectsAfterFirst, baselineObjects + effects.Capacity + numbers.Capacity * DamageNumber.ObjectsPerNumber + 24 + 64, "Growth after the first cycle is only the warmed-up pools (a pooled number is its figure plus its pixel outline).");
             var growthMb = (samples[^1].mono - samples[1].mono) / 1024f / 1024f;
             Report.AppendLine($"- Mono heap growth cycles 2→8: {growthMb:0.00} MB (editor heap; see note).");
 

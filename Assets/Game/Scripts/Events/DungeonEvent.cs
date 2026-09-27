@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace RuinRail.Gameplay.Events
 {
-    /// <summary>57: exactly the six approved MVP event types.</summary>
+    /// <summary>57: the six approved MVP event types plus the rare Secure Relay (57.7). Append only: values are replicated.</summary>
     public enum DungeonEventKind
     {
         CursedChest,
@@ -18,7 +18,8 @@ namespace RuinRail.Gameplay.Events
         BrokenMachine,
         SupplySignal,
         MedicalStation,
-        WeaponCache
+        WeaponCache,
+        SecureRelay
     }
 
     /// <summary>Stable detail codes a result can carry, so callers never match on a loose string literal.</summary>

@@ -180,7 +180,7 @@ namespace RuinRail.App
             {
                 if (WorldSpriteFor(key) == null) problems.Add($"missing world sprite {key}");
             }
-            foreach (var kind in new[] { "muzzle", "impact", "explosion", "melee", "stagger", "heal", "status", "loot_glow", "telegraph_stationary", "telegraph_dash", "telegraph_projectile", "telegraph_zone", "telegraph_slam" })
+            foreach (var kind in new[] { "muzzle", "impact", "explosion", "melee", "stagger", "heal", "status", "loot_glow", "telegraph_stationary", "telegraph_dash", "telegraph_projectile", "telegraph_zone", "telegraph_slam", "grenade", "shock", "smoke_cloud", "fire_zone" })
             {
                 if (VfxFramesFor(kind).Count == 0) problems.Add($"missing vfx frames for {kind}");
             }

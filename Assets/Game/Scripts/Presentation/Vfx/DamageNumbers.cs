@@ -5,79 +5,131 @@ using UnityEngine;
 
 namespace RuinRail.Presentation.Vfx
 {
+    /// <summary>What a number reports: damage the player dealt, damage the local player took, or healing.</summary>
+    public enum DamageNumberKind
+    {
+        Dealt,
+        Taken,
+        Heal
+    }
+
     /// <summary>
-    /// One pooled world-space number.
+    /// One pooled world-space number, drawn in the project's own pixel font (Resources/Fonts/ruinrail_pixel, the face
+    /// the whole UI uses) at an exact integer pixel scale on the 32 PPU grid, with a one-font-pixel dark outline.
     ///
-    /// The figure is drawn twice: a near-black copy one reference pixel down-right, then the number itself over it.
-    /// Plain white text had nothing behind it, so a number landing on a lit floor tile, a muzzle flash or an impact
-    /// flash disappeared into it exactly when the player most wanted to read it — and a translucent plate behind every
-    /// number would be a box of UI in the middle of the fight. A one-pixel shadow is what pixel art uses instead: it
-    /// costs one extra quad, it reads at any background value, and it keeps the figure itself unblurred and on grid.
+    /// The outline is eight dark copies one font pixel away (the down-right one is <see cref="Shadow"/>), under the
+    /// figure: a number landing on a lit floor tile, a muzzle flash, an impact or a boss body stays legible, with no
+    /// translucent plate and no blur. The point-filtered bitmap face, the snapped position and the parity correction
+    /// keep every glyph pixel on a screen pixel; the rise moves in whole pixels.
     /// </summary>
     public sealed class DamageNumber : MonoBehaviour
     {
-        /// <summary>Shadow offset in reference pixels (one pixel right and one down, on the 32 PPU grid).</summary>
+        /// <summary>Outline / shadow offset in font pixels (one pixel on every side).</summary>
         public const int ShadowPixels = 1;
+        public const string PixelFontResource = "Fonts/ruinrail_pixel";
+        /// <summary>TextMesh draws one font pixel as 0.1 world units at characterSize 1; the world has 32 pixels per unit.</summary>
+        private const float CharacterSizePerScale = 10f / SortingConvention.PixelsPerUnit;
+        private const int GlyphHeightPixels = 7;
+        /// <summary>GameObjects one pooled number owns: the figure and its eight outline copies (pool budgets count this).</summary>
+        public const int ObjectsPerNumber = 9;
+
+        private static Font _font;
+        private static readonly Vector2Int[] OutlineOffsets =
+        {
+            new(1, -1), new(-1, -1), new(1, 1), new(-1, 1), new(1, 0), new(-1, 0), new(0, 1), new(0, -1)
+        };
 
         private DamageNumberPool _pool;
         private float _remaining;
         private float _lifetime;
         private Vector2 _origin;
         private float _risePixels;
+        private int _scale = 1;
+        private readonly List<TextMesh> _outline = new();
 
         public TextMesh Text { get; private set; }
-        /// <summary>The dark copy under the figure; the tests assert it tracks the number's own text.</summary>
+        /// <summary>The down-right outline copy; the tests assert it tracks the number's own text.</summary>
         public TextMesh Shadow { get; private set; }
+        public IReadOnlyList<TextMesh> Outline => _outline;
         public int Value { get; private set; }
-        public bool IsHeal { get; private set; }
+        public DamageNumberKind Kind { get; private set; }
+        public bool IsHeal => Kind == DamageNumberKind.Heal;
         public bool IsActive => _remaining > 0f;
+        public int PixelScale => _scale;
+        /// <summary>True when the digits are drawn with the RUINRAIL pixel face (false only if the resource is missing).</summary>
+        public bool UsesPixelFont => Text != null && Text.font != null && Text.font == PixelFont();
 
-        internal void Bind(DamageNumberPool pool)
+        public static Font PixelFont()
+        {
+            if (_font == null) _font = Resources.Load<Font>(PixelFontResource);
+            return _font;
+        }
+
+        internal void Bind(DamageNumberPool pool, int pixelScale, Color outlineColor)
         {
             _pool = pool;
+            _scale = Mathf.Clamp(pixelScale, 1, 3);
+            var font = PixelFont();
             Text = GetComponent<TextMesh>();
             if (Text == null) Text = gameObject.AddComponent<TextMesh>();
-            Text.characterSize = 0.1f;
-            Text.fontSize = 32;
-            Text.anchor = TextAnchor.MiddleCenter;
+            Configure(Text, gameObject, font);
             var renderer = GetComponent<MeshRenderer>();
             if (renderer != null) SpriteSorting.Apply(renderer, SortingRole.WorldUi);
 
-            if (Shadow == null)
+            if (_outline.Count > 0) return;
+            var step = _scale * ShadowPixels / (float)SortingConvention.PixelsPerUnit;
+            foreach (var offset in OutlineOffsets)
             {
-                var shadowGo = new GameObject("Shadow");
-                shadowGo.transform.SetParent(transform, false);
-                var offset = ShadowPixels / (float)SortingConvention.PixelsPerUnit;
-                shadowGo.transform.localPosition = new Vector3(offset, -offset, 0f);
-                Shadow = shadowGo.AddComponent<TextMesh>();
-                Shadow.font = Text.font;
-                Shadow.characterSize = Text.characterSize;
-                Shadow.fontSize = Text.fontSize;
-                Shadow.anchor = Text.anchor;
-                Shadow.color = new Color(0.03f, 0.04f, 0.05f, 0.9f);
-                var shadowRenderer = shadowGo.GetComponent<MeshRenderer>();
-                if (shadowRenderer != null)
+                var copy = new GameObject("Outline");
+                copy.transform.SetParent(transform, false);
+                copy.transform.localPosition = new Vector3(offset.x * step, offset.y * step, 0f);
+                var mesh = copy.AddComponent<TextMesh>();
+                Configure(mesh, copy, font);
+                mesh.color = outlineColor;
+                var outlineRenderer = copy.GetComponent<MeshRenderer>();
+                if (outlineRenderer != null)
                 {
-                    shadowRenderer.sharedMaterial = Text.font != null ? Text.font.material : shadowRenderer.sharedMaterial;
-                    SpriteSorting.Apply(shadowRenderer, SortingRole.WorldUi);
-                    // One order under the figure, so the shadow can never draw over the number it is behind.
-                    shadowRenderer.sortingOrder -= 1;
+                    SpriteSorting.Apply(outlineRenderer, SortingRole.WorldUi);
+                    // One order under the figure, so the outline can never draw over the number it frames.
+                    outlineRenderer.sortingOrder -= 1;
                 }
+
+                _outline.Add(mesh);
             }
+
+            Shadow = _outline[0];
         }
 
-        public void Show(int value, bool isHeal, Vector2 position, float lifetime, float risePixels)
+        private void Configure(TextMesh mesh, GameObject owner, Font font)
+        {
+            if (font != null)
+            {
+                mesh.font = font;
+                var renderer = owner.GetComponent<MeshRenderer>();
+                if (renderer != null) renderer.sharedMaterial = font.material; // the point-filtered atlas of the face
+            }
+
+            mesh.fontSize = 0; // a bitmap face: its native size, scaled by characterSize only
+            mesh.characterSize = CharacterSizePerScale * _scale;
+            mesh.anchor = TextAnchor.MiddleCenter;
+            mesh.alignment = TextAlignment.Center;
+        }
+
+        public void Show(int value, bool isHeal, Vector2 position, float lifetime, float risePixels) =>
+            Show(value, isHeal ? DamageNumberKind.Heal : DamageNumberKind.Dealt, position, lifetime, risePixels, isHeal ? new Color(0.55f, 0.95f, 0.55f) : Color.white);
+
+        public void Show(int value, DamageNumberKind kind, Vector2 position, float lifetime, float risePixels, Color color)
         {
             Value = value;
-            IsHeal = isHeal;
+            Kind = kind;
             _origin = position;
             _lifetime = Mathf.Max(0.01f, lifetime);
             _remaining = _lifetime;
             _risePixels = risePixels;
-            Text.text = isHeal ? "+" + value : value.ToString();
-            Text.color = isHeal ? new Color(0.55f, 1f, 0.55f) : Color.white;
-            if (Shadow != null) Shadow.text = Text.text;
-            transform.position = new Vector3(position.x, position.y, 0f);
+            Text.text = kind == DamageNumberKind.Heal ? "+" + value : value.ToString();
+            Text.color = color;
+            foreach (var copy in _outline) copy.text = Text.text;
+            Place(0f);
             gameObject.SetActive(true);
         }
 
@@ -86,9 +138,22 @@ namespace RuinRail.Presentation.Vfx
             if (!IsActive) return;
             _remaining -= deltaTime;
             var t = 1f - Mathf.Clamp01(_remaining / _lifetime);
-            var rise = Mathf.Round(t * _risePixels) / SortingConvention.PixelsPerUnit;
-            transform.position = new Vector3(_origin.x, _origin.y + rise, 0f);
+            Place(Mathf.Round(t * _risePixels));
             if (_remaining <= 0f) _pool.Return(this);
+        }
+
+        /// <summary>
+        /// Puts the figure on the pixel grid: the anchor snaps to whole pixels, and a glyph block with an odd pixel
+        /// height (7 px at scale 1) is centred half a pixel off so its rows still land on screen rows. Widths are always
+        /// even (6-pixel advance), so the horizontal centre is already on the grid.
+        /// </summary>
+        private void Place(float risePixels)
+        {
+            const float ppu = SortingConvention.PixelsPerUnit;
+            var x = Mathf.Round(_origin.x * ppu) / ppu;
+            var y = (Mathf.Round(_origin.y * ppu) + risePixels) / ppu;
+            if (GlyphHeightPixels * _scale % 2 == 1) y += 0.5f / ppu;
+            transform.position = new Vector3(x, y, 0f);
         }
 
         private void Update() => Tick(Time.deltaTime);
@@ -118,12 +183,14 @@ namespace RuinRail.Presentation.Vfx
         public void Configure(FeedbackConfig config) => _config = config;
 
         /// <summary>Observe a health component: every applied damage/heal becomes a number (read-only subscription).</summary>
-        public void Bind(HealthComponent health, Transform anchor = null)
+        /// <param name="isLocalPlayer">The local player's own health: its damage reads as damage taken (red), not dealt.</param>
+        public void Bind(HealthComponent health, Transform anchor = null, bool isLocalPlayer = false)
         {
             if (health == null || _bindings.ContainsKey(health)) return;
             var at = anchor != null ? anchor : health.transform;
-            System.Action<int> damaged = amount => Show(amount, false, at.position);
-            System.Action<int> healed = amount => Show(amount, true, at.position);
+            var hurt = isLocalPlayer ? DamageNumberKind.Taken : DamageNumberKind.Dealt;
+            System.Action<int> damaged = amount => Show(amount, hurt, at.position);
+            System.Action<int> healed = amount => Show(amount, DamageNumberKind.Heal, at.position);
             health.Damaged += damaged;
             health.Healed += healed;
             _bindings[health] = (damaged, healed);
@@ -137,7 +204,9 @@ namespace RuinRail.Presentation.Vfx
             _bindings.Remove(health);
         }
 
-        public DamageNumber Show(int value, bool isHeal, Vector2 position)
+        public DamageNumber Show(int value, bool isHeal, Vector2 position) => Show(value, isHeal ? DamageNumberKind.Heal : DamageNumberKind.Dealt, position);
+
+        public DamageNumber Show(int value, DamageNumberKind kind, Vector2 position)
         {
             if (!FeedbackPreferences.DamageNumbers || value <= 0)
             {
@@ -153,9 +222,16 @@ namespace RuinRail.Presentation.Vfx
             Shown++;
             var lifetime = _config != null ? _config.DamageNumberSeconds : 0.7f;
             var rise = _config != null ? _config.DamageNumberRisePixels : 12f;
-            number.Show(value, isHeal, position + Vector2.up * 0.75f, lifetime, rise);
+            number.Show(value, kind, position + Vector2.up * 0.75f, lifetime, rise, ColorOf(kind));
             return number;
         }
+
+        public Color ColorOf(DamageNumberKind kind) => kind switch
+        {
+            DamageNumberKind.Taken => _config != null ? _config.DamageTakenColor : new Color(1f, 0.52f, 0.44f),
+            DamageNumberKind.Heal => _config != null ? _config.HealNumberColor : new Color(0.55f, 0.95f, 0.55f),
+            _ => _config != null ? _config.DamageDealtColor : new Color(0.96f, 0.92f, 0.82f)
+        };
 
         public void Return(DamageNumber number)
         {
@@ -174,7 +250,7 @@ namespace RuinRail.Presentation.Vfx
             var go = new GameObject("DamageNumber");
             go.transform.SetParent(transform, false);
             var number = go.AddComponent<DamageNumber>();
-            number.Bind(this);
+            number.Bind(this, _config != null ? _config.DamageNumberPixelScale : 1, _config != null ? _config.DamageNumberOutlineColor : new Color(0.04f, 0.05f, 0.06f));
             go.SetActive(false);
             _all.Add(number);
             return number;

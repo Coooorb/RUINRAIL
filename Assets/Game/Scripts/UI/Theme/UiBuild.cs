@@ -137,7 +137,7 @@ namespace RuinRail.UI.Theme
             rect.sizeDelta = new Vector2(Mathf.Max(0, bounds.Width) / (float)s, Mathf.Max(0, bounds.Height) / (float)s);
             rect.anchoredPosition = new Vector2(bounds.X, -(bounds.Y + UiFont.TopOffset * s));
 
-            var label = rect.gameObject.AddComponent<Text>();
+            var label = rect.gameObject.AddComponent<PixelText>();
             label.font = UiFont.Font();
             label.fontSize = UiText.GlyphHeight;
             label.lineSpacing = 1f; // the font asset carries the authored line height: exact 9 px line boxes
