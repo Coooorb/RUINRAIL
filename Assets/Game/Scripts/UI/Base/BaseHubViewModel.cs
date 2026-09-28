@@ -68,18 +68,51 @@ namespace RuinRail.UI.Base
 
         private string Name(ItemInstance item) => _session.Configs.Resolve(item.DefinitionId)?.DisplayName ?? item.DefinitionId;
 
+        /// <summary>Units the last successful Deposit / Withdraw moved, and whether that was only part of the stack.</summary>
+        public int LastMoved { get; private set; }
+        public bool LastWasPartial { get; private set; }
+
+        /// <summary>
+        /// Stores a carried item. A stack that does not fit whole stores the part Storage has room for (the shared
+        /// stack-room rule pickups use); the rest stays carried. Refused unchanged only when there is no room at all.
+        /// </summary>
         public bool Deposit(string instanceId)
         {
             var equipped = _session.Loadout.Contains(instanceId) && _backpack.Find(instanceId) == null;
             IItemContainer source = equipped ? SlotContainerOf(instanceId) : _backpack;
+            var item = source.Find(instanceId);
+            var total = item?.Quantity ?? 0;
             var result = _storage.Deposit(source, instanceId);
-            return Report(result, "Stored.");
+            var room = result.Success || item == null ? 0 : Math.Min(total - 1, _session.Storage.RoomFor(item));
+            if (!result.Success && result.Error == TransferError.DestinationRejected && room > 0) result = _storage.DepositQuantity(source, instanceId, room);
+            return Moved(result, total, "Stored.", $"Stored {room} of {total} — Storage is full.");
         }
 
+        /// <summary>Takes a stored item into the backpack; a stack that does not fit whole takes the part that does.</summary>
         public bool Withdraw(string instanceId)
         {
+            var item = _session.Storage.Find(instanceId);
+            var total = item?.Quantity ?? 0;
             var result = _storage.Withdraw(instanceId, _backpack);
-            return Report(result, "Taken into the backpack.");
+            var room = result.Success || item == null ? 0 : Math.Min(total - 1, _backpack.RoomFor(item));
+            if (!result.Success && result.Error == TransferError.DestinationRejected && room > 0) result = _storage.WithdrawQuantity(instanceId, room, _backpack);
+            return Moved(result, total, "Taken into the backpack.", $"Took {room} of {total} — the backpack is full.");
+        }
+
+        /// <summary>A stored item and the item in backpack slot <paramref name="backpackIndex"/> trade places (no free slot needed on either side).</summary>
+        public bool Exchange(string storedInstanceId, int backpackIndex)
+        {
+            var result = _storage.ExchangeWithBackpack(_session.Loadout, storedInstanceId, backpackIndex);
+            LastMoved = result.Success ? result.Quantity : 0;
+            LastWasPartial = false;
+            return Report(result, "Swapped.");
+        }
+
+        private bool Moved(TransferResult result, int total, string whole, string part)
+        {
+            LastMoved = result.Success ? result.Quantity : 0;
+            LastWasPartial = result.Success && result.Quantity < total;
+            return Report(result, LastWasPartial ? part : whole);
         }
 
         private IItemContainer SlotContainerOf(string instanceId)
@@ -126,14 +159,24 @@ namespace RuinRail.UI.Base
         public StationFeedback Feedback { get; }
         public IReadOnlyList<ItemInstance> StorageItems => _session.Storage.Items.ToList();
 
-        /// <summary>Equip straight from Storage into the slot the item belongs to (withdraw through the service).</summary>
+        /// <summary>
+        /// Equip straight from Storage into the slot the item belongs to. A worn item already there goes into the stored
+        /// item's Storage cell in the same exchange (no free Storage or backpack slot needed).
+        /// </summary>
         public bool EquipFromStorage(string instanceId, EquippedSlot slot)
         {
-            var result = _storage.Withdraw(instanceId, new EquippedSlotContainer(_session.Loadout, slot));
-            if (result.Success) { Feedback.Ok("Equipped."); return true; }
-            Feedback.Error(result.Error == TransferError.DestinationRejected ? "That item does not fit this slot (or the slot is taken)." : "That move is not possible.");
+            var worn = _session.Loadout.GetEquipped(slot);
+            var result = _storage.ExchangeWithEquipped(_session.Loadout, instanceId, slot);
+            if (result.Success)
+            {
+                Feedback.Ok(worn != null ? "Equipped (swapped into Storage)." : "Equipped.");
+                return true;
+            }
+
+            Feedback.Error(result.Error == TransferError.DestinationRejected ? "That item does not fit this slot." : "That move is not possible.");
             return false;
         }
+
 
         public bool StoreFromLoadout(EquippedSlot slot)
         {

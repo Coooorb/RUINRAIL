@@ -164,10 +164,12 @@ namespace RuinRail.Tests.EditMode
             Assert.Greater(session.Profile.TotalXp, xpAtStart);
             Assert.IsNotNull(hub.LastSummary);
             Assert.IsTrue(hub.LastSummary.Lines.Any(l => l.Contains("360")), "Summary shows the banked coins.");
-            var secured = session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon);
-            Assert.IsNotNull(secured);
-            Assert.AreEqual(pistolId, secured.InstanceId, "The pistol that left is the pistol that came back.");
-            log.AppendLine($"- Return: depth {summary.DepthReached}, {summary.BossesDefeated} bosses, +360 coins, XP {xpAtStart}→{session.Profile.TotalXp}, pistol {pistolId} secured");
+            // 75: the free Starter pistol is run-only — it stays behind; everything else carried is the Base loadout again.
+            Assert.IsTrue(summary.StarterGearLeftBehind.Any(l => l.InstanceId == pistolId), "The free Starter pistol stayed behind.");
+            Assert.IsFalse(summary.SecuredItems.Any(l => l.InstanceId == pistolId));
+            Assert.IsFalse(session.Loadout.Contains(pistolId));
+            Assert.AreEqual(LoadoutValidation.Fingerprint(session.Profile.SafeLoadout), LoadoutValidation.Fingerprint(session.Loadout.ToSnapshot()), "The secured loadout is the Base loadout again.");
+            log.AppendLine($"- Return: depth {summary.DepthReached}, {summary.BossesDefeated} bosses, +360 coins, XP {xpAtStart}→{session.Profile.TotalXp}, starter pistol {pistolId} left behind (run-only), {summary.SecuredItems.Count} items secured");
 
             // 4. Save and relaunch: everything exact, onboarding complete, no open marker.
             Assert.AreEqual(SaveError.None, session.SaveNow("e2e"));
@@ -180,7 +182,14 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(session.Profile.TotalXp, reloaded.Profile.TotalXp);
             Assert.AreEqual(1, reloaded.Profile.Skills.Vitality);
             Assert.AreEqual(session.Workshop.StorageCapacity, reloaded.Workshop.StorageCapacity);
-            Assert.AreEqual(pistolId, reloaded.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon).InstanceId);
+            // Every item that came home is still there; the old Starter pistol is gone for good. With no weapon owned
+            // anywhere, the existing rescue rule (75) equips a fresh free kit on relaunch — a new pistol, not the old one.
+            var cameHome = session.Loadout.BackpackSlots.Concat(System.Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Select(session.Loadout.GetEquipped))
+                .Where(i => i != null && i.DefinitionId != StarterKitService.LightAmmoId && i.DefinitionId != StarterKitService.BandageId).Select(i => i.InstanceId).ToList();
+            Assert.IsTrue(cameHome.All(reloaded.Loadout.Contains), "the secured loadout came back");
+            Assert.IsFalse(reloaded.Loadout.Contains(pistolId) || reloaded.Storage.Contains(pistolId));
+            Assert.IsTrue(reloaded.GrantedRescueKit, "no weapon owned: the free kit is granted again");
+            Assert.AreNotEqual(pistolId, reloaded.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon)?.InstanceId);
             Assert.IsFalse(reloaded.Slot.ActiveExpedition.IsOpen);
             using var relaunchedOnboarding = new ShelterOnboardingViewModel(reloaded, _policy);
             Assert.AreEqual(ShelterOnboardingStep.Complete, relaunchedOnboarding.Step);

@@ -27,6 +27,10 @@ namespace RuinRail.Audio
         private AudioSource _current;
         private AudioSource _fading;
         private float _fade;
+        // Level (0..1 of the music gain) each source fades from: a crossfade interrupted by another change hands over
+        // from where the tracks actually are, never from full or from silence.
+        private float _fadingFrom = 1f;
+        private float _currentFrom;
         private bool _built;
 
         public MusicRole? ActiveRole { get; private set; }
@@ -121,10 +125,44 @@ namespace RuinRail.Audio
             var clip = _catalog != null ? _catalog.TrackFor(role) : null;
             IsSilent = clip == null;
 
-            // Whatever was fading out is cut so at most two sources ever play.
-            if (_fading != null) { _fading.Stop(); _fading = null; }
-            var next = _current == _a ? _b : _a;
-            if (_current != null && _current.isPlaying) { _fading = _current; _fade = 0f; }
+            // Roles that share one track (the Main Menu and the Shelter): the bed that is already playing simply takes
+            // the new role — no restart, no crossfade into itself.
+            // A fade-out still in progress just finishes as it was.
+            if (clip != null && _current != null && _current.isPlaying && _current.clip == clip) return;
+
+            // At most two sources ever play, and no track ever jumps up while it leaves. Mid-crossfade, the louder track
+            // keeps fading out from the level it has now and the quieter one (at or below half level, already leaving or
+            // barely in) hands its source to the new track. Going back to the track that is still fading out reverses
+            // that fade instead of starting a second copy of it from the top.
+            var fadingLevel = _fading != null ? _fadingFrom * (1f - _fade) : 0f;
+            var currentLevel = _fading != null ? _currentFrom + (1f - _currentFrom) * _fade : 1f;
+            if (_fading != null && clip != null && _fading.clip == clip)
+            {
+                (_current, _fading) = (_fading, _current);
+                _currentFrom = fadingLevel;
+                _fadingFrom = currentLevel;
+                _fade = 0f;
+                return;
+            }
+
+            AudioSource outgoing = null;
+            var outgoingLevel = 0f;
+            if (_fading != null)
+            {
+                if (currentLevel >= fadingLevel) { _fading.Stop(); outgoing = _current; outgoingLevel = currentLevel; }
+                else { _current?.Stop(); outgoing = _fading; outgoingLevel = fadingLevel; }
+            }
+            else if (_current != null && _current.isPlaying)
+            {
+                outgoing = _current;
+                outgoingLevel = 1f;
+            }
+
+            _fading = outgoing;
+            _fadingFrom = outgoingLevel;
+            _currentFrom = 0f;
+            _fade = 0f;
+            var next = outgoing == _a ? _b : _a;
             _current = next;
             _current.Stop();
             _current.clip = clip;
@@ -177,8 +215,8 @@ namespace RuinRail.Audio
             if (_fading == null) return;
             _fade = Mathf.Clamp01(_fade + (CrossfadeSeconds <= 0f ? 1f : deltaTime / CrossfadeSeconds));
             var target = Gain(AudioBus.Music);
-            _fading.volume = target * (1f - _fade);
-            if (_current != null) _current.volume = target * _fade;
+            _fading.volume = target * _fadingFrom * (1f - _fade);
+            if (_current != null) _current.volume = target * (_currentFrom + (1f - _currentFrom) * _fade);
             if (_fade >= 1f)
             {
                 _fading.Stop();

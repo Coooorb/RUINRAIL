@@ -177,7 +177,12 @@ namespace RuinRail.Tests
 
             var ids = vm.Rows.Select(r => r.Item.DefinitionId).ToList();
             Assert.AreEqual(ids.Count, ids.Distinct().Count(), "three distinct weapons");
-            Assert.IsNotNull(vm.TooltipFor(vm.Selected), "the details reuse the inventory tooltip");
+            Assert.IsNotNull(vm.TooltipFor(vm.Selected), "the inspection reuses the inventory tooltip");
+            Assert.IsTrue(view.InspectCursorNow());
+            var popup = view.StatPopup;
+            CollectionAssert.AreEqual(RuinRail.UI.Inventory.ItemStatPopup.RowsOf(vm.TooltipFor(vm.Selected)).Select(r => RuinRail.UI.Inventory.ItemDetailLayout.Render(r, RuinRail.UI.Inventory.ItemStatPopup.InnerWidth)).ToList(), popup.RowTexts, "the weapon's own lines");
+            Assert.AreEqual(vm.ComparedFor(vm.Selected) != null, popup.IsComparing, "the equipped weapon's card only when one is worn");
+            Assert.IsFalse(popup.Bounds.Overlaps(popup.SlotBounds((RectTransform)view.RowViews[vm.Cursor].transform)), "beside the row, not over it");
             pause.Resume();
         }
 

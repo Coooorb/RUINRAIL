@@ -33,8 +33,12 @@ namespace RuinRail.Core.Rendering
 
         public static void Reset() => Set(1f, 1f, 1f, 1f, false);
 
-        /// <summary>V1 FINAL: ambience never exceeds this share of the SFX gain (art/105: below combat readability).</summary>
-        public const float AmbienceCeiling = 0.4f;
+        /// <summary>
+        /// Ambience never exceeds this share of the SFX gain (art/105: below combat readability). 0.2 since the beds were
+        /// reshaped from filtered white noise into dark room tone (2026-09-28): peak-normalised, the darker beds carry
+        /// more low energy, and at 0.2 they sit at or below their old overall level, 15 dB or more under the music.
+        /// </summary>
+        public const float AmbienceCeiling = 0.2f;
 
         /// <summary>Effective linear gain for a category: 0 when muted, otherwise master × category.</summary>
         public static float GainFor(bool isMusic) => Muted ? 0f : Master * (isMusic ? Music : Sfx);

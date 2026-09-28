@@ -139,7 +139,7 @@ namespace RuinRail.EditorTools.Production
             var audio = AudioAssetAudit.Audit();
             Add("Audio architecture + 53-event SFX contract defined", audio.ContractComplete, $"AudioService/GameplayAudioBinder; catalog {audio.Defined}/{audio.Required} events defined, {audio.WithClips} with clips");
             var music = MusicAssetAudit.Audit();
-            Add("Exactly 11 music roles + 6 stingers + 3 ambience roles routed", Enum.GetValues(typeof(MusicRole)).Length == 11 && Enum.GetValues(typeof(StingerRole)).Length == 6 && music.RoutingComplete, $"MusicRole ×{Enum.GetValues(typeof(MusicRole)).Length}, StingerRole ×{Enum.GetValues(typeof(StingerRole)).Length}, MusicDirector/MusicBinder, catalog slots exact; tracks {music.TracksPresent}/11, stingers {music.StingersPresent}/6, ambience {music.AmbiencePresent}/3");
+            Add("Exactly 11 music roles + 7 stingers + 3 ambience roles routed", Enum.GetValues(typeof(MusicRole)).Length == 11 && Enum.GetValues(typeof(StingerRole)).Length == 7 && music.RoutingComplete, $"MusicRole ×{Enum.GetValues(typeof(MusicRole)).Length}, StingerRole ×{Enum.GetValues(typeof(StingerRole)).Length}, MusicDirector/MusicBinder, catalog slots exact; tracks {music.TracksPresent}/11, stingers {music.StingersPresent}/7, ambience {music.AmbiencePresent}/3");
 
             // ---- Verification artifacts of this run ----
             var final = FinalProductionValidator.ValidateProject();

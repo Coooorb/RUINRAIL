@@ -7,6 +7,7 @@ using NUnit.Framework;
 using RuinRail.App;
 using RuinRail.Core;
 using RuinRail.Core.Input;
+using RuinRail.Dungeon.Generation;
 using RuinRail.Dungeon.Rooms;
 using RuinRail.Dungeon.Runtime;
 using RuinRail.Gameplay.Base;
@@ -31,8 +32,8 @@ using UnityEngine.TestTools;
 namespace RuinRail.Tests
 {
     /// <summary>
-    /// Live-run proof of this pass through the real boot flow (Main Menu → Shelter → generated dungeon, seed 53: a
-    /// Ruined Metro depth with a Loot room, a Broken Machine and a Cursed Chest, then a Rustworks depth): the damaged
+    /// Live-run proof of this pass through the real boot flow (Main Menu → Shelter → generated dungeon: the first seed
+    /// whose depth 1 carries a Broken Machine and a Cursed Chest, then its next depth): the damaged
     /// player before Descend and the same player at full effective HP on the next depth (exactly one heal; room
     /// entries, the Transit vote, the pause menu and equipment changes never heal); item descriptions in the
     /// inventory; the Settings category screen and its four pages from the pause menu; the enemy-remaining chip in a
@@ -115,10 +116,40 @@ namespace RuinRail.Tests
             return marker != null ? (Vector2)room.Root.transform.TransformPoint(marker.WorldCenter) : room.InteriorWorldBounds.center;
         }
 
+        /// <summary>
+        /// The first run seed whose depth-1 layout places both a Broken Machine and a Cursed Chest, found with the shipped
+        /// deterministic logic (biome draw, graph, room pool, event-kind pick) — so it follows the generator instead of
+        /// pinning a seed whose layout a generation rule may change.
+        /// </summary>
+        private static int SeedWithBrokenMachineAndCursedChestOnDepthOne(IReadOnlyList<RoomDefinition> rooms)
+        {
+            var pools = BiomeRoomPools.Build(rooms);
+            var rules = DungeonGraphRules.CreateDefault();
+            var generator = new DungeonGraphGenerator(rules);
+            try
+            {
+                for (var seed = 1; seed <= 400; seed++)
+                {
+                    var generation = DungeonGenerationPipeline.Generate(generator, pools.PoolFor(BiomeSelector.SelectFirst(seed)), seed, 1);
+                    if (!generation.Success) continue;
+                    var kinds = generation.Layout.Placements.Where(p => p.Definition.RoomType == RoomType.Event)
+                        .Select(p => RoomCategoryComposer.ResolveEventKind(p.Definition.Tags, seed, 1, p.NodeId)).ToList();
+                    if (kinds.Contains(DungeonEventKind.BrokenMachine) && kinds.Contains(DungeonEventKind.CursedChest)) return seed;
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(rules);
+            }
+
+            Assert.Fail("no seed in 1..400 places a Broken Machine and a Cursed Chest on depth 1");
+            return 0;
+        }
+
         [UnityTest]
         public IEnumerator LiveRun_DepthHeal_Descriptions_SettingsPages_EnemyCount_BrokenMachine_AndNonCombatRooms()
         {
-            const int seed = 53; // depth 1 Ruined Metro: Loot room, Broken Machine, Cursed Chest (event_seed_scan.txt)
+            var seed = SeedWithBrokenMachineAndCursedChestOnDepthOne(GameContentCatalog.Load().Rooms);
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
             _app.SetRunSeedOverride(seed);
             SceneManager.LoadScene(SceneNames.MainMenu);
@@ -201,24 +232,28 @@ namespace RuinRail.Tests
             Note($"seed {seed}: depth 1 {state.Biome}, {run.Rooms.Count} rooms; run start HP {health.CurrentHealth}/{health.MaxHealth} (effective max {run.Rig.StatsBinder.Stats.MaxHealth})");
             var kinds = run.Rooms.Values.Select(r => r.GetComponent<RoomContentBinding>()).Where(b => b != null && b.EventInstance != null).Select(b => b.EventInstance.Kind).ToList();
             Note($"  event rooms: {string.Join(", ", kinds)}; special rooms: {string.Join(", ", run.Rooms.Values.Where(r => r.State.RoomType != RoomType.Combat).Select(r => r.State.RoomType + ":" + r.State.RoomId))}");
-            CollectionAssert.Contains(kinds, DungeonEventKind.BrokenMachine, "seed 53 places a Broken Machine on depth 1");
+            CollectionAssert.Contains(kinds, DungeonEventKind.BrokenMachine, $"seed {seed} places a Broken Machine on depth 1");
+            CollectionAssert.Contains(kinds, DungeonEventKind.CursedChest, $"seed {seed} places a Cursed Chest on depth 1");
 
             // ---------------------------------------------------------------- 3-6. item descriptions in the inventory ----
             var scope = new ItemInstance("accessory_field_scope", 1, Rarity.Uncommon);
             inventory.TryAddToBackpack(scope);
             run.Inventory.Open();
             yield return null;
-            var width = InventoryView.DetailsPanel.Width - UiTheme.Pad * 2;
+            var width = ItemStatPopup.InnerWidth;
             IEnumerator Show(InventorySlotRef slot, string capture)
             {
                 run.Inventory.SetCursor(slot);
                 yield return null;
                 var tooltip = run.Inventory.TooltipAt(slot);
                 Assert.IsNotNull(tooltip);
-                var lines = UiText.Wrap(tooltip.Description, width);
-                Assert.AreEqual(lines[0], run.InventoryView.DetailRowTexts[0], "the description leads the details panel");
-                Assert.IsTrue(run.InventoryView.DetailRowTexts.All(t => UiText.Width(t) <= width), "no row overflows the panel");
-                Note($"  {tooltip.Name}: \"{tooltip.Description}\"{(string.IsNullOrEmpty(tooltip.LegendaryText) ? string.Empty : " / " + tooltip.LegendaryText)} | rows {run.InventoryView.DetailPager.Count}, pages {run.InventoryView.DetailPager.PageCount}");
+                Assert.IsFalse(string.IsNullOrEmpty(tooltip.Description), "every item still describes itself (Merchant / Weapon Cache details)");
+                Assert.IsTrue(run.InventoryView.InspectCursorNow());
+                var popup = run.InventoryView.StatPopup;
+                var expected = ItemStatPopup.RowsOf(tooltip).Select(r => ItemDetailLayout.Render(r, width)).ToList();
+                CollectionAssert.AreEqual(expected, popup.RowTexts, "the inspection shows the item's authoritative lines");
+                Assert.IsTrue(popup.RowTexts.All(t => UiText.Width(t) <= width), "no row overflows the card");
+                Note($"  {tooltip.Name}: \"{tooltip.Description}\"{(string.IsNullOrEmpty(tooltip.LegendaryText) ? string.Empty : " / " + tooltip.LegendaryText)} | card rows {popup.RowTexts.Count}");
                 LiveDungeonCapture.Capture(Folder, capture, camera, ppu, includeUi: true);
             }
 
@@ -408,7 +443,7 @@ namespace RuinRail.Tests
             health.SetInvulnerabilityState(new Guard());
             var hurt = health.CurrentHealth;
             var start2 = run.Rooms[run.Generation.Graph.StartId];
-            // Depth 2 of seed 53 is a Rustworks depth of combat rooms and a boss: any non-boss room other than the start does for a revisit (the player is invulnerable here).
+            // Any non-boss room other than the start does for a revisit on depth 2 (the player is invulnerable here).
             var another = run.Rooms.Values.OrderBy(r => r.State.RoomType == RoomType.Combat ? 1 : 0).First(r => r.State.NodeId != start2.State.NodeId && r.State.RoomType != RoomType.Boss);
             Put(RoomCentre(another)); yield return Settle();
             Put(RoomCentre(start2)); yield return Settle();

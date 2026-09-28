@@ -147,6 +147,36 @@ namespace RuinRail.Tests
             LiveDungeonCapture.Capture(Folder, "live_01_inventory_window_over_the_run", camera, ppu, includeUi: true);
             Note($"open: primary {inventory.GetEquipped(EquippedSlot.PrimaryWeapon).DefinitionId}, secondary {inventory.GetEquipped(EquippedSlot.SecondaryWeapon).DefinitionId}, armor {inventory.GetEquipped(EquippedSlot.Armor).DefinitionId}, consumable {inventory.GetEquipped(EquippedSlot.ActiveConsumable).DefinitionId}; backpack {inventory.BackpackSlots.Count(b => b != null)}/8; coins '{view.CoinsText}'; ammo [{string.Join(" | ", view.AmmoTexts)}]");
 
+            // Mouse rest: each item's own card, beside the worn item of its slot (armor vs vest, medkit vs bandage); an
+            // accessory with none worn shows alone. Leaving the slot closes it at once.
+            var pouch = new ItemInstance("accessory_ammo_pouch", 1, Rarity.Epic);
+            Assert.IsTrue(inventory.TryAddToBackpack(pouch) && inventory.TryAddToBackpack(new ItemInstance("consumable_medkit", 2)));
+            yield return null;
+            IEnumerator Inspect(string definitionId, string worn, string capture)
+            {
+                var slot = view.BackpackSlots[inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == definitionId)];
+                slot.SimulateHover(true);
+                yield return null;
+                Assert.IsFalse(view.StatPopup.IsVisible, definitionId + ": not before the delay");
+                var until = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f;
+                while (!view.StatPopup.IsVisible && Time.unscaledTime < until) yield return null;
+                var popup = view.StatPopup;
+                Assert.IsTrue(popup.IsVisible, definitionId + ": hover rest opens the inspection");
+                Assert.AreEqual(worn != null, popup.IsComparing, definitionId + ": compared only with a worn counterpart");
+                if (worn != null) StringAssert.Contains(worn, popup.ComparedTitleText);
+                var slotBox = popup.SlotBounds(slot.Rect);
+                Assert.IsFalse(popup.Bounds.Overlaps(slotBox) || popup.IsComparing && (popup.ComparedBounds.Overlaps(slotBox) || popup.ComparedBounds.Overlaps(popup.Bounds)), definitionId + ": cards beside the item, apart");
+                LiveDungeonCapture.Capture(Folder, capture, camera, ppu, includeUi: true);
+                Note($"inspect {definitionId}: '{popup.TitleText}' [{string.Join(" | ", popup.RowTexts)}] vs '{popup.ComparedTitleText}' [{string.Join(" | ", popup.ComparedRowTexts)}]");
+                slot.SimulateHover(false);
+                yield return null;
+                Assert.IsFalse(popup.IsVisible, definitionId + ": leaving closes it");
+            }
+
+            yield return Inspect("armor_scout_rig", "Scrap Vest", "live_01a_inspect_armor_vs_worn");
+            yield return Inspect("consumable_medkit", "Bandage", "live_01b_inspect_consumable_vs_worn");
+            yield return Inspect("accessory_ammo_pouch", null, "live_01c_inspect_accessory_alone");
+
             // Keyboard: navigate to the SMG, select it, move it onto PRIMARY.
             var smgIndex = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.InstanceId == smg.InstanceId);
             vm.SetCursor(new InventorySlotRef(InventorySlotKind.Equipped, 0));
@@ -161,19 +191,19 @@ namespace RuinRail.Tests
             yield return null;
             Assert.AreEqual(smgIndex, vm.Cursor.Index);
             Assert.IsTrue(view.BackpackSlots[smgIndex].ShowsFocusBrackets, "keyboard focus is visible on the cursor slot");
-            StringAssert.Contains("Rattler", view.DetailTitleText);
-            StringAssert.Contains("RARE", view.DetailSubtitleText);
-            Assert.IsTrue(view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")), "the comparison is part of the details (on the page after the description)");
-            var pageGuard = 0;
-            while (!view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) && view.DetailsPageDown() && pageGuard++ < 5) { yield return null; }
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")), "paging reaches the comparison");
-            while (view.DetailsPageUp()) { }
-            yield return null;
+            // The keyboard focus rests on the SMG: after the delay its card opens beside the equipped weapon's.
+            var restUntil = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f;
+            while (!view.StatPopup.IsVisible && Time.unscaledTime < restUntil) yield return null;
+            Assert.IsTrue(view.StatPopup.IsVisible, "focus opens the inspection after the delay");
+            StringAssert.Contains("Rattler", view.StatPopup.TitleText);
+            StringAssert.Contains("RARE", view.StatPopup.SubtitleText);
+            Assert.IsTrue(view.StatPopup.IsComparing, "the equipped weapon's card sits beside it");
+            LiveDungeonCapture.Capture(Folder, "live_02a_keyboard_inspection", camera, ppu, includeUi: true);
             menuInput.Stack.Activate();
             yield return null;
             Assert.IsTrue(view.BackpackSlots[smgIndex].ShowsSelectedFrame, "the picked item shows the selected frame");
             LiveDungeonCapture.Capture(Folder, "live_02_keyboard_selected_smg_with_details", camera, ppu, includeUi: true);
-            Note($"keyboard: cursor backpack {smgIndex}, details '{view.DetailTitleText}' / '{view.DetailSubtitleText}', rows {view.DetailRowTexts.Count(r => r.Length > 0)}");
+            Note($"keyboard: cursor backpack {smgIndex}, inspection '{view.StatPopup.TitleText}' / '{view.StatPopup.SubtitleText}' vs '{view.StatPopup.ComparedTitleText}'");
             while (vm.Cursor.Kind != InventorySlotKind.Equipped && menuInput.Stack.Navigate(Vector2Int.left)) { }
             while (vm.Cursor.Index != 0 && menuInput.Stack.Navigate(Vector2Int.up)) { }
             menuInput.Stack.Activate();
@@ -187,7 +217,7 @@ namespace RuinRail.Tests
             view.BackpackSlots[pistolIndex].SimulateHover(true);
             yield return null;
             Assert.IsTrue(view.BackpackSlots[pistolIndex].ShowsHover);
-            StringAssert.Contains("P9 Ranger", view.DetailTitleText, "details follow the hovered slot");
+            Assert.IsTrue(vm.Cursor.Equals(new InventorySlotRef(InventorySlotKind.Backpack, pistolIndex)), "the cursor follows the hovered slot");
             view.BackpackSlots[pistolIndex].SimulateClick();
             view.BackpackSlots[pistolIndex].SimulateHover(false);
             view.EquipmentSlots[0].SimulateClick();

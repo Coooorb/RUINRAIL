@@ -133,17 +133,11 @@ namespace RuinRail.UI.WeaponCache
         public ItemTooltip TooltipFor(WeaponCacheRow row) =>
             row == null || row.Item == null ? null : ItemTooltip.Build(row.Item, row.Definition, _specials);
 
-        /// <summary>93: the highlighted weapon compares against the equipped weapon it would most likely replace.</summary>
-        public IReadOnlyList<ComparisonLine> CompareFor(WeaponCacheRow row)
+        /// <summary>93: the equipped weapon a cache weapon compares with, as its own tooltip — the one inspection rule; null for none.</summary>
+        public ItemTooltip ComparedFor(WeaponCacheRow row)
         {
-            if (row == null || row.Item == null || _inventory == null) return Array.Empty<ComparisonLine>();
-            EquippedSlot? target = _inventory.GetEquipped(EquippedSlot.PrimaryWeapon) != null ? EquippedSlot.PrimaryWeapon
-                : _inventory.GetEquipped(EquippedSlot.SecondaryWeapon) != null ? EquippedSlot.SecondaryWeapon
-                : null;
-            if (target == null) return Array.Empty<ComparisonLine>();
-            var current = _inventory.GetEquipped(target.Value);
-            if (current == null) return Array.Empty<ComparisonLine>();
-            return TooltipComparison.Compare(TooltipFor(row), ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials));
+            var current = row?.Item != null && _inventory != null ? InventoryViewModel.ComparedWith(_inventory, row.Item) : null;
+            return current == null ? null : ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials);
         }
 
         public bool CanTake

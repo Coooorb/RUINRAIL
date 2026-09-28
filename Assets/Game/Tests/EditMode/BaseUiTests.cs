@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,6 +13,7 @@ using RuinRail.Persistence;
 using RuinRail.UI.Base;
 using RuinRail.UI.Inventory;
 using UnityEditor;
+using UnityEngine;
 
 namespace RuinRail.Tests.EditMode
 {
@@ -120,6 +122,101 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(200, relaunch.Session.Profile.BankedCoins, "Banked Coins are safe.");
             Assert.IsTrue(relaunch.Session.GrantedRescueKit || relaunch.Session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon) != null, "A startable loadout exists again (rescue kit if needed).");
             relaunch.LeaveBase();
+        }
+
+        // ---- 72: the Trader restocks once per ended expedition — Return, failure or abandoned — and never on reload ----
+
+        private static string Stock(BaseSession session) =>
+            string.Join("|", session.Trader.Offers.Select(o => $"{o.Index}:{o.Definition.Id}:{o.Item.Rarity}:{o.Price}:{(o.IsSold ? "sold" : "open")}"));
+
+        [Test]
+        public void Trader_RestocksOncePerEndedExpedition_AndSaveReloadNeverRestocksOrRerolls()
+        {
+            var (menu, _, saves) = Menu();
+            menu.Play();
+            var session = menu.Session;
+            session.Banked.Credit(50000, "test");
+            var hub = new BaseHubViewModel(session, null, () => 5);
+            hub.Open(BaseStation.Trader);
+            var offer = hub.Trader.Offers.First();
+            var coins = session.Banked.Balance;
+            Assert.IsTrue(hub.Trader.Buy(offer.Index), hub.Trader.Feedback.Text);
+            Assert.AreEqual(coins - offer.Price, session.Banked.Balance);
+            var soldStock = Stock(session);
+            var refreshes = session.Trader.State.RefreshCount;
+
+            // Same cycle: reopening the tab and save/reload keep the same stock with the offer sold out.
+            for (var i = 0; i < 3; i++) { hub.Close(); hub.Open(BaseStation.Trader); }
+            Assert.AreEqual(soldStock, Stock(session));
+            hub.Dispose();
+            menu.LeaveBase();
+            menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            session = menu.Session;
+            Assert.AreEqual(soldStock, Stock(session), "a reload restores the same offers and sold marks");
+            Assert.AreEqual(refreshes, session.Trader.State.RefreshCount, "a reload never restocks");
+            Assert.IsFalse(session.Trader.Buy(offer.Index, new BackpackContainer(session.Loadout)) == TradeError.None, "still sold out");
+            Assert.AreEqual(coins - offer.Price, session.Banked.Balance);
+
+            // Return: exactly one restock, committed in the end-of-run save. The run itself keeps the sold-out stock.
+            hub = new BaseHubViewModel(session, null, () => 5);
+            Assert.IsTrue(hub.Multiplayer.SetReady(true));
+            Assert.IsTrue(hub.Transit.StartExpedition(), hub.Transit.Feedback.Text);
+            Assert.AreEqual(soldStock, Stock(session), "starting a run does not restock");
+            Assert.IsTrue(session.Expedition.Return().IsSuccess);
+            Assert.AreEqual(refreshes + 1, session.Trader.State.RefreshCount, "one restock for the ended run");
+            Assert.IsTrue(session.Trader.Offers.All(o => !o.IsSold), "fresh stock");
+            Assert.AreNotEqual(soldStock, Stock(session));
+            var returnStock = Stock(session);
+            var committed = saves.Load().Slot.Profile.Trader;
+            Assert.AreEqual(refreshes + 1, committed.RefreshCount, "the restock is in the Return save");
+            Assert.IsEmpty(committed.SoldOfferIndices);
+            for (var i = 0; i < 3; i++) { hub.Open(BaseStation.Trader); hub.Close(); }
+            Assert.AreEqual(returnStock, Stock(session), "reopening the tab never rerolls");
+            hub.Dispose();
+            menu.LeaveBase();
+            menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            session = menu.Session;
+            Assert.AreEqual(returnStock, Stock(session), "the restocked offers survive a reload unchanged");
+            Assert.AreEqual(refreshes + 1, session.Trader.State.RefreshCount);
+
+            // Failure (death): exactly one restock too.
+            Assert.AreEqual(TradeError.None, session.Trader.Buy(session.Trader.Offers[0].Index, new BackpackContainer(session.Loadout)));
+            hub = new BaseHubViewModel(session, null, () => 6);
+            Assert.IsTrue(hub.Multiplayer.SetReady(true));
+            Assert.IsTrue(hub.Transit.StartExpedition(), hub.Transit.Feedback.Text);
+            Assert.IsFalse(session.Expedition.Fail().IsSuccess);
+            Assert.AreEqual(refreshes + 2, session.Trader.State.RefreshCount, "one restock for the failed run");
+            Assert.IsTrue(session.Trader.Offers.All(o => !o.IsSold));
+            var failStock = Stock(session);
+            hub.Dispose();
+            menu.LeaveBase();
+            menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            session = menu.Session;
+            Assert.AreEqual(failStock, Stock(session));
+            Assert.AreEqual(refreshes + 2, session.Trader.State.RefreshCount);
+
+            // A run open when the game closed resolves as failure on the next boot: one restock, then never again.
+            hub = new BaseHubViewModel(session, null, () => 7);
+            Assert.IsTrue(hub.Multiplayer.SetReady(true));
+            Assert.IsTrue(hub.Transit.StartExpedition(), hub.Transit.Feedback.Text);
+            hub.Dispose();
+            session.Dispose(); // "application closed" mid-run
+            menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            Assert.IsNotNull(menu.AbandonedExpedition);
+            session = menu.Session;
+            Assert.AreEqual(refreshes + 3, session.Trader.State.RefreshCount, "one restock for the abandoned run");
+            Assert.AreNotEqual(failStock, Stock(session));
+            var abandonStock = Stock(session);
+            menu.LeaveBase();
+            menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            Assert.AreEqual(refreshes + 3, menu.Session.Trader.State.RefreshCount, "a second boot adds nothing");
+            Assert.AreEqual(abandonStock, Stock(menu.Session));
+            menu.LeaveBase();
         }
 
         // ---- Acceptance 1 + 2: every station reachable; transactions succeed/fail with feedback; reopening never duplicates ----
@@ -263,7 +360,10 @@ namespace RuinRail.Tests.EditMode
             CollectionAssert.Contains(summary.Lines, "XP Earned: 680 (kept)");
             CollectionAssert.Contains(summary.Lines, "Bosses Defeated: 1");
             Assert.IsTrue(summary.Lines.Any(l => l.StartsWith("  ") && l.Contains("[COMMON]")), "Extracted item list with rarity text.");
-            Assert.IsNotNull(session.Loadout.GetEquipped(EquippedSlot.SecondaryWeapon), "Back at the Base the secured loadout is the Base loadout again.");
+            // 75: the free Starter weapons and vest are run-only; the Bandage and ammo come home as the Base loadout.
+            Assert.AreEqual(3, session.Expedition.LastSummary.StarterGearLeftBehind.Count);
+            Assert.IsNull(session.Loadout.GetEquipped(EquippedSlot.SecondaryWeapon), "the Starter weapons did not come back");
+            Assert.IsNotNull(session.Loadout.GetEquipped(EquippedSlot.ActiveConsumable), "Back at the Base the secured loadout is the Base loadout again.");
 
             var failed = new ExpeditionSummaryViewModel(session.Expedition.LastSummary, Resolve);
             Assert.AreEqual(session.Expedition.LastSummary, failed.Summary);
@@ -326,6 +426,7 @@ namespace RuinRail.Tests.EditMode
                 if (stash.ItemAt(new InventorySlotRef(InventorySlotKind.Equipped, i))?.InstanceId == instanceId) return new InventorySlotRef(InventorySlotKind.Equipped, i);
             for (var i = 0; i < PlayerInventory.BackpackCapacity; i++)
                 if (stash.ItemAt(new InventorySlotRef(InventorySlotKind.Backpack, i))?.InstanceId == instanceId) return new InventorySlotRef(InventorySlotKind.Backpack, i);
+            while (stash.PrevPage()) { } // search from the first page, wherever the last lookup left the view
             for (var page = 0; page < stash.PageCount; page++)
             {
                 while (stash.Page < page) stash.NextPage();
@@ -353,10 +454,15 @@ namespace RuinRail.Tests.EditMode
             var harness = new ItemInstance("armor_combat_harness", 1, Rarity.Uncommon);
             var stim = new ItemInstance("consumable_combat_stim", 2);
             Assert.IsTrue(carried.TryAddToBackpack(smg) && carried.TryAddToBackpack(harness) && carried.TryAddToBackpack(stim));
+            // A looted weapon is worn home in place of the free Starter pistol, which is run-only (75) and stays behind.
+            var kitPistol = carried.Unequip(EquippedSlot.PrimaryWeapon);
+            Assert.IsTrue(kitPistol.IsUnsellable);
+            Assert.IsTrue(carried.TryEquip(new ItemInstance("weapon_kestrel_12", 1, Rarity.Uncommon), EquippedSlot.PrimaryWeapon));
             Assert.IsTrue(smg.IsAtRisk, "run loot is at risk while carried");
 
             // 1. Returning alive secures it: it is on the survivor, no longer at risk, and the Shelter points at Storage.
             session.Expedition.Return();
+            Assert.IsFalse(session.Loadout.Contains(kitPistol.InstanceId), "the free Starter pistol did not come home");
             foreach (var item in new[] { smg, harness, stim })
                 Assert.IsTrue(session.Loadout.Contains(item.InstanceId) || Resolve(item.DefinitionId).IsStackable && session.Loadout.BackpackSlots.Any(i => i?.DefinitionId == item.DefinitionId),
                     $"{item.DefinitionId} {item.InstanceId} came home (loadout: {string.Join(", ", Owned(session).Select(id => id.Substring(0, 6)))}; backpack defs: {string.Join(", ", session.Loadout.BackpackSlots.Where(i => i != null).Select(i => i.DefinitionId + "/" + i.InstanceId.Substring(0, 6)))})");
@@ -442,6 +548,105 @@ namespace RuinRail.Tests.EditMode
         }
 
         // ---- Coins for the run (77): chosen at Transit, moved exactly once by the start transaction ----
+
+        [Test]
+        public void Stash_BackpackAndStorage_TransferBothWays_EveryCategory_PartialStacks_FullStateSwaps_AndPersists()
+        {
+            var (menu, store, saves) = Menu();
+            menu.Play();
+            var session = menu.Session;
+            using var hub = new BaseHubViewModel(session, null, () => 5);
+            using var stash = new StashViewModel(session, hub.Storage, hub.Loadout);
+            void ClearBag() { for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) session.Loadout.RemoveFromBackpack(i); }
+            void ClearStorage() { foreach (var x in session.Storage.Items.ToList()) session.Storage.TryRemove(x.InstanceId); }
+            int Total(string def) => session.Loadout.BackpackSlots.Where(x => x != null && x.DefinitionId == def).Sum(x => x.Quantity) + session.Storage.Items.Where(x => x.DefinitionId == def).Sum(x => x.Quantity);
+            List<string> Ids() => session.Loadout.BackpackSlots.Where(x => x != null).Concat(session.Storage.Items).Select(x => x.InstanceId).ToList();
+            ClearBag();
+
+            // 1. Every definition, one step each way, conserving the quantity and never in both places.
+            foreach (var def in _registry.Definitions.OrderBy(d => d.Category).ThenBy(d => d.Id))
+            {
+                Assert.IsTrue(session.Loadout.TryAddToBackpack(new ItemInstance(def.Id, def.IsStackable ? Mathf.Min(3, def.MaxStack) : 1)), def.Id);
+                var carried = session.Loadout.BackpackSlots.First(x => x != null);
+                var total = Total(def.Id);
+                Assert.IsTrue(stash.Activate(CellOf(stash, carried.InstanceId)), def.Id + ": " + stash.Message);
+                Assert.IsTrue(session.Loadout.BackpackSlots.All(x => x == null) && Total(def.Id) == total, def.Id + " stored whole");
+                Assert.IsTrue(stash.Activate(CellOf(stash, session.Storage.Items.Single().InstanceId)), def.Id + ": " + stash.Message);
+                Assert.IsTrue(!session.Storage.Items.Any() && Total(def.Id) == total, def.Id + " taken whole");
+                ClearBag();
+            }
+
+            // 2. Partial stacks: only the part that fits moves, whichever side is full; the rest stays.
+            Assert.IsTrue(session.Loadout.TryAddToBackpack(new ItemInstance("ammo_light", 170)));
+            while (session.Loadout.BackpackSlots.Any(x => x == null)) Assert.IsTrue(session.Loadout.TryAddToBackpack(new ItemInstance("weapon_kestrel_12")));
+            Assert.IsTrue(session.Storage.TryAdd(new ItemInstance("ammo_light", 180)));
+            var storedAmmo = session.Storage.Items.Single();
+            var room = session.Loadout.BackpackRoomFor(storedAmmo);
+            Assert.AreEqual($"TAKE {room} OF 180", stash.IntentFor(CellOf(stash, storedAmmo.InstanceId)).Label);
+            Assert.IsTrue(stash.Activate(CellOf(stash, storedAmmo.InstanceId)), stash.Message);
+            Assert.AreEqual(170 + room, session.Loadout.BackpackSlots.Where(x => x?.DefinitionId == "ammo_light").Sum(x => x.Quantity));
+            Assert.AreEqual(180 - room, storedAmmo.Quantity, "the rest stays in Storage");
+            StringAssert.Contains($"Took {room}/180", stash.Message);
+            ClearStorage();
+            Assert.IsTrue(session.Storage.TryAdd(new ItemInstance("ammo_light", 170)));
+            while (session.Storage.FreeSlots > 0) Assert.IsTrue(session.Storage.TryAdd(new ItemInstance("weapon_kestrel_12")));
+            var bagAmmo = session.Loadout.BackpackSlots.First(x => x?.DefinitionId == "ammo_light");
+            var bagTotal = bagAmmo.Quantity;
+            var storeRoom = session.Storage.RoomFor(bagAmmo);
+            Assert.AreEqual($"STORE {storeRoom} OF {bagTotal}", stash.IntentFor(CellOf(stash, bagAmmo.InstanceId)).Label);
+            Assert.IsTrue(stash.Activate(CellOf(stash, bagAmmo.InstanceId)), stash.Message);
+            Assert.AreEqual(bagTotal - storeRoom, bagAmmo.Quantity);
+            Assert.AreEqual(170 + storeRoom, session.Storage.Items.Where(x => x.DefinitionId == "ammo_light").Sum(x => x.Quantity));
+
+            // 3. Both sides full: a drop onto an occupied cell of another kind trades places, either direction.
+            Assert.AreEqual(0, session.Storage.FreeSlots);
+            Assert.IsTrue(session.Loadout.BackpackSlots.All(x => x != null));
+            var ids = Ids().OrderBy(x => x).ToList();
+            var bagWeapon = session.Loadout.BackpackSlots.Last(x => x?.DefinitionId == "weapon_kestrel_12");
+            var bagIndex = session.Loadout.BackpackSlots.ToList().IndexOf(bagWeapon);
+            var rare = new ItemInstance("weapon_rattler_9", 1, Rarity.Rare);
+            session.Storage.TryRemove(session.Storage.Items.First(x => x.DefinitionId == "weapon_kestrel_12").InstanceId);
+            Assert.IsTrue(session.Storage.TryAdd(rare));
+            ids = Ids().OrderBy(x => x).ToList();
+            Assert.AreEqual(StashAction.Blocked, stash.IntentFor(CellOf(stash, rare.InstanceId)).Action, "a plain TAKE genuinely needs a free slot");
+            Assert.IsTrue(stash.Drop(CellOf(stash, rare.InstanceId), new InventorySlotRef(InventorySlotKind.Backpack, bagIndex)), stash.Message);
+            Assert.AreSame(rare, session.Loadout.BackpackSlots[bagIndex], "the stored item takes the cell it was dropped on");
+            Assert.IsNotNull(session.Storage.Find(bagWeapon.InstanceId));
+            CollectionAssert.AreEqual(ids, Ids().OrderBy(x => x).ToList());
+            Assert.IsTrue(stash.Drop(new InventorySlotRef(InventorySlotKind.Backpack, bagIndex), CellOf(stash, bagWeapon.InstanceId)), stash.Message);
+            Assert.AreSame(bagWeapon, session.Loadout.BackpackSlots[bagIndex], "and back the other way");
+            Assert.IsNotNull(session.Storage.Find(rare.InstanceId));
+            CollectionAssert.AreEqual(ids, Ids().OrderBy(x => x).ToList());
+
+            // 4. Same-kind stacks never trade places: a drop merges only what fits, conserving every unit.
+            var snapshot = Ids().OrderBy(x => x).ToList();
+            var ammoInStorage = session.Storage.Items.First(x => x.DefinitionId == "ammo_light");
+            var qtyBefore = session.Loadout.BackpackSlots.Where(x => x != null).Sum(x => x.Quantity) + session.Storage.Items.Sum(x => x.Quantity);
+            stash.Drop(CellOf(stash, ammoInStorage.InstanceId), CellOf(stash, bagAmmo.InstanceId));
+            Assert.AreEqual(qtyBefore, session.Loadout.BackpackSlots.Where(x => x != null).Sum(x => x.Quantity) + session.Storage.Items.Sum(x => x.Quantity));
+            Assert.AreEqual(snapshot.Count, Ids().Distinct().Count());
+
+            // 5. A single stored item dropped on an empty backpack cell lands in exactly that cell.
+            ClearStorage();
+            ClearBag();
+            var wasp = new ItemInstance("weapon_wasp_45");
+            Assert.IsTrue(session.Storage.TryAdd(wasp));
+            Assert.IsTrue(stash.Drop(CellOf(stash, wasp.InstanceId), new InventorySlotRef(InventorySlotKind.Backpack, 5)), stash.Message);
+            Assert.AreSame(wasp, session.Loadout.BackpackSlots[5]);
+
+            // 6. Save / reload keeps the backpack and Storage exactly.
+            Assert.IsTrue(session.Storage.TryAdd(new ItemInstance("ammo_medium", 40)));
+            Assert.IsTrue(stash.Activate(CellOf(stash, wasp.InstanceId)), stash.Message);
+            var expectedBag = session.Loadout.BackpackSlots.Select(x => x == null ? "-" : x.InstanceId + "x" + x.Quantity).ToList();
+            var expectedStorage = session.Storage.Items.Select(x => x.InstanceId + "x" + x.Quantity).OrderBy(x => x).ToList();
+            Assert.AreEqual(SaveError.None, session.SaveNow("stash_test"));
+            menu.LeaveBase();
+            var again = new MainMenuViewModel(saves, _configs);
+            again.Play();
+            CollectionAssert.AreEqual(expectedBag, again.Session.Loadout.BackpackSlots.Select(x => x == null ? "-" : x.InstanceId + "x" + x.Quantity).ToList());
+            CollectionAssert.AreEqual(expectedStorage, again.Session.Storage.Items.Select(x => x.InstanceId + "x" + x.Quantity).OrderBy(x => x).ToList());
+            again.LeaveBase();
+        }
 
         [Test]
         public void CoinsForTheRun_AreChosenAtTransit_ClampedToTheBank_MovedOnceAtStart_AndCancellingMovesNothing()

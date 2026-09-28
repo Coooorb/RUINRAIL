@@ -230,6 +230,54 @@ namespace RuinRail.Tests
             Assert.AreEqual(1, clientClears);
         }
 
+        /// <summary>
+        /// An encounter event (Supply Signal, Cursed Chest) locks a room whose lifecycle is already Cleared. The client's
+        /// room restore derives doors from the lifecycle, so the host's door flag must win on every apply: the live
+        /// state, a resync of the same client, and a rejoining client with a fresh room copy all see the room locked
+        /// until the host releases it.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator EventLockdown_OnAClearedRoom_ReachesTheClient_AndSurvivesResyncAndRejoin()
+        {
+            var w = Compose(1);
+            Assert.IsTrue(w.HostRoom.NotifyPlayerEntered(w.HostPlayer));
+            yield return null;
+            Pump(w, 3);
+            foreach (var enemy in UnityEngine.Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) enemy.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(99999));
+            yield return null;
+            Pump(w, 3);
+            Assert.AreEqual(RoomLifecycleState.Cleared, w.ClientRoom.Lifecycle);
+            Assert.IsFalse(w.ClientRoom.DoorsLocked);
+
+            // The event starts on the host: the lock reaches the client although the room stays Cleared.
+            w.HostRoom.LockDoors();
+            Pump(w, 2);
+            Assert.AreEqual(RoomLifecycleState.Cleared, w.ClientRoom.Lifecycle);
+            Assert.IsTrue(w.ClientRoom.DoorsLocked, "the client sees the event lockdown");
+
+            // A resync of the same client (restore from a Cleared lifecycle) keeps it locked.
+            w.Host.ServeResync(1);
+            Assert.IsTrue(w.ClientRoom.DoorsLocked, "a resync never releases the event lockdown");
+
+            // A rejoining client with a fresh copy of the room gets the lockdown from its first room state.
+            var rejoinBus = LoopbackCoopBus.Join(w.Network, 5);
+            var rejoinRoot = CreateRoom(RoomType.Combat, new Vector2Int(16, 12), new[] { new Vector2Int(2, 2) }, new Vector2(400f, 3000f));
+            var rejoinRoom = rejoinRoot.gameObject.AddComponent<RoomRuntime>();
+            rejoinRoom.Configure(rejoinRoot, 4, 1, 2);
+            var rejoined = Own(new CoopClientWorld(rejoinBus));
+            rejoined.BindDepth(1, new Dictionary<int, RoomRuntime> { [4] = rejoinRoom }, w.ClientLoot, id => _content.Items.FirstOrDefault(i => i.Id == id));
+            rejoined.RequestResync();
+            Assert.AreEqual(RoomLifecycleState.Cleared, rejoinRoom.Lifecycle);
+            Assert.IsTrue(rejoinRoom.DoorsLocked, "the rejoining member is held in the room too");
+
+            // The event resolves on the host: every client's doors open.
+            w.HostRoom.UnlockDoors();
+            Pump(w, 2);
+            rejoined.Tick(0.1f);
+            Assert.IsFalse(w.ClientRoom.DoorsLocked);
+            Assert.IsFalse(rejoinRoom.DoorsLocked);
+        }
+
         // ---------------------------------------------------------------- hits as requests
 
         [UnityTest]

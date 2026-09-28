@@ -217,6 +217,8 @@ namespace RuinRail.UI.Hud
         public const int Width = 400;
         public const int Height = UiText.LineHeight + 4;
         public const float DefaultSeconds = 3.2f;
+        /// <summary>A confirmation (ROOM CLEARED) is a beat, not a message to read: shorter than an event line.</summary>
+        public const float ConfirmSeconds = 1.8f;
         public const float FadeSeconds = 0.35f;
 
         private Text _text;
@@ -256,6 +258,14 @@ namespace RuinRail.UI.Hud
             SetText(text);
             _remaining = Mathf.Max(0.1f, seconds);
             Notices++;
+            Apply(1f);
+        }
+
+        /// <summary>A short success line (ROOM CLEARED) in the confirmation colour; replaces the current line like <see cref="Show"/>.</summary>
+        public void Confirm(string text, float seconds = ConfirmSeconds)
+        {
+            Show(text, false, seconds);
+            _color = UiTheme.Terminal;
             Apply(1f);
         }
 

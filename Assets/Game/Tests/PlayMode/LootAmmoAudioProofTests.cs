@@ -405,6 +405,144 @@ namespace RuinRail.Tests
             Note("return to menu: menu bed restored, ambience off, expedition-failed stinger, one listener, one app root");
         }
 
+        /// <summary>
+        /// Each biome's own theme in a real run of that biome: the biome's exploration track starts on arrival; walking
+        /// between rooms of the depth never restarts it; a real combat room's activation crossfades to the biome's combat
+        /// track and its clear resumes exploration; the boss arena plays the biome's boss track and the kill resumes
+        /// exploration. The tracks are the biome's own clips (not the Main Menu bed, not another biome's).
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LiveRun_EachBiome_PlaysItsOwnTheme_ThroughCombatAndBoss_WithoutRestartsBetweenRooms(
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+        {
+            yield return EnterDungeon(SeedFor(biome));
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            Assert.AreEqual(biome, run.Expedition.State.Biome);
+            var director = _app.Music;
+            var catalog = director.Catalog;
+            var explore = MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Exploration);
+            AssertBed(director, biome + " arrival", explore, expectAmbience: biome);
+            var clip = catalog.TrackFor(explore);
+            StringAssert.Contains(biome.ToString().ToLowerInvariant(), clip.name, "the biome's own file");
+            Assert.AreNotSame(catalog.TrackFor(MusicRole.MainMenu), clip, "not the Main Menu bed");
+            foreach (var other in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }.Where(b => b != biome))
+                Assert.Greater(Mathf.Abs(catalog.TrackFor(MusicStateResolver.Resolve(MusicScreen.Expedition, other, CombatIntensity.Exploration)).length - clip.length), 0.01f, $"{biome} and {other} run at different tempi");
+            var health = run.Rig.Player.GetComponent<HealthComponent>();
+            IEnumerator Clear(RoomRuntime room)
+            {
+                for (var guard = 0; guard < 120 && room.Lifecycle != RoomLifecycleState.Cleared; guard++)
+                {
+                    health.Heal(100000);
+                    foreach (var e in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None))
+                        if (e != null && e.IsAlive && room.InteriorWorldBounds.Contains(e.transform.position)) e.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(999999));
+                    yield return null;
+                }
+
+                Assert.AreEqual(RoomLifecycleState.Cleared, room.Lifecycle, room.State.RoomId + " cleared");
+            }
+
+            IEnumerator Settle() { for (var f = 0f; f < MusicDirector.CrossfadeSeconds + 0.2f; f += Time.unscaledDeltaTime) yield return null; }
+
+            // Room to room within the biome: no transition, the same bed keeps playing.
+            var transitions = director.Transitions;
+            var start = run.Rooms[run.Generation.Graph.StartId];
+            var calm = run.Rooms.Values.FirstOrDefault(r => r.State.RoomType != RoomType.Combat && r.State.RoomType != RoomType.Boss && r.State.RoomType != RoomType.Start);
+            if (calm != null) yield return Teleport(run, calm.InteriorWorldBounds.center);
+            yield return Teleport(run, start.InteriorWorldBounds.center);
+            Assert.AreEqual(transitions, director.Transitions, "moving between rooms of the same biome never restarts the bed");
+            AssertBed(director, biome + " after walking the depth", explore, expectAmbience: biome);
+
+            // A real combat room: its activation brings the biome's combat track; the clear resumes exploration.
+            var combat = run.Rooms.Values.First(r => r.State.RoomType == RoomType.Combat && !r.State.IsElite && r.HasEncounter && r.Lifecycle == RoomLifecycleState.Unentered);
+            yield return Teleport(run, combat.InteriorWorldBounds.center);
+            Assert.AreEqual(RoomLifecycleState.Active, combat.Lifecycle);
+            yield return Settle();
+            AssertBed(director, biome + " combat", MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Combat), expectAmbience: biome);
+            yield return Clear(combat);
+            yield return Settle();
+            AssertBed(director, biome + " after the fight", explore, expectAmbience: biome);
+
+            // The boss arena: the biome's boss track; the kill resumes the biome's exploration bed.
+            var bossRoom = run.Rooms[run.Generation.Graph.BossId];
+            yield return Teleport(run, bossRoom.InteriorWorldBounds.center);
+            RuinRail.App.BossIntroSequence.Current?.Finish();
+            yield return Settle();
+            AssertBed(director, biome + " boss", MusicStateResolver.BossRoleFor(biome), expectAmbience: biome);
+            var boss = bossRoom.GetComponent<RoomContentBinding>().Boss.Boss;
+            health.Heal(100000);
+            boss.Health.TryApplyDamage(new DamageRequest(100000000));
+            for (var guard = 0; guard < 300 && director.ActiveRole != explore; guard++) yield return null;
+            yield return Settle();
+            AssertBed(director, biome + " after the boss", explore, expectAmbience: biome);
+            Note($"{biome}: explore '{clip.name}' {clip.length:0.00}s, combat '{catalog.TrackFor(MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Combat)).name}', boss '{catalog.TrackFor(MusicStateResolver.BossRoleFor(biome)).name}'; transitions {director.Transitions}");
+        }
+
+        /// <summary>
+        /// The Shelter shares the Main Menu theme (one asset, no copy): Main Menu → Shelter keeps the same bed playing on
+        /// the same source (no restart, no crossfade into itself); leaving for the dungeon crossfades into the biome's
+        /// exploration theme; and the real post-boss RETURN brings the shared theme back in the Shelter.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LiveRun_ShelterSharesTheMenuTheme_NoRestart_DungeonThemeAfter_AndBackOnReturn()
+        {
+            _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
+            _app.SetRunSeedOverride(11);
+            SceneManager.LoadScene(SceneNames.MainMenu);
+            yield return WaitComposed(SceneNames.MainMenu);
+            for (var i = 0; i < 3; i++) yield return null;
+            var director = _app.Music;
+            var catalog = director.Catalog;
+            var shared = catalog.TrackFor(MusicRole.MainMenu);
+            Assert.AreSame(shared, catalog.TrackFor(MusicRole.Shelter), "the Shelter slot is the Main Menu asset itself");
+            Assert.AreEqual(9, System.Enum.GetValues(typeof(MusicRole)).Cast<MusicRole>().Select(r => catalog.TrackFor(r)).Where(c => c != shared).Distinct().Count(), "every other role keeps its own track");
+            AssertBed(director, "main menu", MusicRole.MainMenu, expectAmbience: null);
+            for (var f = 0f; f < 0.5f; f += Time.unscaledDeltaTime) yield return null;
+            var menuSource = director.GetComponentsInChildren<AudioSource>().Single(s => s.name.StartsWith("Music") && s.isPlaying && s.clip == shared);
+            var timeBefore = menuSource.time;
+
+            _app.Menu.Play();
+            yield return WaitComposed(SceneNames.Base);
+            for (var i = 0; i < 3; i++) yield return null;
+            AssertBed(director, "shelter", MusicRole.Shelter, expectAmbience: null);
+            Assert.IsTrue(menuSource.isPlaying && menuSource.clip == shared, "the same source keeps playing the shared theme");
+            Assert.Greater(menuSource.time, timeBefore, "it continued instead of restarting from the top");
+            Assert.IsFalse(director.IsCrossfading, "no crossfade into itself");
+            Assert.AreEqual(1, director.PlayingTrackSources);
+            Note($"menu -> shelter: same source, {timeBefore:0.00}s -> {menuSource.time:0.00}s, no crossfade");
+
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Music Return");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsTrue(hub.Hub.Multiplayer.SetReady(true));
+            hub.Hub.Open(BaseStation.Transit);
+            Assert.IsTrue(hub.Hub.Transit.StartExpedition());
+            yield return WaitComposed(SceneNames.Dungeon);
+            for (var i = 0; i < 5; i++) yield return null;
+            var run = Object.FindFirstObjectByType<ExpeditionScene>();
+            var biome = run.Expedition.State.Biome;
+            AssertBed(director, "dungeon", MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Exploration), expectAmbience: biome);
+
+            // The real post-boss RETURN to the Shelter.
+            var bossRoom = run.Rooms[run.Generation.Graph.BossId];
+            var centre = EncounterRewardPlacement.WorldCenter(bossRoom.Root).Value;
+            yield return Teleport(run, centre);
+            BossIntroSequence.Current?.Finish();
+            run.Rig.Player.GetComponent<HealthComponent>().Heal(100000);
+            bossRoom.GetComponent<RoomContentBinding>().Boss.Boss.Health.TryApplyDamage(new DamageRequest(100000000));
+            var deadline = Time.realtimeSinceStartup + 20f;
+            while (run.TransitDecisionView == null) { Assert.Less(Time.realtimeSinceStartup, deadline, "the transit decision opened"); yield return null; }
+            yield return null;
+            var view = run.TransitDecisionView;
+            view.Buttons[RuinRail.UI.Hud.TransitDecisionView.ReturnId].SimulateHover(true);
+            yield return null;
+            view.Buttons[RuinRail.UI.Hud.TransitDecisionView.ReturnId].SimulateClick();
+            yield return WaitComposed(SceneNames.Base);
+            for (var f = 0f; f < MusicDirector.CrossfadeSeconds + 0.3f; f += Time.unscaledDeltaTime) yield return null;
+            AssertBed(director, "shelter after the run", MusicRole.Shelter, expectAmbience: null);
+            Assert.AreEqual(1, director.PlayingTrackSources, "only the shared theme, nothing from the run underneath");
+            Note("return: shelter plays the shared Main Menu theme, one source");
+        }
+
         [UnityTest]
         public IEnumerator AllThreeBiomes_StartTheirAmbienceAndExplorationBed_WithoutDuplicates()
         {

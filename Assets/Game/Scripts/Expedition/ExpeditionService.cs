@@ -91,6 +91,12 @@ namespace RuinRail.Gameplay.Expedition
         public int CoinsLost { get; }
         public IReadOnlyList<ItemSummaryLine> SecuredItems { get; }
         public IReadOnlyList<ItemSummaryLine> LostItems { get; }
+
+        /// <summary>
+        /// Free Starter Kit weapons / armor the Return left behind (75: run-only). Never part of <see cref="SecuredItems"/>
+        /// or <see cref="LostItems"/>; empty for a failure, which loses everything carried anyway.
+        /// </summary>
+        public IReadOnlyList<ItemSummaryLine> StarterGearLeftBehind { get; internal set; } = Array.Empty<ItemSummaryLine>();
         public string[] ExtractedItemIds => SecuredItems.Select(i => i.InstanceId).ToArray();
     }
 
@@ -373,6 +379,10 @@ namespace RuinRail.Gameplay.Expedition
             EnsureActive();
             var state = State;
             Ending?.Invoke(state, true);
+            // 75: the free Starter Kit weapons and armor are run-only — they never come home, worn or in the backpack, so
+            // claiming the kit run after run cannot pile them up in the Shelter. Starter ammo and the Bandage are ordinary
+            // carried items and return like any other. Removed before the safe copy exists, inside this one transaction.
+            var leftBehind = RemoveRunOnlyStarterGear(state.Inventory);
             var transfer = CoinTransfer.MoveAll(state.CarriedWallet, BankedWallet, "extraction");
             var secured = AllItems(state.Inventory).Select(Line).ToList();
             foreach (var item in AllItems(state.Inventory)) item.IsAtRisk = false;
@@ -384,8 +394,42 @@ namespace RuinRail.Gameplay.Expedition
             state.Close(ExpeditionOutcome.Extracted);
 
             var summary = BuildSummary(state, transfer.Receipt, 0, secured, Array.Empty<ItemSummaryLine>());
+            summary.StarterGearLeftBehind = leftBehind;
             Finish(summary);
             return summary;
+        }
+
+        /// <summary>
+        /// Free Starter Kit equipment (75): the kit's weapons and armor, marked unsellable at grant — the only items that
+        /// carry that mark. Looted gear of the same definitions is never marked, and the kit's ammo and Bandage are not.
+        /// </summary>
+        public bool IsRunOnlyStarterGear(ItemInstance item)
+        {
+            if (item == null || !item.IsUnsellable) return false;
+            var category = _resolveDefinition(item.DefinitionId)?.Category;
+            return category == ItemCategory.Weapon || category == ItemCategory.Armor;
+        }
+
+        private List<ItemSummaryLine> RemoveRunOnlyStarterGear(PlayerInventory inventory)
+        {
+            var removed = new List<ItemSummaryLine>();
+            foreach (EquippedSlot slot in Enum.GetValues(typeof(EquippedSlot)))
+            {
+                var worn = inventory.GetEquipped(slot);
+                if (!IsRunOnlyStarterGear(worn)) continue;
+                inventory.Unequip(slot);
+                removed.Add(Line(worn));
+            }
+
+            for (var i = 0; i < inventory.BackpackSlots.Count; i++)
+            {
+                var carried = inventory.BackpackSlots[i];
+                if (!IsRunOnlyStarterGear(carried)) continue;
+                inventory.RemoveFromBackpack(i);
+                removed.Add(Line(carried));
+            }
+
+            return removed;
         }
 
         // ---- Failure transaction (exactly once) ----

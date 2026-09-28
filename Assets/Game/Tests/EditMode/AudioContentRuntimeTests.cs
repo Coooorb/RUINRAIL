@@ -24,9 +24,9 @@ namespace RuinRail.Tests
     {
         public const int SfxRoles = 53;
         public const int MusicRoles = 11;
-        public const int StingerRoles = 6;
+        public const int StingerRoles = 7;
         public const int AmbienceRoles = 3;
-        public const int TotalRoles = SfxRoles + MusicRoles + StingerRoles + AmbienceRoles; // 73
+        public const int TotalRoles = SfxRoles + MusicRoles + StingerRoles + AmbienceRoles; // 74
 
         [TearDown]
         public void TearDown() => AudioLevels.Reset();
@@ -53,9 +53,12 @@ namespace RuinRail.Tests
             Assert.IsNotNull(catalog.Music, "MusicCatalog referenced by the shipped catalog");
             var clips = ReleaseClips(catalog).ToList();
             Assert.AreEqual(SfxRoles, AudioEventIds.Required.Count);
-            Assert.AreEqual(TotalRoles, clips.Count, "53 SFX + 11 tracks + 6 stingers + 3 ambience loops");
+            Assert.AreEqual(TotalRoles, clips.Count, "53 SFX + 11 tracks + 7 stingers + 3 ambience loops");
             Assert.IsTrue(clips.All(c => c.clip != null), string.Join(", ", clips.Where(c => c.clip == null).Select(c => c.role)));
-            Assert.AreEqual(TotalRoles, clips.Select(c => c.clip).Distinct().Count(), "no two roles share one clip");
+            // One documented sharing (art/105): the Shelter plays the Main Menu theme — the same asset, not a copy.
+            // Every other role has a clip of its own.
+            Assert.AreSame(catalog.Music.TrackFor(MusicRole.MainMenu), catalog.Music.TrackFor(MusicRole.Shelter), "the Shelter shares the Main Menu asset");
+            Assert.AreEqual(TotalRoles - 1, clips.Select(c => c.clip).Distinct().Count(), "no other two roles share one clip");
             Assert.IsTrue(catalog.Music.IsContentComplete && catalog.Music.HasExactSlots);
         }
 

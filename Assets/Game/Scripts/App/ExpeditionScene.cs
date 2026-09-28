@@ -524,6 +524,7 @@ namespace RuinRail.App
                 var isBossRoom = runtime.State.RoomType == RoomType.Boss;
                 runtime.Activated += _ => { if (isBossRoom) _app.MusicBinder.ObserveBossRoomEntered(); else _app.MusicBinder.ObserveCombatStarted(); };
                 runtime.Cleared += (_, _) => { if (!isBossRoom) _app.MusicBinder.ObserveCombatEnded(); if (_expedition.IsExpeditionActive) _expedition.RecordRoomCleared(); };
+                if (!isBossRoom) runtime.Cleared += (room, _) => PresentRoomCleared(room);
                 var content2 = runtime.GetComponent<RoomContentBinding>();
                 if (content2 != null && content2.Boss != null)
                 {
@@ -590,6 +591,8 @@ namespace RuinRail.App
             _revealedRoom = Generation.Graph.StartId;
             _minimap?.MarkEntered(Generation.Graph.StartId);
             CurrentRoom = Rooms != null && Rooms.TryGetValue(Generation.Graph.StartId, out var startRuntime) ? startRuntime : null;
+            // The player arrives standing in the Start room (no entry event): its details start with the depth.
+            if (CurrentRoom != null) SwitchAmbientDetails(CurrentRoom);
             DepthsBuilt++;
             // The personal-best record is written here and nowhere else: the depth has generated, validated, composed
             // and placed the player. Every earlier return in this method is a failed arrival, so a descend that could
@@ -602,6 +605,9 @@ namespace RuinRail.App
         public void BindActorPresentation(MovesetActorController actor, string actorId, bool isElite)
         {
             var body = CharacterVisual.Attach(actor.gameObject, _app.Content.AnimationSetFor(actorId));
+            // The biome's enemy palette (Elites at half strength; bosses keep their own identity), before the hit flash
+            // caches the body's resting colour.
+            if (isElite) RuinRail.Presentation.EnemyBiomeTint.Apply(body != null ? body.Renderer : null, _expedition.State.Biome, elite: true);
             if (actor.GetComponent<EnemyAnimationDriver>() == null) actor.gameObject.AddComponent<EnemyAnimationDriver>().Configure(body, null, actor, actor.GetComponent<Rigidbody2D>());
             // Elites carry the stronger world bar in the Elite accent; bosses use the screen bar instead.
             if (isElite && actor.GetComponent<WorldHealthBar>() == null)
@@ -609,10 +615,13 @@ namespace RuinRail.App
             // Bosses get the same combat read as every normal enemy: the ground danger marker for each telegraphed move
             // (without it a boss's slams, zones and dashes had no marker at all outside a co-op client), the hit flash,
             // damage numbers and impact feedback. Presentation only: it reads the actor's state, never drives it.
-            if (actor is BossController && actor.GetComponent<TelegraphIndicator>() == null)
+            // Elites telegraph on the ground in the same language: without this, solo players and the co-op host saw no
+            // marker for an Elite's cleaves, charges, zones, slams and volleys (only co-op clients' replicas had one).
+            if ((actor is BossController || isElite) && actor.GetComponent<TelegraphIndicator>() == null)
+                actor.gameObject.AddComponent<TelegraphIndicator>().Configure(_app.Content.Feedback, _effects, null, actor);
+            if (actor is BossController && actor.GetComponent<HitFlash>() == null)
             {
                 var effects = _effects;
-                actor.gameObject.AddComponent<TelegraphIndicator>().Configure(_app.Content.Feedback, effects, null, actor);
                 var bossFlash = actor.gameObject.AddComponent<HitFlash>();
                 bossFlash.Configure(_app.Content.Feedback, actor.Health, actor.Impact, body != null ? body.Renderer : null);
                 bossFlash.UseBossProfile(); // the tint's strength follows each hit's effective damage
@@ -644,6 +653,7 @@ namespace RuinRail.App
             var numbers = effects != null ? effects.GetComponent<DamageNumberPool>() : null;
             numbers?.Bind(enemy.GetComponent<HealthComponent>());
             var body = CharacterVisual.Attach(enemy.gameObject, _app.Content.AnimationSetFor(enemy.Definition != null ? enemy.Definition.Id : null));
+            RuinRail.Presentation.EnemyBiomeTint.Apply(body != null ? body.Renderer : null, _expedition.State.Biome, elite: false);
             enemy.gameObject.AddComponent<WorldHealthBar>().Configure(enemy.GetComponent<HealthComponent>(), WorldHealthBar.Style.Normal);
             var flash = enemy.gameObject.AddComponent<HitFlash>();
             flash.Configure(_app.Content.Feedback, enemy.GetComponent<HealthComponent>(), enemy.GetComponent<RuinRail.Gameplay.Combat.Impact.ImpactReceiver>(), body != null ? body.Renderer : null);
@@ -682,7 +692,7 @@ namespace RuinRail.App
             foreach (var weapon in _rig.Player.GetComponents<RangedWeapon>()) _app.AudioBinder.Attach(weapon);
         }
 
-        /// <summary>A pickup landed on the ground: drop/pickup sounds, the Legendary stinger and the tutorial pickup prompt.</summary>
+        /// <summary>A pickup landed on the ground: drop/pickup sounds, the Legendary stinger, its rarity glow and the tutorial pickup prompt.</summary>
         private void OnPickupTracked(GameObject pickup)
         {
             if (pickup == null) return;
@@ -691,6 +701,8 @@ namespace RuinRail.App
             {
                 _app.AudioBinder.Attach(item);
                 _app.MusicBinder.Attach(item);
+                // The item's rarity on the ground, in the same colour every list, tooltip and slot frame uses.
+                LootRarityGlow.Attach(item, rarity => RuinRail.UI.Navigation.RarityStyle.For(rarity).Color);
                 _tutorial?.Attach(item);
                 _tutorial?.ObserveLootSpawned();
             }
@@ -765,6 +777,25 @@ namespace RuinRail.App
         }
 
         private readonly List<SupplySignalEvent> _signals = new();
+        private readonly HashSet<RoomRuntime> _clearsPresented = new();
+
+        /// <summary>Room-clear presentations shown this run (proof/diagnostics): one per won Combat / Elite room.</summary>
+        public int RoomClearsPresented { get; private set; }
+
+        /// <summary>
+        /// A Combat or Elite room was won (the room runtime's clear: the host's own, or the host's state replicated to a
+        /// client): one short ROOM CLEARED line and the room-clear stinger. The doors' own open state shows on them. A
+        /// room is presented once however often its clear is reported; bosses keep their Boss Defeated presentation.
+        /// </summary>
+        private void PresentRoomCleared(RoomRuntime room)
+        {
+            if (room == null || !_clearsPresented.Add(room)) return;
+            RoomClearsPresented++;
+            LastNotice = "ROOM CLEARED";
+            Notices++;
+            HudView?.Notice?.Confirm("ROOM CLEARED");
+            _app.MusicBinder.ObserveRoomCleared();
+        }
         private string _heldNotice;
 
         /// <summary>The last notice the run announced (proof/diagnostics) and how many there were.</summary>
@@ -992,14 +1023,62 @@ namespace RuinRail.App
 
             // Everything below is this client's own camera context and must stay local to the owned player.
             if (_rig?.Player == null || player != _rig.Player) return;
+            if (CurrentRoom != room) SwitchAmbientDetails(room);
             CurrentRoom = room;
             if (_revealedRoom == nodeId) return; // still the same room: the reveal never repeats
             _revealedRoom = nodeId;
             var definition = room.Root != null ? room.Root.Definition : null;
             var type = definition != null ? definition.RoomType : room.State.RoomType;
+            PlayRoomAtmosphere(room, type, definition);
             // A boss room is named by its introduction card; the room-title banner would say it a second time.
             if (type == RoomType.Boss && room.Engagement is BossEngagement introduced && introduced.IntroHoldSeconds > 0f) return;
             HudView?.RoomTitle?.Reveal(RoomDisplayNames.NameOf(room.State.RoomId, type), RoleLineOf(room, type));
+        }
+
+        private readonly HashSet<int> _atmosphereRooms = new();
+
+        /// <summary>The small persistent details of the room this player stands in (null in a boss arena / between depths).</summary>
+        public RoomAmbientDetails AmbientDetails { get; private set; }
+
+        /// <summary>
+        /// Only the current room's details live: entering another room replaces them, so nothing accumulates. Set up from
+        /// the depth seed and the room (every peer gets the same details for a room); the boss arena has none.
+        /// </summary>
+        private void SwitchAmbientDetails(RoomRuntime room)
+        {
+            if (AmbientDetails != null) Destroy(AmbientDetails.gameObject);
+            AmbientDetails = null;
+            var definition = room.Root != null ? room.Root.Definition : null;
+            var type = definition != null ? definition.RoomType : room.State.RoomType;
+            if (type == RoomType.Boss) return;
+            var biome = definition != null ? definition.Biome : _expedition.State.Biome;
+            var seed = unchecked(_expedition.State.RunSeed * 31 + _expedition.State.Depth * 977 + room.State.NodeId * 7919);
+            AmbientDetails = RoomAmbientDetails.Create(biome, room.InteriorWorldBounds, seed, room.transform, () => room != null && room.Lifecycle == RoomLifecycleState.Active);
+        }
+        /// <summary>This depth's variant per room (built once from the depth seed and graph; every peer builds the same).</summary>
+        private Dictionary<int, int> _atmosphereVariants;
+
+        /// <summary>The atmosphere variant this depth gives a room (proof/diagnostics).</summary>
+        public int AtmosphereVariantOf(int nodeId) => _atmosphereVariants != null && _atmosphereVariants.TryGetValue(nodeId, out var v) ? v : -1;
+
+        /// <summary>Room-entry flourishes played this run (proof/diagnostics) and the latest one.</summary>
+        public int AtmospherePlays { get; private set; }
+        public RoomEntryAtmosphere LastAtmosphere { get; private set; }
+
+        /// <summary>
+        /// The biome's brief room-entry flourish, on this player's first entry into a room this depth — walking back and
+        /// forth never replays it. Local presentation from the owned player's own entry (every peer plays its own, seeded
+        /// by the room so they match); the boss arena keeps its introduction instead.
+        /// </summary>
+        private void PlayRoomAtmosphere(RoomRuntime room, RoomType type, RoomDefinition definition)
+        {
+            if (type == RoomType.Boss || !_atmosphereRooms.Add(room.State.NodeId)) return;
+            var biome = definition != null ? definition.Biome : _expedition.State.Biome;
+            var depthSeed = unchecked(_expedition.State.RunSeed * 31 + _expedition.State.Depth * 977);
+            _atmosphereVariants ??= RoomEntryAtmosphere.AssignVariants(Generation.Graph.Nodes.Select(n => (n.Id, (IReadOnlyList<int>)n.Neighbors)), depthSeed);
+            var variant = _atmosphereVariants.TryGetValue(room.State.NodeId, out var v) ? v : 0;
+            LastAtmosphere = RoomEntryAtmosphere.Play(biome, variant, room.InteriorWorldBounds, unchecked(depthSeed + room.State.NodeId), transform);
+            AtmospherePlays++;
         }
 
         /// <summary>The role line under a room's name: the actual event kind for an Event room, the room type otherwise.</summary>
@@ -1131,6 +1210,11 @@ namespace RuinRail.App
             CurrentRoom = null;
             _revealedRoom = null;
             _signals.Clear();
+            _clearsPresented.Clear();
+            _atmosphereRooms.Clear();
+            if (AmbientDetails != null) Destroy(AmbientDetails.gameObject);
+            AmbientDetails = null;
+            _atmosphereVariants = null;
             _heldNotice = null;
             HudView?.Notice?.Clear();
             HudView?.RoomTitle?.Clear();

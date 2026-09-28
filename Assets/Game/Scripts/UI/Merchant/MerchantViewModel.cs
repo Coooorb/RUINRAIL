@@ -162,23 +162,11 @@ namespace RuinRail.UI.Merchant
         public ItemTooltip TooltipFor(MerchantRow row) =>
             row?.Item == null ? null : ItemTooltip.Build(row.Item, row.Definition ?? _inventory?.Resolve(row.Item.DefinitionId), _specials);
 
-        /// <summary>93: an offer compares against the equipped item of the slot it would go to; a sale row compares the same way.</summary>
-        public IReadOnlyList<ComparisonLine> CompareFor(MerchantRow row)
+        /// <summary>93: the worn item an offer (or a sale row) compares with, as its own tooltip — the one inspection rule; null for none.</summary>
+        public ItemTooltip ComparedFor(MerchantRow row)
         {
-            if (row?.Item == null || _inventory == null) return Array.Empty<ComparisonLine>();
-            var definition = row.Definition ?? _inventory.Resolve(row.Item.DefinitionId);
-            if (definition == null || definition.Category == ItemCategory.Consumable || definition.Category == ItemCategory.Ammo) return Array.Empty<ComparisonLine>();
-            EquippedSlot? target = definition.Category switch
-            {
-                ItemCategory.Weapon => _inventory.GetEquipped(EquippedSlot.PrimaryWeapon) != null ? EquippedSlot.PrimaryWeapon : _inventory.GetEquipped(EquippedSlot.SecondaryWeapon) != null ? EquippedSlot.SecondaryWeapon : null,
-                ItemCategory.Armor => EquippedSlot.Armor,
-                ItemCategory.Accessory => EquippedSlot.Accessory,
-                _ => null
-            };
-            if (target == null) return Array.Empty<ComparisonLine>();
-            var current = _inventory.GetEquipped(target.Value);
-            if (current == null) return Array.Empty<ComparisonLine>();
-            return TooltipComparison.Compare(TooltipFor(row), ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials));
+            var current = row?.Item != null ? InventoryViewModel.ComparedWith(_inventory, row.Item) : null;
+            return current == null ? null : ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials);
         }
 
         public string ActionLabel => Tab == MerchantTab.Buy ? "BUY" : "SELL";

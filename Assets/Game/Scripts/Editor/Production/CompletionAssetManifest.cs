@@ -614,7 +614,7 @@ namespace RuinRail.EditorTools.Production
             Check("Item-family icon roles", 72, RolesIn("Item icons"), "Weapon+Armor+Accessory+Consumable definitions plus AmmoType values");
             Check("SFX event ids", 53, AudioEventIds.Required.Count, "RuinRail.Audio.AudioEventIds.Required");
             Check("Music roles", 11, Enum.GetValues(typeof(MusicRole)).Length, "RuinRail.Audio.MusicRole");
-            Check("Stinger roles", 6, Enum.GetValues(typeof(StingerRole)).Length, "RuinRail.Audio.StingerRole");
+            Check("Stinger roles", 7, Enum.GetValues(typeof(StingerRole)).Length, "RuinRail.Audio.StingerRole");
             Check("Ambience roles", 3, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
             Check("Biome art packages", 3, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
             Check("VFX roles", 12, RolesIn("VFX"), "CombatFeedback effect kinds plus AttackMotion telegraph shapes",

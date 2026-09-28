@@ -93,6 +93,7 @@ namespace RuinRail.UI.Inventory
             view._width = region.Width;
             view._height = region.Height;
             view.Build();
+            view._popup = ItemStatPopup.Create(view.transform);
             foreach (var slot in view._worn.Concat(view._backpack)) slot.BindList(list);
             list.Navigator = view.Navigate;
             list.FocusChanged += view.OnFocusChanged;
@@ -107,6 +108,35 @@ namespace RuinRail.UI.Inventory
         {
             if (_viewModel != null) _viewModel.Changed -= Render;
             if (_list != null) _list.FocusChanged -= OnFocusChanged;
+            if (_popup != null) Destroy(_popup.gameObject); // it lives on the root canvas, not under this body
+        }
+
+        private void OnDisable()
+        {
+            if (_popup != null) _popup.Hide();
+        }
+
+        // ---------------------------------------------------------------- delayed inspection (ui/94)
+
+        private ItemStatPopup _popup;
+        private bool _cursorByPointer;
+        private bool _hovering;
+        public ItemStatPopup StatPopup => _popup;
+
+        /// <summary>Legendary specials for the inspection panel's Legendary line (the app's registry; null leaves it out).</summary>
+        public RuinRail.Gameplay.Combat.Weapons.Specials.LegendarySpecialRegistry Specials { get; set; }
+
+        /// <summary>The item under the cursor opens its stat panel after a short rest (see <see cref="ItemStatPopup"/>).</summary>
+        private void LateUpdate()
+        {
+            if (_popup == null || _viewModel == null) return;
+            var cell = _viewModel.Cursor;
+            var item = _viewModel.ItemAt(cell);
+            var slot = SlotFor(cell);
+            if (item == null || InventorySlotView.Dragging != null || (_cursorByPointer && !slot.IsHovered)) { _popup.Track(null, null, null); return; }
+            var compared = _viewModel.ComparedItemAt(cell);
+            _popup.Track(IdOf(cell) + "/" + item.InstanceId + "/" + compared?.InstanceId, () => ItemTooltip.Build(item, _viewModel.DefinitionOf(item), Specials), slot.Rect,
+                compared == null ? null : () => ItemTooltip.Build(compared, _viewModel.DefinitionOf(compared), Specials));
         }
 
         // ---------------------------------------------------------------- construction
@@ -215,11 +245,18 @@ namespace RuinRail.UI.Inventory
 
         private void OnFocusChanged(FocusItem focused)
         {
+            _cursorByPointer = _hovering;
             if (focused == null || !TryParse(focused.Id, out var cell)) return;
             if (!_viewModel.Cursor.Equals(cell)) _viewModel.SetCursor(cell);
         }
 
-        private void OnHovered(InventorySlotRef cell) => _list.Focus(IdOf(cell));
+        private void OnHovered(InventorySlotRef cell)
+        {
+            _hovering = true;
+            _list.Focus(IdOf(cell));
+            _hovering = false;
+            _cursorByPointer = true;
+        }
 
         private void OnClicked(InventorySlotRef cell)
         {

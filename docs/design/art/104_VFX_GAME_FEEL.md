@@ -28,3 +28,6 @@ Large enough to feel powerful but not so smoky that they hide hazards/projectile
 
 ## Legendary Drop
 May use a clearly stronger glow/VFX than lower rarities, but should not overwhelm the room.
+
+## Ground Loot Rarity (implementation note 2026-09-28)
+A dropped item shows its rarity on the floor in the established rarity colour (the same one lists, tooltips and slot frames use): Common and ammo nothing, coins unchanged; Uncommon/Rare/Epic/Legendary a pixel ground glow of 14/18/22/26 px that breathes slowly; Epic adds a 20 px soft shimmer column, Legendary a 28 px one with a rising glint. It follows the item, changes with it, disappears the moment the item is taken or the depth is left, and draws on the ground-details layer below hazard footprints, so hazards, telegraphs, characters and the item itself always draw over it.

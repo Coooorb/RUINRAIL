@@ -109,10 +109,19 @@ namespace RuinRail.Gameplay.Enemies
         }
 
         private ObstacleSteering _steering;
+        private PursuitNavigator _navigator;
+        private CrowdAvoidance _crowd;
+        /// <summary>After this long held up behind other enemies' bodies, the route plans around them for a while.</summary>
+        public const float CrowdRerouteSeconds = 0.75f;
+        public const float CrowdAvoidSeconds = 1.5f;
         private EncounterBounds _bounds;
 
         /// <summary>The obstacle steering in use (diagnostics/tests).</summary>
         public ObstacleSteering Steering => _steering;
+        /// <summary>The route layer around blocking geometry (diagnostics/tests; null until the first chase step).</summary>
+        public PursuitNavigator Navigator => _navigator;
+        /// <summary>Local avoidance of other enemy bodies (diagnostics/tests; null until the first chase step).</summary>
+        public CrowdAvoidance Crowd => _crowd;
 
         /// <summary>The encounter-room bounds this enemy is confined to (bound by the owning room when it spawns; null before/without).</summary>
         public EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = GetComponent<EncounterBounds>();
@@ -447,10 +456,25 @@ namespace RuinRail.Gameplay.Enemies
             // distance, hold between. Pure pursuers (preferred distance 0) always close in.
             var distance = toTarget.magnitude;
             var direction = toTarget / distance;
+            var retreating = false;
             if (_definition.KeepsDistance)
             {
-                if (distance < _definition.PreferredDistance) direction = -direction;
+                if (distance < _definition.PreferredDistance) { direction = -direction; retreating = true; }
                 else if (distance <= _definition.AttackRange) { _rigidbody2D.linearVelocity = Vector2.zero; return; }
+            }
+
+            // Closing in: when walls or obstacles block the straight line, the heading follows a route around them
+            // (unchanged while the line is clear); a distance-keeper backing off still retreats directly.
+            if (!retreating)
+            {
+                _navigator ??= new PursuitNavigator(transform);
+                direction = _navigator.Heading(_rigidbody2D.position, _target.position, BodyRadius(), Bounds);
+                // Other enemies' bodies: spread a little, step around one directly ahead, never shove into a crowd.
+                _crowd ??= new CrowdAvoidance(transform);
+                direction = _crowd.Adjust(_rigidbody2D.position, direction, BodyRadius(), Time.fixedDeltaTime);
+                // Held up behind bodies for a while (a one-wide passage): ask for a way around them, if there is one.
+                if (_crowd.HeldSeconds > CrowdRerouteSeconds) { _navigator.AvoidBodies(_crowd.Blockers, CrowdAvoidSeconds); _crowd.ClearHeld(); }
+                if (direction.sqrMagnitude < 0.0001f) { _rigidbody2D.linearVelocity = Vector2.zero; return; }
             }
 
             // Solid geometry deflects the heading (wall slide / corner rounding) instead of being pushed into.

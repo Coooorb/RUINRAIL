@@ -87,7 +87,12 @@ namespace RuinRail.Dungeon.Runtime
                 _pending = false;
                 if (_blocker != null) _blocker.enabled = false;
                 RefreshVisual();
-                if (changed && !_sealed) LockChanged?.Invoke(this, false);
+                if (changed && !_sealed)
+                {
+                    _openFlash = OpenFlashSeconds; // the door reads as released, not just swapped
+                    LockChanged?.Invoke(this, false);
+                }
+
                 return;
             }
 
@@ -185,9 +190,26 @@ namespace RuinRail.Dungeon.Runtime
             _door.enabled = _door.sprite != null;
         }
 
+        /// <summary>How long a door that just unlocked glows in the release colour, fading back to its plain skin.</summary>
+        public const float OpenFlashSeconds = 0.6f;
+        private static readonly Color OpenFlashTint = new(0.55f, 1f, 0.68f, 1f);
+        private float _openFlash;
+
+        /// <summary>True while the open-release glow is showing (presentation only).</summary>
+        public bool IsFlashingOpen => _openFlash > 0f;
+
         private void LateUpdate()
         {
             if (_door == null || !_hasSkin) return;
+            if (_openFlash > 0f)
+            {
+                _openFlash = Mathf.Max(0f, _openFlash - Time.deltaTime);
+                // Two quick pulses, then a fade to the plain skin.
+                var t = 1f - _openFlash / OpenFlashSeconds;
+                var pulse = t < 0.5f ? Mathf.Abs(Mathf.Sin(t * Mathf.PI * 4f)) : 1f - (t - 0.5f) * 2f;
+                _door.color = Color.Lerp(Color.white, OpenFlashTint, _openFlash > 0f ? pulse : 0f);
+            }
+
             var wanted = IsBlocking ? _skin.Locked : _skin.Open;
             if (_door.sprite != wanted) { _door.sprite = wanted; _door.enabled = wanted != null; }
         }

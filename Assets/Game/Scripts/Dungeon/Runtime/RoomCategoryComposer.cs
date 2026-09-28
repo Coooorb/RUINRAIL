@@ -25,7 +25,6 @@ namespace RuinRail.Dungeon.Runtime
     {
         public const string EventTagPrefix = "event:";
         private const int EventKindSalt = 0x4B4E; // "KN"
-        private const int SecureRelaySalt = 0x5352; // "SR"
         public const int ChestSourceStride = 16;
 
         public static readonly DungeonEventKind[] RandomEventKinds =
@@ -34,7 +33,8 @@ namespace RuinRail.Dungeon.Runtime
             DungeonEventKind.LockedVault,
             DungeonEventKind.BrokenMachine,
             DungeonEventKind.SupplySignal,
-            DungeonEventKind.WeaponCache
+            DungeonEventKind.WeaponCache,
+            DungeonEventKind.SecureRelay
         };
 
         public static RoomContentBinding Compose(RoomRuntime room, DungeonRuntimeContext context, DungeonRuntimeServices services)
@@ -54,7 +54,7 @@ namespace RuinRail.Dungeon.Runtime
                     BindMerchant(room, binding, context, services);
                     break;
                 case RoomType.Event:
-                    BindEvent(room, binding, context, services, ResolveEventKind(room, context, services.EventConfig != null ? services.EventConfig.SecureRelayChancePercent : DungeonEventConfig.DefaultSecureRelayChancePercent));
+                    BindEvent(room, binding, context, services, ResolveEventKind(room, context));
                     break;
                 case RoomType.MedicalRecovery:
                     BindEvent(room, binding, context, services, DungeonEventKind.MedicalStation);
@@ -161,6 +161,7 @@ namespace RuinRail.Dungeon.Runtime
             services.LootCatalog.Configure(chest, kind, context.RunSeed, context.Depth, sourceIndex, context.PartySize, services.UsefulAmmoTypes, spawner,
                 services.Prices?.Config);
             chest.AttachVisual(); // final crate art; the sprite follows closed / opened / locked from here on
+            ChestBiomePalette.Apply(chest, context.Biome); // the depth's biome colour (Boss Cache: gold lean, larger)
             return chest;
         }
 
@@ -191,16 +192,16 @@ namespace RuinRail.Dungeon.Runtime
 
         // ---- Event / Medical ----
 
-        public static DungeonEventKind ResolveEventKind(RoomRuntime room, DungeonRuntimeContext context, int secureRelayChancePercent = DungeonEventConfig.DefaultSecureRelayChancePercent) =>
-            ResolveEventKind(room.Root.Definition != null ? room.Root.Definition.Tags : Array.Empty<string>(), context.RunSeed, context.Depth, room.State.NodeId, secureRelayChancePercent);
+        public static DungeonEventKind ResolveEventKind(RoomRuntime room, DungeonRuntimeContext context) =>
+            ResolveEventKind(room.Root.Definition != null ? room.Root.Definition.Tags : Array.Empty<string>(), context.RunSeed, context.Depth, room.State.NodeId);
 
         /// <summary>
-        /// Pure form (planning / simulation): the authored "event:&lt;kind&gt;" tag wins; otherwise the rare Secure Relay
-        /// (57.7) roll on its own salted draw, and failing that the seeded pick of the six approved events on the Loot
-        /// stream. The relay roll never consumes the pick's stream, so every room the relay does not claim keeps the event
-        /// it always had.
+        /// Pure form (planning / simulation): the authored "event:&lt;kind&gt;" tag wins; otherwise one seeded equal-weight
+        /// pick of the Event-room events (<see cref="RandomEventKinds"/>, the Secure Relay included, 57.7) on the Loot
+        /// stream — one draw per room, the same on every peer. The Medical Station is not in the pool: it belongs to the
+        /// Medical room.
         /// </summary>
-        public static DungeonEventKind ResolveEventKind(IReadOnlyList<string> tags, int runSeed, int depth, int nodeId, int secureRelayChancePercent = DungeonEventConfig.DefaultSecureRelayChancePercent)
+        public static DungeonEventKind ResolveEventKind(IReadOnlyList<string> tags, int runSeed, int depth, int nodeId)
         {
             tags ??= Array.Empty<string>();
             foreach (var tag in tags)
@@ -211,12 +212,6 @@ namespace RuinRail.Dungeon.Runtime
                 {
                     if (string.Equals(kind.ToString(), name, StringComparison.OrdinalIgnoreCase)) return kind;
                 }
-            }
-
-            if (secureRelayChancePercent > 0)
-            {
-                var relay = new SeededRandom(SeededRandom.MixSeed(runSeed, depth, (int)RngStream.Loot, SecureRelaySalt, nodeId));
-                if (relay.NextInt(100) < secureRelayChancePercent) return DungeonEventKind.SecureRelay;
             }
 
             var random = new SeededRandom(SeededRandom.MixSeed(runSeed, depth, (int)RngStream.Loot, EventKindSalt, nodeId));
@@ -287,7 +282,11 @@ namespace RuinRail.Dungeon.Runtime
             HostEncounterEvents(room, interactable, instance, go);
         }
 
-        /// <summary>Events that spawn enemies run them as extra encounters of the room; the Cursed Chest also locks doors.</summary>
+        /// <summary>
+        /// Events that spawn enemies (Cursed Chest, Supply Signal) run them as extra encounters of the room and hold the
+        /// party in it like a combat room: every spawn goes through <see cref="SpawnLockedEncounter"/>, and the doors open
+        /// again only when the event resolves (57: "Every event room can be exited afterwards").
+        /// </summary>
         private static void HostEncounterEvents(RoomRuntime room, DungeonEventInteractable interactable, IDungeonEvent instance, GameObject host)
         {
             switch (instance)
@@ -295,18 +294,28 @@ namespace RuinRail.Dungeon.Runtime
                 case CursedChestEvent cursed:
                     cursed.EncounterStarted += (e, plan) =>
                     {
-                        room.LockDoors();
-                        var runtime = room.SpawnAdditionalEncounter(plan, interactable.LastActor?.GameObject);
+                        var runtime = SpawnLockedEncounter(room, interactable, plan);
                         if (runtime == null) { e.ReportEncounterFailed(); return; }
                         runtime.Completed += _ => e.ReportEncounterCleared();
                     };
-                    cursed.Completed += (_, _) => { if (room.Lifecycle != RoomLifecycleState.Active) room.UnlockDoors(); };
                     break;
                 case SupplySignalEvent signal:
-                    signal.WaveStarted += (e, plan) => room.SpawnAdditionalEncounter(plan, interactable.LastActor?.GameObject);
+                    signal.WaveStarted += (_, plan) => SpawnLockedEncounter(room, interactable, plan);
                     host.AddComponent<SupplySignalTicker>().Bind(signal);
                     break;
+                default:
+                    return;
             }
+
+            // A combat room's own lockdown (lifecycle Active) is the room's to release, never the event's.
+            instance.Completed += (_, _) => { if (room.Lifecycle != RoomLifecycleState.Active) room.UnlockDoors(); };
+        }
+
+        /// <summary>The one encounter-event lockdown: doors lock as the event's enemies spawn (every wave, idempotent).</summary>
+        private static EncounterRuntime SpawnLockedEncounter(RoomRuntime room, DungeonEventInteractable interactable, EncounterPlan plan)
+        {
+            room.LockDoors();
+            return room.SpawnAdditionalEncounter(plan, interactable.LastActor?.GameObject);
         }
 
         // ---- Boss ----

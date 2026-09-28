@@ -102,6 +102,9 @@ namespace RuinRail.UI.Base
             // 57.7: when the run ends, an escrow the host accepted goes into Storage; one without an acceptance rejoins the
             // run just before the Return / failure transaction and shares the fate of everything else carried.
             Expedition.Ending += SettleRelayEscrowAtRunEnd;
+            // 72: the Trader restocks after every ended expedition. Subscribed BEFORE the recorder so the new stock (and its
+            // cleared sold marks) lands in the same end-of-run save; keyed by the persisted ended count, so it happens once.
+            Expedition.ExpeditionEnded += _ => RestockTraderForEndedExpeditions();
             Recorder = new ExpeditionTransactionRecorder(Expedition, slot, Autosave);
         }
 
@@ -137,9 +140,21 @@ namespace RuinRail.UI.Base
             session.GrantedRescueKit = session.StarterKit.EnsureStartableLoadout(session.Profile, session.Storage);
             if (session.GrantedRescueKit) session.Loadout.RestoreFromSnapshot(session.Profile.SafeLoadout);
             session.SettleRelayEscrowAfterRestart(); // a run that ended with the process (crash, quit) left its escrow behind
+            session.RestockTraderForEndedExpeditions(); // ...and its restock: the boot resolved it as an ended expedition
             session.Autosave.MarkDirty("base_entered");
             session.Autosave.Flush();
             return session;
+        }
+
+        /// <summary>
+        /// Brings the Trader's stock up to the profile's ended-expedition count (72: one restock per ended expedition,
+        /// Return or failure). The Trader refreshes at most once per count and persists it, so reopening the profile,
+        /// the Shelter or the Trader tab never restocks again; the stock itself is a function of (profile seed, refresh
+        /// count, level), so a reload rebuilds the same offers instead of rerolling them.
+        /// </summary>
+        private void RestockTraderForEndedExpeditions()
+        {
+            if (Profile.ExpeditionsEnded > 0) Trader.RefreshForEndedExpedition(Profile.ExpeditionsEnded);
         }
 
         /// <summary>Unresolved Secure Relay escrows (no host acceptance) lost with a run abandoned mid-way (diagnostics / tests).</summary>

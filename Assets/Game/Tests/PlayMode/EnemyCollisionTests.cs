@@ -15,6 +15,7 @@ using RuinRail.Gameplay.Enemies;
 using RuinRail.Gameplay.Enemies.Attacks;
 using RuinRail.Gameplay.Enemies.Bosses;
 using RuinRail.Gameplay.Enemies.Elites;
+using RuinRail.Gameplay.Enemies.Encounters;
 using RuinRail.Networking;
 using UnityEditor;
 using UnityEngine;
@@ -135,21 +136,25 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
-        public IEnumerator StraightWall_StopsTheChase_NoPenetration()
+        public IEnumerator StraightWall_WithAReachableEnd_IsWalkedAround_NoPenetration()
         {
-            var wall = Wall(new Vector2(103f, 100f), new Vector2(0.5f, 8f));
+            // An 8-tile wall head-on between the enemy and its target, open at both ends. The old steering pressed into
+            // it and held there for as long as the player stood behind it; the route goes around an end.
+            Wall(new Vector2(103f, 100f), new Vector2(0.5f, 8f));
             var target = Target(new Vector2(108f, 100f));
             var enemy = Enemy("grunt", new Vector2(100f, 100f), target.transform);
             var worst = 0f;
-            for (var i = 0; i < 120; i++)
+            var reached = false;
+            for (var i = 0; i < 500 && !reached; i++)
             {
                 yield return new WaitForFixedUpdate();
                 worst = Mathf.Max(worst, Penetration(enemy, DefaultEnemySpawner.BodyRadius));
+                reached = Vector2.Distance(enemy.transform.position, target.transform.position) <= enemy.Definition.AttackRange + 0.3f;
             }
 
-            Assert.LessOrEqual(enemy.transform.position.x, 103f - 0.25f - DefaultEnemySpawner.BodyRadius + Tolerance, "stopped on the near side of the wall");
+            Assert.IsTrue(reached, $"walked around the wall to its target (ended at {(Vector2)enemy.transform.position})");
             Assert.LessOrEqual(worst, Tolerance, "never inside the wall");
-            Assert.AreEqual(EnemyState.Chase, enemy.State, "still chasing (a wall is not a smoke zone)");
+            Assert.IsTrue(enemy.Navigator != null && enemy.Navigator.Repaths > 0, "the route layer planned the way around");
         }
 
         [UnityTest]
@@ -169,7 +174,7 @@ namespace RuinRail.Tests
             var moved = (Vector2)enemy.transform.position - start;
             Assert.LessOrEqual(worst, Tolerance);
             Assert.Greater(Mathf.Abs(moved.y), 1f, "slid along the diagonal instead of stopping dead or pushing through");
-            Assert.Greater(enemy.Steering.Deflections, 0, "the steering deflected the heading");
+            Assert.IsTrue(enemy.Steering.Deflections > 0 || (enemy.Navigator != null && enemy.Navigator.Repaths > 0), "the steering deflected the heading or the route went around the wall");
         }
 
         [UnityTest]
@@ -432,6 +437,235 @@ namespace RuinRail.Tests
             Assert.GreaterOrEqual(checkedRooms, 9, "three biomes × three size classes");
         }
 
+        /// <summary>
+        /// The pile-up case that could bury a body in a prop: a whole pack pressed into an obstacle it wants to cross
+        /// (its target stands right behind it), bound to the room interior exactly as a spawned encounter is, and hit
+        /// again and again with a hard knockback toward that obstacle — in the most obstacle-heavy combat room of each
+        /// biome, at several obstacle faces. Bodies may press into the contact for a solver step, but no living enemy may
+        /// sit inside a wall, locker or crate: every overlap is resolved within two physics steps, and no body leaves
+        /// the room interior.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator PackPressedAndKnockedIntoObstacles_NeverStaysEmbedded_InTheMostObstacleHeavyRoomOfEachBiome()
+        {
+            var index = 0;
+            var faces = 0;
+            var pack = new[] { "grunt", "grunt", "swarm", "swarm", "brute", "charger" };
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            {
+                // The combat room with the most obstacle tiles (lockers, crates, tanks) in this biome.
+                var definition = _catalog.Rooms.Where(r => r.Biome == biome && r.RoomType == RoomType.Combat)
+                    .OrderByDescending(r => ObstacleCells(r.Prefab.GetComponent<RoomRoot>()).Count).ThenBy(r => r.Id).First();
+                var (runtime, root) = Room(definition, new Vector2(5000f + index++ * 150f, 5000f));
+                yield return new WaitForFixedUpdate();
+                var interior = runtime.InteriorWorldBounds;
+                var obstacles = ObstacleCells(root);
+                // Obstacle faces with open floor in front: pressing there drives bodies straight into the prop.
+                var candidates = new List<(Vector2 face, Vector2 into)>();
+                foreach (var cell in obstacles)
+                foreach (var step in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
+                {
+                    var open = cell + step;
+                    if (obstacles.Contains(open)) continue;
+                    var openWorld = (Vector2)root.transform.TransformPoint(GridCoordinates.CellToWorldCenter(open));
+                    if (!interior.Contains(openWorld) || !RoomRuntime.IsSpawnClear(openWorld)) continue;
+                    candidates.Add((openWorld, -(Vector2)step));
+                }
+
+                Assert.Greater(candidates.Count, 0, definition.Id + ": obstacle faces on open floor");
+                var chosen = candidates.Where((_, i) => i % Mathf.Max(1, candidates.Count / 4) == 0).Take(4).ToList();
+                var worstDepth = 0f;
+                var worstRun = 0;
+                foreach (var (face, into) in chosen)
+                {
+                    // The target stands behind the obstacle: every chase leads into it.
+                    var target = Target(face + into * 3f);
+                    var side = new Vector2(-into.y, into.x);
+                    var enemies = new List<EnemyController>();
+                    for (var i = 0; i < pack.Length; i++)
+                    {
+                        // Each body on its own clear spot in front of the face (as the encounter spawner places them):
+                        // two bodies created on one point is the spawn defect the runtime prevents, not this case.
+                        var at = face - into * (0.9f + (i / 3) * 0.9f) + side * ((i % 3) - 1) * 0.8f;
+                        if (!interior.Contains(at) || !RoomRuntime.IsSpawnClear(at) || enemies.Any(e => Vector2.Distance(e.transform.position, at) < EncounterRuntime.SpawnSpacing)) continue;
+                        var enemy = Enemy(pack[i], at, target.transform);
+                        EncounterBounds.Bind(enemy.gameObject, interior, definition.Id, 1);
+                        enemies.Add(enemy);
+                    }
+
+                    var runs = enemies.ToDictionary(e => e, _ => 0);
+                    for (var stepIndex = 0; stepIndex < 180; stepIndex++)
+                    {
+                        // A hard hit toward the obstacle on the whole pack, several times a second.
+                        if (stepIndex % 12 == 6)
+                            foreach (var enemy in enemies) ImpactDispatcher.Apply(enemy, new ImpactRequest(into, 4f, 0f));
+                        yield return new WaitForFixedUpdate();
+                        foreach (var enemy in enemies)
+                        {
+                            var radius = enemy.GetComponent<CircleCollider2D>().radius;
+                            var depth = Penetration(enemy, radius);
+                            worstDepth = Mathf.Max(worstDepth, depth);
+                            runs[enemy] = depth > Tolerance ? runs[enemy] + 1 : 0;
+                            worstRun = Mathf.Max(worstRun, runs[enemy]);
+                            Assert.LessOrEqual(runs[enemy], 2, $"{definition.Id}: {enemy.Definition.Id} stayed inside an obstacle at {(Vector2)enemy.transform.position} (depth {depth:0.00}, face {face})");
+                            var bounds = enemy.GetComponent<EncounterBounds>();
+                            Assert.IsTrue(bounds.ColliderInside(enemy.transform.position, Tolerance), $"{definition.Id}: {enemy.Definition.Id} left the room interior at {(Vector2)enemy.transform.position}");
+                        }
+                    }
+
+                    foreach (var enemy in enemies) Object.DestroyImmediate(enemy.gameObject);
+                    Object.DestroyImmediate(target);
+                    faces++;
+                }
+
+                Debug.Log($"[PROOF] {definition.Id}: {obstacles.Count} obstacle tiles, {chosen.Count} faces, pack of {pack.Length} pressed + knocked in; deepest overlap {worstDepth:0.00}, longest overlap {worstRun} step(s)");
+            }
+
+            Assert.GreaterOrEqual(faces, 9, "several faces in each biome");
+        }
+
+        /// <summary>
+        /// The spawn defect behind a buried enemy: a wave larger than the room's usable markers reused them in the same
+        /// frame, creating two or three bodies on one point; separating them, the solver could throw one through a prop
+        /// beside the marker. In every small combat room (2–3 usable markers from its tightest door) an 8-enemy wave,
+        /// started by the real room activation, now spawns every body apart on clear floor inside the room, and none of
+        /// them ends up inside geometry while the wave fights.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator WaveLargerThanTheRoomsMarkers_SpawnsEveryBodyApartOnClearFloor_InEverySmallCombatRoom()
+        {
+            var grunt = _catalog.Enemies.First(e => e.Id == "grunt");
+            var index = 0;
+            var rooms = 0;
+            foreach (var definition in _catalog.Rooms.Where(r => r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Small).OrderBy(r => r.Id))
+            {
+                var (runtime, root) = Room(definition, new Vector2(7000f + index++ * 60f, 7000f));
+                yield return new WaitForFixedUpdate();
+                // Enter through the door that leaves the fewest markers far enough away.
+                var entries = root.GetSockets().Select(socket => SocketPoints(root, socket).inside).ToList();
+                var entry = entries.OrderBy(p => runtime.SpawnPointsFor(p).Count).First();
+                var markers = runtime.SpawnPointsFor(entry).Count;
+                var player = Target(entry);
+                var plan = new EncounterPlan(new EncounterContext(7, 1, 1, definition.Biome, 0), 1f, 1f, 1f, new[] { new EncounterEntry(grunt, 8) });
+                runtime.SetEncounter(plan, new DefaultEnemySpawner(_catalog.Stagger));
+                Assert.IsTrue(runtime.NotifyPlayerEntered(player), definition.Id + ": the room activates");
+                var bodies = runtime.Encounter.Living.ToList();
+                Assert.AreEqual(8, bodies.Count, definition.Id + ": the whole wave spawns at once (active cap 10)");
+                Assert.Less(markers, bodies.Count, definition.Id + ": fewer usable markers than bodies — the case under test");
+                var interior = runtime.InteriorWorldBounds;
+                for (var i = 0; i < bodies.Count; i++)
+                {
+                    var at = (Vector2)bodies[i].transform.position;
+                    Assert.IsTrue(RoomRuntime.IsSpawnClear(at), $"{definition.Id}: body {i} spawned touching geometry at {at}");
+                    Assert.IsTrue(interior.Contains(at), $"{definition.Id}: body {i} spawned outside the room at {at}");
+                    Assert.IsTrue(runtime.SpawnPointsFor(entry).Any(marker => SpawnClearance.HasClearPath(marker, at)), $"{definition.Id}: body {i} at {at} is not reachable over open floor from any spawn marker");
+                    for (var j = 0; j < i; j++)
+                        Assert.GreaterOrEqual(Vector2.Distance(at, bodies[j].transform.position), DefaultEnemySpawner.BodyRadius * 2f, $"{definition.Id}: bodies {j} and {i} spawned on top of each other");
+                }
+
+                var runs = bodies.ToDictionary(b => b, _ => 0);
+                for (var step = 0; step < 150; step++)
+                {
+                    yield return new WaitForFixedUpdate();
+                    foreach (var body in bodies.Where(b => b != null && b.IsAlive))
+                    {
+                        runs[body] = Penetration(body, DefaultEnemySpawner.BodyRadius) > Tolerance ? runs[body] + 1 : 0;
+                        Assert.LessOrEqual(runs[body], 2, $"{definition.Id}: a spawned body stayed inside geometry at {(Vector2)body.transform.position}");
+                    }
+                }
+
+                foreach (var body in bodies) if (body != null) Object.DestroyImmediate(body.gameObject);
+                Object.DestroyImmediate(player);
+                Object.DestroyImmediate(root.gameObject);
+                rooms++;
+            }
+
+            Assert.GreaterOrEqual(rooms, 15, "every small combat room of the three biomes");
+        }
+
+        /// <summary>
+        /// A summoner standing against a prop or a wall places its swarm only on free floor: never inside solid geometry,
+        /// never outside its room, never on top of another summon of the same wave — in the most obstacle-heavy room of
+        /// each biome, at every obstacle face, wave after wave.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator SummonerAgainstObstacles_NeverPlacesASummonInsideGeometryOrOutsideItsRoom()
+        {
+            var index = 0;
+            var waves = 0;
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            {
+                var definition = _catalog.Rooms.Where(r => r.Biome == biome && r.RoomType == RoomType.Combat)
+                    .OrderByDescending(r => ObstacleCells(r.Prefab.GetComponent<RoomRoot>()).Count).ThenBy(r => r.Id).First();
+                var (runtime, root) = Room(definition, new Vector2(8000f + index++ * 150f, 8000f));
+                yield return new WaitForFixedUpdate();
+                var interior = runtime.InteriorWorldBounds;
+                var obstacles = ObstacleCells(root);
+                var faces = new List<Vector2>();
+                foreach (var cell in obstacles)
+                foreach (var step in new[] { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right })
+                {
+                    var open = cell + step;
+                    if (obstacles.Contains(open)) continue;
+                    var world = (Vector2)root.transform.TransformPoint(GridCoordinates.CellToWorldCenter(open));
+                    if (interior.Contains(world) && RoomRuntime.IsSpawnClear(world)) faces.Add(world);
+                }
+
+                foreach (var face in faces.Where((_, i) => i % 3 == 0))
+                {
+                    var summoner = Enemy("summoner", face, null);
+                    var bounds = EncounterBounds.Bind(summoner.gameObject, interior, definition.Id, 1);
+                    var summons = new List<EnemyController>();
+                    summoner.Summoner.SetSpawner(new SummonRecorder(new DefaultEnemySpawner(_catalog.Stagger), summons));
+                    for (var wave = 0; wave < 3; wave++)
+                    {
+                        var before = summons.Count;
+                        summoner.Summoner.SummonWave();
+                        var created = summons.Skip(before).ToList();
+                        for (var i = 0; i < created.Count; i++)
+                        {
+                            var at = (Vector2)created[i].transform.position;
+                            Assert.IsTrue(RoomRuntime.IsSpawnClear(at), $"{definition.Id}: a summon was created inside geometry at {at} (summoner at {face})");
+                            Assert.IsTrue(bounds.Legal.Contains(at), $"{definition.Id}: a summon was created outside the room at {at}");
+                            for (var j = 0; j < i; j++) Assert.GreaterOrEqual(Vector2.Distance(at, created[j].transform.position), DefaultEnemySpawner.BodyRadius * 2f, "two summons on one point");
+                        }
+
+                        foreach (var summon in created) Object.DestroyImmediate(summon.gameObject);
+                        waves++;
+                    }
+
+                    Object.DestroyImmediate(summoner.gameObject);
+                }
+            }
+
+            Assert.Greater(waves, 30, "many waves against obstacles in every biome");
+        }
+
+        private sealed class SummonRecorder : IEnemySpawner
+        {
+            private readonly IEnemySpawner _inner;
+            private readonly List<EnemyController> _created;
+            public SummonRecorder(IEnemySpawner inner, List<EnemyController> created) { _inner = inner; _created = created; }
+
+            public EnemyController Spawn(EnemyDefinition definition, Vector2 position, Transform target)
+            {
+                var enemy = _inner.Spawn(definition, position, target);
+                if (enemy != null) _created.Add(enemy);
+                return enemy;
+            }
+        }
+
+        /// <summary>The cells of a room's obstacle tile layer (lockers, crates, tanks, pillars).</summary>
+        private static HashSet<Vector2Int> ObstacleCells(RoomRoot root)
+        {
+            var cells = new HashSet<Vector2Int>();
+            var layer = RoomGridBuilder.FindLayer(root.Grid, RoomTilemapLayer.Obstacles);
+            if (layer == null) return cells;
+            foreach (var position in layer.cellBounds.allPositionsWithin)
+                if (layer.HasTile(position)) cells.Add(new Vector2Int(position.x, position.y));
+            return cells;
+        }
+
         [UnityTest]
         public IEnumerator SealedSocket_IsWall_ForEnemiesToo()
         {
@@ -459,7 +693,9 @@ namespace RuinRail.Tests
         [UnityTest]
         public IEnumerator ClientReplica_FollowsOnlyTheHostsWallConstrainedPosition_AndHasNoBodyOfItsOwn()
         {
-            Wall(new Vector2(103f, 100f), new Vector2(0.5f, 8f));
+            // A barrier with no way around (far longer than any route the host could plan): the host genuinely holds
+            // at the wall, and the replica may show only that wall-constrained position.
+            Wall(new Vector2(103f, 100f), new Vector2(0.5f, 40f));
             var target = Target(new Vector2(108f, 100f));
             var host = Enemy("grunt", new Vector2(100f, 100f), target.transform);
             var registry = new EnemyReplicaRegistry();

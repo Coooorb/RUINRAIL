@@ -109,12 +109,14 @@ namespace RuinRail.Gameplay.Enemies
             var wanted = _random.NextInt(_definition.SummonCountMin, _definition.SummonCountMax);
             var count = Mathf.Min(wanted, room);
             var created = new List<EnemyController>(count);
+            var taken = new List<Vector2>(count);
             for (var i = 0; i < count; i++)
             {
                 // Deterministic ring around the summoner: no random positions, no overlap between wave members.
                 var angle = (360f / count) * i + Waves * 30f;
-                var offset = (Vector2)(Quaternion.Euler(0f, 0f, angle) * Vector2.right) * _definition.SummonRadiusTiles;
-                var summon = _spawner.Spawn(_definition.SummonDefinition, (Vector2)transform.position + offset, _owner.Target);
+                if (!TrySummonSpot(angle, taken, out var spot)) continue;
+                taken.Add(spot);
+                var summon = _spawner.Spawn(_definition.SummonDefinition, spot, _owner.Target);
                 if (summon == null) continue;
                 _living.Add(summon);
                 created.Add(summon);
@@ -124,6 +126,37 @@ namespace RuinRail.Gameplay.Enemies
             Waves++;
             if (created.Count > 0) Summoned?.Invoke(this, created);
             return created.Count;
+        }
+
+        /// <summary>
+        /// The ring spot at <paramref name="angle"/>, or the nearest free one further round the ring or on a tighter
+        /// ring. A summoner beside a wall or a prop would otherwise create its summon inside that collider — a body
+        /// physics does not reliably push back out, and one that keeps the room from clearing. A spot is free when it is
+        /// clear of solid geometry and enemy hazards, inside the summoner's room, reachable from the summoner over open
+        /// floor and away from every other summon of this summoner (two bodies made on one point are the same trap); with
+        /// none free the summon is not made (the wave is smaller).
+        /// </summary>
+        private bool TrySummonSpot(float angle, List<Vector2> taken, out Vector2 spot)
+        {
+            var origin = (Vector2)transform.position;
+            var bounds = GetComponent<RuinRail.Gameplay.Combat.EncounterBounds>();
+            Rect? legal = bounds != null && bounds.IsBound ? bounds.Legal : null;
+            foreach (var radius in new[] { _definition.SummonRadiusTiles, _definition.SummonRadiusTiles * 0.6f })
+            {
+                for (var step = 0; step < 12; step++)
+                {
+                    var a = angle + (step % 2 == 0 ? 1f : -1f) * ((step + 1) / 2) * 30f;
+                    var candidate = origin + (Vector2)(Quaternion.Euler(0f, 0f, a) * Vector2.right) * radius;
+                    if (taken.Exists(t => Vector2.Distance(t, candidate) < Encounters.EncounterRuntime.SpawnSpacing)) continue;
+                    if (_living.Exists(s => s != null && s.IsAlive && Vector2.Distance(s.transform.position, candidate) < Encounters.EncounterRuntime.SpawnSpacing)) continue;
+                    if (!SpawnClearance.IsFreeSpot(candidate, legal) || !SpawnClearance.HasClearPath(origin, candidate)) continue;
+                    spot = candidate;
+                    return true;
+                }
+            }
+
+            spot = origin;
+            return false;
         }
 
         private void Prune()

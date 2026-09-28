@@ -218,10 +218,12 @@ namespace RuinRail.Tests
             var rows = new List<string> { "clip,seconds,expected_bar_grid_seconds,aligned" };
             foreach (var (role, bpm) in new[]
                      {
-                         ("mainmenu", 72f), ("shelter", 72f),
-                         ("ruinedmetroexploration", 72f), ("ruinedmetrocombat", 108f), ("ruinedmetroboss", 126f),
-                         ("rustworksexploration", 72f), ("rustworkscombat", 108f), ("rustworksboss", 126f),
-                         ("overgrownlabsexploration", 72f), ("overgrownlabscombat", 108f), ("overgrownlabsboss", 126f)
+                         // art/105: the calm 60 BPM menu theme (also the Shelter's), the old 72 BPM generic bed file,
+                         // and each biome's own tempi (exploration / combat / boss).
+                         ("mainmenu", 60f), ("shelter", 72f),
+                         ("ruinedmetroexploration", 76f), ("ruinedmetrocombat", 112f), ("ruinedmetroboss", 128f),
+                         ("rustworksexploration", 66f), ("rustworkscombat", 100f), ("rustworksboss", 116f),
+                         ("overgrownlabsexploration", 84f), ("overgrownlabscombat", 116f), ("overgrownlabsboss", 132f)
                      })
             {
                 var path = $"Assets/Game/Audio/Music/music_{role}.wav";

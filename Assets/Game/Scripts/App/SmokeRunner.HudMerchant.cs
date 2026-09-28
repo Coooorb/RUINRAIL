@@ -240,7 +240,9 @@ namespace RuinRail.App
             var target = vm.Rows.ToList().IndexOf(cheapest);
             for (var guard = 0; guard < 12 && vm.Cursor != target; guard++) if (!menuInput.Stack.Navigate(vm.Cursor < target ? Vector2Int.down : Vector2Int.up)) break;
             yield return null;
-            Check("keyboard navigation selects the offer and the details show it", vm.Cursor == target && view.DetailTitleText.Contains(cheapest.Name) && view.DetailSubtitleText.Contains($"PRICE {cheapest.Price} C") && vm.CanAct);
+            var restUntil = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f;
+            while (!view.StatPopup.IsVisible && Time.unscaledTime < restUntil) yield return null;
+            Check("keyboard navigation selects the offer and the inspection shows it", vm.Cursor == target && view.StatPopup.IsVisible && view.StatPopup.TitleText.StartsWith(cheapest.Name.Substring(0, Math.Min(6, cheapest.Name.Length))) && view.RowViews[target].PriceText == $"{cheapest.Price} C" && vm.CanAct);
             yield return CaptureHud("merchant_13_item_selected");
 
             // Confirm buys through the service: exact coin change, item in the backpack, offer marked sold, exactly once.

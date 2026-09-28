@@ -64,7 +64,8 @@ namespace RuinRail.Tests
             var window = view.GetComponentsInChildren<RectTransform>(true).First(r => r.name == "Panel");
             var windowRect = WorldBox(window);
             // Every text box of the window (all panels, every nesting level) lies inside the window and no two overlap.
-            var boxes = view.GetComponentsInChildren<Text>(true).Select(t => (t.name, rect: WorldBox((RectTransform)t.transform))).ToList();
+            // (The floating inspection cards are not part of the window's layout: they place themselves beside a slot.)
+            var boxes = view.GetComponentsInChildren<Text>(true).Where(t => t.GetComponentInParent<ItemStatPopup>(true) == null).Select(t => (t.name, rect: WorldBox((RectTransform)t.transform))).ToList();
             foreach (var (name, rect) in boxes)
             {
                 Assert.IsTrue(windowRect.Contains(rect.min) && windowRect.Contains(rect.max), $"{name} {rect} inside the window {windowRect}");
@@ -84,7 +85,7 @@ namespace RuinRail.Tests
             var fitted = UiText.Fit(longest.DisplayName, nameWidth);
             Assert.LessOrEqual(UiText.Width(fitted), nameWidth, $"'{fitted}' fits the {nameWidth} px name column");
             Assert.IsTrue(fitted == longest.DisplayName || fitted.EndsWith("…"), "either whole or ellipsised, never clipped mid-glyph");
-            Assert.LessOrEqual(UiText.Width(longest.DisplayName), InventoryView.DetailsPanel.Width - UiTheme.Pad * 2, "the details title shows the whole name");
+            Assert.LessOrEqual(UiText.Width(UiText.Fit(longest.DisplayName, ItemStatPopup.InnerWidth)), ItemStatPopup.InnerWidth, "the inspection title fits its card");
         }
 
         /// <summary>World-space rect of a RectTransform (canvas units; the canvas is unscaled in a fresh test scene).</summary>

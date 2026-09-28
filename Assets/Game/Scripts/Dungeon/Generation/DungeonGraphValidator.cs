@@ -95,6 +95,14 @@ namespace RuinRail.Dungeon.Generation
                 }
             }
 
+            foreach (var room in graph.Nodes.Where(n => DungeonGraphRules.IsNonCombat(n.Type)))
+            {
+                foreach (var next in room.Neighbors.Where(n => n > room.Id && DungeonGraphRules.IsNonCombat(graph.GetNode(n).Type)))
+                {
+                    problems.Add($"Non-Combat room {room.Id} ({room.Type}) opens directly into Non-Combat room {next} ({graph.GetNode(next).Type}).");
+                }
+            }
+
             foreach (var elite in graph.Nodes.Where(n => n.IsElite))
             {
                 if (elite.Type != RoomType.Combat) problems.Add($"Elite flag on non-Combat room {elite.Id}.");

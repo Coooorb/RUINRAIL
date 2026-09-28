@@ -41,7 +41,7 @@ namespace RuinRail.UI.Base
     ///
     /// It owns no items and no rules. Every move goes through the station's existing authority —
     /// <see cref="StoragePanelViewModel.Deposit"/> / <see cref="StoragePanelViewModel.Withdraw"/> over StorageService
-    /// and ItemTransferService, and <see cref="LoadoutPanelViewModel.EquipFromStorage"/> for a drop onto a worn slot —
+    /// and ItemTransferService, and <see cref="LoadoutPanelViewModel.EquipFromStorage"/> for EQUIP / a drop onto a worn slot —
     /// so capacity, at-risk and slot rules, the no-duplication guarantee and the autosave hooks are exactly the ones the
     /// rest of the Shelter already uses. What it adds is the choice of item, which the text station never offered.
     /// </summary>
@@ -51,6 +51,8 @@ namespace RuinRail.UI.Base
         public const int StorageRows = 4;
         public const int PageSize = StorageColumns * StorageRows;
         public const int EquippedSlots = 5;
+        /// <summary>Characters the stash's message line shows whole; a longer confirmation is phrased shorter rather than cut.</summary>
+        public const int MessageLineChars = 36;
 
         private readonly BaseSession _session;
         private readonly StoragePanelViewModel _storage;
@@ -110,6 +112,24 @@ namespace RuinRail.UI.Base
 
         public ItemDefinition DefinitionOf(ItemInstance item) => item == null ? null : _session.Configs.Resolve(item.DefinitionId);
 
+        /// <summary>Legendary specials for the inspection panel's Legendary line (the app's registry; null leaves it out).</summary>
+        public RuinRail.Gameplay.Combat.Weapons.Specials.LegendarySpecialRegistry Specials { get; set; }
+
+        /// <summary>The item's authoritative tooltip (the same one every item window uses) for the inspection panel.</summary>
+        public ItemTooltip TooltipFor(InventorySlotRef cell)
+        {
+            var item = ItemAt(cell);
+            return item == null ? null : ItemTooltip.Build(item, DefinitionOf(item), Specials);
+        }
+
+        /// <summary>The worn item a Storage or backpack item compares with (the one in-game rule), as its own tooltip; null for none.</summary>
+        public ItemTooltip ComparedTooltipFor(InventorySlotRef cell)
+        {
+            if (cell.Kind == InventorySlotKind.Equipped) return null;
+            var current = InventoryViewModel.ComparedWith(_session.Loadout, ItemAt(cell));
+            return current == null ? null : ItemTooltip.Build(current, DefinitionOf(current), Specials);
+        }
+
         /// <summary>What activating this cell would do now, or why it cannot.</summary>
         public StashIntent IntentFor(InventorySlotRef cell)
         {
@@ -117,15 +137,19 @@ namespace RuinRail.UI.Base
             if (item == null) return new StashIntent(StashAction.None, string.Empty);
             if (cell.Kind == InventorySlotKind.Storage)
             {
-                return _backpack.CanAccept(item)
-                    ? new StashIntent(StashAction.Take, "TAKE")
-                    : new StashIntent(StashAction.Blocked, "BACKPACK FULL", "No free backpack slot. Store something first.");
+                if (_backpack.CanAccept(item)) return new StashIntent(StashAction.Take, "TAKE");
+                var bagRoom = _backpack.RoomFor(item);
+                return bagRoom > 0
+                    ? new StashIntent(StashAction.Take, $"TAKE {bagRoom} OF {item.Quantity}")
+                    : new StashIntent(StashAction.Blocked, "BACKPACK FULL", "No free backpack slot. Drag it onto a backpack item to swap.");
             }
 
             if (item.IsAtRisk) return new StashIntent(StashAction.Blocked, "AT RISK", "Items carried on an expedition can be stored only once you are home.");
-            return _session.Storage.CanAccept(item)
-                ? new StashIntent(StashAction.Store, "STORE")
-                : new StashIntent(StashAction.Blocked, "STORAGE FULL", "No free Storage slot. Upgrade it at the Workshop or take something out.");
+            if (_session.Storage.CanAccept(item)) return new StashIntent(StashAction.Store, "STORE");
+            var storageRoom = _session.Storage.RoomFor(item);
+            return storageRoom > 0
+                ? new StashIntent(StashAction.Store, $"STORE {storageRoom} OF {item.Quantity}")
+                : new StashIntent(StashAction.Blocked, "STORAGE FULL", "No free Storage slot. Drag it onto a Storage item to swap.");
         }
 
         public void SetCursor(InventorySlotRef? cell)
@@ -135,34 +159,195 @@ namespace RuinRail.UI.Base
             Changed?.Invoke();
         }
 
+        // ---------------------------------------------------------------- swap targeting (keyboard / controller)
+
+        /// <summary>The backpack or Storage item picked for a swap (R / pad Y) while the player chooses what to trade it for.</summary>
+        public InventorySlotRef? SwapSource { get; private set; }
+        private string _swapSourceId;
+        public bool IsTargetingSwap => SwapSource.HasValue;
+
+        /// <summary>The item picked for the swap, found by identity (Storage can be paged while choosing); null once it is gone.</summary>
+        public ItemInstance SwapSourceItem
+        {
+            get
+            {
+                if (!SwapSource.HasValue || _swapSourceId == null) return null;
+                return SwapSource.Value.Kind == InventorySlotKind.Storage
+                    ? _session.Storage.Find(_swapSourceId)
+                    : _session.Loadout.BackpackSlots.FirstOrDefault(i => i != null && i.InstanceId == _swapSourceId);
+            }
+        }
+
+        /// <summary>True for the cell that currently shows the picked item (it may be on another Storage page).</summary>
+        public bool IsSwapSource(InventorySlotRef cell) => _swapSourceId != null && ItemAt(cell)?.InstanceId == _swapSourceId;
+
+        /// <summary>
+        /// Picks a backpack or Storage item for a swap: the keyboard / controller counterpart of starting a drag. Nothing
+        /// moves until a target is chosen; worn slots and empty cells cannot start one.
+        /// </summary>
+        public bool BeginSwap(InventorySlotRef cell)
+        {
+            var item = ItemAt(cell);
+            if (item == null) return Report(false, string.Empty);
+            if (cell.Kind == InventorySlotKind.Equipped) return Report(false, "Swaps trade backpack and Storage items.");
+            SwapSource = cell;
+            _swapSourceId = item.InstanceId;
+            return Report(true, cell.Kind == InventorySlotKind.Storage ? "Pick a backpack item to swap with." : "Pick a Storage item to swap with.");
+        }
+
+        /// <summary>Leaves swap targeting; nothing has moved.</summary>
+        public bool CancelSwap()
+        {
+            if (!IsTargetingSwap) return false;
+            SwapSource = null;
+            _swapSourceId = null;
+            Report(false, string.Empty);
+            return true;
+        }
+
+        /// <summary>A cell the picked item can trade places with: an occupied cell on the other side, of another kind (same-kind stacks merge instead).</summary>
+        public bool IsSwapTarget(InventorySlotRef cell)
+        {
+            var source = SwapSourceItem;
+            if (source == null || cell.Kind == InventorySlotKind.Equipped || cell.Kind == SwapSource.Value.Kind) return false;
+            var target = ItemAt(cell);
+            return target != null && !SameStack(source, target);
+        }
+
+        /// <summary>
+        /// Completes the swap on <paramref name="target"/> through the exact route a mouse drag takes (Drop → the Storage
+        /// station's exchange), so there is one swap transaction. An invalid target explains itself and keeps the pick.
+        /// </summary>
+        public bool CompleteSwap(InventorySlotRef target)
+        {
+            if (!IsTargetingSwap) return false;
+            if (SwapSourceItem == null) { CancelSwap(); return Report(false, "That item is no longer there."); }
+            if (!IsSwapTarget(target))
+                return Report(false, SwapSource.Value.Kind == InventorySlotKind.Storage ? "Pick a backpack item to swap with." : "Pick a Storage item to swap with.");
+            var picked = SwapSourceItem;
+            var other = ItemAt(target);
+            var fromStorage = SwapSource.Value.Kind == InventorySlotKind.Storage;
+            SwapSource = null;
+            _swapSourceId = null;
+            return fromStorage
+                ? Exchange(picked, other, target.Index)
+                : Exchange(other, picked, _session.Loadout.BackpackSlots.ToList().IndexOf(picked));
+        }
+
         /// <summary>Performs the cell's action through the station authority. A blocked or empty cell only explains itself.</summary>
         public bool Activate(InventorySlotRef cell)
         {
+            if (IsTargetingSwap) return CompleteSwap(cell);
             var item = ItemAt(cell);
             var intent = IntentFor(cell);
             if (item == null) return Report(false, string.Empty);
             if (!intent.CanAct) return Report(false, intent.Reason);
 
+            var name = NameOf(item);
+            var total = item.Quantity;
             var ok = intent.Action == StashAction.Store ? _storage.Deposit(item.InstanceId) : _storage.Withdraw(item.InstanceId);
-            return Report(ok, ok ? (intent.Action == StashAction.Store ? "Stored " : "Took ") + NameOf(item) + "." : _storage.Feedback.Text);
+            if (!ok) return Report(false, _storage.Feedback.Text);
+            var verb = intent.Action == StashAction.Store ? "Stored " : "Took ";
+            return Report(true, _storage.LastWasPartial ? $"{verb}{_storage.LastMoved}/{total} {name}." : verb + name + ".");
+        }
+
+        /// <summary>
+        /// The worn slot a stored item would be equipped into (EQUIP: F / X): its category's slot; a weapon takes the
+        /// free weapon slot, Primary first, and swaps with Primary when both are taken. Null when nothing can be worn.
+        /// </summary>
+        public EquippedSlot? EquipSlotFor(InventorySlotRef cell)
+        {
+            if (cell.Kind != InventorySlotKind.Storage) return null;
+            var definition = DefinitionOf(ItemAt(cell));
+            if (definition == null) return null;
+            switch (definition.Category)
+            {
+                case ItemCategory.Weapon:
+                    if (_session.Loadout.GetEquipped(EquippedSlot.PrimaryWeapon) == null) return EquippedSlot.PrimaryWeapon;
+                    return _session.Loadout.GetEquipped(EquippedSlot.SecondaryWeapon) == null ? EquippedSlot.SecondaryWeapon : EquippedSlot.PrimaryWeapon;
+                case ItemCategory.Armor: return EquippedSlot.Armor;
+                case ItemCategory.Accessory: return EquippedSlot.Accessory;
+                case ItemCategory.Consumable: return EquippedSlot.ActiveConsumable;
+                default: return null;
+            }
+        }
+
+        /// <summary>The worn item an EQUIP of this cell would send to Storage (null when the target slot is empty).</summary>
+        public ItemInstance EquipDisplaces(InventorySlotRef cell)
+        {
+            var slot = EquipSlotFor(cell);
+            return slot.HasValue ? _session.Loadout.GetEquipped(slot.Value) : null;
+        }
+
+        /// <summary>
+        /// EQUIP: the stored item goes straight into its worn slot; a worn item there moves into the stored item's Storage
+        /// cell in the same exchange (the Loadout station's EquipFromStorage), so no free backpack or Storage slot is needed.
+        /// </summary>
+        public bool Equip(InventorySlotRef cell)
+        {
+            var item = ItemAt(cell);
+            if (item == null) return Report(false, string.Empty);
+            if (cell.Kind != InventorySlotKind.Storage) return Report(false, "Pick an item in Storage to equip it.");
+            var slot = EquipSlotFor(cell);
+            if (slot == null || _loadout == null) return Report(false, NameOf(item) + " cannot be worn.");
+            return EquipInto(item, slot.Value);
+        }
+
+        /// <summary>One equip from Storage with the stash's compact confirmation (the strip's message line is short).</summary>
+        private bool EquipInto(ItemInstance item, EquippedSlot slot)
+        {
+            var displaced = _session.Loadout.GetEquipped(slot);
+            var ok = _loadout.EquipFromStorage(item.InstanceId, slot);
+            if (!ok) return Report(false, _loadout.Feedback.Text);
+            return Report(true, displaced != null ? $"Worn: {NameOf(item)} · Stored: {NameOf(displaced)}" : $"Equipped {NameOf(item)}.");
         }
 
         /// <summary>
         /// Drag and drop: survivor → any Storage cell stores, Storage → a backpack cell takes, Storage → a worn slot equips
-        /// straight from Storage. Anything else (survivor → survivor is the Loadout station's business) does nothing.
+        /// straight from Storage (swapping with the worn item there). Anything else (survivor → survivor is the Loadout
+        /// station's business) does nothing.
         /// </summary>
         public bool Drop(InventorySlotRef from, InventorySlotRef to)
         {
             var fromStorage = from.Kind == InventorySlotKind.Storage;
             var toStorage = to.Kind == InventorySlotKind.Storage;
             if (fromStorage == toStorage) return false;
+            // Backpack ⇄ Storage onto an occupied cell of another kind: the two items trade places, needing no free slot.
+            var moving = ItemAt(from);
+            var target = ItemAt(to);
+            if (moving != null && target != null && !SameStack(moving, target) && (from.Kind == InventorySlotKind.Backpack || to.Kind == InventorySlotKind.Backpack))
+            {
+                return fromStorage ? Exchange(moving, target, to.Index) : Exchange(target, moving, from.Index);
+            }
+
             if (!fromStorage) return Activate(from);
-            if (to.Kind == InventorySlotKind.Backpack) return Activate(from);
+            if (to.Kind == InventorySlotKind.Backpack) return TakeInto(from, to.Index);
 
             var item = ItemAt(from);
             if (item == null || _loadout == null) return false;
-            var ok = _loadout.EquipFromStorage(item.InstanceId, to.EquippedSlot);
-            return Report(ok, ok ? "Equipped " + NameOf(item) + "." : _loadout.Feedback.Text);
+            return EquipInto(item, to.EquippedSlot);
+        }
+
+        /// <summary>The one swap (drag or keyboard / controller): the Storage station's exchange of a stored item with a backpack slot.</summary>
+        private bool Exchange(ItemInstance stored, ItemInstance carried, int backpackIndex)
+        {
+            var swapped = _storage.Exchange(stored.InstanceId, backpackIndex);
+            if (!swapped) return Report(false, _storage.Feedback.Text);
+            var both = $"Took {NameOf(stored)} · Stored {NameOf(carried)}";
+            return Report(true, both.Length <= MessageLineChars ? both : $"Swapped for {NameOf(stored)}.");
+        }
+
+        /// <summary>Two items of one stackable kind merge rather than trade places.</summary>
+        private bool SameStack(ItemInstance a, ItemInstance b) => a.DefinitionId == b.DefinitionId && DefinitionOf(a)?.IsStackable == true;
+
+        /// <summary>Takes a stored item and, for a single item dropped on an empty backpack cell, puts it in exactly that cell.</summary>
+        private bool TakeInto(InventorySlotRef from, int backpackIndex)
+        {
+            var item = ItemAt(from);
+            if (!Activate(from) || item == null) return false;
+            var landed = _session.Loadout.BackpackSlots.ToList().FindIndex(i => i != null && i.InstanceId == item.InstanceId);
+            if (landed >= 0 && landed != backpackIndex && _session.Loadout.BackpackSlots[backpackIndex] == null) _session.Loadout.MoveBackpackSlot(landed, backpackIndex);
+            return true;
         }
 
         /// <summary>Stores every backpack item it can (in slot order); stops at the first refusal and says why.</summary>

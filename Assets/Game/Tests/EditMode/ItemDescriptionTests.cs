@@ -192,7 +192,10 @@ namespace RuinRail.Tests.EditMode
         public void EveryDescription_UsesOnlyPixelFontCharacters_AndWrapsIntoTheDetailsPanels()
         {
             var specials = Specials();
-            var width = InventoryView.DetailsPanel.Width - UiTheme.Pad * 2;
+            // The description budget: at most 5 lines at the 280 px details width the item windows were sized for (the
+            // inventory's panel is gone — its inspection shows stat lines — but the budget still bounds every description).
+            const int DescriptionBudgetPanelWidth = 280;
+            var width = DescriptionBudgetPanelWidth - UiTheme.Pad * 2;
             foreach (var item in AssetDatabase.FindAssets("t:ItemDefinition").Select(g => AssetDatabase.LoadAssetAtPath<ItemDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(d => d != null))
             {
                 var description = ItemDescriptions.Build(item, specials);

@@ -202,7 +202,7 @@ namespace RuinRail.Tests
             }
 
             WriteMatrix();
-            Assert.AreEqual(54, _rows.Count, "30 rooms, the 6 Event rooms under all 5 kinds each (6 x 5 + 24)");
+            Assert.AreEqual(60, _rows.Count, "30 rooms, the 6 Event rooms under all 6 Event-room kinds each (6 x 6 + 24)");
             Assert.IsEmpty(failures, string.Join("\n", failures));
             Assert.IsTrue(_rows.All(r => r[11] == "PASS"), "no discovered non-combat room type is left NOT IMPLEMENTED or failing");
         }
@@ -396,6 +396,9 @@ namespace RuinRail.Tests
             var outcomeOk = false;
             var uiRequired = false;
             var interaction = string.Empty;
+            // Only events that start a fight hold the party in the room; every other event stays escapable.
+            var startsEncounter = kind == DungeonEventKind.CursedChest || kind == DungeonEventKind.SupplySignal;
+            if (!startsEncounter && runtime.DoorsLocked) Fail(kind + " locked the room although it starts no encounter");
 
             switch (kind)
             {
@@ -445,16 +448,38 @@ namespace RuinRail.Tests
                     interaction = "activate -> timed waves, supply drop on survival";
                     var signal = (SupplySignalEvent)instance;
                     var firstWave = UnityEngine.Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Count(e => e != null && e.IsAlive);
-                    var started = pressed && last.Outcome == DungeonEventOutcome.Started && signal.IsRunning && firstWave > 0;
-                    if (!started) Fail("supply signal did not start its first wave");
+                    var started = pressed && last.Outcome == DungeonEventOutcome.Started && signal.IsRunning && firstWave > 0 && runtime.DoorsLocked;
+                    if (!started) Fail($"supply signal did not start its first wave behind locked doors (locked={runtime.DoorsLocked}, enemies={firstWave})");
                     signal.Tick(signal.WaveInterval + 0.01f);
                     yield return null;
                     var secondWave = signal.Waves.Count;
+                    var heldMidSurvival = runtime.DoorsLocked;
+                    if (!heldMidSurvival) Fail("supply signal released the room before the survival resolved");
                     signal.Tick(signal.DurationSeconds);
                     yield return null;
-                    outcomeOk = started && secondWave >= 2 && completed.Count == 1 && completed[0].Outcome == DungeonEventOutcome.Success && _services.GroundLoot.Count > lootBefore;
-                    if (!outcomeOk) Fail($"supply signal did not resolve (waves={secondWave}, completed={completed.Count})");
+                    outcomeOk = started && heldMidSurvival && secondWave >= 2 && completed.Count == 1 && completed[0].Outcome == DungeonEventOutcome.Success && _services.GroundLoot.Count > lootBefore && !runtime.DoorsLocked;
+                    if (!outcomeOk) Fail($"supply signal did not resolve (waves={secondWave}, completed={completed.Count}, doors locked={runtime.DoorsLocked})");
                     foreach (var enemy in UnityEngine.Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) if (enemy != null) UnityEngine.Object.DestroyImmediate(enemy.gameObject);
+                    break;
+                }
+                case DungeonEventKind.SecureRelay:
+                {
+                    // 57.7: per player, not per party — this player secures one carried item; the relay stays open for others.
+                    interaction = "choose one carried item -> secured to Shelter Storage (once per player)";
+                    uiRequired = true;
+                    var relay = (SecureRelayEvent)instance;
+                    var participant = handle.LastActor?.ParticipantId;
+                    var receiver = player.GetComponent<PlayerLootReceiver>();
+                    var item = new ItemInstance("accessory_field_scope", 1, Rarity.Uncommon);
+                    Assert.IsTrue(receiver.Backpack.TryAdd(item));
+                    var storage = new ListItemContainer("matrix_storage");
+                    var secured = relay.Secure(participant, receiver.CarriedContainers, item.InstanceId, storage);
+                    var again = new ItemInstance("accessory_field_scope", 1, Rarity.Uncommon);
+                    receiver.Backpack.TryAdd(again);
+                    var secondUse = relay.Secure(participant, receiver.CarriedContainers, again.InstanceId, storage);
+                    outcomeOk = pressed && !string.IsNullOrEmpty(participant) && secured.Success && storage.Find(item.InstanceId) != null && relay.HasSecured(participant)
+                                && secondUse.Refusal == SecureRelayRefusal.AlreadySecured && storage.Find(again.InstanceId) == null;
+                    if (!outcomeOk) Fail($"secure relay: pressed={pressed}, participant={participant}, first={secured.Refusal}, second={secondUse.Refusal}");
                     break;
                 }
                 case DungeonEventKind.WeaponCache:
@@ -483,7 +508,10 @@ namespace RuinRail.Tests
             var lootAfter = _services.GroundLoot.Count;
             var second = handle.Interact(player);
             yield return null;
-            var idempotent = !second && instance.Phase != DungeonEventPhase.Available && instance.Phase != DungeonEventPhase.InProgress
+            var perPlayer = kind == DungeonEventKind.SecureRelay;
+            var idempotent = perPlayer
+                ? instance is SecureRelayEvent usedRelay && usedRelay.HasSecured(handle.LastActor?.ParticipantId) && runtime.State.IsResolved(SecureRelayEvent.ResolvedIdFor(handle.LastActor?.ParticipantId)) && _services.CarriedWallet.Balance == coinsAfter && _services.GroundLoot.Count == lootAfter
+                : !second && instance.Phase != DungeonEventPhase.Available && instance.Phase != DungeonEventPhase.InProgress
                              && _services.CarriedWallet.Balance == coinsAfter && _services.GroundLoot.Count == lootAfter
                              && Prompt(handle, player) == string.Empty && !handle.CanInteract(player)
                              && runtime.State.IsResolved("event:" + kind) && tinted;
@@ -498,7 +526,9 @@ namespace RuinRail.Tests
             revisitRuntime.RestoreState(runtime.State.Clone());
             var revisitContext = new DungeonRuntimeContext(RoomCategoryComposerSeed(room, runtime.State.NodeId, kind), Depth, 1, _content.Enemies, new DefaultEnemySpawner(_content.Stagger), _content.DepthScaling);
             var revisit = RoomCategoryComposer.Compose(revisitRuntime, revisitContext, _services);
-            var restored = revisit.EventInstance != null && revisit.EventInstance.Kind == kind && revisit.EventInstance.Phase != DungeonEventPhase.Available && !revisit.Event.CanInteract(player) && _services.GroundLoot.Count == lootAfter;
+            var restored = perPlayer
+                ? revisit.EventInstance is SecureRelayEvent revisitRelay && revisitRelay.HasSecured(handle.LastActor?.ParticipantId) && _services.GroundLoot.Count == lootAfter
+                : revisit.EventInstance != null && revisit.EventInstance.Kind == kind && revisit.EventInstance.Phase != DungeonEventPhase.Available && !revisit.Event.CanInteract(player) && _services.GroundLoot.Count == lootAfter;
             if (!restored) Fail("revisit replayed or lost the resolved state");
 
             Record(room, category, interaction, prompt, uiRequired, art, pressed, outcomeOk, idempotent && restored, result());
