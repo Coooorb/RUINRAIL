@@ -221,5 +221,128 @@ namespace RuinRail.Tests
             _inventory.RemoveFromBackpack(0);
             Assert.AreEqual(1, changed);
         }
+
+        // ---- Storage ↔ worn exchange (94 Storage: equip straight from Storage) ----
+
+        private IEnumerable<string> AllIds() =>
+            System.Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Select(_inventory.GetEquipped).Concat(_inventory.BackpackSlots).Concat(_storage.Items)
+                .Where(i => i != null).Select(i => i.InstanceId);
+
+        [Test]
+        public void ExchangeWithEquipped_SwapsIntoTheSameCell_WithStorageAndBackpackFull_NothingLostOrDuplicated()
+        {
+            var worn = new ItemInstance("weapon_p9_ranger", 1, Rarity.Common) { IsUnsellable = true };
+            Assert.IsTrue(_inventory.TryEquip(worn, EquippedSlot.PrimaryWeapon));
+            for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) Assert.IsTrue(_inventory.TryAddToBackpack(new ItemInstance("armor_scrap_vest")));
+            var stored = new ItemInstance("weapon_p9_ranger", 1, Rarity.Epic);
+            while (_storage.FreeSlots > 1) Assert.IsTrue(_storage.TryAdd(new ItemInstance("armor_scrap_vest")));
+            Assert.IsTrue(_storage.TryAdd(stored));
+            Assert.AreEqual(0, _storage.FreeSlots, "Storage full");
+            var cell = _storage.Slots.ToList().IndexOf(stored);
+            var before = AllIds().OrderBy(x => x).ToList();
+            var storageChanges = 0;
+            _storage.Changed += () => storageChanges++;
+
+            var result = _service.ExchangeWithEquipped(_inventory, stored.InstanceId, EquippedSlot.PrimaryWeapon);
+
+            Assert.IsTrue(result.Success, result.Error.ToString());
+            Assert.AreSame(stored, _inventory.GetEquipped(EquippedSlot.PrimaryWeapon), "the stored item is worn");
+            Assert.AreSame(worn, _storage.Slots[cell], "the worn item took exactly the stored item's cell");
+            Assert.IsTrue(worn.IsUnsellable, "its flags travel with it");
+            CollectionAssert.AreEqual(before, AllIds().OrderBy(x => x).ToList(), "same items, each exactly once");
+            Assert.IsEmpty(ItemTransferService.DetectDuplicateOwnership(new IItemContainer[] { new BackpackContainer(_inventory), new EquippedSlotContainer(_inventory, EquippedSlot.PrimaryWeapon), _storage }));
+            Assert.AreEqual(1, storageChanges, "one Storage change (one autosave mark)");
+        }
+
+        [Test]
+        public void ExchangeWithEquipped_IntoAnEmptySlot_IsAPlainWithdraw_AndInvalidPairsChangeNothing()
+        {
+            var vest = new ItemInstance("armor_scrap_vest", 1, Rarity.Rare);
+            var ammo = new ItemInstance("ammo_light", 30);
+            Assert.IsTrue(_storage.TryAdd(vest));
+            Assert.IsTrue(_storage.TryAdd(ammo));
+            var storedAmmo = _storage.Items.First(i => i.DefinitionId == "ammo_light");
+            var before = AllIds().OrderBy(x => x).ToList();
+
+            Assert.AreEqual(TransferError.DestinationRejected, _service.ExchangeWithEquipped(_inventory, vest.InstanceId, EquippedSlot.PrimaryWeapon).Error, "armor never goes into a weapon slot");
+            Assert.AreEqual(TransferError.DestinationRejected, _service.ExchangeWithEquipped(_inventory, storedAmmo.InstanceId, EquippedSlot.ActiveConsumable).Error, "ammo has no worn slot");
+            Assert.AreEqual(TransferError.SourceMissingItem, _service.ExchangeWithEquipped(_inventory, "nope", EquippedSlot.Armor).Error);
+            CollectionAssert.AreEqual(before, AllIds().OrderBy(x => x).ToList(), "refusals change nothing");
+            Assert.IsNull(_inventory.GetEquipped(EquippedSlot.Armor));
+
+            Assert.IsTrue(_service.ExchangeWithEquipped(_inventory, vest.InstanceId, EquippedSlot.Armor).Success);
+            Assert.AreSame(vest, _inventory.GetEquipped(EquippedSlot.Armor));
+            Assert.IsNull(_storage.Find(vest.InstanceId));
+        }
+
+        [Test]
+        public void ExchangeWithEquipped_ConsumableStacksSwapWhole_AndAnAtRiskWornItemIsRefused()
+        {
+            Assert.IsTrue(_inventory.TryEquip(new ItemInstance("consumable_bandage", 2), EquippedSlot.ActiveConsumable));
+            var worn = _inventory.GetEquipped(EquippedSlot.ActiveConsumable);
+            Assert.IsTrue(_storage.TryAdd(new ItemInstance("consumable_bandage", 5)));
+            var stored = _storage.Items.Single();
+            Assert.IsTrue(_service.ExchangeWithEquipped(_inventory, stored.InstanceId, EquippedSlot.ActiveConsumable).Success);
+            Assert.AreEqual(5, _inventory.GetEquipped(EquippedSlot.ActiveConsumable).Quantity);
+            Assert.AreEqual(2, _storage.Find(worn.InstanceId).Quantity, "the whole worn stack went to Storage, nothing merged away");
+
+            // Storage never holds an at-risk item: an exchange that would put one there is refused unchanged.
+            var risky = new ItemInstance("weapon_p9_ranger") { IsAtRisk = true };
+            Assert.IsTrue(_inventory.TryEquip(risky, EquippedSlot.SecondaryWeapon));
+            var spare = new ItemInstance("weapon_p9_ranger");
+            Assert.IsTrue(_storage.TryAdd(spare));
+            Assert.IsFalse(_service.ExchangeWithEquipped(_inventory, spare.InstanceId, EquippedSlot.SecondaryWeapon).Success);
+            Assert.AreSame(risky, _inventory.GetEquipped(EquippedSlot.SecondaryWeapon));
+            Assert.IsNotNull(_storage.Find(spare.InstanceId));
+        }
+
+        // ---- Storage ↔ backpack exchange (94 Storage: a drop onto an occupied cell) ----
+
+        [Test]
+        public void ExchangeWithBackpack_TradesPlaces_WithBothSidesFull_EachItemExactlyOnce()
+        {
+            for (var i = 0; i < PlayerInventory.BackpackCapacity; i++) Assert.IsTrue(_inventory.TryAddToBackpack(new ItemInstance("armor_scrap_vest")));
+            var carried = _inventory.BackpackSlots[3];
+            var stored = new ItemInstance("weapon_p9_ranger", 1, Rarity.Epic);
+            while (_storage.FreeSlots > 1) Assert.IsTrue(_storage.TryAdd(new ItemInstance("armor_scrap_vest")));
+            Assert.IsTrue(_storage.TryAdd(stored));
+            var cell = _storage.Slots.ToList().IndexOf(stored);
+            var before = AllIds().OrderBy(x => x).ToList();
+            var bagChanges = 0;
+            var storageChanges = 0;
+            var consistentAtEveryChange = true;
+            void Check() => consistentAtEveryChange &= AllIds().Count() == before.Count && AllIds().Distinct().Count() == before.Count;
+            _inventory.BackpackChanged += () => { bagChanges++; Check(); };
+            _storage.Changed += () => { storageChanges++; Check(); };
+
+            var result = _service.ExchangeWithBackpack(_inventory, stored.InstanceId, 3);
+
+            Assert.IsTrue(result.Success, result.Error.ToString());
+            Assert.AreSame(stored, _inventory.BackpackSlots[3], "the stored item takes the backpack cell");
+            Assert.AreSame(carried, _storage.Slots[cell], "the carried item takes the stored item's cell");
+            CollectionAssert.AreEqual(before, AllIds().OrderBy(x => x).ToList());
+            Assert.IsTrue(consistentAtEveryChange, "no observer ever sees an item twice or missing");
+            Assert.AreEqual(1, bagChanges);
+            Assert.AreEqual(1, storageChanges);
+        }
+
+        [Test]
+        public void ExchangeWithBackpack_RefusesUnchanged_ForEmptySlots_AtRiskItems_AndSameStackableKind()
+        {
+            Assert.IsTrue(_inventory.TryAddToBackpack(new ItemInstance("consumable_bandage", 2)));
+            var stored = new ItemInstance("consumable_bandage", 3);
+            Assert.IsTrue(_storage.TryAdd(stored));
+            var storedBandage = _storage.Items.Single();
+            var before = AllIds().OrderBy(x => x).ToList();
+            Assert.IsFalse(_service.ExchangeWithBackpack(_inventory, storedBandage.InstanceId, 0).Success, "same stackable kind merges instead");
+            Assert.IsFalse(_service.ExchangeWithBackpack(_inventory, storedBandage.InstanceId, 5).Success, "an empty backpack cell is a plain take");
+            Assert.IsFalse(_service.ExchangeWithBackpack(_inventory, "nope", 0).Success);
+            var risky = new ItemInstance("weapon_p9_ranger") { IsAtRisk = true };
+            Assert.IsTrue(_inventory.TryAddToBackpack(risky));
+            Assert.IsFalse(_service.ExchangeWithBackpack(_inventory, storedBandage.InstanceId, _inventory.BackpackSlots.ToList().IndexOf(risky)).Success, "Storage never takes an at-risk item");
+            CollectionAssert.AreEqual(before.Append(risky.InstanceId).OrderBy(x => x).ToList(), AllIds().OrderBy(x => x).ToList(), "refusals change nothing");
+            Assert.AreEqual(2, _inventory.BackpackSlots[0].Quantity);
+            Assert.AreEqual(3, _storage.Items.Single().Quantity);
+        }
     }
 }

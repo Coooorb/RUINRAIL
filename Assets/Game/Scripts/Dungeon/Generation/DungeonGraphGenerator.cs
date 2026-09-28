@@ -141,6 +141,12 @@ namespace RuinRail.Dungeon.Generation
             }
 
             // Optional content goes to branch rooms: fill from the capped category pool, remaining branch rooms stay Combat.
+            // Pacing: a Non-Combat room never opens straight into another Non-Combat room. The shuffled order and the
+            // extra-Combat share are drawn exactly as before and decide how much content the depth places and in which
+            // order; a room beside content already placed stays Combat and the content moves on to the next room,
+            // wrapping to the rooms the extra-Combat share had set aside (so the separation costs only what the branch
+            // shape forces, never an extra draw: a layout without such a pair is unchanged). What finds no room is simply
+            // not placed — Combat absorbs it.
             var optional = new List<RoomType>();
             optional.AddRange(Enumerable.Repeat(RoomType.Merchant, _rules.MaxMerchant));
             optional.AddRange(Enumerable.Repeat(RoomType.Event, _rules.MaxEvent));
@@ -153,23 +159,20 @@ namespace RuinRail.Dungeon.Generation
             var maxExtraCombat = Math.Max(0, _rules.CombatRooms.y - combatSoFar);
             var extraCombat = random.NextInt(0, Math.Min(maxExtraCombat, branchNodeIds.Count));
             var branchOrder = Shuffle(branchNodeIds, random);
+            var slots = Math.Max(0, branchOrder.Count - extraCombat);
+            var visit = branchOrder.Skip(extraCombat).Concat(branchOrder.Take(extraCombat)).ToList();
             var optionalIndex = 0;
-            for (var i = 0; i < branchOrder.Count; i++)
+            var placed = 0;
+            foreach (var id in visit)
             {
-                var node = graph.GetNode(branchOrder[i]);
-                if (i < extraCombat || optionalIndex >= optional.Count)
-                {
-                    node.Type = RoomType.Combat;
-                    continue;
-                }
+                var node = graph.GetNode(id);
+                node.Type = RoomType.Combat;
+                if (placed >= slots || optionalIndex >= optional.Count) continue;
+                if (node.Neighbors.Any(n => DungeonGraphRules.IsNonCombat(graph.GetNode(n).Type)) || BlocksBothBranchEnds(graph, node)) continue;
 
                 var candidate = optional[optionalIndex++];
-                if (candidate == RoomType.Merchant && (graph.AreAdjacent(node.Id, graph.StartId) || graph.AreAdjacent(node.Id, graph.BossId)))
-                {
-                    node.Type = RoomType.Combat;
-                    continue;
-                }
-
+                placed++;
+                if (candidate == RoomType.Merchant && (graph.AreAdjacent(node.Id, graph.StartId) || graph.AreAdjacent(node.Id, graph.BossId))) continue;
                 node.Type = candidate;
             }
 
@@ -189,6 +192,21 @@ namespace RuinRail.Dungeon.Generation
             }
 
             return graph;
+        }
+
+        /// <summary>
+        /// The middle room of an odd-length branch: Non-Combat content there would block both of its neighbours, so a
+        /// 3-room branch could hold one Non-Combat room instead of two (its ends). Keeping content off it lets the
+        /// separation rule cost only what the branch shape forces.
+        /// </summary>
+        private static bool BlocksBothBranchEnds(DungeonGraph graph, RoomNode node)
+        {
+            if (node.BranchIndex < 0) return false;
+            var branch = graph.Branches[node.BranchIndex];
+            if (branch.Count % 2 == 0) return false;
+            var position = 0;
+            while (position < branch.Count && branch[position] != node.Id) position++;
+            return position % 2 == 1;
         }
 
         private List<int> SplitIntoBranches(int rooms, IRandomSource random)

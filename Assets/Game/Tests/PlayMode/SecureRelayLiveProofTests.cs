@@ -98,7 +98,7 @@ namespace RuinRail.Tests
         }
 
         /// <summary>The first run seed whose depth-1 layout rolls a Secure Relay — the shipped biome draw, graph, pool and event roll.</summary>
-        private static int SeedWithARelayOnDepthOne(IReadOnlyList<RoomDefinition> rooms, int chancePercent, out Biome biome)
+        private static int SeedWithARelayOnDepthOne(IReadOnlyList<RoomDefinition> rooms, out Biome biome)
         {
             var pools = BiomeRoomPools.Build(rooms);
             var rules = DungeonGraphRules.CreateDefault();
@@ -111,7 +111,7 @@ namespace RuinRail.Tests
                     var generation = DungeonGenerationPipeline.Generate(generator, pools.PoolFor(candidate), seed, 1);
                     if (!generation.Success) continue;
                     if (generation.Layout.Placements.Any(p => p.Definition.RoomType == RoomType.Event
-                                                              && RoomCategoryComposer.ResolveEventKind(p.Definition.Tags, seed, 1, p.NodeId, chancePercent) == DungeonEventKind.SecureRelay))
+                                                              && RoomCategoryComposer.ResolveEventKind(p.Definition.Tags, seed, 1, p.NodeId) == DungeonEventKind.SecureRelay))
                     {
                         biome = candidate;
                         return seed;
@@ -145,11 +145,9 @@ namespace RuinRail.Tests
                 .Where(d => d != null)
                 .ToList();
             var content = GameContentCatalog.Load();
-            var chance = content.Events.SecureRelayChancePercent;
-            Assert.AreEqual(DungeonEventConfig.DefaultSecureRelayChancePercent, chance, "the shipped config carries the documented (temporary) chance");
-            var seed = SeedWithARelayOnDepthOne(rooms, chance, out var expectedBiome);
+            var seed = SeedWithARelayOnDepthOne(rooms, out var expectedBiome);
             Assert.Greater(seed, 0, "a first depth with a Secure Relay exists in the shipped generation");
-            Note($"seed {seed} ({expectedBiome}) rolls a Secure Relay on depth 1 at {chance}%");
+            Note($"seed {seed} ({expectedBiome}) picks a Secure Relay on depth 1 (one of {RoomCategoryComposer.RandomEventKinds.Length} equal Event-room events)");
 
             _app = GameApp.Ensure(content, _saveDir);
             _app.SetRunSeedOverride(seed);

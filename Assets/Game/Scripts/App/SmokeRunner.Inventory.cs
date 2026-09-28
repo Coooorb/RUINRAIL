@@ -15,7 +15,7 @@ namespace RuinRail.App
     /// <summary>
     /// Graphical-inventory stage of the built-player smoke (`-inventoryproofdir dir`, default: the proof dir): the
     /// window opens over the live run with the survivor's real loadout, every equipment slot and backpack slot is a
-    /// graphical slot with the definition's icon, selection/focus/hover are visible states, the details panel follows
+    /// graphical slot with the definition's icon, selection/focus/hover are visible states, the delayed inspection follows
     /// the cursor, the mouse path (hover, click, click-to-move) and the keyboard/controller path (focus list on the
     /// menu input stack, 2D navigation, action buttons) both work, gameplay input is held while the window is up, and
     /// close/reopen keeps the state. Captures are written by the shipped executable.
@@ -106,10 +106,11 @@ namespace RuinRail.App
             menuInput.Stack.Navigate(Vector2Int.right);
             for (var guard = 0; guard < 16 && vm.Cursor.Index != smgIndex; guard++) { var target = smgIndex > vm.Cursor.Index ? Vector2Int.right : Vector2Int.left; if (smgIndex / 4 != vm.Cursor.Index / 4) target = smgIndex / 4 > vm.Cursor.Index / 4 ? Vector2Int.down : Vector2Int.up; if (!menuInput.Stack.Navigate(target)) break; }
             yield return null;
-            Check("details panel follows the cursor (Rare SMG)", vm.Cursor.Index == smgIndex && view.DetailTitleText.Contains("Rattler") && view.DetailSubtitleText.Contains("RARE") && view.DetailPager.Rows.Any(r => r.Key.StartsWith("Damage")) && view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")));
-            // The description leads the panel; the stats and the comparison follow, paged rather than cut.
-            Check("description leads the details, comparison reachable by paging", view.DetailRowTexts[0].Length > 0 && view.DetailPager.Rows[0].Key == view.DetailRowTexts[0] && (view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) || view.DetailsPageDown() && (view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) || view.DetailsPageDown())));
-            while (view.DetailsPageUp()) { }
+            var restUntil = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f;
+            while (!view.StatPopup.IsVisible && Time.unscaledTime < restUntil) yield return null;
+            var popup = view.StatPopup;
+            Check("focus rest opens the inspection of the cursor item (Rare SMG)", vm.Cursor.Index == smgIndex && popup.IsVisible && popup.TitleText.Contains("Rattler") && popup.SubtitleText.Contains("RARE") && popup.RowTexts.Any(r => r.StartsWith("Damage")));
+            Check("the equipped weapon's own card sits beside it, no difference list", popup.IsComparing && popup.ComparedTagText == "EQUIPPED" && popup.ComparedRowTexts.Any(r => r.StartsWith("Damage")) && !popup.RowTexts.Concat(popup.ComparedRowTexts).Any(r => r.Contains("VS EQUIPPED")) && !popup.Bounds.Overlaps(popup.ComparedBounds));
             menuInput.Stack.Activate();
             yield return null;
             Check("confirm selects the item (selected frame shown)", vm.Selected.HasValue && vm.Selected.Value.Index == smgIndex && view.BackpackSlots[smgIndex].ShowsSelectedFrame);
@@ -128,7 +129,7 @@ namespace RuinRail.App
             var pistolSlot = view.BackpackSlots[pistolIndex];
             pistolSlot.SimulateHover(true);
             yield return null;
-            Check("mouse hover moves the cursor and the details to the hovered slot", vm.Cursor.Equals(pistolSlot.Slot) && pistolSlot.ShowsHover && view.DetailTitleText.Contains("P9 Ranger"));
+            Check("mouse hover moves the cursor to the hovered slot", vm.Cursor.Equals(pistolSlot.Slot) && pistolSlot.ShowsHover);
             pistolSlot.SimulateClick();
             yield return null;
             Check("mouse click selects the hovered item", vm.Selected.HasValue && vm.Selected.Value.Equals(pistolSlot.Slot));

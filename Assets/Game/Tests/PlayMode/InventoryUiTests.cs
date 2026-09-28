@@ -312,16 +312,16 @@ namespace RuinRail.Tests
             inventory.TryAddToBackpack(stack);
             Assert.AreEqual(4, vm.TooltipAt(Bag(2)).Quantity, "Stack quantity where relevant.");
 
-            // Comparison against the equipped candidate slot: per-stat marks, never a single score.
+            // Comparison: the equipped item of the candidate's slot as its own tooltip beside it — never a score or a difference list.
+            Assert.IsNull(vm.ComparedAt(Bag(0)), "nothing worn: nothing to compare");
             var common = new ItemInstance("weapon_p9_ranger");
             inventory.TryEquip(common, EquippedSlot.PrimaryWeapon);
-            var comparison = vm.CompareAt(Bag(0));
-            Assert.IsTrue(comparison.Count > 0);
-            var affixLine = comparison.First(c => c.Label == pool.Affixes[0].DisplayName + " (affix)");
-            Assert.AreEqual("+7", affixLine.Candidate);
-            Assert.AreEqual("—", affixLine.Current);
-            Assert.AreEqual("▲", affixLine.Mark);
-            Assert.AreEqual("=", comparison.First(c => c.Label == "Damage").Mark, "Same base weapon: equal damage.");
+            var compared = vm.ComparedAt(Bag(0));
+            Assert.IsNotNull(compared);
+            Assert.AreEqual(common.Rarity.ToString().ToUpperInvariant(), compared.RarityText, "the equipped P9 Ranger's own tooltip");
+            Assert.AreEqual(0, compared.Affixes.Count, "the equipped Common shows only its own lines, not the candidate's rolls");
+            Assert.AreEqual(vm.TooltipAt(Bag(0)).BaseStats.First(l => l.Label == "Damage").Value, compared.BaseStats.First(l => l.Label == "Damage").Value, "same base weapon: same damage line");
+            Assert.IsNull(vm.ComparedAt(new InventorySlotRef(InventorySlotKind.Equipped, (int)EquippedSlot.PrimaryWeapon)), "a worn item is not compared with itself");
         }
 
         // ---- Acceptance 4: open/close keeps ownership; navigation ----

@@ -441,7 +441,13 @@ namespace RuinRail.Tests
             for (var guard = 0; guard < 12 && trade.Cursor != target; guard++) menuInput.Stack.Navigate(trade.Cursor < target ? Vector2Int.down : Vector2Int.up);
             yield return null;
             Assert.AreEqual(target, trade.Cursor);
-            StringAssert.Contains(cheapest.Name, tradeView.DetailTitleText);
+            // The focus rests on the offer: the shared inspection card opens beside the row (with the worn item's, when one compares).
+            var restUntil = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f;
+            while (!tradeView.StatPopup.IsVisible && Time.unscaledTime < restUntil) yield return null;
+            Assert.IsTrue(tradeView.StatPopup.IsVisible, "focus inspects the offer");
+            StringAssert.StartsWith(cheapest.Name.Substring(0, System.Math.Min(6, cheapest.Name.Length)), tradeView.StatPopup.TitleText);
+            Assert.AreEqual(trade.ComparedFor(cheapest) != null, tradeView.StatPopup.IsComparing);
+            Note($"merchant inspection: '{tradeView.StatPopup.TitleText}' [{string.Join(" | ", tradeView.StatPopup.RowTexts)}] vs '{tradeView.StatPopup.ComparedTitleText}'");
             LiveDungeonCapture.Capture(Folder, "live_13_merchant_item_selected", camera, ppu, includeUi: true);
 
             var coinsBefore = run.Expedition.State.CarriedCoins;

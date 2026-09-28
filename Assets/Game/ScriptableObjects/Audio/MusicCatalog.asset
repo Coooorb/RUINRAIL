@@ -16,7 +16,7 @@ MonoBehaviour:
   - Role: 0
     Clip: {fileID: 8300000, guid: 35405c5f387e8bd4799c262bff30ab4b, type: 3}
   - Role: 1
-    Clip: {fileID: 8300000, guid: 80c19cbe3fdd8ba49a2fb91117a31011, type: 3}
+    Clip: {fileID: 8300000, guid: 35405c5f387e8bd4799c262bff30ab4b, type: 3}
   - Role: 2
     Clip: {fileID: 8300000, guid: 713c161b4f569f9489a2293827af3913, type: 3}
   - Role: 3
@@ -48,6 +48,8 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 71e7ab9c37101a7449b61b56049965b8, type: 3}
   - Role: 5
     Clip: {fileID: 8300000, guid: c5f41f1e04a61604ca772d4f978b9788, type: 3}
+  - Role: 6
+    Clip: {fileID: 8300000, guid: d2419e2e5da8d42c4b1acfa7403385b4, type: 3}
   _ambience:
   - Biome: 0
     Loop: {fileID: 8300000, guid: e52fcb6c02486384c914534589af7eb4, type: 3}

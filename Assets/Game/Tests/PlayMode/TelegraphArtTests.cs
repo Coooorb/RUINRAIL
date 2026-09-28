@@ -6,6 +6,7 @@ using RuinRail.App;
 using RuinRail.Gameplay.Combat;
 using RuinRail.Gameplay.Combat.Projectiles;
 using RuinRail.Gameplay.Enemies;
+using RuinRail.Gameplay.Enemies.Attacks;
 using RuinRail.Presentation.Vfx;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -111,6 +112,66 @@ namespace RuinRail.Tests
             Assert.Greater(dash.Size.x, dash.Size.y, "a lane along the charge");
             Assert.AreEqual(TelegraphIndicator.ShapeFor(charger.Definition.ChargeAttack, Vector2.right).size, dash.Size, "the dash lane of the charge move (distance plus hit radius)");
             Assert.GreaterOrEqual(dash.Size.x, charger.Definition.ChargeAttack.DashDistance);
+        }
+
+        /// <summary>
+        /// The Elite marker is the hit area, not a decoration: for every shipped Elite ground attack (cleave, charge,
+        /// zone, slam) a small target just inside each edge of the drawn footprint is struck by the real resolver and one
+        /// just outside is not. (Volleys are lanes of real projectiles; their fans are pinned elsewhere.)
+        /// </summary>
+        [UnityTest]
+        public IEnumerator EveryShippedEliteGroundAttack_MarkerFootprint_IsTheResolversHitArea()
+        {
+            Assert.AreEqual(6, _catalog.Elites.Count, "the six shipped Elites");
+            var attacks = _catalog.Elites.SelectMany(e => e.Moveset).Where(a => a != null && a.Motion != AttackMotion.Projectile).Distinct().ToList();
+            Assert.Greater(attacks.Count, 10);
+            var origin = new Vector2(800f, 800f);
+            const float Edge = 0.12f;
+            foreach (var attack in attacks)
+            {
+                var (size, offset) = TelegraphIndicator.ShapeFor(attack, Vector2.right);
+                var centre = origin + offset;
+                // A dash strikes once per physics step along its run, so its far end is honest to within one step.
+                var step = attack.Motion == AttackMotion.Dash ? attack.DashSpeed * Time.fixedDeltaTime : 0f;
+                var probes = new List<(Vector2 point, bool inside, string edge)>
+                {
+                    (centre + Vector2.right * (size.x * 0.5f - Edge - step), true, "front, inside"),
+                    (centre + Vector2.right * (size.x * 0.5f + Edge), false, "front, outside"),
+                    (centre - Vector2.right * (size.x * 0.5f - Edge), true, "back, inside"),
+                    (centre - Vector2.right * (size.x * 0.5f + Edge), false, "back, outside"),
+                    (centre + Vector2.up * (size.y * 0.5f - Edge), true, "side, inside"),
+                    (centre + Vector2.up * (size.y * 0.5f + Edge), false, "side, outside"),
+                };
+                foreach (var (point, inside, edge) in probes)
+                {
+                    var attacker = new GameObject("Attacker");
+                    _created.Add(attacker);
+                    attacker.transform.position = origin;
+                    attacker.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+                    attacker.AddComponent<TeamMember>().SetTeam(DamageTeam.Enemy);
+                    var target = new GameObject("Probe");
+                    _created.Add(target);
+                    target.transform.position = point;
+                    var circle = target.AddComponent<CircleCollider2D>();
+                    circle.radius = 0.02f;
+                    circle.isTrigger = true;
+                    target.AddComponent<TeamMember>().SetTeam(DamageTeam.Player);
+                    var probe = target.AddComponent<TestDamageableTarget>();
+                    Physics2D.SyncTransforms();
+                    var resolver = new AttackResolver(attacker.transform, attacker.GetComponent<Rigidbody2D>(), new FixedDamageRoller());
+                    resolver.Begin(attack, Vector2.right);
+                    for (var guard = 0; guard < 400 && resolver.IsRunning; guard++)
+                    {
+                        resolver.Tick(Time.fixedDeltaTime);
+                        yield return new WaitForFixedUpdate();
+                    }
+
+                    Assert.IsFalse(resolver.IsRunning, attack.name + " resolved");
+                    Assert.AreEqual(inside, probe.HitCount > 0, $"{attack.name} ({attack.Motion}) {edge}: marker {size} at {offset} — the probe at {point - origin} is {(inside ? "inside" : "outside")} the marker, so it must {(inside ? "" : "not ")}be struck");
+                    Object.DestroyImmediate(attacker);
+                    Object.DestroyImmediate(target);
+                }
+            }
         }
 
         [UnityTest]

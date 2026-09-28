@@ -237,7 +237,9 @@ namespace RuinRail.App
                 _result.TotalXpAfterReturn = menu.Session.Profile.TotalXp;
                 if (menu.Session.SaveNow("smoke") != RuinRail.Persistence.SaveError.None) { Fail("save failed"); yield break; }
                 var reloaded = _app.ProbeSave();
-                _result.SaveReloaded = reloaded.Success && reloaded.BankedCoins == _result.BankedCoinsAfterReturn && Array.IndexOf(reloaded.EquippedInstanceIds, _result.Pistol) >= 0;
+                // 75: the free Starter pistol is run-only — the Return leaves it behind, so the reloaded save must not wear it.
+                _result.SaveReloaded = reloaded.Success && reloaded.BankedCoins == _result.BankedCoinsAfterReturn
+                                       && summary.StarterGearLeftBehind.Any(l => l.InstanceId == _result.Pistol) && Array.IndexOf(reloaded.EquippedInstanceIds, _result.Pistol) < 0;
                 if (!_result.SaveReloaded) { Fail("reload mismatch"); yield break; }
                 StatConsumerSaveChecks(reloaded);
                 if (!string.IsNullOrEmpty(_result.Error)) yield break;

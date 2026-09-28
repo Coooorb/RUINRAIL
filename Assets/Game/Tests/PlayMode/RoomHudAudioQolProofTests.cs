@@ -22,6 +22,7 @@ using RuinRail.UI.Base;
 using RuinRail.UI.Hud;
 using RuinRail.UI.Navigation;
 using RuinRail.UI.Theme;
+using RuinRail.UI.Inventory;
 using RuinRail.UI.WeaponCache;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -247,6 +248,40 @@ namespace RuinRail.Tests
             Assert.AreEqual(1, run.WeaponCache.Opens, "a second press opens nothing new");
             Note($"cache screen open with {run.WeaponCache.Rows.Count} choices: {string.Join(", ", run.WeaponCache.Rows.Select(r => r.Name))}");
             LiveDungeonCapture.Capture(Folder, "live_02_weapon_cache_ui_open", camera, ppu, includeUi: true);
+
+            // Inspection: the focused first weapon's card opens after the delay beside the equipped weapon's; hovering the
+            // second row inspects that one instead. Neither moves the cursor or takes anything.
+            var cacheView = run.WeaponCacheView;
+            var popup = cacheView.StatPopup;
+            IEnumerator Rest() { var until = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f; while (!popup.IsVisible && Time.unscaledTime < until) yield return null; }
+            void AssertPlaced(int index)
+            {
+                var row = popup.SlotBounds((RectTransform)cacheView.RowViews[index].transform);
+                var screen = ((RectTransform)popup.transform.parent).rect;
+                Assert.IsFalse(popup.Bounds.Overlaps(row) || popup.IsComparing && (popup.ComparedBounds.Overlaps(row) || popup.ComparedBounds.Overlaps(popup.Bounds)), "cards beside the row, apart");
+                Assert.IsTrue(popup.Bounds.xMax <= screen.xMax && popup.ComparedBounds.xMax <= screen.xMax && popup.Bounds.yMin >= screen.yMin, "on screen");
+            }
+
+            yield return Rest();
+            Assert.IsTrue(popup.IsVisible, "focus inspects the first weapon");
+            Assert.IsTrue(popup.IsComparing, "a weapon compares with the equipped weapon");
+            StringAssert.StartsWith("P9 Ranger", popup.ComparedTitleText);
+            Assert.IsFalse(popup.RowTexts.Concat(popup.ComparedRowTexts).Any(r => r.Contains("VS EQUIPPED")), "no difference list");
+            AssertPlaced(0);
+            LiveDungeonCapture.Capture(Folder, "live_02a_weapon_cache_focus_inspection", camera, ppu, includeUi: true);
+            if (run.WeaponCache.Rows.Count > 1)
+            {
+                cacheView.RowViews[1].Control.SimulateHover(true);
+                yield return null;
+                yield return Rest();
+                StringAssert.StartsWith(run.WeaponCache.Rows[1].Name.Substring(0, System.Math.Min(6, run.WeaponCache.Rows[1].Name.Length)), popup.TitleText, "hover inspects the hovered weapon");
+                AssertPlaced(1);
+                LiveDungeonCapture.Capture(Folder, "live_02b_weapon_cache_hover_inspection", camera, ppu, includeUi: true);
+                cacheView.RowViews[1].Control.SimulateHover(false);
+                yield return null;
+            }
+
+            Assert.AreEqual(0, run.WeaponCache.Cursor, "inspection never moves the choice");
 
             var inventory = run.Expedition.State.Inventory;
             var chosen = run.WeaponCache.Rows[0];

@@ -1,3 +1,4 @@
+using RuinRail.Dungeon.Rooms;
 using UnityEngine;
 
 namespace RuinRail.Dungeon.Generation
@@ -72,6 +73,13 @@ namespace RuinRail.Dungeon.Generation
             if (depth <= 20) return _eliteChanceDepth11To20;
             return _eliteChanceDepth21Plus;
         }
+
+        /// <summary>
+        /// 55: the safe / optional room categories (Loot, Treasure, Merchant, Event, Medical/Recovery). Start, Combat
+        /// (with or without an Elite) and Boss are not.
+        /// </summary>
+        public static bool IsNonCombat(RoomType type) =>
+            type == RoomType.Loot || type == RoomType.Treasure || type == RoomType.Merchant || type == RoomType.Event || type == RoomType.MedicalRecovery;
 
         public static DungeonGraphRules CreateDefault()
         {

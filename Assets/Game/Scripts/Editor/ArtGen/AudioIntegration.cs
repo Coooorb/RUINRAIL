@@ -56,6 +56,53 @@ namespace RuinRail.EditorTools.ArtGen
             Debug.Log($"Regenerated {Written.Count} music beds on their bar grid.");
         }
 
+        /// <summary>Regenerates the three biome ambience loops only (they are bound by path, so the catalog keeps them).</summary>
+        [MenuItem("RuinRail/Art/Regenerate Ambience Loops")]
+        public static void GenerateAmbience()
+        {
+            foreach (Biome biome in Enum.GetValues(typeof(Biome)))
+            {
+                var clip = GameAudioFactory.BuildAmbience(biome.ToString());
+                clip.Normalize(GameAudioFactory.PeakFor("Ambience"));
+                AudioSynth.WriteWav(clip, $"{AudioRoot}/Ambience/ambience_{biome.ToString().ToLowerInvariant()}.wav");
+            }
+
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            Debug.Log("Regenerated 3 ambience loops.");
+        }
+
+        /// <summary>Batch entry for the runner (-executeMethod).</summary>
+        public static void GenerateAmbienceBatch()
+        {
+            try { GenerateAmbience(); EditorApplication.Exit(0); }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
+        /// <summary>Regenerates the stingers only (deterministic: unchanged roles rewrite identical bytes) and rebinds the catalog.</summary>
+        public static void GenerateStingersBatch()
+        {
+            try
+            {
+                Written.Clear();
+                foreach (StingerRole role in Enum.GetValues(typeof(StingerRole)))
+                {
+                    var clip = GameAudioFactory.BuildStinger(role.ToString());
+                    clip.Normalize(GameAudioFactory.PeakFor("Music"));
+                    var path = $"{AudioRoot}/Stingers/stinger_{role.ToString().ToLowerInvariant()}.wav";
+                    AudioSynth.WriteWav(clip, path);
+                    Written.Add((path, false));
+                }
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyImportSettings();
+                AssetDatabase.SaveAssets();
+                BindMusic();
+                AssetDatabase.SaveAssets();
+                EditorApplication.Exit(0);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
         /// <summary>Batch entry for the runner (-executeMethod).</summary>
         public static void GenerateMusicBatch()
         {
@@ -89,7 +136,7 @@ namespace RuinRail.EditorTools.ArtGen
                 Written.Add((path, true));
             }
 
-            // --- 6 stingers ---
+            // --- 7 stingers ---
             foreach (StingerRole role in Enum.GetValues(typeof(StingerRole)))
             {
                 var clip = GameAudioFactory.BuildStinger(role.ToString());
@@ -187,6 +234,12 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         /// <summary>Fills the MusicCatalog's track, stinger and ambience slots.</summary>
+        /// <summary>
+        /// The role whose file a slot plays. The Shelter shares the Main Menu theme (art/105): its slot binds the same
+        /// asset, never a copy, so a regeneration can never quietly put the old Shelter bed back.
+        /// </summary>
+        public static MusicRole TrackFileRole(MusicRole role) => role == MusicRole.Shelter ? MusicRole.MainMenu : role;
+
         public static void BindMusic()
         {
             var catalog = AssetDatabase.LoadAssetAtPath<MusicCatalog>(
@@ -204,7 +257,7 @@ namespace RuinRail.EditorTools.ArtGen
             catalog.EnsureSlots();
 
             foreach (var entry in catalog.Tracks)
-                entry.Clip = Load("Music", $"music_{entry.Role.ToString().ToLowerInvariant()}");
+                entry.Clip = Load("Music", $"music_{TrackFileRole(entry.Role).ToString().ToLowerInvariant()}");
             foreach (var entry in catalog.Stingers)
                 entry.Clip = Load("Stingers", $"stinger_{entry.Role.ToString().ToLowerInvariant()}");
             foreach (var entry in catalog.Ambience)

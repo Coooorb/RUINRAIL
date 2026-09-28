@@ -4,7 +4,7 @@
 #
 #   ./scripts/run-coop-expedition-proof.sh <out-dir> [size=2] [seed=11] [port=7940] [scenario]
 #
-# scenario: duo / trio (default by size) or relay (57.7 Secure Relay; needs a seed whose D1 rolls one, e.g. 79).
+# scenario: duo / trio (default by size) or relay (57.7 Secure Relay; needs a seed whose D1 picks one, e.g. 6).
 #
 # Writes host.json / clientN.json (step results + per-step peer views) and the peers' logs into <out-dir>.
 # Exit code 0 only when every peer reports success. Build the player first (ReleaseBuildTool.BuildMacBatch).

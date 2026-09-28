@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 using RuinRail.Gameplay.Base;
@@ -303,6 +304,147 @@ namespace RuinRail.Tests
             Assert.AreEqual(0, again.StarterLoadoutFallbacks, "nothing fires on scene load");
             Assert.AreEqual(fingerprint, LoadoutValidation.Fingerprint(again.Loadout.ToSnapshot()));
             menu.LeaveBase();
+        }
+
+        // ---- 75: the free Starter weapons and armor are run-only ----
+
+        private static IEnumerable<ItemInstanceSnapshot> SnapshotItems(InventorySnapshot snapshot) =>
+            snapshot == null ? Enumerable.Empty<ItemInstanceSnapshot>()
+                : (snapshot.Equipped ?? new InventorySnapshot.Entry[0]).Concat(snapshot.Backpack ?? new InventorySnapshot.Entry[0]).Where(e => e?.Item != null).Select(e => e.Item);
+
+        private IEnumerable<ItemInstanceSnapshot> ShelterItems(SaveSlot slot) =>
+            SnapshotItems(slot.Profile.SafeLoadout).Concat(slot.Storage.Slots.Where(e => e?.Item != null).Select(e => e.Item));
+
+        private bool IsKitGear(ItemInstanceSnapshot item) =>
+            item.IsUnsellable && _configs.Resolve(item.DefinitionId) is { Category: ItemCategory.Weapon or ItemCategory.Armor };
+
+        private static IEnumerable<ItemInstance> Carried(PlayerInventory inventory) =>
+            System.Enum.GetValues(typeof(EquippedSlot)).Cast<EquippedSlot>().Select(inventory.GetEquipped).Concat(inventory.BackpackSlots).Where(i => i != null);
+
+        [Test]
+        public void Return_LeavesTheFreeStarterWeaponsAndArmorBehind_WornOrCarried_AndEverythingElseComesHome()
+        {
+            var store = new MemorySaveStore();
+            var saves = new SaveSlotService(store, _configs.Resolve);
+            var menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            var session = menu.Session;
+            Assert.IsTrue(session.GrantedFirstKit);
+            var profile = session.Profile;
+
+            var state = session.Expedition.Start(profile, 11, RuinRail.Core.Biome.RuinedMetro);
+            var inventory = state.Inventory;
+            var pistol = inventory.GetEquipped(EquippedSlot.PrimaryWeapon);
+            var knife = inventory.GetEquipped(EquippedSlot.SecondaryWeapon);
+            var vest = inventory.GetEquipped(EquippedSlot.Armor);
+            var bandage = inventory.GetEquipped(EquippedSlot.ActiveConsumable);
+            Assert.IsTrue(pistol.IsUnsellable && knife.IsUnsellable && vest.IsUnsellable, "the kit's weapons and armor carry the starter mark");
+            Assert.IsFalse(bandage.IsUnsellable, "the Bandage is an ordinary consumable");
+            var lightAmmo = inventory.Get(AmmoType.Light);
+            Assert.GreaterOrEqual(lightAmmo, StarterKitService.LightAmmoCount);
+
+            // The kit vest moves into the backpack mid-run; looted copies of the same definitions are picked up.
+            Assert.IsTrue(inventory.TryAddToBackpack(inventory.Unequip(EquippedSlot.Armor)));
+            var lootedPistol = new ItemInstance(StarterKitService.PistolId, 1, Rarity.Rare);
+            var lootedVest = new ItemInstance(StarterKitService.VestId, 1, Rarity.Common);
+            Assert.IsTrue(inventory.TryAddToBackpack(lootedPistol) && inventory.TryAddToBackpack(lootedVest));
+            var otherIds = Carried(inventory).Where(i => i != pistol && i != knife && i != vest).Select(i => i.InstanceId).OrderBy(x => x).ToList();
+
+            var summary = session.Expedition.Return();
+
+            CollectionAssert.AreEquivalent(new[] { pistol.InstanceId, knife.InstanceId, vest.InstanceId }, summary.StarterGearLeftBehind.Select(l => l.InstanceId), "worn or in the backpack, the kit gear stays behind");
+            Assert.IsFalse(summary.SecuredItems.Any(l => l.InstanceId == pistol.InstanceId || l.InstanceId == knife.InstanceId || l.InstanceId == vest.InstanceId));
+            CollectionAssert.AreEquivalent(otherIds, summary.SecuredItems.Select(l => l.InstanceId), "everything else carried is secured, looted P9 / Scrap Vest included");
+            Assert.IsEmpty(summary.LostItems);
+
+            var disk = saves.Load();
+            Assert.IsTrue(disk.Success, disk.Diagnostics.ToString());
+            Assert.IsFalse(disk.Slot.ActiveExpedition.IsOpen);
+            var home = SnapshotItems(disk.Slot.Profile.SafeLoadout).ToList();
+            Assert.IsFalse(home.Any(IsKitGear), "no free Starter weapon or armor reached the Shelter");
+            Assert.IsTrue(home.Any(i => i.InstanceId == lootedPistol.InstanceId) && home.Any(i => i.InstanceId == lootedVest.InstanceId), "looted gear of the same kinds came home");
+            Assert.IsTrue(home.Any(i => i.InstanceId == bandage.InstanceId), "the Bandage came home");
+            Assert.AreEqual(lightAmmo, home.Where(i => i.DefinitionId == StarterKitService.LightAmmoId).Sum(i => i.Quantity), "the starter ammo came home, all of it");
+            Assert.AreEqual(home.Count, home.Select(i => i.InstanceId).Distinct().Count());
+            Assert.AreEqual(ToLoadoutFingerprint(disk.Slot.Profile.SafeLoadout), LoadoutValidation.Fingerprint(session.Loadout.ToSnapshot()), "the Shelter loadout is the saved one");
+            menu.LeaveBase();
+        }
+
+        private static string ToLoadoutFingerprint(InventorySnapshot snapshot) => LoadoutValidation.Fingerprint(snapshot);
+
+        [Test]
+        public void ClaimingTheFreeKitRunAfterRun_NeverPilesUpStarterWeaponsOrArmor_AndOldStoredStarterGearIsKept()
+        {
+            var store = new MemorySaveStore();
+            var saves = new SaveSlotService(store, _configs.Resolve);
+            var menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            var session = menu.Session;
+            // An older save already holds a kit pistol in Storage: it is not deleted by the new rule.
+            var oldStarter = new ItemInstance(StarterKitService.PistolId, 1, Rarity.Common) { IsUnsellable = true };
+            Assert.IsTrue(session.Storage.TryAdd(oldStarter));
+
+            for (var run = 0; run < 3; run++)
+            {
+                session.EnsureStarterLoadoutIfEmpty();
+                Assert.IsTrue(new StarterKitService(_configs.Resolve, _configs.ResolveAmmo, _configs.AmmoBalance).HasEquippedWeapon(session.Loadout), $"run {run}: a weapon is equipped to start");
+                session.CommitLoadoutToProfile();
+                session.Expedition.Start(session.Profile, 11 + run, RuinRail.Core.Biome.RuinedMetro);
+                var summary = session.Expedition.Return();
+                Assert.AreEqual(3, summary.StarterGearLeftBehind.Count, $"run {run}: pistol, knife and vest stayed behind");
+            }
+
+            var disk = saves.Load().Slot;
+            var kitGear = ShelterItems(disk).Where(IsKitGear).ToList();
+            Assert.AreEqual(1, kitGear.Count, "only the one kit pistol an older save already stored");
+            Assert.AreEqual(oldStarter.InstanceId, kitGear.Single().InstanceId, "and it is kept");
+            Assert.IsNotNull(session.Storage.Find(oldStarter.InstanceId));
+            menu.LeaveBase();
+        }
+
+        [Test]
+        public void Death_StillLosesEverythingCarried_AndLeavesTheShelterUntouched()
+        {
+            var store = new MemorySaveStore();
+            var saves = new SaveSlotService(store, _configs.Resolve);
+            var menu = new MainMenuViewModel(saves, _configs);
+            menu.Play();
+            var session = menu.Session;
+            var stored = new ItemInstance(StarterKitService.VestId, 1, Rarity.Rare);
+            Assert.IsTrue(session.Storage.TryAdd(stored));
+            var state = session.Expedition.Start(session.Profile, 11, RuinRail.Core.Biome.RuinedMetro);
+            var carried = Carried(state.Inventory).Select(i => i.InstanceId).OrderBy(x => x).ToList();
+
+            var summary = session.Expedition.Fail();
+
+            CollectionAssert.AreEquivalent(carried, summary.LostItems.Select(l => l.InstanceId), "a failure loses everything carried, as before");
+            Assert.IsEmpty(summary.StarterGearLeftBehind);
+            var disk = saves.Load().Slot;
+            Assert.IsNotNull(disk.Storage.Slots.FirstOrDefault(e => e.Item?.InstanceId == stored.InstanceId), "Storage is untouched");
+            Assert.IsFalse(SnapshotItems(disk.Profile.SafeLoadout).Any(i => carried.Contains(i.InstanceId)));
+            menu.LeaveBase();
+        }
+
+        [Test]
+        public void CoopMember_ReturnFollowsTheSameRule_ItsOwnStarterGearStaysBehind()
+        {
+            var profile = new PlayerProfile();
+            Assert.IsTrue(_kit.GrantFirstProfileKit(profile));
+            var expedition = new ExpeditionService(_configs.Resolve, _configs.ResolveAmmo, _configs.AmmoBalance);
+            var snapshot = new ExpeditionStartSnapshot { StartTransactionId = "start-1", RunSeed = 11, Biome = (int)RuinRail.Core.Biome.RuinedMetro, PartySize = 2 };
+            var state = new ExpeditionStartCoordinator().Apply(snapshot, expedition, profile, "member-b");
+            var kit = Carried(state.Inventory).Where(i => i.IsUnsellable).Select(i => i.InstanceId).ToList();
+            Assert.AreEqual(3, kit.Count);
+            var looted = new ItemInstance(StarterKitService.KnifeId, 1, Rarity.Uncommon);
+            Assert.IsTrue(state.Inventory.TryAddToBackpack(looted));
+
+            var summary = expedition.ReturnWithParty();
+
+            CollectionAssert.AreEquivalent(kit, summary.StarterGearLeftBehind.Select(l => l.InstanceId));
+            var home = SnapshotItems(profile.SafeLoadout).ToList();
+            Assert.IsFalse(home.Any(IsKitGear));
+            Assert.IsTrue(home.Any(i => i.InstanceId == looted.InstanceId), "the member's looted knife comes home");
+            Assert.IsTrue(home.Any(i => i.DefinitionId == StarterKitService.BandageId) && home.Any(i => i.DefinitionId == StarterKitService.LightAmmoId));
         }
     }
 }

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using NUnit.Framework;
+using RuinRail.App;
+using RuinRail.Core;
 using RuinRail.Core.Rng;
 using RuinRail.Dungeon.Generation;
 using RuinRail.Dungeon.Rooms;
@@ -297,6 +299,117 @@ namespace RuinRail.Tests
             Assert.IsTrue(problems.Any(p => p.Contains("Merchant room") && p.Contains("adjacent to Start or Boss")), string.Join("\n", problems));
             Assert.IsTrue(problems.Any(p => p.Contains("Elite room") && p.Contains("directly before Boss")), string.Join("\n", problems));
             Assert.IsTrue(problems.Any(p => p.Contains("Boss must not be adjacent to Start")), string.Join("\n", problems));
+        }
+
+        // ---- Non-Combat pacing (55: Loot, Treasure, Merchant, Event, Medical are the safe / optional rooms) ----
+
+        private static readonly int[] DistributionDepths = { 1, 2, 3, 4, 6, 8, 9, 12, 20, 30 };
+        private const int DistributionSeeds = 60;
+
+        // Measured on exactly this sample (3 biomes × 10 depths × 60 seeds = 1800 dungeons) before the separation rule:
+        // 1005 Non-Combat → Non-Combat connections, 2.01 Non-Combat rooms per depth (18.9 % of all rooms).
+        private const int BaselineRooms = 19106;
+        private const int BaselineCombat = 11886;
+        private const int BaselineNonCombat = 3620;
+        private const int BaselineElites = 551;
+        private const int BaselineDepthsWithoutNonCombat = 285;
+        private static readonly Dictionary<RoomType, int> BaselinePerType = new()
+        {
+            [RoomType.Loot] = 1026, [RoomType.Treasure] = 491, [RoomType.Merchant] = 530, [RoomType.Event] = 1077, [RoomType.MedicalRecovery] = 496
+        };
+
+        /// <summary>
+        /// The shipped pipeline (graph + biome room pool + layout validation, exactly as a run builds a depth) over every
+        /// biome, representative depths and many seeds: no Non-Combat room ever opens straight into another Non-Combat
+        /// room, every depth still generates, and the Non-Combat share sits only slightly below the pre-rule measurement
+        /// with no category inflated. Writes TestResults/DungeonDistribution/ (summary + every layout's signature).
+        /// </summary>
+        [Test]
+        public void NonCombatRooms_NeverAdjacent_AcrossBiomesDepthsAndSeeds_AndOnlySlightlyRarer()
+        {
+            var catalog = GameContentCatalog.Load();
+            var pools = BiomeRoomPools.Build(catalog.Rooms);
+            var types = new[] { RoomType.Loot, RoomType.Treasure, RoomType.Merchant, RoomType.Event, RoomType.MedicalRecovery };
+            var perType = types.ToDictionary(t => t, _ => 0);
+            var rooms = 0;
+            var combat = 0;
+            var nonCombat = 0;
+            var elites = 0;
+            var dungeons = 0;
+            var withoutNonCombat = 0;
+            var adjacent = new List<string>();
+            var failures = new List<string>();
+            var signatures = new System.Text.StringBuilder();
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var depth in DistributionDepths)
+            for (var seed = 1; seed <= DistributionSeeds; seed++)
+            {
+                var result = DungeonGenerationPipeline.Generate(new DungeonGraphGenerator(_rules), pools.PoolFor(biome), seed, depth);
+                if (!result.Success) { failures.Add($"{biome} D{depth} seed {seed}: {result.Error}"); continue; }
+                var graph = result.Graph;
+                dungeons++;
+                if (!graph.Nodes.Any(n => DungeonGraphRules.IsNonCombat(n.Type))) withoutNonCombat++;
+                signatures.AppendLine($"{biome} {graph.Signature()}");
+                foreach (var node in graph.Nodes)
+                {
+                    rooms++;
+                    if (node.Type == RoomType.Combat) combat++;
+                    if (node.IsElite) elites++;
+                    if (!DungeonGraphRules.IsNonCombat(node.Type)) continue;
+                    nonCombat++;
+                    perType[node.Type]++;
+                    foreach (var next in node.Neighbors.Where(n => n > node.Id && DungeonGraphRules.IsNonCombat(graph.GetNode(n).Type)))
+                        adjacent.Add($"{biome} D{depth} seed {seed}: {node.Type} {node.Id} - {graph.GetNode(next).Type} {next}");
+                }
+
+                Assert.IsTrue(graph.GetNode(graph.StartId).Neighbors.All(n => !DungeonGraphRules.IsNonCombat(graph.GetNode(n).Type)), "Start opens onto Combat");
+            }
+
+            var share = nonCombat / (float)rooms;
+            var summary = $"dungeons {dungeons}, rooms {rooms}, combat {combat} ({combat / (float)rooms:P1}), non-combat {nonCombat} ({share:P1}, {nonCombat / (float)dungeons:0.00}/depth), elites {elites}, " +
+                          string.Join(", ", types.Select(t => $"{t} {perType[t]}")) + $"; NC-NC adjacencies {adjacent.Count}; failures {failures.Count}";
+            System.IO.Directory.CreateDirectory("TestResults/DungeonDistribution");
+            System.IO.File.WriteAllText("TestResults/DungeonDistribution/summary.txt", summary + "\n" + string.Join("\n", adjacent.Take(40)));
+            System.IO.File.WriteAllText("TestResults/DungeonDistribution/signatures.txt", signatures.ToString());
+            TestContext.WriteLine(summary);
+            Debug.Log("[PROOF] non-combat distribution: " + summary);
+
+            CollectionAssert.IsEmpty(failures, "every depth still generates");
+            CollectionAssert.IsEmpty(adjacent, "no Non-Combat room opens straight into another Non-Combat room");
+
+            // Only slightly rarer, and Combat absorbs it: the same rooms and Elites, a few more of them Combat.
+            Assert.That(nonCombat / (float)BaselineNonCombat, Is.InRange(0.80f, 0.95f), $"Non-Combat rooms {nonCombat} vs {BaselineNonCombat} before: a slight trim, not a cut");
+            foreach (var type in types)
+                Assert.That(perType[type] / (float)BaselinePerType[type], Is.InRange(0.75f, 1.0f), $"{type}: {perType[type]} vs {BaselinePerType[type]} — trimmed like the rest, never inflated");
+            Assert.LessOrEqual(withoutNonCombat, BaselineDepthsWithoutNonCombat, "no more depths without any Non-Combat room than before");
+            Assert.AreEqual(BaselineRooms, rooms, BaselineRooms * 0.005, "the same room counts (the branch structure is untouched)");
+            Assert.AreEqual(BaselineElites, elites, BaselineElites * 0.03, "Elite frequency unchanged");
+            Assert.AreEqual(combat - BaselineCombat, BaselineNonCombat - nonCombat, (BaselineRooms - rooms) + 2, "the trimmed rooms are Combat rooms, not other special rooms");
+        }
+
+        [Test]
+        public void Validator_RejectsANonCombatRoomOpeningIntoAnother()
+        {
+            var graph = new DungeonGraph(1, 1);
+            var ids = new List<int>();
+            for (var i = 0; i < 6; i++) ids.Add(AddNode(graph, i == 0 ? RoomType.Start : i == 5 ? RoomType.Boss : RoomType.Combat));
+            for (var i = 0; i < 5; i++) AddEdge(graph, ids[i], ids[i + 1]);
+            SetMainPath(graph, ids);
+            var loot = AddNode(graph, RoomType.Loot);
+            var merchant = AddNode(graph, RoomType.Merchant);
+            var evt = AddNode(graph, RoomType.Event);
+            AddEdge(graph, ids[2], loot);
+            AddEdge(graph, loot, merchant);
+            AddEdge(graph, ids[3], evt);
+            AddBranch(graph, new List<int> { loot, merchant });
+            AddBranch(graph, new List<int> { evt });
+
+            var problems = DungeonGraphValidator.Validate(graph, _rules);
+            Assert.AreEqual(1, problems.Count(p => p.Contains("opens directly into Non-Combat room")), string.Join("\n", problems));
+            StringAssert.Contains($"Non-Combat room {loot} (Loot) opens directly into Non-Combat room {merchant} (Merchant)", string.Join("\n", problems));
+
+            graph.GetNode(merchant).Type = RoomType.Combat;
+            Assert.IsFalse(DungeonGraphValidator.Validate(graph, _rules).Any(p => p.Contains("Non-Combat")), "Non-Combat beside Combat (and beside the main path) is fine");
         }
 
         private static int AddNode(DungeonGraph graph, RoomType type) => graph.AddNode(type).Id;

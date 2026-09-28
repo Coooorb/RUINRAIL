@@ -60,15 +60,15 @@ namespace RuinRail.App
             run.Inventory.Open();
             yield return null;
             var view = run.InventoryView;
-            var width = InventoryView.DetailsPanel.Width - UiTheme.Pad * 2;
+            var width = ItemStatPopup.InnerWidth;
             IEnumerator ShowSlot(InventorySlotRef slot, string what, string capture)
             {
                 run.Inventory.SetCursor(slot);
                 yield return null;
                 var tooltip = run.Inventory.TooltipAt(slot);
-                var first = tooltip != null ? UiText.Wrap(tooltip.Description, width).FirstOrDefault() ?? string.Empty : string.Empty;
-                Check($"{what}: description shown first in the details ('{first}')", tooltip != null && first.Length > 0 && view.DetailRowTexts[0] == first);
-                Check($"{what}: every detail row fits the panel", view.DetailRowTexts.All(t => UiText.Width(t) <= width));
+                var shown = tooltip != null && view.InspectCursorNow();
+                Check($"{what}: describes itself and the inspection shows its authoritative lines", shown && !string.IsNullOrEmpty(tooltip.Description) && view.StatPopup.RowTexts.SequenceEqual(ItemStatPopup.RowsOf(tooltip).Select(r => ItemDetailLayout.Render(r, width))));
+                Check($"{what}: every inspection row fits the card", view.StatPopup.RowTexts.All(t => UiText.Width(t) <= width));
                 yield return CaptureHud(capture);
             }
 
@@ -84,7 +84,7 @@ namespace RuinRail.App
             {
                 run.Inventory.SetCursor(new InventorySlotRef(InventorySlotKind.Backpack, legendaryIndex));
                 yield return null;
-                Check("a Legendary weapon's special is described and every row stays reachable (paged, not cut)", view.DetailPager.Rows.Any(r => r.Key.Contains("Snapfire")) && (!view.DetailPager.Overflows || view.DetailsPageDown()));
+                Check("a Legendary weapon's special is described and every row is shown (not cut)", view.InspectCursorNow() && view.StatPopup.RowTexts.Any(r => r.Contains("Snapfire")) && !view.StatPopup.RowTexts.Contains("…"));
                 yield return CaptureHud("dsnc_04b_legendary_weapon_description_paged");
             }
 

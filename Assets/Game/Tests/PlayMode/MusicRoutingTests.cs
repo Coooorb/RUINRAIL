@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace RuinRail.Tests
 {
-    /// <summary>TASK 141 — exactly 11 track roles + 6 stingers, deterministic role selection, one music state at a time with crossfade cleanup, ambience below readability, stingers from gameplay events, missing content reported.</summary>
+    /// <summary>TASK 141 — exactly 11 track roles + 7 stingers, deterministic role selection, one music state at a time with crossfade cleanup, ambience below readability, stingers from gameplay events, missing content reported.</summary>
     public class MusicRoutingTests
     {
         private readonly List<UnityEngine.Object> _created = new();
@@ -59,13 +59,13 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void ExactlyElevenTrackRoles_SixStingers_ThreeAmbience_AndDeterministicSelection()
+        public void ExactlyElevenTrackRoles_SevenStingers_ThreeAmbience_AndDeterministicSelection()
         {
             Assert.AreEqual(11, Enum.GetValues(typeof(MusicRole)).Length);
-            Assert.AreEqual(6, Enum.GetValues(typeof(StingerRole)).Length);
+            Assert.AreEqual(7, Enum.GetValues(typeof(StingerRole)).Length);
             CollectionAssert.AreEqual(new[] { "Main Menu", "The Shelter", "Ruined Metro — Exploration", "Ruined Metro — Combat", "Ruined Metro — Boss", "Rustworks — Exploration", "Rustworks — Combat", "Rustworks — Boss", "Overgrown Labs — Exploration", "Overgrown Labs — Combat", "Overgrown Labs — Boss" },
                 Enum.GetValues(typeof(MusicRole)).Cast<MusicRole>().Select(MusicStateResolver.DisplayName), "art/105 list, in order.");
-            CollectionAssert.AreEquivalent(new[] { StingerRole.LegendaryDrop, StingerRole.EliteEncounter, StingerRole.BossDefeated, StingerRole.ExtractionSuccess, StingerRole.ExpeditionFailed, StingerRole.LevelUp }, Enum.GetValues(typeof(StingerRole)).Cast<StingerRole>());
+            CollectionAssert.AreEquivalent(new[] { StingerRole.LegendaryDrop, StingerRole.EliteEncounter, StingerRole.BossDefeated, StingerRole.ExtractionSuccess, StingerRole.ExpeditionFailed, StingerRole.LevelUp, StingerRole.RoomCleared }, Enum.GetValues(typeof(StingerRole)).Cast<StingerRole>());
 
             Assert.AreEqual(MusicRole.MainMenu, MusicStateResolver.Resolve(MusicScreen.MainMenu, Biome.Rustworks, CombatIntensity.Boss), "Screen wins over biome/intensity.");
             Assert.AreEqual(MusicRole.Shelter, MusicStateResolver.Resolve(MusicScreen.Shelter, Biome.OvergrownLabs, CombatIntensity.Combat));
@@ -122,6 +122,102 @@ namespace RuinRail.Tests
             director.StopAll();
             Assert.AreEqual(0, director.PlayingTrackSources);
             Assert.IsNull(director.ActiveRole);
+        }
+
+        /// <summary>
+        /// Overlap under rapid state changes (menu → Shelter → dungeon → combat → back): whatever arrives mid-crossfade,
+        /// never more than two tracks and never the same track twice; a track that is leaving never gets louder (it
+        /// used to jump back to full when a new state interrupted its fade); the bed never drops into a silence gap;
+        /// going back to the track that is still fading out resumes it instead of starting a second copy; and it all
+        /// settles on exactly the active role's track at full level.
+        /// </summary>
+        [Test]
+        public void Director_RapidChanges_MidCrossfade_NeverOverlapJumpOrDuplicate_AndSettleOnOneTrack()
+        {
+            var (director, _) = Rig(FullCatalog());
+            var catalog = director.Catalog;
+            var sources = director.GetComponentsInChildren<AudioSource>().Where(s => s.name.StartsWith("Music")).ToList();
+            Dictionary<string, float> Playing() => sources.Where(s => s.isPlaying && s.clip != null).GroupBy(s => s.clip.name).ToDictionary(g => g.Key, g => g.Sum(s => s.volume));
+            var previous = new Dictionary<string, float>();
+            var checks = 0;
+            void Step(float seconds, string what)
+            {
+                for (var t = 0f; t < seconds; t += 0.05f)
+                {
+                    director.Tick(0.05f);
+                    var now = Playing();
+                    var active = catalog.TrackFor(director.ActiveRole.Value).name;
+                    Assert.LessOrEqual(director.PlayingTrackSources, 2, what + ": never three tracks");
+                    Assert.AreEqual(sources.Count(s => s.isPlaying && s.clip != null), now.Count, what + ": never the same track on both sources");
+                    foreach (var (clip, volume) in now)
+                        if (clip != active && previous.TryGetValue(clip, out var before))
+                            Assert.LessOrEqual(volume, before + 1e-4f, $"{what}: the leaving {clip} never gets louder ({before:0.00} -> {volume:0.00})");
+                    Assert.GreaterOrEqual(now.Values.Sum(), 0.5f - 1e-4f, what + ": no silence gap");
+                    previous = now;
+                    checks++;
+                }
+            }
+
+            director.SetRole(MusicRole.MainMenu);
+            Step(0.2f, "menu");
+            director.SetRole(MusicRole.Shelter);
+            Step(0.45f, "menu -> Shelter, 30 %");
+            director.SetRole(MusicRole.RuinedMetroExploration); // the Shelter bed was only 30 % in: it hands its source over
+            Assert.IsFalse(Playing().ContainsKey("Shelter"), "the barely-started Shelter bed gives its source to the dungeon");
+            Assert.AreEqual(0.7f, Playing()["MainMenu"], 0.05f, "the menu keeps fading from where it was, not from full");
+            Step(MusicDirector.CrossfadeSeconds + 0.1f, "-> dungeon");
+            Assert.AreEqual(1, director.PlayingTrackSources);
+
+            director.SetRole(MusicRole.RuinedMetroCombat);
+            Step(0.3f, "dungeon -> combat, 20 %");
+            director.SetRole(MusicRole.RuinedMetroExploration); // back before the fade finished
+            Assert.AreEqual(1, sources.Count(s => s.isPlaying && s.clip != null && s.clip.name == "RuinedMetroExploration"), "the fading exploration bed resumes; no second copy");
+            Assert.AreEqual(0.8f, Playing()["RuinedMetroExploration"], 0.05f, "it resumes from its level, not from silence");
+            Step(MusicDirector.CrossfadeSeconds + 0.1f, "combat -> back to dungeon");
+
+            director.SetRole(MusicRole.RuinedMetroBoss);
+            Step(0.9f, "-> boss, 60 %");
+            director.SetRole(MusicRole.RuinedMetroExploration); // boss down mid-fade: the louder boss bed now leaves
+            Step(0.1f, "boss -> dungeon");
+            director.SetRole(MusicRole.Shelter);
+            Step(MusicDirector.CrossfadeSeconds + 0.2f, "-> Shelter");
+
+            Assert.IsFalse(director.IsCrossfading);
+            var last = Playing();
+            Assert.AreEqual(1, last.Count, "settled: exactly one track");
+            Assert.IsTrue(last.ContainsKey("Shelter"));
+            Assert.AreEqual(1f, last["Shelter"], 1e-3f, "at the full music gain");
+            Assert.Greater(checks, 60);
+        }
+
+        /// <summary>
+        /// Two roles on one track (the Shelter plays the Main Menu theme): switching between them keeps the bed playing
+        /// on its source with no restart or crossfade; any other role still crossfades normally, and coming back to the
+        /// shared role brings the shared track back on one source.
+        /// </summary>
+        [Test]
+        public void Director_RolesSharingOneTrack_SwitchWithoutRestartOrCrossfade()
+        {
+            var catalog = FullCatalog();
+            catalog.SetTrack(MusicRole.Shelter, catalog.TrackFor(MusicRole.MainMenu));
+            var (director, _) = Rig(catalog);
+            var shared = catalog.TrackFor(MusicRole.MainMenu);
+            director.SetRole(MusicRole.MainMenu);
+            var source = director.GetComponentsInChildren<AudioSource>().Single(s => s.isPlaying && s.clip == shared);
+            director.SetRole(MusicRole.Shelter);
+            Assert.AreEqual(MusicRole.Shelter, director.ActiveRole);
+            Assert.IsFalse(director.IsCrossfading, "no crossfade into itself");
+            Assert.IsTrue(source.isPlaying && source.clip == shared, "the same source keeps playing");
+            Assert.AreEqual(1, director.PlayingTrackSources);
+
+            director.SetRole(MusicRole.RustworksExploration);
+            Assert.IsTrue(director.IsCrossfading, "a different track still crossfades");
+            director.Tick(MusicDirector.CrossfadeSeconds + 0.1f);
+            director.SetRole(MusicRole.Shelter);
+            director.Tick(MusicDirector.CrossfadeSeconds + 0.1f);
+            var playing = director.GetComponentsInChildren<AudioSource>().Where(s => s.isPlaying && s.clip != null && s.name.StartsWith("Music")).ToList();
+            Assert.AreEqual(1, playing.Count);
+            Assert.AreSame(shared, playing[0].clip, "back in the Shelter: the shared theme");
         }
 
         [Test]

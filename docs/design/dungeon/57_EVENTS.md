@@ -2,7 +2,7 @@
 
 > **Status:** Approved design specification unless explicitly marked as tunable.
 > **Game language:** English. Planning discussions may be in German, but all player-facing text, code naming, comments, and Claude implementation specs should be English.
-The MVP has **6 approved event types**, plus the rare **Secure Relay** (§7, design update 2026-09-26).
+The MVP has **6 approved event types** plus the **Secure Relay** (§7, design update 2026-09-26). Event rooms draw from the five non-medical events and the Secure Relay with equal weight (§7 Rarity); the Medical Station lives in Medical rooms.
 
 ## 1. Cursed Chest
 Player chooses to open. Doors lock, a harder encounter spawns, and success awards high-quality loot.
@@ -14,7 +14,7 @@ Pay Carried Coins to open a vault with guaranteed good loot. Cost follows the ex
 Pay Carried Coins using the exact formula in `base/77_ECONOMY.md` to attempt repair. Result can yield an item/ammo/consumable or simply fail. Do not add punitive hidden damage; this is a small gambling event.
 
 ## 4. Supply Signal
-Activate and survive a ~30-second wave encounter (tunable). Success drops a Supply Chest/reward.
+Activate and survive a ~30-second wave encounter (tunable). Doors lock on activation and open when the survival resolves (the Cursed Chest's lockdown). Success drops a Supply Chest/reward.
 
 ## 5. Medical Station
 Pay Carried Coins for healing, or in co-op revive a fully Dead teammate. Prices follow `base/77_ECONOMY.md`. This replaces the need for a second separate recovery-room system.
@@ -24,7 +24,7 @@ Choose exactly one weapon from three random presented weapons. Once used, the ev
 
 ## 7. Secure Relay (design update 2026-09-26, explicit owner request)
 A rare, non-combat terminal in an Event room. Each player may use it **once** to send exactly **one** carried item from the current run permanently into **their own Shelter Storage**.
-- **Rarity:** an Event room without an authored `event:<kind>` tag rolls the relay on its own seeded draw (`DungeonEventConfig.SecureRelayChancePercent`, **TEMPORARY 8%** — the request only says "rare"); otherwise it keeps the event it always had. Never guaranteed; an authored `event:secure_relay` tag pins it.
+- **Rarity:** an Event room without an authored `event:<kind>` tag picks its event with one seeded, equal-weight draw over six events — Cursed Chest, Locked Vault, Broken Machine, Supply Signal, Weapon Cache and the Secure Relay (1 in 6 each; design update 2026-09-28, replacing the earlier separate 8% relay roll). The Medical Station is not in this pool (Medical rooms only). Never guaranteed; an authored `event:secure_relay` tag pins it.
 - **Eligible:** one Weapon, Armor or Accessory, or **one unit** of a Consumable stack — from the worn slots or the backpack. **Never:** Coins (not items), Ammo, Starter Kit gear (unsellable, 75).
 - **Transfer:** one transaction — the unit leaves the run and lands in Storage no longer at risk, or nothing changes (Storage full or any refusal: nothing removed, no use spent). The save is written at once (113); the secured item stays safe through a later death, wipe or abandoned run. It cannot come back into the current run (Storage is only reachable at the Shelter).
 - **Per player:** every member has an independent single use, keyed by participant id (a reconnect cannot reset it). The relay never resolves for the party; a member who used it sees the terminal's ITEM SECURED state (screen, world sprite, prompt `— ITEM SECURED`).

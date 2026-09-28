@@ -29,6 +29,7 @@ The main path connects Start to Boss. Initial target length: 6–9 rooms includi
 - Boss not adjacent to Start.
 - Merchant not directly adjacent to Start or Boss.
 - Elite encounter not directly after Start or directly before Boss.
+- No Non-Combat room (Loot, Treasure, Merchant, Event, Medical/Recovery) directly connected to another Non-Combat room (2026-09-27, pacing): a branch room beside one stays Combat. The content a depth draws and its order are unchanged; what finds no separated branch room is not placed, so Combat absorbs it (measured over 1,800 dungeons across all biomes: 2.01 → 1.71 Non-Combat rooms per depth, every category trimmed alike, no more depths without one).
 - Every room reachable.
 - No overlapping rooms.
 - Compatible door sockets only.

@@ -300,6 +300,7 @@ namespace RuinRail.App
         {
             if (StashOpen || Session == null) return;
             _stash = new StashViewModel(Session, _hub.Storage, _hub.Loadout);
+            _stash.Specials = _app != null ? _app.Specials : null;
             _stashView = RuinRail.UI.Inventory.StashView.Create(_stash, CloseStash);
             _input.Stack.Push(_stashView.FocusList);
             var summary = Session.Expedition.LastSummary;
@@ -832,6 +833,7 @@ namespace RuinRail.App
         {
             _panelList = ScreenNavigation.Inventory(_hub.Loadout.Inventory);
             _loadoutView = RuinRail.UI.Inventory.LoadoutPanelView.Create(_panel.transform, region, _hub.Loadout.Inventory, _panelList);
+            _loadoutView.Specials = _app != null ? _app.Specials : null;
             _panelControls.Add(_loadoutView.ActionButton);
             _input.Stack.Push(_panelList);
         }
@@ -1330,7 +1332,7 @@ namespace RuinRail.App
 
         private void OnBack()
         {
-            if (StashOpen) { CloseStash(); return; }
+            if (StashOpen) { if (!_stashView.HandleBack()) CloseStash(); return; } // Back first cancels a swap being chosen
             // A picked-up loadout item is put down first; the next Back leaves the station.
             if (_hub.Current == BaseStation.Loadout && _hub.Loadout.Inventory.Selected.HasValue) { _hub.Loadout.Inventory.CancelSelection(); return; }
             // The sell list steps back to the offers first; the next Back leaves the Trader.

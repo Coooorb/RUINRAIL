@@ -345,8 +345,19 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
             var toTarget = (Vector2)_target.position - _rigidbody2D.position;
             if (toTarget.sqrMagnitude < 0.0001f) { _rigidbody2D.linearVelocity = Vector2.zero; return; }
+            // Around walls and obstacles when they block the straight line (unchanged while it is clear), then the
+            // same steering slide as before.
+            _navigator ??= new PursuitNavigator(transform);
+            var route = _navigator.Heading(_rigidbody2D.position, _target.position, BodyRadius(), Bounds);
+            if (route.sqrMagnitude < 0.0001f) route = toTarget.normalized;
+            // Other enemies' bodies: spread a little, step around one directly ahead, never shove into a crowd.
+            _crowd ??= new CrowdAvoidance(transform);
+            route = _crowd.Adjust(_rigidbody2D.position, route, BodyRadius(), Time.fixedDeltaTime);
+            // Held up behind bodies for a while: ask for a way around them, if there is one (same rule as normal enemies).
+            if (_crowd.HeldSeconds > EnemyController.CrowdRerouteSeconds) { _navigator.AvoidBodies(_crowd.Blockers, EnemyController.CrowdAvoidSeconds); _crowd.ClearHeld(); }
+            if (route.sqrMagnitude < 0.0001f) { _rigidbody2D.linearVelocity = Vector2.zero; return; }
             _steering ??= new ObstacleSteering(transform, BodyRadius());
-            var heading = _steering.Steer(_rigidbody2D.position, toTarget.normalized, Time.fixedDeltaTime);
+            var heading = _steering.Steer(_rigidbody2D.position, route, Time.fixedDeltaTime);
             // RepositionToEngagementRange: while the target sits outside every authored attack band the actor closes
             // faster, because nothing it owns can reach and plain pursuit at 1.6-3.2 tiles/s never catches a player at
             // 5. It deals no damage, uses the same obstacle steering and the same EncounterBounds constraint as normal
@@ -364,10 +375,16 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         }
 
         private ObstacleSteering _steering;
+        private PursuitNavigator _navigator;
+        private CrowdAvoidance _crowd;
         private EncounterBounds _bounds;
 
         /// <summary>The obstacle steering in use (diagnostics/tests).</summary>
         public ObstacleSteering Steering => _steering;
+        /// <summary>The route layer around blocking geometry (diagnostics/tests; null until the first chase step).</summary>
+        public PursuitNavigator Navigator => _navigator;
+        /// <summary>Local avoidance of other enemy bodies (diagnostics/tests; null until the first chase step).</summary>
+        public CrowdAvoidance Crowd => _crowd;
 
         /// <summary>The encounter-room (arena) bounds this actor is confined to; null before the owning room binds them.</summary>
         public EncounterBounds Bounds => _bounds != null ? _bounds : _bounds = GetComponent<EncounterBounds>();

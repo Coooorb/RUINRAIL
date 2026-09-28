@@ -49,9 +49,29 @@ namespace RuinRail.Gameplay.Base
 
         public bool CanAccept(ItemInstance item) => item != null && !item.IsAtRisk && _slots.CanAdd(item);
 
+        /// <summary>How much of this item Storage could take right now (the shared stack-room rule; 0 for an at-risk item).</summary>
+        public int RoomFor(ItemInstance item) => item == null || item.IsAtRisk ? 0 : _slots.RoomFor(item);
+
         public bool TryAdd(ItemInstance item) => CanAccept(item) && _slots.TryAdd(item);
 
         public ItemInstance TryRemove(string instanceId) => _slots.TryRemove(instanceId);
+
+        /// <summary>
+        /// Puts <paramref name="replacement"/> into the very cell that holds <paramref name="storedInstanceId"/> and returns
+        /// the item that was there — one step, no free cell needed. Refused (null, nothing changed) when the stored item is
+        /// missing, the replacement is at risk or already stored. Only the Storage ↔ worn exchange uses it.
+        /// </summary>
+        internal ItemInstance ExchangeStored(string storedInstanceId, ItemInstance replacement)
+        {
+            if (replacement == null || replacement.IsAtRisk || string.IsNullOrEmpty(storedInstanceId)) return null;
+            var index = -1;
+            for (var i = 0; i < _slots.Slots.Count; i++)
+                if (_slots.Slots[i] != null && _slots.Slots[i].InstanceId == storedInstanceId) { index = i; break; }
+            if (index < 0) return null;
+            var previous = _slots.ExchangeAt(index, replacement);
+            if (previous != null) _slots.RaiseChanged();
+            return previous;
+        }
 
         /// <summary>
         /// 57.7 Secure Relay: the one mid-expedition path into Storage. Whether the carried item would fit once secured

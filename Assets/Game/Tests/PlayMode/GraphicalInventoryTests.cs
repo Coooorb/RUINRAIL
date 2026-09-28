@@ -106,7 +106,7 @@ namespace RuinRail.Tests
         // ---- layout / presentation ----
 
         [Test]
-        public void Window_HasEquipmentColumn_CharacterPanel_4x2BackpackGrid_AndDetailsPanel_InsideTheReferenceScreen()
+        public void Window_HasEquipmentColumn_CharacterPanel_And4x2BackpackGrid_InsideTheReferenceScreen()
         {
             var (vm, view, inventory) = Build();
             FillRepresentative(inventory);
@@ -118,12 +118,11 @@ namespace RuinRail.Tests
             CollectionAssert.AreEqual(new[] { "PRIMARY", "SECONDARY", "ARMOR", "ACCESSORY", "CONSUMABLE" }, view.EquipmentTexts.Select(t => t.Split('\n')[0]).ToList());
 
             var screen = ScreenLayout.Screen;
-            foreach (var panel in new[] { InventoryView.Window, InventoryView.EquipmentPanel, InventoryView.CharacterPanel, InventoryView.BackpackPanel, InventoryView.DetailsPanel })
+            foreach (var panel in new[] { InventoryView.Window, InventoryView.EquipmentPanel, InventoryView.CharacterPanel, InventoryView.BackpackPanel })
                 Assert.IsTrue(panel.Within(screen), panel.ToString());
-            Assert.IsTrue(InventoryView.EquipmentPanel.Within(InventoryView.Window) && InventoryView.CharacterPanel.Within(InventoryView.Window) && InventoryView.BackpackPanel.Within(InventoryView.Window) && InventoryView.DetailsPanel.Within(InventoryView.Window));
+            Assert.IsTrue(InventoryView.EquipmentPanel.Within(InventoryView.Window) && InventoryView.CharacterPanel.Within(InventoryView.Window) && InventoryView.BackpackPanel.Within(InventoryView.Window));
             Assert.IsFalse(InventoryView.EquipmentPanel.Overlaps(InventoryView.CharacterPanel));
             Assert.IsFalse(InventoryView.CharacterPanel.Overlaps(InventoryView.BackpackPanel));
-            Assert.IsFalse(InventoryView.BackpackPanel.Overlaps(InventoryView.DetailsPanel));
             Assert.AreEqual(0, InventoryView.Window.X % 4 + InventoryView.Window.Y % 4, "the window sits on the 4 px grid");
 
             // The backpack is a real 4 × 2 grid of equal, non-overlapping, hover-sized slots.
@@ -175,39 +174,55 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void DetailsPanel_FollowsTheCursor_WithNameRarityCategoryStatsAndComparison_AndTextsNeverClip()
+        public void Inspection_ShowsTheItemsOwnStats_BesideTheRelevantEquippedItem_NeverADifferenceList_AndTextsNeverClip()
         {
             var (vm, view, inventory) = Build();
             FillRepresentative(inventory);
             vm.Open();
+            var popup = view.StatPopup;
             var smgIndex = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == "weapon_rattler_9");
             vm.SetCursor(Bag(smgIndex));
-            StringAssert.Contains("Rattler", view.DetailTitleText);
-            StringAssert.Contains("RARE", view.DetailSubtitleText);
-            StringAssert.Contains("WEAPON", view.DetailSubtitleText);
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Damage")), "weapon stats");
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Fire rate")));
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Magazine")));
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Ammo")));
-            // The description leads (ui/93 update); the comparison follows on the next page, reachable through the pager.
-            Assert.IsTrue(view.DetailPager.Rows.Any(r => r.Key.Contains("VS EQUIPPED")), "93: compared against the equipped weapon");
-            var guard = 0;
-            while (!view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")) && view.DetailsPageDown() && guard++ < 5) { }
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("VS EQUIPPED")), "the comparison page is reachable");
-            while (view.DetailsPageUp()) { }
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.Contains("–")), "damage ranges keep their en dash");
+            Assert.IsTrue(view.InspectCursorNow());
+            StringAssert.Contains("Rattler", popup.TitleText);
+            StringAssert.Contains("RARE", popup.SubtitleText);
+            StringAssert.Contains("WEAPON", popup.SubtitleText);
+            Assert.IsTrue(popup.RowTexts.Any(r => r.StartsWith("Damage")), "weapon stats");
+            Assert.IsTrue(popup.RowTexts.Any(r => r.StartsWith("Fire rate")));
+            Assert.IsTrue(popup.RowTexts.Any(r => r.StartsWith("Magazine")));
+            Assert.IsTrue(popup.RowTexts.Any(r => r.StartsWith("Ammo")));
+            Assert.IsTrue(popup.RowTexts.Any(r => r.Contains("–")), "damage ranges keep their en dash");
+            // 93: the equipped Primary beside it, with its own lines — no "vs" rows, no up/down marks.
+            Assert.IsTrue(popup.IsComparing, "a weapon compares with the equipped weapon");
+            StringAssert.Contains("P9 Ranger", popup.ComparedTitleText);
+            Assert.AreEqual("EQUIPPED", popup.ComparedTagText);
+            Assert.IsTrue(popup.ComparedRowTexts.Any(r => r.StartsWith("Damage")));
+            Assert.IsFalse(popup.RowTexts.Concat(popup.ComparedRowTexts).Any(r => r.Contains("VS EQUIPPED") || r.Contains(" vs ") || r.EndsWith("(+)") || r.EndsWith("(-)")), "no difference list");
+            Assert.IsFalse(popup.Bounds.Overlaps(popup.ComparedBounds), "the two cards never overlap");
+
+            var rig = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == "armor_scout_rig");
+            vm.SetCursor(Bag(rig));
+            Assert.IsTrue(view.InspectCursorNow());
+            StringAssert.Contains("Scrap Vest", popup.ComparedTitleText, "armor compares with the worn armor");
+            Assert.IsTrue(popup.ComparedRowTexts.Any(r => r.StartsWith("Max HP")), "armor stats");
+
+            var pouch = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == "accessory_ammo_pouch");
+            vm.SetCursor(Bag(pouch));
+            Assert.IsTrue(view.InspectCursorNow());
+            Assert.IsFalse(popup.IsComparing, "no accessory worn: only the inspected card");
 
             vm.SetCursor(Eq(EquippedSlot.Armor));
-            StringAssert.Contains("Scrap Vest", view.DetailTitleText);
-            StringAssert.Contains("EQUIPPED", view.DetailSubtitleText);
-            Assert.IsTrue(view.DetailRowTexts.Any(r => r.StartsWith("Max HP")), "armor stats");
+            Assert.IsTrue(view.InspectCursorNow());
+            StringAssert.Contains("Scrap Vest", popup.TitleText);
+            Assert.IsFalse(popup.IsComparing, "a worn item is not compared with itself");
             vm.SetCursor(Eq(EquippedSlot.Accessory));
-            StringAssert.Contains("EMPTY", view.DetailTitleText);
-            Assert.IsTrue(view.DetailRowTexts.All(string.IsNullOrEmpty));
+            Assert.IsFalse(view.InspectCursorNow());
+            Assert.IsFalse(popup.IsVisible, "an empty slot shows nothing");
             var medkit = inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.DefinitionId == "consumable_medkit");
             vm.SetCursor(Bag(medkit));
-            StringAssert.Contains("x3", view.DetailSubtitleText);
-            StringAssert.Contains("CONSUMABLE", view.DetailSubtitleText);
+            Assert.IsTrue(view.InspectCursorNow());
+            StringAssert.EndsWith("x3", popup.TitleText);
+            StringAssert.Contains("CONSUMABLE", popup.SubtitleText);
+            StringAssert.Contains("Bandage", popup.ComparedTitleText, "a consumable compares with the worn consumable");
 
             // No text clips its box: every label's fixed-advance width fits the box it was given (single-line boxes).
             foreach (var text in view.GetComponentsInChildren<Text>(true).Where(t => t.enabled && !string.IsNullOrEmpty(t.text)))

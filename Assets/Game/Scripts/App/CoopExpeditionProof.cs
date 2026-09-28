@@ -1667,8 +1667,8 @@ namespace RuinRail.App
 
             var binding = _run.Rooms.Values.Select(r => r.GetComponent<RoomContentBinding>()).FirstOrDefault(b => b != null && b.EventInstance is SecureRelayEvent && b.Event != null);
             var relay = binding?.EventInstance as SecureRelayEvent;
-            Record("the seed's D1 carries a Secure Relay (the 8% roll, shipped config)", relay != null && _app.Content.Events.SecureRelayChancePercent == DungeonEventConfig.DefaultSecureRelayChancePercent,
-                $"relayRoom={(binding != null ? binding.GetComponent<RoomRuntime>()?.State.NodeId.ToString() : "none")} chance={_app.Content.Events.SecureRelayChancePercent}%");
+            Record("the seed's D1 carries a Secure Relay (the equal-weight Event-room pick)", relay != null,
+                $"relayRoom={(binding != null ? binding.GetComponent<RoomRuntime>()?.State.NodeId.ToString() : "none")} pool={RoomCategoryComposer.RandomEventKinds.Length}");
             if (relay == null) { Finish("relay", "no Secure Relay on this seed's D1"); yield break; }
             var relayRoom = binding.GetComponent<RoomRuntime>();
             var at = (Vector2)binding.Event.transform.position;

@@ -176,27 +176,45 @@ namespace RuinRail.UI.Inventory
             return item == null ? null : ItemTooltip.Build(item, _inventory.Resolve(item.DefinitionId), _specials);
         }
 
-        /// <summary>93: the candidate against the equipped item of the slot it would go to (null when nothing to compare).</summary>
-        public IReadOnlyList<ComparisonLine> CompareAt(InventorySlotRef slot)
+        /// <summary>93: the equipped item's own tooltip beside the inspected one (null when there is nothing to compare).</summary>
+        public ItemTooltip ComparedAt(InventorySlotRef slot)
         {
-            var item = ItemAt(slot);
-            if (item == null || slot.Kind == InventorySlotKind.Equipped) return Array.Empty<ComparisonLine>();
-            var target = ComparisonSlotFor(item);
-            if (target == null) return Array.Empty<ComparisonLine>();
-            var current = _inventory.GetEquipped(target.Value);
-            if (current == null) return Array.Empty<ComparisonLine>();
-            return TooltipComparison.Compare(TooltipAt(slot), ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials));
+            var current = ComparedItemAt(slot);
+            return current == null ? null : ItemTooltip.Build(current, _inventory.Resolve(current.DefinitionId), _specials);
         }
 
+        /// <summary>The worn item a backpack item compares with (null for an equipped slot or no counterpart).</summary>
+        public ItemInstance ComparedItemAt(InventorySlotRef slot) => slot.Kind == InventorySlotKind.Equipped ? null : ComparedWith(_inventory, ItemAt(slot));
+
         /// <summary>93: a weapon compares against the equipped weapon (Primary first); other gear against its own slot.</summary>
-        public EquippedSlot? ComparisonSlotFor(ItemInstance item)
+        public EquippedSlot? ComparisonSlotFor(ItemInstance item) => ComparisonSlotFor(_inventory, item);
+
+        /// <summary>
+        /// 93, the one comparison rule of every inspection (Shelter and in-game): a weapon against the equipped Primary,
+        /// else Secondary; Armor, Accessory and Consumable against their own worn slot; anything else has no counterpart.
+        /// </summary>
+        public static EquippedSlot? ComparisonSlotFor(PlayerInventory inventory, ItemInstance item)
         {
-            var definition = _inventory?.Resolve(item.DefinitionId);
+            var definition = item != null ? inventory?.Resolve(item.DefinitionId) : null;
             if (definition == null) return null;
-            if (definition.Category != ItemCategory.Weapon) return DefaultSlotFor(item);
-            if (_inventory.GetEquipped(EquippedSlot.PrimaryWeapon) != null) return EquippedSlot.PrimaryWeapon;
-            if (_inventory.GetEquipped(EquippedSlot.SecondaryWeapon) != null) return EquippedSlot.SecondaryWeapon;
-            return null;
+            switch (definition.Category)
+            {
+                case ItemCategory.Weapon:
+                    if (inventory.GetEquipped(EquippedSlot.PrimaryWeapon) != null) return EquippedSlot.PrimaryWeapon;
+                    return inventory.GetEquipped(EquippedSlot.SecondaryWeapon) != null ? EquippedSlot.SecondaryWeapon : null;
+                case ItemCategory.Armor: return EquippedSlot.Armor;
+                case ItemCategory.Accessory: return EquippedSlot.Accessory;
+                case ItemCategory.Consumable: return EquippedSlot.ActiveConsumable;
+                default: return null;
+            }
+        }
+
+        /// <summary>The worn item <paramref name="item"/> is compared with (null when none, or when it is that item).</summary>
+        public static ItemInstance ComparedWith(PlayerInventory inventory, ItemInstance item)
+        {
+            var slot = ComparisonSlotFor(inventory, item);
+            var current = slot.HasValue ? inventory.GetEquipped(slot.Value) : null;
+            return current == null || current.InstanceId == item.InstanceId ? null : current;
         }
 
         /// <summary>The item's definition (null for an unknown id).</summary>

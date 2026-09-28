@@ -770,6 +770,8 @@ namespace RuinRail.App
             var numbers = effects != null ? effects.GetComponent<DamageNumberPool>() : null;
             numbers?.Bind(replica.Health);
             var body = CharacterVisual.Attach(replica.gameObject, content.AnimationSetFor(spawn.DefinitionId));
+            // The same biome palette as the host's actor (normal full, Elite half; bosses untouched), before the flash caches it.
+            if (kind != CoopActorKind.Boss) RuinRail.Presentation.EnemyBiomeTint.Apply(body != null ? body.Renderer : null, _expedition.State.Biome, elite: kind == CoopActorKind.Elite);
             replica.gameObject.AddComponent<EnemyAnimationDriver>().ConfigureReplica(body, replica);
             if (kind == CoopActorKind.Normal) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Normal);
             else if (kind == CoopActorKind.Elite) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Elite, 1.7f, content.Feedback != null ? content.Feedback.EliteBossTelegraphColor : (Color?)null);

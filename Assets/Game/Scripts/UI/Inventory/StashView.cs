@@ -14,7 +14,8 @@ namespace RuinRail.UI.Inventory
     /// paged 6×4 Storage grid on the right, and one strip at the bottom saying what the pointed-at item is and what
     /// activating it will do — or which rule stops it. Same window, slot, rarity-frame and focus language as the in-run
     /// inventory (<see cref="InventorySlotView"/>): click / Enter / A moves the item across, dragging does too (a
-    /// Storage item dropped on a worn slot is equipped), arrows / D-pad step a two-dimensional grid, Back closes.
+    /// Storage item dropped on a worn slot is equipped), F / X equips the pointed-at Storage item into its worn slot
+    /// (swapping with the item worn there), arrows / D-pad step a two-dimensional grid, Back closes.
     /// It draws a <see cref="StashViewModel"/>; every move is that view model's, so the view owns no item and no rule.
     /// </summary>
     public sealed class StashView : MonoBehaviour
@@ -50,6 +51,14 @@ namespace RuinRail.UI.Inventory
         private readonly List<InventorySlotView> _storage = new();
         private readonly Dictionary<string, UiControl> _buttons = new();
         private readonly Dictionary<string, Vector2> _centres = new();
+        private ItemStatPopup _popup;
+        /// <summary>True when the cursor was put on its cell by the pointer (then the panel needs the pointer to stay on it).</summary>
+        private bool _cursorByPointer;
+        private bool _hovering;
+        public ItemStatPopup StatPopup => _popup;
+
+        /// <summary>Per slot: the thin terminal frame that marks a valid swap target while a swap is being chosen.</summary>
+        private readonly Dictionary<InventorySlotView, IReadOnlyList<Image>> _targetMarks = new();
         private Text _hints;
         private Text _carrying;
         private Text _backpackHeader;
@@ -74,6 +83,9 @@ namespace RuinRail.UI.Inventory
         public IReadOnlyList<InventorySlotView> StorageSlots => _storage;
         public IReadOnlyDictionary<string, UiControl> Buttons => _buttons;
         public string ActionText => _action != null ? _action.text : string.Empty;
+        public string HintsText => _hints != null ? _hints.text : string.Empty;
+        /// <summary>True while this slot carries the swap-target frame (test seam).</summary>
+        public bool IsMarkedTarget(InventorySlotView slot) => slot != null && _targetMarks.TryGetValue(slot, out var mark) && mark.Count > 0 && mark[0].enabled;
         public Color ActionColor => _action != null ? _action.color : Color.clear;
         public string MessageText => _message != null ? _message.text : string.Empty;
         public string DetailTitleText => _detailTitle != null ? _detailTitle.text : string.Empty;
@@ -169,6 +181,7 @@ namespace RuinRail.UI.Inventory
             BuildStorage(window, skin);
             BuildButtons(window);
             BuildDetails(window);
+            _popup = ItemStatPopup.Create(_root);
         }
 
         private static UiRect Local(UiRect r) => new(r.X - Window.X, r.Y - Window.Y, r.Width, r.Height);
@@ -296,6 +309,9 @@ namespace RuinRail.UI.Inventory
             var parentRect = (RectTransform)parent;
             var panelOrigin = parent.name == "Survivor" ? SurvivorPanel : StoragePanel;
             _centres[IdOf(cell)] = new Vector2(panelOrigin.X - Window.X + bounds.X + bounds.Width * 0.5f, panelOrigin.Y - Window.Y + bounds.Y + bounds.Height * 0.5f);
+            var mark = UiBuild.Border(slot.transform, new UiRect(1, 1, bounds.Width - 2, bounds.Height - 2), UiTheme.Terminal, 1);
+            foreach (var edge in mark) { edge.raycastTarget = false; edge.enabled = false; }
+            _targetMarks[slot] = mark;
             return slot;
         }
 
@@ -361,13 +377,17 @@ namespace RuinRail.UI.Inventory
 
         private void OnFocusChanged(FocusItem focused)
         {
+            _cursorByPointer = _hovering;
             if (_syncing || focused == null) return;
             _viewModel.SetCursor(TryParse(focused.Id, out var cell) ? cell : (InventorySlotRef?)null);
         }
 
         private void OnHovered(InventorySlotRef cell)
         {
+            _hovering = true;
             _list.Focus(IdOf(cell));
+            _hovering = false;
+            _cursorByPointer = true;
             _viewModel.SetCursor(cell);
         }
 
@@ -375,6 +395,59 @@ namespace RuinRail.UI.Inventory
         {
             _list.Focus(IdOf(cell));
             _viewModel.Activate(cell);
+        }
+
+        /// <summary>EQUIP (F / pad X) on the cell under the cursor — the keyboard and controller route to what dragging onto a worn slot does.</summary>
+        public bool EquipCursor() => _viewModel != null && _viewModel.Cursor.HasValue && _viewModel.Equip(_viewModel.Cursor.Value);
+
+        /// <summary>
+        /// SWAP (R / pad Y): picks the item under the cursor and moves the focus to the first item on the other side it can
+        /// trade places with; pressed again it cancels. Enter / A on a marked cell completes the swap (the same exchange a
+        /// drag performs), Back cancels without moving anything.
+        /// </summary>
+        public bool ToggleSwap()
+        {
+            if (_viewModel == null) return false;
+            if (_viewModel.IsTargetingSwap) return _viewModel.CancelSwap();
+            if (!_viewModel.Cursor.HasValue || !_viewModel.BeginSwap(_viewModel.Cursor.Value)) return false;
+            var first = _worn.Concat(_backpack).Concat(_storage).FirstOrDefault(slot => _viewModel.IsSwapTarget(slot.Slot));
+            if (first != null) _list.Focus(IdOf(first.Slot));
+            return true;
+        }
+
+        /// <summary>Back while choosing a swap target cancels the swap (true); otherwise the caller closes the stash.</summary>
+        public bool HandleBack() => _viewModel != null && _viewModel.CancelSwap();
+
+        /// <summary>
+        /// Delayed inspection: the item under the cursor opens its stat panel after a short rest. A pointer-placed cursor
+        /// counts only while the pointer is still on that slot; keyboard / controller focus counts while it stays there.
+        /// </summary>
+        private void TrackInspection()
+        {
+            if (_popup == null) return;
+            var cell = _viewModel != null && _panel != null && _panel.activeSelf && InventorySlotView.Dragging == null ? _viewModel.Cursor : null;
+            var slot = cell.HasValue ? SlotFor(cell.Value) : null;
+            var item = cell.HasValue ? _viewModel.ItemAt(cell.Value) : null;
+            if (item == null || (_cursorByPointer && !slot.IsHovered)) { _popup.Track(null, null, null); return; }
+            var target = cell.Value;
+            _popup.Track(IdOf(target) + "/" + item.InstanceId, () => _viewModel.TooltipFor(target), slot.Rect, () => _viewModel.ComparedTooltipFor(target));
+        }
+
+        private void LateUpdate() => TrackInspection();
+
+        private void Update()
+        {
+            if (_viewModel == null || _panel == null || !_panel.activeSelf) return;
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            var pad = UnityEngine.InputSystem.Gamepad.current;
+            var equipKey = kb != null && kb.fKey.wasPressedThisFrame;
+            var equipPad = pad != null && pad.buttonWest.wasPressedThisFrame;
+            var swapKey = kb != null && kb.rKey.wasPressedThisFrame;
+            var swapPad = pad != null && pad.buttonNorth.wasPressedThisFrame;
+            if (!equipKey && !equipPad && !swapKey && !swapPad) return;
+            RuinRail.Core.Input.ActiveInputDevice.Set(equipPad || swapPad ? RuinRail.Core.Input.InputDeviceKind.Gamepad : RuinRail.Core.Input.InputDeviceKind.KeyboardMouse);
+            if (swapKey || swapPad) ToggleSwap();
+            else if (!_viewModel.IsTargetingSwap) EquipCursor();
         }
 
         private void OnDropped(InventorySlotRef from, InventorySlotRef to)
@@ -389,7 +462,9 @@ namespace RuinRail.UI.Inventory
         {
             if (_viewModel == null || _panel == null) return;
             var gamepad = RuinRail.Core.Input.ActiveInputDevice.Current == RuinRail.Core.Input.InputDeviceKind.Gamepad;
-            _hints.text = gamepad ? "A: MOVE ITEM   D-PAD: SELECT   B: CLOSE" : "CLICK / ENTER: MOVE ITEM   DRAG: MOVE   ESC: CLOSE";
+            _hints.text = _viewModel.IsTargetingSwap
+                ? (gamepad ? "A: SWAP HERE   D-PAD: CHOOSE   B / Y: CANCEL" : "ENTER: SWAP HERE   ARROWS: CHOOSE   ESC / R: CANCEL")
+                : gamepad ? "A: MOVE ITEM   X: EQUIP   Y: SWAP   B: CLOSE" : "CLICK / ENTER: MOVE   F: EQUIP   R: SWAP   DRAG: MOVE   ESC: CLOSE";
 
             var carried = _viewModel.CarriedCount;
             _carrying.text = carried == 0 ? "NOTHING CARRIED" : $"CARRYING {carried}";
@@ -426,7 +501,11 @@ namespace RuinRail.UI.Inventory
             var item = _viewModel.ItemAt(slot.Slot);
             var definition = _viewModel.DefinitionOf(item);
             slot.Show(item, IconOf(item), definition == null || definition.IsStackable);
-            slot.SetSelected(_viewModel.Cursor.HasValue && _viewModel.Cursor.Value.Equals(slot.Slot) && item != null);
+            var targeting = _viewModel.IsTargetingSwap;
+            // While a swap is chosen the picked item keeps the selection frame and every valid target carries a terminal frame.
+            slot.SetSelected(targeting ? _viewModel.IsSwapSource(slot.Slot) : _viewModel.Cursor.HasValue && _viewModel.Cursor.Value.Equals(slot.Slot) && item != null);
+            var isTarget = targeting && _viewModel.IsSwapTarget(slot.Slot);
+            if (_targetMarks.TryGetValue(slot, out var mark)) foreach (var edge in mark) edge.enabled = isTarget;
         }
 
         private void SetLabel(string id, string label)
@@ -442,6 +521,7 @@ namespace RuinRail.UI.Inventory
             var item = cell.HasValue ? _viewModel.ItemAt(cell.Value) : null;
             _survivorEdgeTint.enabled = false;
             _storageEdgeTint.enabled = false;
+            if (_viewModel.IsTargetingSwap && _viewModel.SwapSourceItem != null) { RenderSwapTargeting(cell, item); return; }
             if (item == null)
             {
                 _detailIcon.enabled = false;
@@ -467,27 +547,77 @@ namespace RuinRail.UI.Inventory
             var intent = _viewModel.IntentFor(cell.Value);
             var gamepad = RuinRail.Core.Input.ActiveInputDevice.Current == RuinRail.Core.Input.InputDeviceKind.Gamepad;
             var verb = gamepad ? "A" : "CLICK / ENTER";
+            var equipSlot = _viewModel.EquipSlotFor(cell.Value);
+            var equip = string.Empty;
+            if (equipSlot.HasValue)
+            {
+                var displaced = _viewModel.EquipDisplaces(cell.Value);
+                equip = $"{(gamepad ? "X" : "F")}:  EQUIP  >  {WornCaptions[(int)equipSlot.Value]}" + (displaced != null ? $" (SWAPS {(_viewModel.DefinitionOf(displaced)?.DisplayName ?? displaced.DefinitionId).ToUpperInvariant()})" : string.Empty);
+            }
             switch (intent.Action)
             {
                 case StashAction.Store:
-                    _action.text = $"{verb}:  STORE  >>  STORAGE";
+                    _action.text = $"{verb}:  {intent.Label}  >>  STORAGE";
                     _action.color = UiTheme.Terminal;
                     _storageEdgeTint.enabled = true;
                     _storageEdgeTint.color = UiTheme.Terminal;
                     break;
                 case StashAction.Take:
-                    _action.text = $"{verb}:  TAKE  <<  INTO BACKPACK   (or drag onto a worn slot to equip)";
+                    _action.text = UiText.Fit(equip.Length > 0 ? $"{verb}:  {intent.Label}  <<  BACKPACK    {equip}" : $"{verb}:  {intent.Label}  <<  INTO BACKPACK", DetailsStrip.Width - 56);
                     _action.color = UiTheme.Terminal;
                     _survivorEdgeTint.enabled = true;
                     _survivorEdgeTint.color = UiTheme.Terminal;
                     break;
                 default:
+                    if (equip.Length > 0)
+                    {
+                        // The backpack is full, but equipping needs no backpack slot: that route stays open.
+                        _action.text = UiText.Fit($"{intent.Label}.    {equip}", DetailsStrip.Width - 56);
+                        _action.color = UiTheme.Terminal;
+                        _survivorEdgeTint.enabled = true;
+                        _survivorEdgeTint.color = UiTheme.Terminal;
+                        break;
+                    }
+
                     _action.text = UiText.Fit($"{intent.Label}: {intent.Reason}", DetailsStrip.Width - 56);
                     _action.color = UiTheme.Danger;
                     var blockedSide = cell.Value.Kind == InventorySlotKind.Storage ? _survivorEdgeTint : _storageEdgeTint;
                     blockedSide.enabled = true;
                     blockedSide.color = UiTheme.Danger;
                     break;
+            }
+        }
+
+        /// <summary>The strip while a swap is chosen: what was picked, and what Enter / A does on the focused cell.</summary>
+        private void RenderSwapTargeting(InventorySlotRef? cell, ItemInstance focused)
+        {
+            var picked = _viewModel.SwapSourceItem;
+            var definition = _viewModel.DefinitionOf(picked);
+            var style = RarityStyle.For(picked.Rarity);
+            _detailIcon.sprite = definition != null ? definition.Icon : null;
+            _detailIcon.enabled = _detailIcon.sprite != null;
+            _detailFrame.color = UiTheme.WithAlpha(style.Color, 0.85f);
+            var pickedName = definition != null ? definition.DisplayName : picked.DefinitionId;
+            _detailTitle.text = UiText.Fit("SWAP: " + pickedName, 300);
+            _detailTitle.color = UiTheme.Amber;
+            var fromStorage = _viewModel.SwapSource.Value.Kind == InventorySlotKind.Storage;
+            _detailSubtitle.text = fromStorage ? "FROM STORAGE  ·  CHOOSE A BACKPACK ITEM" : "FROM BACKPACK  ·  CHOOSE A STORAGE ITEM";
+            var gamepad = RuinRail.Core.Input.ActiveInputDevice.Current == RuinRail.Core.Input.InputDeviceKind.Gamepad;
+            var cancel = gamepad ? "B / Y" : "ESC / R";
+            var targetSide = fromStorage ? _survivorEdgeTint : _storageEdgeTint;
+            targetSide.enabled = true;
+            if (cell.HasValue && _viewModel.IsSwapTarget(cell.Value))
+            {
+                var name = (_viewModel.DefinitionOf(focused)?.DisplayName ?? focused.DefinitionId).ToUpperInvariant();
+                _action.text = UiText.Fit($"{(gamepad ? "A" : "ENTER")}:  SWAP WITH {name}    {cancel}:  CANCEL", DetailsStrip.Width - 56);
+                _action.color = UiTheme.Terminal;
+                targetSide.color = UiTheme.Terminal;
+            }
+            else
+            {
+                _action.text = UiText.Fit($"PICK A MARKED {(fromStorage ? "BACKPACK" : "STORAGE")} ITEM    {cancel}:  CANCEL", DetailsStrip.Width - 56);
+                _action.color = UiTheme.Amber;
+                targetSide.color = UiTheme.Amber;
             }
         }
 

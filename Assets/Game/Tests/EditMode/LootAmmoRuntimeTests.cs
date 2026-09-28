@@ -64,6 +64,7 @@ namespace RuinRail.Tests
             var eligibleTotal = 0;
             var selectedTotal = 0;
             var depthsAtFloorOnly = 0;
+            var eliteRooms = 0;
             foreach (var biome in Biomes)
             {
                 for (var seed = 1; seed <= SeedsPerBiome; seed++)
@@ -77,6 +78,8 @@ namespace RuinRail.Tests
                     Assert.IsTrue(plan.All(id => eligible.Contains(id)), "only ordinary Combat rooms carry a Supply Chest");
                     Assert.IsFalse(plan.Contains(graph.StartId) || plan.Contains(graph.BossId));
                     Assert.IsTrue(plan.All(id => graph.GetNode(id).Type == RoomType.Combat));
+                    Assert.IsFalse(plan.Any(id => graph.GetNode(id).IsElite), $"{biome} seed {seed}: an Elite room's one chest is its post-kill reward, never a planned Supply Chest");
+                    eliteRooms += graph.Nodes.Count(n => n.IsElite);
                     Assert.GreaterOrEqual(plan.Count, System.Math.Min(SupplyChestPlanner.MinimumPerDepth, eligible.Count), $"{biome} seed {seed}: the floor holds");
                     var byRoll = eligible.Count(id => SupplyChestPlanner.RollFor(seed, depth, id) < SupplyChestPlanner.OrdinaryRoomPercent);
                     if (byRoll < SupplyChestPlanner.MinimumPerDepth) depthsAtFloorOnly++;
@@ -89,6 +92,7 @@ namespace RuinRail.Tests
             var share = selectedTotal / (float)eligibleTotal;
             TestContext.WriteLine($"ordinary rooms with a Supply Chest: {selectedTotal}/{eligibleTotal} = {share:P1}; depths lifted by the floor: {depthsAtFloorOnly}/{3 * SeedsPerBiome}");
             Assert.That(share, Is.InRange(0.22f, 0.50f), "≈25 % by roll plus the deterministic floor, never a chest in every room");
+            Assert.Greater(eliteRooms, 0, "the sample includes Elite rooms, so their exclusion is exercised");
         }
 
         // ---- Placement ----

@@ -273,11 +273,12 @@ namespace RuinRail.Tests
             {
                 var biome = BiomeSelector.SelectFirst(s);
                 var candidate = DungeonGenerationPipeline.Generate(new DungeonGraphGenerator(DungeonGraphRules.CreateDefault()), pools.PoolFor(biome), s, 1);
-                if (candidate.Success && candidate.Graph.Nodes.Any(n => n.IsElite)) { generation = candidate; seed = s; }
+                if (candidate.Success && candidate.Graph.Nodes.Any(n => n.IsElite && WouldHaveCarriedASupplyChest(s, 1, n.Id))) { generation = candidate; seed = s; }
             }
 
-            Assert.IsNotNull(generation, "a seed with an Elite room on D1");
-            var eliteNode = generation.Graph.Nodes.First(n => n.IsElite).Id;
+            Assert.IsNotNull(generation, "a seed with an Elite room on D1 that the planner used to give an ordinary Supply Chest too");
+            var eliteNode = generation.Graph.Nodes.First(n => n.IsElite && WouldHaveCarriedASupplyChest(seed, 1, n.Id)).Id;
+            int ChestsIn(RoomRuntime room) => room.GetComponentsInChildren<SupplyChest>(true).Length;
 
             Dictionary<int, RoomRuntime> Compose(bool authoritative, Vector2 at)
             {
@@ -298,6 +299,8 @@ namespace RuinRail.Tests
             Assert.IsTrue(client.State.IsElite, "the client knows it is an Elite room (same seeded graph)");
             Assert.IsNull(client.Engagement, "the client runs no Elite of its own");
             Assert.IsNull(client.GetComponent<RoomContentBinding>().RewardChest);
+            Assert.AreEqual(0, ChestsIn(host), "no chest of any kind in the Elite room before the kill (host)");
+            Assert.AreEqual(0, ChestsIn(client), "…nor on the client");
 
             // Host: the kill.
             var hostRoot = host.Root;
@@ -307,6 +310,17 @@ namespace RuinRail.Tests
             yield return Until(() => host.Lifecycle == RoomLifecycleState.Cleared, "host room cleared");
             var hostChest = host.GetComponent<RoomContentBinding>().RewardChest;
             Assert.IsNotNull(hostChest);
+            Assert.AreEqual(LootSourceKind.SupplyChest, hostChest.Kind, "a normal Supply Chest");
+            Assert.AreEqual(1, ChestsIn(host), "the kill leaves exactly one chest in the room");
+
+            // Every repeated host signal finds the chest there: another hit on the dead Elite, a repeated spawn request, a
+            // re-applied clear (a rebuilt room restoring its own state).
+            engagement.Encounter.Elite.Health.TryApplyDamage(new DamageRequest(10000000));
+            host.GetComponent<EncounterRewardChest>().TrySpawn();
+            host.RestoreState(host.State.Clone());
+            yield return null;
+            Assert.AreEqual(1, ChestsIn(host), "duplicate death / clear / restore signals never add a second chest");
+            Assert.AreEqual(1, host.GetComponent<EncounterRewardChest>().SpawnCount);
 
             // Client: the host's replicated states (Active, then Cleared) — the same chest at the same room cell, once.
             var active = host.State.Clone();
@@ -318,15 +332,25 @@ namespace RuinRail.Tests
             Assert.IsNotNull(clientChest, "the host's clear builds the client's chest");
             Assert.AreEqual(hostChest.transform.position - hostRoot.transform.position, clientChest.transform.position - client.Root.transform.position, "same room cell on both peers");
             Assert.AreEqual(hostChest.Kind, clientChest.Kind);
+            Assert.AreEqual(hostChest.Visual.Renderer.color, clientChest.Visual.Renderer.color, "the client's chest wears the host's biome colour");
+            Assert.AreEqual(ChestBiomePalette.TintFor(generation.Layout.Biome, hostChest.Kind), hostChest.Visual.Renderer.color, "the depth's biome palette");
+            Assert.AreEqual(hostChest.Visual.Renderer.transform.localScale, clientChest.Visual.Renderer.transform.localScale);
             client.RestoreState(host.State.Clone());
             client.RestoreState(host.State.Clone());
             Assert.AreEqual(1, client.GetComponent<EncounterRewardChest>().SpawnCount, "re-delivered states never add a second chest");
+            Assert.AreEqual(1, ChestsIn(client), "the client's room holds exactly the one chest");
 
             // A client that joins after the clear (no Active step) still gets it.
             var late = Compose(false, new Vector2(0f, 6000f))[eliteNode];
             late.RestoreState(host.State.Clone());
+            late.RestoreState(host.State.Clone());
             Assert.IsNotNull(late.GetComponent<RoomContentBinding>().RewardChest);
+            Assert.AreEqual(1, ChestsIn(late), "a late / reconnecting client builds exactly one");
         }
+
+        /// <summary>The old planner rule (Elite rooms eligible): this Elite room's seeded roll would have placed a Supply Chest there.</summary>
+        internal static bool WouldHaveCarriedASupplyChest(int seed, int depth, int nodeId) =>
+            SupplyChestPlanner.RollFor(seed, depth, nodeId) < SupplyChestPlanner.OrdinaryRoomPercent;
 
         [Test]
         public void EveryShippedBossAndEliteRoom_HasAReachableHazardFreePlayableCentre()
@@ -423,10 +447,10 @@ namespace RuinRail.Tests
             for (var s = 1; s < 300 && seed == 0; s++)
             {
                 var generation = DungeonGenerationPipeline.Generate(new DungeonGraphGenerator(DungeonGraphRules.CreateDefault()), pools.PoolFor(BiomeSelector.SelectFirst(s)), s, 1);
-                if (generation.Success && generation.Graph.Nodes.Any(n => n.IsElite)) seed = s;
+                if (generation.Success && generation.Graph.Nodes.Any(n => n.IsElite && EncounterRewardChestTests.WouldHaveCarriedASupplyChest(s, 1, n.Id))) seed = s;
             }
 
-            Assert.Greater(seed, 0, "a seed whose first depth has an Elite room");
+            Assert.Greater(seed, 0, "a seed whose first depth has an Elite room that the planner used to give an ordinary Supply Chest too");
             _app = GameApp.Ensure(content, _saveDir);
             _app.SetRunSeedOverride(seed);
             UnityEngine.SceneManagement.SceneManager.LoadScene(SceneNames.MainMenu);
@@ -444,13 +468,14 @@ namespace RuinRail.Tests
 
             var run = Object.FindFirstObjectByType<ExpeditionScene>();
             var health = run.Rig.Player.GetComponent<HealthComponent>();
-            var eliteNode = run.Generation.Graph.Nodes.First(n => n.IsElite).Id;
+            var eliteNode = run.Generation.Graph.Nodes.First(n => n.IsElite && EncounterRewardChestTests.WouldHaveCarriedASupplyChest(seed, 1, n.Id)).Id;
             var eliteRoom = run.Rooms[eliteNode];
             var eliteBinding = eliteRoom.GetComponent<RoomContentBinding>();
             var engagement = eliteRoom.Engagement as EliteEngagement;
             Assert.IsNotNull(engagement, "the live run composed the Elite encounter");
             Assert.IsNull(eliteBinding.RewardChest, "no reward chest before the fight");
             var chestsBefore = eliteRoom.GetComponentsInChildren<SupplyChest>(true).Length;
+            Assert.AreEqual(0, chestsBefore, "no chest of any kind in the Elite room before the kill (no planned Supply Chest either)");
             var centre = EncounterRewardPlacement.WorldCenter(eliteRoom.Root).Value;
 
             yield return Teleport(run, centre);

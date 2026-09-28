@@ -24,3 +24,4 @@
 - [Batch PlayMode frame loops](batch-playmode-frame-loops.md) — uncapped fps; wait on Time.time deadlines, not frame counts
 - [Co-op proof flakes fixed](coop-proof-discharge-roomsweep-failing.md) — Discharge/Room Sweep/Adrenaline fixed; duo seed 11 = host 66/66, client 10/10
 - [UI text must be PixelText](pixel-font-bottom-row-loss-global.md) — plain Text on a pixel-perfect canvas drops pixel-font rows; use UiBuild.Label / PixelText
+- [Real input devices in PlayMode tests](playmode-real-input-devices.md) — batch PlayMode needs IgnoreFocus + AllDeviceInputAlwaysGoesToGameView or queued key/pad presses vanish

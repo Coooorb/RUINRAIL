@@ -232,25 +232,30 @@ namespace RuinRail.Tests
         // ---- generation ----
 
         [Test]
-        public void EventKindRoll_RelayIsRare_Deterministic_AndLeavesEveryOtherRoomsEventUnchanged()
+        public void EventKindPick_IsOneSeededEqualWeightDraw_OverSixEvents_RelayIncluded_MedicalExcluded()
         {
-            var relays = 0;
+            // The Event-room pool: the five approved random events plus the Secure Relay, each once (equal weight).
+            CollectionAssert.AreEquivalent(new[]
+            {
+                DungeonEventKind.CursedChest, DungeonEventKind.LockedVault, DungeonEventKind.BrokenMachine,
+                DungeonEventKind.SupplySignal, DungeonEventKind.WeaponCache, DungeonEventKind.SecureRelay
+            }, RoomCategoryComposer.RandomEventKinds);
+            Assert.IsFalse(RoomCategoryComposer.RandomEventKinds.Contains(DungeonEventKind.MedicalStation), "the Medical Station stays a Medical-room fixture");
+
+            var counts = RoomCategoryComposer.RandomEventKinds.ToDictionary(k => k, _ => 0);
             var total = 0;
-            for (var seed = 1; seed <= 400; seed++)
+            for (var seed = 1; seed <= 600; seed++)
             for (var node = 0; node < 10; node++)
             {
-                total++;
                 var kind = RoomCategoryComposer.ResolveEventKind(null, seed, 2, node);
-                Assert.AreEqual(kind, RoomCategoryComposer.ResolveEventKind(null, seed, 2, node), "Same run, same room, same event.");
-                if (kind == DungeonEventKind.SecureRelay) { relays++; continue; }
-                Assert.AreEqual(RoomCategoryComposer.ResolveEventKind(null, seed, 2, node, 0), kind, "A room the relay does not claim keeps its event.");
+                Assert.AreEqual(kind, RoomCategoryComposer.ResolveEventKind(null, seed, 2, node), "same run, same room, same event (every peer)");
+                counts[kind]++;
+                total++;
             }
 
-            var rate = relays / (float)total;
-            Assert.That(rate, Is.InRange(0.04f, 0.12f), $"relay rate {rate:P1} over {total} event rooms (config {DungeonEventConfig.DefaultSecureRelayChancePercent}%)");
-            Assert.IsFalse(Enumerable.Range(0, 500).Any(n => RoomCategoryComposer.ResolveEventKind(null, n, 1, n % 7, 0) == DungeonEventKind.SecureRelay), "0% never spawns it.");
-            Assert.AreEqual(DungeonEventKind.SecureRelay, RoomCategoryComposer.ResolveEventKind(new[] { "event:secure_relay" }, 5, 1, 0, 0), "An authored tag pins it.");
-            Assert.IsFalse(RoomCategoryComposer.RandomEventKinds.Contains(DungeonEventKind.SecureRelay), "The six-way pick is unchanged.");
+            foreach (var pair in counts)
+                Assert.That(pair.Value / (float)total, Is.InRange(1f / 6f - 0.03f, 1f / 6f + 0.03f), $"{pair.Key}: {pair.Value}/{total} — each of the six ~1/6");
+            Assert.AreEqual(DungeonEventKind.SecureRelay, RoomCategoryComposer.ResolveEventKind(new[] { "event:secure_relay" }, 5, 1, 0), "an authored tag still pins it");
         }
 
         // ---- co-op authority ----

@@ -37,6 +37,14 @@
   capped by the D30+ band; persistent personal deepest-depth record. (`design/dungeon/59_DEPTH_SCALING.md`)
 - Seeded boss attack selection, boss anti-kite repositioning, biome encounter weighting (weighting, never exclusion). (`design/combat/46_BOSSES.md`)
 
+## Enemies
+- Enemy bodies are created only on free floor the room can reach: a wave larger than a room's usable spawn markers never
+  puts two bodies on one point (the next one takes a free spot beside the marker, reachable over open floor, inside the
+  room, off enemy hazards), and a summon lands only on such a spot around its summoner. Bodies created on one point were
+  how an enemy got buried in a prop (a concave prop collider then holds it and the room never clears). The entry paths
+  are closed at the source; there is deliberately **no teleport/relocation failsafe** for embedded enemies.
+  (`SpawnClearance`, `EncounterRuntime`, `EnemySummoner`; guarded by `EnemyCollisionTests`)
+
 ## Presentation
 - 640×360 reference resolution, pixel-perfect grid rules (`design/art/101_PIXEL_GRID_AND_SCALE.md`); final art per
   `design/art/FINAL_ART_PRODUCTION_SPEC.md`; no builtin LegacyRuntime font on the release path (spec 29.12).

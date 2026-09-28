@@ -112,6 +112,9 @@ namespace RuinRail.Audio
             if (_activeCombatRooms == 0 && _intensity == CombatIntensity.Combat) { _intensity = CombatIntensity.Exploration; Apply(); }
         }
 
+        /// <summary>A Combat / Elite room was won: the short room-clear stinger (the room runtime raises its clear once).</summary>
+        public void ObserveRoomCleared() => _director?.PlayStinger(StingerRole.RoomCleared);
+
         /// <summary>
         /// Boss room: the Boss track (both bosses of the biome share it) from the room's activation — reported by the
         /// dungeon runtime through <see cref="ObserveBossRoomEntered"/>, never from the actor's own BossStarted, which

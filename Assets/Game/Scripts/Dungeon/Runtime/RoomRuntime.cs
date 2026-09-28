@@ -185,7 +185,7 @@ namespace RuinRail.Dungeon.Runtime
             if (_engagement == null)
             {
                 var points = SpawnPointsFor(enteringPlayer.transform.position);
-                _encounter = new EncounterRuntime(_plan, _spawner, points, enteringPlayer.transform);
+                _encounter = new EncounterRuntime(_plan, _spawner, points, enteringPlayer.transform, IsFreeSpawnSpot);
                 _encounter.Spawned += OnEnemySpawned;
                 _engagement = new EncounterEngagement(_encounter);
             }
@@ -239,7 +239,7 @@ namespace RuinRail.Dungeon.Runtime
         public EncounterRuntime SpawnAdditionalEncounter(EncounterPlan plan, GameObject aroundPlayer)
         {
             if (plan == null || _spawner == null || aroundPlayer == null) return null;
-            var runtime = new EncounterRuntime(plan, _spawner, SpawnPointsFor(aroundPlayer.transform.position), aroundPlayer.transform);
+            var runtime = new EncounterRuntime(plan, _spawner, SpawnPointsFor(aroundPlayer.transform.position), aroundPlayer.transform, IsFreeSpawnSpot);
             runtime.Spawned += OnEnemySpawned;
             runtime.Start();
             _extraEncounters.Add(runtime);
@@ -286,18 +286,15 @@ namespace RuinRail.Dungeon.Runtime
             return markers.OrderByDescending(p => Vector2.Distance(p, entryWorldPosition)).ToList();
         }
 
-        private static readonly Collider2D[] SpawnOverlaps = new Collider2D[8];
-
         /// <summary>A spawn point is usable only when a normal enemy body fits there without touching solid geometry.</summary>
-        public static bool IsSpawnClear(Vector2 world)
-        {
-            var count = Physics2D.OverlapCircle(world, Gameplay.Enemies.DefaultEnemySpawner.BodyRadius, ContactFilter2D.noFilter, SpawnOverlaps);
-            for (var i = 0; i < count; i++)
-            {
-                if (SpawnOverlaps[i] != null && !SpawnOverlaps[i].isTrigger && SpawnOverlaps[i].GetComponentInParent<Gameplay.Combat.EnvironmentObstacle>() != null) return false;
-            }
+        public static bool IsSpawnClear(Vector2 world) => SpawnClearance.IsClearOfGeometry(world);
 
-            return true;
+        /// <summary>A spot beside a marker a spawning body may take instead: clear of geometry and enemy hazards, the whole body inside this room.</summary>
+        private bool IsFreeSpawnSpot(Vector2 world)
+        {
+            var interior = InteriorWorldBounds;
+            var r = DefaultEnemySpawner.BodyRadius;
+            return SpawnClearance.IsFreeSpot(world, new Rect(interior.xMin + r, interior.yMin + r, interior.width - 2f * r, interior.height - 2f * r));
         }
 
         private void OnEnemySpawned(EncounterRuntime runtime, EnemyController enemy)

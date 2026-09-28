@@ -81,13 +81,16 @@ namespace RuinRail.Presentation.Vfx
                 case AttackMotion.Zone:
                     return (new Vector2(attack.ZoneLength, attack.ZoneWidth), dir * (attack.ZoneLength * 0.5f));
                 case AttackMotion.Dash:
-                    return (new Vector2(attack.DashDistance + attack.HitRadius, attack.HitRadius * 2f), dir * (attack.DashDistance * 0.5f));
+                    // The resolver strikes a HitRadius circle around the body along the whole run: from R behind the
+                    // start to R past the end of DashDistance.
+                    return (new Vector2(attack.DashDistance + attack.HitRadius * 2f, attack.HitRadius * 2f), dir * (attack.DashDistance * 0.5f));
                 case AttackMotion.Projectile:
                     return (new Vector2(attack.ProjectileRange, Mathf.Max(0.5f, attack.HitRadius * 2f)), dir * (attack.ProjectileRange * 0.5f));
                 case AttackMotion.Slam:
                     return (Vector2.one * (attack.HitRadius * 2f), Vector2.zero);
                 default:
-                    return (Vector2.one * (attack.HitRadius * 2f), dir * attack.HitRadius);
+                    // Stationary: the resolver's HitRadius circle sits half a radius in front of the attacker.
+                    return (Vector2.one * (attack.HitRadius * 2f), dir * (attack.HitRadius * 0.5f));
             }
         }
 

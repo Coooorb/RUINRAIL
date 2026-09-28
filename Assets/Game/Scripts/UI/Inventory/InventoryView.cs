@@ -42,13 +42,12 @@ namespace RuinRail.UI.Inventory
         public const int TitleHeight = 26;
         public static readonly UiRect EquipmentPanel = new(28, 44, 152, 296);
         public static readonly UiRect CharacterPanel = new(188, 44, 128, 296);
-        public static readonly UiRect BackpackPanel = new(324, 44, 280, 124);
-        public static readonly UiRect DetailsPanel = new(324, 176, 280, 164);
+        // The backpack runs the full column: item stats live in the delayed inspection cards (ItemStatPopup), not a panel.
+        public static readonly UiRect BackpackPanel = new(324, 44, 280, 296);
         public const int SlotSize = InventorySlotView.Size;
         public const int SlotGap = 8;
         public const int EquipmentRowPitch = 52;
         public const int BackpackColumns = 4;
-        public const int DetailLines = 12;
         public const string ActionFocusId = "inventory.action";
         public const string DropFocusId = "inventory.drop";
         public const string CloseFocusId = "inventory.close";
@@ -64,14 +63,9 @@ namespace RuinRail.UI.Inventory
         private readonly List<Text> _equipmentNames = new();
         private readonly List<Text> _equipmentRarities = new();
         private readonly List<Text> _ammoRows = new();
-        private readonly List<Text> _detailRows = new();
-        private readonly DetailPager _detailPager = new(DetailLines - 2);
-        private InventorySlotRef? _detailCursor;
         private readonly Dictionary<string, UiControl> _buttons = new();
         private Text _coins;
         private Text _backpackHeader;
-        private Text _detailTitle;
-        private Text _detailSubtitle;
         private Text _message;
         private Text _hints;
         private Text _survivorName;
@@ -79,6 +73,9 @@ namespace RuinRail.UI.Inventory
         private Sprite _portraitSprite;
         private bool _syncingFocus;
         private string _lastSlotFocusId = "slot.PrimaryWeapon";
+        private ItemStatPopup _popup;
+        private bool _cursorByPointer;
+        private bool _hovering;
 
         public InventoryViewModel ViewModel => _viewModel;
         public FocusList FocusList => _list;
@@ -92,16 +89,8 @@ namespace RuinRail.UI.Inventory
         public IReadOnlyList<string> BackpackTexts => _backpack.Select(b => b.CountText).ToList();
         public string CoinsText => _coins != null ? _coins.text : string.Empty;
         public string MessageText => _message != null ? _message.text : string.Empty;
-        public string DetailTitleText => _detailTitle != null ? _detailTitle.text : string.Empty;
-        public string DetailSubtitleText => _detailSubtitle != null ? _detailSubtitle.text : string.Empty;
-        /// <summary>The details panel as one string (title, subtitle, every stat row) — the successor of the old tooltip text.</summary>
-        public string TooltipText => string.Join("\n", new[] { DetailTitleText, DetailSubtitleText }.Concat(_detailRows.Select(r => r.text)).Where(s => !string.IsNullOrEmpty(s)));
-        public IReadOnlyList<string> DetailRowTexts => _detailRows.Select(r => r.text).ToList();
-        /// <summary>The details pager: every composed row of the cursor item and the page in view (tests read it; the inputs step it).</summary>
-        public DetailPager DetailPager => _detailPager;
-        /// <summary>Steps the details page (mouse wheel / PageDown / right stick); public for the tests.</summary>
-        public bool DetailsPageDown() { if (!_detailPager.PageDown()) return false; RenderDetails(); return true; }
-        public bool DetailsPageUp() { if (!_detailPager.PageUp()) return false; RenderDetails(); return true; }
+        /// <summary>The delayed inspection cards (the inspected item and, when it compares, the equipped one).</summary>
+        public ItemStatPopup StatPopup => _popup;
         public IReadOnlyList<string> AmmoTexts => _ammoRows.Select(r => r.text).ToList();
         public string HintsText => _hints != null ? _hints.text : string.Empty;
         public Sprite PortraitSprite => _portrait != null && _portrait.enabled ? _portrait.sprite : null;
@@ -178,7 +167,7 @@ namespace RuinRail.UI.Inventory
             BuildEquipment(window.transform, skin);
             BuildCharacter(window.transform, skin);
             BuildBackpack(window.transform, skin);
-            BuildDetails(window.transform, skin);
+            _popup = ItemStatPopup.Create(_root);
             _panel.SetActive(false);
         }
 
@@ -263,21 +252,8 @@ namespace RuinRail.UI.Inventory
                 var bounds = new UiRect(x0 + col * (SlotSize + SlotGap), 22 + row * (SlotSize + SlotGap), SlotSize, SlotSize);
                 _backpack.Add(CreateSlot(panel.transform, bounds, new InventorySlotRef(InventorySlotKind.Backpack, i), "backpack." + i, skin));
             }
-        }
 
-        private void BuildDetails(Transform window, UiSkin skin)
-        {
-            var panel = SectionPanel(window, DetailsPanel, "Details", "DETAILS", out _);
-            var inner = DetailsPanel.Width - UiTheme.Pad * 2;
-            _detailTitle = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 22, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, "DetailTitle");
-            _detailSubtitle = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 32, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, false, "DetailSubtitle");
-            UiBuild.Plate(panel.transform, new UiRect(UiTheme.Pad, 43, inner, 1), UiTheme.PanelEdgeSoft, "DetailRule");
-            for (var i = 0; i < DetailLines - 2; i++)
-            {
-                _detailRows.Add(UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 47 + i * 10, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, "Detail" + i));
-            }
-
-            _message = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, DetailsPanel.Height - UiTheme.Pad - UiText.LineHeight, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Danger, false, "Message");
+            _message = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, BackpackPanel.Height - UiTheme.Pad - UiText.LineHeight, BackpackPanel.Width - UiTheme.Pad * 2, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Danger, false, "Message");
         }
 
         private InventorySlotView CreateSlot(Transform parent, UiRect bounds, InventorySlotRef slotRef, string focusId, UiSkin skin) =>
@@ -376,6 +352,7 @@ namespace RuinRail.UI.Inventory
         private void OnFocusChanged(FocusItem focused)
         {
             if (_syncingFocus || focused == null || _viewModel == null) return;
+            _cursorByPointer = _hovering; // keyboard / controller focus keeps the inspection up; a hover only while hovered
             if (!TryParseSlot(focused.Id, out var slot)) return;
             _lastSlotFocusId = focused.Id;
             if (!_viewModel.Cursor.Equals(slot)) _viewModel.SetCursor(slot);
@@ -390,8 +367,11 @@ namespace RuinRail.UI.Inventory
 
         private void OnSlotHovered(InventorySlotRef slot)
         {
-            // Hover moves the cursor: the details panel follows the pointer and a following arrow key continues from here.
+            // Hover moves the cursor: the inspection follows the pointer and a following arrow key continues from here.
+            _hovering = true;
             _list?.Focus(IdOf(slot));
+            _hovering = false;
+            _cursorByPointer = true;
             if (_viewModel != null && !_viewModel.Cursor.Equals(slot)) _viewModel.SetCursor(slot);
         }
 
@@ -487,50 +467,40 @@ namespace RuinRail.UI.Inventory
             _syncingFocus = false;
         }
 
-        private void RenderDetails()
+        private void RenderDetails() => _message.text = _viewModel.Message;
+
+        /// <summary>
+        /// The delayed inspection follows the cursor slot while the pointer rests on it or the keyboard / controller focus
+        /// is on it; a drag, an empty slot, the action buttons or a closed window hide it.
+        /// </summary>
+        private void LateUpdate()
         {
-            var cursor = _viewModel.Cursor;
-            var tooltip = _viewModel.TooltipAt(cursor);
-            foreach (var row in _detailRows) row.text = string.Empty;
-            _message.text = _viewModel.Message;
-            if (tooltip == null)
-            {
-                _detailPager.SetRows(null, false);
-                _detailCursor = null;
-                _detailTitle.text = cursor.Kind == InventorySlotKind.Equipped ? InventoryViewModel.SlotLabel(cursor.EquippedSlot) + " — EMPTY" : $"BACKPACK SLOT {cursor.Index + 1} — EMPTY";
-                _detailTitle.color = UiTheme.InkMuted;
-                _detailSubtitle.text = _viewModel.Selected.HasValue ? "Select a slot to move the picked item here." : "Select an item to see its details.";
-                return;
-            }
-
-            var style = RarityStyle.For(tooltip.Rarity);
-            var width = DetailsPanel.Width - UiTheme.Pad * 2;
-            _detailTitle.text = UiText.Fit(tooltip.Name, width);
-            _detailTitle.color = Readable(style.Color);
-            var subtitle = style.Label + " · " + tooltip.CategoryText;
-            if (tooltip.Quantity.HasValue) subtitle += $" · x{tooltip.Quantity.Value}";
-            if (cursor.Kind == InventorySlotKind.Equipped) subtitle += " · EQUIPPED";
-            if (tooltip.IsUnsellable) subtitle += " · STARTER";
-            _detailSubtitle.text = UiText.Fit(subtitle, width);
-
-            // Description first, then Legendary, stats, affixes and the comparison; the pager keeps the tail reachable.
-            var sameItem = _detailCursor.HasValue && _detailCursor.Value.Equals(cursor);
-            _detailCursor = cursor;
-            _detailPager.SetRows(ItemDetailLayout.Compose(tooltip, _viewModel.CompareAt(cursor), width), sameItem);
-            var visible = _detailPager.Visible(DetailPagingInput.Hint());
-            for (var i = 0; i < _detailRows.Count && i < visible.Count; i++)
-            {
-                _detailRows[i].text = ItemDetailLayout.Render(visible[i], width);
-                _detailRows[i].color = visible[i].Color;
-            }
+            if (_popup == null) return;
+            var open = _viewModel != null && _panel != null && _panel.activeSelf && InventorySlotView.Dragging == null;
+            var cursor = open ? _viewModel.Cursor : default;
+            var item = open ? _viewModel.ItemAt(cursor) : null;
+            var slot = item != null ? SlotView(cursor) : null;
+            var inspected = slot != null && (_cursorByPointer ? slot.IsHovered : _list?.Focused != null && TryParseSlot(_list.Focused.Id, out _));
+            if (!inspected) { _popup.Track(null, null, null); return; }
+            var compared = _viewModel.ComparedItemAt(cursor);
+            _popup.Track(IdOf(cursor) + "/" + item.InstanceId + "/" + compared?.InstanceId, () => _viewModel.TooltipAt(cursor), slot.Rect,
+                compared == null ? null : () => _viewModel.ComparedAt(cursor));
         }
 
-        private void Update()
+        /// <summary>Opens the inspection of the cursor slot at once — the delay is the only difference (tests, smoke).</summary>
+        public bool InspectCursorNow()
         {
-            if (_panel == null || !_panel.activeSelf || !_detailPager.Overflows) return;
-            var step = DetailPagingInput.Poll();
-            if (step > 0) DetailsPageDown();
-            else if (step < 0) DetailsPageUp();
+            var cursor = _viewModel != null ? _viewModel.Cursor : default;
+            if (_popup == null || _viewModel?.ItemAt(cursor) == null) { _popup?.Hide(); return false; }
+            _popup.Show(_viewModel.TooltipAt(cursor), SlotView(cursor).Rect, _viewModel.ComparedAt(cursor));
+            return true;
+        }
+
+        private InventorySlotView SlotView(InventorySlotRef slot) => slot.Kind == InventorySlotKind.Equipped ? _equipment[slot.Index] : _backpack[slot.Index];
+
+        private void OnDisable()
+        {
+            if (_popup != null) _popup.Hide();
         }
 
         /// <summary>Rarity colours are tuned for slot frames; text needs a floor on luminance to stay readable on the charcoal plate.</summary>

@@ -147,7 +147,7 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void Window_ShowsIconsRarityFramesPricesCoinsAndFreeSlots_AndDetailsReuseTheTooltip()
+        public void Window_ShowsIconsRarityFramesPricesCoinsAndFreeSlots_AndTheInspectionReusesTheTooltip()
         {
             _reader.RaiseInteract();
             var skin = UiSkin.Load();
@@ -171,14 +171,82 @@ namespace RuinRail.Tests
             var selected = _vm.Selected;
             var tooltip = _vm.TooltipFor(selected);
             Assert.IsNotNull(tooltip);
-            StringAssert.Contains(UiText.Fit(tooltip.Name, MerchantView.DetailsPanel.Width - UiTheme.Pad * 2), _view.DetailTitleText);
-            StringAssert.Contains(RarityStyle.For(tooltip.Rarity).Label, _view.DetailSubtitleText);
-            StringAssert.Contains($"PRICE {selected.Price} C", _view.DetailSubtitleText);
-            // The shared details layout leads with the item's description; the first stat row follows it (paged, never cut).
-            var rows = string.Join("\n", _view.DetailPager.Rows.Select(r => r.Key));
-            if (tooltip.BaseStats.Count > 0) StringAssert.Contains(tooltip.BaseStats[0].Label, rows);
-            StringAssert.Contains(UiText.Wrap(tooltip.Description, MerchantView.DetailsPanel.Width - UiTheme.Pad * 2)[0], _view.DetailRowTexts[0], "the description is the first visible row");
+            // The shared inspection card: the offer's own authoritative lines (the price is on the row).
+            Assert.IsTrue(_view.InspectCursorNow());
+            var popup = _view.StatPopup;
+            StringAssert.StartsWith(tooltip.Name.Substring(0, System.Math.Min(6, tooltip.Name.Length)), popup.TitleText);
+            StringAssert.Contains(RarityStyle.For(tooltip.Rarity).Label, popup.SubtitleText);
+            CollectionAssert.AreEqual(ItemStatPopup.RowsOf(tooltip).Select(r => ItemDetailLayout.Render(r, ItemStatPopup.InnerWidth)).ToList(), popup.RowTexts);
+            Assert.AreEqual(_vm.ComparedFor(selected) != null, popup.IsComparing, "the worn counterpart's card only when there is one");
             foreach (var text in _view.GetComponentsInChildren<UnityEngine.UI.Text>(true)) Assert.AreSame(UiFont.Font(), text.font, text.name);
+        }
+
+        [UnityTest]
+        public IEnumerator Inspection_OpensAfterADelay_ByHoverOrFocus_BesideTheWornItem_AndNeverTrades()
+        {
+            _reader.RaiseInteract();
+            yield return null;
+            var popup = _view.StatPopup;
+            var coins = _state.CarriedCoins;
+            var bag = string.Join(",", _state.Inventory.BackpackSlots.Select(i => i == null ? "-" : i.InstanceId + "x" + i.Quantity));
+            IEnumerator Rest() { var until = Time.unscaledTime + ItemStatPopup.DelaySeconds + 0.2f; while (!popup.IsVisible && Time.unscaledTime < until) yield return null; }
+            void AssertPlaced(int index, string what)
+            {
+                var row = popup.SlotBounds((RectTransform)_view.RowViews[index].transform);
+                var screen = ((RectTransform)popup.transform.parent).rect;
+                Assert.IsFalse(popup.Bounds.Overlaps(row), what + ": the card does not cover the row");
+                Assert.IsTrue(popup.Bounds.xMin >= screen.xMin && popup.Bounds.xMax <= screen.xMax && popup.Bounds.yMin >= screen.yMin && popup.Bounds.yMax <= screen.yMax, what + ": on screen");
+                if (!popup.IsComparing) return;
+                Assert.IsFalse(popup.ComparedBounds.Overlaps(row) || popup.ComparedBounds.Overlaps(popup.Bounds), what + ": the worn item's card is apart");
+                Assert.IsTrue(popup.ComparedBounds.xMax <= screen.xMax && popup.ComparedBounds.yMin >= screen.yMin, what + ": the worn item's card on screen");
+                Assert.AreEqual("EQUIPPED", popup.ComparedTagText);
+                Assert.IsFalse(popup.RowTexts.Concat(popup.ComparedRowTexts).Any(r => r.Contains("VS EQUIPPED") || r.Contains(" vs ")), what + ": no difference list");
+            }
+
+            // Keyboard focus rests on the first row by default: its card opens after the delay.
+            yield return Rest();
+            Assert.IsTrue(popup.IsVisible, "focus inspects");
+            AssertPlaced(0, "focused row");
+
+            // Hover a comparable offer (a weapon / armor / consumable against the worn one): two cards side by side.
+            var comparable = Enumerable.Range(0, _vm.Rows.Count).FirstOrDefault(i => _vm.ComparedFor(_vm.Rows[i]) != null && i > 0);
+            Assert.Greater(comparable, 0, "seed 11 stocks an offer with a worn counterpart");
+            _view.RowViews[comparable].Control.SimulateHover(true);
+            yield return null;
+            Assert.IsFalse(popup.IsVisible, "a new row restarts the delay");
+            yield return Rest();
+            Assert.IsTrue(popup.IsVisible && popup.IsComparing, "hover inspects the offer beside the worn item");
+            StringAssert.StartsWith(_catalog.Items.First(d => d.Id == InventoryViewModel.ComparedWith(_state.Inventory, _vm.Rows[comparable].Item).DefinitionId).DisplayName, popup.ComparedTitleText);
+            AssertPlaced(comparable, "hovered offer");
+            UiScreenCapture.Capture("merchant_inspect_01_offer_vs_worn");
+            _view.RowViews[comparable].Control.SimulateHover(false);
+            yield return null;
+            Assert.IsFalse(popup.IsVisible, "leaving the row closes it at once");
+            yield return Rest();
+            Assert.IsTrue(popup.IsVisible, "then the focused row's card returns after its delay");
+            AssertPlaced(0, "focused row again");
+
+            // SELL tab: a backpack item inspects the same way.
+            _vm.SetTab(MerchantTab.Sell);
+            yield return null;
+            if (_vm.Rows.Count > 0)
+            {
+                _view.FocusList.Focus("merchant.row.0");
+                yield return Rest();
+                Assert.IsTrue(popup.IsVisible, "sell rows inspect too");
+                AssertPlaced(0, "sell row");
+                UiScreenCapture.Capture("merchant_inspect_02_sell_row");
+            }
+
+            // The buttons show nothing, and inspection never trades.
+            _view.FocusList.Focus(MerchantView.CloseFocusId);
+            yield return null;
+            Assert.IsFalse(popup.IsVisible);
+            Assert.AreEqual(coins, _state.CarriedCoins, "no coins moved");
+            Assert.AreEqual(bag, string.Join(",", _state.Inventory.BackpackSlots.Select(i => i == null ? "-" : i.InstanceId + "x" + i.Quantity)), "no item moved");
+            _vm.Close();
+            yield return null;
+            Assert.IsFalse(popup.IsVisible, "closing takes the cards with it");
         }
 
         [Test]

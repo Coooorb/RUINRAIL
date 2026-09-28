@@ -34,6 +34,9 @@ namespace RuinRail.Dungeon.Runtime
         /// <summary>Node ids of the ordinary rooms that carry a Supply Chest this depth (SupplyChestPlanner); empty until the composer plans the layout.</summary>
         public IReadOnlyCollection<int> SupplyChestRooms { get; set; } = System.Array.Empty<int>();
 
+        /// <summary>The depth's biome (from the layout): chests draw in its palette (presentation only).</summary>
+        public Core.Biome Biome { get; set; }
+
         public bool HasSupplyChest(int nodeId) => SupplyChestRooms != null && SupplyChestRooms.Contains(nodeId);
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace RuinRail.Dungeon.Runtime
             var runtimes = new Dictionary<int, RoomRuntime>();
             // The depth's ordinary-room loot budget is decided once per layout, from the graph and the seed, never per room.
             if (layout.Graph != null) context.SupplyChestRooms = SupplyChestPlanner.Plan(layout.Graph, context.RunSeed, context.Depth);
+            context.Biome = layout.Biome;
             foreach (var placement in layout.Placements)
             {
                 if (!rooms.TryGetValue(placement.NodeId, out var root) || root == null) continue;

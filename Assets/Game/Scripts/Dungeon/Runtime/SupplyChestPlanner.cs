@@ -14,8 +14,9 @@ namespace RuinRail.Dungeon.Runtime
     /// carry their own guaranteed chests). Roughly a quarter of the ordinary Combat rooms receive one Supply Chest,
     /// chosen per room by a seeded roll on the Loot stream so a seed always yields the same rooms; a small
     /// deterministic floor guarantees that no depth realises with fewer than <see cref="MinimumPerDepth"/> containers
-    /// before the boss (the rooms with the lowest rolls are promoted). Start, Boss and special rooms never take part,
-    /// and no room ever receives more than one.
+    /// before the boss (the rooms with the lowest rolls are promoted). Start, Boss, Elite and special rooms never take
+    /// part, and no room ever receives more than one. An Elite room's one chest is its reward, created only when the
+    /// Elite dies (45/58 "Encounter reward chests"); an ordinary chest there as well left two chests in the room.
     /// </summary>
     public static class SupplyChestPlanner
     {
@@ -28,7 +29,7 @@ namespace RuinRail.Dungeon.Runtime
         private const int Salt = 0x5343; // "SC"
 
         public static bool IsEligible(RoomNode node, DungeonGraph graph) =>
-            node != null && node.Type == RoomType.Combat && node.Id != graph.StartId && node.Id != graph.BossId;
+            node != null && node.Type == RoomType.Combat && !node.IsElite && node.Id != graph.StartId && node.Id != graph.BossId;
 
         /// <summary>The seeded 0..99 roll of one room; rooms below the percent threshold carry a chest.</summary>
         public static int RollFor(int runSeed, int depth, int nodeId) =>

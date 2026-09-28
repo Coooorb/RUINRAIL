@@ -107,21 +107,20 @@ namespace RuinRail.UI.WeaponCache
 
     /// <summary>
     /// The Weapon Cache selection window (57.6) in the inventory's visual language: the three rolled weapons as
-    /// graphical rows on the left, the item tooltip and the comparison against the equipped weapon on the right, and
-    /// TAKE / LEAVE at the bottom. Mouse, keyboard and controller share one focus list. It never touches gameplay
+    /// graphical rows on the left, the shared delayed inspection cards (the weapon and the equipped weapon beside it)
+    /// opening to their right, and TAKE / LEAVE at the bottom. Mouse, keyboard and controller share one focus list. It never touches gameplay
     /// except through the view model.
     /// </summary>
     public sealed class WeaponCacheView : MonoBehaviour
     {
         public const int ReferenceWidth = UiTheme.ScreenWidth;
         public const int ReferenceHeight = UiTheme.ScreenHeight;
-        public static readonly UiRect Window = new(60, 40, 520, 280);
+        // The rows sit on the left; the space to their right is where the inspection cards (ItemStatPopup) open.
+        public static readonly UiRect Window = new(20, 40, 600, 280);
         public const int TitleHeight = 26;
-        public static readonly UiRect ListPanel = new(68, 72, 248, 176);
-        public static readonly UiRect DetailsPanel = new(324, 72, 248, 176);
-        public static readonly UiRect ActionPanel = new(68, 256, 504, 56);
+        public static readonly UiRect ListPanel = new(28, 72, 248, 176);
+        public static readonly UiRect ActionPanel = new(28, 256, 584, 56);
         public const int MaxRows = 3;
-        public const int DetailLines = 12;
         public const string TakeFocusId = "cache.take";
         public const string CloseFocusId = "cache.close";
         public const string RowFocusPrefix = "cache.choice.";
@@ -133,18 +132,15 @@ namespace RuinRail.UI.WeaponCache
         private FocusList _list;
         private UiSkin _skin;
         private readonly List<WeaponCacheRowView> _rows = new();
-        private readonly List<Text> _detailRows = new();
-        private readonly DetailPager _detailPager = new(DetailLines);
-        private WeaponCacheRow _detailRow;
         private readonly Dictionary<string, UiControl> _buttons = new();
         private Text _title;
         private Text _hints;
-        private Text _detailTitle;
-        private Text _detailSubtitle;
         private Text _message;
         private Text _backpackLine;
         private bool _syncingFocus;
         private int _opensRendered;
+        private ItemStatPopup _popup;
+        private bool _focusByPointer;
 
         public WeaponCacheViewModel ViewModel => _viewModel;
         public FocusList FocusList => _list;
@@ -154,13 +150,8 @@ namespace RuinRail.UI.WeaponCache
         public string TitleText => _title != null ? _title.text : string.Empty;
         public string BackpackText => _backpackLine != null ? _backpackLine.text : string.Empty;
         public string MessageText => _message != null ? _message.text : string.Empty;
-        public string DetailTitleText => _detailTitle != null ? _detailTitle.text : string.Empty;
-        public string DetailSubtitleText => _detailSubtitle != null ? _detailSubtitle.text : string.Empty;
-        public IReadOnlyList<string> DetailRowTexts => _detailRows.Select(r => r.text).ToList();
-        /// <summary>The details pager (shared layout with the inventory); the inputs step it, the tests read it.</summary>
-        public DetailPager DetailPager => _detailPager;
-        public bool DetailsPageDown() { if (!_detailPager.PageDown()) return false; RenderDetails(); return true; }
-        public bool DetailsPageUp() { if (!_detailPager.PageUp()) return false; RenderDetails(); return true; }
+        /// <summary>The delayed inspection cards (the weapon and, when one is worn, the equipped weapon) — shared with the inventory and the Shelter.</summary>
+        public ItemStatPopup StatPopup => _popup;
         public string HintsText => _hints != null ? _hints.text : string.Empty;
         public int Renders { get; private set; }
 
@@ -222,8 +213,8 @@ namespace RuinRail.UI.WeaponCache
             UiBuild.Sliced(window.transform, new UiRect(0, 0, Window.Width, Window.Height), _skin != null ? _skin.PanelFrame : null, _skin != null && _skin.PanelFrame != null ? Color.white : new Color(0f, 0f, 0f, 0f), "Frame");
             BuildTitle(window.transform);
             BuildList(window.transform);
-            BuildDetails(window.transform);
             BuildActions(window.transform);
+            _popup = ItemStatPopup.Create(_root);
             _panel.SetActive(false);
         }
 
@@ -257,17 +248,6 @@ namespace RuinRail.UI.WeaponCache
                 row.gameObject.SetActive(false);
                 _rows.Add(row);
             }
-        }
-
-        private void BuildDetails(Transform window)
-        {
-            var panel = SectionPanel(window, DetailsPanel, "Details", "DETAILS");
-            var inner = DetailsPanel.Width - UiTheme.Pad * 2;
-            _detailTitle = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 22, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, "DetailTitle");
-            _detailSubtitle = UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 32, inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, false, "DetailSubtitle");
-            UiBuild.Plate(panel.transform, new UiRect(UiTheme.Pad, 43, inner, 1), UiTheme.PanelEdgeSoft, "DetailRule");
-            for (var i = 0; i < DetailLines; i++)
-                _detailRows.Add(UiBuild.Label(panel.transform, string.Empty, new UiRect(UiTheme.Pad, 47 + i * (UiText.LineHeight + 1), inner, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, "Detail" + i));
         }
 
         private void BuildActions(Transform window)
@@ -330,7 +310,7 @@ namespace RuinRail.UI.WeaponCache
             for (var i = 0; i < _rows.Count; i++)
             {
                 var index = i;
-                _rows[i].Bind(list, list.Find(RowFocusPrefix + i), _ => _viewModel.SetCursor(index));
+                _rows[i].Bind(list, list.Find(RowFocusPrefix + i), _ => { _focusByPointer = true; _viewModel.SetCursor(index); });
             }
 
             return list;
@@ -366,6 +346,7 @@ namespace RuinRail.UI.WeaponCache
         private void OnFocusChanged(FocusItem focused)
         {
             if (_syncingFocus || focused == null || _viewModel == null) return;
+            _focusByPointer = false; // a click sets it again right after (UiControl focuses, then activates)
             if (!focused.Id.StartsWith(RowFocusPrefix, StringComparison.Ordinal)) return;
             if (int.TryParse(focused.Id.Substring(RowFocusPrefix.Length), out var index) && _viewModel.Cursor != index) _viewModel.SetCursor(index);
         }
@@ -412,51 +393,46 @@ namespace RuinRail.UI.WeaponCache
 
         private void RenderDetails()
         {
-            var row = _viewModel.Selected;
-            var tooltip = _viewModel.TooltipFor(row);
-            foreach (var r in _detailRows) r.text = string.Empty;
             _message.text = !string.IsNullOrEmpty(_viewModel.Message) ? _viewModel.Message : _viewModel.BlockReason;
             _message.color = _viewModel.MessageIsError || string.IsNullOrEmpty(_viewModel.Message) ? UiTheme.Danger : UiTheme.Terminal;
-            var width = DetailsPanel.Width - UiTheme.Pad * 2;
-            if (tooltip == null)
-            {
-                _detailPager.SetRows(null, false);
-                _detailRow = null;
-                _detailTitle.text = "NOTHING TO CHOOSE";
-                _detailTitle.color = UiTheme.InkMuted;
-                _detailSubtitle.text = "This cache holds no weapons.";
-                return;
-            }
-
-            var style = RarityStyle.For(tooltip.Rarity);
-            _detailTitle.text = UiText.Fit(tooltip.Name, width);
-            _detailTitle.color = Readable(style.Color);
-            _detailSubtitle.text = UiText.Fit(style.Label + " · " + tooltip.CategoryText, width);
-
-            // The inventory's layout: description first, then Legendary, stats, affixes, comparison; paged, never cut.
-            var sameItem = ReferenceEquals(row, _detailRow);
-            _detailRow = row;
-            _detailPager.SetRows(ItemDetailLayout.Compose(tooltip, _viewModel.CompareFor(row), width), sameItem);
-            var visible = _detailPager.Visible(DetailPagingInput.Hint());
-            for (var i = 0; i < _detailRows.Count && i < visible.Count; i++)
-            {
-                _detailRows[i].text = ItemDetailLayout.Render(visible[i], width);
-                _detailRows[i].color = visible[i].Color;
-            }
         }
 
-        private void Update()
+        /// <summary>
+        /// The shared delayed inspection: the row under the pointer while it rests there, else the row the keyboard /
+        /// controller focus is on (a click-focused row only while hovered); the buttons show nothing.
+        /// </summary>
+        private void LateUpdate()
         {
-            if (_panel == null || !_panel.activeSelf || !_detailPager.Overflows) return;
-            var step = DetailPagingInput.Poll();
-            if (step > 0) DetailsPageDown();
-            else if (step < 0) DetailsPageUp();
+            if (_popup == null) return;
+            var index = InspectedRow();
+            var row = index >= 0 ? _rows[index].Row : null;
+            if (row?.Item == null) { _popup.Track(null, null, null); return; }
+            _popup.Track(index + ":" + row.Item.InstanceId + ":" + row.IsChosen, () => _viewModel.TooltipFor(row), (RectTransform)_rows[index].transform, () => _viewModel.ComparedFor(row));
         }
 
-        private static Color Readable(Color color)
+        private int InspectedRow()
         {
-            var luminance = 0.2126f * color.r + 0.7152f * color.g + 0.0722f * color.b;
-            return luminance < 0.45f ? Color.Lerp(color, Color.white, (0.45f - luminance) / 0.45f) : color;
+            if (_viewModel == null || _panel == null || !_panel.activeSelf) return -1;
+            for (var i = 0; i < _rows.Count; i++)
+                if (_rows[i].gameObject.activeSelf && _rows[i].Control.IsHovered) return i;
+            var focused = _list?.Focused?.Id;
+            if (_focusByPointer || focused == null || !focused.StartsWith(RowFocusPrefix, StringComparison.Ordinal)) return -1;
+            return int.TryParse(focused.Substring(RowFocusPrefix.Length), out var at) && at < _rows.Count && _rows[at].gameObject.activeSelf ? at : -1;
+        }
+
+        /// <summary>Opens the inspection of the cursor row at once — the delay is the only difference (tests, smoke).</summary>
+        public bool InspectCursorNow()
+        {
+            var index = _viewModel != null ? _viewModel.Cursor : -1;
+            var row = _viewModel?.Selected;
+            if (_popup == null || row?.Item == null || index < 0 || index >= _rows.Count) { _popup?.Hide(); return false; }
+            _popup.Show(_viewModel.TooltipFor(row), (RectTransform)_rows[index].transform, _viewModel.ComparedFor(row));
+            return true;
+        }
+
+        private void OnDisable()
+        {
+            if (_popup != null) _popup.Hide();
         }
     }
 }

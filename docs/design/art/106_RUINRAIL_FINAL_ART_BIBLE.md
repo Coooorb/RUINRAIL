@@ -112,6 +112,10 @@ Global base palette favors:
 
 Avoid rainbow saturation. Rarity color and combat telegraphs must still remain readable and accessible.
 
+**Biome enemy palettes (2026-09-28).** Normal enemies and Elites wear their biome's shared enemy palette as one multiply tint on the body sprite, never a new sprite or variant: Ruined Metro cold steel blue, Rustworks rust/ember, Overgrown Labs bio green. Silhouettes, value patterns, animation and hitboxes are unchanged, so every type stays the same type in every biome. Elites take the tint at half strength and keep more of their authored colour; bosses keep their own identity. The hit flash replaces the tint for its frames and returns to it; telegraphs, status and impact effects are separate renderers the tint never touches (`EnemyBiomeTint`).
+
+**Biome chest palettes (2026-09-28).** Every dungeon chest built through the shared chest path (Supply Chests, Loot/Treasure room chests, the Elite reward chest, the Boss Cache) wears its depth's biome colour as one multiply tint on the crate art: Ruined Metro cold steel, Rustworks rust/ember, Overgrown Labs bio green. The Boss Cache takes the biome tint leaned toward a gold accent and is drawn 1.35× larger, so it still reads as the depth's big reward. Closed, opened and gated states swap sprites under the tint, so every state keeps it; loot, spawn rules, interaction and colliders are unchanged (`ChestBiomePalette`). Event objects (Cursed Chest, Weapon Cache) keep their own art.
+
 ## 7. Biome Identity
 
 ### Ruined Metro

@@ -117,7 +117,10 @@ namespace RuinRail.Tests
             Assert.IsTrue(reloaded.Success);
             Assert.AreEqual(40, reloaded.BankedCoins);
             Assert.AreEqual("Smoke Runner", reloaded.DisplayName);
-            CollectionAssert.Contains(reloaded.EquippedInstanceIds, pistol);
+            // 75: the free Starter pistol is run-only — it stays behind; the rest of the loadout (Bandage) is saved worn.
+            Assert.IsTrue(summary.StarterGearLeftBehind.Any(l => l.InstanceId == pistol), "the Starter pistol stayed behind");
+            CollectionAssert.DoesNotContain(reloaded.EquippedInstanceIds, pistol);
+            Assert.IsNotEmpty(reloaded.EquippedInstanceIds, "the secured loadout is on disk");
             Assert.IsFalse(reloaded.ExpeditionMarkerOpen);
             Assert.AreEqual(4, _app.ComposeCount, "MainMenu, Base, Dungeon, Base.");
         }

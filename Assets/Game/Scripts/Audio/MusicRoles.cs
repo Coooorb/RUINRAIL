@@ -27,7 +27,9 @@ namespace RuinRail.Audio
         BossDefeated,
         ExtractionSuccess,
         ExpeditionFailed,
-        LevelUp
+        LevelUp,
+        /// <summary>A Combat / Elite room's encounter was won (not bosses: Boss Defeated is theirs).</summary>
+        RoomCleared
     }
 
     /// <summary>Where the player is, as far as music is concerned.</summary>
@@ -49,7 +51,7 @@ namespace RuinRail.Audio
     public static class MusicStateResolver
     {
         public const int TrackCount = 11;
-        public const int StingerCount = 6;
+        public const int StingerCount = 7;
 
         public static MusicRole Resolve(MusicScreen screen, Biome biome, CombatIntensity intensity)
         {

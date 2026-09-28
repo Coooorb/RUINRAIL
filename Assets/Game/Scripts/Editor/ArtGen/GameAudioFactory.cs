@@ -6,7 +6,7 @@ using static RuinRail.EditorTools.ArtGen.AudioSynth;
 namespace RuinRail.EditorTools.ArtGen
 {
     /// <summary>
-    /// Synthesises the 53 SFX, 11 music tracks, 6 stingers and 3 ambience loops the manifest requires.
+    /// Synthesises the 53 SFX, 11 music tracks, 7 stingers and 3 ambience loops the manifest requires.
     ///
     /// The mix targets FINAL_AUTONOMOUS_COMPLETION_PROMPT_V2 section F: combat-critical cues sit loudest, UI is
     /// subordinate, ambience quieter still, and boss cues are voiced differently from normal enemies so they cannot
@@ -751,11 +751,21 @@ namespace RuinRail.EditorTools.ArtGen
 
         public static Clip BuildAmbience(string biome)
         {
+            // The bed under a whole run, so it must never become a noise floor: the air is noise through a steep
+            // (three-pole) low-pass at a low cutoff — distant room tone, not hiss — and each biome's character comes from
+            // tonal layers and sparse, softened events instead of broadband noise. (The first version ran white noise
+            // through one 6 dB/octave pole, plus a constant 2.6 kHz steam wash in the Rustworks and a 2.4 kHz whine in
+            // the Labs: its energy above 2 kHz sat within 3-7 dB of the music's and read as a constant rush.)
             var rng = new System.Random(StableSeed("amb." + biome));
             var c = new Clip(12f);
-            var lp = new LowPass();
-            var lp2 = new LowPass();
-            var hp = new HighPass();
+            var air1 = new LowPass();
+            var air2 = new LowPass();
+            var air3 = new LowPass();
+            var ev1 = new LowPass();
+            var ev2 = new LowPass();
+
+            float Air(float noise, float cutoff) => air3.Process(air2.Process(air1.Process(noise, cutoff), cutoff), cutoff);
+            float Soft(float noise, float cutoff) => ev2.Process(ev1.Process(noise, cutoff), cutoff);
 
             for (var i = 0; i < c.Length; i++)
             {
@@ -766,27 +776,30 @@ namespace RuinRail.EditorTools.ArtGen
                 switch (biome)
                 {
                     case "RuinedMetro":
-                        // Hollow tunnel air, distant electrical hum, occasional far-off metal.
-                        s = lp.Process(noise, 320f) * 0.5f
-                            + Sine(50f * t) * 0.08f
-                            + Sine(100.5f * t) * 0.04f
-                            + (Mathf.Repeat(t, 3.7f) < 0.02f ? hp.Process(noise, 1800f) * 0.4f : 0f);
+                        // Hollow tunnel air, the old transit's electrical hum, a far-off metal knock now and then.
+                        s = Air(noise, 180f) * 1.6f
+                            + Sine(50f * t) * 0.10f
+                            + Sine(100.5f * t) * 0.045f
+                            + (Mathf.Repeat(t, 3.7f) < 0.25f ? Sine(170f * t) * Punch(Mathf.Repeat(t, 3.7f), 0.08f) * 0.12f : 0f);
                         break;
 
                     case "Rustworks":
-                        // Machinery and heat: a low engine cycle, steam, and a rhythmic press.
-                        s = lp.Process(noise, 500f) * 0.42f
-                            + Saw(38f * t) * 0.09f
-                            + lp2.Process(noise, 2600f) * (0.12f + 0.08f * Mathf.Sin(t * 0.7f))
-                            + (Mathf.Repeat(t, 2.1f) < 0.05f ? Sine(70f * t) * 0.35f : 0f);
+                        // Machinery and heat: a low engine cycle, a rhythmic press, and a soft steam swell every six seconds.
+                        var steamT = Mathf.Repeat(t, 6f);
+                        var steam = steamT < 1.4f ? Mathf.Sin(Mathf.PI * steamT / 1.4f) : 0f;
+                        s = Air(noise, 240f) * 1.4f
+                            + Saw(38f * t) * 0.07f * (0.6f + 0.4f * Mathf.Sin(t * 1.3f))
+                            + Soft(noise, 900f) * steam * steam * 0.18f
+                            + (Mathf.Repeat(t, 2.1f) < 0.3f ? Sine(70f * t) * Punch(Mathf.Repeat(t, 2.1f), 0.09f) * 0.30f : 0f);
                         break;
 
                     default:
-                        // Labs: ventilation, electronics, and a wet organic drip.
-                        s = lp.Process(noise, 900f) * 0.30f
-                            + Sine(120f * t) * 0.05f
-                            + Sine(2400f * t) * 0.012f * (Mathf.Sin(t * 0.4f) * 0.5f + 0.5f)
-                            + (Mathf.Repeat(t, 1.9f) < 0.012f ? hp.Process(noise, 3000f) * 0.3f : 0f);
+                        // Labs: ventilation, a faint electronic chirp that comes and goes, a soft wet drip.
+                        var dripT = Mathf.Repeat(t, 1.9f);
+                        s = Air(noise, 320f) * 1.3f
+                            + Sine(120f * t) * 0.06f
+                            + Sine(880f * t) * 0.006f * Mathf.Max(0f, Mathf.Sin(t * 0.4f))
+                            + (dripT < 0.15f ? Sine((620f - 900f * dripT) * t) * Punch(dripT, 0.03f) * 0.05f : 0f);
                         break;
                 }
 
@@ -810,6 +823,13 @@ namespace RuinRail.EditorTools.ArtGen
         /// </summary>
         public static Clip BuildMusic(string role)
         {
+            // Each biome has its own identity (scale, tempo, timbre, motif and a signature layer); the Main Menu and the
+            // Shelter keep the shared bed below exactly as before.
+            if (role.StartsWith("RuinedMetro", StringComparison.Ordinal)) return BuildRuinedMetroMusic(role);
+            if (role.StartsWith("Rustworks", StringComparison.Ordinal)) return BuildRustworksMusic(role);
+            if (role.StartsWith("OvergrownLabs", StringComparison.Ordinal)) return BuildOvergrownLabsMusic(role);
+            if (role == "MainMenu") return BuildMainMenuMusic();
+
             var rng = new System.Random(StableSeed("mus." + role));
             var (root, intensity, bars) = MusicPlan(role);
             var bpm = intensity switch { 0 => 72f, 1 => 108f, _ => 126f };
@@ -874,6 +894,375 @@ namespace RuinRail.EditorTools.ArtGen
             var looped = c.WrapTailToLoop(dur);
             looped.MakeSeamless(0.25f);
             return looped;
+        }
+
+        // ---------------- biome themes ----------------
+        //
+        // Three distinct identities that follow each biome's art/105 character, told apart by ear before any note of
+        // melody: the mode, the tempo, the lead timbre and one signature layer. Every biome keeps one root across its
+        // three tracks (Exploration → Combat → Boss add layers on the same key), so MusicDirector's crossfades never jump.
+        //
+        //  Ruined Metro   natural minor, 76/112/128 BPM — electric hum, a square-wave station chime with a tunnel echo,
+        //                 "da-dum" rail-joint clacks; combat adds a running eighth-note bass like a train.
+        //  Rustworks      phrygian (flat 2nd), 66/100/116 BPM, heavy — a detuned saw drone, anvil hammer strikes, steam
+        //                 hiss swells; combat adds a 3+3+2 piston bass.
+        //  Overgrown Labs dorian (raised 6th), 84/116/132 BPM, glassy — FM-bell bubbling arpeggios over a soft shimmer
+        //                 and Geiger-like clicks; combat adds a syncopated soft kick and shaker.
+
+        private static readonly int[] PhrygianScale = { 0, 1, 3, 5, 7, 8, 10 };
+        private static readonly int[] DorianScale = { 0, 2, 3, 5, 7, 9, 10 };
+
+        private static int Degree(int[] scale, int root, int degree)
+        {
+            var octave = Mathf.FloorToInt(degree / 7f);
+            var index = ((degree % 7) + 7) % 7;
+            return root + scale[index] + octave * 12;
+        }
+
+        private static Clip Finish(Clip c, float dur)
+        {
+            var looped = c.WrapTailToLoop(dur);
+            looped.MakeSeamless(0.25f);
+            return looped;
+        }
+
+        private static float PulseQuarter(float p) => Square(p, 0.25f);
+        private static float Bell(float p) => Sine(p + 0.22f * Sine(p * 3.5f));
+
+        private static Clip BuildRuinedMetroMusic(string role)
+        {
+            var rng = new System.Random(StableSeed("mus." + role));
+            var (root, intensity, bars) = MusicPlan(role);
+            var bpm = intensity switch { 0 => 76f, 1 => 112f, _ => 128f };
+            var beat = 60f / bpm;
+            var barLen = beat * 4f;
+            var dur = barLen * bars;
+            var c = new Clip(dur + 1.2f);
+            var chords = new[] { 0, 5, 3, 4 }; // i – VI – iv – v, two bars each
+
+            // Electric hum: two slightly detuned low sines that beat against each other the whole loop.
+            PlayNote(c, 0f, dur, Note(root - 24), 0.13f, Sine, 0.5f, 0.2f, 0.9f, 0.5f, -0.1f);
+            PlayNote(c, 0f, dur, Note(root - 24) * 1.006f, 0.11f, Sine, 0.5f, 0.2f, 0.9f, 0.5f, 0.1f);
+
+            // Tunnel pad: soft saw chords, slow attack.
+            for (var b = 0; b < bars; b += 2)
+            {
+                var chord = chords[(b / 2) % chords.Length];
+                PlayNote(c, b * barLen, barLen * 2.05f, Note(ScaleNote(root, chord) - 12), 0.12f, Saw, 0.6f, 0.4f, 0.6f, 0.6f, -0.3f);
+                PlayNote(c, b * barLen, barLen * 2.05f, Note(ScaleNote(root, chord + 2) - 12), 0.10f, Saw, 0.7f, 0.4f, 0.6f, 0.6f, 0.3f);
+            }
+
+            // Station chime: a descending three-note pulse-wave call, answered by its tunnel echo.
+            var chimeBars = intensity == 0 ? new[] { 0, 4 } : intensity == 1 ? new[] { 0, 2, 4, 6 } : new[] { 0, 1, 2, 3, 4, 5, 6, 7 };
+            foreach (var b in chimeBars)
+            {
+                var motif = b % 4 == 0 ? new[] { 4, 2, 0 } : new[] { 4, 3, 1 };
+                for (var n = 0; n < motif.Length; n++)
+                {
+                    var at = b * barLen + n * beat;
+                    var pitch = Note(ScaleNote(root, motif[n]) + 12);
+                    PlayNote(c, at, beat * 0.9f, pitch, 0.15f, PulseQuarter, 0.005f, 0.12f, 0.35f, 0.25f, -0.2f);
+                    PlayNote(c, at + beat * 0.75f, beat * 0.9f, pitch, 0.06f, PulseQuarter, 0.005f, 0.12f, 0.35f, 0.25f, 0.35f);
+                }
+            }
+
+            // Rail joints: "da-dum" metallic clacks on beat 3 of every bar (every half bar once the fight starts).
+            for (var b = 0; b < bars; b++)
+            {
+                RailClack(c, rng, b * barLen + beat * 2f, intensity == 0 ? 0.10f : 0.13f);
+                RailClack(c, rng, b * barLen + beat * 2.25f, intensity == 0 ? 0.08f : 0.11f);
+                if (intensity >= 1)
+                {
+                    RailClack(c, rng, b * barLen, 0.11f);
+                    RailClack(c, rng, b * barLen + beat * 0.25f, 0.09f);
+                }
+            }
+
+            if (intensity >= 1)
+            {
+                // The train: a running eighth-note bass, the octave kicking up on every fourth eighth.
+                for (var e = 0; e < bars * 8; e++)
+                {
+                    var chord = chords[(e / 16) % chords.Length];
+                    var up = e % 4 == 3 ? 12 : 0;
+                    PlayNote(c, e * beat * 0.5f, beat * 0.42f, Note(ScaleNote(root, chord) - 24 + up), 0.20f, p => Square(p), 0.004f, 0.06f, 0.35f, 0.05f);
+                }
+
+                for (var k = 0; k < bars * 4; k++)
+                {
+                    if (k % 2 == 0) Kick(c, k * beat, 0.30f);
+                    Hat(c, rng, k * beat + beat * 0.5f, 0.10f);
+                }
+            }
+
+            if (intensity >= 2)
+            {
+                for (var b = 0; b < bars; b++)
+                    PlayNote(c, b * barLen + barLen * 0.5f, barLen * 0.45f, Note(ScaleNote(root, b % 2 == 0 ? 0 : 6) - 24), 0.24f, Saw, 0.03f, 0.15f, 0.6f, 0.2f);
+                for (var k = 0; k < bars * 4; k++)
+                    if (k % 2 == 1) Snare(c, rng, k * beat, 0.24f);
+            }
+
+            return Finish(c, dur);
+        }
+
+        private static Clip BuildRustworksMusic(string role)
+        {
+            var rng = new System.Random(StableSeed("mus." + role));
+            var (root, intensity, bars) = MusicPlan(role);
+            var bpm = intensity switch { 0 => 66f, 1 => 100f, _ => 116f };
+            var beat = 60f / bpm;
+            var barLen = beat * 4f;
+            var dur = barLen * bars;
+            var c = new Clip(dur + 1.2f);
+
+            // Furnace drone: root and fifth on detuned saws, very low.
+            PlayNote(c, 0f, dur, Note(root - 24), 0.18f, Saw, 0.8f, 0.3f, 0.85f, 0.6f, -0.2f);
+            PlayNote(c, 0f, dur, Note(root - 24) * 1.008f, 0.14f, Saw, 0.8f, 0.3f, 0.85f, 0.6f, 0.2f);
+            PlayNote(c, 0f, dur, Note(root - 17), 0.09f, Saw, 1.2f, 0.3f, 0.8f, 0.6f, 0f);
+
+            // Hammer and anvil: a heavy strike on the downbeat, a lighter answer on the "and" of 3.
+            for (var b = 0; b < bars; b++)
+            {
+                Anvil(c, rng, b * barLen, 520f, intensity == 0 ? 0.22f : 0.26f);
+                Anvil(c, rng, b * barLen + beat * 2.5f, 780f, intensity == 0 ? 0.11f : 0.15f);
+            }
+
+            // Steam: a hiss that swells and vents at the end of every second bar.
+            for (var b = 1; b < bars; b += 2)
+                Steam(c, rng, b * barLen + beat * 2.2f, beat * 1.7f, intensity == 0 ? 0.10f : 0.08f);
+
+            // The flat second: a slow, brassy phrygian call in the low register.
+            var call = intensity == 0 ? new[] { 0, 1, 0, -2 } : new[] { 0, 1, 3, 1, 0, -2, -1, 0 };
+            var callLen = dur / call.Length;
+            for (var n = 0; n < call.Length; n++)
+                PlayNote(c, n * callLen, callLen * 0.85f, Note(Degree(PhrygianScale, root, call[n]) - 12), 0.17f, Saw, 0.08f, 0.2f, 0.55f, 0.3f, n % 2 == 0 ? -0.1f : 0.1f);
+
+            if (intensity >= 1)
+            {
+                // Pistons: a 3+3+2 eighth-note bass figure.
+                var pattern = new[] { 0, 3, 6 };
+                for (var b = 0; b < bars; b++)
+                    foreach (var eighth in pattern)
+                        PlayNote(c, b * barLen + eighth * beat * 0.5f, beat * 0.7f, Note(Degree(PhrygianScale, root, eighth == 6 ? 1 : 0) - 24), 0.24f, p => Square(p), 0.004f, 0.08f, 0.4f, 0.06f);
+
+                for (var b = 0; b < bars; b++)
+                {
+                    Kick(c, b * barLen, 0.32f);
+                    Kick(c, b * barLen + beat * 1.5f, 0.26f);
+                    Kick(c, b * barLen + beat * 3f, 0.26f);
+                }
+            }
+
+            if (intensity >= 2)
+            {
+                for (var b = 0; b < bars; b++)
+                    PlayNote(c, b * barLen, barLen * 0.5f, Note(Degree(PhrygianScale, root, b % 2 == 0 ? 0 : 1)), 0.13f, Saw, 0.02f, 0.2f, 0.6f, 0.2f);
+                for (var k = 0; k < bars * 4; k++)
+                    if (k % 4 == 2) Snare(c, rng, k * beat, 0.28f);
+            }
+
+            return Finish(c, dur);
+        }
+
+        private static Clip BuildOvergrownLabsMusic(string role)
+        {
+            var rng = new System.Random(StableSeed("mus." + role));
+            var (root, intensity, bars) = MusicPlan(role);
+            var bpm = intensity switch { 0 => 84f, 1 => 116f, _ => 132f };
+            var beat = 60f / bpm;
+            var barLen = beat * 4f;
+            var dur = barLen * bars;
+            var c = new Clip(dur + 1.2f);
+            var chords = new[] { 0, 3, 5, 3 }; // i – IV (the dorian major fourth) – vi° colour – IV
+
+            // Growth pad: soft triangle chords and a high shimmer.
+            for (var b = 0; b < bars; b += 2)
+            {
+                var chord = chords[(b / 2) % chords.Length];
+                PlayNote(c, b * barLen, barLen * 2.05f, Note(Degree(DorianScale, root, chord) - 12), 0.13f, Tri, 0.8f, 0.4f, 0.7f, 0.7f, -0.25f);
+                PlayNote(c, b * barLen, barLen * 2.05f, Note(Degree(DorianScale, root, chord + 2) - 12), 0.11f, Tri, 0.9f, 0.4f, 0.7f, 0.7f, 0.25f);
+                PlayNote(c, b * barLen, barLen * 2.05f, Note(Degree(DorianScale, root, chord + 4) + 12), 0.04f, Sine, 1.2f, 0.4f, 0.8f, 0.8f, 0f);
+            }
+
+            // Bubbling cultures: sixteenth-note FM-bell arpeggios over the chord, seeded, sparse while exploring.
+            var density = intensity == 0 ? 0.35 : intensity == 1 ? 0.7 : 0.85;
+            for (var s = 0; s < bars * 16; s++)
+            {
+                if (rng.NextDouble() > density) continue;
+                var chord = chords[(s / 32) % chords.Length];
+                var tone = new[] { 0, 2, 4, 7 }[rng.Next(4)];
+                var octave = rng.NextDouble() < 0.3 ? 24 : 12;
+                PlayNote(c, s * beat * 0.25f, beat * 0.22f, Note(Degree(DorianScale, root, chord + tone) + octave - 12), 0.12f, Bell, 0.003f, 0.07f, 0.2f, 0.1f,
+                    (float)(rng.NextDouble() * 0.8 - 0.4));
+            }
+
+            // Instruments ticking: sparse Geiger-like clicks.
+            var clicks = intensity == 0 ? bars * 3 : bars * 6;
+            for (var i = 0; i < clicks; i++) LabClick(c, rng, (float)(rng.NextDouble() * dur), 0.07f);
+
+            // The raised sixth: a gentle bell melody that names the mode.
+            var melody = intensity == 0 ? new[] { 0, 2, 5, 4 } : new[] { 0, 2, 5, 4, 5, 7, 5, 2 };
+            var step = dur / melody.Length;
+            for (var n = 0; n < melody.Length; n++)
+                PlayNote(c, n * step, step * 0.8f, Note(Degree(DorianScale, root, melody[n]) + 12), 0.13f, Bell, 0.01f, 0.3f, 0.4f, 0.3f, n % 2 == 0 ? 0.15f : -0.15f);
+
+            if (intensity >= 1)
+            {
+                // A syncopated soft kick (1 and the "and" of 2) and a quiet sixteenth shaker.
+                for (var b = 0; b < bars; b++)
+                {
+                    Kick(c, b * barLen, 0.24f);
+                    Kick(c, b * barLen + beat * 1.5f, 0.20f);
+                    if (intensity >= 2) Kick(c, b * barLen + beat * 3f, 0.22f);
+                }
+
+                for (var s = 0; s < bars * 16; s++)
+                    if (s % 4 != 0) Hat(c, rng, s * beat * 0.25f, s % 2 == 1 ? 0.05f : 0.08f);
+            }
+
+            if (intensity >= 2)
+            {
+                for (var b = 0; b < bars; b++)
+                    PlayNote(c, b * barLen + barLen * 0.5f, barLen * 0.45f, Note(Degree(DorianScale, root, b % 2 == 0 ? 0 : 5) - 24), 0.22f, Saw, 0.03f, 0.15f, 0.6f, 0.2f);
+                for (var k = 0; k < bars * 4; k++)
+                    if (k % 4 == 2) Snare(c, rng, k * beat, 0.20f);
+            }
+
+            return Finish(c, dur);
+        }
+
+        /// <summary>
+        /// The Main Menu theme: a calm, unhurried RUINRAIL bed for the screen a player sits on longest, written to be
+        /// listened to for minutes without fatigue. It had shared the generic bed (sustained buzzy saw pads under a
+        /// triangle motif at 72 BPM) with the Shelter; it now has its own material. Soft sine-led pads that breathe in
+        /// and out on a slow minor progression, a distant low rail hum, a faint low-passed wind, a sparse slow melody
+        /// with long attacks, and a muffled station chime every four bars. No percussion, no noise transients, no saw or
+        /// square buzz, nothing bright: every voice sits low and rounded, so it stays atmospheric and never sounds like
+        /// a combat track. 60 BPM, eight bars, on its bar grid like every other bed.
+        /// </summary>
+        private static Clip BuildMainMenuMusic()
+        {
+            var rng = new System.Random(StableSeed("mus.MainMenu"));
+            var (root, _, bars) = MusicPlan("MainMenu");
+            const float bpm = 60f;
+            var beat = 60f / bpm;
+            var barLen = beat * 4f;
+            var dur = barLen * bars;
+            var c = new Clip(dur + 2.5f);
+            var chords = new[] { 0, 5, 3, 4 }; // i – VI – iv – v, two bars each: minor, but open and unhurried
+
+            float Soft(float p) => 0.82f * Sine(p) + 0.14f * Sine(p * 2f) + 0.04f * Tri(p);
+
+            // Distant rail hum: two low sines beating slowly against each other.
+            PlayNote(c, 0f, dur, Note(root - 24), 0.07f, Sine, 2.0f, 0.5f, 1f, 2.0f, -0.1f);
+            PlayNote(c, 0f, dur, Note(root - 24) * 1.003f, 0.055f, Sine, 2.0f, 0.5f, 1f, 2.0f, 0.1f);
+
+            // Breathing pads: slow swell in and out over each two-bar chord, overlapping so the bed never gaps.
+            for (var b = 0; b < bars; b += 2)
+            {
+                var chord = chords[(b / 2) % chords.Length];
+                var at = b * barLen;
+                var len = barLen * 2.4f;
+                PlayNote(c, at, len, Note(ScaleNote(root, chord) - 12), 0.105f, Soft, 1.6f, 1.4f, 0.6f, 1.8f, -0.25f);
+                PlayNote(c, at, len, Note(ScaleNote(root, chord + 2) - 12), 0.08f, Soft, 1.9f, 1.4f, 0.6f, 1.8f, 0.25f);
+                PlayNote(c, at, len, Note(ScaleNote(root, chord + 4) - 12), 0.05f, Sine, 2.2f, 1.4f, 0.6f, 1.8f, 0f);
+            }
+
+            // A sparse, slow melody: one note every two beats at most, long attacks, soft sine.
+            var melody = new[] { 4, -1, 2, -1, 3, 2, -1, -1, 4, -1, 5, 4, 2, -1, 0, -1 };
+            var step = dur / melody.Length;
+            for (var n = 0; n < melody.Length; n++)
+            {
+                if (melody[n] < 0) continue;
+                PlayNote(c, n * step, step * 1.6f, Note(ScaleNote(root, melody[n])), 0.10f, Soft, 0.35f, 0.6f, 0.55f, 1.2f, n % 2 == 0 ? -0.2f : 0.2f);
+            }
+
+            // A muffled station chime every four bars, low and far away (sine partials only, slow decay).
+            for (var b = 0; b < bars; b += 4)
+            {
+                var at = b * barLen + beat * 0.5f;
+                PlayNote(c, at, 3.2f, Note(ScaleNote(root, 4) - 12), 0.07f, Sine, 0.04f, 1.2f, 0.25f, 1.6f, -0.3f);
+                PlayNote(c, at + 0.6f, 3.2f, Note(ScaleNote(root, 2) - 12), 0.06f, Sine, 0.04f, 1.2f, 0.25f, 1.6f, 0.3f);
+            }
+
+            // Wind through the tunnels: noise low-passed hard, swelling slowly, well under everything else.
+            var lp = new LowPass();
+            var lp2 = new LowPass();
+            var n0 = Mathf.RoundToInt(dur * SampleRate);
+            for (var i = 0; i < n0; i++)
+            {
+                var t = (float)i / SampleRate;
+                var swell = 0.55f + 0.45f * Mathf.Sin(2f * Mathf.PI * t / (barLen * 4f));
+                var s = lp2.Process(lp.Process((float)(rng.NextDouble() * 2 - 1), 380f), 380f) * swell * 0.05f;
+                c.Add(i, s * 0.9f, s);
+            }
+
+            var looped = c.WrapTailToLoop(dur);
+            looped.MakeSeamless(0.8f);
+            return looped;
+        }
+
+        /// <summary>A wheel over a rail joint: a bright, very short metallic tick.</summary>
+        private static void RailClack(Clip c, System.Random rng, float at, float gain)
+        {
+            var start = Mathf.RoundToInt(at * SampleRate);
+            var n = Mathf.RoundToInt(0.09f * SampleRate);
+            var hp = new HighPass();
+            for (var i = 0; i < n; i++)
+            {
+                var t = (float)i / SampleRate;
+                var ring = (Sine(1850f * t) + 0.6f * Sine(2930f * t)) * Punch(t, 0.02f);
+                var noise = hp.Process((float)(rng.NextDouble() * 2 - 1), 3000f) * Punch(t, 0.006f);
+                var s = (ring * 0.6f + noise) * gain;
+                c.Add(start + i, s * 0.9f, s);
+            }
+        }
+
+        /// <summary>A hammer on an anvil: an inharmonic ringing strike with a noisy impact.</summary>
+        private static void Anvil(Clip c, System.Random rng, float at, float freq, float gain)
+        {
+            var start = Mathf.RoundToInt(at * SampleRate);
+            var n = Mathf.RoundToInt(0.9f * SampleRate);
+            var lp = new LowPass();
+            for (var i = 0; i < n; i++)
+            {
+                var t = (float)i / SampleRate;
+                var ring = (Sine(freq * t) + 0.55f * Sine(freq * 2.76f * t) + 0.3f * Sine(freq * 5.4f * t)) * Punch(t, 0.22f);
+                var hit = lp.Process((float)(rng.NextDouble() * 2 - 1), 2500f) * Punch(t, 0.012f) * 2f;
+                var s = (ring * 0.55f + hit) * gain;
+                c.Add(start + i, s, s * 0.9f);
+            }
+        }
+
+        /// <summary>Venting steam: high-passed noise that swells in and falls away.</summary>
+        private static void Steam(Clip c, System.Random rng, float at, float dur, float gain)
+        {
+            var start = Mathf.RoundToInt(at * SampleRate);
+            var n = Mathf.RoundToInt(dur * SampleRate);
+            var hp = new HighPass();
+            for (var i = 0; i < n; i++)
+            {
+                var t = (float)i / SampleRate;
+                var env = Mathf.Sin(Mathf.PI * Mathf.Clamp01(t / dur));
+                var s = hp.Process((float)(rng.NextDouble() * 2 - 1), 2600f) * env * env * gain;
+                c.Add(start + i, s * 0.8f, s);
+            }
+        }
+
+        /// <summary>A lab instrument's click: a tiny high tick.</summary>
+        private static void LabClick(Clip c, System.Random rng, float at, float gain)
+        {
+            var start = Mathf.RoundToInt(at * SampleRate);
+            var n = Mathf.RoundToInt(0.012f * SampleRate);
+            var hp = new HighPass();
+            var pan = (float)(rng.NextDouble() * 1.2 - 0.6);
+            for (var i = 0; i < n; i++)
+            {
+                var t = (float)i / SampleRate;
+                var s = hp.Process((float)(rng.NextDouble() * 2 - 1), 5000f) * Punch(t, 0.002f) * gain;
+                c.Add(start + i, s * (1f - Mathf.Max(0f, pan)), s * (1f + Mathf.Min(0f, pan)));
+            }
         }
 
         private static void Kick(Clip c, float at, float gain)
@@ -976,6 +1365,17 @@ namespace RuinRail.EditorTools.ArtGen
                     PlayNote(c, 0.00f, 0.6f, Note(-5), 0.30f, Saw, 0.02f, 0.2f, 0.5f, 0.3f);
                     PlayNote(c, 0.35f, 0.8f, Note(-8), 0.30f, Saw, 0.03f, 0.2f, 0.5f, 0.4f);
                     PlayNote(c, 0.80f, 1.1f, Note(-20), 0.34f, Sine, 0.04f, 0.3f, 0.45f, 0.6f);
+                    break;
+
+                case "RoomCleared":
+                    // A room won: a soft mechanical release (the doors), then a quick bright rising fourth that settles.
+                    // Short and small on purpose — it plays after every Combat room; the arpeggios (Level Up,
+                    // Extraction, Legendary) and the Boss Defeated resolution stay the bigger moments.
+                    Snare(c, rng, 0.00f, 0.16f);
+                    PlayNote(c, 0.00f, 0.18f, Note(-19), 0.30f, Sine, 0.004f, 0.06f, 0.4f, 0.08f);
+                    PlayNote(c, 0.06f, 0.14f, Note(5), 0.26f, Tri, 0.004f, 0.04f, 0.5f, 0.06f);
+                    PlayNote(c, 0.16f, 0.40f, Note(10), 0.28f, Tri, 0.006f, 0.08f, 0.5f, 0.22f);
+                    PlayNote(c, 0.16f, 0.40f, Note(17), 0.14f, Sine, 0.01f, 0.08f, 0.45f, 0.22f);
                     break;
 
                 default: // LevelUp
