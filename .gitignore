@@ -40,3 +40,6 @@ crashlytics-build.properties
 # OS / IDE noise
 .DS_Store
 *.slnx
+
+# Local test builds
+/RUINRAIL Build Test.app/
