@@ -14,6 +14,8 @@ namespace RuinRail.Presentation.Vfx
     ///   Rustworks — a steam release from the floor, embers lifting off a wall, a machinery pulse lamp, a twitching gauge.
     ///   Overgrown Labs — tank bubbles over a faint tank glow, a growth vein pulsing violet, drips falling, drifting motes,
     ///     a stuttering specimen lamp.
+    ///   Cryo Vaults — condensation puffs off the floor, frost crystals glinting as they settle, a temperature/status
+    ///     readout on a wall, a cold condensation drip, and a small machine indicator shuttling along a wall.
     /// Every piece is a few pixels on the ground-details layer (above floor decals, below hazard footprints and every
     /// character, loot, telegraph and effect), with no collider, no light and no overlay; while the room's fight runs the
     /// details slow down. Only the current room's details exist: the owner creates them on entry and destroys them on
@@ -32,12 +34,14 @@ namespace RuinRail.Presentation.Vfx
         {
             MetroSparks, MetroSignalLamp, MetroCableFlicker, MetroDust,
             RustSteam, RustEmbers, RustMachineryPulse, RustGauge,
-            LabsTankBubbles, LabsGrowthPulse, LabsDrip, LabsMotes, LabsSpecimenFlicker
+            LabsTankBubbles, LabsGrowthPulse, LabsDrip, LabsMotes, LabsSpecimenFlicker,
+            CryoCondensation, CryoFrostGlint, CryoStatusReadout, CryoDrip, CryoMachineShuttle
         }
 
         private static readonly Kind[] Metro = { Kind.MetroSparks, Kind.MetroSignalLamp, Kind.MetroCableFlicker, Kind.MetroDust };
         private static readonly Kind[] Rust = { Kind.RustSteam, Kind.RustEmbers, Kind.RustMachineryPulse, Kind.RustGauge };
         private static readonly Kind[] Labs = { Kind.LabsTankBubbles, Kind.LabsGrowthPulse, Kind.LabsDrip, Kind.LabsMotes, Kind.LabsSpecimenFlicker };
+        private static readonly Kind[] Cryo = { Kind.CryoCondensation, Kind.CryoFrostGlint, Kind.CryoStatusReadout, Kind.CryoDrip, Kind.CryoMachineShuttle };
 
         private sealed class Emitter
         {
@@ -77,7 +81,7 @@ namespace RuinRail.Presentation.Vfx
         /// <summary>The kinds a room with this seed gets (same answer on every peer).</summary>
         public static Kind[] KindsFor(Biome biome, int seed)
         {
-            var pool = new List<Kind>(biome switch { Biome.RuinedMetro => Metro, Biome.Rustworks => Rust, _ => Labs });
+            var pool = new List<Kind>(biome switch { Biome.RuinedMetro => Metro, Biome.Rustworks => Rust, Biome.CryoVaults => Cryo, _ => Labs });
             var rng = new System.Random(seed ^ 0x5A17);
             var chosen = new Kind[Math.Min(EmittersPerRoom, pool.Count)];
             for (var i = 0; i < chosen.Length; i++)
@@ -117,7 +121,8 @@ namespace RuinRail.Presentation.Vfx
                 var wall = new Vector2(side < 0 ? room.xMin + 0.3f : room.xMax - 0.3f, R(inner.yMin + 0.5f, topClear));
                 var floor = new Vector2(side < 0 ? R(inner.xMin, inner.center.x - 1f) : R(inner.center.x + 1f, inner.xMax), R(inner.yMin, topClear));
                 var onWall = kind is Kind.MetroSparks or Kind.MetroSignalLamp or Kind.MetroCableFlicker or Kind.RustEmbers
-                    or Kind.RustMachineryPulse or Kind.RustGauge or Kind.LabsGrowthPulse or Kind.LabsSpecimenFlicker or Kind.LabsDrip;
+                    or Kind.RustMachineryPulse or Kind.RustGauge or Kind.LabsGrowthPulse or Kind.LabsSpecimenFlicker or Kind.LabsDrip
+                    or Kind.CryoStatusReadout or Kind.CryoDrip or Kind.CryoMachineShuttle;
                 _emitters.Add(new Emitter { Kind = kind, At = onWall ? wall : floor, Side = side, Rng = new System.Random(rng.Next()), Next = R(0.3f, 2.5f) });
             }
         }
@@ -237,6 +242,46 @@ namespace RuinRail.Presentation.Vfx
                 case Kind.LabsMotes:
                     Spawn(e.At + new Vector2(R(-1f, 1f), R(-0.8f, 0.8f)), 2, 2, rng.Next(2) == 0 ? new Color(0.78f, 0.55f, 1f) : new Color(0.55f, 1f, 0.9f), new Vector2(R(-0.08f, 0.08f), R(0.08f, 0.18f)), 0f, 0.3f, 0f, R(2.2f, 3f), t => 0.55f * Mathf.Sin(t * Mathf.PI));
                     return R(0.9f, 1.8f);
+                case Kind.CryoCondensation:
+                    // Cold air meeting the floor: two or three low vapour puffs that swell and thin out as they rise.
+                    for (var i = 0; i < 2 + rng.Next(2); i++)
+                        Spawn(e.At + new Vector2(R(-0.2f, 0.2f), 0f), 3, 2, new Color(0.86f, 0.94f, 0.96f), new Vector2(R(-0.12f, 0.12f), R(0.25f, 0.4f)), 0f, 0.3f, i * 0.2f, R(1.2f, 1.6f), t => 0.3f * Mathf.Sin(t * Mathf.PI));
+                    return R(3f, 5.5f);
+                case Kind.CryoFrostGlint:
+                    // A frost crystal drifts down and glints as it catches the light.
+                    Spawn(e.At + new Vector2(R(-0.9f, 0.9f), R(0.4f, 1.1f)), 1, 1, Color.white, new Vector2(R(-0.05f, 0.05f), -R(0.12f, 0.22f)), 0f, 0.2f, 0f, R(1.8f, 2.4f), t => Mathf.Repeat(t * 3f, 1f) < 0.3f ? 0.9f : 0.3f * Mathf.Sin(t * Mathf.PI));
+                    return R(0.8f, 1.6f);
+                case Kind.CryoStatusReadout:
+                {
+                    // A wall panel's temperature readout: a cyan status lamp, a three-segment bar that steps up, and now
+                    // and then an amber warning blink.
+                    var cyan = new Color(0.66f, 0.9f, 0.95f);
+                    var warn = rng.Next(4) == 0;
+                    Spawn(e.At, 2, 2, warn ? new Color(1f, 0.66f, 0.25f) : cyan, Vector2.zero, 0f, 0f, 0f, 1.6f, t => warn ? (Mathf.Repeat(t * 3f, 1f) < 0.5f ? 0.8f : 0.1f) : 0.55f);
+                    for (var i = 0; i < 3; i++)
+                        Spawn(e.At + new Vector2(0f, (4 + i * 2) * Px), 3, 1, cyan, Vector2.zero, 0f, 0f, i * 0.3f, 1.6f - i * 0.3f, t => 0.5f * (t > 0.8f ? (1f - t) / 0.2f : 1f));
+                    return R(2.6f, 4.2f);
+                }
+                case Kind.CryoDrip:
+                {
+                    // Condensation beads on a frozen pipe, falls and breaks into two cold specks.
+                    var from = e.At + new Vector2(inward * 0.2f, 0.9f);
+                    var colour = new Color(0.62f, 0.85f, 0.95f);
+                    Spawn(from, 1, 2, colour, Vector2.zero, 0f, 0f, 0f, 0.5f, t => 0.6f * t);
+                    Spawn(from, 1, 2, colour, new Vector2(0f, -0.5f), 5f, 0f, 0.5f, 0.42f, _ => 0.75f);
+                    var landing = from + new Vector2(0f, -0.65f);
+                    Spawn(landing, 1, 1, Color.white, new Vector2(-0.5f, 0.4f), 4f, 0f, 0.92f, 0.2f, t => 0.7f * (1f - t));
+                    Spawn(landing, 1, 1, Color.white, new Vector2(0.5f, 0.4f), 4f, 0f, 0.92f, 0.2f, t => 0.7f * (1f - t));
+                    return R(3.5f, 6.5f);
+                }
+                case Kind.CryoMachineShuttle:
+                {
+                    // An automated system still running: an indicator light shuttles along a wall rail and back.
+                    var dir = rng.Next(2) == 0 ? 1f : -1f;
+                    Spawn(e.At, 2, 1, new Color(0.66f, 0.9f, 0.95f), new Vector2(0f, dir * 0.6f), 0f, 0f, 0f, 1.2f, t => 0.6f * Mathf.Sin(t * Mathf.PI));
+                    Spawn(e.At + new Vector2(0f, dir * 0.72f), 2, 1, new Color(0.66f, 0.9f, 0.95f), new Vector2(0f, -dir * 0.6f), 0f, 0f, 1.4f, 1.2f, t => 0.6f * Mathf.Sin(t * Mathf.PI));
+                    return R(4f, 7f);
+                }
                 default: // LabsSpecimenFlicker
                 {
                     var stutter = new[] { 0.7f, 0.05f, 0.55f, 0.6f, 0.05f, 0.7f, 0.1f };

@@ -507,7 +507,7 @@ namespace RuinRail.Tests
                 var guids = AssetDatabase.FindAssets("t:RoomDefinition", new[] { "Assets/Game/ScriptableObjects/Rooms/" + directory });
                 var ofBiome = guids.Select(g => AssetDatabase.LoadAssetAtPath<RoomDefinition>(AssetDatabase.GUIDToAssetPath(g)))
                     .Where(d => d != null && d.Prefab != null).ToList();
-                // One of each size plus the boss arena: small rooms are 40 of the 63 shipping rooms, so a sample that
+                // One of each size plus the boss arena: small rooms are most of the shipping rooms, so a sample that
                 // is all boss arenas (which carry no authored detail at all) would prove nothing about the common case.
                 foreach (var size in new[] { RoomSizeClass.Small, RoomSizeClass.Medium, RoomSizeClass.Large })
                 {

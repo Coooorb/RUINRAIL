@@ -793,6 +793,24 @@ namespace RuinRail.EditorTools.ArtGen
                             + (Mathf.Repeat(t, 2.1f) < 0.3f ? Sine(70f * t) * Punch(Mathf.Repeat(t, 2.1f), 0.09f) * 0.30f : 0f);
                         break;
 
+                    case "CryoVaults":
+                    {
+                        // Cold storage: low ventilation, the refrigeration plant's hum cycling on and off, a pressure
+                        // release every seven seconds (a soft low-passed breath, never a hiss), a slow condensation drip,
+                        // and a distant metal/ice creak now and then.
+                        var cycle = 0.55f + 0.45f * Mathf.Sin(2f * Mathf.PI * t / 12f);
+                        var ventT = Mathf.Repeat(t, 7f);
+                        var vent = ventT < 1.1f ? Mathf.Sin(Mathf.PI * ventT / 1.1f) : 0f;
+                        var dripT2 = Mathf.Repeat(t + 0.8f, 2.9f);
+                        var creakT = Mathf.Repeat(t + 2.3f, 5.3f);
+                        s = Air(noise, 200f) * 1.5f
+                            + (Sine(60f * t) * 0.06f + Sine(120f * t) * 0.025f) * cycle
+                            + Soft(noise, 520f) * vent * vent * 0.16f
+                            + (dripT2 < 0.12f ? Sine((1100f - 1400f * dripT2) * t) * Punch(dripT2, 0.02f) * 0.04f : 0f)
+                            + (creakT < 0.4f ? Sine((210f + 40f * Mathf.Sin(t * 30f)) * t) * Punch(creakT, 0.12f) * 0.05f : 0f);
+                        break;
+                    }
+
                     default:
                         // Labs: ventilation, a faint electronic chirp that comes and goes, a soft wet drip.
                         var dripT = Mathf.Repeat(t, 1.9f);
@@ -828,6 +846,7 @@ namespace RuinRail.EditorTools.ArtGen
             if (role.StartsWith("RuinedMetro", StringComparison.Ordinal)) return BuildRuinedMetroMusic(role);
             if (role.StartsWith("Rustworks", StringComparison.Ordinal)) return BuildRustworksMusic(role);
             if (role.StartsWith("OvergrownLabs", StringComparison.Ordinal)) return BuildOvergrownLabsMusic(role);
+            if (role.StartsWith("CryoVaults", StringComparison.Ordinal)) return BuildCryoVaultsMusic(role);
             if (role == "MainMenu") return BuildMainMenuMusic();
 
             var rng = new System.Random(StableSeed("mus." + role));
@@ -908,9 +927,13 @@ namespace RuinRail.EditorTools.ArtGen
         //                 hiss swells; combat adds a 3+3+2 piston bass.
         //  Overgrown Labs dorian (raised 6th), 84/116/132 BPM, glassy — FM-bell bubbling arpeggios over a soft shimmer
         //                 and Geiger-like clicks; combat adds a syncopated soft kick and shaker.
+        //  Cryo Vaults    sparse cold minor (no 4th/7th), 70/104/120 BPM, restrained — a cycling refrigeration drone,
+        //                 open-fifth glass pads, a relay tick on the beat and a bell motif with a long far echo; combat
+        //                 adds a muted eighth-note bass and a soft kick, the boss a low octave stab and a snare.
 
         private static readonly int[] PhrygianScale = { 0, 1, 3, 5, 7, 8, 10 };
         private static readonly int[] DorianScale = { 0, 2, 3, 5, 7, 9, 10 };
+        private static readonly int[] ColdScale = { 0, 2, 3, 7, 8, 12, 14 };
 
         private static int Degree(int[] scale, int root, int degree)
         {
@@ -1132,6 +1155,84 @@ namespace RuinRail.EditorTools.ArtGen
             return Finish(c, dur);
         }
 
+        private static Clip BuildCryoVaultsMusic(string role)
+        {
+            var rng = new System.Random(StableSeed("mus." + role));
+            var (root, intensity, bars) = MusicPlan(role);
+            var bpm = intensity switch { 0 => 70f, 1 => 104f, _ => 120f };
+            var beat = 60f / bpm;
+            var barLen = beat * 4f;
+            var dur = barLen * bars;
+            var c = new Clip(dur + 1.6f);
+            var chords = new[] { 0, 4, 3, 1 }; // i – VI – v(no third) – ii: open, suspended, never resolving warmly
+
+            // Refrigeration drone: root and fifth far below, swelling with a slow compressor cycle.
+            PlayNote(c, 0f, dur, Note(root - 24), 0.12f, Sine, 1.0f, 0.3f, 0.9f, 1.0f, -0.15f);
+            PlayNote(c, 0f, dur, Note(root - 17) * 1.002f, 0.07f, Sine, 1.2f, 0.3f, 0.9f, 1.0f, 0.15f);
+
+            // Glass pads: open fifths (no third) on soft sine/triangle, slow attack, wide, with a faint high shimmer.
+            for (var b = 0; b < bars; b += 2)
+            {
+                var chord = chords[(b / 2) % chords.Length];
+                var baseNote = Degree(ColdScale, root, chord) - 12;
+                PlayNote(c, b * barLen, barLen * 2.1f, Note(baseNote), 0.10f, Tri, 1.1f, 0.5f, 0.7f, 0.9f, -0.35f);
+                PlayNote(c, b * barLen, barLen * 2.1f, Note(baseNote + 7), 0.09f, Sine, 1.3f, 0.5f, 0.7f, 0.9f, 0.35f);
+                PlayNote(c, b * barLen + beat, barLen * 1.9f, Note(baseNote + 26), 0.025f, Sine, 1.6f, 0.5f, 0.8f, 0.9f, 0f);
+            }
+
+            // Relay tick: a small metallic click on every beat (every other while exploring) — the facility still runs.
+            for (var k = 0; k < bars * 4; k++)
+            {
+                if (intensity == 0 && k % 2 == 1) continue;
+                MechanicalClick(c, rng, k * beat, k % 4 == 0 ? 2400f : 3100f, 0.018f, intensity == 0 ? 0.035f : 0.05f);
+            }
+
+            // A sparse bell motif, each note answered by a quieter echo from the far side of the hall.
+            var melody = intensity == 0 ? new[] { 4, -1, 3, -1, 2, -1, 1, -1 } : new[] { 4, 3, -1, 2, 4, 5, -1, 3 };
+            var step = dur / melody.Length;
+            var echo = beat * 1.5f;
+            for (var n = 0; n < melody.Length; n++)
+            {
+                if (melody[n] < 0) continue;
+                var pitch = Note(Degree(ColdScale, root, melody[n]) + 12);
+                var pan = n % 2 == 0 ? -0.3f : 0.3f;
+                PlayNote(c, n * step, step * 0.7f, pitch, 0.12f, Bell, 0.01f, 0.4f, 0.3f, 0.6f, pan);
+                PlayNote(c, n * step + echo, step * 0.7f, pitch, 0.045f, Bell, 0.02f, 0.4f, 0.3f, 0.6f, -pan);
+            }
+
+            if (intensity >= 1)
+            {
+                // Muted eighth-note bass on the chord root (a machine cycling) and a soft kick on 1 and 3.
+                for (var b = 0; b < bars; b++)
+                {
+                    var chord = chords[(b / 2) % chords.Length];
+                    for (var e = 0; e < 8; e++)
+                        PlayNote(c, b * barLen + e * beat * 0.5f, beat * 0.4f, Note(Degree(ColdScale, root, chord) - 24), e % 2 == 0 ? 0.16f : 0.10f, Tri, 0.005f, 0.08f, 0.4f, 0.08f);
+                    Kick(c, b * barLen, 0.22f);
+                    Kick(c, b * barLen + beat * 2f, 0.18f);
+                }
+
+                for (var s = 0; s < bars * 8; s++)
+                    if (s % 2 == 1) Hat(c, rng, s * beat * 0.5f, 0.05f);
+            }
+
+            if (intensity >= 2)
+            {
+                // Boss: a low octave stab each half bar and a snare on 3 — pressure without raising the brightness.
+                for (var h = 0; h < bars * 2; h++)
+                {
+                    var chord = chords[(h / 4) % chords.Length];
+                    PlayNote(c, h * barLen * 0.5f, beat * 0.9f, Note(Degree(ColdScale, root, chord) - 24), 0.20f, Saw, 0.01f, 0.2f, 0.4f, 0.2f, -0.1f);
+                    PlayNote(c, h * barLen * 0.5f, beat * 0.9f, Note(Degree(ColdScale, root, chord) - 12), 0.10f, Saw, 0.01f, 0.2f, 0.4f, 0.2f, 0.1f);
+                }
+
+                for (var k = 0; k < bars * 4; k++)
+                    if (k % 4 == 2) Snare(c, rng, k * beat, 0.22f);
+            }
+
+            return Finish(c, dur);
+        }
+
         /// <summary>
         /// The Main Menu theme: a calm, unhurried RUINRAIL bed for the screen a player sits on longest, written to be
         /// listened to for minutes without fatigue. It had shared the generic bed (sustained buzzy saw pads under a
@@ -1320,6 +1421,9 @@ namespace RuinRail.EditorTools.ArtGen
             "OvergrownLabsExploration" => (-2, 0, 8),
             "OvergrownLabsCombat" => (-2, 1, 8),
             "OvergrownLabsBoss" => (-2, 2, 8),
+            "CryoVaultsExploration" => (-6, 0, 8),
+            "CryoVaultsCombat" => (-6, 1, 8),
+            "CryoVaultsBoss" => (-6, 2, 8),
             _ => (-9, 0, 8)
         };
 

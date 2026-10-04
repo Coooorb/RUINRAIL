@@ -33,6 +33,18 @@ namespace RuinRail.Gameplay.Enemies
         /// <summary>Current aim: tracks the target during the telegraph, then locks (44 Sniper: visible aim line tracks, locks, fires).</summary>
         public Vector2 AimDirection => _lockedDirection;
         public bool IsAimLocked => _aimLocked;
+
+        /// <summary>
+        /// Where a shot fired now would go (what the telegraph lane must show): the tracked or locked aim, the burst's
+        /// direction while bursting, or — for an enemy with no lock window, which aims at fire time — straight at the
+        /// target's current position.
+        /// </summary>
+        public Vector2 AimIfFiredNow(Transform target)
+        {
+            if (_aimLocked || _aimTarget != null || IsBursting || target == null) return _lockedDirection;
+            var toTarget = (Vector2)target.position - (Vector2)transform.position;
+            return toTarget.sqrMagnitude > 0.0001f ? toTarget.normalized : _lockedDirection;
+        }
         public int LastDamageDealt { get; private set; }
         public bool IsBursting => _burstRemaining > 0;
         public bool IsResolving => IsBursting;

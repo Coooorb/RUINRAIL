@@ -143,7 +143,7 @@ namespace RuinRail.Networking
         {
             if (!payload.IsValid) return new DungeonSyncResult(DungeonSyncError.InvalidPayload, "Host has not published a valid depth.", null, null);
             if (localPools == null) throw new ArgumentNullException(nameof(localPools));
-            if (!Enum.IsDefined(typeof(Biome), payload.Biome)) return new DungeonSyncResult(DungeonSyncError.BiomeMismatch, $"Host biome id {payload.Biome} is not one of the three biomes.", null, null);
+            if (!Enum.IsDefined(typeof(Biome), payload.Biome)) return new DungeonSyncResult(DungeonSyncError.BiomeMismatch, $"Host biome id {payload.Biome} is not a known biome.", null, null);
             return ClientRebuild(payload, generator, localPools.PoolFor((Biome)payload.Biome));
         }
 

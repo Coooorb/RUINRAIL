@@ -156,6 +156,20 @@ namespace RuinRail.UI.Theme
             }
         }
 
+        /// <summary>
+        /// An open station's panel: the middle and the right column together. The survivor card stays on the left
+        /// (coins, level, storage are what a station spends or fills); the expedition card steps aside while a station
+        /// is open, so the station gets one wide, uncluttered panel instead of a narrow column between two cards.
+        /// </summary>
+        public static UiRect StationColumn
+        {
+            get
+            {
+                var main = MainColumn;
+                return new UiRect(main.X, main.Y, RightColumn.Right - main.X, main.Height);
+            }
+        }
+
         // ---------------- header ----------------
 
         /// <summary>

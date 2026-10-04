@@ -107,7 +107,7 @@ namespace RuinRail.Tests
         private IEnumerable<(RoomDefinition room, DoorSocket socket)> Cases()
         {
             // One combat room per size class per biome, every socket direction it has: N/E/S/W across 16x12 and larger.
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             foreach (var size in new[] { RoomSizeClass.Small, RoomSizeClass.Medium, RoomSizeClass.Large })
             {
                 var room = _catalog.Rooms.FirstOrDefault(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.SizeClass == size);
@@ -193,7 +193,7 @@ namespace RuinRail.Tests
         [UnityTest]
         public IEnumerator NonPlayerObjects_EnteringFirst_NeverActivateTheRoom_ThePlayerStillDoes_AndItStillClears()
         {
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 var definition = _catalog.Rooms.First(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium);
                 var origin = new Vector2(900f + (int)biome * 80f, 900f);

@@ -254,7 +254,7 @@ namespace RuinRail.Tests
             yield return ProveHazard(run, live.Root.gameObject, liveBiome, $"live_{BiomeStem(liveBiome)}");
 
             // Each other biome's shipped hazard room, placed into the same live scene with the same camera and lighting.
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }.Where(b => b != liveBiome))
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }.Where(b => b != liveBiome))
             {
                 var definition = content.Rooms.First(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.Prefab.GetComponentsInChildren<RoomHazard>(true).Any());
                 var origin = new Vector3(4000f + (int)biome * 100f, 4000f, 0f);

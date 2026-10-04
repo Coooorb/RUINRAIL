@@ -165,11 +165,16 @@ namespace RuinRail.UI.Theme
 
         // ---------------- pointer ----------------
 
+        /// <summary>The pointer entered an enabled control / clicked a disabled one (presentation observers: UI sound cues).</summary>
+        public static event Action<UiControl> AnyHoverEntered;
+        public static event Action<UiControl> AnyClickRefused;
+
         public void OnPointerEnter(PointerEventData eventData)
         {
             // Hover is feedback, not focus: the pointer passing over a control must not drag the keyboard cursor
             // away from wherever the player left it (A1: the two devices coexist).
             if (!IsEnabled) return;
+            if (!_hovered) AnyHoverEntered?.Invoke(this);
             _hovered = true;
             ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
             CursorService.SetHover(true);
@@ -202,8 +207,9 @@ namespace RuinRail.UI.Theme
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button != PointerEventData.InputButton.Left) return;
-            // A disabled control swallows the click rather than passing it through to whatever sits underneath.
-            if (!IsEnabled) return;
+            // A disabled control swallows the click rather than passing it through to whatever sits underneath,
+            // and says so (the refused cue) instead of doing nothing silently.
+            if (!IsEnabled) { if (_item != null) AnyClickRefused?.Invoke(this); return; }
 
             ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
             PointerActivations++;

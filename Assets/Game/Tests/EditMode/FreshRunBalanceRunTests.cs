@@ -46,7 +46,7 @@ namespace RuinRail.Tests
         public static readonly int[] LootSeeds = Enumerable.Range(0, 34).Select(i => 7000 + i * 97).ToArray();
 
         public static readonly int[] DepthLadder = { 1, 5, 10, 20, 30 };
-        public static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs };
+        public static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults };
 
         private GameContentCatalog _content;
         private FreshRunSimulator _simulator;
@@ -148,7 +148,7 @@ namespace RuinRail.Tests
 
             var starterRuns = runs.Where(r => r.SkillProfile == SkillProfile.Normal.Name).ToList();
             Assert.AreEqual(30, starterRuns.Count, "30 deterministic fresh-profile D1 runs at the normal skill profile");
-            Assert.AreEqual(3, starterRuns.Select(r => r.Biome).Distinct().Count(), "all three biomes are covered");
+            Assert.AreEqual(4, starterRuns.Select(r => r.Biome).Distinct().Count(), "all four biomes are covered");
             Assert.IsTrue(runs.All(r => r.RoomCount > 0), "every seed generated a real depth");
 
             // A deterministic harness must be deterministic: the same seed twice must produce the same run.

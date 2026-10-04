@@ -14,7 +14,7 @@ using UnityEngine;
 
 namespace RuinRail.Tests.EditMode
 {
-    /// <summary>TASK 129 — exact 20/40/40 per-depth biome selection on the dedicated Biome stream, uniform first depth, three biomes only, pool loading on Descend, host-selected biome for clients.</summary>
+    /// <summary>TASK 129 — exact per-depth biome selection (previous 20, each other 40) on the dedicated Biome stream, uniform first depth, the four shipped biomes, pool loading on Descend, host-selected biome for clients.</summary>
     public sealed class BiomeSelectionTests
     {
         /// <summary>Scripted RNG: hands out the given draws in order (controlled boundary tests).</summary>
@@ -36,21 +36,22 @@ namespace RuinRail.Tests.EditMode
             Created.Clear();
         }
 
-        // ---- Acceptance 1: exact mapping at every boundary; no fourth biome ----
+        // ---- Acceptance 1: exact mapping at every boundary; no fifth biome ----
 
         [Test]
-        public void ExactlyThreeBiomes_Exist()
+        public void ExactlyFourBiomes_Exist()
         {
-            CollectionAssert.AreEqual(new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }, BiomeSelector.All);
-            Assert.AreEqual(3, Enum.GetValues(typeof(Biome)).Length, "56: exactly Ruined Metro, Rustworks, Overgrown Labs.");
+            CollectionAssert.AreEqual(new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }, BiomeSelector.All);
+            Assert.AreEqual(4, Enum.GetValues(typeof(Biome)).Length, "56: exactly Ruined Metro, Rustworks, Overgrown Labs, Cryo Vaults.");
             Assert.AreEqual(40, BiomeSelector.OtherBiomeWeight);
             Assert.AreEqual(20, BiomeSelector.RepeatBiomeWeight);
         }
 
         [Test]
-        public void NextDepth_PreviousBiomeHasTwentyOfHundred_EachOtherForty_AtEveryBoundary()
+        public void NextDepth_PreviousBiomeWeighsTwenty_EachOtherForty_AtEveryBoundary()
         {
-            // Weights are laid out in enum order: Metro [0,40) or [0,20) when previous, etc. Total is always 100.
+            // Weights are laid out in enum order: Metro [0,40) or [0,20) when previous, etc. Total is always 140
+            // (three others at 40, the previous at 20): a repeat is half as likely as any one other biome.
             foreach (var previous in BiomeSelector.All)
             {
                 var ranges = new List<(Biome biome, int start, int end)>();
@@ -62,7 +63,7 @@ namespace RuinRail.Tests.EditMode
                     cursor += weight;
                 }
 
-                Assert.AreEqual(100, cursor, $"previous {previous}: weights sum to 100.");
+                Assert.AreEqual(140, cursor, $"previous {previous}: weights sum to 140.");
                 foreach (var (biome, start, end) in ranges)
                 {
                     Assert.AreEqual(biome == previous ? 20 : 40, end - start, $"previous {previous}: {biome} weight");
@@ -78,6 +79,7 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(Biome.RuinedMetro, BiomeSelector.SelectFirst(new ScriptedRandom(0)));
             Assert.AreEqual(Biome.Rustworks, BiomeSelector.SelectFirst(new ScriptedRandom(1)));
             Assert.AreEqual(Biome.OvergrownLabs, BiomeSelector.SelectFirst(new ScriptedRandom(2)));
+            Assert.AreEqual(Biome.CryoVaults, BiomeSelector.SelectFirst(new ScriptedRandom(3)));
             var counts = new Dictionary<Biome, int>();
             for (var seed = 1; seed <= 3000; seed++)
             {
@@ -85,7 +87,7 @@ namespace RuinRail.Tests.EditMode
                 counts[b] = counts.TryGetValue(b, out var c) ? c + 1 : 1;
             }
 
-            foreach (var biome in BiomeSelector.All) Assert.That(counts[biome], Is.InRange(850, 1150), $"{biome}: ~1/3 of first depths");
+            foreach (var biome in BiomeSelector.All) Assert.That(counts[biome], Is.InRange(620, 880), $"{biome}: ~1/4 of first depths");
         }
 
         // ---- Acceptance 2: dedicated stream, same seed/history → same sequence ----
@@ -127,7 +129,7 @@ namespace RuinRail.Tests.EditMode
                 }
             }
 
-            Assert.That(repeats / (float)total, Is.InRange(0.16f, 0.24f), "~20% direct repeats (56).");
+            Assert.That(repeats / (float)total, Is.InRange(0.11f, 0.18f), "~14% direct repeats: 20 of 140 (56).");
         }
 
         // ---- Acceptance 3: Descend loads the selected biome's 21-room pool and preserves risk state ----
@@ -135,7 +137,7 @@ namespace RuinRail.Tests.EditMode
         [Test]
         public void Descend_SelectsTheNextBiome_LoadsItsValidatedPool_AndPreservesInventoryCoinsAndParty()
         {
-            var pools = BiomeRoomPools.Build(RoomValidationTools.LoadAllRoomDefinitions().Where(d => AssetDatabase.GetAssetPath(d).Contains("/Rooms/RuinedMetro/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/Rustworks/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/OvergrownLabs/")));
+            var pools = BiomeRoomPools.Build(RoomValidationTools.LoadAllRoomDefinitions().Where(d => AssetDatabase.GetAssetPath(d).Contains("/Rooms/RuinedMetro/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/Rustworks/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/OvergrownLabs/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/CryoVaults/")));
             Assert.IsTrue(pools.IsComplete, string.Join("\n", pools.Problems()));
             foreach (var biome in BiomeSelector.All) Assert.AreEqual(21, pools.PoolFor(biome).Rooms.Count, biome.ToString());
 
@@ -198,7 +200,7 @@ namespace RuinRail.Tests.EditMode
         [Test]
         public void Clients_RebuildTheHostSelectedBiome_FromThePayload_NeverTheirOwnRoll()
         {
-            var definitions = RoomValidationTools.LoadAllRoomDefinitions().Where(d => AssetDatabase.GetAssetPath(d).Contains("/Rooms/RuinedMetro/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/Rustworks/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/OvergrownLabs/")).ToList();
+            var definitions = RoomValidationTools.LoadAllRoomDefinitions().Where(d => AssetDatabase.GetAssetPath(d).Contains("/Rooms/RuinedMetro/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/Rustworks/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/OvergrownLabs/") || AssetDatabase.GetAssetPath(d).Contains("/Rooms/CryoVaults/")).ToList();
             var hostPools = BiomeRoomPools.Build(definitions);
             var clientPools = BiomeRoomPools.Build(definitions);
             var rules = DungeonGraphRules.CreateDefault();
@@ -220,13 +222,25 @@ namespace RuinRail.Tests.EditMode
                 }
             }
 
+            // Every shipped biome, Cryo Vaults included, round-trips host → payload → client to the identical layout.
+            foreach (var biome in BiomeSelector.All)
+            foreach (var depth in new[] { 1, 5, 20 })
+            {
+                var (payload, hostGeneration) = DungeonSync.HostGenerate(new DungeonGraphGenerator(rules), hostPools, 11, depth, biome);
+                Assert.IsTrue(payload.IsValid && hostGeneration.Success, $"{biome} D{depth}");
+                var rebuilt = DungeonSync.ClientRebuild(payload, new DungeonGraphGenerator(DungeonGraphRules.CreateDefault()), clientPools);
+                Assert.IsTrue(rebuilt.Success, rebuilt.Diagnostic);
+                Assert.IsTrue(rebuilt.Layout.Placements.All(p => p.Definition.Biome == biome), $"{biome} D{depth}: the client loaded the host's biome pool.");
+                Assert.AreEqual(hostGeneration.Layout.Signature(), rebuilt.Layout.Signature(), $"{biome} D{depth}");
+            }
+
             // A forged/foreign biome id or a client using a different biome's pool is refused, never silently rerolled.
             var (ok, _) = DungeonSync.HostGenerate(new DungeonGraphGenerator(rules), hostPools, 5, 2, Biome.Rustworks);
             var wrongPool = DungeonSync.ClientRebuild(ok, new DungeonGraphGenerator(rules), clientPools.PoolFor(Biome.OvergrownLabs));
             Assert.AreEqual(DungeonSyncError.BiomeMismatch, wrongPool.Error);
             var forged = ok;
             forged.Biome = 7;
-            Assert.AreEqual(DungeonSyncError.BiomeMismatch, DungeonSync.ClientRebuild(forged, new DungeonGraphGenerator(rules), clientPools).Error, "No fourth biome can be loaded.");
+            Assert.AreEqual(DungeonSyncError.BiomeMismatch, DungeonSync.ClientRebuild(forged, new DungeonGraphGenerator(rules), clientPools).Error, "No unknown biome can be loaded.");
         }
 
         [Test]

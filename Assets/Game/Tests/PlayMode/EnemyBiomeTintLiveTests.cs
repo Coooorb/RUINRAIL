@@ -77,7 +77,7 @@ namespace RuinRail.Tests
 
         [UnityTest]
         public IEnumerator LiveRun_EveryNormalEnemyAndElite_WearsTheBiomePalette_EliteStrongerAndHitFlashStillReads(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             var content = GameContentCatalog.Load();
             _app = GameApp.Ensure(content, _saveDir);
@@ -128,7 +128,7 @@ namespace RuinRail.Tests
                 elites.Add(encounter.Elite);
             }
 
-            Assert.AreEqual(6, elites.Count, "all six shipped Elites");
+            Assert.AreEqual(8, elites.Count, "all eight shipped Elites");
             for (var i = 0; i < 6; i++) { health.Heal(100000); yield return null; }
             foreach (var enemy in normals) AssertColor(normalTint, CharacterVisual.RendererOf(enemy.gameObject).color, enemy.Definition.Id);
             foreach (var elite in elites) AssertColor(eliteTint, CharacterVisual.RendererOf(elite.gameObject).color, elite.Definition.Id);

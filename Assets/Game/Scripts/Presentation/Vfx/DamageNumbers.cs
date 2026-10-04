@@ -182,6 +182,17 @@ namespace RuinRail.Presentation.Vfx
 
         public void Configure(FeedbackConfig config) => _config = config;
 
+        /// <summary>
+        /// Builds the first numbers now (the expedition composes behind its transition). The very first TextMesh a process
+        /// creates makes Unity build its default dynamic font's cache — ~300 ms on one frame — before the pixel face is
+        /// assigned; created lazily, that cost landed on the frame of the run's first hit.
+        /// </summary>
+        public void Prewarm(int count)
+        {
+            count = Mathf.Min(count, Capacity);
+            while (_all.Count < count) _free.Enqueue(Create());
+        }
+
         /// <summary>Observe a health component: every applied damage/heal becomes a number (read-only subscription).</summary>
         /// <param name="isLocalPlayer">The local player's own health: its damage reads as damage taken (red), not dealt.</param>
         public void Bind(HealthComponent health, Transform anchor = null, bool isLocalPlayer = false)

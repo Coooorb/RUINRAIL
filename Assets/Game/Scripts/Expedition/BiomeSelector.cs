@@ -8,7 +8,7 @@ namespace RuinRail.Gameplay.Expedition
     /// Per-depth biome selection (dungeon/56_BIOMES "Selection"): random, direct repeats allowed but weighted down.
     /// Approved example weights after Rustworks — Metro 40 / Labs 40 / Rustworks 20 — generalised as
     /// "each other biome 40, the previous biome 20" (tunable). The first depth has no previous biome and draws
-    /// uniformly among the three (no repeat weighting is inferred where none exists). Every draw comes from the
+    /// uniformly among all biomes (no repeat weighting is inferred where none exists). Every draw comes from the
     /// dedicated Biome RNG stream (114) keyed by RunSeed + depth, so the host's sequence is reproducible by any peer
     /// and independent of every dungeon/encounter/loot draw.
     /// </summary>
@@ -17,8 +17,8 @@ namespace RuinRail.Gameplay.Expedition
         public const int OtherBiomeWeight = 40;
         public const int RepeatBiomeWeight = 20;
 
-        /// <summary>Exactly the three V1 biomes, in enum order.</summary>
-        public static readonly Biome[] All = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs };
+        /// <summary>Every shipped biome, in enum order.</summary>
+        public static readonly Biome[] All = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults };
 
         public static Biome SelectNext(Biome previous, IRandomSource random)
         {
@@ -35,7 +35,7 @@ namespace RuinRail.Gameplay.Expedition
             return All[^1];
         }
 
-        /// <summary>Depth 1: uniform among the three biomes from the Biome stream of depth 1.</summary>
+        /// <summary>Depth 1: uniform among all biomes from the Biome stream of depth 1.</summary>
         public static Biome SelectFirst(IRandomSource random)
         {
             if (random == null) throw new ArgumentNullException(nameof(random));

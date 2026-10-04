@@ -66,6 +66,22 @@ namespace RuinRail.Dungeon.Runtime
     /// </summary>
     public static class DungeonRoomRuntimeComposer
     {
+        /// <summary>
+        /// The room's presentation-only dressing, deterministic from (run seed, depth, node id) so every peer builds the
+        /// same room the same way. Shared by the composer and the room-gallery captures, so what is inspected is what ships.
+        /// </summary>
+        public static RoomPropDressing.Result Dress(RoomRoot root, int runSeed, int depth, int nodeId)
+        {
+            var props = RoomPropDressing.Apply(root, runSeed, depth, nodeId);
+            // After the props, so the environment layer can keep its clutter off every FloorDetail piece.
+            RoomEnvironmentDressing.Apply(root, runSeed, depth, nodeId);
+            // The room's damaging floor, re-skinned in place: same cells, no collider, same loop rate.
+            HazardArt.Apply(root);
+            // A Non-Combat room's solid cover, re-skinned in place as whole biome objects: same cells, same collision.
+            ObstacleArt.Apply(root, runSeed, depth, nodeId);
+            return props;
+        }
+
         public static Dictionary<int, RoomRuntime> Attach(DungeonLayout layout, IReadOnlyDictionary<int, RoomRoot> rooms, DungeonRuntimeContext context, DungeonRuntimeServices services = null)
         {
             var runtimes = new Dictionary<int, RoomRuntime>();
@@ -79,7 +95,7 @@ namespace RuinRail.Dungeon.Runtime
                 runtime.Configure(root, placement.NodeId, context.Depth, context.PartySize);
                 // Presentation only, before anything is spawned or bound: it writes to FloorDetail alone, so no
                 // collider, occupancy, marker, door or spawn this method goes on to use can be affected by it.
-                runtime.Dressing = RoomPropDressing.Apply(root, context.RunSeed, context.Depth, placement.NodeId);
+                runtime.Dressing = Dress(root, context.RunSeed, context.Depth, placement.NodeId);
                 runtime.SetScaling(context.Scaling);
                 runtime.SetSpawner(context.Spawner);
                 var isElite = layout.Graph != null && layout.Graph.GetNode(placement.NodeId).IsElite;

@@ -50,15 +50,19 @@ blaster.heat.weapon_redline,heat/shot 8 cooling/s 40 max 100 delay 0.5 lockout 1
 boss.hp.boss_aegis_core,1050,BossDefinition.BaseHealth
 boss.hp.boss_scrap_king,1000,BossDefinition.BaseHealth
 boss.hp.boss_subject_omega,1250,BossDefinition.BaseHealth
+boss.hp.boss_subject_zero,1250,BossDefinition.BaseHealth
 boss.hp.boss_the_conductor,1050,BossDefinition.BaseHealth
 boss.hp.boss_the_foundry_titan,1350,BossDefinition.BaseHealth
+boss.hp.boss_the_warden,1150,BossDefinition.BaseHealth
 boss.hp.boss_tunnel_maw,1150,BossDefinition.BaseHealth
 elite.hp.elite_crusher_unit,475,EliteDefinition.BaseHealth
+elite.hp.elite_cryo_enforcer,500,EliteDefinition.BaseHealth
 elite.hp.elite_mutated_brute,525,EliteDefinition.BaseHealth
 elite.hp.elite_prototype_x7,375,EliteDefinition.BaseHealth
 elite.hp.elite_railguard,450,EliteDefinition.BaseHealth
 elite.hp.elite_scrap_executioner,500,EliteDefinition.BaseHealth
 elite.hp.elite_tunnel_stalker,350,EliteDefinition.BaseHealth
+elite.hp.elite_vault_stalker,375,EliteDefinition.BaseHealth
 enemy.hp.bomber,40,EnemyDefinition.BaseHealth
 enemy.hp.brute,90,EnemyDefinition.BaseHealth
 enemy.hp.charger,45,EnemyDefinition.BaseHealth
@@ -83,8 +87,8 @@ reward.D40,coin x1.2214 xp x1.2214,EconomyConfig reward multipliers (D100000 = t
 reward.D100,coin x1.5857 xp x1.5857,EconomyConfig reward multipliers (D100000 = the cap)
 reward.D100000,coin x1.75 xp x1.75,EconomyConfig reward multipliers (D100000 = the cap)
 elite.frequency,D1:8%x1 D3:18%x1 D5:18%x1 D6:25%x1 D10:25%x1 D11:25%x2 D20:25%x2 D21:25%x2 D30:25%x2 D50:25%x2,DungeonGraphRules.CreateDefault() (the runtime rules)
-rooms.depth_gated,"9 (D5:3, D10:3, D20:3)",RoomDefinition.MinDepth
-biome.weights,OvergrownLabs:bomber=15 OvergrownLabs:shield_enemy=5 OvergrownLabs:summoner=20 OvergrownLabs:swarm=20 RuinedMetro:brute=15 RuinedMetro:charger=20 RuinedMetro:sniper_enemy=5 RuinedMetro:swarm=20 Rustworks:bomber=15 Rustworks:brute=20 Rustworks:shield_enemy=20 Rustworks:swarm=5 default=10,BiomeEncounterWeights.Authored
+rooms.depth_gated,"12 (D5:4, D10:4, D20:4)",RoomDefinition.MinDepth
+biome.weights,CryoVaults:shield_enemy=20 CryoVaults:shooter=15 CryoVaults:sniper_enemy=15 CryoVaults:swarm=5 OvergrownLabs:bomber=15 OvergrownLabs:shield_enemy=5 OvergrownLabs:summoner=20 OvergrownLabs:swarm=20 RuinedMetro:brute=15 RuinedMetro:charger=20 RuinedMetro:sniper_enemy=5 RuinedMetro:swarm=20 Rustworks:bomber=15 Rustworks:brute=20 Rustworks:shield_enemy=20 Rustworks:swarm=5 default=10,BiomeEncounterWeights.Authored
 progression.max_level,61,LevelCurve.MaxLevel
 progression.attribute_cap,10,SkillRules.MaxRank
 inventory.backpack_size,8,PlayerInventory.BackpackCapacity
@@ -94,8 +98,8 @@ pickup.attraction,base 1.25 max 2,PickupAttractor constants
 pickup.magnetic_coil_bonus,3,Magnetic Coil flat PickupAttractionRadius
 aim_assist,"mouse 18 controller 24 proximity 28px ppu 32 classes Pistol:1,Smg:1,AssaultRifle:1,BattleRifle:1,Shotgun:1,Sniper:0.75,Bow:1,RocketLauncher:0.65,Blaster:1,Knife:0,Spear:0",AimAssistConfig
 count.audio_events,53,AudioEventCatalog
-count.rooms,63,catalog rooms
+count.rooms,84,catalog rooms
 count.items,72,catalog items
 count.weapons,33,catalog weapons
-count.enemies_elites_bosses,9/6/6,catalog enemies/elites/bosses
+count.enemies_elites_bosses,9/8/8,catalog enemies/elites/bosses
 save.version,2,SaveSlot.CurrentVersion

@@ -23,7 +23,7 @@ namespace RuinRail.Presentation.World
     /// The dark environmental underlay the dungeon sits in.
     ///
     /// Without it a depth is a handful of lit rooms floating in the camera's solid black clear colour: at the 640x360
-    /// reference the viewport is 20 x 11.25 tiles and 40 of the 63 shipping rooms are 16 x 12, so a small room always
+    /// reference the viewport is 20 x 11.25 tiles and most shipping rooms are 16 x 12, so a small room always
     /// leaves four tiles of raw void on screen, and the gaps between placed rooms are void at every size.
     ///
     /// This is presentation only, and deliberately so:
@@ -57,7 +57,7 @@ namespace RuinRail.Presentation.World
         /// <summary>Authored substrate art, registered by the composition root. Null (the default) uses <see cref="Generate"/>.</summary>
         public static Func<Biome, SubstrateSkin> SkinResolver { get; set; }
 
-        private static readonly Sprite[] GeneratedTiles = new Sprite[3];
+        private static readonly Sprite[] GeneratedTiles = new Sprite[System.Enum.GetValues(typeof(Biome)).Length];
 
         private SpriteRenderer _renderer;
 
@@ -120,6 +120,8 @@ namespace RuinRail.Presentation.World
             Biome.RuinedMetro => (Hex("#1D2124"), Hex("#161A1D"), Hex("#242A2D")),
             // Industrial pit: soot and dead machinery below the works.
             Biome.Rustworks => (Hex("#1F1A17"), Hex("#171310"), Hex("#27201B")),
+            // Cold-storage undercroft: dark steel with a faint ice-blue cast.
+            Biome.CryoVaults => (Hex("#141A20"), Hex("#0E1318"), Hex("#1B232B")),
             // Service underlayer: structural deck with organic shadow.
             _ => (Hex("#141C1B"), Hex("#0F1615"), Hex("#1B2422"))
         };
@@ -167,6 +169,10 @@ namespace RuinRail.Presentation.World
                     case Biome.Rustworks:
                         if (x % 32 == 0 || y % 32 == 0) c = dark;          // plate seams
                         else if ((x / 8 + y / 8) % 5 == 0) c = light;      // soot-worn plate
+                        break;
+                    case Biome.CryoVaults:
+                        if (y % 32 == 0 || (x % 32 == 0 && y % 8 < 4)) c = dark; // insulated deck seams
+                        else if (x % 16 == 8 && y % 16 < 2) c = light;      // frosted rivet line
                         break;
                     default:
                         if (x % 16 == 0 && y % 4 != 0) c = dark;           // deck ribs

@@ -121,20 +121,31 @@ namespace RuinRail.Tests
         /// deterministic logic (biome draw, graph, room pool, event-kind pick) — so it follows the generator instead of
         /// pinning a seed whose layout a generation rule may change.
         /// </summary>
-        private static int SeedWithBrokenMachineAndCursedChestOnDepthOne(IReadOnlyList<RoomDefinition> rooms)
+        /// <summary>
+        /// A run seed whose depth 1 holds a Broken Machine and whose depth 2 (the biome the expedition picks next) holds a
+        /// Cursed Chest, found with the shipping generator and event resolution. Depth 1 offers one Event room per biome
+        /// (the second is depth-gated), so both events can no longer share depth 1; the proof meets the Cursed Chest on the
+        /// depth it descends to anyway.
+        /// </summary>
+        private static int SeedWithBrokenMachineThenCursedChest(IReadOnlyList<RoomDefinition> rooms)
         {
             var pools = BiomeRoomPools.Build(rooms);
             var rules = DungeonGraphRules.CreateDefault();
             var generator = new DungeonGraphGenerator(rules);
+            bool Places(RoomPool pool, int seed, int depth, DungeonEventKind kind)
+            {
+                var generation = DungeonGenerationPipeline.Generate(generator, pool, seed, depth);
+                return generation.Success && generation.Layout.Placements.Any(p => p.Definition.RoomType == RoomType.Event
+                    && RoomCategoryComposer.ResolveEventKind(p.Definition.Tags, seed, depth, p.NodeId) == kind);
+            }
+
             try
             {
-                for (var seed = 1; seed <= 400; seed++)
+                for (var seed = 1; seed <= 2000; seed++)
                 {
-                    var generation = DungeonGenerationPipeline.Generate(generator, pools.PoolFor(BiomeSelector.SelectFirst(seed)), seed, 1);
-                    if (!generation.Success) continue;
-                    var kinds = generation.Layout.Placements.Where(p => p.Definition.RoomType == RoomType.Event)
-                        .Select(p => RoomCategoryComposer.ResolveEventKind(p.Definition.Tags, seed, 1, p.NodeId)).ToList();
-                    if (kinds.Contains(DungeonEventKind.BrokenMachine) && kinds.Contains(DungeonEventKind.CursedChest)) return seed;
+                    var first = BiomeSelector.SelectFirst(seed);
+                    if (!Places(pools.PoolFor(first), seed, 1, DungeonEventKind.BrokenMachine)) continue;
+                    if (Places(pools.PoolFor(BiomeSelector.SelectNext(first, seed, 2)), seed, 2, DungeonEventKind.CursedChest)) return seed;
                 }
             }
             finally
@@ -142,14 +153,14 @@ namespace RuinRail.Tests
                 Object.DestroyImmediate(rules);
             }
 
-            Assert.Fail("no seed in 1..400 places a Broken Machine and a Cursed Chest on depth 1");
+            Assert.Fail("no seed in 1..2000 places a Broken Machine on depth 1 and a Cursed Chest on depth 2");
             return 0;
         }
 
         [UnityTest]
         public IEnumerator LiveRun_DepthHeal_Descriptions_SettingsPages_EnemyCount_BrokenMachine_AndNonCombatRooms()
         {
-            var seed = SeedWithBrokenMachineAndCursedChestOnDepthOne(GameContentCatalog.Load().Rooms);
+            var seed = SeedWithBrokenMachineThenCursedChest(GameContentCatalog.Load().Rooms);
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
             _app.SetRunSeedOverride(seed);
             SceneManager.LoadScene(SceneNames.MainMenu);
@@ -233,7 +244,6 @@ namespace RuinRail.Tests
             var kinds = run.Rooms.Values.Select(r => r.GetComponent<RoomContentBinding>()).Where(b => b != null && b.EventInstance != null).Select(b => b.EventInstance.Kind).ToList();
             Note($"  event rooms: {string.Join(", ", kinds)}; special rooms: {string.Join(", ", run.Rooms.Values.Where(r => r.State.RoomType != RoomType.Combat).Select(r => r.State.RoomType + ":" + r.State.RoomId))}");
             CollectionAssert.Contains(kinds, DungeonEventKind.BrokenMachine, $"seed {seed} places a Broken Machine on depth 1");
-            CollectionAssert.Contains(kinds, DungeonEventKind.CursedChest, $"seed {seed} places a Cursed Chest on depth 1");
 
             // ---------------------------------------------------------------- 3-6. item descriptions in the inventory ----
             var scope = new ItemInstance("accessory_field_scope", 1, Rarity.Uncommon);
@@ -291,6 +301,33 @@ namespace RuinRail.Tests
             Assert.AreEqual(RoomLifecycleState.Cleared, combat.Lifecycle);
             Assert.IsFalse(hud.EnemyCountVisible, "cleared room: chip gone");
 
+            // The Cursed Chest: opened by E, its wave behind locked doors (no standard-encounter chip), cleared, its reward landed.
+            IEnumerator CursedChest(RoomRuntime room, RoomContentBinding binding, CursedChestEvent cursed)
+            {
+                Put((Vector2)binding.Event.transform.position + Vector2.down * 1.0f);
+                yield return Settle(); yield return null;
+                Assert.AreEqual("[E] OPEN CURSED CHEST", run.CurrentInteractionPrompt);
+                Assert.IsTrue(interactor.TryInteract());
+                yield return null; yield return null;
+                Assert.IsTrue(room.DoorsLocked && cursed.Phase == DungeonEventPhase.InProgress, "the cursed wave runs behind locked doors");
+                var wave = Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Where(e => e != null && e.IsAlive && room.InteriorWorldBounds.Contains(e.transform.position)).ToList();
+                Note($"  cursed chest ({room.State.RoomId}): wave {wave.Count} enemies, doors locked, notice '{run.LastNotice}', chip visible {hud.EnemyCountVisible}");
+                Assert.IsFalse(hud.EnemyCountVisible, "an event wave never shows the standard-encounter chip");
+                LiveDungeonCapture.Capture(Folder, "live_17_cursed_chest_wave", camera, ppu, includeUi: true);
+                var pickups = Object.FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).Length;
+                for (var guard = 0; guard < 80 && cursed.Phase == DungeonEventPhase.InProgress; guard++)
+                {
+                    foreach (var e in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) if (e != null && e.IsAlive && room.InteriorWorldBounds.Contains(e.transform.position)) e.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(999999));
+                    yield return null;
+                }
+
+                Assert.AreEqual(DungeonEventPhase.Completed, cursed.Phase);
+                Assert.IsFalse(room.DoorsLocked);
+                Assert.Greater(Object.FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).Length + Object.FindObjectsByType<CoinPickup>(FindObjectsSortMode.None).Length, pickups, "the cursed reward landed");
+                Note($"  cursed chest cleared: notice '{run.LastNotice}', doors open");
+                LiveDungeonCapture.Capture(Folder, "live_17_cursed_chest_cleared_loot", camera, ppu, includeUi: true);
+            }
+
             // ---------------------------------------------------------------- 15-17. the non-combat rooms of the depth ----
             var brokenRoom = run.Rooms.Values.First(r => r.GetComponent<RoomContentBinding>()?.EventInstance is BrokenMachineEvent);
             var brokenBinding = brokenRoom.GetComponent<RoomContentBinding>();
@@ -342,28 +379,7 @@ namespace RuinRail.Tests
                 yield return Settle();
                 if (binding.EventInstance is CursedChestEvent cursed)
                 {
-                    Put((Vector2)binding.Event.transform.position + Vector2.down * 1.0f);
-                    yield return Settle(); yield return null;
-                    Assert.AreEqual("[E] OPEN CURSED CHEST", run.CurrentInteractionPrompt);
-                    Assert.IsTrue(interactor.TryInteract());
-                    yield return null; yield return null;
-                    Assert.IsTrue(room.DoorsLocked && cursed.Phase == DungeonEventPhase.InProgress, "the cursed wave runs behind locked doors");
-                    var wave = Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None).Where(e => e != null && e.IsAlive && room.InteriorWorldBounds.Contains(e.transform.position)).ToList();
-                    Note($"  cursed chest ({room.State.RoomId}): wave {wave.Count} enemies, doors locked, notice '{run.LastNotice}', chip visible {hud.EnemyCountVisible}");
-                    Assert.IsFalse(hud.EnemyCountVisible, "an event wave never shows the standard-encounter chip");
-                    LiveDungeonCapture.Capture(Folder, "live_17_cursed_chest_wave", camera, ppu, includeUi: true);
-                    var pickups = Object.FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).Length;
-                    for (var guard = 0; guard < 80 && cursed.Phase == DungeonEventPhase.InProgress; guard++)
-                    {
-                        foreach (var e in Object.FindObjectsByType<EnemyController>(FindObjectsSortMode.None)) if (e != null && e.IsAlive && room.InteriorWorldBounds.Contains(e.transform.position)) e.GetComponent<HealthComponent>().TryApplyDamage(new DamageRequest(999999));
-                        yield return null;
-                    }
-
-                    Assert.AreEqual(DungeonEventPhase.Completed, cursed.Phase);
-                    Assert.IsFalse(room.DoorsLocked);
-                    Assert.Greater(Object.FindObjectsByType<WorldItemPickup>(FindObjectsSortMode.None).Length + Object.FindObjectsByType<CoinPickup>(FindObjectsSortMode.None).Length, pickups, "the cursed reward landed");
-                    Note($"  cursed chest cleared: notice '{run.LastNotice}', doors open");
-                    LiveDungeonCapture.Capture(Folder, "live_17_cursed_chest_cleared_loot", camera, ppu, includeUi: true);
+                    yield return CursedChest(room, binding, cursed);
                 }
                 else if (binding.Chests.Count > 0)
                 {
@@ -392,12 +408,10 @@ namespace RuinRail.Tests
             yield return null; yield return null;
             Assert.IsNotNull(run.Expedition.Transit);
             Assert.AreEqual(TransitDecisionState.Open, run.Expedition.Transit.State);
-            Put((Vector2)bossBinding.Transit.transform.position + Vector2.down * 1.0f);
-            yield return Settle(); yield return null;
-            Assert.AreEqual("[E] BOARD TRANSIT", run.CurrentInteractionPrompt);
-            Assert.IsTrue(interactor.TryInteract() && bossBinding.Transit.IsBoarded);
-            yield return null;
-            StringAssert.StartsWith("TRANSIT BOARDED", run.LastNotice);
+            // No in-world transit: the post-boss decision panel is up, and nothing in the arena offers boarding.
+            Assert.IsNull(bossBinding.Transit.GetComponent<Collider2D>());
+            Assert.IsFalse(run.CurrentInteractionPrompt.Contains("TRANSIT"));
+            Assert.IsNotNull(run.TransitDecisionView, "the post-boss Return / Descend panel is up");
 
             // ---------------------------------------------------------------- 1-2. the depth heal, exactly once ----
             var effectiveMax = run.Rig.StatsBinder.Stats.MaxHealth;
@@ -408,7 +422,7 @@ namespace RuinRail.Tests
             health.SetInvulnerabilityState(new Guard()); // from here on nothing may change HP except the one heal under test
             var healsBefore = 0;
             health.Healed += _ => healsBefore++;
-            Note($"end of depth 1: HP {damaged}/{health.MaxHealth} (effective max {effectiveMax}); transit open, boarded");
+            Note($"end of depth 1: HP {damaged}/{health.MaxHealth} (effective max {effectiveMax}); transit decision open");
             LiveDungeonCapture.Capture(Folder, "live_01_damaged_end_of_depth", camera, ppu, includeUi: true);
             // Not a heal: the pause menu, an equipment change, revisiting rooms, the open transit vote.
             run.Pause.Open(); yield return null; run.Pause.Close(); yield return null;
@@ -448,6 +462,16 @@ namespace RuinRail.Tests
             Put(RoomCentre(another)); yield return Settle();
             Put(RoomCentre(start2)); yield return Settle();
             Assert.AreEqual(hurt, health.CurrentHealth, "room transitions on the new depth do not heal");
+
+            // ---------------------------------------------------------------- 17. the Cursed Chest (depth 2) ----
+            var cursedRoom = run.Rooms.Values.FirstOrDefault(r => r.GetComponent<RoomContentBinding>()?.EventInstance is CursedChestEvent);
+            Assert.IsNotNull(cursedRoom, $"seed {seed} places a Cursed Chest on depth 2");
+            var cursedBinding = cursedRoom.GetComponent<RoomContentBinding>();
+            Assert.IsEmpty(cursedBinding.Skipped, cursedRoom.State.RoomId + " composed with skips");
+            Put(RoomCentre(cursedRoom));
+            yield return Settle();
+            yield return CursedChest(cursedRoom, cursedBinding, (CursedChestEvent)cursedBinding.EventInstance);
+            Assert.AreEqual(hurt, health.CurrentHealth, "the cursed wave did not change HP (the player is guarded here)");
             var boss2 = run.Rooms.Values.First(r => r.State.RoomType == RoomType.Boss);
             Put(RoomCentre(boss2)); yield return Settle();
             boss2.GetComponent<RoomContentBinding>().Boss.Boss.Health.TryApplyDamage(new DamageRequest(9999999));

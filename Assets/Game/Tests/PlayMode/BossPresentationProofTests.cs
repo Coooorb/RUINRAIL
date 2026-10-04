@@ -34,13 +34,46 @@ namespace RuinRail.Tests
         private GameApp _app;
         private string _saveDir;
 
-        /// <summary>Run seeds whose depth-1 boss room holds each shipped boss.</summary>
-        public static readonly (string Boss, int Seed)[] Bosses =
+        /// <summary>Every shipped boss (two per biome).</summary>
+        public static readonly string[] Bosses =
         {
-            ("boss_tunnel_maw", 2), ("boss_the_conductor", 14),
-            ("boss_scrap_king", 13), ("boss_the_foundry_titan", 7),
-            ("boss_subject_omega", 3), ("boss_aegis_core", 1)
+            "boss_tunnel_maw", "boss_the_conductor", "boss_scrap_king", "boss_the_foundry_titan",
+            "boss_subject_omega", "boss_aegis_core", "boss_the_warden", "boss_subject_zero"
         };
+
+        /// <summary>
+        /// The first run seed whose depth-1 boss room composes <paramref name="bossId"/>, found with the shipped generator
+        /// and boss selection (pinned seeds silently went stale when the roster grew).
+        /// </summary>
+        internal static int SeedFor(string bossId)
+        {
+            var catalog = GameContentCatalog.Load();
+            var pools = RuinRail.Dungeon.Generation.BiomeRoomPools.Build(catalog.Rooms);
+            var rules = RuinRail.Dungeon.Generation.DungeonGraphRules.CreateDefault();
+            var generator = new RuinRail.Dungeon.Generation.DungeonGraphGenerator(rules);
+            var boss = catalog.Bosses.First(b => b.Id == bossId);
+            try
+            {
+                for (var seed = 1; seed <= 1500; seed++)
+                {
+                    var biome = RuinRail.Gameplay.Expedition.BiomeSelector.SelectFirst(seed);
+                    if (biome != boss.Biome) continue;
+                    var generation = RuinRail.Dungeon.Generation.DungeonGenerationPipeline.Generate(generator, pools.PoolFor(biome), seed, 1);
+                    if (!generation.Success) continue;
+                    var placement = generation.Layout.Placements.FirstOrDefault(p => p.Definition.RoomType == RoomType.Boss);
+                    if (placement == null) continue;
+                    var request = new BossSpawnRequest(placement.Definition.Biome, placement.Definition.Tags, seed, 1, placement.NodeId, Vector2.zero, null);
+                    if (BossSelection.Select(catalog.Bosses, request)?.Id == bossId) return seed;
+                }
+            }
+            finally
+            {
+                Object.DestroyImmediate(rules);
+            }
+
+            Assert.Fail($"no seed in 1..1500 composes {bossId} at depth 1");
+            return 0;
+        }
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -115,7 +148,7 @@ namespace RuinRail.Tests
         [UnityTest]
         public IEnumerator EveryBoss_EntersWithAnIntro_TelegraphsEveryAttack_AndAnimatesWhileMoving([ValueSource(nameof(BossIds))] string bossId)
         {
-            var seed = Bosses.First(b => b.Boss == bossId).Seed;
+            var seed = SeedFor(bossId);
             yield return EnterRun(seed);
             var run = Object.FindFirstObjectByType<ExpeditionScene>();
             var boss = Object.FindFirstObjectByType<BossController>();
@@ -139,9 +172,11 @@ namespace RuinRail.Tests
             var hpAtEntry = playerHealth.CurrentHealth;
             var firstTelegraphAt = -1f;
             boss.AttackTelegraphStarted += (_, _) => { if (firstTelegraphAt < 0f) firstTelegraphAt = Time.time; };
-            foreach (var at in new[] { 0.15f, 0.8f, 1.6f })
+            var revealSeen = false;
+            foreach (var at in new[] { 0.15f, 0.62f, 0.8f, 1.6f })
             {
                 while (Time.time < enteredAt + at) yield return null;
+                revealSeen |= BossIntroSequence.Current != null && BossIntroSequence.Current.Revealed;
                 LiveDungeonCapture.Capture(Folder, $"{bossId}_entry_{at:0.00}s", camera, ppu, includeUi: true);
             }
 
@@ -149,6 +184,8 @@ namespace RuinRail.Tests
             var intro = BossIntroSequence.Current;
             Assert.IsNotNull(intro, "no boss introduction started on entry");
             StringAssert.AreEqualIgnoringCase(boss.Definition.DisplayName, intro.Title);
+            Assert.IsTrue(revealSeen, "the reveal beat played (flare, shockwave, arena reaction) while the camera arrived");
+            Assert.IsNotEmpty(intro.Identity, "every shipped boss carries its own approved identity line");
             var introDeadline = Time.time + 4f;
             while (intro != null && intro.IsPlaying && Time.time < introDeadline)
             {
@@ -264,6 +301,6 @@ namespace RuinRail.Tests
             Assert.IsNull(run.Camera.FocusOverride);
         }
 
-        public static IEnumerable<string> BossIds() => Bosses.Select(b => b.Boss);
+        public static IEnumerable<string> BossIds() => Bosses;
     }
 }

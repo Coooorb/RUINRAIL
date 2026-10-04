@@ -37,7 +37,7 @@ namespace RuinRail.Tests.EditMode
                 Assert.IsTrue(rows.Any(r => r.Key.StartsWith(prefix)), "snapshot family missing: " + prefix);
             Assert.AreEqual(33 + 1, rows.Count(r => r.Key.StartsWith("weapon.")), "33 weapon fingerprints plus the Field Knife row");
             Assert.AreEqual(3, rows.Count(r => r.Key.StartsWith("blaster.heat.")));
-            Assert.AreEqual(6, rows.Count(r => r.Key.StartsWith("boss.hp.")));
+            Assert.AreEqual(8, rows.Count(r => r.Key.StartsWith("boss.hp.")));
             var parsed = FinalReleaseSnapshot.ParseCsv(FinalReleaseSnapshot.ToCsv(rows));
             Assert.AreEqual(rows.Count, parsed.Count);
             foreach (var row in rows) Assert.AreEqual(row.Value, parsed[row.Key], row.Key);

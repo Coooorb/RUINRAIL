@@ -26,7 +26,7 @@ namespace RuinRail.Tests
         public const string ProofFolder = "TestResults/LootAmmoAudioProof";
         private const int SeedsPerBiome = 100;
 
-        private static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs };
+        private static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults };
         private readonly List<Object> _created = new();
 
         [SetUp]
@@ -102,7 +102,7 @@ namespace RuinRail.Tests
         {
             var catalog = GameContentCatalog.Load();
             var combatRooms = catalog.Rooms.Where(r => r.RoomType == RoomType.Combat).ToList();
-            Assert.AreEqual(33, combatRooms.Count, "11 combat rooms per biome");
+            Assert.AreEqual(11 * Biomes.Length, combatRooms.Count, "11 combat rooms per biome");
             foreach (var definition in combatRooms)
             {
                 var instance = Object.Instantiate(definition.Prefab);
@@ -316,7 +316,7 @@ namespace RuinRail.Tests
 
             var okShare = after.Count(r => !r.MajorityAtZero) / (float)after.Count;
             var medianEnd = Median(after.Select(r => r.ReserveAtEnd).ToList());
-            Assert.AreEqual(300, after.Count);
+            Assert.AreEqual(SeedsPerBiome * Biomes.Length, after.Count);
             Assert.GreaterOrEqual(okShare, 0.85f, "at least 85 % of representative runs do not spend the majority of the depth at zero primary reserve");
             Assert.Less(medianEnd, catalog.AmmoBalance.GetStackLimit(AmmoType.Light) * 0.75f, "the median end-of-depth reserve stays meaningfully below the hard cap: ammo remains scarce");
             Assert.Greater(after.Count(r => r.RoomsEndedDry > 0), 0, "poor accuracy / overuse can still run a room dry — scarcity is preserved");

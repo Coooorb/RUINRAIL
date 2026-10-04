@@ -71,7 +71,13 @@ namespace RuinRail.Dungeon.Runtime
             var target = _pendingTarget;
             _pendingTarget = null;
             if (_encounter.Boss != null && _encounter.Boss.IsAlive && target != null) _encounter.Boss.SetTarget(target);
+            // The room introduction ends in the same call: the boss never has a target while the introduction still
+            // holds the screen (the hold's clock and the introduction's frame clock could drift by a frame).
+            IntroEnded?.Invoke(this);
         }
+
+        /// <summary>Raised once when the hold ends (expired or skipped), right after the boss acquired its target.</summary>
+        public event Action<BossEngagement> IntroEnded;
 
         private void OnDefeated(BossEncounter encounter, int xp) => Raise();
 

@@ -74,7 +74,7 @@ namespace RuinRail.Tests
 
             var picks = Enumerable.Range(0, 30).Select(i => BossSelection.Select(rust, new BossSpawnRequest(Biome.Rustworks, null, 42, 2, i, Vector2.zero, null)).Id).Distinct().ToList();
             Assert.AreEqual(2, picks.Count, "Both bosses are reachable by seed in untagged arenas.");
-            Assert.AreEqual(6, Roster().Length, "126: six Bosses across the three biomes.");
+            Assert.AreEqual(8, Roster().Length, "126: eight Bosses across the four biomes.");
         }
     }
 }

@@ -30,12 +30,12 @@ namespace RuinRail.Tests.EditMode
             // Each actor contributes two roles: a source sheet and an animation set.
             Assert.AreEqual(2, reports[153].Roles.Count, "One player actor.");
             Assert.AreEqual(9 * 2, reports[154].Roles.Count, "Nine normal enemy archetypes.");
-            Assert.AreEqual(6 * 2, reports[155].Roles.Count, "Six Elites.");
-            Assert.AreEqual(6 * 2, reports[156].Roles.Count, "Six Bosses.");
+            Assert.AreEqual(8 * 2, reports[155].Roles.Count, "Eight Elites.");
+            Assert.AreEqual(8 * 2, reports[156].Roles.Count, "Eight Bosses.");
 
             var actorRoles = reports[153].Roles.Concat(reports[154].Roles).Concat(reports[155].Roles).Concat(reports[156].Roles)
                 .Select(Key).ToList();
-            Assert.AreEqual(22 * 2, actorRoles.Count, "22 animation sets in total.");
+            Assert.AreEqual(26 * 2, actorRoles.Count, "26 animation sets in total.");
             Assert.AreEqual(actorRoles.Count, actorRoles.Distinct().Count(), "No actor may be claimed by two batches.");
         }
 
@@ -47,7 +47,7 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(33, reports[157].Roles.Count, "33 weapons.");
             Assert.AreEqual(72, reports[158].Roles.Count, "72 item-family icons.");
 
-            foreach (var task in new[] { 159, 160, 161 })
+            foreach (var task in new[] { 159, 160, 161, 168 })
             {
                 Assert.AreEqual(5 + 6 + 1, reports[task].Roles.Count,
                     $"TASK {task}: five tile categories, six prop packages and one lighting profile for its biome.");
@@ -111,7 +111,7 @@ namespace RuinRail.Tests.EditMode
         {
             var reports = ArtBatchGate.WriteAllReports();
 
-            Assert.AreEqual(12, reports.Count, "TASK 153 through 164.");
+            Assert.AreEqual(13, reports.Count, "TASK 153 through 164 plus the Cryo Vaults tileset batch.");
             foreach (var report in reports)
             {
                 Assert.IsTrue(File.Exists(report.Batch.ReportPath), $"{report.Batch.ReportPath} was not written.");

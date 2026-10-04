@@ -66,7 +66,7 @@ namespace RuinRail.Tests
         }
 
         [UnityTest]
-        public IEnumerator LiveRun_DungeonAudio_NeverStacksAmbienceMusicOrLoops_AcrossRoomsCombatAndDepths([Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+        public IEnumerator LiveRun_DungeonAudio_NeverStacksAmbienceMusicOrLoops_AcrossRoomsCombatAndDepths([Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             var log = new StringBuilder();
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);

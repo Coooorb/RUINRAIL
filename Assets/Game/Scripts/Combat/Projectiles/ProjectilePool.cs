@@ -5,6 +5,9 @@ namespace RuinRail.Gameplay.Combat.Projectiles
 {
     public sealed class ProjectilePool : MonoBehaviour
     {
+        /// <summary>Collision radius of a pooled projectile built without a prefab (every hostile shot); danger lanes are drawn from it.</summary>
+        public const float DefaultColliderRadius = 0.15f;
+
         [SerializeField] private Projectile _projectilePrefab;
         [SerializeField] private int _initialSize = 8;
 
@@ -63,7 +66,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 instanceObject.transform.SetParent(transform, false);
                 var collider = instanceObject.AddComponent<CircleCollider2D>();
                 collider.isTrigger = true;
-                collider.radius = 0.15f;
+                collider.radius = DefaultColliderRadius;
                 instance = instanceObject.AddComponent<Projectile>();
             }
 

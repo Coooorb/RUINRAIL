@@ -71,6 +71,22 @@ namespace RuinRail.UI.Hud
 
         public event Action Changed;
 
+        /// <summary>
+        /// Presentation only: the local player inside the current room (0..1 across its interior, y up) and the way
+        /// they face. The minimap's marker follows it every frame without re-rendering the map; it never changes
+        /// discovery.
+        /// </summary>
+        public Vector2 PlayerInRoom { get; private set; } = new(0.5f, 0.5f);
+        public Vector2 PlayerFacing { get; private set; } = Vector2.right;
+        public bool HasPlayer { get; private set; }
+
+        public void SetPlayer(Vector2 inRoom01, Vector2 facing)
+        {
+            PlayerInRoom = new Vector2(Mathf.Clamp01(inRoom01.x), Mathf.Clamp01(inRoom01.y));
+            if (facing.sqrMagnitude > 0.0001f) PlayerFacing = facing.normalized;
+            HasPlayer = true;
+        }
+
         public IEnumerable<MinimapRoom> DiscoveredRooms => _rooms.Where(r => r.Discovered);
         public IEnumerable<MinimapRoom> VisitedRooms => _rooms.Where(r => r.Visited);
         public MinimapRoom Room(int nodeId) => _byId.TryGetValue(nodeId, out var room) ? room : null;

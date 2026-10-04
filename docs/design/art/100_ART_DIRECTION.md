@@ -14,3 +14,4 @@ Gameplay readability beats realism. Enemies, projectiles, loot, hazards, and tel
 - Ruined Metro: concrete, tile, rail infrastructure, cables, emergency lighting.
 - Rustworks: rust, machinery, pipes, furnaces, scrap, warning markings.
 - Overgrown Labs: damaged clean-tech, glass, terminals, bio equipment, plant/organic overgrowth.
+- Cryo Vaults: underground cold storage — dark steel, ice blue, pale cyan, white frost, refrigeration machinery, frozen pipes, cryo containers; sparse amber/red emergency light. Not snow.

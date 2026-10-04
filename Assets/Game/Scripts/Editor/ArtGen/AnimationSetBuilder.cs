@@ -12,7 +12,7 @@ namespace RuinRail.EditorTools.ArtGen
     /// Builds a <see cref="CharacterAnimationSet"/> per character family from its sliced sheet.
     ///
     /// The runtime resolves clips by (ActorId, clip key, facing), so this is the seam that turns 22 sheets into the
-    /// 1,056 clip roles the manifest tracks — without the animation architecture changing at all. Sheet layout is
+    /// 1,248 clip roles the manifest tracks — without the animation architecture changing at all. Sheet layout is
     /// deterministic: one row per facing in BodyFacing8 order, states left to right in VisualState order, frames in
     /// sequence, so a sprite's grid position uniquely identifies its clip.
     ///
@@ -83,7 +83,7 @@ namespace RuinRail.EditorTools.ArtGen
         [MenuItem("RuinRail/Art/Build Character Animation Sets")]
         public static void BuildAllMenu() => Debug.Log($"Built {BuildAll()} character animation sets.");
 
-        public static int BuildAll()
+        public static int BuildAll(IReadOnlyCollection<string> onlyIds = null)
         {
             var built = 0;
             var facings = (Facing8[])Enum.GetValues(typeof(Facing8));
@@ -91,6 +91,7 @@ namespace RuinRail.EditorTools.ArtGen
 
             foreach (var profile in CharacterCatalog.All())
             {
+                if (onlyIds != null && !onlyIds.Contains(profile.Id)) continue;
                 var sheetPath = $"{Folder}/{profile.Id}/{profile.Id}_sheet.png";
                 var sprites = AssetDatabase.LoadAllAssetsAtPath(sheetPath).OfType<Sprite>().ToList();
                 if (sprites.Count == 0)

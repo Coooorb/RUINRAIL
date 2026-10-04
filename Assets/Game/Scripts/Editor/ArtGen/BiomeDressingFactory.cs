@@ -87,6 +87,10 @@ namespace RuinRail.EditorTools.ArtGen
             TileFactory.Biome.Rustworks => new Palette(
                 RuinPalette.RampOf(RuinPalette.Hex("#57504A")), RuinPalette.RampOf(RuinPalette.Rust),
                 RuinPalette.DirtyYellow, RuinPalette.OxideOrange, RuinPalette.OutlineRustBlack, RuinPalette.BurntRustDark),
+            // Cold storage: dark insulated steel bodies, frost-pale metal, pale cyan accents, sparse amber emergency glow.
+            TileFactory.Biome.CryoVaults => new Palette(
+                RuinPalette.RampOf(RuinPalette.Hex("#4B565E")), RuinPalette.RampOf(RuinPalette.Hex("#8FA6B2")),
+                RuinPalette.Hex("#A9DDE8"), RuinPalette.AmberActive, RuinPalette.OutlineCharcoal, RuinPalette.Hex("#DCEFF4")),
             _ => new Palette(
                 RuinPalette.RampOf(RuinPalette.Hex("#9BA29C")), RuinPalette.RampOf(RuinPalette.PaleSteel),
                 RuinPalette.ElectricCyan, RuinPalette.TerminalGreen, RuinPalette.OutlineGreenBlack, RuinPalette.Olive)
@@ -339,6 +343,8 @@ namespace RuinRail.EditorTools.ArtGen
             TileFactory.Biome.RuinedMetro => (RuinPalette.Hex("#CCD8D0"), 1f),
             // Warm steel: heat sources are local props, so the ambient only leans warm.
             TileFactory.Biome.Rustworks => (RuinPalette.Hex("#D8CCC2"), 1f),
+            // Refrigerated vault air: a clear ice-blue lean, distinct from the Labs' grey-cyan and still above the floor.
+            TileFactory.Biome.CryoVaults => (RuinPalette.Hex("#C2D6E6"), 1f),
             // Cold pale cyan-grey laboratory light.
             _ => (RuinPalette.Hex("#C8D6D8"), 1f)
         };

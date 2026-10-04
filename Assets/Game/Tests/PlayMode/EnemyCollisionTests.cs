@@ -348,7 +348,7 @@ namespace RuinRail.Tests
         public IEnumerator ClosedDoor_IsAWall_OpenDoorway_IsARoute_InEveryBiome()
         {
             var index = 0;
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 var definition = _catalog.Rooms.First(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium);
                 var (runtime, root) = Room(definition, new Vector2(1000f + index++ * 80f, 1000f));
@@ -390,7 +390,7 @@ namespace RuinRail.Tests
             var index = 0;
             var checkedRooms = 0;
             var ids = new[] { "grunt", "charger", "shooter", "swarm", "brute" };
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             foreach (var size in new[] { RoomSizeClass.Small, RoomSizeClass.Medium, RoomSizeClass.Large })
             {
                 var definition = _catalog.Rooms.FirstOrDefault(r => r.Biome == biome && r.RoomType == RoomType.Combat && r.SizeClass == size);
@@ -451,7 +451,7 @@ namespace RuinRail.Tests
             var index = 0;
             var faces = 0;
             var pack = new[] { "grunt", "grunt", "swarm", "swarm", "brute", "charger" };
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 // The combat room with the most obstacle tiles (lockers, crates, tanks) in this biome.
                 var definition = _catalog.Rooms.Where(r => r.Biome == biome && r.RoomType == RoomType.Combat)
@@ -593,7 +593,7 @@ namespace RuinRail.Tests
         {
             var index = 0;
             var waves = 0;
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 var definition = _catalog.Rooms.Where(r => r.Biome == biome && r.RoomType == RoomType.Combat)
                     .OrderByDescending(r => ObstacleCells(r.Prefab.GetComponent<RoomRoot>()).Count).ThenBy(r => r.Id).First();

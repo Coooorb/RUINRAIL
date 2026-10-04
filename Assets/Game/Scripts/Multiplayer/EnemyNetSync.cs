@@ -46,6 +46,14 @@ namespace RuinRail.Networking
         public int AttackSlot;
         /// <summary>Elite/Boss only: the actor's state is a <see cref="MovesetActorState"/> rather than an <see cref="EnemyState"/>.</summary>
         public bool IsMoveset;
+        /// <summary>The committed length of the current telegraph (phase / attack-speed scaling applied), so a client's marker fills in step with the host's strike.</summary>
+        public float TelegraphSeconds;
+        /// <summary>A lob's real landing point (where its blast ring is) while it telegraphs or the bomb is in the air; zero otherwise.</summary>
+        public Vector2 Aim;
+        /// <summary>Normal shooters: shots actually fired so far, so a client flashes an impact only for a shot that left the barrel.</summary>
+        public int ShotsFired;
+        /// <summary>Normal enemies: the attack is still running (a charge under way, a move's windows to come), so a client ends the lane exactly when the host's attack ends.</summary>
+        public bool Resolving;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
@@ -60,6 +68,10 @@ namespace RuinRail.Networking
             serializer.SerializeValue(ref Time);
             serializer.SerializeValue(ref AttackSlot);
             serializer.SerializeValue(ref IsMoveset);
+            serializer.SerializeValue(ref TelegraphSeconds);
+            serializer.SerializeValue(ref Aim);
+            serializer.SerializeValue(ref ShotsFired);
+            serializer.SerializeValue(ref Resolving);
         }
     }
 
@@ -138,25 +150,64 @@ namespace RuinRail.Networking
                 Version = version,
                 Time = time,
                 AttackSlot = slot,
-                IsMoveset = true
+                IsMoveset = true,
+                TelegraphSeconds = actor.TelegraphDuration
             };
         }
 
-        /// <summary>Host snapshot of one actor for replication.</summary>
+        /// <summary>
+        /// Host snapshot of one actor for replication: while it telegraphs or its attack is still running the facing is
+        /// the attack's own locked direction (the charge lane, the aim line, the move's facing), a moveset enemy names the
+        /// move it is on, and a lob sends its real landing point, so a client draws the danger the host resolves.
+        /// </summary>
         public static EnemyNetState Capture(uint netId, EnemyController actor, uint version, double time)
         {
             var health = actor.GetComponent<HealthComponent>();
+            var facing = actor.Target != null ? ((Vector2)actor.Target.position - (Vector2)actor.transform.position).normalized : Vector2.right;
+            var engaged = actor.State == EnemyState.Telegraph || actor.Attack is IEnemyContinuousAttack { IsResolving: true };
+            var slot = 0;
+            var aim = Vector2.zero;
+            var shotsFired = 0;
+            switch (actor.Attack)
+            {
+                case EnemyChargeAttack charge when engaged:
+                    facing = charge.LockedDirection;
+                    break;
+                case EnemyProjectileAttack shot:
+                    if (engaged) facing = shot.AimIfFiredNow(actor.Target);
+                    shotsFired = shot.ShotsFired;
+                    break;
+                case EnemyMovesetAttack moveset:
+                {
+                    if (engaged) facing = moveset.LockedDirection;
+                    var move = moveset.Resolver != null && moveset.Resolver.IsRunning ? moveset.Resolver.Current : moveset.PendingAttack;
+                    var moves = moveset.Moveset;
+                    for (var i = 0; move != null && i < moves.Count; i++)
+                        if (moves[i] == move) { slot = i + 1; break; }
+                    break;
+                }
+                case EnemyLobAttack lob:
+                    if (lob.IsBombInFlight) aim = lob.LastGrenade.LandingPoint;
+                    else if (actor.State == EnemyState.Telegraph) aim = lob.PlannedLanding;
+                    break;
+            }
+
             return new EnemyNetState
             {
                 NetId = netId,
                 Position = actor.transform.position,
-                Facing = actor.Target != null ? ((Vector2)actor.Target.position - (Vector2)actor.transform.position).normalized : Vector2.right,
+                Facing = facing.sqrMagnitude > 0.0001f ? facing.normalized : Vector2.right,
                 State = (int)actor.State,
                 Health = health != null ? health.CurrentHealth : 0,
                 MaxHealth = health != null ? health.MaxHealth : 0,
                 IsAlive = actor.IsAlive,
                 Version = version,
-                Time = time
+                Time = time,
+                AttackSlot = slot,
+                TelegraphSeconds = actor.TelegraphDuration,
+                Aim = aim,
+                ShotsFired = shotsFired,
+                Resolving = actor.Attack is IEnemyContinuousAttack { IsResolving: true }
             };
         }
     }
@@ -194,7 +245,21 @@ namespace RuinRail.Networking
         public MovesetActorState MovesetState { get; private set; }
         public Vector2 Velocity { get; private set; }
         public EnemyDefinition EnemyDefinition { get; private set; }
-        public EnemyAttackDefinition CurrentAttack => AttackSlot > 0 && AttackSlot <= _moveset.Count ? _moveset[AttackSlot - 1] : null;
+        public EnemyAttackDefinition CurrentAttack
+        {
+            get
+            {
+                // Elites/Bosses index their moveset; a normal moveset enemy (Brute) indexes its definition's.
+                var moves = IsMoveset ? _moveset : EnemyDefinition != null ? (IReadOnlyList<EnemyAttackDefinition>)EnemyDefinition.Moveset : null;
+                return moves != null && AttackSlot > 0 && AttackSlot <= moves.Count ? moves[AttackSlot - 1] : null;
+            }
+        }
+
+        public float TelegraphSeconds { get; private set; }
+        public Vector2 AimPoint { get; private set; }
+        public bool HasAimPoint => AimPoint != Vector2.zero;
+        public int ShotsFired { get; private set; }
+        public bool IsResolving { get; private set; }
 
         public event Action<EnemyReplica> Died;
         public event Action<IReplicatedActorView> Struck;
@@ -255,6 +320,10 @@ namespace RuinRail.Networking
             }
 
             AttackSlot = state.AttackSlot;
+            TelegraphSeconds = state.TelegraphSeconds;
+            AimPoint = state.Aim;
+            ShotsFired = state.ShotsFired;
+            IsResolving = state.Resolving;
             if (state.Facing.sqrMagnitude > 0.0001f) Facing = state.Facing;
             var nowTelegraph = IsMoveset ? MovesetState == MovesetActorState.Telegraph : State == EnemyState.Telegraph;
             if (wasTelegraph && !nowTelegraph && state.IsAlive)

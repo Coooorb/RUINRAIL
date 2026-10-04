@@ -38,6 +38,29 @@ namespace RuinRail.Dungeon.Rooms
             ["metro_boss_01"] = "Terminus Hall",
             ["metro_boss_02"] = "Deep Terminus",
 
+            // ---- Cryo Vaults: an abandoned underground cold-storage and preservation facility ----
+            ["cryo_start_01"] = "Intake Lock",
+            ["cryo_start_02"] = "Decon Gate",
+            ["cryo_combat_small_01"] = "Coolant Junction",
+            ["cryo_combat_small_02"] = "Valve Closet",
+            ["cryo_combat_small_03"] = "Frost Corridor",
+            ["cryo_combat_small_04"] = "Rack Aisle",
+            ["cryo_combat_small_05"] = "Drain Sump",
+            ["cryo_combat_medium_01"] = "Cold Storage Hall",
+            ["cryo_combat_medium_02"] = "Compressor Bay",
+            ["cryo_combat_medium_03"] = "Sorting Floor",
+            ["cryo_combat_medium_04"] = "Condenser Walk",
+            ["cryo_combat_large_01"] = "Deep Freeze Hall",
+            ["cryo_combat_large_02"] = "Pod Array",
+            ["cryo_loot_01"] = "Sample Lockers",
+            ["cryo_treasure_01"] = "Sealed Cryo Vault",
+            ["cryo_merchant_01"] = "Quartermaster's Hatch",
+            ["cryo_medical_01"] = "Thaw Clinic",
+            ["cryo_event_01"] = "Monitoring Station",
+            ["cryo_event_02"] = "Pressure Control",
+            ["cryo_boss_01"] = "Warden's Core",
+            ["cryo_boss_02"] = "Containment Zero",
+
             // ---- Rustworks: a dead foundry ----
             ["rust_start_01"] = "Loading Dock",
             ["rust_start_02"] = "Slag Gate",
@@ -133,6 +156,7 @@ namespace RuinRail.Dungeon.Rooms
             Biome.RuinedMetro => "RUINED METRO",
             Biome.Rustworks => "RUSTWORKS",
             Biome.OvergrownLabs => "OVERGROWN LABS",
+            Biome.CryoVaults => "CRYO VAULTS",
             _ => biome.ToString().ToUpperInvariant()
         };
     }

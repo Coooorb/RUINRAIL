@@ -118,7 +118,8 @@ namespace RuinRail.Tests
             }
 
             var attacks = AssetDatabase.FindAssets("t:EnemyAttackDefinition").Select(g => AssetDatabase.LoadAssetAtPath<EnemyAttackDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(a => a != null && a.Motion == AttackMotion.Projectile).ToList();
-            Assert.AreEqual(14, attacks.Count, "the shipped projectile attacks");
+            // 14 before the Cryo Vaults expansion + its six volleys (Warden ×3, Subject Zero, Vault Stalker ×2).
+            Assert.AreEqual(20, attacks.Count, "the shipped projectile attacks");
             foreach (var attack in attacks)
             {
                 Assert.IsFalse(string.IsNullOrEmpty(attack.ProjectileVisualId), attack.Id + " names its profile");
@@ -128,7 +129,7 @@ namespace RuinRail.Tests
             }
 
             // Boss attacks carry their own, larger profiles: not the generic hostile round.
-            foreach (var bossAttack in new[] { "scrapking_auto_burst", "conductor_burst_cannon", "titan_furnace_blast", "omega_spore_burst", "aegis_triple_burst" })
+            foreach (var bossAttack in new[] { "scrapking_auto_burst", "conductor_burst_cannon", "titan_furnace_blast", "omega_spore_burst", "aegis_triple_burst", "warden_aimed_volley", "subject_zero_radial_burst" })
             {
                 var attack = attacks.First(a => a.Id == bossAttack);
                 StringAssert.StartsWith("proj_boss", attack.ProjectileVisualId, bossAttack);

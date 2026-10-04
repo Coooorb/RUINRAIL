@@ -327,7 +327,7 @@ namespace RuinRail.Tests
             var failures = new List<string>();
             var generated = 0;
             csv.AppendLine();
-            csv.AppendLine("# GENERATION SWEEP (100 seeds x 3 biomes x 5 depth bands)");
+            csv.AppendLine("# GENERATION SWEEP (100 seeds x 4 biomes x 5 depth bands)");
             csv.AppendLine("Depth,Biome,Attempts,Successes,Failures,DistinctCombatRoomsUsed,DistinctRoomsUsed");
             foreach (var depth in new[] { 1, 5, 10, 20, 30 })
             {
@@ -357,15 +357,15 @@ namespace RuinRail.Tests
             }
 
             File.WriteAllText(Path.Combine(Folder, "room_depth_gating.csv"), csv.ToString());
-            Assert.AreEqual(1500, generated, "100 seeds x 3 biomes x 5 bands");
+            Assert.AreEqual(2000, generated, "100 seeds x 4 biomes x 5 bands");
             CollectionAssert.IsEmpty(failures, "depth gating must not cause a single generation failure");
 
             // Exactly the intended subset is gated, and nothing else moved.
             var gated = _content.Rooms.Where(r => r != null && r.MinDepth > 1).ToList();
-            Assert.AreEqual(9, gated.Count, "9 of 63 authored rooms are gated — a small subset, not half the catalogue");
-            Assert.AreEqual(3, gated.Count(r => r.MinDepth == 5));
-            Assert.AreEqual(3, gated.Count(r => r.MinDepth == 10));
-            Assert.AreEqual(3, gated.Count(r => r.MinDepth == 20));
+            Assert.AreEqual(12, gated.Count, "12 of 84 authored rooms are gated — a small subset, not half the catalogue");
+            Assert.AreEqual(4, gated.Count(r => r.MinDepth == 5));
+            Assert.AreEqual(4, gated.Count(r => r.MinDepth == 10));
+            Assert.AreEqual(4, gated.Count(r => r.MinDepth == 20));
             Assert.IsTrue(_content.Rooms.Where(r => r != null && r.RoomType == RoomType.Start).All(r => r.MinDepth == 1), "Start rooms stay at D1");
             Assert.IsTrue(_content.Rooms.Where(r => r != null && r.RoomType == RoomType.Boss).All(r => r.MinDepth == 1), "Boss rooms stay available");
             foreach (var type in new[] { RoomType.Loot, RoomType.Treasure, RoomType.Merchant, RoomType.MedicalRecovery })
@@ -449,7 +449,7 @@ namespace RuinRail.Tests
                 csv.AppendLine($"{biome},{id},{weight}");
 
             File.WriteAllText(Path.Combine(Folder, "biome_identity_matrix.csv"), csv.ToString());
-            Assert.AreEqual(3, summaries.Distinct().Count(), "the three biome summaries must not be identical after this pass");
+            Assert.AreEqual(4, summaries.Distinct().Count(), "the four biome summaries must not be identical after this pass");
         }
 
         private RuinRail.Gameplay.Combat.Hazards.HazardDefinition HazardFor(Biome biome)
@@ -469,6 +469,7 @@ namespace RuinRail.Tests
         {
             Biome.RuinedMetro => "constant low-damage chip: fast ticks, no grace period — cramped layouts punish standing still",
             Biome.Rustworks => "rare heavy burst with stagger: slow ticks, the biggest per-tick damage, and it staggers",
+            Biome.CryoVaults => "cold lanes: a brief grace, then light, even ticks — the coolant runs split rooms into lanes rather than punishing a step",
             _ => "organic middle: a short grace period on entry, then steady damage"
         };
 
@@ -476,6 +477,7 @@ namespace RuinRail.Tests
         {
             Biome.RuinedMetro => $"Close pressure in tight space: chargers and swarms lead ({string.Join(", ", top.Take(2))}), snipers are rare, and the rail hazard chips constantly ({rangedShare:P0} ranged enemies).",
             Biome.Rustworks => $"Heavy and armoured: brutes and shields lead ({string.Join(", ", top.Take(2))}), bombers add explosive pressure, and furnace grates hit hard enough to stagger ({rangedShare:P0} ranged enemies).",
+            Biome.CryoVaults => $"Held aisles: shields and ranged guards lead ({string.Join(", ", top.Take(2))}), swarms are rare, and coolant leaks turn the service channels into lanes ({rangedShare:P0} ranged enemies).",
             _ => $"Numbers and reinforcement: swarms and summoners lead ({string.Join(", ", top.Take(2))}), armour is rare, and acid pools give a beat before they bite ({rangedShare:P0} ranged enemies)."
         };
 
@@ -596,7 +598,7 @@ namespace RuinRail.Tests
                 return $"{F1(min)}-{F1(max)}";
             })));
             Check("elite slots", "D1 / D11", "1 / 2", DungeonSlots());
-            Check("rooms", "authored per biome", "21 / 21 / 21", string.Join(" / ", RunVarietyBaselineTests.Biomes.Select(b => _content.Rooms.Count(r => r != null && r.Biome == b).ToString())));
+            Check("rooms", "authored per biome", "21 / 21 / 21 / 21", string.Join(" / ", RunVarietyBaselineTests.Biomes.Select(b => _content.Rooms.Count(r => r != null && r.Biome == b).ToString())));
 
             foreach (var w in _content.Items.OfType<WeaponDefinition>().Where(w => w is not BlasterWeaponDefinition).OrderBy(w => w.Id, StringComparer.Ordinal))
             {

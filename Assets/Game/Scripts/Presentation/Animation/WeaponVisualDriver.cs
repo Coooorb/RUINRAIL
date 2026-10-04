@@ -1,4 +1,5 @@
 using RuinRail.Gameplay.Combat.Weapons;
+using RuinRail.Gameplay.Combat.Projectiles;
 using UnityEngine;
 
 namespace RuinRail.Presentation.Animation
@@ -35,14 +36,18 @@ namespace RuinRail.Presentation.Animation
         private BowWeapon _bow;
         private MeleeWeapon _melee;
         private int _lastMagazine = -1;
+        private int _lastShotsFired = -1;
         private float _recoilRemaining;
+        private float _kickPixels = RecoilPixels;
         private float _swingElapsed;
         private MeleeAttackState _lastMeleeState = MeleeAttackState.Idle;
 
         public WeaponVisualState State { get; private set; } = WeaponVisualState.Idle;
         /// <summary>0..1 kick strength (visual only).</summary>
         public float Recoil01 => _recoilRemaining <= 0f ? 0f : Mathf.Clamp01(_recoilRemaining / RecoilSeconds);
-        public Vector2 RecoilOffsetPixels => Vector2.left * (RecoilPixels * Recoil01);
+        public Vector2 RecoilOffsetPixels => Vector2.left * (_kickPixels * Recoil01);
+        /// <summary>The kick of the last shot: the active weapon's projectile profile (heavier guns kick harder), else the default.</summary>
+        public float KickPixels => _kickPixels;
         public float ChargeFraction { get; private set; }
         public float HeatFraction { get; private set; }
         /// <summary>Degrees relative to the aim direction: −arc/2 → +arc/2 across the swing; 0 when not swinging.</summary>
@@ -90,12 +95,16 @@ namespace RuinRail.Presentation.Animation
             }
             else if (_blaster != null)
             {
+                if (_lastShotsFired >= 0 && _blaster.ShotsFired > _lastShotsFired) Kick();
+                _lastShotsFired = _blaster.ShotsFired;
                 HeatFraction = _blaster.Heat.HeatFraction;
                 if (_blaster.Heat.IsOverheated) state = WeaponVisualState.Overheated;
                 else if (Recoil01 > 0f) state = WeaponVisualState.Firing;
             }
             else if (_bow != null)
             {
+                if (_lastShotsFired >= 0 && _bow.ShotsFired > _lastShotsFired) Kick();
+                _lastShotsFired = _bow.ShotsFired;
                 ChargeFraction = _bow.IsCharging ? _bow.ChargeFraction : 0f;
                 if (_bow.IsCharging) state = WeaponVisualState.Charging;
                 else if (Recoil01 > 0f) state = WeaponVisualState.Firing;
@@ -130,6 +139,12 @@ namespace RuinRail.Presentation.Animation
 
         private void Kick()
         {
+            RuinRail.Gameplay.Items.WeaponDefinition weapon = null;
+            if (_ranged != null) weapon = _ranged.Definition;
+            else if (_blaster != null) weapon = _blaster.Definition;
+            else if (_bow != null) weapon = _bow.Definition;
+            var profile = ProjectileVisualCatalog.Active?.Find(ProjectileVisualCatalog.ResolveWeaponVisualId(weapon));
+            _kickPixels = profile != null && profile.RecoilPixels > 0f ? profile.RecoilPixels : RecoilPixels;
             _recoilRemaining = RecoilSeconds;
             ShotsShown++;
         }
@@ -138,8 +153,11 @@ namespace RuinRail.Presentation.Animation
         {
             var ranged = active as RangedWeapon;
             if (ranged != _ranged) { _ranged = ranged; _lastMagazine = ranged != null ? ranged.MagazineAmmo : -1; }
-            _blaster = active as BlasterWeapon;
-            _bow = active as BowWeapon;
+            var blaster = active as BlasterWeapon;
+            var bow = active as BowWeapon;
+            if (blaster != _blaster || bow != _bow) _lastShotsFired = blaster != null ? blaster.ShotsFired : bow != null ? bow.ShotsFired : -1;
+            _blaster = blaster;
+            _bow = bow;
             var melee = active as MeleeWeapon;
             if (melee != _melee) { _melee = melee; _lastMeleeState = melee != null ? melee.State : MeleeAttackState.Idle; _swingElapsed = 0f; }
         }

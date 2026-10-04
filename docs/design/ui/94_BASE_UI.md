@@ -12,6 +12,8 @@ Approved station screens:
 - Multiplayer: Solo / Host / Join, join code, Ready states.
 - Transit: Start Expedition; coins for the run — `-step` / amount / `+step`, NONE / ALL, with banked now, taking and what stays banked beside it (77).
 
+> **Implementation note (2026-10-03, Shelter UI pass):** an open station gets one wide panel (the middle and right columns, `ScreenLayout.StationColumn`); the survivor card stays on the left and the expedition card steps aside until no station is open. Every station action is an 18 px button with a centred label; OPEN STASH and START EXPEDITION are the 22 px primaries; normal / hover / focused / pressed / disabled / selected come from the one `UiControl` state set. The panel header carries a 16×16 station pictogram drawn at native pixels. Storage shows what is stored as native-size icon tiles in their rarity frames ("+N" when more than fit); the Trader lists offers (or the survivor's items) on the left with the details and comparison in their own column beside them; a cost the bank cannot cover reads red; neutral status plates are information plates, not grey buttons. An action's footer message clears after a few seconds. UI sound: every Shelter interaction plays one cue on the shared UI sound bus — step / hover (navigate), confirm, tab change, back (cancel), a refused or disabled action (failure) and a coin transaction (purchase) — via `UiSoundCues`, which yields to a view model that already played its own cue in that frame.
+
 ## Main Menu
 Initial menu:
 - PLAY.

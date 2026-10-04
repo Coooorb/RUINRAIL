@@ -76,6 +76,12 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         /// <summary>Multiplier applied to telegraph, recovery and cooldown durations (1 = authored values).</summary>
         public float TimingMultiplier { get; protected set; } = 1f;
 
+        /// <summary>The committed length of the current (or last) telegraph: the attack's TelegraphSeconds × the timing multiplier then in force.</summary>
+        public float TelegraphDuration { get; private set; }
+
+        /// <summary>Seconds until the telegraphed attack commits (0 outside Telegraph).</summary>
+        public float TelegraphRemaining => State == MovesetActorState.Telegraph ? Mathf.Max(0f, _phaseTimeRemaining) : 0f;
+
         /// <summary>Diagnostics/proof seam: while true the actor pursues but never selects an attack (pursuit-only containment proofs).</summary>
         public bool SuppressAttacks { get; set; }
 
@@ -496,6 +502,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             _currentAttack = attack;
             _lockedDirection = ((Vector2)_target.position - (Vector2)transform.position).normalized;
             _phaseTimeRemaining = attack.TelegraphSeconds * TimingMultiplier;
+            TelegraphDuration = _phaseTimeRemaining;
             _rigidbody2D.linearVelocity = Vector2.zero;
             State = MovesetActorState.Telegraph;
             AttackTelegraphStarted?.Invoke(this, attack);

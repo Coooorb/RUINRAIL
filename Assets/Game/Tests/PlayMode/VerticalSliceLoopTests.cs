@@ -139,26 +139,15 @@ namespace RuinRail.Tests
             Assert.IsTrue(state.Inventory.TryAddToBackpack(found));
             service.AddCarriedCoins(120);
 
-            // Boss room: transit is inert until the boss falls.
+            // Boss room: the transit hook is inert until the boss falls, and there is nothing to board.
             var (boss, encounter) = SpawnBoss(new Vector2(10f, 0f));
-            var transitObject = new GameObject("TransitCar");
-            _created.Add(transitObject);
-            transitObject.transform.position = new Vector2(12f, 0f);
-            transitObject.AddComponent<BoxCollider2D>().isTrigger = true;
-            var transit = transitObject.AddComponent<TransitCar>();
+            var transit = new GameObject("BossTransitHook").AddComponent<TransitCar>();
+            _created.Add(transit.gameObject);
             transit.Configure(service, encounter);
-
-            var player = new GameObject("Player");
-            _created.Add(player);
-            player.transform.position = new Vector2(12f, 0.5f);
-            var interactor = player.AddComponent<PlayerInteractor>();
-            var input = new FakePlayerInputReader();
-            interactor.SetInputReader(input);
             yield return new WaitForFixedUpdate();
 
             Assert.IsFalse(transit.IsActivated);
-            input.RaiseInteract();
-            Assert.IsFalse(transit.IsBoarded, "Cannot board before the boss is defeated.");
+            Assert.IsNull(service.Transit, "no decision before the boss is defeated");
 
             boss.Health.TryApplyDamage(new DamageRequest(1050));
             Assert.IsTrue(encounter.IsDefeated);
@@ -168,10 +157,8 @@ namespace RuinRail.Tests
             Assert.AreEqual(12 + 650, state.Stats.XpEarned);
             yield return new WaitForFixedUpdate();
 
-            input.RaiseInteract();
-            Assert.IsTrue(transit.IsBoarded);
-            Assert.IsTrue(transit.Choose(TransitChoice.ReturnToShelter));
-            Assert.IsFalse(transit.Choose(TransitChoice.DescendDeeper), "Duplicate/late choice is ignored.");
+            Assert.IsTrue(service.ChooseTransit(TransitChoice.ReturnToShelter));
+            Assert.IsFalse(service.ChooseTransit(TransitChoice.DescendDeeper), "Duplicate/late choice is ignored.");
 
             Assert.IsFalse(service.IsExpeditionActive);
             Assert.AreEqual(ExpeditionOutcome.Extracted, state.Outcome);
@@ -203,8 +190,7 @@ namespace RuinRail.Tests
             boss.Health.TryApplyDamage(new DamageRequest(1050));
             yield return null;
 
-            transit.Interact(new GameObject("p"));
-            Assert.IsTrue(transit.Choose(TransitChoice.DescendDeeper));
+            Assert.IsTrue(service.ChooseTransit(TransitChoice.DescendDeeper));
 
             Assert.IsTrue(service.IsExpeditionActive);
             Assert.AreEqual(2, state.Depth);
@@ -217,7 +203,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(80, state.CarriedCoins);
             Assert.AreEqual(50, profile.BankedCoins);
             Assert.IsNull(profile.SafeLoadout);
-            Assert.IsFalse(transit.CanInteract(null), "The old transit is spent; the next depth spawns its own.");
+            Assert.IsNull(service.Transit, "The depth-1 decision is spent; the next depth's boss opens its own.");
 
             // Dying on depth 2 keeps nothing.
             service.Fail();

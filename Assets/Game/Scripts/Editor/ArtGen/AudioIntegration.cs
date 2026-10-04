@@ -32,7 +32,7 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         /// <summary>
-        /// Regenerates the 11 music beds only and rebinds them. This exists because the loop fix in
+        /// Regenerates the music beds only and rebinds them. This exists because the loop fix in
         /// <see cref="GameAudioFactory.BuildMusic"/> changes only the music files: regenerating everything would
         /// rewrite 62 clips that are byte-identical, and a batch runner should touch exactly what changed.
         /// </summary>
@@ -56,7 +56,7 @@ namespace RuinRail.EditorTools.ArtGen
             Debug.Log($"Regenerated {Written.Count} music beds on their bar grid.");
         }
 
-        /// <summary>Regenerates the three biome ambience loops only (they are bound by path, so the catalog keeps them).</summary>
+        /// <summary>Regenerates the biome ambience loops only (they are bound by path, so the catalog keeps them).</summary>
         [MenuItem("RuinRail/Art/Regenerate Ambience Loops")]
         public static void GenerateAmbience()
         {
@@ -68,7 +68,48 @@ namespace RuinRail.EditorTools.ArtGen
             }
 
             AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
-            Debug.Log("Regenerated 3 ambience loops.");
+            Debug.Log($"Regenerated {Enum.GetValues(typeof(Biome)).Length} ambience loops.");
+        }
+
+        /// <summary>
+        /// One biome's audio: its exploration/combat/boss beds and its ambience loop, written, imported and bound into
+        /// the MusicCatalog. Every other clip is left as it is. Pass <c>-audioBiome CryoVaults</c>.
+        /// </summary>
+        public static void GenerateBiomeAudioBatch()
+        {
+            try
+            {
+                var args = Environment.GetCommandLineArgs();
+                var at = Array.IndexOf(args, "-audioBiome");
+                if (at < 0 || at + 1 >= args.Length || !Enum.TryParse<Biome>(args[at + 1], out var biome))
+                    throw new ArgumentException("-audioBiome <Biome> is required.");
+
+                Written.Clear();
+                foreach (MusicRole role in Enum.GetValues(typeof(MusicRole)))
+                {
+                    if (!role.ToString().StartsWith(biome.ToString(), StringComparison.Ordinal)) continue;
+                    var clip = GameAudioFactory.BuildMusic(role.ToString());
+                    clip.Normalize(GameAudioFactory.PeakFor("Music"));
+                    var path = $"{AudioRoot}/Music/music_{role.ToString().ToLowerInvariant()}.wav";
+                    AudioSynth.WriteWav(clip, path);
+                    Written.Add((path, true));
+                }
+
+                var ambience = GameAudioFactory.BuildAmbience(biome.ToString());
+                ambience.Normalize(GameAudioFactory.PeakFor("Ambience"));
+                var ambiencePath = $"{AudioRoot}/Ambience/ambience_{biome.ToString().ToLowerInvariant()}.wav";
+                AudioSynth.WriteWav(ambience, ambiencePath);
+                Written.Add((ambiencePath, true));
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyImportSettings();
+                AssetDatabase.SaveAssets();
+                BindMusic();
+                AssetDatabase.SaveAssets();
+                Debug.Log($"Generated {Written.Count} {biome} audio clips.");
+                EditorApplication.Exit(0);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
         }
 
         /// <summary>Batch entry for the runner (-executeMethod).</summary>

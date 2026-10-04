@@ -81,11 +81,23 @@ namespace RuinRail.Gameplay.Loot
         public void Show(string key)
         {
             Key = key ?? string.Empty;
-            var sprite = WorldObjectArt.Resolve(Key);
+            var sprite = (_skin != null ? _skin(Key) : null) ?? WorldObjectArt.Resolve(Key);
             if (_renderer == null) return;
             _renderer.sprite = sprite;
             _renderer.enabled = sprite != null;
             Refresh();
+        }
+
+        private Func<string, Sprite> _skin;
+
+        /// <summary>
+        /// A per-object art source consulted before the shared resolver (a dungeon chest drawn for its biome and tier):
+        /// the same keys and state swaps, only where the pixels come from changes. Null restores the shared art.
+        /// </summary>
+        public void SetSkin(Func<string, Sprite> skin)
+        {
+            _skin = skin;
+            Show(Key);
         }
 
         public void SetTint(Color tint)

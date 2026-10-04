@@ -4,7 +4,8 @@ using UnityEngine;
 namespace RuinRail.EditorTools.ArtGen
 {
     /// <summary>
-    /// The 22 character design profiles, transcribed from FINAL_ART_PRODUCTION_SPEC sections 6-9.
+    /// The 26 character design profiles, transcribed from FINAL_ART_PRODUCTION_SPEC sections 6-9 (the four Cryo Vaults
+    /// actors follow the same per-archetype rules in the biome's dark steel / ice blue / pale cyan / frost white palette).
     ///
     /// Ids match the runtime actor ids (EnemyDefinition/EliteDefinition/BossDefinition), because the animation
     /// pipeline binds a CharacterAnimationSet by ActorId. Every palette choice below is quoted from the spec's
@@ -275,6 +276,41 @@ namespace RuinRail.EditorTools.ArtGen
             ExpectedContentHeightMin = 36, ExpectedContentHeightMax = 54
         };
 
+        public static CharacterProfile CryoEnforcer() => new()
+        {
+            Id = "elite_cryo_enforcer", DisplayName = "Cryo Enforcer",
+            CanvasWidth = 48, CanvasHeight = 60,
+            HeadRadiusX = 5, HeadRadiusY = 4,
+            ShoulderHalfWidth = 14, TorsoHalfWidth = 10, HipHalfWidth = 8,
+            TorsoTop = 38, TorsoBottom = 20, LegBottom = 7, ArmThickness = 6,
+            // heavy insulated plate: dark steel / frost-white armour / ice-blue trim, a cyan coolant cell and a coolant tank on the back
+            Primary = RuinPalette.RampOf(RuinPalette.Hex("#2E373F")),
+            Secondary = RuinPalette.RampOf(RuinPalette.Hex("#B8CBD3")),
+            Accent = RuinPalette.RampOf(RuinPalette.Hex("#79A9C4")),
+            Emissive = RuinPalette.Hex("#A9DDE8"),
+            Outline = RuinPalette.Hex("#0E151B"),
+            HeadGear = 2, BulkBoost = 3, BackpackSize = 8, CoreRadius = 2, Grime = 0.04f, Seed = 307,
+            ExpectedContentHeightMin = 38, ExpectedContentHeightMax = 58
+        };
+
+        public static CharacterProfile VaultStalker() => new()
+        {
+            Id = "elite_vault_stalker", DisplayName = "Vault Stalker",
+            CanvasWidth = 40, CanvasHeight = 56,
+            HeadRadiusX = 4, HeadRadiusY = 4,
+            ShoulderHalfWidth = 9, TorsoHalfWidth = 6, HipHalfWidth = 5,
+            TorsoTop = 36, TorsoBottom = 20, LegBottom = 7, ArmThickness = 3,
+            // lean vault-security frame: pale frosted steel / charcoal joints / ice blue, a long shard launcher and a sensor mast
+            Primary = RuinPalette.RampOf(RuinPalette.Hex("#8FA6B2")),
+            Secondary = RuinPalette.RampOf(RuinPalette.Charcoal),
+            Accent = RuinPalette.RampOf(RuinPalette.Hex("#79A9C4")),
+            Emissive = RuinPalette.Hex("#A9DDE8"),
+            Outline = RuinPalette.Hex("#0E151B"),
+            HeadGear = 3, Machine = true, ForwardLean = 2, CarriedWeaponLength = 11, AntennaHeight = 4, CoreRadius = 1,
+            Grime = 0.03f, Seed = 308,
+            ExpectedContentHeightMin = 36, ExpectedContentHeightMax = 54
+        };
+
         // ---- 9. BOSSES (spec 4.5: 48x48 minimum, often 64-80+) ----
         public static CharacterProfile TheConductor() => new()
         {
@@ -378,13 +414,52 @@ namespace RuinRail.EditorTools.ArtGen
             ExpectedContentHeightMin = 52, ExpectedContentHeightMax = 78
         };
 
-        /// <summary>All 22 families in manifest order.</summary>
+        public static CharacterProfile TheWarden() => new()
+        {
+            Id = "boss_the_warden", DisplayName = "The Warden",
+            CanvasWidth = 72, CanvasHeight = 80,
+            HeadRadiusX = 7, HeadRadiusY = 5,
+            ShoulderHalfWidth = 21, TorsoHalfWidth = 16, HipHalfWidth = 13,
+            TorsoTop = 54, TorsoBottom = 24, LegBottom = 8, ArmThickness = 6,
+            // autonomous vault security machine: dark steel hull / frosted white plating / ice-blue trim, red security
+            // optic and lamps, warning stripes, a tall sensor mast and a long emitter arm
+            Primary = RuinPalette.RampOf(RuinPalette.Hex("#262E35")),
+            Secondary = RuinPalette.RampOf(RuinPalette.Hex("#B8CBD3")),
+            Accent = RuinPalette.RampOf(RuinPalette.Hex("#79A9C4")),
+            Emissive = RuinPalette.EmergencyRed,
+            Outline = RuinPalette.Hex("#0E151B"),
+            HeadGear = 3, Machine = true, BulkBoost = 3, AntennaHeight = 9, CoreRadius = 4, CarriedWeaponLength = 12,
+            WarningStripes = true, Grime = 0.04f, Seed = 407,
+            ExpectedContentHeightMin = 52, ExpectedContentHeightMax = 78
+        };
+
+        public static CharacterProfile SubjectZero() => new()
+        {
+            Id = "boss_subject_zero", DisplayName = "Subject Zero",
+            CanvasWidth = 64, CanvasHeight = 80,
+            HeadRadiusX = 6, HeadRadiusY = 6,
+            ShoulderHalfWidth = 19, TorsoHalfWidth = 13, HipHalfWidth = 11,
+            TorsoTop = 54, TorsoBottom = 25, LegBottom = 8, ArmThickness = 6,
+            // the preserved subject: frost-pale blue-gray flesh / torn cryo-suit charcoal / ice-blue restraint fittings,
+            // one outsized claw arm, a cyan cryo-port glowing in the chest
+            Primary = RuinPalette.RampOf(RuinPalette.Hex("#3A444C")),
+            Secondary = RuinPalette.RampOf(RuinPalette.Hex("#8FA6B2")),
+            Accent = RuinPalette.RampOf(RuinPalette.Hex("#79A9C4")),
+            Skin = RuinPalette.RampOf(RuinPalette.Hex("#8C9EA8")),
+            Emissive = RuinPalette.Hex("#A9DDE8"),
+            Outline = RuinPalette.Hex("#0E151B"),
+            HeadGear = 0, BulkBoost = 3, OvergrownArm = true, BladeArm = true, ForwardLean = 2, CoreRadius = 3,
+            Grime = 0.05f, Seed = 408,
+            ExpectedContentHeightMin = 52, ExpectedContentHeightMax = 78
+        };
+
+        /// <summary>All 26 families in manifest order.</summary>
         public static IReadOnlyList<CharacterProfile> All() => new List<CharacterProfile>
         {
             Player(),
             Grunt(), Shooter(), Swarm(), Charger(), Brute(), Bomber(), ShieldEnemy(), SniperEnemy(), Summoner(),
-            TunnelStalker(), Railguard(), ScrapExecutioner(), CrusherUnit(), MutatedBrute(), PrototypeX7(),
-            TheConductor(), TunnelMaw(), FoundryTitan(), ScrapKing(), AegisCore(), SubjectOmega()
+            TunnelStalker(), Railguard(), ScrapExecutioner(), CrusherUnit(), MutatedBrute(), PrototypeX7(), CryoEnforcer(), VaultStalker(),
+            TheConductor(), TunnelMaw(), FoundryTitan(), ScrapKing(), AegisCore(), SubjectOmega(), TheWarden(), SubjectZero()
         };
 
         public static CharacterProfile ById(string id)

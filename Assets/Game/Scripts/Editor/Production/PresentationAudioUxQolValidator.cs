@@ -38,7 +38,7 @@ namespace RuinRail.EditorTools.Production
         /// <summary>Authored floor base colours per biome (TileFactory), the thing the substrate must sit under.</summary>
         public static readonly IReadOnlyDictionary<Biome, string> FloorBaseHex = new Dictionary<Biome, string>
         {
-            { Biome.RuinedMetro, "#4E5153" }, { Biome.Rustworks, "#393E41" }, { Biome.OvergrownLabs, "#7C837C" }
+            { Biome.RuinedMetro, "#4E5153" }, { Biome.Rustworks, "#393E41" }, { Biome.OvergrownLabs, "#7C837C" }, { Biome.CryoVaults, "#39424A" }
         };
 
         /// <summary>No release event may sit at full gain: an authored mix is the point of the pass.</summary>

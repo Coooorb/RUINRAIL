@@ -10,6 +10,7 @@ using RuinRail.Gameplay.Items;
 using RuinRail.Gameplay.Items.Consumables;
 using RuinRail.Gameplay.Loot;
 using RuinRail.Presentation.Animation;
+using RuinRail.Core.Rendering;
 using UnityEngine;
 
 namespace RuinRail.Presentation.Vfx
@@ -72,8 +73,84 @@ namespace RuinRail.Presentation.Vfx
 
         public void MuzzleFlash(Vector2 position, Vector2 direction) => Play("muzzle", position, _config.MuzzleFlashSeconds, new Color(1f, 0.95f, 0.6f), 0.75f, Angle(direction));
         public void Impact(Vector2 position, bool onTarget) => Play("impact", position, _config.ImpactSeconds, onTarget ? new Color(1f, 0.8f, 0.5f) : new Color(0.8f, 0.8f, 0.8f), 0.5f);
+
+        // ---- Shot feel: the weapon's projectile profile names its muzzle flash, impact and kick (presentation only) ----
+
+        /// <summary>An effect drawn at its sprite's native pixel size (no resampling on the pixel-perfect camera).</summary>
+        private PooledEffect PlayNative(string kind, Vector2 position, float seconds, Color color, float rotation)
+        {
+            var effect = Play(kind, position, seconds, color, 1f, rotation);
+            if (effect != null) effect.transform.localScale = Vector3.one;
+            return effect;
+        }
+
+        /// <summary>The flash where a shot really left (the solved spawn point), in the shot's direction, sized by its profile.</summary>
+        public void MuzzleFlash(ProjectileVisualCatalog.Profile profile, Vector2 position, Vector2 direction)
+        {
+            var kind = profile != null && !string.IsNullOrEmpty(profile.MuzzleKind) ? profile.MuzzleKind : null;
+            if (kind == null) { MuzzleFlash(position, direction); return; }
+            // "muzzle" counts every shot's flash (whatever kind it draws), like "impact" counts every landing.
+            if (kind != "muzzle") _counts["muzzle"] = CountOf("muzzle") + 1;
+            if (kind == NoEffect) return;
+            PlayNative(kind, position, profile.MuzzleSeconds > 0f ? profile.MuzzleSeconds : _config.MuzzleFlashSeconds, Color.white, Angle(direction));
+        }
+
+        /// <summary>
+        /// A player shot landing: on a target the profile's full burst facing back along the shot, on a wall a dimmer,
+        /// shorter puff of the same kind (the environment answers, the enemy hit reads first).
+        /// </summary>
+        public void ShotImpact(ProjectileVisualCatalog.Profile profile, Vector2 position, Vector2 direction, bool onTarget)
+        {
+            var kind = profile != null && !string.IsNullOrEmpty(profile.ImpactKind) ? profile.ImpactKind : null;
+            if (kind == null || kind == NoEffect) { Impact(position, onTarget); return; }
+            if (kind != "impact") _counts["impact"] = CountOf("impact") + 1;
+            var seconds = profile.ImpactSeconds > 0f ? profile.ImpactSeconds : _config.ImpactSeconds;
+            PlayNative(kind, position, onTarget ? seconds : seconds * 0.75f, onTarget ? Color.white : new Color(0.82f, 0.8f, 0.76f, 0.9f), Angle(-direction));
+        }
+
+        /// <summary>Profile value that turns a stage of the stack off (a bow has no muzzle flash).</summary>
+        public const string NoEffect = "none";
+
+        private void OnAnyImpacted(Projectile projectile, Vector2 at, bool onTarget)
+        {
+            if (projectile == null || projectile.Data.SourceTeam != DamageTeam.Player) return; // hostile shots keep their own read
+            var profile = ProjectileVisualCatalog.Active?.Resolve(projectile.Data.VisualId, DamageTeam.Player);
+            ShotImpact(profile, at, projectile.Data.Direction, onTarget);
+        }
+
+        private void OnAnyExploded(Projectile projectile, Vector2 at)
+        {
+            if (projectile == null) return;
+            Explosion(at, projectile.Data.ExplosionRadius);
+            _shake?.Request(ShakeKind.Explosion);
+        }
+
+        private bool _projectileHooks;
+
+        /// <summary>Every pooled projectile's impacts and detonations (the pools recycle instances, so per-instance hooks would miss shots).</summary>
+        public CombatFeedback ObserveAllProjectiles()
+        {
+            if (_projectileHooks) return this;
+            _projectileHooks = true;
+            Projectile.AnyImpacted += OnAnyImpacted;
+            Projectile.AnyExploded += OnAnyExploded;
+            _unsubscribe.Add(() => { Projectile.AnyImpacted -= OnAnyImpacted; Projectile.AnyExploded -= OnAnyExploded; _projectileHooks = false; });
+            return this;
+        }
         /// <summary>art/104: large enough to feel powerful, short-lived so hazards/projectiles are not hidden for seconds.</summary>
-        public void Explosion(Vector2 position, float radiusTiles) => Play("explosion", position, _config.ExplosionSeconds, new Color(1f, 0.6f, 0.2f, 0.85f), Mathf.Max(1f, radiusTiles * 2f) * 4f);
+        public void Explosion(Vector2 position, float radiusTiles)
+        {
+            // A radius-true blast sheet exists for this radius (the rockets): drawn at native pixels, rim on the real radius.
+            var blast = "explosion_r" + Mathf.RoundToInt(radiusTiles * SortingConvention.PixelsPerUnit);
+            if (_pool != null && _pool.HasArtFor(blast))
+            {
+                _counts["explosion"] = CountOf("explosion") + 1;
+                PlayNative(blast, position, _config.ExplosionSeconds, Color.white, 0f);
+                return;
+            }
+
+            Play("explosion", position, _config.ExplosionSeconds, new Color(1f, 0.6f, 0.2f, 0.85f), Mathf.Max(1f, radiusTiles * 2f) * 4f);
+        }
         public void MeleeArc(Vector2 position, Vector2 direction, float arcDegrees, float reachTiles) => Play("melee", position + direction.normalized * (reachTiles * 0.5f), _config.MeleeArcSeconds, new Color(0.9f, 0.95f, 1f, 0.8f), Mathf.Max(0.5f, reachTiles) * 4f, Angle(direction));
         public void Stagger(Vector2 position) => Play("stagger", position + Vector2.up * 0.6f, _config.StaggerSeconds, new Color(1f, 0.85f, 0.4f), 0.6f);
         public void Heal(Vector2 position) => Play("heal", position + Vector2.up * 0.4f, _config.HealSeconds, new Color(0.55f, 1f, 0.55f, 0.8f), 1f);
@@ -274,6 +351,15 @@ namespace RuinRail.Presentation.Vfx
         /// <summary>Boss slams and other heavy gameplay events reported by scene wiring.</summary>
         public void ReportHeavyImpact(Vector2 position) { Explosion(position, 1f); _shake?.Request(ShakeKind.BossSlam); }
 
+        /// <summary>The active weapon's last solved shot (spawn point and direction) and its definition.</summary>
+        private static (ShotSolution? shot, WeaponDefinition weapon) LastShotOf(IEquippableWeapon weapon) => weapon switch
+        {
+            RangedWeapon r => (r.LastShot, r.Definition),
+            BlasterWeapon b => (b.LastShot, b.Definition),
+            BowWeapon b => (b.LastShot, b.Definition),
+            _ => (null, null)
+        };
+
         public static ShakeKind ShakeFor(IEquippableWeapon weapon) => weapon switch
         {
             RangedWeapon r when r.Definition != null && r.Definition.IsExplosive => ShakeKind.Explosion,
@@ -313,9 +399,10 @@ namespace RuinRail.Presentation.Vfx
                 if (driver == null) continue;
                 if (driver.ShotsShown > shots)
                 {
-                    var origin = driver.transform.position;
-                    var direction = driver.transform.right;
-                    MuzzleFlash(origin, direction);
+                    var (shot, weapon) = LastShotOf(driver.ActiveWeapon);
+                    if (shot.HasValue)
+                        MuzzleFlash(ProjectileVisualCatalog.Active?.Find(ProjectileVisualCatalog.ResolveWeaponVisualId(weapon)), shot.Value.SpawnPosition, shot.Value.Direction);
+                    else MuzzleFlash(driver.transform.position, driver.transform.right);
                     _shake?.Request(ShakeFor(driver.ActiveWeapon));
                 }
 

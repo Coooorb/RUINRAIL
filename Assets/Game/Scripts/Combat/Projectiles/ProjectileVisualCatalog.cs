@@ -34,6 +34,18 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             /// </summary>
             public int Scale = 1;
             public int EffectiveScale => Scale < 1 ? 1 : Scale;
+
+            // ---- shot feel: the rest of the shot's presentation stack (drawn at native pixel size; empty = the generic effect) ----
+            /// <summary>Effect kind flashed at the muzzle when the shot leaves ('muzzle_heavy', …); "none" = no flash (a bow).</summary>
+            public string MuzzleKind = string.Empty;
+            /// <summary>How long the muzzle flash plays (seconds); 0 = the feedback config's default.</summary>
+            public float MuzzleSeconds;
+            /// <summary>Effect kind burst where the shot lands (target or wall); empty = the generic impact.</summary>
+            public string ImpactKind = string.Empty;
+            /// <summary>How long the impact plays (seconds); 0 = the feedback config's default.</summary>
+            public float ImpactSeconds;
+            /// <summary>Pixels the held weapon kicks back per shot; 0 = the driver's default.</summary>
+            public float RecoilPixels;
             public bool IsValid => !string.IsNullOrEmpty(Id) && Frames != null && Frames.Length > 0 && Frames.All(f => f != null);
         }
 

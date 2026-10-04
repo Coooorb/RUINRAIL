@@ -365,7 +365,7 @@ namespace RuinRail.EditorTools.Production
                     {
                         Category = "Biome props and dressing",
                         RoleId = $"{biome}.{prop}",
-                        Owner = "Room prefabs (63)",
+                        Owner = "Room prefabs (84)",
                         AssetType = "Sprite package",
                         Spec = "art/106 section 7 biome mood package",
                         Status = StatusOfSprite($"Assets/Game/Art/Props/{biome}/{prop}/{biome.ToString().ToLowerInvariant()}_{prop}.png")
@@ -513,7 +513,7 @@ namespace RuinRail.EditorTools.Production
                     RoleId = "vfx.telegraph." + motion.ToLowerInvariant(),
                     Owner = "TelegraphIndicator",
                     AssetType = "Telegraph marker sprite",
-                    Spec = "art/106 section 2 readability; one telegraph pool kind scaled per AttackMotion shape",
+                    Spec = "art/106 section 2 readability; the catalog frames of the AttackMotion shape family. The live ground marker is painted at runtime on the world grid from the attack's real footprint (TelegraphMarkerView)",
                     Status = StatusOfSprite("Assets/Game/Art/Vfx/vfx_telegraph_" + motion.ToLowerInvariant() + ".png")
                 });
             }
@@ -607,16 +607,16 @@ namespace RuinRail.EditorTools.Production
 
             var sets = RolesIn("Character animation clip roles");
             var perSet = AnimationRules.EnemyClipKeys.Length * AnimationRules.AllFacings.Length;
-            Check("Animation sets (player + 9 + 6 + 6)", 22, sets, "EnemyDefinition/EliteDefinition/BossDefinition assets plus the player");
+            Check("Animation sets (player + 9 + 8 + 8)", 26, sets, "EnemyDefinition/EliteDefinition/BossDefinition assets plus the player");
             Check("Clip roles per set", 48, perSet, "AnimationRules.EnemyClipKeys x AllFacings");
-            Check("Total animation clip roles", 1056, sets * perSet, "22 sets x 48");
+            Check("Total animation clip roles", 1248, sets * perSet, "26 sets x 48");
             Check("Weapon sprite roles", 33, RolesIn("Weapon sprites"), "WeaponDefinition assets");
             Check("Item-family icon roles", 72, RolesIn("Item icons"), "Weapon+Armor+Accessory+Consumable definitions plus AmmoType values");
             Check("SFX event ids", 53, AudioEventIds.Required.Count, "RuinRail.Audio.AudioEventIds.Required");
-            Check("Music roles", 11, Enum.GetValues(typeof(MusicRole)).Length, "RuinRail.Audio.MusicRole");
+            Check("Music roles", 14, Enum.GetValues(typeof(MusicRole)).Length, "RuinRail.Audio.MusicRole");
             Check("Stinger roles", 7, Enum.GetValues(typeof(StingerRole)).Length, "RuinRail.Audio.StingerRole");
-            Check("Ambience roles", 3, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
-            Check("Biome art packages", 3, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
+            Check("Ambience roles", 4, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
+            Check("Biome art packages", 4, Enum.GetValues(typeof(Biome)).Length, "RuinRail.Core.Biome");
             Check("VFX roles", 12, RolesIn("VFX"), "CombatFeedback effect kinds plus AttackMotion telegraph shapes",
                 "production/135 enumerated four telegraph shapes (zone, dash, projectile, slam) but RuinRail.Gameplay.Enemies.Attacks.AttackMotion " +
                 "has five values: TelegraphIndicator.ShapeFor also draws the Stationary case (a radius in front of the attacker) through its default branch. " +

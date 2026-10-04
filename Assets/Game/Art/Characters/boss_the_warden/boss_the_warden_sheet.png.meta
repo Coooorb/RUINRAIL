@@ -1,0 +1,6501 @@
+fileFormatVersion: 2
+guid: 1f709e5bee96a46648d8f97fe2924f52
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -8043132394106051763
+    second: boss_the_warden_sheet_0
+  - first:
+      213: -1641098537077759149
+    second: boss_the_warden_sheet_1
+  - first:
+      213: -8401540902401805599
+    second: boss_the_warden_sheet_2
+  - first:
+      213: 5284876801121030341
+    second: boss_the_warden_sheet_3
+  - first:
+      213: 3968361909348328370
+    second: boss_the_warden_sheet_4
+  - first:
+      213: -7568852162978312542
+    second: boss_the_warden_sheet_5
+  - first:
+      213: 4971699076711083869
+    second: boss_the_warden_sheet_6
+  - first:
+      213: -5695607303878759001
+    second: boss_the_warden_sheet_7
+  - first:
+      213: -1448050869469406436
+    second: boss_the_warden_sheet_8
+  - first:
+      213: 6080845703841022772
+    second: boss_the_warden_sheet_9
+  - first:
+      213: -3165230579697068152
+    second: boss_the_warden_sheet_10
+  - first:
+      213: -2059158074304941216
+    second: boss_the_warden_sheet_11
+  - first:
+      213: -4346138210512970799
+    second: boss_the_warden_sheet_12
+  - first:
+      213: -6437441839558974875
+    second: boss_the_warden_sheet_13
+  - first:
+      213: 4974667620628668052
+    second: boss_the_warden_sheet_14
+  - first:
+      213: -7486390573000009598
+    second: boss_the_warden_sheet_15
+  - first:
+      213: -796847093475023692
+    second: boss_the_warden_sheet_16
+  - first:
+      213: 1968997906056371093
+    second: boss_the_warden_sheet_17
+  - first:
+      213: 7604628011108212949
+    second: boss_the_warden_sheet_18
+  - first:
+      213: 6120963622378087397
+    second: boss_the_warden_sheet_19
+  - first:
+      213: -4811688786205317245
+    second: boss_the_warden_sheet_20
+  - first:
+      213: 5196694120933627565
+    second: boss_the_warden_sheet_21
+  - first:
+      213: -4303403351996828529
+    second: boss_the_warden_sheet_22
+  - first:
+      213: -7261957991051683802
+    second: boss_the_warden_sheet_23
+  - first:
+      213: 3406981476785198479
+    second: boss_the_warden_sheet_24
+  - first:
+      213: -3914952803016133244
+    second: boss_the_warden_sheet_25
+  - first:
+      213: 5908790530176237382
+    second: boss_the_warden_sheet_26
+  - first:
+      213: -515141193330157422
+    second: boss_the_warden_sheet_27
+  - first:
+      213: 4321937745813429961
+    second: boss_the_warden_sheet_28
+  - first:
+      213: -3646458989237353449
+    second: boss_the_warden_sheet_29
+  - first:
+      213: -9013921031603015348
+    second: boss_the_warden_sheet_30
+  - first:
+      213: -4868636519275191015
+    second: boss_the_warden_sheet_31
+  - first:
+      213: 451075359689721949
+    second: boss_the_warden_sheet_32
+  - first:
+      213: 817617485588673907
+    second: boss_the_warden_sheet_33
+  - first:
+      213: 8594697454202051625
+    second: boss_the_warden_sheet_34
+  - first:
+      213: -5081748334641081206
+    second: boss_the_warden_sheet_35
+  - first:
+      213: -6993907568530603218
+    second: boss_the_warden_sheet_36
+  - first:
+      213: 1056985348378644289
+    second: boss_the_warden_sheet_37
+  - first:
+      213: -4430484157998554454
+    second: boss_the_warden_sheet_38
+  - first:
+      213: -20550747726296858
+    second: boss_the_warden_sheet_39
+  - first:
+      213: 5712584591979400744
+    second: boss_the_warden_sheet_40
+  - first:
+      213: -4372697537761099699
+    second: boss_the_warden_sheet_41
+  - first:
+      213: -9165326688325373047
+    second: boss_the_warden_sheet_42
+  - first:
+      213: 8294069787250572660
+    second: boss_the_warden_sheet_43
+  - first:
+      213: 3707211896898126062
+    second: boss_the_warden_sheet_44
+  - first:
+      213: 7774974499398452600
+    second: boss_the_warden_sheet_45
+  - first:
+      213: -4618492680920693294
+    second: boss_the_warden_sheet_46
+  - first:
+      213: 484717655163843525
+    second: boss_the_warden_sheet_47
+  - first:
+      213: 2769483359903137973
+    second: boss_the_warden_sheet_48
+  - first:
+      213: 284661499222443306
+    second: boss_the_warden_sheet_49
+  - first:
+      213: 2870000027185782571
+    second: boss_the_warden_sheet_50
+  - first:
+      213: -3355837772069585847
+    second: boss_the_warden_sheet_51
+  - first:
+      213: 7951870919002841826
+    second: boss_the_warden_sheet_52
+  - first:
+      213: -2369734609180551670
+    second: boss_the_warden_sheet_53
+  - first:
+      213: -3703703593041465260
+    second: boss_the_warden_sheet_54
+  - first:
+      213: 1436971377131143890
+    second: boss_the_warden_sheet_55
+  - first:
+      213: -7387680372235681334
+    second: boss_the_warden_sheet_56
+  - first:
+      213: -4245917350744640707
+    second: boss_the_warden_sheet_57
+  - first:
+      213: 7919231025845550085
+    second: boss_the_warden_sheet_58
+  - first:
+      213: -4667445258276114516
+    second: boss_the_warden_sheet_59
+  - first:
+      213: -6700312023960947154
+    second: boss_the_warden_sheet_60
+  - first:
+      213: 1338043185958945447
+    second: boss_the_warden_sheet_61
+  - first:
+      213: 6136443323036059776
+    second: boss_the_warden_sheet_62
+  - first:
+      213: -7161849246207288432
+    second: boss_the_warden_sheet_63
+  - first:
+      213: -6621450142907155738
+    second: boss_the_warden_sheet_64
+  - first:
+      213: 5903589358324363096
+    second: boss_the_warden_sheet_65
+  - first:
+      213: -8197505114377690618
+    second: boss_the_warden_sheet_66
+  - first:
+      213: -7223061028364992413
+    second: boss_the_warden_sheet_67
+  - first:
+      213: -2669517185406942778
+    second: boss_the_warden_sheet_68
+  - first:
+      213: -5597038417838638941
+    second: boss_the_warden_sheet_69
+  - first:
+      213: -2539292395829974694
+    second: boss_the_warden_sheet_70
+  - first:
+      213: 4917060907493602506
+    second: boss_the_warden_sheet_71
+  - first:
+      213: -5720610468247491792
+    second: boss_the_warden_sheet_72
+  - first:
+      213: 1837270214859860674
+    second: boss_the_warden_sheet_73
+  - first:
+      213: -1619238856285715952
+    second: boss_the_warden_sheet_74
+  - first:
+      213: 6166441504864739362
+    second: boss_the_warden_sheet_75
+  - first:
+      213: 2546088450891228487
+    second: boss_the_warden_sheet_76
+  - first:
+      213: -5639668537054323483
+    second: boss_the_warden_sheet_77
+  - first:
+      213: -3345818708710914911
+    second: boss_the_warden_sheet_78
+  - first:
+      213: 8747762454754756402
+    second: boss_the_warden_sheet_79
+  - first:
+      213: -7734614441624598704
+    second: boss_the_warden_sheet_80
+  - first:
+      213: -6750868439877366101
+    second: boss_the_warden_sheet_81
+  - first:
+      213: 4795671144104770057
+    second: boss_the_warden_sheet_82
+  - first:
+      213: 2931070267080763145
+    second: boss_the_warden_sheet_83
+  - first:
+      213: -8993568260281382354
+    second: boss_the_warden_sheet_84
+  - first:
+      213: -890925827175237112
+    second: boss_the_warden_sheet_85
+  - first:
+      213: 3072331068911803104
+    second: boss_the_warden_sheet_86
+  - first:
+      213: -6401282785681102648
+    second: boss_the_warden_sheet_87
+  - first:
+      213: -923786215069817702
+    second: boss_the_warden_sheet_88
+  - first:
+      213: -4144274495600723714
+    second: boss_the_warden_sheet_89
+  - first:
+      213: -657803185524639215
+    second: boss_the_warden_sheet_90
+  - first:
+      213: -2411656747383006521
+    second: boss_the_warden_sheet_91
+  - first:
+      213: 4897189412708707012
+    second: boss_the_warden_sheet_92
+  - first:
+      213: -7433657255477593031
+    second: boss_the_warden_sheet_93
+  - first:
+      213: -1327153498647711311
+    second: boss_the_warden_sheet_94
+  - first:
+      213: 6766035984659111436
+    second: boss_the_warden_sheet_95
+  - first:
+      213: 1568329673499500334
+    second: boss_the_warden_sheet_96
+  - first:
+      213: 6661726840177449840
+    second: boss_the_warden_sheet_97
+  - first:
+      213: -3672656001384386661
+    second: boss_the_warden_sheet_98
+  - first:
+      213: 7280888131006643917
+    second: boss_the_warden_sheet_99
+  - first:
+      213: -7168612165627728190
+    second: boss_the_warden_sheet_100
+  - first:
+      213: 1377427081767910210
+    second: boss_the_warden_sheet_101
+  - first:
+      213: 4564304267648904920
+    second: boss_the_warden_sheet_102
+  - first:
+      213: 8092153121555340
+    second: boss_the_warden_sheet_103
+  - first:
+      213: 2210706903140307232
+    second: boss_the_warden_sheet_104
+  - first:
+      213: -5835211198536972705
+    second: boss_the_warden_sheet_105
+  - first:
+      213: 4991129936022691935
+    second: boss_the_warden_sheet_106
+  - first:
+      213: 5338139909081175590
+    second: boss_the_warden_sheet_107
+  - first:
+      213: 4757957525074385215
+    second: boss_the_warden_sheet_108
+  - first:
+      213: 6989510423302630824
+    second: boss_the_warden_sheet_109
+  - first:
+      213: -5254462126837572028
+    second: boss_the_warden_sheet_110
+  - first:
+      213: -9084567671489911552
+    second: boss_the_warden_sheet_111
+  - first:
+      213: 8056586162063466739
+    second: boss_the_warden_sheet_112
+  - first:
+      213: -6335347677713241048
+    second: boss_the_warden_sheet_113
+  - first:
+      213: -8013038541591687583
+    second: boss_the_warden_sheet_114
+  - first:
+      213: -8286229223256872817
+    second: boss_the_warden_sheet_115
+  - first:
+      213: 8119005734436403673
+    second: boss_the_warden_sheet_116
+  - first:
+      213: -8822909293062878716
+    second: boss_the_warden_sheet_117
+  - first:
+      213: -4805099465516941766
+    second: boss_the_warden_sheet_118
+  - first:
+      213: 6191097846999301811
+    second: boss_the_warden_sheet_119
+  - first:
+      213: -4265819835535365924
+    second: boss_the_warden_sheet_120
+  - first:
+      213: 6127238007031369660
+    second: boss_the_warden_sheet_121
+  - first:
+      213: 4197710246106158252
+    second: boss_the_warden_sheet_122
+  - first:
+      213: 8156537357636891950
+    second: boss_the_warden_sheet_123
+  - first:
+      213: 6311165430613569368
+    second: boss_the_warden_sheet_124
+  - first:
+      213: 7772497221636987720
+    second: boss_the_warden_sheet_125
+  - first:
+      213: -2682556121168769856
+    second: boss_the_warden_sheet_126
+  - first:
+      213: 985799242756116039
+    second: boss_the_warden_sheet_127
+  - first:
+      213: -5509326847157505768
+    second: boss_the_warden_sheet_128
+  - first:
+      213: 2040973916307386675
+    second: boss_the_warden_sheet_129
+  - first:
+      213: -6548113196241713926
+    second: boss_the_warden_sheet_130
+  - first:
+      213: -6569625096385293640
+    second: boss_the_warden_sheet_131
+  - first:
+      213: 672380436303507849
+    second: boss_the_warden_sheet_132
+  - first:
+      213: -6886025023207120004
+    second: boss_the_warden_sheet_133
+  - first:
+      213: -7007669354979448983
+    second: boss_the_warden_sheet_134
+  - first:
+      213: 2491271221051998444
+    second: boss_the_warden_sheet_135
+  - first:
+      213: 749156036980172118
+    second: boss_the_warden_sheet_136
+  - first:
+      213: -3904207246638966374
+    second: boss_the_warden_sheet_137
+  - first:
+      213: 1219441096033650625
+    second: boss_the_warden_sheet_138
+  - first:
+      213: -913347732832099372
+    second: boss_the_warden_sheet_139
+  - first:
+      213: 8787554308578528657
+    second: boss_the_warden_sheet_140
+  - first:
+      213: -5398769452526799191
+    second: boss_the_warden_sheet_141
+  - first:
+      213: -8064478336988486890
+    second: boss_the_warden_sheet_142
+  - first:
+      213: -2902171093650600385
+    second: boss_the_warden_sheet_143
+  - first:
+      213: -4624723215037592304
+    second: boss_the_warden_sheet_144
+  - first:
+      213: -1855108125385941921
+    second: boss_the_warden_sheet_145
+  - first:
+      213: -2083821877495435181
+    second: boss_the_warden_sheet_146
+  - first:
+      213: -6906609747216962378
+    second: boss_the_warden_sheet_147
+  - first:
+      213: 45218351328817086
+    second: boss_the_warden_sheet_148
+  - first:
+      213: -4444245216523469976
+    second: boss_the_warden_sheet_149
+  - first:
+      213: 6421192678515710044
+    second: boss_the_warden_sheet_150
+  - first:
+      213: 8124678143649089257
+    second: boss_the_warden_sheet_151
+  - first:
+      213: 3923932088954864577
+    second: boss_the_warden_sheet_152
+  - first:
+      213: -1919202763119874276
+    second: boss_the_warden_sheet_153
+  - first:
+      213: -5071327578802653144
+    second: boss_the_warden_sheet_154
+  - first:
+      213: -6525789659994766023
+    second: boss_the_warden_sheet_155
+  - first:
+      213: -16249973729529431
+    second: boss_the_warden_sheet_156
+  - first:
+      213: -49117793753672414
+    second: boss_the_warden_sheet_157
+  - first:
+      213: -5267884019703589517
+    second: boss_the_warden_sheet_158
+  - first:
+      213: 5213748819459542355
+    second: boss_the_warden_sheet_159
+  - first:
+      213: -8870886355205162830
+    second: boss_the_warden_sheet_160
+  - first:
+      213: -8556265620902975863
+    second: boss_the_warden_sheet_161
+  - first:
+      213: -2963010699606570828
+    second: boss_the_warden_sheet_162
+  - first:
+      213: -9048262562244987185
+    second: boss_the_warden_sheet_163
+  - first:
+      213: 1596854153124480335
+    second: boss_the_warden_sheet_164
+  - first:
+      213: 8825980475390399693
+    second: boss_the_warden_sheet_165
+  - first:
+      213: -2218912476508448499
+    second: boss_the_warden_sheet_166
+  - first:
+      213: -7272076935974329679
+    second: boss_the_warden_sheet_167
+  - first:
+      213: 8872919168821120926
+    second: boss_the_warden_sheet_168
+  - first:
+      213: -3690715374609023263
+    second: boss_the_warden_sheet_169
+  - first:
+      213: -8118880940127892439
+    second: boss_the_warden_sheet_170
+  - first:
+      213: -5901140131459181619
+    second: boss_the_warden_sheet_171
+  - first:
+      213: 8175188959479236951
+    second: boss_the_warden_sheet_172
+  - first:
+      213: -9086705221264522329
+    second: boss_the_warden_sheet_173
+  - first:
+      213: -6203636554696503947
+    second: boss_the_warden_sheet_174
+  - first:
+      213: 4527019848006120633
+    second: boss_the_warden_sheet_175
+  - first:
+      213: -2622671583473507471
+    second: boss_the_warden_sheet_176
+  - first:
+      213: 5247404408303271827
+    second: boss_the_warden_sheet_177
+  - first:
+      213: 3853510771257813345
+    second: boss_the_warden_sheet_178
+  - first:
+      213: -571161693706015618
+    second: boss_the_warden_sheet_179
+  - first:
+      213: 1804358247866335327
+    second: boss_the_warden_sheet_180
+  - first:
+      213: -7694829247784805358
+    second: boss_the_warden_sheet_181
+  - first:
+      213: -6324015484313535494
+    second: boss_the_warden_sheet_182
+  - first:
+      213: -5313252741421450400
+    second: boss_the_warden_sheet_183
+  - first:
+      213: -1970931562490324290
+    second: boss_the_warden_sheet_184
+  - first:
+      213: 6048721196851817491
+    second: boss_the_warden_sheet_185
+  - first:
+      213: 1953776710162285373
+    second: boss_the_warden_sheet_186
+  - first:
+      213: 3495496322908279759
+    second: boss_the_warden_sheet_187
+  - first:
+      213: -7456724550351892071
+    second: boss_the_warden_sheet_188
+  - first:
+      213: 189137146694904008
+    second: boss_the_warden_sheet_189
+  - first:
+      213: 7592621307409693355
+    second: boss_the_warden_sheet_190
+  - first:
+      213: -8034088008863799770
+    second: boss_the_warden_sheet_191
+  - first:
+      213: 4735400236079184649
+    second: boss_the_warden_sheet_192
+  - first:
+      213: -6631845035729591041
+    second: boss_the_warden_sheet_193
+  - first:
+      213: -8967839270833928161
+    second: boss_the_warden_sheet_194
+  - first:
+      213: -2316118712380333951
+    second: boss_the_warden_sheet_195
+  - first:
+      213: 4585380638206446763
+    second: boss_the_warden_sheet_196
+  - first:
+      213: -5242629306481274252
+    second: boss_the_warden_sheet_197
+  - first:
+      213: 2857643698168456316
+    second: boss_the_warden_sheet_198
+  - first:
+      213: -6330945433348018597
+    second: boss_the_warden_sheet_199
+  - first:
+      213: -5641193740189323753
+    second: boss_the_warden_sheet_200
+  - first:
+      213: -217749723927373925
+    second: boss_the_warden_sheet_201
+  - first:
+      213: 6407440944169823659
+    second: boss_the_warden_sheet_202
+  - first:
+      213: 273168887143782378
+    second: boss_the_warden_sheet_203
+  - first:
+      213: 5539420345447495771
+    second: boss_the_warden_sheet_204
+  - first:
+      213: 349165457438690585
+    second: boss_the_warden_sheet_205
+  - first:
+      213: 5723630932031708185
+    second: boss_the_warden_sheet_206
+  - first:
+      213: 5830922602003523905
+    second: boss_the_warden_sheet_207
+  - first:
+      213: 6185862816077836161
+    second: boss_the_warden_sheet_208
+  - first:
+      213: -2625761691539926630
+    second: boss_the_warden_sheet_209
+  - first:
+      213: -4107079314815420513
+    second: boss_the_warden_sheet_210
+  - first:
+      213: -714350924523469739
+    second: boss_the_warden_sheet_211
+  - first:
+      213: 2779325084034798960
+    second: boss_the_warden_sheet_212
+  - first:
+      213: 9052361090540016579
+    second: boss_the_warden_sheet_213
+  - first:
+      213: -1082892419009023474
+    second: boss_the_warden_sheet_214
+  - first:
+      213: 7755691248006687703
+    second: boss_the_warden_sheet_215
+  - first:
+      213: -3135826645153508793
+    second: boss_the_warden_sheet_216
+  - first:
+      213: -3965134129599929690
+    second: boss_the_warden_sheet_217
+  - first:
+      213: 8943869161133075456
+    second: boss_the_warden_sheet_218
+  - first:
+      213: -7245827314392467401
+    second: boss_the_warden_sheet_219
+  - first:
+      213: 5998298475202045104
+    second: boss_the_warden_sheet_220
+  - first:
+      213: -966264042828578950
+    second: boss_the_warden_sheet_221
+  - first:
+      213: -2427253930454685484
+    second: boss_the_warden_sheet_222
+  - first:
+      213: 4811762980246650275
+    second: boss_the_warden_sheet_223
+  - first:
+      213: 2952765862492657055
+    second: boss_the_warden_sheet_224
+  - first:
+      213: -3765669266940132429
+    second: boss_the_warden_sheet_225
+  - first:
+      213: 1817756726270840611
+    second: boss_the_warden_sheet_226
+  - first:
+      213: -7468893245192506547
+    second: boss_the_warden_sheet_227
+  - first:
+      213: -7138065975235289423
+    second: boss_the_warden_sheet_228
+  - first:
+      213: -8292538533766046461
+    second: boss_the_warden_sheet_229
+  - first:
+      213: 5534096520731793596
+    second: boss_the_warden_sheet_230
+  - first:
+      213: 3127989397521611788
+    second: boss_the_warden_sheet_231
+  - first:
+      213: 7462777434325114866
+    second: boss_the_warden_sheet_232
+  - first:
+      213: 4393025268622401649
+    second: boss_the_warden_sheet_233
+  - first:
+      213: -5040413644286208722
+    second: boss_the_warden_sheet_234
+  - first:
+      213: 3833190051322143463
+    second: boss_the_warden_sheet_235
+  - first:
+      213: -5098104975783823276
+    second: boss_the_warden_sheet_236
+  - first:
+      213: 7967802689363080683
+    second: boss_the_warden_sheet_237
+  - first:
+      213: 1862757815982740229
+    second: boss_the_warden_sheet_238
+  - first:
+      213: 4067960516599348967
+    second: boss_the_warden_sheet_239
+  - first:
+      213: 5480380096757631651
+    second: boss_the_warden_sheet_240
+  - first:
+      213: 3611584696981245224
+    second: boss_the_warden_sheet_241
+  - first:
+      213: 3383129518901217769
+    second: boss_the_warden_sheet_242
+  - first:
+      213: 2268806522601488025
+    second: boss_the_warden_sheet_243
+  - first:
+      213: 350542118937824715
+    second: boss_the_warden_sheet_244
+  - first:
+      213: -1633514152520512633
+    second: boss_the_warden_sheet_245
+  - first:
+      213: 4271564937340545794
+    second: boss_the_warden_sheet_246
+  - first:
+      213: 5757249139679051469
+    second: boss_the_warden_sheet_247
+  - first:
+      213: -708764733023971290
+    second: boss_the_warden_sheet_248
+  - first:
+      213: -5342967563136054881
+    second: boss_the_warden_sheet_249
+  - first:
+      213: -627570785642557832
+    second: boss_the_warden_sheet_250
+  - first:
+      213: -3769241691141499258
+    second: boss_the_warden_sheet_251
+  - first:
+      213: -6798831351997688151
+    second: boss_the_warden_sheet_252
+  - first:
+      213: -8071881904353107197
+    second: boss_the_warden_sheet_253
+  - first:
+      213: 1871520870615860435
+    second: boss_the_warden_sheet_254
+  - first:
+      213: -3817614884640743419
+    second: boss_the_warden_sheet_255
+  - first:
+      213: -7318403328597360339
+    second: boss_the_warden_sheet_256
+  - first:
+      213: 3686333267411775334
+    second: boss_the_warden_sheet_257
+  - first:
+      213: -2760834517227543235
+    second: boss_the_warden_sheet_258
+  - first:
+      213: -4529168860068819247
+    second: boss_the_warden_sheet_259
+  - first:
+      213: -357838591658946258
+    second: boss_the_warden_sheet_260
+  - first:
+      213: 780031328857787626
+    second: boss_the_warden_sheet_261
+  - first:
+      213: 7995248562350246373
+    second: boss_the_warden_sheet_262
+  - first:
+      213: -7707974299677369167
+    second: boss_the_warden_sheet_263
+  - first:
+      213: -411605738768425181
+    second: boss_the_warden_sheet_264
+  - first:
+      213: 294581244543023166
+    second: boss_the_warden_sheet_265
+  - first:
+      213: 5434471631021496179
+    second: boss_the_warden_sheet_266
+  - first:
+      213: 8439334647832251684
+    second: boss_the_warden_sheet_267
+  - first:
+      213: 1682445316452424370
+    second: boss_the_warden_sheet_268
+  - first:
+      213: 6965217291467288248
+    second: boss_the_warden_sheet_269
+  - first:
+      213: -976922080324911369
+    second: boss_the_warden_sheet_270
+  - first:
+      213: -8942302837252885628
+    second: boss_the_warden_sheet_271
+  - first:
+      213: 6171484527741979325
+    second: boss_the_warden_sheet_272
+  - first:
+      213: -7706999207838931906
+    second: boss_the_warden_sheet_273
+  - first:
+      213: -5734392505515610883
+    second: boss_the_warden_sheet_274
+  - first:
+      213: -1653804621338321168
+    second: boss_the_warden_sheet_275
+  - first:
+      213: -6059434241432958474
+    second: boss_the_warden_sheet_276
+  - first:
+      213: 4278992135962879144
+    second: boss_the_warden_sheet_277
+  - first:
+      213: -7374019024117867294
+    second: boss_the_warden_sheet_278
+  - first:
+      213: -8758111297113192152
+    second: boss_the_warden_sheet_279
+  - first:
+      213: -5973795471528196296
+    second: boss_the_warden_sheet_280
+  - first:
+      213: 2650051275661263995
+    second: boss_the_warden_sheet_281
+  - first:
+      213: 8431508837670396060
+    second: boss_the_warden_sheet_282
+  - first:
+      213: -4145851156469885959
+    second: boss_the_warden_sheet_283
+  - first:
+      213: -6128765879293299325
+    second: boss_the_warden_sheet_284
+  - first:
+      213: -3824013163656516233
+    second: boss_the_warden_sheet_285
+  - first:
+      213: -9189290356305244984
+    second: boss_the_warden_sheet_286
+  - first:
+      213: -4217058796447650261
+    second: boss_the_warden_sheet_287
+  - first:
+      213: -406974154805951651
+    second: boss_the_warden_sheet_288
+  - first:
+      213: -5916480356912903500
+    second: boss_the_warden_sheet_289
+  - first:
+      213: 5056276316862849244
+    second: boss_the_warden_sheet_290
+  - first:
+      213: 4856002681442545371
+    second: boss_the_warden_sheet_291
+  - first:
+      213: 6333542245149584694
+    second: boss_the_warden_sheet_292
+  - first:
+      213: 3053374803233123732
+    second: boss_the_warden_sheet_293
+  - first:
+      213: -615336231655476230
+    second: boss_the_warden_sheet_294
+  - first:
+      213: -1510470731765542131
+    second: boss_the_warden_sheet_295
+  - first:
+      213: 5017411517811689361
+    second: boss_the_warden_sheet_296
+  - first:
+      213: -8309970170975037828
+    second: boss_the_warden_sheet_297
+  - first:
+      213: 4742529143342082768
+    second: boss_the_warden_sheet_298
+  - first:
+      213: 2364596436797372319
+    second: boss_the_warden_sheet_299
+  - first:
+      213: -3327055079111881332
+    second: boss_the_warden_sheet_300
+  - first:
+      213: -317145738170640775
+    second: boss_the_warden_sheet_301
+  - first:
+      213: 9095969971815948349
+    second: boss_the_warden_sheet_302
+  - first:
+      213: -3458198818324155991
+    second: boss_the_warden_sheet_303
+  - first:
+      213: 5112948373108703773
+    second: boss_the_warden_sheet_304
+  - first:
+      213: 2158606154564266156
+    second: boss_the_warden_sheet_305
+  - first:
+      213: 8330167105499356432
+    second: boss_the_warden_sheet_306
+  - first:
+      213: -4635038909824759878
+    second: boss_the_warden_sheet_307
+  - first:
+      213: -4831410384105611983
+    second: boss_the_warden_sheet_308
+  - first:
+      213: 8954662572649005767
+    second: boss_the_warden_sheet_309
+  - first:
+      213: 8998681317787534938
+    second: boss_the_warden_sheet_310
+  - first:
+      213: 1934512084094882014
+    second: boss_the_warden_sheet_311
+  - first:
+      213: 7708693657948675850
+    second: boss_the_warden_sheet_312
+  - first:
+      213: -3709370010461899131
+    second: boss_the_warden_sheet_313
+  - first:
+      213: -8721471233133619683
+    second: boss_the_warden_sheet_314
+  - first:
+      213: 3381950745306969657
+    second: boss_the_warden_sheet_315
+  - first:
+      213: 5992650730827614528
+    second: boss_the_warden_sheet_316
+  - first:
+      213: 8222896591639109923
+    second: boss_the_warden_sheet_317
+  - first:
+      213: 5710378481488482538
+    second: boss_the_warden_sheet_318
+  - first:
+      213: 2348412884917769422
+    second: boss_the_warden_sheet_319
+  - first:
+      213: -4116703346003419044
+    second: boss_the_warden_sheet_320
+  - first:
+      213: 887334108642644957
+    second: boss_the_warden_sheet_321
+  - first:
+      213: 253696523514414956
+    second: boss_the_warden_sheet_322
+  - first:
+      213: -8321595076542327596
+    second: boss_the_warden_sheet_323
+  - first:
+      213: 1590581547741044344
+    second: boss_the_warden_sheet_324
+  - first:
+      213: -7471512774258548163
+    second: boss_the_warden_sheet_325
+  - first:
+      213: -2542662013066582104
+    second: boss_the_warden_sheet_326
+  - first:
+      213: -7054128152564732900
+    second: boss_the_warden_sheet_327
+  - first:
+      213: 6328772954746657844
+    second: boss_the_warden_sheet_328
+  - first:
+      213: 3042017109111800057
+    second: boss_the_warden_sheet_329
+  - first:
+      213: 5917932994716034325
+    second: boss_the_warden_sheet_330
+  - first:
+      213: -4409474154938838455
+    second: boss_the_warden_sheet_331
+  - first:
+      213: -8356187434668217286
+    second: boss_the_warden_sheet_332
+  - first:
+      213: -2048591155974491310
+    second: boss_the_warden_sheet_333
+  - first:
+      213: 747773681147985365
+    second: boss_the_warden_sheet_334
+  - first:
+      213: -1332017279959913340
+    second: boss_the_warden_sheet_335
+  - first:
+      213: 2632843051812579430
+    second: boss_the_warden_sheet_336
+  - first:
+      213: 8594547604192681503
+    second: boss_the_warden_sheet_337
+  - first:
+      213: 1103567722291358045
+    second: boss_the_warden_sheet_338
+  - first:
+      213: 6380102611203046767
+    second: boss_the_warden_sheet_339
+  - first:
+      213: -9204405901676454253
+    second: boss_the_warden_sheet_340
+  - first:
+      213: 8541698256501628026
+    second: boss_the_warden_sheet_341
+  - first:
+      213: -7203130248087969358
+    second: boss_the_warden_sheet_342
+  - first:
+      213: 1392513374778129675
+    second: boss_the_warden_sheet_343
+  - first:
+      213: -105116610090366057
+    second: boss_the_warden_sheet_344
+  - first:
+      213: 1466319273451735292
+    second: boss_the_warden_sheet_345
+  - first:
+      213: 178168430390107159
+    second: boss_the_warden_sheet_346
+  - first:
+      213: 3614619915358309852
+    second: boss_the_warden_sheet_347
+  - first:
+      213: 6161758530955005351
+    second: boss_the_warden_sheet_348
+  - first:
+      213: 4316373348272248035
+    second: boss_the_warden_sheet_349
+  - first:
+      213: -2984189215376424182
+    second: boss_the_warden_sheet_350
+  - first:
+      213: -418860640789370301
+    second: boss_the_warden_sheet_351
+  - first:
+      213: 5116417446418960722
+    second: boss_the_warden_sheet_352
+  - first:
+      213: 4298282427316732912
+    second: boss_the_warden_sheet_353
+  - first:
+      213: -3177074743778598143
+    second: boss_the_warden_sheet_354
+  - first:
+      213: -9220469641087039739
+    second: boss_the_warden_sheet_355
+  - first:
+      213: -422662189749695486
+    second: boss_the_warden_sheet_356
+  - first:
+      213: -7841079958823437619
+    second: boss_the_warden_sheet_357
+  - first:
+      213: 6477129458263651537
+    second: boss_the_warden_sheet_358
+  - first:
+      213: 605677226766901399
+    second: boss_the_warden_sheet_359
+  - first:
+      213: -90860616194628263
+    second: boss_the_warden_sheet_360
+  - first:
+      213: 3965833571619977295
+    second: boss_the_warden_sheet_361
+  - first:
+      213: -1545441653401329379
+    second: boss_the_warden_sheet_362
+  - first:
+      213: 8255600214475607290
+    second: boss_the_warden_sheet_363
+  - first:
+      213: 3814717188464177757
+    second: boss_the_warden_sheet_364
+  - first:
+      213: 5019633659203591887
+    second: boss_the_warden_sheet_365
+  - first:
+      213: -7477296903664993145
+    second: boss_the_warden_sheet_366
+  - first:
+      213: -215883309614751459
+    second: boss_the_warden_sheet_367
+  - first:
+      213: 4190454180243895773
+    second: boss_the_warden_sheet_368
+  - first:
+      213: 3483399731702841403
+    second: boss_the_warden_sheet_369
+  - first:
+      213: 8333692835899909532
+    second: boss_the_warden_sheet_370
+  - first:
+      213: -4204294478338388514
+    second: boss_the_warden_sheet_371
+  - first:
+      213: -2106688001559359503
+    second: boss_the_warden_sheet_372
+  - first:
+      213: 5262375797375812652
+    second: boss_the_warden_sheet_373
+  - first:
+      213: 1340679766036882321
+    second: boss_the_warden_sheet_374
+  - first:
+      213: -6247099668799413532
+    second: boss_the_warden_sheet_375
+  - first:
+      213: -5748090433922101774
+    second: boss_the_warden_sheet_376
+  - first:
+      213: -2449645665609167698
+    second: boss_the_warden_sheet_377
+  - first:
+      213: 5258823280841856153
+    second: boss_the_warden_sheet_378
+  - first:
+      213: -2299181717986643825
+    second: boss_the_warden_sheet_379
+  - first:
+      213: 4877851439372266449
+    second: boss_the_warden_sheet_380
+  - first:
+      213: 7378357870181960336
+    second: boss_the_warden_sheet_381
+  - first:
+      213: -804061843813263972
+    second: boss_the_warden_sheet_382
+  - first:
+      213: -4256325199616354065
+    second: boss_the_warden_sheet_383
+  - first:
+      213: 7403421684834391583
+    second: boss_the_warden_sheet_384
+  - first:
+      213: 6383733586126221704
+    second: boss_the_warden_sheet_385
+  - first:
+      213: 6148948434995713725
+    second: boss_the_warden_sheet_386
+  - first:
+      213: -443289449098121167
+    second: boss_the_warden_sheet_387
+  - first:
+      213: -3554436391690778417
+    second: boss_the_warden_sheet_388
+  - first:
+      213: 393888531160994849
+    second: boss_the_warden_sheet_389
+  - first:
+      213: -8907779947369698532
+    second: boss_the_warden_sheet_390
+  - first:
+      213: 3668611097130622860
+    second: boss_the_warden_sheet_391
+  - first:
+      213: -1490611811498854317
+    second: boss_the_warden_sheet_392
+  - first:
+      213: 1002211495729205253
+    second: boss_the_warden_sheet_393
+  - first:
+      213: -7217988304658087392
+    second: boss_the_warden_sheet_394
+  - first:
+      213: -8650861350078700277
+    second: boss_the_warden_sheet_395
+  - first:
+      213: -6282293112251366680
+    second: boss_the_warden_sheet_396
+  - first:
+      213: 8415857071976858838
+    second: boss_the_warden_sheet_397
+  - first:
+      213: -1990046658771572409
+    second: boss_the_warden_sheet_398
+  - first:
+      213: -1332292878555231388
+    second: boss_the_warden_sheet_399
+  - first:
+      213: 259109663458828646
+    second: boss_the_warden_sheet_400
+  - first:
+      213: -8509768235657128562
+    second: boss_the_warden_sheet_401
+  - first:
+      213: -5653764486590555465
+    second: boss_the_warden_sheet_402
+  - first:
+      213: 4914297435721740458
+    second: boss_the_warden_sheet_403
+  - first:
+      213: -5192712341192491686
+    second: boss_the_warden_sheet_404
+  - first:
+      213: 5647701727200754694
+    second: boss_the_warden_sheet_405
+  - first:
+      213: -8474660854302220601
+    second: boss_the_warden_sheet_406
+  - first:
+      213: 2419097508306219032
+    second: boss_the_warden_sheet_407
+  - first:
+      213: -6668373466334529709
+    second: boss_the_warden_sheet_408
+  - first:
+      213: -1504483167333831168
+    second: boss_the_warden_sheet_409
+  - first:
+      213: 4519286905225938071
+    second: boss_the_warden_sheet_410
+  - first:
+      213: 2837165591337641249
+    second: boss_the_warden_sheet_411
+  - first:
+      213: -4990179126845620871
+    second: boss_the_warden_sheet_412
+  - first:
+      213: 5049088429237536002
+    second: boss_the_warden_sheet_413
+  - first:
+      213: -5181176927525835409
+    second: boss_the_warden_sheet_414
+  - first:
+      213: -360177112514413224
+    second: boss_the_warden_sheet_415
+  - first:
+      213: -4596451106522140868
+    second: boss_the_warden_sheet_416
+  - first:
+      213: -2266325289838512375
+    second: boss_the_warden_sheet_417
+  - first:
+      213: 4665296429131872841
+    second: boss_the_warden_sheet_418
+  - first:
+      213: -7333844255124213381
+    second: boss_the_warden_sheet_419
+  - first:
+      213: -122822172759210813
+    second: boss_the_warden_sheet_420
+  - first:
+      213: 3170830419149785487
+    second: boss_the_warden_sheet_421
+  - first:
+      213: 7263531553932884639
+    second: boss_the_warden_sheet_422
+  - first:
+      213: -488069816373742896
+    second: boss_the_warden_sheet_423
+  - first:
+      213: 4430503309848580406
+    second: boss_the_warden_sheet_424
+  - first:
+      213: -2412991030531548799
+    second: boss_the_warden_sheet_425
+  - first:
+      213: 889297811779597566
+    second: boss_the_warden_sheet_426
+  - first:
+      213: -2299614875921797359
+    second: boss_the_warden_sheet_427
+  - first:
+      213: -3948883927202813592
+    second: boss_the_warden_sheet_428
+  - first:
+      213: 5086855748546898209
+    second: boss_the_warden_sheet_429
+  - first:
+      213: -8231703394795552096
+    second: boss_the_warden_sheet_430
+  - first:
+      213: -3719256989909491556
+    second: boss_the_warden_sheet_431
+  - first:
+      213: 6981641600218214753
+    second: boss_the_warden_sheet_432
+  - first:
+      213: 2084733344066497825
+    second: boss_the_warden_sheet_433
+  - first:
+      213: 6824451149402700990
+    second: boss_the_warden_sheet_434
+  - first:
+      213: -3949437440889939139
+    second: boss_the_warden_sheet_435
+  - first:
+      213: 7729968518106662594
+    second: boss_the_warden_sheet_436
+  - first:
+      213: -643593277136736478
+    second: boss_the_warden_sheet_437
+  - first:
+      213: -5327452781421976311
+    second: boss_the_warden_sheet_438
+  - first:
+      213: 136191573454576192
+    second: boss_the_warden_sheet_439
+  - first:
+      213: 1844908111894077770
+    second: boss_the_warden_sheet_440
+  - first:
+      213: 8076397030976394260
+    second: boss_the_warden_sheet_441
+  - first:
+      213: -5860807430193164637
+    second: boss_the_warden_sheet_442
+  - first:
+      213: 2389746629083615825
+    second: boss_the_warden_sheet_443
+  - first:
+      213: -8629115943409637847
+    second: boss_the_warden_sheet_444
+  - first:
+      213: 9121595625176388027
+    second: boss_the_warden_sheet_445
+  - first:
+      213: 7090532742680192676
+    second: boss_the_warden_sheet_446
+  - first:
+      213: 2996749334832875883
+    second: boss_the_warden_sheet_447
+  - first:
+      213: -3095747832635344688
+    second: boss_the_warden_sheet_448
+  - first:
+      213: 6284905312214004194
+    second: boss_the_warden_sheet_449
+  - first:
+      213: -700330684687196248
+    second: boss_the_warden_sheet_450
+  - first:
+      213: 7093484745535120919
+    second: boss_the_warden_sheet_451
+  - first:
+      213: 2886675016731422476
+    second: boss_the_warden_sheet_452
+  - first:
+      213: -657094511207226027
+    second: boss_the_warden_sheet_453
+  - first:
+      213: -7915197171850082928
+    second: boss_the_warden_sheet_454
+  - first:
+      213: -3978416240104168284
+    second: boss_the_warden_sheet_455
+  - first:
+      213: -1131417240819251382
+    second: boss_the_warden_sheet_456
+  - first:
+      213: 8590653531024766159
+    second: boss_the_warden_sheet_457
+  - first:
+      213: -6980684511179466934
+    second: boss_the_warden_sheet_458
+  - first:
+      213: 4056213969780800199
+    second: boss_the_warden_sheet_459
+  - first:
+      213: 998769373882708011
+    second: boss_the_warden_sheet_460
+  - first:
+      213: 7171999207477770990
+    second: boss_the_warden_sheet_461
+  - first:
+      213: 8002360242830548642
+    second: boss_the_warden_sheet_462
+  - first:
+      213: 7430450174383803110
+    second: boss_the_warden_sheet_463
+  - first:
+      213: 3212302350845749909
+    second: boss_the_warden_sheet_464
+  - first:
+      213: -3424246640477378327
+    second: boss_the_warden_sheet_465
+  - first:
+      213: 4632085497693592932
+    second: boss_the_warden_sheet_466
+  - first:
+      213: -1223318813638550606
+    second: boss_the_warden_sheet_467
+  - first:
+      213: 6123711405092878028
+    second: boss_the_warden_sheet_468
+  - first:
+      213: 2129977640250728690
+    second: boss_the_warden_sheet_469
+  - first:
+      213: 2881488282706904516
+    second: boss_the_warden_sheet_470
+  - first:
+      213: -6041049215998220748
+    second: boss_the_warden_sheet_471
+  - first:
+      213: 3946530201548366881
+    second: boss_the_warden_sheet_472
+  - first:
+      213: -1471904488034113708
+    second: boss_the_warden_sheet_473
+  - first:
+      213: 7806030301171996904
+    second: boss_the_warden_sheet_474
+  - first:
+      213: 3326879551089330849
+    second: boss_the_warden_sheet_475
+  - first:
+      213: -9024336162089598836
+    second: boss_the_warden_sheet_476
+  - first:
+      213: 1276030519872646359
+    second: boss_the_warden_sheet_477
+  - first:
+      213: -7015454175530780496
+    second: boss_the_warden_sheet_478
+  - first:
+      213: 5147334087754981432
+    second: boss_the_warden_sheet_479
+  - first:
+      213: -2073091659953690778
+    second: boss_the_warden_sheet_480
+  - first:
+      213: 7859069146065879641
+    second: boss_the_warden_sheet_481
+  - first:
+      213: 8064523833510266548
+    second: boss_the_warden_sheet_482
+  - first:
+      213: 1420859372306822613
+    second: boss_the_warden_sheet_483
+  - first:
+      213: 3432808488093434635
+    second: boss_the_warden_sheet_484
+  - first:
+      213: -666981268104429895
+    second: boss_the_warden_sheet_485
+  - first:
+      213: -4715845869231029997
+    second: boss_the_warden_sheet_486
+  - first:
+      213: -4962556152449382167
+    second: boss_the_warden_sheet_487
+  - first:
+      213: 4162948069475215453
+    second: boss_the_warden_sheet_488
+  - first:
+      213: -1970255482602488494
+    second: boss_the_warden_sheet_489
+  - first:
+      213: 6788569622416631215
+    second: boss_the_warden_sheet_490
+  - first:
+      213: 6825218656971393288
+    second: boss_the_warden_sheet_491
+  - first:
+      213: 6152622158261247426
+    second: boss_the_warden_sheet_492
+  - first:
+      213: -7155570937639343622
+    second: boss_the_warden_sheet_493
+  - first:
+      213: 4155289658461229306
+    second: boss_the_warden_sheet_494
+  - first:
+      213: 883315187715134702
+    second: boss_the_warden_sheet_495
+  - first:
+      213: 528582106133897844
+    second: boss_the_warden_sheet_496
+  - first:
+      213: 2474672100783771784
+    second: boss_the_warden_sheet_497
+  - first:
+      213: -3028761973108105604
+    second: boss_the_warden_sheet_498
+  - first:
+      213: 2322869540573528417
+    second: boss_the_warden_sheet_499
+  - first:
+      213: 8613775117960668144
+    second: boss_the_warden_sheet_500
+  - first:
+      213: -4042498161887760953
+    second: boss_the_warden_sheet_501
+  - first:
+      213: 784591295343416044
+    second: boss_the_warden_sheet_502
+  - first:
+      213: 780389430931044761
+    second: boss_the_warden_sheet_503
+  - first:
+      213: -7327497939765243796
+    second: boss_the_warden_sheet_0_0
+  - first:
+      213: 7296090373040076053
+    second: boss_the_warden_sheet_0_1
+  - first:
+      213: 7188415223296974823
+    second: boss_the_warden_sheet_0_2
+  - first:
+      213: 7140703487977354202
+    second: boss_the_warden_sheet_0_3
+  - first:
+      213: -8104591436179761892
+    second: boss_the_warden_sheet_0_4
+  - first:
+      213: -544200989830379673
+    second: boss_the_warden_sheet_0_5
+  - first:
+      213: -7975637837099837293
+    second: boss_the_warden_sheet_0_6
+  - first:
+      213: 6471392686539854023
+    second: boss_the_warden_sheet_0_7
+  - first:
+      213: 827007377325403490
+    second: boss_the_warden_sheet_0_8
+  - first:
+      213: 1440278191894367068
+    second: boss_the_warden_sheet_0_9
+  - first:
+      213: -5795511323874780947
+    second: boss_the_warden_sheet_0_10
+  - first:
+      213: -6707289852690771928
+    second: boss_the_warden_sheet_0_11
+  - first:
+      213: -1071478159707311775
+    second: boss_the_warden_sheet_0_12
+  - first:
+      213: -8883915412149917050
+    second: boss_the_warden_sheet_0_13
+  - first:
+      213: 2707605595769772396
+    second: boss_the_warden_sheet_0_14
+  - first:
+      213: -3602964853859630745
+    second: boss_the_warden_sheet_0_15
+  - first:
+      213: -8604095263728308053
+    second: boss_the_warden_sheet_0_16
+  - first:
+      213: -7467200376430740792
+    second: boss_the_warden_sheet_0_17
+  - first:
+      213: 7196272488614554352
+    second: boss_the_warden_sheet_0_18
+  - first:
+      213: 5038472682565754311
+    second: boss_the_warden_sheet_0_19
+  - first:
+      213: 7714138964128757696
+    second: boss_the_warden_sheet_0_20
+  - first:
+      213: 6534074089165322358
+    second: boss_the_warden_sheet_1_0
+  - first:
+      213: -7550329349986413919
+    second: boss_the_warden_sheet_1_1
+  - first:
+      213: 5866770305127342618
+    second: boss_the_warden_sheet_1_2
+  - first:
+      213: -6175671569820463910
+    second: boss_the_warden_sheet_1_3
+  - first:
+      213: -1202849157329346941
+    second: boss_the_warden_sheet_1_4
+  - first:
+      213: 5264273540936101535
+    second: boss_the_warden_sheet_1_5
+  - first:
+      213: 6956869704208466282
+    second: boss_the_warden_sheet_1_6
+  - first:
+      213: -6259201139835960735
+    second: boss_the_warden_sheet_1_7
+  - first:
+      213: 8709451959881770788
+    second: boss_the_warden_sheet_1_8
+  - first:
+      213: 3492721575771216526
+    second: boss_the_warden_sheet_1_9
+  - first:
+      213: -5192906146770819002
+    second: boss_the_warden_sheet_1_10
+  - first:
+      213: 3116175326708370544
+    second: boss_the_warden_sheet_1_11
+  - first:
+      213: 6044194708165968819
+    second: boss_the_warden_sheet_1_12
+  - first:
+      213: -7283490653808859416
+    second: boss_the_warden_sheet_1_13
+  - first:
+      213: -2609334570205138285
+    second: boss_the_warden_sheet_1_14
+  - first:
+      213: 8248780994285830318
+    second: boss_the_warden_sheet_1_15
+  - first:
+      213: 3577918801908420126
+    second: boss_the_warden_sheet_1_16
+  - first:
+      213: -685969291073654082
+    second: boss_the_warden_sheet_1_17
+  - first:
+      213: -723980836807222894
+    second: boss_the_warden_sheet_1_18
+  - first:
+      213: -8271689051190287368
+    second: boss_the_warden_sheet_1_19
+  - first:
+      213: -6740543060856372250
+    second: boss_the_warden_sheet_1_20
+  - first:
+      213: 3239723770483489144
+    second: boss_the_warden_sheet_2_0
+  - first:
+      213: 591752664269695805
+    second: boss_the_warden_sheet_2_1
+  - first:
+      213: 6315321673725806229
+    second: boss_the_warden_sheet_2_2
+  - first:
+      213: 5017839006228289858
+    second: boss_the_warden_sheet_2_3
+  - first:
+      213: 7354287526888857509
+    second: boss_the_warden_sheet_2_4
+  - first:
+      213: -3930285805968971134
+    second: boss_the_warden_sheet_2_5
+  - first:
+      213: -2647975988422667929
+    second: boss_the_warden_sheet_2_6
+  - first:
+      213: -8401094519563987064
+    second: boss_the_warden_sheet_2_7
+  - first:
+      213: 8646324916142276599
+    second: boss_the_warden_sheet_2_8
+  - first:
+      213: 293756667211432957
+    second: boss_the_warden_sheet_2_9
+  - first:
+      213: -1524594229335813182
+    second: boss_the_warden_sheet_2_10
+  - first:
+      213: 3760115524192594605
+    second: boss_the_warden_sheet_2_11
+  - first:
+      213: 2007915122851590618
+    second: boss_the_warden_sheet_2_12
+  - first:
+      213: 9176232292510527445
+    second: boss_the_warden_sheet_2_13
+  - first:
+      213: -3757597832958834749
+    second: boss_the_warden_sheet_2_14
+  - first:
+      213: 1756851301267793967
+    second: boss_the_warden_sheet_2_15
+  - first:
+      213: 1871753742353002845
+    second: boss_the_warden_sheet_2_16
+  - first:
+      213: -3160480579519225586
+    second: boss_the_warden_sheet_2_17
+  - first:
+      213: 6437306902541971394
+    second: boss_the_warden_sheet_2_18
+  - first:
+      213: 3446820503808317156
+    second: boss_the_warden_sheet_2_19
+  - first:
+      213: 1958771922784809803
+    second: boss_the_warden_sheet_2_20
+  - first:
+      213: 5048950083955533601
+    second: boss_the_warden_sheet_3_0
+  - first:
+      213: 6083054914735169479
+    second: boss_the_warden_sheet_3_1
+  - first:
+      213: 1425525164290331257
+    second: boss_the_warden_sheet_3_2
+  - first:
+      213: 1614193847041265854
+    second: boss_the_warden_sheet_3_3
+  - first:
+      213: -7088428066310807036
+    second: boss_the_warden_sheet_3_4
+  - first:
+      213: -6105055378619797260
+    second: boss_the_warden_sheet_3_5
+  - first:
+      213: 2470864231870822044
+    second: boss_the_warden_sheet_3_6
+  - first:
+      213: -7466271914366419833
+    second: boss_the_warden_sheet_3_7
+  - first:
+      213: -5858880062425395750
+    second: boss_the_warden_sheet_3_8
+  - first:
+      213: -4945136515991373390
+    second: boss_the_warden_sheet_3_9
+  - first:
+      213: 7297294500154670216
+    second: boss_the_warden_sheet_3_10
+  - first:
+      213: -107554947134570550
+    second: boss_the_warden_sheet_3_11
+  - first:
+      213: 6844704005753662230
+    second: boss_the_warden_sheet_3_12
+  - first:
+      213: -499302973645589542
+    second: boss_the_warden_sheet_3_13
+  - first:
+      213: 2723597424846850375
+    second: boss_the_warden_sheet_3_14
+  - first:
+      213: 8148634882251583646
+    second: boss_the_warden_sheet_3_15
+  - first:
+      213: -3117740491610173342
+    second: boss_the_warden_sheet_3_16
+  - first:
+      213: -2179052689065955784
+    second: boss_the_warden_sheet_3_17
+  - first:
+      213: -4983393064944795453
+    second: boss_the_warden_sheet_3_18
+  - first:
+      213: -5201929413368284086
+    second: boss_the_warden_sheet_3_19
+  - first:
+      213: 2882976471874019202
+    second: boss_the_warden_sheet_3_20
+  - first:
+      213: -5558870895342264117
+    second: boss_the_warden_sheet_4_0
+  - first:
+      213: -4015223533331407191
+    second: boss_the_warden_sheet_4_1
+  - first:
+      213: -8964312833677761703
+    second: boss_the_warden_sheet_4_2
+  - first:
+      213: -2085222724853973273
+    second: boss_the_warden_sheet_4_3
+  - first:
+      213: 9104623213954805386
+    second: boss_the_warden_sheet_4_4
+  - first:
+      213: -37877096990543851
+    second: boss_the_warden_sheet_4_5
+  - first:
+      213: 16548923002627589
+    second: boss_the_warden_sheet_4_6
+  - first:
+      213: 3420190751060538660
+    second: boss_the_warden_sheet_4_7
+  - first:
+      213: 4131592402654449673
+    second: boss_the_warden_sheet_4_8
+  - first:
+      213: -8198819449078290294
+    second: boss_the_warden_sheet_4_9
+  - first:
+      213: -4483066651280326784
+    second: boss_the_warden_sheet_4_10
+  - first:
+      213: 8245386139298885893
+    second: boss_the_warden_sheet_4_11
+  - first:
+      213: 4340508135455446445
+    second: boss_the_warden_sheet_4_12
+  - first:
+      213: 977765625462245201
+    second: boss_the_warden_sheet_4_13
+  - first:
+      213: 5497829357245909286
+    second: boss_the_warden_sheet_4_14
+  - first:
+      213: -4640242374451839475
+    second: boss_the_warden_sheet_4_15
+  - first:
+      213: -2450405331967146954
+    second: boss_the_warden_sheet_4_16
+  - first:
+      213: -744659506367100600
+    second: boss_the_warden_sheet_4_17
+  - first:
+      213: -3311659946217736746
+    second: boss_the_warden_sheet_4_18
+  - first:
+      213: 5654523771228512560
+    second: boss_the_warden_sheet_4_19
+  - first:
+      213: 6300579040988022027
+    second: boss_the_warden_sheet_4_20
+  - first:
+      213: 980704094876079248
+    second: boss_the_warden_sheet_5_0
+  - first:
+      213: -510859809829078568
+    second: boss_the_warden_sheet_5_1
+  - first:
+      213: -1953886853071968726
+    second: boss_the_warden_sheet_5_2
+  - first:
+      213: 2566628177811913472
+    second: boss_the_warden_sheet_5_3
+  - first:
+      213: -4000087293392469471
+    second: boss_the_warden_sheet_5_4
+  - first:
+      213: -3724240919638108000
+    second: boss_the_warden_sheet_5_5
+  - first:
+      213: -8379701628919796979
+    second: boss_the_warden_sheet_5_6
+  - first:
+      213: -5517393438221492920
+    second: boss_the_warden_sheet_5_7
+  - first:
+      213: -443850655998655566
+    second: boss_the_warden_sheet_5_8
+  - first:
+      213: -1208682646230280984
+    second: boss_the_warden_sheet_5_9
+  - first:
+      213: -3311211825067615843
+    second: boss_the_warden_sheet_5_10
+  - first:
+      213: -514474475285034381
+    second: boss_the_warden_sheet_5_11
+  - first:
+      213: -2826886390640860322
+    second: boss_the_warden_sheet_5_12
+  - first:
+      213: -7987435511193703102
+    second: boss_the_warden_sheet_5_13
+  - first:
+      213: -4731296048416234755
+    second: boss_the_warden_sheet_5_14
+  - first:
+      213: -4409760626056902026
+    second: boss_the_warden_sheet_5_15
+  - first:
+      213: 6568244384148101008
+    second: boss_the_warden_sheet_5_16
+  - first:
+      213: 6768277347240684229
+    second: boss_the_warden_sheet_5_17
+  - first:
+      213: -3743453276486289096
+    second: boss_the_warden_sheet_5_18
+  - first:
+      213: 3268810108237876282
+    second: boss_the_warden_sheet_5_19
+  - first:
+      213: 5616150939627854649
+    second: boss_the_warden_sheet_5_20
+  - first:
+      213: 5897588572549014878
+    second: boss_the_warden_sheet_6_0
+  - first:
+      213: -3123686459484677513
+    second: boss_the_warden_sheet_6_1
+  - first:
+      213: 7403226730339931060
+    second: boss_the_warden_sheet_6_2
+  - first:
+      213: -3911861763899523121
+    second: boss_the_warden_sheet_6_3
+  - first:
+      213: -979609554318828120
+    second: boss_the_warden_sheet_6_4
+  - first:
+      213: -5891090588557460935
+    second: boss_the_warden_sheet_6_5
+  - first:
+      213: -4871389288216738520
+    second: boss_the_warden_sheet_6_6
+  - first:
+      213: -4706634146082983110
+    second: boss_the_warden_sheet_6_7
+  - first:
+      213: -1548257026971730650
+    second: boss_the_warden_sheet_6_8
+  - first:
+      213: -3083835496710251357
+    second: boss_the_warden_sheet_6_9
+  - first:
+      213: 7130768812504321812
+    second: boss_the_warden_sheet_6_10
+  - first:
+      213: 6017801621624175823
+    second: boss_the_warden_sheet_6_11
+  - first:
+      213: 3786855087257698248
+    second: boss_the_warden_sheet_6_12
+  - first:
+      213: 1957905342336472648
+    second: boss_the_warden_sheet_6_13
+  - first:
+      213: 1850832422326382710
+    second: boss_the_warden_sheet_6_14
+  - first:
+      213: -2073862058405175654
+    second: boss_the_warden_sheet_6_15
+  - first:
+      213: -865852218092646878
+    second: boss_the_warden_sheet_6_16
+  - first:
+      213: -7025020264380803867
+    second: boss_the_warden_sheet_6_17
+  - first:
+      213: 4222464292553971666
+    second: boss_the_warden_sheet_6_18
+  - first:
+      213: 7119502049400016434
+    second: boss_the_warden_sheet_6_19
+  - first:
+      213: 3610080648326200638
+    second: boss_the_warden_sheet_6_20
+  - first:
+      213: -2483746687938198886
+    second: boss_the_warden_sheet_7_0
+  - first:
+      213: -6918910042007690754
+    second: boss_the_warden_sheet_7_1
+  - first:
+      213: -8930363255013786269
+    second: boss_the_warden_sheet_7_2
+  - first:
+      213: 3132487604754673307
+    second: boss_the_warden_sheet_7_3
+  - first:
+      213: -3984748135175558032
+    second: boss_the_warden_sheet_7_4
+  - first:
+      213: 5174017333545809115
+    second: boss_the_warden_sheet_7_5
+  - first:
+      213: 5667143980793539490
+    second: boss_the_warden_sheet_7_6
+  - first:
+      213: 8928347361445508758
+    second: boss_the_warden_sheet_7_7
+  - first:
+      213: -4668913836544055280
+    second: boss_the_warden_sheet_7_8
+  - first:
+      213: -8394231580384485023
+    second: boss_the_warden_sheet_7_9
+  - first:
+      213: -2999520064157385046
+    second: boss_the_warden_sheet_7_10
+  - first:
+      213: 5763711104171700444
+    second: boss_the_warden_sheet_7_11
+  - first:
+      213: -5568884359192468292
+    second: boss_the_warden_sheet_7_12
+  - first:
+      213: 6922336259412669381
+    second: boss_the_warden_sheet_7_13
+  - first:
+      213: 7490047927999689950
+    second: boss_the_warden_sheet_7_14
+  - first:
+      213: 7711168473944709499
+    second: boss_the_warden_sheet_7_15
+  - first:
+      213: 1397761682641797227
+    second: boss_the_warden_sheet_7_16
+  - first:
+      213: -8077319790019202026
+    second: boss_the_warden_sheet_7_17
+  - first:
+      213: -1531878487033541175
+    second: boss_the_warden_sheet_7_18
+  - first:
+      213: 7145284756606294167
+    second: boss_the_warden_sheet_7_19
+  - first:
+      213: 79689350570091630
+    second: boss_the_warden_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c60d2ef427f7f4a90800000000000000
+      internalID: -7327497939765243796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5157336b98be04560800000000000000
+      internalID: 7296090373040076053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ef50aa4f8162c360800000000000000
+      internalID: 7188415223296974823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3784f3dffd81360800000000000000
+      internalID: 7140703487977354202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1515dc5705b68f80800000000000000
+      internalID: -8104591436179761892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7678eb2451c9278f0800000000000000
+      internalID: -544200989830379673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 398df76d4a7d05190800000000000000
+      internalID: -7975637837099837293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c0d44b8c510fc950800000000000000
+      internalID: 6471392686539854023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26dab18f3de1a7b00800000000000000
+      internalID: 827007377325403490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c5b0b957265ecf310800000000000000
+      internalID: 1440278191894367068
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: de890b82825329fa0800000000000000
+      internalID: -5795511323874780947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 820d8cc6a6beae2a0800000000000000
+      internalID: -6707289852690771928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1617e0a6a485121f0800000000000000
+      internalID: -1071478159707311775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 68aaf2c600ef5b480800000000000000
+      internalID: -8883915412149917050
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c6997bf91f8539520800000000000000
+      internalID: 2707605595769772396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 761ca730e82bffdc0800000000000000
+      internalID: -3602964853859630745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba07adfa1fc189880800000000000000
+      internalID: -8604095263728308053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cabe2012dc2f5890800000000000000
+      internalID: -7467200376430740792
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fa69ce63bb4ed360800000000000000
+      internalID: 7196272488614554352
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cd57d6b5304ce540800000000000000
+      internalID: 5038472682565754311
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 560
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c7f4e044802e0b60800000000000000
+      internalID: 7714138964128757696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67878ccd3c1bdaa50800000000000000
+      internalID: 6534074089165322358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a29ad4a577d73790800000000000000
+      internalID: -7550329349986413919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a12ecef4284fa6150800000000000000
+      internalID: 5866770305127342618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adc4f576d6b9b4aa0800000000000000
+      internalID: -6175671569820463910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38e910b701f9e4fe0800000000000000
+      internalID: -1202849157329346941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9eebf7e4e47e0940800000000000000
+      internalID: 5264273540936101535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a61c50c0324cb8060800000000000000
+      internalID: 6956869704208466282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1628b5ad9b9d229a0800000000000000
+      internalID: -6259201139835960735
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4272511b9603ed870800000000000000
+      internalID: 8709451959881770788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e8a9f2794c3a87030800000000000000
+      internalID: 3492721575771216526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 64868c96f571fe7b0800000000000000
+      internalID: -5192906146770819002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07c0a4e03f0ee3b20800000000000000
+      internalID: 3116175326708370544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b34785401b41e350800000000000000
+      internalID: 6044194708165968819
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e668d607d7dbea90800000000000000
+      internalID: -7283490653808859416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 392b6c28808c9cbd0800000000000000
+      internalID: -2609334570205138285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea086624c9e897270800000000000000
+      internalID: 8248780994285830318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1e41f6913257a130800000000000000
+      internalID: 3577918801908420126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb27abe6092fa76f0800000000000000
+      internalID: -685969291073654082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2995ae5c347e3f5f0800000000000000
+      internalID: -723980836807222894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8f3a05b12ae053d80800000000000000
+      internalID: -8271689051190287368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 480
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e38e609cc7c472a0800000000000000
+      internalID: -6740543060856372250
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 879be0eba9fc5fc20800000000000000
+      internalID: 3239723770483489144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3bafa4b9e3563800800000000000000
+      internalID: 591752664269695805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 59680cc2a9784a750800000000000000
+      internalID: 6315321673725806229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24916529df1f2a540800000000000000
+      internalID: 5017839006228289858
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5afdb408a8daf0660800000000000000
+      internalID: 7354287526888857509
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28aa57d02e1d479c0800000000000000
+      internalID: -3930285805968971134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7619d4c3edf704bd0800000000000000
+      internalID: -2647975988422667929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88758ec9b01596b80800000000000000
+      internalID: -8401094519563987064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fff44773baedf770800000000000000
+      internalID: 8646324916142276599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df34a87e122a31400800000000000000
+      internalID: 293756667211432957
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c314d540ad87dae0800000000000000
+      internalID: -1524594229335813182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: daa6ee5b52d9e2430800000000000000
+      internalID: 3760115524192594605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad134b47a2c8ddb10800000000000000
+      internalID: 2007915122851590618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5dfee8bf6a6885f70800000000000000
+      internalID: 9176232292510527445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c706b5fda45adbc0800000000000000
+      internalID: -3757597832958834749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f28ef3743f6916810800000000000000
+      internalID: 1756851301267793967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d5175f79c1ec9f910800000000000000
+      internalID: 1871753742353002845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e016c3a68a7b324d0800000000000000
+      internalID: -3160480579519225586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2cf2f248588e55950800000000000000
+      internalID: 6437306902541971394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e617067cf095df20800000000000000
+      internalID: 3446820503808317156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 400
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b43f89d8fa4fe2b10800000000000000
+      internalID: 1958771922784809803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12729d2d959711640800000000000000
+      internalID: 5048950083955533601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cfdbfd273a5b6450800000000000000
+      internalID: 6083054914735169479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 972d7eb859b78c310800000000000000
+      internalID: 1425525164290331257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb0148360c4c66610800000000000000
+      internalID: 1614193847041265854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 402a2a3da38d0ad90800000000000000
+      internalID: -7088428066310807036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f07747aa7c764ba0800000000000000
+      internalID: -6105055378619797260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c96f0ec7de54a4220800000000000000
+      internalID: 2470864231870822044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 78cb6bb7049726890800000000000000
+      internalID: -7466271914366419833
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: add0489ff9311bea0800000000000000
+      internalID: -5858880062425395750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b975860a885f5bb0800000000000000
+      internalID: -4945136515991373390
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88c71276fa2354560800000000000000
+      internalID: 7297294500154670216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acf353e6853e18ef0800000000000000
+      internalID: -107554947134570550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61be3a747064dfe50800000000000000
+      internalID: 6844704005753662230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad3fe84479e1219f0800000000000000
+      internalID: -499302973645589542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7494a2b7d692cc520800000000000000
+      internalID: 2723597424846850375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9076f88044c51170800000000000000
+      internalID: 8148634882251583646
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 26059b79a8f8bb4d0800000000000000
+      internalID: -3117740491610173342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83e2d59df1372c1e0800000000000000
+      internalID: -2179052689065955784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c002db196e67dab0800000000000000
+      internalID: -4983393064944795453
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a4cf68172c80fc7b0800000000000000
+      internalID: -5201929413368284086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 320
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28f1cd593d3620820800000000000000
+      internalID: 2882976471874019202
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc0edd27f5cead2b0800000000000000
+      internalID: -5558870895342264117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ae1ef1587f0748c0800000000000000
+      internalID: -4015223533331407191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 953692509fc589380800000000000000
+      internalID: -8964312833677761703
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7eeb18fcafccf03e0800000000000000
+      internalID: -2085222724853973273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a8e2d81239e1a5e70800000000000000
+      internalID: 9104623213954805386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 51071c02bfe697ff0800000000000000
+      internalID: -37877096990543851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 506acf4682bca3000800000000000000
+      internalID: 16548923002627589
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4253a0dfd55f67f20800000000000000
+      internalID: 3420190751060538660
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 900dbec666d565930800000000000000
+      internalID: 4131592402654449673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a88ef187621f73e80800000000000000
+      internalID: -8198819449078290294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08f390a02a2f8c1c0800000000000000
+      internalID: -4483066651280326784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 501f6dcf10f7d6270800000000000000
+      internalID: 8245386139298885893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5d386f6259c3c30800000000000000
+      internalID: 4340508135455446445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 157c34be7a8b19d00800000000000000
+      internalID: 977765625462245201
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6294b52fba63c4c40800000000000000
+      internalID: 5497829357245909286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0e351f352c8a9fb0800000000000000
+      internalID: -4640242374451839475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 634006855596efdd0800000000000000
+      internalID: -2450405331967146954
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8490f54df107aa5f0800000000000000
+      internalID: -744659506367100600
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d57dc823de9a02d0800000000000000
+      internalID: -3311659946217736746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 031e3163967e87e40800000000000000
+      internalID: 5654523771228512560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 240
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b05cc518147207750800000000000000
+      internalID: 6300579040988022027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0941cd4ad292c9d00800000000000000
+      internalID: 980704094876079248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d93d19a5bf09e8f0800000000000000
+      internalID: -510859809829078568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a26e65f524662e4e0800000000000000
+      internalID: -1953886853071968726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00bbcf8aabe7e9320800000000000000
+      internalID: 2566628177811913472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 122c9ceccc5dc78c0800000000000000
+      internalID: -4000087293392469471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a81ffe8d96d05cc0800000000000000
+      internalID: -3724240919638108000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d0b297c14c155bb80800000000000000
+      internalID: -8379701628919796979
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 84d9cbc76e74e63b0800000000000000
+      internalID: -5517393438221492920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b340e31e2027d9f0800000000000000
+      internalID: -443850655998655566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e4d3418985e93fe0800000000000000
+      internalID: -1208682646230280984
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9995ce73663c02d0800000000000000
+      internalID: -3311211825067615843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37a41a6c0383cd8f0800000000000000
+      internalID: -514474475285034381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5327712ec1e4c8d0800000000000000
+      internalID: -2826886390640860322
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24d65f8c8bde62190800000000000000
+      internalID: -7987435511193703102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df2e0fabf4f075eb0800000000000000
+      internalID: -4731296048416234755
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67acf5313126dc2c0800000000000000
+      internalID: -4409760626056902026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0971a13a777172b50800000000000000
+      internalID: 6568244384148101008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5caaa9f2360cded50800000000000000
+      internalID: 6768277347240684229
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83933c524159c0cc0800000000000000
+      internalID: -3743453276486289096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3c89bb79752d5d20800000000000000
+      internalID: 3268810108237876282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 160
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93b9e71268390fd40800000000000000
+      internalID: 5616150939627854649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e55ef2a5f8178d150800000000000000
+      internalID: 5897588572549014878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ad7b017bf66a4d0800000000000000
+      internalID: -3123686459484677513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b3969dbc7b8db660800000000000000
+      internalID: 7403226730339931060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcff550a37646b9c0800000000000000
+      internalID: -3911861763899523121
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8ad5f30fc4ab762f0800000000000000
+      internalID: -979609554318828120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 93ab2617254ae3ea0800000000000000
+      internalID: -5891090588557460935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 825c2398049556cb0800000000000000
+      internalID: -4871389288216738520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a33fff25e2daeaeb0800000000000000
+      internalID: -4706634146082983110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62df85edf6c738ae0800000000000000
+      internalID: -1548257026971730650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ac58d064f30435d0800000000000000
+      internalID: -3083835496710251357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41f01cc547495f260800000000000000
+      internalID: 7130768812504321812
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fccbda1f0b6838350800000000000000
+      internalID: 6017801621624175823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8cf30e363ac9d8430800000000000000
+      internalID: 3786855087257698248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8461ec11980eb2b10800000000000000
+      internalID: 1957905342336472648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6703a8f284a7fa910800000000000000
+      internalID: 1850832422326382710
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9e599712792833e0800000000000000
+      internalID: -2073862058405175654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22e8a90ceffdbf3f0800000000000000
+      internalID: -865852218092646878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5e459a92a4d128e90800000000000000
+      internalID: -7025020264380803867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d7537a07e4399a30800000000000000
+      internalID: 4222464292553971666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23e4728a46d8dc260800000000000000
+      internalID: 7119502049400016434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 80
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e3dbefdf835991230800000000000000
+      internalID: 3610080648326200638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a920469fb85f78dd0800000000000000
+      internalID: -2483746687938198886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef1af3989f71bff90800000000000000
+      internalID: -6918910042007690754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36db3b54fe9f01480800000000000000
+      internalID: -8930363255013786269
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b9e67b041e4d87b20800000000000000
+      internalID: 3132487604754673307
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 07ce573eea453b8c0800000000000000
+      internalID: -3984748135175558032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd436bb0a5dcdc740800000000000000
+      internalID: 5174017333545809115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2ab213abc6db5ae40800000000000000
+      internalID: 5667143980793539490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 504
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 696714eee9cd7eb70800000000000000
+      internalID: 8928347361445508758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 576
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 018a2e54a9fa43fb0800000000000000
+      internalID: -4668913836544055280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 648
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 16121d82ad2b18b80800000000000000
+      internalID: -8394231580384485023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aaefd3fc4609f56d0800000000000000
+      internalID: -2999520064157385046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 792
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd0f02836b0dcff40800000000000000
+      internalID: 5763711104171700444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 864
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cb4aa173e2957b2b0800000000000000
+      internalID: -5568884359192468292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c3391ed624111060800000000000000
+      internalID: 6922336259412669381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 1008
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ed4721318eef1f760800000000000000
+      internalID: 7490047927999689950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b795aac1fd2930b60800000000000000
+      internalID: 7711168473944709499
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 1152
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b60448e38d8d56310800000000000000
+      internalID: 1397761682641797227
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6143caa427897ef80800000000000000
+      internalID: -8077319790019202026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 1296
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cd8d4dd1acadbae0800000000000000
+      internalID: -1531878487033541175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7981888f0a6292360800000000000000
+      internalID: 7145284756606294167
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: boss_the_warden_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 72
+        height: 80
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e64ac19ca0d1b1100800000000000000
+      internalID: 79689350570091630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      boss_the_warden_sheet_0: -8043132394106051763
+      boss_the_warden_sheet_0_0: -7327497939765243796
+      boss_the_warden_sheet_0_1: 7296090373040076053
+      boss_the_warden_sheet_0_10: -5795511323874780947
+      boss_the_warden_sheet_0_11: -6707289852690771928
+      boss_the_warden_sheet_0_12: -1071478159707311775
+      boss_the_warden_sheet_0_13: -8883915412149917050
+      boss_the_warden_sheet_0_14: 2707605595769772396
+      boss_the_warden_sheet_0_15: -3602964853859630745
+      boss_the_warden_sheet_0_16: -8604095263728308053
+      boss_the_warden_sheet_0_17: -7467200376430740792
+      boss_the_warden_sheet_0_18: 7196272488614554352
+      boss_the_warden_sheet_0_19: 5038472682565754311
+      boss_the_warden_sheet_0_2: 7188415223296974823
+      boss_the_warden_sheet_0_20: 7714138964128757696
+      boss_the_warden_sheet_0_3: 7140703487977354202
+      boss_the_warden_sheet_0_4: -8104591436179761892
+      boss_the_warden_sheet_0_5: -544200989830379673
+      boss_the_warden_sheet_0_6: -7975637837099837293
+      boss_the_warden_sheet_0_7: 6471392686539854023
+      boss_the_warden_sheet_0_8: 827007377325403490
+      boss_the_warden_sheet_0_9: 1440278191894367068
+      boss_the_warden_sheet_1: -1641098537077759149
+      boss_the_warden_sheet_10: -3165230579697068152
+      boss_the_warden_sheet_100: -7168612165627728190
+      boss_the_warden_sheet_101: 1377427081767910210
+      boss_the_warden_sheet_102: 4564304267648904920
+      boss_the_warden_sheet_103: 8092153121555340
+      boss_the_warden_sheet_104: 2210706903140307232
+      boss_the_warden_sheet_105: -5835211198536972705
+      boss_the_warden_sheet_106: 4991129936022691935
+      boss_the_warden_sheet_107: 5338139909081175590
+      boss_the_warden_sheet_108: 4757957525074385215
+      boss_the_warden_sheet_109: 6989510423302630824
+      boss_the_warden_sheet_11: -2059158074304941216
+      boss_the_warden_sheet_110: -5254462126837572028
+      boss_the_warden_sheet_111: -9084567671489911552
+      boss_the_warden_sheet_112: 8056586162063466739
+      boss_the_warden_sheet_113: -6335347677713241048
+      boss_the_warden_sheet_114: -8013038541591687583
+      boss_the_warden_sheet_115: -8286229223256872817
+      boss_the_warden_sheet_116: 8119005734436403673
+      boss_the_warden_sheet_117: -8822909293062878716
+      boss_the_warden_sheet_118: -4805099465516941766
+      boss_the_warden_sheet_119: 6191097846999301811
+      boss_the_warden_sheet_12: -4346138210512970799
+      boss_the_warden_sheet_120: -4265819835535365924
+      boss_the_warden_sheet_121: 6127238007031369660
+      boss_the_warden_sheet_122: 4197710246106158252
+      boss_the_warden_sheet_123: 8156537357636891950
+      boss_the_warden_sheet_124: 6311165430613569368
+      boss_the_warden_sheet_125: 7772497221636987720
+      boss_the_warden_sheet_126: -2682556121168769856
+      boss_the_warden_sheet_127: 985799242756116039
+      boss_the_warden_sheet_128: -5509326847157505768
+      boss_the_warden_sheet_129: 2040973916307386675
+      boss_the_warden_sheet_13: -6437441839558974875
+      boss_the_warden_sheet_130: -6548113196241713926
+      boss_the_warden_sheet_131: -6569625096385293640
+      boss_the_warden_sheet_132: 672380436303507849
+      boss_the_warden_sheet_133: -6886025023207120004
+      boss_the_warden_sheet_134: -7007669354979448983
+      boss_the_warden_sheet_135: 2491271221051998444
+      boss_the_warden_sheet_136: 749156036980172118
+      boss_the_warden_sheet_137: -3904207246638966374
+      boss_the_warden_sheet_138: 1219441096033650625
+      boss_the_warden_sheet_139: -913347732832099372
+      boss_the_warden_sheet_14: 4974667620628668052
+      boss_the_warden_sheet_140: 8787554308578528657
+      boss_the_warden_sheet_141: -5398769452526799191
+      boss_the_warden_sheet_142: -8064478336988486890
+      boss_the_warden_sheet_143: -2902171093650600385
+      boss_the_warden_sheet_144: -4624723215037592304
+      boss_the_warden_sheet_145: -1855108125385941921
+      boss_the_warden_sheet_146: -2083821877495435181
+      boss_the_warden_sheet_147: -6906609747216962378
+      boss_the_warden_sheet_148: 45218351328817086
+      boss_the_warden_sheet_149: -4444245216523469976
+      boss_the_warden_sheet_15: -7486390573000009598
+      boss_the_warden_sheet_150: 6421192678515710044
+      boss_the_warden_sheet_151: 8124678143649089257
+      boss_the_warden_sheet_152: 3923932088954864577
+      boss_the_warden_sheet_153: -1919202763119874276
+      boss_the_warden_sheet_154: -5071327578802653144
+      boss_the_warden_sheet_155: -6525789659994766023
+      boss_the_warden_sheet_156: -16249973729529431
+      boss_the_warden_sheet_157: -49117793753672414
+      boss_the_warden_sheet_158: -5267884019703589517
+      boss_the_warden_sheet_159: 5213748819459542355
+      boss_the_warden_sheet_16: -796847093475023692
+      boss_the_warden_sheet_160: -8870886355205162830
+      boss_the_warden_sheet_161: -8556265620902975863
+      boss_the_warden_sheet_162: -2963010699606570828
+      boss_the_warden_sheet_163: -9048262562244987185
+      boss_the_warden_sheet_164: 1596854153124480335
+      boss_the_warden_sheet_165: 8825980475390399693
+      boss_the_warden_sheet_166: -2218912476508448499
+      boss_the_warden_sheet_167: -7272076935974329679
+      boss_the_warden_sheet_168: 8872919168821120926
+      boss_the_warden_sheet_169: -3690715374609023263
+      boss_the_warden_sheet_17: 1968997906056371093
+      boss_the_warden_sheet_170: -8118880940127892439
+      boss_the_warden_sheet_171: -5901140131459181619
+      boss_the_warden_sheet_172: 8175188959479236951
+      boss_the_warden_sheet_173: -9086705221264522329
+      boss_the_warden_sheet_174: -6203636554696503947
+      boss_the_warden_sheet_175: 4527019848006120633
+      boss_the_warden_sheet_176: -2622671583473507471
+      boss_the_warden_sheet_177: 5247404408303271827
+      boss_the_warden_sheet_178: 3853510771257813345
+      boss_the_warden_sheet_179: -571161693706015618
+      boss_the_warden_sheet_18: 7604628011108212949
+      boss_the_warden_sheet_180: 1804358247866335327
+      boss_the_warden_sheet_181: -7694829247784805358
+      boss_the_warden_sheet_182: -6324015484313535494
+      boss_the_warden_sheet_183: -5313252741421450400
+      boss_the_warden_sheet_184: -1970931562490324290
+      boss_the_warden_sheet_185: 6048721196851817491
+      boss_the_warden_sheet_186: 1953776710162285373
+      boss_the_warden_sheet_187: 3495496322908279759
+      boss_the_warden_sheet_188: -7456724550351892071
+      boss_the_warden_sheet_189: 189137146694904008
+      boss_the_warden_sheet_19: 6120963622378087397
+      boss_the_warden_sheet_190: 7592621307409693355
+      boss_the_warden_sheet_191: -8034088008863799770
+      boss_the_warden_sheet_192: 4735400236079184649
+      boss_the_warden_sheet_193: -6631845035729591041
+      boss_the_warden_sheet_194: -8967839270833928161
+      boss_the_warden_sheet_195: -2316118712380333951
+      boss_the_warden_sheet_196: 4585380638206446763
+      boss_the_warden_sheet_197: -5242629306481274252
+      boss_the_warden_sheet_198: 2857643698168456316
+      boss_the_warden_sheet_199: -6330945433348018597
+      boss_the_warden_sheet_1_0: 6534074089165322358
+      boss_the_warden_sheet_1_1: -7550329349986413919
+      boss_the_warden_sheet_1_10: -5192906146770819002
+      boss_the_warden_sheet_1_11: 3116175326708370544
+      boss_the_warden_sheet_1_12: 6044194708165968819
+      boss_the_warden_sheet_1_13: -7283490653808859416
+      boss_the_warden_sheet_1_14: -2609334570205138285
+      boss_the_warden_sheet_1_15: 8248780994285830318
+      boss_the_warden_sheet_1_16: 3577918801908420126
+      boss_the_warden_sheet_1_17: -685969291073654082
+      boss_the_warden_sheet_1_18: -723980836807222894
+      boss_the_warden_sheet_1_19: -8271689051190287368
+      boss_the_warden_sheet_1_2: 5866770305127342618
+      boss_the_warden_sheet_1_20: -6740543060856372250
+      boss_the_warden_sheet_1_3: -6175671569820463910
+      boss_the_warden_sheet_1_4: -1202849157329346941
+      boss_the_warden_sheet_1_5: 5264273540936101535
+      boss_the_warden_sheet_1_6: 6956869704208466282
+      boss_the_warden_sheet_1_7: -6259201139835960735
+      boss_the_warden_sheet_1_8: 8709451959881770788
+      boss_the_warden_sheet_1_9: 3492721575771216526
+      boss_the_warden_sheet_2: -8401540902401805599
+      boss_the_warden_sheet_20: -4811688786205317245
+      boss_the_warden_sheet_200: -5641193740189323753
+      boss_the_warden_sheet_201: -217749723927373925
+      boss_the_warden_sheet_202: 6407440944169823659
+      boss_the_warden_sheet_203: 273168887143782378
+      boss_the_warden_sheet_204: 5539420345447495771
+      boss_the_warden_sheet_205: 349165457438690585
+      boss_the_warden_sheet_206: 5723630932031708185
+      boss_the_warden_sheet_207: 5830922602003523905
+      boss_the_warden_sheet_208: 6185862816077836161
+      boss_the_warden_sheet_209: -2625761691539926630
+      boss_the_warden_sheet_21: 5196694120933627565
+      boss_the_warden_sheet_210: -4107079314815420513
+      boss_the_warden_sheet_211: -714350924523469739
+      boss_the_warden_sheet_212: 2779325084034798960
+      boss_the_warden_sheet_213: 9052361090540016579
+      boss_the_warden_sheet_214: -1082892419009023474
+      boss_the_warden_sheet_215: 7755691248006687703
+      boss_the_warden_sheet_216: -3135826645153508793
+      boss_the_warden_sheet_217: -3965134129599929690
+      boss_the_warden_sheet_218: 8943869161133075456
+      boss_the_warden_sheet_219: -7245827314392467401
+      boss_the_warden_sheet_22: -4303403351996828529
+      boss_the_warden_sheet_220: 5998298475202045104
+      boss_the_warden_sheet_221: -966264042828578950
+      boss_the_warden_sheet_222: -2427253930454685484
+      boss_the_warden_sheet_223: 4811762980246650275
+      boss_the_warden_sheet_224: 2952765862492657055
+      boss_the_warden_sheet_225: -3765669266940132429
+      boss_the_warden_sheet_226: 1817756726270840611
+      boss_the_warden_sheet_227: -7468893245192506547
+      boss_the_warden_sheet_228: -7138065975235289423
+      boss_the_warden_sheet_229: -8292538533766046461
+      boss_the_warden_sheet_23: -7261957991051683802
+      boss_the_warden_sheet_230: 5534096520731793596
+      boss_the_warden_sheet_231: 3127989397521611788
+      boss_the_warden_sheet_232: 7462777434325114866
+      boss_the_warden_sheet_233: 4393025268622401649
+      boss_the_warden_sheet_234: -5040413644286208722
+      boss_the_warden_sheet_235: 3833190051322143463
+      boss_the_warden_sheet_236: -5098104975783823276
+      boss_the_warden_sheet_237: 7967802689363080683
+      boss_the_warden_sheet_238: 1862757815982740229
+      boss_the_warden_sheet_239: 4067960516599348967
+      boss_the_warden_sheet_24: 3406981476785198479
+      boss_the_warden_sheet_240: 5480380096757631651
+      boss_the_warden_sheet_241: 3611584696981245224
+      boss_the_warden_sheet_242: 3383129518901217769
+      boss_the_warden_sheet_243: 2268806522601488025
+      boss_the_warden_sheet_244: 350542118937824715
+      boss_the_warden_sheet_245: -1633514152520512633
+      boss_the_warden_sheet_246: 4271564937340545794
+      boss_the_warden_sheet_247: 5757249139679051469
+      boss_the_warden_sheet_248: -708764733023971290
+      boss_the_warden_sheet_249: -5342967563136054881
+      boss_the_warden_sheet_25: -3914952803016133244
+      boss_the_warden_sheet_250: -627570785642557832
+      boss_the_warden_sheet_251: -3769241691141499258
+      boss_the_warden_sheet_252: -6798831351997688151
+      boss_the_warden_sheet_253: -8071881904353107197
+      boss_the_warden_sheet_254: 1871520870615860435
+      boss_the_warden_sheet_255: -3817614884640743419
+      boss_the_warden_sheet_256: -7318403328597360339
+      boss_the_warden_sheet_257: 3686333267411775334
+      boss_the_warden_sheet_258: -2760834517227543235
+      boss_the_warden_sheet_259: -4529168860068819247
+      boss_the_warden_sheet_26: 5908790530176237382
+      boss_the_warden_sheet_260: -357838591658946258
+      boss_the_warden_sheet_261: 780031328857787626
+      boss_the_warden_sheet_262: 7995248562350246373
+      boss_the_warden_sheet_263: -7707974299677369167
+      boss_the_warden_sheet_264: -411605738768425181
+      boss_the_warden_sheet_265: 294581244543023166
+      boss_the_warden_sheet_266: 5434471631021496179
+      boss_the_warden_sheet_267: 8439334647832251684
+      boss_the_warden_sheet_268: 1682445316452424370
+      boss_the_warden_sheet_269: 6965217291467288248
+      boss_the_warden_sheet_27: -515141193330157422
+      boss_the_warden_sheet_270: -976922080324911369
+      boss_the_warden_sheet_271: -8942302837252885628
+      boss_the_warden_sheet_272: 6171484527741979325
+      boss_the_warden_sheet_273: -7706999207838931906
+      boss_the_warden_sheet_274: -5734392505515610883
+      boss_the_warden_sheet_275: -1653804621338321168
+      boss_the_warden_sheet_276: -6059434241432958474
+      boss_the_warden_sheet_277: 4278992135962879144
+      boss_the_warden_sheet_278: -7374019024117867294
+      boss_the_warden_sheet_279: -8758111297113192152
+      boss_the_warden_sheet_28: 4321937745813429961
+      boss_the_warden_sheet_280: -5973795471528196296
+      boss_the_warden_sheet_281: 2650051275661263995
+      boss_the_warden_sheet_282: 8431508837670396060
+      boss_the_warden_sheet_283: -4145851156469885959
+      boss_the_warden_sheet_284: -6128765879293299325
+      boss_the_warden_sheet_285: -3824013163656516233
+      boss_the_warden_sheet_286: -9189290356305244984
+      boss_the_warden_sheet_287: -4217058796447650261
+      boss_the_warden_sheet_288: -406974154805951651
+      boss_the_warden_sheet_289: -5916480356912903500
+      boss_the_warden_sheet_29: -3646458989237353449
+      boss_the_warden_sheet_290: 5056276316862849244
+      boss_the_warden_sheet_291: 4856002681442545371
+      boss_the_warden_sheet_292: 6333542245149584694
+      boss_the_warden_sheet_293: 3053374803233123732
+      boss_the_warden_sheet_294: -615336231655476230
+      boss_the_warden_sheet_295: -1510470731765542131
+      boss_the_warden_sheet_296: 5017411517811689361
+      boss_the_warden_sheet_297: -8309970170975037828
+      boss_the_warden_sheet_298: 4742529143342082768
+      boss_the_warden_sheet_299: 2364596436797372319
+      boss_the_warden_sheet_2_0: 3239723770483489144
+      boss_the_warden_sheet_2_1: 591752664269695805
+      boss_the_warden_sheet_2_10: -1524594229335813182
+      boss_the_warden_sheet_2_11: 3760115524192594605
+      boss_the_warden_sheet_2_12: 2007915122851590618
+      boss_the_warden_sheet_2_13: 9176232292510527445
+      boss_the_warden_sheet_2_14: -3757597832958834749
+      boss_the_warden_sheet_2_15: 1756851301267793967
+      boss_the_warden_sheet_2_16: 1871753742353002845
+      boss_the_warden_sheet_2_17: -3160480579519225586
+      boss_the_warden_sheet_2_18: 6437306902541971394
+      boss_the_warden_sheet_2_19: 3446820503808317156
+      boss_the_warden_sheet_2_2: 6315321673725806229
+      boss_the_warden_sheet_2_20: 1958771922784809803
+      boss_the_warden_sheet_2_3: 5017839006228289858
+      boss_the_warden_sheet_2_4: 7354287526888857509
+      boss_the_warden_sheet_2_5: -3930285805968971134
+      boss_the_warden_sheet_2_6: -2647975988422667929
+      boss_the_warden_sheet_2_7: -8401094519563987064
+      boss_the_warden_sheet_2_8: 8646324916142276599
+      boss_the_warden_sheet_2_9: 293756667211432957
+      boss_the_warden_sheet_3: 5284876801121030341
+      boss_the_warden_sheet_30: -9013921031603015348
+      boss_the_warden_sheet_300: -3327055079111881332
+      boss_the_warden_sheet_301: -317145738170640775
+      boss_the_warden_sheet_302: 9095969971815948349
+      boss_the_warden_sheet_303: -3458198818324155991
+      boss_the_warden_sheet_304: 5112948373108703773
+      boss_the_warden_sheet_305: 2158606154564266156
+      boss_the_warden_sheet_306: 8330167105499356432
+      boss_the_warden_sheet_307: -4635038909824759878
+      boss_the_warden_sheet_308: -4831410384105611983
+      boss_the_warden_sheet_309: 8954662572649005767
+      boss_the_warden_sheet_31: -4868636519275191015
+      boss_the_warden_sheet_310: 8998681317787534938
+      boss_the_warden_sheet_311: 1934512084094882014
+      boss_the_warden_sheet_312: 7708693657948675850
+      boss_the_warden_sheet_313: -3709370010461899131
+      boss_the_warden_sheet_314: -8721471233133619683
+      boss_the_warden_sheet_315: 3381950745306969657
+      boss_the_warden_sheet_316: 5992650730827614528
+      boss_the_warden_sheet_317: 8222896591639109923
+      boss_the_warden_sheet_318: 5710378481488482538
+      boss_the_warden_sheet_319: 2348412884917769422
+      boss_the_warden_sheet_32: 451075359689721949
+      boss_the_warden_sheet_320: -4116703346003419044
+      boss_the_warden_sheet_321: 887334108642644957
+      boss_the_warden_sheet_322: 253696523514414956
+      boss_the_warden_sheet_323: -8321595076542327596
+      boss_the_warden_sheet_324: 1590581547741044344
+      boss_the_warden_sheet_325: -7471512774258548163
+      boss_the_warden_sheet_326: -2542662013066582104
+      boss_the_warden_sheet_327: -7054128152564732900
+      boss_the_warden_sheet_328: 6328772954746657844
+      boss_the_warden_sheet_329: 3042017109111800057
+      boss_the_warden_sheet_33: 817617485588673907
+      boss_the_warden_sheet_330: 5917932994716034325
+      boss_the_warden_sheet_331: -4409474154938838455
+      boss_the_warden_sheet_332: -8356187434668217286
+      boss_the_warden_sheet_333: -2048591155974491310
+      boss_the_warden_sheet_334: 747773681147985365
+      boss_the_warden_sheet_335: -1332017279959913340
+      boss_the_warden_sheet_336: 2632843051812579430
+      boss_the_warden_sheet_337: 8594547604192681503
+      boss_the_warden_sheet_338: 1103567722291358045
+      boss_the_warden_sheet_339: 6380102611203046767
+      boss_the_warden_sheet_34: 8594697454202051625
+      boss_the_warden_sheet_340: -9204405901676454253
+      boss_the_warden_sheet_341: 8541698256501628026
+      boss_the_warden_sheet_342: -7203130248087969358
+      boss_the_warden_sheet_343: 1392513374778129675
+      boss_the_warden_sheet_344: -105116610090366057
+      boss_the_warden_sheet_345: 1466319273451735292
+      boss_the_warden_sheet_346: 178168430390107159
+      boss_the_warden_sheet_347: 3614619915358309852
+      boss_the_warden_sheet_348: 6161758530955005351
+      boss_the_warden_sheet_349: 4316373348272248035
+      boss_the_warden_sheet_35: -5081748334641081206
+      boss_the_warden_sheet_350: -2984189215376424182
+      boss_the_warden_sheet_351: -418860640789370301
+      boss_the_warden_sheet_352: 5116417446418960722
+      boss_the_warden_sheet_353: 4298282427316732912
+      boss_the_warden_sheet_354: -3177074743778598143
+      boss_the_warden_sheet_355: -9220469641087039739
+      boss_the_warden_sheet_356: -422662189749695486
+      boss_the_warden_sheet_357: -7841079958823437619
+      boss_the_warden_sheet_358: 6477129458263651537
+      boss_the_warden_sheet_359: 605677226766901399
+      boss_the_warden_sheet_36: -6993907568530603218
+      boss_the_warden_sheet_360: -90860616194628263
+      boss_the_warden_sheet_361: 3965833571619977295
+      boss_the_warden_sheet_362: -1545441653401329379
+      boss_the_warden_sheet_363: 8255600214475607290
+      boss_the_warden_sheet_364: 3814717188464177757
+      boss_the_warden_sheet_365: 5019633659203591887
+      boss_the_warden_sheet_366: -7477296903664993145
+      boss_the_warden_sheet_367: -215883309614751459
+      boss_the_warden_sheet_368: 4190454180243895773
+      boss_the_warden_sheet_369: 3483399731702841403
+      boss_the_warden_sheet_37: 1056985348378644289
+      boss_the_warden_sheet_370: 8333692835899909532
+      boss_the_warden_sheet_371: -4204294478338388514
+      boss_the_warden_sheet_372: -2106688001559359503
+      boss_the_warden_sheet_373: 5262375797375812652
+      boss_the_warden_sheet_374: 1340679766036882321
+      boss_the_warden_sheet_375: -6247099668799413532
+      boss_the_warden_sheet_376: -5748090433922101774
+      boss_the_warden_sheet_377: -2449645665609167698
+      boss_the_warden_sheet_378: 5258823280841856153
+      boss_the_warden_sheet_379: -2299181717986643825
+      boss_the_warden_sheet_38: -4430484157998554454
+      boss_the_warden_sheet_380: 4877851439372266449
+      boss_the_warden_sheet_381: 7378357870181960336
+      boss_the_warden_sheet_382: -804061843813263972
+      boss_the_warden_sheet_383: -4256325199616354065
+      boss_the_warden_sheet_384: 7403421684834391583
+      boss_the_warden_sheet_385: 6383733586126221704
+      boss_the_warden_sheet_386: 6148948434995713725
+      boss_the_warden_sheet_387: -443289449098121167
+      boss_the_warden_sheet_388: -3554436391690778417
+      boss_the_warden_sheet_389: 393888531160994849
+      boss_the_warden_sheet_39: -20550747726296858
+      boss_the_warden_sheet_390: -8907779947369698532
+      boss_the_warden_sheet_391: 3668611097130622860
+      boss_the_warden_sheet_392: -1490611811498854317
+      boss_the_warden_sheet_393: 1002211495729205253
+      boss_the_warden_sheet_394: -7217988304658087392
+      boss_the_warden_sheet_395: -8650861350078700277
+      boss_the_warden_sheet_396: -6282293112251366680
+      boss_the_warden_sheet_397: 8415857071976858838
+      boss_the_warden_sheet_398: -1990046658771572409
+      boss_the_warden_sheet_399: -1332292878555231388
+      boss_the_warden_sheet_3_0: 5048950083955533601
+      boss_the_warden_sheet_3_1: 6083054914735169479
+      boss_the_warden_sheet_3_10: 7297294500154670216
+      boss_the_warden_sheet_3_11: -107554947134570550
+      boss_the_warden_sheet_3_12: 6844704005753662230
+      boss_the_warden_sheet_3_13: -499302973645589542
+      boss_the_warden_sheet_3_14: 2723597424846850375
+      boss_the_warden_sheet_3_15: 8148634882251583646
+      boss_the_warden_sheet_3_16: -3117740491610173342
+      boss_the_warden_sheet_3_17: -2179052689065955784
+      boss_the_warden_sheet_3_18: -4983393064944795453
+      boss_the_warden_sheet_3_19: -5201929413368284086
+      boss_the_warden_sheet_3_2: 1425525164290331257
+      boss_the_warden_sheet_3_20: 2882976471874019202
+      boss_the_warden_sheet_3_3: 1614193847041265854
+      boss_the_warden_sheet_3_4: -7088428066310807036
+      boss_the_warden_sheet_3_5: -6105055378619797260
+      boss_the_warden_sheet_3_6: 2470864231870822044
+      boss_the_warden_sheet_3_7: -7466271914366419833
+      boss_the_warden_sheet_3_8: -5858880062425395750
+      boss_the_warden_sheet_3_9: -4945136515991373390
+      boss_the_warden_sheet_4: 3968361909348328370
+      boss_the_warden_sheet_40: 5712584591979400744
+      boss_the_warden_sheet_400: 259109663458828646
+      boss_the_warden_sheet_401: -8509768235657128562
+      boss_the_warden_sheet_402: -5653764486590555465
+      boss_the_warden_sheet_403: 4914297435721740458
+      boss_the_warden_sheet_404: -5192712341192491686
+      boss_the_warden_sheet_405: 5647701727200754694
+      boss_the_warden_sheet_406: -8474660854302220601
+      boss_the_warden_sheet_407: 2419097508306219032
+      boss_the_warden_sheet_408: -6668373466334529709
+      boss_the_warden_sheet_409: -1504483167333831168
+      boss_the_warden_sheet_41: -4372697537761099699
+      boss_the_warden_sheet_410: 4519286905225938071
+      boss_the_warden_sheet_411: 2837165591337641249
+      boss_the_warden_sheet_412: -4990179126845620871
+      boss_the_warden_sheet_413: 5049088429237536002
+      boss_the_warden_sheet_414: -5181176927525835409
+      boss_the_warden_sheet_415: -360177112514413224
+      boss_the_warden_sheet_416: -4596451106522140868
+      boss_the_warden_sheet_417: -2266325289838512375
+      boss_the_warden_sheet_418: 4665296429131872841
+      boss_the_warden_sheet_419: -7333844255124213381
+      boss_the_warden_sheet_42: -9165326688325373047
+      boss_the_warden_sheet_420: -122822172759210813
+      boss_the_warden_sheet_421: 3170830419149785487
+      boss_the_warden_sheet_422: 7263531553932884639
+      boss_the_warden_sheet_423: -488069816373742896
+      boss_the_warden_sheet_424: 4430503309848580406
+      boss_the_warden_sheet_425: -2412991030531548799
+      boss_the_warden_sheet_426: 889297811779597566
+      boss_the_warden_sheet_427: -2299614875921797359
+      boss_the_warden_sheet_428: -3948883927202813592
+      boss_the_warden_sheet_429: 5086855748546898209
+      boss_the_warden_sheet_43: 8294069787250572660
+      boss_the_warden_sheet_430: -8231703394795552096
+      boss_the_warden_sheet_431: -3719256989909491556
+      boss_the_warden_sheet_432: 6981641600218214753
+      boss_the_warden_sheet_433: 2084733344066497825
+      boss_the_warden_sheet_434: 6824451149402700990
+      boss_the_warden_sheet_435: -3949437440889939139
+      boss_the_warden_sheet_436: 7729968518106662594
+      boss_the_warden_sheet_437: -643593277136736478
+      boss_the_warden_sheet_438: -5327452781421976311
+      boss_the_warden_sheet_439: 136191573454576192
+      boss_the_warden_sheet_44: 3707211896898126062
+      boss_the_warden_sheet_440: 1844908111894077770
+      boss_the_warden_sheet_441: 8076397030976394260
+      boss_the_warden_sheet_442: -5860807430193164637
+      boss_the_warden_sheet_443: 2389746629083615825
+      boss_the_warden_sheet_444: -8629115943409637847
+      boss_the_warden_sheet_445: 9121595625176388027
+      boss_the_warden_sheet_446: 7090532742680192676
+      boss_the_warden_sheet_447: 2996749334832875883
+      boss_the_warden_sheet_448: -3095747832635344688
+      boss_the_warden_sheet_449: 6284905312214004194
+      boss_the_warden_sheet_45: 7774974499398452600
+      boss_the_warden_sheet_450: -700330684687196248
+      boss_the_warden_sheet_451: 7093484745535120919
+      boss_the_warden_sheet_452: 2886675016731422476
+      boss_the_warden_sheet_453: -657094511207226027
+      boss_the_warden_sheet_454: -7915197171850082928
+      boss_the_warden_sheet_455: -3978416240104168284
+      boss_the_warden_sheet_456: -1131417240819251382
+      boss_the_warden_sheet_457: 8590653531024766159
+      boss_the_warden_sheet_458: -6980684511179466934
+      boss_the_warden_sheet_459: 4056213969780800199
+      boss_the_warden_sheet_46: -4618492680920693294
+      boss_the_warden_sheet_460: 998769373882708011
+      boss_the_warden_sheet_461: 7171999207477770990
+      boss_the_warden_sheet_462: 8002360242830548642
+      boss_the_warden_sheet_463: 7430450174383803110
+      boss_the_warden_sheet_464: 3212302350845749909
+      boss_the_warden_sheet_465: -3424246640477378327
+      boss_the_warden_sheet_466: 4632085497693592932
+      boss_the_warden_sheet_467: -1223318813638550606
+      boss_the_warden_sheet_468: 6123711405092878028
+      boss_the_warden_sheet_469: 2129977640250728690
+      boss_the_warden_sheet_47: 484717655163843525
+      boss_the_warden_sheet_470: 2881488282706904516
+      boss_the_warden_sheet_471: -6041049215998220748
+      boss_the_warden_sheet_472: 3946530201548366881
+      boss_the_warden_sheet_473: -1471904488034113708
+      boss_the_warden_sheet_474: 7806030301171996904
+      boss_the_warden_sheet_475: 3326879551089330849
+      boss_the_warden_sheet_476: -9024336162089598836
+      boss_the_warden_sheet_477: 1276030519872646359
+      boss_the_warden_sheet_478: -7015454175530780496
+      boss_the_warden_sheet_479: 5147334087754981432
+      boss_the_warden_sheet_48: 2769483359903137973
+      boss_the_warden_sheet_480: -2073091659953690778
+      boss_the_warden_sheet_481: 7859069146065879641
+      boss_the_warden_sheet_482: 8064523833510266548
+      boss_the_warden_sheet_483: 1420859372306822613
+      boss_the_warden_sheet_484: 3432808488093434635
+      boss_the_warden_sheet_485: -666981268104429895
+      boss_the_warden_sheet_486: -4715845869231029997
+      boss_the_warden_sheet_487: -4962556152449382167
+      boss_the_warden_sheet_488: 4162948069475215453
+      boss_the_warden_sheet_489: -1970255482602488494
+      boss_the_warden_sheet_49: 284661499222443306
+      boss_the_warden_sheet_490: 6788569622416631215
+      boss_the_warden_sheet_491: 6825218656971393288
+      boss_the_warden_sheet_492: 6152622158261247426
+      boss_the_warden_sheet_493: -7155570937639343622
+      boss_the_warden_sheet_494: 4155289658461229306
+      boss_the_warden_sheet_495: 883315187715134702
+      boss_the_warden_sheet_496: 528582106133897844
+      boss_the_warden_sheet_497: 2474672100783771784
+      boss_the_warden_sheet_498: -3028761973108105604
+      boss_the_warden_sheet_499: 2322869540573528417
+      boss_the_warden_sheet_4_0: -5558870895342264117
+      boss_the_warden_sheet_4_1: -4015223533331407191
+      boss_the_warden_sheet_4_10: -4483066651280326784
+      boss_the_warden_sheet_4_11: 8245386139298885893
+      boss_the_warden_sheet_4_12: 4340508135455446445
+      boss_the_warden_sheet_4_13: 977765625462245201
+      boss_the_warden_sheet_4_14: 5497829357245909286
+      boss_the_warden_sheet_4_15: -4640242374451839475
+      boss_the_warden_sheet_4_16: -2450405331967146954
+      boss_the_warden_sheet_4_17: -744659506367100600
+      boss_the_warden_sheet_4_18: -3311659946217736746
+      boss_the_warden_sheet_4_19: 5654523771228512560
+      boss_the_warden_sheet_4_2: -8964312833677761703
+      boss_the_warden_sheet_4_20: 6300579040988022027
+      boss_the_warden_sheet_4_3: -2085222724853973273
+      boss_the_warden_sheet_4_4: 9104623213954805386
+      boss_the_warden_sheet_4_5: -37877096990543851
+      boss_the_warden_sheet_4_6: 16548923002627589
+      boss_the_warden_sheet_4_7: 3420190751060538660
+      boss_the_warden_sheet_4_8: 4131592402654449673
+      boss_the_warden_sheet_4_9: -8198819449078290294
+      boss_the_warden_sheet_5: -7568852162978312542
+      boss_the_warden_sheet_50: 2870000027185782571
+      boss_the_warden_sheet_500: 8613775117960668144
+      boss_the_warden_sheet_501: -4042498161887760953
+      boss_the_warden_sheet_502: 784591295343416044
+      boss_the_warden_sheet_503: 780389430931044761
+      boss_the_warden_sheet_51: -3355837772069585847
+      boss_the_warden_sheet_52: 7951870919002841826
+      boss_the_warden_sheet_53: -2369734609180551670
+      boss_the_warden_sheet_54: -3703703593041465260
+      boss_the_warden_sheet_55: 1436971377131143890
+      boss_the_warden_sheet_56: -7387680372235681334
+      boss_the_warden_sheet_57: -4245917350744640707
+      boss_the_warden_sheet_58: 7919231025845550085
+      boss_the_warden_sheet_59: -4667445258276114516
+      boss_the_warden_sheet_5_0: 980704094876079248
+      boss_the_warden_sheet_5_1: -510859809829078568
+      boss_the_warden_sheet_5_10: -3311211825067615843
+      boss_the_warden_sheet_5_11: -514474475285034381
+      boss_the_warden_sheet_5_12: -2826886390640860322
+      boss_the_warden_sheet_5_13: -7987435511193703102
+      boss_the_warden_sheet_5_14: -4731296048416234755
+      boss_the_warden_sheet_5_15: -4409760626056902026
+      boss_the_warden_sheet_5_16: 6568244384148101008
+      boss_the_warden_sheet_5_17: 6768277347240684229
+      boss_the_warden_sheet_5_18: -3743453276486289096
+      boss_the_warden_sheet_5_19: 3268810108237876282
+      boss_the_warden_sheet_5_2: -1953886853071968726
+      boss_the_warden_sheet_5_20: 5616150939627854649
+      boss_the_warden_sheet_5_3: 2566628177811913472
+      boss_the_warden_sheet_5_4: -4000087293392469471
+      boss_the_warden_sheet_5_5: -3724240919638108000
+      boss_the_warden_sheet_5_6: -8379701628919796979
+      boss_the_warden_sheet_5_7: -5517393438221492920
+      boss_the_warden_sheet_5_8: -443850655998655566
+      boss_the_warden_sheet_5_9: -1208682646230280984
+      boss_the_warden_sheet_6: 4971699076711083869
+      boss_the_warden_sheet_60: -6700312023960947154
+      boss_the_warden_sheet_61: 1338043185958945447
+      boss_the_warden_sheet_62: 6136443323036059776
+      boss_the_warden_sheet_63: -7161849246207288432
+      boss_the_warden_sheet_64: -6621450142907155738
+      boss_the_warden_sheet_65: 5903589358324363096
+      boss_the_warden_sheet_66: -8197505114377690618
+      boss_the_warden_sheet_67: -7223061028364992413
+      boss_the_warden_sheet_68: -2669517185406942778
+      boss_the_warden_sheet_69: -5597038417838638941
+      boss_the_warden_sheet_6_0: 5897588572549014878
+      boss_the_warden_sheet_6_1: -3123686459484677513
+      boss_the_warden_sheet_6_10: 7130768812504321812
+      boss_the_warden_sheet_6_11: 6017801621624175823
+      boss_the_warden_sheet_6_12: 3786855087257698248
+      boss_the_warden_sheet_6_13: 1957905342336472648
+      boss_the_warden_sheet_6_14: 1850832422326382710
+      boss_the_warden_sheet_6_15: -2073862058405175654
+      boss_the_warden_sheet_6_16: -865852218092646878
+      boss_the_warden_sheet_6_17: -7025020264380803867
+      boss_the_warden_sheet_6_18: 4222464292553971666
+      boss_the_warden_sheet_6_19: 7119502049400016434
+      boss_the_warden_sheet_6_2: 7403226730339931060
+      boss_the_warden_sheet_6_20: 3610080648326200638
+      boss_the_warden_sheet_6_3: -3911861763899523121
+      boss_the_warden_sheet_6_4: -979609554318828120
+      boss_the_warden_sheet_6_5: -5891090588557460935
+      boss_the_warden_sheet_6_6: -4871389288216738520
+      boss_the_warden_sheet_6_7: -4706634146082983110
+      boss_the_warden_sheet_6_8: -1548257026971730650
+      boss_the_warden_sheet_6_9: -3083835496710251357
+      boss_the_warden_sheet_7: -5695607303878759001
+      boss_the_warden_sheet_70: -2539292395829974694
+      boss_the_warden_sheet_71: 4917060907493602506
+      boss_the_warden_sheet_72: -5720610468247491792
+      boss_the_warden_sheet_73: 1837270214859860674
+      boss_the_warden_sheet_74: -1619238856285715952
+      boss_the_warden_sheet_75: 6166441504864739362
+      boss_the_warden_sheet_76: 2546088450891228487
+      boss_the_warden_sheet_77: -5639668537054323483
+      boss_the_warden_sheet_78: -3345818708710914911
+      boss_the_warden_sheet_79: 8747762454754756402
+      boss_the_warden_sheet_7_0: -2483746687938198886
+      boss_the_warden_sheet_7_1: -6918910042007690754
+      boss_the_warden_sheet_7_10: -2999520064157385046
+      boss_the_warden_sheet_7_11: 5763711104171700444
+      boss_the_warden_sheet_7_12: -5568884359192468292
+      boss_the_warden_sheet_7_13: 6922336259412669381
+      boss_the_warden_sheet_7_14: 7490047927999689950
+      boss_the_warden_sheet_7_15: 7711168473944709499
+      boss_the_warden_sheet_7_16: 1397761682641797227
+      boss_the_warden_sheet_7_17: -8077319790019202026
+      boss_the_warden_sheet_7_18: -1531878487033541175
+      boss_the_warden_sheet_7_19: 7145284756606294167
+      boss_the_warden_sheet_7_2: -8930363255013786269
+      boss_the_warden_sheet_7_20: 79689350570091630
+      boss_the_warden_sheet_7_3: 3132487604754673307
+      boss_the_warden_sheet_7_4: -3984748135175558032
+      boss_the_warden_sheet_7_5: 5174017333545809115
+      boss_the_warden_sheet_7_6: 5667143980793539490
+      boss_the_warden_sheet_7_7: 8928347361445508758
+      boss_the_warden_sheet_7_8: -4668913836544055280
+      boss_the_warden_sheet_7_9: -8394231580384485023
+      boss_the_warden_sheet_8: -1448050869469406436
+      boss_the_warden_sheet_80: -7734614441624598704
+      boss_the_warden_sheet_81: -6750868439877366101
+      boss_the_warden_sheet_82: 4795671144104770057
+      boss_the_warden_sheet_83: 2931070267080763145
+      boss_the_warden_sheet_84: -8993568260281382354
+      boss_the_warden_sheet_85: -890925827175237112
+      boss_the_warden_sheet_86: 3072331068911803104
+      boss_the_warden_sheet_87: -6401282785681102648
+      boss_the_warden_sheet_88: -923786215069817702
+      boss_the_warden_sheet_89: -4144274495600723714
+      boss_the_warden_sheet_9: 6080845703841022772
+      boss_the_warden_sheet_90: -657803185524639215
+      boss_the_warden_sheet_91: -2411656747383006521
+      boss_the_warden_sheet_92: 4897189412708707012
+      boss_the_warden_sheet_93: -7433657255477593031
+      boss_the_warden_sheet_94: -1327153498647711311
+      boss_the_warden_sheet_95: 6766035984659111436
+      boss_the_warden_sheet_96: 1568329673499500334
+      boss_the_warden_sheet_97: 6661726840177449840
+      boss_the_warden_sheet_98: -3672656001384386661
+      boss_the_warden_sheet_99: 7280888131006643917
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

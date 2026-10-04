@@ -84,10 +84,10 @@ namespace RuinRail.Tests
         [Test]
         public void OrdinaryCombatRoom_SelectedByThePlan_GetsOneVisibleSupplyChest_OnAValidCell_AndUnselectedRoomsGetNone()
         {
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 var definition = _content.Rooms.First(r => r.Biome == biome && r.RoomType == RoomType.Combat);
-                var (runtime, _, _, _) = Compose(definition, 5, withSupplyChest: true);
+                var (runtime, context, _, _) = Compose(definition, 5, withSupplyChest: true);
                 var binding = runtime.GetComponent<RoomContentBinding>();
                 Assert.IsNotNull(binding.SupplyChest, definition.Id);
                 Assert.AreEqual(1, binding.Chests.Count, definition.Id + ": exactly one container");
@@ -99,7 +99,7 @@ namespace RuinRail.Tests
                 var visual = binding.SupplyChest.Visual;
                 Assert.IsNotNull(visual, definition.Id + ": drawn");
                 Assert.IsTrue(visual.IsVisible);
-                Assert.AreEqual(_content.WorldSpriteFor(WorldObjectArt.SupplyChest), visual.Renderer.sprite, "the final supply chest art, not a placeholder");
+                Assert.AreEqual(ChestArt.For(context.Biome, ChestTier.Supply, WorldObjectArt.SupplyChest), visual.Renderer.sprite, "the depth's Supply Chest art, not a placeholder");
                 Assert.AreEqual(SortingLayers.Characters, visual.Renderer.sortingLayerName, "y-sorted with the characters: never under the floor or wall tilemaps");
                 Assert.AreEqual(SortingConvention.OrderOf(SortingRole.Character, binding.SupplyChest.transform.position.y), visual.Renderer.sortingOrder);
                 Assert.IsTrue(binding.SupplyChest.GetComponent<Collider2D>().isTrigger, "reachable: never a solid blocker");
@@ -135,7 +135,7 @@ namespace RuinRail.Tests
             Assert.IsFalse(result.IsEmpty);
             Assert.AreEqual(1, opened);
             Assert.AreEqual(WorldObjectArt.SupplyChestOpen, chest.Visual.Key);
-            Assert.AreEqual(_content.WorldSpriteFor(WorldObjectArt.SupplyChestOpen), chest.Visual.Renderer.sprite, "obvious opened state");
+            Assert.AreEqual(ChestArt.For(context.Biome, ChestTier.Supply, WorldObjectArt.SupplyChestOpen), chest.Visual.Renderer.sprite, "obvious opened state");
             Assert.AreEqual(string.Empty, chest.PromptFor(null), "no prompt on an opened chest");
             Assert.AreEqual(chest.SpawnedPickups.Count, tracked.Count, "every pickup is tracked exactly once");
             Assert.IsTrue(completeWhenTracked, "observers see item, name and amount when a pickup is tracked");
@@ -189,23 +189,23 @@ namespace RuinRail.Tests
         public void MerchantAndEventAnchors_DrawTheirFinalArt_AndAUsedEventReadsAsUsed()
         {
             var merchantRoom = _content.Rooms.First(r => r.Biome == Biome.Rustworks && r.RoomType == RoomType.Merchant);
-            var (merchant, _, _, _) = Compose(merchantRoom, 4, withSupplyChest: false);
+            var (merchant, merchantContext, _, _) = Compose(merchantRoom, 4, withSupplyChest: false);
             var binding = merchant.GetComponent<RoomContentBinding>();
             Assert.IsNotNull(binding.Merchant, string.Join(",", binding.Skipped));
             var merchantVisual = binding.Merchant.GetComponent<WorldObjectVisual>();
-            Assert.IsTrue(merchantVisual != null && merchantVisual.IsVisible && merchantVisual.Renderer.sprite == _content.WorldSpriteFor(WorldObjectArt.DungeonMerchant));
+            Assert.IsTrue(merchantVisual != null && merchantVisual.IsVisible && merchantVisual.Renderer.sprite == InteractableArt.For(WorldObjectArt.DungeonMerchant, merchantContext.Biome), "the merchant's stall for the depth's biome");
             var probe = new GameObject("p");
             _created.Add(probe);
             Assert.AreEqual("TRADE WITH MERCHANT", ((IInteractionPrompt)binding.Merchant).PromptFor(probe));
 
             var eventRoom = _content.Rooms.First(r => r.Biome == Biome.OvergrownLabs && r.RoomType == RoomType.Event);
-            var (evt, _, _, _) = Compose(eventRoom, 8, withSupplyChest: false);
+            var (evt, eventContext, _, _) = Compose(eventRoom, 8, withSupplyChest: false);
             var eventBinding = evt.GetComponent<RoomContentBinding>();
             Assert.IsNotNull(eventBinding.Event, string.Join(",", eventBinding.Skipped));
             var kind = eventBinding.EventInstance.Kind;
             var visual = eventBinding.Event.GetComponent<WorldObjectVisual>();
             Assert.IsTrue(visual != null && visual.IsVisible);
-            Assert.AreEqual(_content.WorldSpriteFor(WorldObjectArt.EventKey(kind.ToString())), visual.Renderer.sprite, kind.ToString());
+            Assert.AreEqual(InteractableArt.For(WorldObjectArt.EventKey(kind.ToString()), eventContext.Biome), visual.Renderer.sprite, kind.ToString());
             Assert.AreEqual(Color.white, visual.Renderer.color);
             evt.State.MarkResolved($"event:{kind}");
             var revisit = Object.Instantiate(eventRoom.Prefab);
@@ -216,6 +216,8 @@ namespace RuinRail.Tests
             RoomCategoryComposer.Compose(runtime2, new DungeonRuntimeContext(11, 1, 1, _content.Enemies, new DefaultEnemySpawner(_content.Stagger), _content.DepthScaling), Services(new GroundLootRegistry()));
             var restoredVisual = runtime2.GetComponent<RoomContentBinding>().Event.GetComponent<WorldObjectVisual>();
             Assert.AreEqual(WorldObjectVisual.ResolvedTint, restoredVisual.Renderer.color, "a resolved event is drawn dimmed");
+            if (kind != RuinRail.Gameplay.Events.DungeonEventKind.SecureRelay)
+                Assert.That(restoredVisual.Key, Is.EqualTo(WorldObjectArt.EventKey(kind.ToString()) + InteractableArt.Used).Or.EqualTo(WorldObjectArt.EventKey(kind.ToString()) + InteractableArt.Failed), "and in its used state");
         }
 
         [UnityTest]

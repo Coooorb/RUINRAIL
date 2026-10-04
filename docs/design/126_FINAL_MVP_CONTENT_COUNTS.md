@@ -7,7 +7,7 @@ These counts define the intended full MVP content target.
 
 ## Room Prefabs
 
-Exactly **21 authored Room Prefabs per biome**, for **63 total** across the three biomes.
+Exactly **21 authored Room Prefabs per biome**, for **84 total** across the four biomes (Cryo Vaults added 2026-09-29).
 
 Per biome:
 
@@ -29,14 +29,14 @@ Elite Encounters reuse compatible Combat Rooms and do not require separate Elite
 
 ## Other Final MVP Counts
 
-- Biomes: 3.
+- Biomes: 4.
 - Weapon classes: 11.
 - Authored Weapon definitions: 33 (22 regular + 11 Legendary-only).
 - Armor families: 9.
 - Accessory families: 16.
 - Consumables: 10.
 - Normal enemy archetypes: 9.
-- Elites: 6.
-- Bosses: 6.
+- Elites: 8 (two per biome).
+- Bosses: 8 (two per biome).
 - Dungeon events: 6.
-- Full music tracks: 11.
+- Full music tracks: 14.

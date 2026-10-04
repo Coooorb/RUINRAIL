@@ -139,7 +139,7 @@ namespace RuinRail.Tests
         }
 
         private IEnumerable<RoomDefinition> CombatRoomsOfEveryBiome() =>
-            new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }.Select(b => _catalog.Rooms.First(r => r.Biome == b && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium));
+            new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }.Select(b => _catalog.Rooms.First(r => r.Biome == b && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium));
 
         // ---- the bounds themselves ------------------------------------------------------------------------------
 
@@ -206,7 +206,7 @@ namespace RuinRail.Tests
         {
             var index = 0;
             var doorsChecked = 0;
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             foreach (var definition in _catalog.Rooms.Where(r => r.Biome == biome && r.Prefab != null).Take(6))
             {
                 var (runtime, root) = Room(definition, new Vector2(3000f + index++ * 100f, 3000f));
@@ -504,7 +504,7 @@ namespace RuinRail.Tests
             // Every shipped boss goes through the same arena composition, containment and intro hold → engagement handoff.
             var bosses = AssetDatabase.FindAssets("t:BossDefinition", new[] { "Assets/Game/ScriptableObjects/Enemies/Bosses" })
                 .Select(g => AssetDatabase.LoadAssetAtPath<BossDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(b => b != null).OrderBy(b => b.Id).ToList();
-            Assert.AreEqual(6, bosses.Count, "the six shipped bosses");
+            Assert.AreEqual(8, bosses.Count, "the eight shipped bosses");
             var index = 0;
             foreach (var definition in bosses)
             {

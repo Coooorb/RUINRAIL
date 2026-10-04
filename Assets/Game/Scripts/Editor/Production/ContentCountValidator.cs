@@ -85,9 +85,9 @@ namespace RuinRail.EditorTools.Production
     {
         public const string ReportPath = "TestResults/content_counts.md";
 
-        public const int Biomes = 3;
+        public const int Biomes = 4;
         public const int RoomsPerBiome = 21;
-        public const int RoomsTotal = 63;
+        public const int RoomsTotal = 84;
         public const int Weapons = 33;
         public const int WeaponClasses = 11;
         public const int RegularWeapons = 22;
@@ -96,8 +96,8 @@ namespace RuinRail.EditorTools.Production
         public const int AccessoryFamilies = 16;
         public const int Consumables = 10;
         public const int NormalEnemies = 9;
-        public const int Elites = 6;
-        public const int Bosses = 6;
+        public const int Elites = 8;
+        public const int Bosses = 8;
         public const int ElitesPerBiome = 2;
         public const int BossesPerBiome = 2;
         public const int DungeonEvents = 7; // the six MVP events (57.1–57.6) + the rare Secure Relay (57.7)
@@ -142,7 +142,7 @@ namespace RuinRail.EditorTools.Production
             // ---- Biomes ----
             lines.Add(new ContentCountLine("Biomes", "all", Biomes, Enum.GetValues(typeof(Biome)).Length));
 
-            // ---- Rooms: 63 prefabs, 21 per biome, exact distribution, unique ids, validator-ready ----
+            // ---- Rooms: 84 prefabs, 21 per biome, exact distribution, unique ids, validator-ready ----
             var rooms = LoadAll<RoomDefinition>().Where(r => !AssetDatabase.GetAssetPath(r).Contains("/_Test/") && !r.Id.StartsWith("test_")).ToList();
             lines.Add(new ContentCountLine("Room prefabs", "all biomes", RoomsTotal, rooms.Count));
             foreach (var biome in (Biome[])Enum.GetValues(typeof(Biome)))

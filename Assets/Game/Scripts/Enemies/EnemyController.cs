@@ -99,6 +99,12 @@ namespace RuinRail.Gameplay.Enemies
         public float MovementSpeedMultiplier => _movementSpeedMultiplier;
 
         public float CurrentTelegraphSeconds => _definition == null ? 0f : _definition.AttackTelegraphSeconds / _attackSpeedMultiplier;
+
+        /// <summary>The committed length of the current (or last) telegraph: the move's own timing for movesets, scaled by attack speed.</summary>
+        public float TelegraphDuration { get; private set; }
+
+        /// <summary>Seconds until the telegraphed attack resolves (0 outside Telegraph).</summary>
+        public float TelegraphRemaining => State == EnemyState.Telegraph ? Mathf.Max(0f, _phaseTimeRemaining) : 0f;
         public float CurrentCooldownSeconds => _definition == null ? 0f : _definition.AttackCooldownSeconds / _attackSpeedMultiplier;
 
         /// <summary>Shared stagger/knockback tuning; without it the enemy neither staggers nor gets knocked back.</summary>
@@ -382,6 +388,8 @@ namespace RuinRail.Gameplay.Enemies
                             _phaseTimeRemaining = telegraph / _attackSpeedMultiplier;
                             _pendingRecoverySeconds = recovery / _attackSpeedMultiplier;
                         }
+
+                        TelegraphDuration = _phaseTimeRemaining;
 
                         (_attack as IEnemyTelegraphAware)?.OnTelegraphStarted(_target);
                     }

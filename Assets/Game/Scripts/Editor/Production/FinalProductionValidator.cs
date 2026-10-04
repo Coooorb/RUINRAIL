@@ -304,7 +304,7 @@ namespace RuinRail.EditorTools.Production
             var counts = ContentCountValidator.ValidateProject();
             foreach (var line in counts.Lines.Where(l => !l.Pass)) section.Errors.Add($"{line.Category} [{line.Scope}]: expected {line.Expected}, actual {line.Actual}.");
             foreach (var p in counts.Problems) section.Errors.Add(p);
-            if (counts.Pass) section.Passed.Add($"{counts.Lines.Count}/{counts.Lines.Count} count lines exact: 33 weapons / 9 armor / 16 accessories / 10 consumables / 9 enemies / 6 Elites / 6 Bosses / 63 rooms.");
+            if (counts.Pass) section.Passed.Add($"{counts.Lines.Count}/{counts.Lines.Count} count lines exact: 33 weapons / 9 armor / 16 accessories / 10 consumables / 9 enemies / 8 Elites / 8 Bosses / 84 rooms.");
         }
 
         // ---- 7. Build scenes ----

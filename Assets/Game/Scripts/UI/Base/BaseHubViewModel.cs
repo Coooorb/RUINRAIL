@@ -31,6 +31,8 @@ namespace RuinRail.UI.Base
         public event Action<StationFeedback> Changed;
 
         public void Ok(string text) { Text = text; IsError = false; RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Confirm); Changed?.Invoke(this); }
+        /// <summary>A success that moved Banked Coins (a buy, a sale, an upgrade, a paid respec): it sounds like a transaction.</summary>
+        public void Paid(string text) { Text = text; IsError = false; RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Purchase); Changed?.Invoke(this); }
         public void Error(string text) { Text = text; IsError = true; RuinRail.Core.Rendering.UiSoundBus.Raise(RuinRail.Core.Rendering.UiSound.Failure); Changed?.Invoke(this); }
         public void Clear() { Text = string.Empty; IsError = false; Changed?.Invoke(this); }
     }
@@ -261,7 +263,7 @@ namespace RuinRail.UI.Base
 
         private bool Report(TradeError error, string ok)
         {
-            if (error == TradeError.None) { Feedback.Ok(ok); return true; }
+            if (error == TradeError.None) { Feedback.Paid(ok); return true; }
             Feedback.Error(error switch
             {
                 TradeError.InsufficientFunds => "Not enough Coins.",
@@ -349,7 +351,7 @@ namespace RuinRail.UI.Base
         public bool Respec()
         {
             var error = _session.Character.Respec();
-            if (error == RespecError.None) { Feedback.Ok("Skill points refunded."); return true; }
+            if (error == RespecError.None) { Feedback.Paid("Skill points refunded."); return true; }
             Feedback.Error(error switch
             {
                 RespecError.InsufficientFunds => "Not enough Coins for a respec.",
@@ -387,7 +389,7 @@ namespace RuinRail.UI.Base
 
         private bool Report(UpgradeError error, string ok)
         {
-            if (error == UpgradeError.None) { Feedback.Ok(ok); return true; }
+            if (error == UpgradeError.None) { Feedback.Paid(ok); return true; }
             Feedback.Error(error switch
             {
                 UpgradeError.InsufficientFunds => "Not enough Coins.",

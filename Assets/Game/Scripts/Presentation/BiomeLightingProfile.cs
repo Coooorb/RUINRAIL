@@ -37,6 +37,13 @@ namespace RuinRail.Presentation
         public bool IsReadable => _globalLightIntensity >= MinimumGlobalIntensity && _globalLightColor.r >= 0.75f && _globalLightColor.g >= 0.75f && _globalLightColor.b >= 0.75f && !_postProcessing;
 
 #if UNITY_EDITOR
+        /// <summary>Editor-only: names the biome of a newly created profile.</summary>
+        public void EditorSetBiome(Biome biome)
+        {
+            _biome = biome;
+            UnityEditor.EditorUtility.SetDirty(this);
+        }
+
         /// <summary>
         /// Editor-only authoring of the biome's final ambient tint. Refuses anything that would break the readability
         /// contract, so lighting can never quietly become a visibility mechanic (art/102, art/106 section 11).

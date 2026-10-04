@@ -244,6 +244,8 @@ namespace RuinRail.App
         public event Action Back;
         /// <summary>Raised on a horizontal step; screens that own a tab bar use it to change section.</summary>
         public event Action<int> Horizontal;
+        /// <summary>A vertical / grid / adjust step was taken (true = the focus or value moved); screens with UI sound cues listen.</summary>
+        public event Action<bool> Navigated;
         public int Steps { get; private set; }
 
         /// <summary>Set while a scene transition owns the screen: the menu must not accept input in that window.</summary>
@@ -279,10 +281,10 @@ namespace RuinRail.App
             // vertically; left/right first go to an adjustable focused control (a settings slider / selector) and
             // otherwise to the screen (tab bars).
             var grid = Stack.CurrentHasNavigator;
-            if (down) { if (grid) Stack.Navigate(Vector2Int.down); else Stack.Move(+1); Steps++; }
-            if (up) { if (grid) Stack.Navigate(Vector2Int.up); else Stack.Move(-1); Steps++; }
-            if (right) { if (grid) Stack.Navigate(Vector2Int.right); else if (!Stack.Adjust(+1)) Horizontal?.Invoke(+1); Steps++; }
-            if (left) { if (grid) Stack.Navigate(Vector2Int.left); else if (!Stack.Adjust(-1)) Horizontal?.Invoke(-1); Steps++; }
+            if (down) { Navigated?.Invoke(grid ? Stack.Navigate(Vector2Int.down) : Stack.Move(+1)); Steps++; }
+            if (up) { Navigated?.Invoke(grid ? Stack.Navigate(Vector2Int.up) : Stack.Move(-1)); Steps++; }
+            if (right) { if (grid) Navigated?.Invoke(Stack.Navigate(Vector2Int.right)); else if (Stack.Adjust(+1)) Navigated?.Invoke(true); else Horizontal?.Invoke(+1); Steps++; }
+            if (left) { if (grid) Navigated?.Invoke(Stack.Navigate(Vector2Int.left)); else if (Stack.Adjust(-1)) Navigated?.Invoke(true); else Horizontal?.Invoke(-1); Steps++; }
             if (confirm) Stack.Activate();
             if (back) Back?.Invoke();
         }

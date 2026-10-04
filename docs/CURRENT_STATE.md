@@ -19,12 +19,12 @@ not classes. Full loop: `design/03_CORE_GAME_LOOP.md`.
 - Items: one-slot items, 8-slot backpack, 2 weapon slots + armor + accessory + active consumable; 11 weapon classes,
   rarity/affixes, Legendary weapon specials and accessory passives (event producers wired), 4 ammo types, consumables.
 - Combat: enemy framework, normal enemies, Elites, two-phase biome bosses, stagger/knockback (player knockback live).
-- Dungeon: seeded graph generator over hand-authored grid rooms; biomes Ruined Metro, Rustworks, Overgrown Labs;
+- Dungeon: seeded graph generator over hand-authored grid rooms; biomes Ruined Metro, Rustworks, Overgrown Labs, Cryo Vaults (21 rooms, 2 Elites, 2 bosses each);
   events, chests, merchant, weapon cache; depth scaling; transit vote/extraction.
 - Shelter: Storage, Trader, Character station, Workshop, starter kit, expedition summary, onboarding.
 - Co-op: NGO over UnityTransport, host-authoritative, 1–3 players, revive, transit vote, reconnect, spectator.
 - Persistence: versioned save (v2) with migration chain, autosave at safe points, deepest-depth record.
-- Presentation: final integrated art (340 roles), pixel UI font/skin, audio (53 events, 11 tracks), settings, rebinding,
+- Presentation: final integrated art (340 roles), pixel UI font/skin, audio (53 events, 14 tracks), settings, rebinding,
   controller navigation.
 
 ## Frozen / accepted

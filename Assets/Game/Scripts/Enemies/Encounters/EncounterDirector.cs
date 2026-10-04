@@ -120,7 +120,7 @@ namespace RuinRail.Gameplay.Enemies.Encounters
     /// bounded by the active cap. Same run seed + depth + room index + party size => same plan.
     /// </summary>
     /// <summary>
-    /// Per-biome archetype weighting (56_BIOMES). The three biomes used the same flat archetype pool, which is why they
+    /// Per-biome archetype weighting (56_BIOMES). The biomes used the same flat archetype pool, which is why they
     /// played identically once the art was ignored. Weights are derived from the authored biome descriptions and are
     /// never exclusive: every archetype keeps a non-zero weight in every biome, so no encounter becomes impossible —
     /// only the combat texture differs.
@@ -128,6 +128,8 @@ namespace RuinRail.Gameplay.Enemies.Encounters
     /// Metro is "electricity/rail machinery and cramped movement layouts": close pressure up, long-range sniping down.
     /// Rustworks is "presses, furnaces, explosive environmental props, heavy mechanical": armoured and explosive up,
     /// swarms down. Overgrown Labs is "bio tanks, overgrowth, failed experiments": swarming and summoning up, armour down.
+    /// Cryo Vaults is "a preservation facility still partly guarded, with long storage aisles": shielded security and
+    /// ranged fire up, the organic swarm down.
     /// </summary>
     public static class BiomeEncounterWeights
     {
@@ -148,7 +150,12 @@ namespace RuinRail.Gameplay.Enemies.Encounters
             [(Biome.OvergrownLabs, "swarm")] = 20,
             [(Biome.OvergrownLabs, "summoner")] = 20,
             [(Biome.OvergrownLabs, "bomber")] = 15,
-            [(Biome.OvergrownLabs, "shield_enemy")] = 5
+            [(Biome.OvergrownLabs, "shield_enemy")] = 5,
+
+            [(Biome.CryoVaults, "shield_enemy")] = 20,
+            [(Biome.CryoVaults, "sniper_enemy")] = 15,
+            [(Biome.CryoVaults, "shooter")] = 15,
+            [(Biome.CryoVaults, "swarm")] = 5
         };
 
         /// <summary>Selection weight of an archetype in a biome; <see cref="Default"/> when the table says nothing.</summary>

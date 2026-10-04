@@ -189,7 +189,30 @@ namespace RuinRail.Tests
                     var lasted = Time.time - started;
                     var authored = attack.TelegraphSeconds * elite.TimingMultiplier;
                     Assert.AreEqual(authored, lasted, 0.1f, $"{label} {attack.name}: the marker lives for the real telegraph ({authored:0.00}s)");
-                    Assert.IsFalse(indicator.IsShowing, $"{label} {attack.name}: gone the moment the attack resolves");
+                    // A running dash, a multi-hit move's later windows, and shots already fired are still danger: the marker
+                    // stays exactly while they are (volley lanes until their shots can no longer arrive).
+                    var volley = attack.Motion == AttackMotion.Projectile;
+                    while (elite != null && elite.State == MovesetActorState.Attacking)
+                    {
+                        health.Heal(100000);
+                        indicator.Tick(0f);
+                        var dangerous = elite.Resolver.IsRunning && (attack.Motion == AttackMotion.Dash || (elite.Resolver.WindowsFired >= 1 && elite.Resolver.WindowsRemaining > 0));
+                        if (!volley) Assert.AreEqual(dangerous, indicator.IsShowing, $"{label} {attack.name}: drawn while the attack is still dangerous, and only then");
+                        else if (elite.Resolver.WindowsFired >= 1) Assert.IsTrue(indicator.IsShowing, $"{label} {attack.name}: lanes drawn while volleys fire");
+                        yield return null;
+                    }
+
+                    if (elite != null) indicator.Tick(0f);
+                    if (volley && elite != null)
+                    {
+                        // The lanes linger only for the shots' flight: longest lane at projectile speed.
+                        var flight = (attack.ProjectileRange + AttackFootprint.VolleyMuzzleOffset + AttackFootprint.EnemyProjectileRadius) / Mathf.Max(0.01f, attack.ProjectileSpeed);
+                        var lingerStart = Time.time;
+                        while (indicator.IsShowing && Time.time - lingerStart < flight + 1f) { health.Heal(100000); yield return null; }
+                        Assert.LessOrEqual(Time.time - lingerStart, flight + 0.1f, $"{label} {attack.name}: the lanes leave once the shots can no longer arrive ({flight:0.00}s)");
+                    }
+
+                    Assert.IsFalse(indicator.IsShowing, $"{label} {attack.name}: gone once the attack and its shots are over");
                     if (first) report.Add($"{label}: {attack.name} {attack.Motion} kind {indicator.MarkerKind} size {expected.Size} lanes {Mathf.Max(1, lanes.Count)} telegraph {lasted:0.00}s (authored {authored:0.00}s)");
 
                     // Next move from the other range band.
@@ -215,7 +238,7 @@ namespace RuinRail.Tests
 
             // Every shipped Elite, spawned into the live arena through the run's own presentation seam (the one the
             // engagement's Spawned event calls).
-            Assert.AreEqual(6, content.Elites.Count, "the six shipped Elites");
+            Assert.AreEqual(8, content.Elites.Count, "the eight shipped Elites");
             foreach (var definition in content.Elites)
             {
                 yield return Teleport(run, centre);

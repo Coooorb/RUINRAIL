@@ -186,7 +186,8 @@ namespace RuinRail.Tests
             // Switch to the normal gun: special input is ignored entirely (no controller listens for it).
             _input.RaiseWeapon2Selected();
             Assert.IsTrue(_normalGun.IsEquipped);
-            _controller.State.Reset();
+            Assert.IsNull(_controller.State, "with the normal weapon in hand no special is live");
+            _controller.StateOf(_legendaryGun).Reset();
             _input.SpecialHeld = true;
             yield return null;
             Assert.AreEqual(1, fired, "Special never routes to a normal weapon.");
@@ -212,7 +213,8 @@ namespace RuinRail.Tests
 
             _input.RaiseWeapon2Selected();
             for (var i = 0; i < 15; i++) yield return null; // 1.5 s holstered
-            Assert.AreEqual(0.5f, _controller.State.CooldownRemaining, 0.15f, "Cooldown counts down while holstered.");
+            Assert.IsNull(_controller.State, "a holstered Legendary's special is not the live one");
+            Assert.AreEqual(0.5f, _controller.StateOf(_legendaryGun).CooldownRemaining, 0.15f, "Cooldown counts down while holstered.");
             _input.RaiseWeapon1Selected();
             for (var i = 0; i < 6; i++) yield return null;
             Assert.IsTrue(_controller.State.IsReady);

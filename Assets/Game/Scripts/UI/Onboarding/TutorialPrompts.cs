@@ -116,7 +116,7 @@ namespace RuinRail.UI.Onboarding
                 // Taught as resource management, not as an order: both weapons is the advice, and melee is one option
                 // among them rather than a requirement. It never says "switch to melee".
                 TutorialPromptId.LowAmmo => $"Ammo running low — {G("WeaponSwap")}: use both weapons to conserve rounds.",
-                TutorialPromptId.Transit => "Boss defeated. At the Transit: Return to the Shelter to secure your loot, or Descend deeper for more.",
+                TutorialPromptId.Transit => "Boss defeated. Transit ready: Return to the Shelter to secure your loot, or Descend deeper for more.",
                 _ => id.ToString()
             };
         }

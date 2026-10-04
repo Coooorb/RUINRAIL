@@ -67,6 +67,7 @@ namespace RuinRail.App
         private GameObject _dungeonRoot;
         /// <summary>The depth's environmental underlay (presentation only); rebuilt with every depth.</summary>
         public WorldSubstrate Substrate { get; private set; }
+        public DungeonSurroundings Surroundings { get; private set; }
         private CameraRig _camera;
         private DungeonHudViewModel _hud;
         private InventoryViewModel _inventory;
@@ -293,10 +294,12 @@ namespace RuinRail.App
             groundEffects.SetSpriteResolver(content.VfxFramesFor);
             var feedback = effects.gameObject.AddComponent<CombatFeedback>();
             feedback.Configure(content.Feedback, effects, shake, groundEffects);
+            feedback.ObserveAllProjectiles(); // every shot's muzzle-to-impact stack: impacts and rocket blasts
             _effects = effects;
             _feedback = feedback;
             var numbers = effects.gameObject.AddComponent<DamageNumberPool>();
             numbers.Configure(content.Feedback);
+            numbers.Prewarm(8); // the first TextMesh's one-time font cache is paid while composing, not on the first hit
             numbers.Bind(player.GetComponent<HealthComponent>(), null, isLocalPlayer: true); // damage taken reads red
             feedback.Attach(player.GetComponent<HealthComponent>());
             feedback.Attach(player.GetComponent<WeaponVisualDriver>());
@@ -543,7 +546,10 @@ namespace RuinRail.App
                             {
                                 if (_rig?.Player == null || entering != _rig.Player) return;
                                 BossIntroSequence.Play(_camera, boss.Boss, entering.transform, engagement,
-                                    RoomDisplayNames.BiomeName(_expedition.State.Biome) + "  -  BOSS");
+                                    RoomDisplayNames.BiomeName(_expedition.State.Biome) + "  ·  BOSS", _expedition.State.Biome,
+                                    _camera != null ? _camera.GetComponent<CameraShake>() : null,
+                                    // The reveal beat sounds with the boss's own power cue, from where the boss stands.
+                                    at => _app.Audio?.Play(RuinRail.Audio.AudioEventIds.BossPhase, at));
                             };
                     }
                 }
@@ -581,6 +587,9 @@ namespace RuinRail.App
             // Presentation only: Ground layer at a large negative order, no collider, no tile occupancy, no room
             // membership — pathing, sealing, encounter bounds, doors and the minimap never see it.
             Substrate = WorldSubstrate.Create(_dungeonRoot.transform, state.Biome, bounds);
+            // The structures around the rooms (tracks, machinery, tanks, racks...) over the underlay: presentation only,
+            // laid out from the run seed, depth and room rects so every peer builds the same surroundings.
+            Surroundings = DungeonSurroundings.Create(Substrate.transform, state.Biome, Generation.Layout.Placements.Select(p => p.Bounds).ToList(), state.RunSeed, state.Depth);
             _camera.GetComponent<UnityEngine.Camera>().backgroundColor = WorldSubstrate.ClearColorFor(state.Biome);
             _camera.GetComponent<BiomeLightingApplier>().Apply(content.LightingFor(state.Biome));
             // The depth objective is contextual, not a permanent text block: it rides the room-title reveal of the
@@ -619,6 +628,15 @@ namespace RuinRail.App
             // marker for an Elite's cleaves, charges, zones, slams and volleys (only co-op clients' replicas had one).
             if ((actor is BossController || isElite) && actor.GetComponent<TelegraphIndicator>() == null)
                 actor.gameObject.AddComponent<TelegraphIndicator>().Configure(_app.Content.Feedback, _effects, null, actor);
+            // A boss's summons are normal enemies spawned outside any room encounter: they need the same presentation
+            // (body, bar, flash and — above all — their red telegraph); without it they attacked with no warning drawn.
+            if (actor is BossController summoner && actor.GetComponent<HitFlash>() == null)
+                summoner.Summoned += (_, summons) =>
+                {
+                    foreach (var summon in summons)
+                        if (summon != null && summon.GetComponent<TelegraphIndicator>() == null) BindEnemyPresentation(summon);
+                };
+
             if (actor is BossController && actor.GetComponent<HitFlash>() == null)
             {
                 var effects = _effects;
@@ -762,12 +780,6 @@ namespace RuinRail.App
         private void AttachEventNotices(RoomRuntime runtime)
         {
             var binding = runtime.GetComponent<RoomContentBinding>();
-            if (binding != null && binding.Transit != null)
-            {
-                // Boarding the transit (60 step 5) restates the open decision on the notice line; the vote panel itself is already up.
-                binding.Transit.Boarded += _ => Notify("TRANSIT BOARDED: RETURN TO SHELTER (1) OR DESCEND DEEPER (2)", false);
-            }
-
             if (binding == null || binding.Event == null || binding.EventInstance == null) return;
             var instance = binding.EventInstance;
             binding.Event.Activated += (_, result) => { if (result.Outcome != DungeonEventOutcome.Success && result.Outcome != DungeonEventOutcome.Failed || !result.IsTerminal) Notify(EventOutcomeText.For(instance, result, _app.Configs.Resolve), false); };
@@ -1408,11 +1420,23 @@ namespace RuinRail.App
             }
 
             _tutorial?.Tick();
+            SyncMinimapPlayer();
             SyncRelayVisuals();
             TickRelayEscrow();
             RefreshInteractionPrompt();
             RefreshHeldNotice();
             TickCoop(Time.deltaTime);
+        }
+
+        /// <summary>The minimap's player marker: where the local player stands in the current room and which way they aim.</summary>
+        private void SyncMinimapPlayer()
+        {
+            if (_minimap == null || CurrentRoom == null || _rig?.Player == null) return;
+            var bounds = CurrentRoom.InteriorWorldBounds;
+            if (bounds.width <= 0f || bounds.height <= 0f) return;
+            var p = (Vector2)_rig.Player.transform.position;
+            var aim = _rig.Player.GetComponent<RuinRail.Gameplay.Player.PlayerAiming>();
+            _minimap.SetPlayer(new Vector2((p.x - bounds.xMin) / bounds.width, (p.y - bounds.yMin) / bounds.height), aim != null ? aim.AimDirection : Vector2.right);
         }
 
         /// <summary>

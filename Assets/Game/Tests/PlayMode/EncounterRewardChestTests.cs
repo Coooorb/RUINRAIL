@@ -124,7 +124,7 @@ namespace RuinRail.Tests
         public IEnumerator EveryShippedElite_LeavesExactlyOneNormalChest_OnlyAfterItsDeath_AtTheRoomsPlayableCentre()
         {
             var elites = _content.Elites.Where(e => e != null).OrderBy(e => e.Id).ToList();
-            Assert.AreEqual(6, elites.Count, "six shipped Elites");
+            Assert.AreEqual(8, elites.Count, "eight shipped Elites");
             var report = new List<string>();
             var x = 0f;
             foreach (var elite in elites)
@@ -175,7 +175,7 @@ namespace RuinRail.Tests
         public IEnumerator EveryShippedBoss_LeavesExactlyOneBossCache_OnlyAfterItsDeath_AtTheArenasPlayableCentre()
         {
             var bosses = _content.Bosses.Where(b => b != null).OrderBy(b => b.Id).ToList();
-            Assert.AreEqual(6, bosses.Count, "six shipped bosses");
+            Assert.AreEqual(8, bosses.Count, "eight shipped bosses");
             var report = new List<string>();
             var x = 0f;
             foreach (var boss in bosses)
@@ -332,8 +332,8 @@ namespace RuinRail.Tests
             Assert.IsNotNull(clientChest, "the host's clear builds the client's chest");
             Assert.AreEqual(hostChest.transform.position - hostRoot.transform.position, clientChest.transform.position - client.Root.transform.position, "same room cell on both peers");
             Assert.AreEqual(hostChest.Kind, clientChest.Kind);
-            Assert.AreEqual(hostChest.Visual.Renderer.color, clientChest.Visual.Renderer.color, "the client's chest wears the host's biome colour");
-            Assert.AreEqual(ChestBiomePalette.TintFor(generation.Layout.Biome, hostChest.Kind), hostChest.Visual.Renderer.color, "the depth's biome palette");
+            Assert.AreEqual(hostChest.Visual.Renderer.sprite, clientChest.Visual.Renderer.sprite, "the client's chest wears the host's biome/tier art");
+            Assert.AreEqual(ChestArt.For(generation.Layout.Biome, ChestArt.TierOf(hostChest.Kind, hostChest.name == "EliteRewardChest"), hostChest.Visual.Key), hostChest.Visual.Renderer.sprite, "the depth's biome chest art");
             Assert.AreEqual(hostChest.Visual.Renderer.transform.localScale, clientChest.Visual.Renderer.transform.localScale);
             client.RestoreState(host.State.Clone());
             client.RestoreState(host.State.Clone());

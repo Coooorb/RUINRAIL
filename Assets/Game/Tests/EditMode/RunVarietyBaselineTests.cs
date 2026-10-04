@@ -35,7 +35,7 @@ namespace RuinRail.Tests
         /// <summary>Deterministic seeds for the generation sweeps. 120 seeds x 6 depths x 3 biomes = 2160 depths.</summary>
         public static readonly int[] Seeds = Enumerable.Range(0, 120).Select(i => 30000 + i * 131).ToArray();
         public static readonly int[] EliteDepths = { 1, 5, 10, 20, 30, 50 };
-        public static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs };
+        public static readonly Biome[] Biomes = { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults };
 
         private GameContentCatalog _content;
         private PriceService _prices;

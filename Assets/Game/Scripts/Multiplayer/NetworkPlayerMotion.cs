@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RuinRail.Gameplay.Player;
 using Unity.Netcode;
 using UnityEngine;
@@ -49,6 +50,10 @@ namespace RuinRail.Networking
         private uint _intentSequence;
         private uint _dashSequence;
         private uint _lastAppliedDashSequence;
+        // Host: the intent sequence the last completed physics step moved this body with (its published position's sequence).
+        private uint _sequenceOfLastStep;
+        // Owner (client): where this body was predicted after each intent, until the host has confirmed it.
+        private readonly Dictionary<uint, Vector2> _predicted = new();
 
         public PlayerNetState State => _state.Value.State;
         public RemoteIntentInputReader RemoteReader => _remoteReader;
@@ -141,10 +146,15 @@ namespace RuinRail.Networking
             if (IsServer)
             {
                 PublishState();
+                // The step about to run moves the body with the newest intent: its position is published next step with it.
+                _sequenceOfLastStep = _remoteReader?.LastSequence ?? _intentSequence;
             }
 
             if (IsOwner && !IsServer)
             {
+                // The body now stands where the previous step's intent took it.
+                if (_intentSequence > 0 && _body != null) _predicted[_intentSequence] = _body.position;
+                if (_predicted.Count > 600) _predicted.Clear(); // the host stopped confirming (a stall): start over, snap rule meanwhile
                 SendIntent();
                 ReconcileOwner();
             }
@@ -185,7 +195,7 @@ namespace RuinRail.Networking
                 IsDashing = _dash != null && _dash.IsDashing,
                 IsInvulnerable = _dash != null && _dash.IsInvulnerable,
                 DashSequence = IsOwner ? _dashSequence : _lastAppliedDashSequence,
-                LastIntentSequence = _remoteReader?.LastSequence ?? _intentSequence,
+                LastIntentSequence = _remoteReader != null ? _sequenceOfLastStep : _intentSequence,
                 Time = NetworkManager.ServerTime.Time
             };
             _state.Value = new PlayerNetStatePayload { State = state };
@@ -194,9 +204,30 @@ namespace RuinRail.Networking
         private void ReconcileOwner()
         {
             if (_body == null) return;
-            var authoritative = _state.Value.State.Position;
-            if (OwnerReconciliation.NeedsCorrection(_body.position, authoritative)) _body.position = authoritative;
+            var state = _state.Value.State;
+            if (state.LastIntentSequence == 0 || !_predicted.TryGetValue(state.LastIntentSequence, out var predicted))
+            {
+                // Nothing to compare against yet (spawn, reconnect): the plain snap rule.
+                if (OwnerReconciliation.NeedsCorrection(_body.position, state.Position)) _body.position = state.Position;
+                return;
+            }
+
+            var shift = OwnerReconciliation.SequenceCorrection(state.Position, predicted, Time.fixedDeltaTime);
+            if (shift != Vector2.zero)
+            {
+                _body.position += shift;
+                // Every later prediction moves with the body, so the same error is never applied twice.
+                _shiftKeys.Clear();
+                foreach (var key in _predicted.Keys) if (key >= state.LastIntentSequence) _shiftKeys.Add(key);
+                foreach (var key in _shiftKeys) _predicted[key] += shift;
+            }
+
+            _shiftKeys.Clear();
+            foreach (var key in _predicted.Keys) if (key < state.LastIntentSequence) _shiftKeys.Add(key);
+            foreach (var key in _shiftKeys) _predicted.Remove(key);
         }
+
+        private readonly List<uint> _shiftKeys = new();
 
         private void InterpolateReplica()
         {

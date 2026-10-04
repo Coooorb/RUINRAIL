@@ -27,6 +27,19 @@ namespace RuinRail.Gameplay.Enemies
         EnemyAttackDefinition CurrentAttack { get; }
         bool IsDead { get; }
 
+        /// <summary>The committed length of the telegraph the host is running (scaling applied).</summary>
+        float TelegraphSeconds { get; }
+
+        /// <summary>A lob's real landing point while it telegraphs or the bomb flies.</summary>
+        Vector2 AimPoint { get; }
+        bool HasAimPoint { get; }
+
+        /// <summary>Normal shooters: shots the host has actually fired (impacts follow real shots, not the timeline).</summary>
+        int ShotsFired { get; }
+
+        /// <summary>Normal enemies: the host's attack is still running (charge, move windows).</summary>
+        bool IsResolving { get; }
+
         /// <summary>Raised when the replicated state leaves Telegraph into the strike (presentation only).</summary>
         event Action<IReplicatedActorView> Struck;
     }

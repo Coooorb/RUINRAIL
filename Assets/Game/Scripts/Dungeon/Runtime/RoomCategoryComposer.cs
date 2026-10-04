@@ -142,13 +142,13 @@ namespace RuinRail.Dungeon.Runtime
 
             EncounterRewardChest.Bind(room, binding, EliteRewardResolvedId,
                 () => room.State.State == RoomLifecycleState.Cleared,
-                position => CreateChest(room, services, position, "EliteRewardChest", LootSourceKind.SupplyChest, context, room.State.NodeId * ChestSourceStride + EliteRewardSourceSlot));
+                position => CreateChest(room, services, position, "EliteRewardChest", LootSourceKind.SupplyChest, context, room.State.NodeId * ChestSourceStride + EliteRewardSourceSlot, ChestTier.Elite));
         }
 
         private static SupplyChest CreateChest(RoomRuntime room, DungeonRuntimeServices services, RoomMarker marker, string name, LootSourceKind kind, DungeonRuntimeContext context, int sourceIndex) =>
             CreateChest(room, services, room.Root.transform.TransformPoint(marker.WorldCenter), name, kind, context, sourceIndex);
 
-        private static SupplyChest CreateChest(RoomRuntime room, DungeonRuntimeServices services, Vector2 worldPosition, string name, LootSourceKind kind, DungeonRuntimeContext context, int sourceIndex)
+        private static SupplyChest CreateChest(RoomRuntime room, DungeonRuntimeServices services, Vector2 worldPosition, string name, LootSourceKind kind, DungeonRuntimeContext context, int sourceIndex, ChestTier? tier = null)
         {
             var go = new GameObject(name);
             go.transform.SetParent(room.transform, false);
@@ -161,7 +161,7 @@ namespace RuinRail.Dungeon.Runtime
             services.LootCatalog.Configure(chest, kind, context.RunSeed, context.Depth, sourceIndex, context.PartySize, services.UsefulAmmoTypes, spawner,
                 services.Prices?.Config);
             chest.AttachVisual(); // final crate art; the sprite follows closed / opened / locked from here on
-            ChestBiomePalette.Apply(chest, context.Biome); // the depth's biome colour (Boss Cache: gold lean, larger)
+            ChestArt.Apply(chest, context.Biome, tier ?? ChestArt.TierOf(kind)); // drawn for the depth's biome and the reward's tier
             return chest;
         }
 
@@ -185,6 +185,7 @@ namespace RuinRail.Dungeon.Runtime
             var service = new DungeonMerchantService(services.MerchantConfig, services.Prices, services.CarriedWallet, services.MerchantStateFor(context.Depth),
                 context.RunSeed, context.PartySize, services.Items, services.ResolveDefinition ?? (_ => null), services.RarityTables);
             var go = CreateAnchorObject(room, anchor, "Merchant", WorldObjectArt.DungeonMerchant);
+            InteractableArt.Apply(go.GetComponent<WorldObjectVisual>(), context.Biome); // the stall, drawn for the depth's biome
             var interactable = go.AddComponent<DungeonMerchantInteractable>();
             interactable.Bind(service);
             binding.Merchant = interactable;
@@ -257,11 +258,15 @@ namespace RuinRail.Dungeon.Runtime
 
             var resolvedId = $"event:{kind}";
             var visual = go.GetComponent<WorldObjectVisual>();
+            InteractableArt.Apply(visual, context.Biome); // drawn for the depth's biome
             if (instance is DungeonEventBase restorable && room.State.IsResolved(resolvedId))
             {
                 restorable.RestoreResolved(room.State.IsResolved(resolvedId + ":success"));
                 visual?.SetTint(WorldObjectVisual.ResolvedTint);
             }
+
+            if (instance is not SecureRelayEvent && visual != null)
+                go.AddComponent<InteractableStatePresenter>().Bind(instance, visual, WorldObjectArt.EventKey(kind.ToString())); // idle / active / used / failed
 
             if (instance is SecureRelayEvent relay)
             {
@@ -399,10 +404,11 @@ namespace RuinRail.Dungeon.Runtime
                 binding.Skipped.Add("boss_cache:no_loot_catalog");
             }
 
-            // Transit Car: activates on boss defeat and records the defeat on the expedition (TransitCar owns that hook).
-            var transitMarker = room.Root.GetMarkers(RoomMarkerRole.InteractableSpawn).FirstOrDefault();
-            var transitAnchor = transitMarker != null ? transitMarker : anchor;
-            var transitObject = CreateAnchorObject(room, transitAnchor, "TransitCar", WorldObjectArt.TransitCar);
+            // The post-boss transit: no world object any more — leaving is the post-boss Return / Descend panel. This
+            // invisible, non-interactable hook keeps the one boss-defeat → expedition record (which opens that decision)
+            // and the activation state co-op mirrors; it has no art, no collider and no prompt.
+            var transitObject = new GameObject("BossTransitHook");
+            transitObject.transform.SetParent(room.transform, false);
             var transit = transitObject.AddComponent<TransitCar>();
             transit.Configure(services.Expedition, binding.Boss);
             if (alreadyBeaten) transit.Activate();

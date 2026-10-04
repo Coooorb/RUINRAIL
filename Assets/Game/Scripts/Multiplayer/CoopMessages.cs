@@ -511,9 +511,15 @@ namespace RuinRail.Networking
         public int Team;
         public ulong Shooter;
         public FixedString32Bytes Visual;
+        /// <summary>The first projectile of one trigger pull: the peers draw the shooter's muzzle flash once for it (pellets share it).</summary>
+        public bool Flash;
+        /// <summary>The shot's blast radius in tiles (rockets); 0 = a plain projectile. Presentation only on the receiving peers.</summary>
+        public float Blast;
 
         public void NetworkSerialize<T>(BufferSerializer<T> serializer) where T : IReaderWriter
         {
+            serializer.SerializeValue(ref Flash);
+            serializer.SerializeValue(ref Blast);
             serializer.SerializeValue(ref Origin);
             serializer.SerializeValue(ref Direction);
             serializer.SerializeValue(ref Speed);

@@ -174,9 +174,13 @@ namespace RuinRail.EditorTools.ArtGen
             Debug.Log("Final art generation complete.");
         }
 
-        public static void GenerateTiles()
+        /// <summary>Every art biome, or only <paramref name="only"/> when a pass must leave the others' assets untouched.</summary>
+        private static IEnumerable<TileFactory.Biome> Biomes(TileFactory.Biome? only) =>
+            only.HasValue ? new[] { only.Value } : (TileFactory.Biome[])Enum.GetValues(typeof(TileFactory.Biome));
+
+        public static void GenerateTiles(TileFactory.Biome? only = null)
         {
-            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            foreach (var biome in Biomes(only))
             foreach (TileRole role in Enum.GetValues(typeof(TileRole)))
             for (var variant = 0; variant < TileFactory.VariantCount(role); variant++)
             {
@@ -184,7 +188,7 @@ namespace RuinRail.EditorTools.ArtGen
                 WriteSprite(canvas, $"{ArtRoot}/Tiles/{biome}/{TileStem(biome, role, variant)}.png");
             }
 
-            WriteHazardSheets();
+            WriteHazardSheets(only);
         }
 
         // ---------- animated damaging-floor hazards ----------
@@ -202,12 +206,14 @@ namespace RuinRail.EditorTools.ArtGen
         {
             TileFactory.Biome.RuinedMetro => (10f, false),
             TileFactory.Biome.Rustworks => (6f, true),
+            // The Coolant Leak builds and releases as one: every cell of a leak surges together, so it reads as a leak.
+            TileFactory.Biome.CryoVaults => (6f, false),
             _ => (5f, true)
         };
 
-        private static void WriteHazardSheets()
+        private static void WriteHazardSheets(TileFactory.Biome? only = null)
         {
-            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            foreach (var biome in Biomes(only))
             {
                 var sheet = new PixelCanvas(TileFactory.Size * TileFactory.HazardFrames, TileFactory.Size);
                 for (var f = 0; f < TileFactory.HazardFrames; f++) sheet.Blit(TileFactory.BuildHazardFrame(biome, f), f * TileFactory.Size, 0);
@@ -226,9 +232,9 @@ namespace RuinRail.EditorTools.ArtGen
         /// prefab that paints it animates without being touched. A static <see cref="Tile"/> found there is replaced by
         /// rewriting the asset file (a type cannot change through the asset API without a new GUID).
         /// </summary>
-        public static void BindHazardTiles()
+        public static void BindHazardTiles(TileFactory.Biome? only = null)
         {
-            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            foreach (var biome in Biomes(only))
             {
                 var frames = HazardFrames(biome);
                 if (frames.Length != TileFactory.HazardFrames) throw new InvalidOperationException($"{HazardSheetPath(biome)}: {frames.Length} frames, expected {TileFactory.HazardFrames}.");
@@ -276,6 +282,44 @@ namespace RuinRail.EditorTools.ArtGen
                 EditorApplication.Exit(ok ? 0 : 1);
             }
             catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
+        /// <summary>
+        /// One biome's environment art: its tiles and animated hazard loop and its dressing packages are written,
+        /// imported and bound, then only that biome's room prefabs are repainted and the lighting profiles authored.
+        /// The other biomes' tiles, rooms and hazard tiles are not rewritten, so their authored floors stay as they are.
+        /// The biome's rooms must already be baked (they are repainted from their placeholder tiles).
+        /// </summary>
+        public static void GenerateBiomeEnvironment(TileFactory.Biome biome)
+        {
+            Pending.Clear();
+            GenerateTiles(biome);
+            GenerateBiomeDressing(biome);
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            ApplyPendingImports();
+            AssetDatabase.SaveAssets();
+            BindHazardTiles(biome);
+            BindTiles(biome);
+            AuthorBiomeLighting();
+            AssetDatabase.SaveAssets();
+        }
+
+        /// <summary>
+        /// Art for newly added actors: their character sheets and animation sets and the projectile profiles their
+        /// attacks fire, written, imported and bound (the projectile catalog and every attack's visual id rebind from
+        /// the factory tables). Other actors' sheets and animation sets are not rewritten.
+        /// </summary>
+        public static void GenerateActors(IReadOnlyCollection<string> actorIds, IReadOnlyCollection<string> projectileIds)
+        {
+            Pending.Clear();
+            GenerateCharacters(actorIds);
+            GenerateProjectileVisuals(projectileIds);
+            AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+            ApplyPendingImports();
+            AssetDatabase.SaveAssets();
+            AnimationSetBuilder.BuildAll(actorIds);
+            ProjectileArtIntegration.BindCatalog();
+            AssetDatabase.SaveAssets();
         }
 
         private static string RoleStem(TileRole role) => role switch
@@ -371,10 +415,11 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         /// <summary>Every in-flight projectile profile (player families, Legendary variants, hostile rounds, Boss attacks) as frame strips.</summary>
-        public static void GenerateProjectileVisuals()
+        public static void GenerateProjectileVisuals(IReadOnlyCollection<string> onlyIds = null)
         {
             foreach (var spec in ProjectileFactory.Specs())
             {
+                if (onlyIds != null && !onlyIds.Contains(spec.Id)) continue;
                 var frames = new List<PixelCanvas>();
                 for (var f = 0; f < spec.Frames; f++) frames.Add(ProjectileFactory.Build(spec.Id, f));
                 var sheet = PixelCanvas.Row(frames);
@@ -403,6 +448,44 @@ namespace RuinRail.EditorTools.ArtGen
                 GenerateProjectileVisualsAndBind();
                 var catalog = AssetDatabase.LoadAssetAtPath<RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog>(ProjectileArtIntegration.CatalogPath);
                 EditorApplication.Exit(catalog != null && catalog.Problems().Count == 0 ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
+        /// <summary>
+        /// Batch: the weapon shot-feel art only — the in-flight projectile sheets, the muzzle-flash / impact effect sheets
+        /// the profiles name (the generic 'muzzle' and 'impact' included) — then binds the projectile catalog and rebinds
+        /// the content catalog's effect frames.
+        /// </summary>
+        public static void GenerateShotFeelBatch()
+        {
+            try
+            {
+                Pending.Clear();
+                GenerateProjectileVisuals();
+                // One radius-true blast sheet per distinct rocket radius the shipped weapons carry.
+                var blasts = AssetDatabase.FindAssets("t:RangedWeaponDefinition")
+                    .Select(g => AssetDatabase.LoadAssetAtPath<RuinRail.Gameplay.Items.RangedWeaponDefinition>(AssetDatabase.GUIDToAssetPath(g)))
+                    .Where(w => w != null && w.ExplosionRadiusTiles > 0f)
+                    .Select(w => VfxFactory.BlastRole(Mathf.RoundToInt(w.ExplosionRadiusTiles * 32f))).Distinct().ToList();
+                foreach (var role in VfxFactory.ShotFeelRoles.Concat(new[] { "muzzle", "impact" }).Concat(blasts))
+                {
+                    var frames = new List<PixelCanvas>();
+                    for (var f = 0; f < VfxFactory.FrameCount(role); f++) frames.Add(VfxFactory.Build(role, f));
+                    var size = VfxFactory.SizeOf(role);
+                    WriteSheet(PixelCanvas.Row(frames), $"{ArtRoot}/Vfx/vfx_{role}.png", size, size, 32, new Vector2(0.5f, 0.5f));
+                }
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyPendingImports();
+                var projectiles = ProjectileArtIntegration.BindCatalog();
+                var catalog = RuinRail.EditorTools.Production.GameContentCatalogBuilder.Build();
+                AssetDatabase.SaveAssets();
+                ProvenanceRecorder.Record();
+                var missing = VfxFactory.ShotFeelRoles.Concat(blasts).Where(r => catalog.VfxFramesFor(r).Count != VfxFactory.FrameCount(r)).ToList();
+                var problems = projectiles.Problems();
+                Debug.Log("Shot feel: " + (missing.Count == 0 ? "all effect frames bound" : "missing " + string.Join(",", missing)) + "; projectile problems: " + string.Join("; ", problems.DefaultIfEmpty("none")));
+                EditorApplication.Exit(missing.Count == 0 && problems.Count == 0 ? 0 : 1);
             }
             catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
         }
@@ -444,9 +527,9 @@ namespace RuinRail.EditorTools.ArtGen
         }
 
         /// <summary>Per-biome prop, door, rail, decal, foreground and environment-VFX packages.</summary>
-        public static void GenerateBiomeDressing()
+        public static void GenerateBiomeDressing(TileFactory.Biome? only = null)
         {
-            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            foreach (var biome in Biomes(only))
             foreach (var category in BiomeDressingFactory.Categories)
             {
                 var sheet = BiomeDressingFactory.BuildPackage(biome, category);
@@ -469,8 +552,10 @@ namespace RuinRail.EditorTools.ArtGen
                 var profile = AssetDatabase.LoadAssetAtPath<RuinRail.Presentation.BiomeLightingProfile>(path);
                 if (profile == null)
                 {
-                    Debug.LogError($"Missing lighting profile at {path}.");
-                    continue;
+                    // A biome added after the original three gets its profile here, the same asset type and folder.
+                    profile = ScriptableObject.CreateInstance<RuinRail.Presentation.BiomeLightingProfile>();
+                    profile.EditorSetBiome(biome);
+                    AssetDatabase.CreateAsset(profile, path);
                 }
 
                 var (ambient, intensity) = BiomeDressingFactory.LightingFor(RoomTileRepainter.FromRuntime(biome));
@@ -534,36 +619,16 @@ namespace RuinRail.EditorTools.ArtGen
                     widest, glyphs[0].Height, ppu, new Vector2(0.5f, 0.5f));
             }
 
-            // Shelter station icons as one sheet, for the hub's station bar.
-            var stationIds = new[]
-            {
-                "base_storage", "base_loadout", "base_trader", "base_character_station",
-                "base_workshop", "base_multiplayer_terminal", "base_expedition_transit"
-            };
-            var stations = stationIds
-                .Select(id => WorldObjectFactory.All().First(d => d.Id == id))
-                .Select(d =>
-                {
-                    // Normalise each station into a common 32x32 icon cell so the sheet slices evenly.
-                    var art = WorldObjectFactory.Build(d);
-                    var cell = new PixelCanvas(32, 32);
-                    var scale = Mathf.Max(1, Mathf.CeilToInt(Mathf.Max(art.Width, art.Height) / 30f));
-                    for (var y = 0; y < art.Height; y += scale)
-                    for (var x = 0; x < art.Width; x += scale)
-                        if (art.IsOpaque(x, y))
-                            cell.Set(1 + x / scale, 1 + y / scale, art.Get(x, y));
-                    return cell;
-                })
-                .ToList();
-            WriteSheet(PixelCanvas.Row(stations), $"{ArtRoot}/UI/ui_shelter_stations.png", 32, 32, ppu, new Vector2(0.5f, 0.5f));
+            GenerateStationIcons();
 
 
         }
 
-        public static void GenerateCharacters()
+        public static void GenerateCharacters(IReadOnlyCollection<string> onlyIds = null)
         {
             foreach (var profile in CharacterCatalog.All())
             {
+                if (onlyIds != null && !onlyIds.Contains(profile.Id)) continue;
                 var facings = (Facing8[])Enum.GetValues(typeof(Facing8));
                 var states = (VisualState[])Enum.GetValues(typeof(VisualState));
 
@@ -609,6 +674,33 @@ namespace RuinRail.EditorTools.ArtGen
         /// where the naming convention and import validators expect it. So the asset here holds references rather
         /// than copies — the same split GameContentCatalog already uses for gameplay definitions.
         /// </summary>
+        /// <summary>The Shelter station pictograms (16×16, native in the station panel header), one sheet in BaseStation order.</summary>
+        public static void GenerateStationIcons()
+        {
+            WriteSheet(PixelCanvas.Row(ShelterIconFactory.All()), $"{ArtRoot}/UI/ui_shelter_stations.png",
+                ShelterIconFactory.Size, ShelterIconFactory.Size, 1, new Vector2(0.5f, 0.5f)); // UI art: screen pixels
+        }
+
+        /// <summary>Batch: the station pictograms only (nothing else of the UI art), imported and rebound into the skin.</summary>
+        public static void GenerateStationIconsBatch()
+        {
+            try
+            {
+                Pending.Clear();
+                GenerateStationIcons();
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyPendingImports();
+                BindUiSkin();
+                AssetDatabase.SaveAssets();
+                ProvenanceRecorder.Record();
+                var skin = AssetDatabase.LoadAssetAtPath<RuinRail.UI.Theme.UiSkin>(UiSkinPath);
+                var ok = skin != null && skin.StationIconCount == 7 && Enumerable.Range(0, 7).All(i => skin.StationIcon(i) != null && Mathf.RoundToInt(skin.StationIcon(i).rect.width) == ShelterIconFactory.Size);
+                Debug.Log("Station icons: " + (ok ? "7 pictograms bound" : "binding FAILED"));
+                EditorApplication.Exit(ok ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
         public static void BindUiSkin()
         {
             var skin = AssetDatabase.LoadAssetAtPath<RuinRail.UI.Theme.UiSkin>(UiSkinPath);
@@ -746,11 +838,11 @@ namespace RuinRail.EditorTools.ArtGen
         /// tiles onto the biome's final set. Room logic, layout and collider types are untouched: only the Tile the
         /// cell points at changes.
         /// </summary>
-        public static void BindTiles()
+        public static void BindTiles(TileFactory.Biome? only = null)
         {
             var tiles = new Dictionary<(TileFactory.Biome, TileRole, int), TileBase>();
 
-            foreach (TileFactory.Biome biome in Enum.GetValues(typeof(TileFactory.Biome)))
+            foreach (var biome in Biomes(only))
             foreach (TileRole role in Enum.GetValues(typeof(TileRole)))
             for (var variant = 0; variant < TileFactory.VariantCount(role); variant++)
             {
@@ -785,7 +877,7 @@ namespace RuinRail.EditorTools.ArtGen
             }
 
             AssetDatabase.SaveAssets();
-            RoomTileRepainter.RepaintAll(tiles);
+            RoomTileRepainter.RepaintAll(tiles, only);
         }
 
         /// <summary>Binds each generated icon to its ItemDefinition through the TASK-185-C icon field.</summary>

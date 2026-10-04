@@ -53,7 +53,7 @@ namespace RuinRail.Tests
         }
 
         private IEnumerable<RoomDefinition> CombatRooms() =>
-            new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }
+            new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }
                 .SelectMany(b => new[] { RoomSizeClass.Small, RoomSizeClass.Medium, RoomSizeClass.Large }
                     .Select(s => _catalog.Rooms.FirstOrDefault(r => r.Biome == b && r.RoomType == RoomType.Combat && r.SizeClass == s)))
                 .Where(r => r != null);

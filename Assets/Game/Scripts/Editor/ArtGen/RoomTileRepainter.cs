@@ -52,7 +52,8 @@ namespace RuinRail.EditorTools.ArtGen
                 FloorFamilyCounts.ToDictionary(kv => kv.Key, kv => FloorCells == 0 ? 0f : kv.Value / (float)FloorCells);
         }
 
-        public static Result RepaintAll(Dictionary<(TileFactory.Biome, TileRole, int), TileBase> finalTiles)
+        /// <param name="only">Repaint just this biome's rooms; the other biomes' prefabs are left as they are.</param>
+        public static Result RepaintAll(Dictionary<(TileFactory.Biome, TileRole, int), TileBase> finalTiles, TileFactory.Biome? only = null)
         {
             var result = new Result();
 
@@ -66,6 +67,8 @@ namespace RuinRail.EditorTools.ArtGen
                     result.PrefabsSkippedNoBiome++;
                     continue;
                 }
+
+                if (only.HasValue && biome.Value != only.Value) continue;
 
                 var root = PrefabUtility.LoadPrefabContents(path);
                 try
@@ -240,6 +243,7 @@ namespace RuinRail.EditorTools.ArtGen
             if (path.Contains("/RuinedMetro/")) return TileFactory.Biome.RuinedMetro;
             if (path.Contains("/Rustworks/")) return TileFactory.Biome.Rustworks;
             if (path.Contains("/OvergrownLabs/")) return TileFactory.Biome.OvergrownLabs;
+            if (path.Contains("/CryoVaults/")) return TileFactory.Biome.CryoVaults;
             return null;
         }
 
@@ -248,6 +252,7 @@ namespace RuinRail.EditorTools.ArtGen
         {
             Biome.RuinedMetro => TileFactory.Biome.RuinedMetro,
             Biome.Rustworks => TileFactory.Biome.Rustworks,
+            Biome.CryoVaults => TileFactory.Biome.CryoVaults,
             _ => TileFactory.Biome.OvergrownLabs
         };
     }

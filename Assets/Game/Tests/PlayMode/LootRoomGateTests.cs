@@ -348,12 +348,11 @@ namespace RuinRail.Tests
             var leftOnGround = _services.GroundLoot.Count;
             Assert.Greater(leftOnGround, 0);
 
-            Assert.IsTrue(binding.Transit.Interact(player));
-            Assert.IsFalse(binding.Transit.Interact(player), "Boarding is once.");
+            Assert.IsNull(binding.Transit.GetComponent<Collider2D>(), "no in-world transit to board");
             var ownedBeforeDescend = AllInstanceIds(state.Inventory).ToList();
             var coinsBeforeDescend = state.CarriedCoins;
-            Assert.IsTrue(binding.Transit.Choose(TransitChoice.DescendDeeper));
-            Assert.IsFalse(binding.Transit.Choose(TransitChoice.ReturnToShelter), "A resolved decision cannot be changed.");
+            Assert.IsTrue(_expedition.ChooseTransit(TransitChoice.DescendDeeper));
+            Assert.IsFalse(_expedition.ChooseTransit(TransitChoice.ReturnToShelter), "A resolved decision cannot be changed.");
             Assert.AreEqual(2, state.Depth);
             Assert.AreEqual(0, _services.GroundLoot.Count, "Unclaimed ground loot is discarded when the party leaves the depth.");
             CollectionAssert.AreEquivalent(ownedBeforeDescend, AllInstanceIds(state.Inventory), "Descending keeps the carried inventory intact.");

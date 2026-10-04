@@ -178,6 +178,34 @@ namespace RuinRail.Tests
             Assert.IsFalse(OwnerReconciliation.NeedsCorrection(new Vector2(0f, 0.7f), Vector2.zero));
         }
 
+        /// <summary>
+        /// The owner compares the host's position for an intent with where it predicted itself after that same intent:
+        /// agreement within the dead band changes nothing, a small drift eases out over a few steps (never a visible jump),
+        /// and a large one still snaps — so a client never keeps showing itself away from where the host judges its hits.
+        /// </summary>
+        [Test]
+        public void SequenceCorrection_DeadBand_EasesSmallDrift_SnapsLargeError()
+        {
+            const float Step = 0.02f;
+            Assert.AreEqual(Vector2.zero, OwnerReconciliation.SequenceCorrection(new Vector2(0.04f, 0f), Vector2.zero, Step), "within the dead band: left alone");
+            var shift = OwnerReconciliation.SequenceCorrection(new Vector2(0.5f, 0f), Vector2.zero, Step);
+            Assert.AreEqual(0.5f * OwnerReconciliation.EaseRatePerSecond * Step, shift.x, 0.0001f, "a drift under the snap tolerance eases a fraction per step");
+            Assert.Less(shift.magnitude, 0.5f);
+            Assert.AreEqual(new Vector2(0f, 0.9f), OwnerReconciliation.SequenceCorrection(new Vector2(0f, 0.9f), Vector2.zero, Step), "beyond the tolerance: snap");
+
+            // Applied step after step (the prediction history moves with the body), a 0.6-tile drift is gone within half a second.
+            var predicted = Vector2.zero;
+            var authoritative = new Vector2(0.6f, 0f);
+            var t = 0f;
+            while ((authoritative - predicted).magnitude > OwnerReconciliation.DeadBandTiles && t < 2f)
+            {
+                predicted += OwnerReconciliation.SequenceCorrection(authoritative, predicted, Step);
+                t += Step;
+            }
+
+            Assert.LessOrEqual(t, 0.5f, "converged within half a second");
+        }
+
         // ---- Acceptance 4: solo unchanged ----
 
         [UnityTest]

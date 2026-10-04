@@ -19,9 +19,10 @@
 - [Boss attack tests pinned list order](boss-attack-tests-pinned-list-order.md) — 19 assertions in 8 files; use BossSelectionAssert, don't re-pin the order
 - [Pickup attraction steals the interact prompt](pickup-attraction-steals-interact-prompt.md) — gate pulls on CanBeCollectedBy, not CanInteract
 - [Co-op peer proof gotchas](coop-peer-proof-gotchas.md) — identical NetworkConfig on both peers; host must outlive the client's sample
-- [Co-op expedition proof runner](coop-expedition-proof-runner.md) — -coop-expedition host|client; seed 11; reader rebinding, link-routed proof messages, stray processes
+- [Co-op expedition proof runner](coop-expedition-proof-runner.md) — -coop-expedition host|client; seed 11 (Cryo: 27); reader rebinding, link-routed proof messages, stray processes
 - [Release audit tooling + fixed dead seams](release-smoke-and-dead-seams-2026-09-25.md) — release smoke scripts, FinalReleaseCandidateValidator + frozen baseline; impact receiver / Defibrillator / AutosaveFlusher wired
 - [Batch PlayMode frame loops](batch-playmode-frame-loops.md) — uncapped fps; wait on Time.time deadlines, not frame counts
 - [Co-op proof flakes fixed](coop-proof-discharge-roomsweep-failing.md) — Discharge/Room Sweep/Adrenaline fixed; duo seed 11 = host 66/66, client 10/10
 - [UI text must be PixelText](pixel-font-bottom-row-loss-global.md) — plain Text on a pixel-perfect canvas drops pixel-font rows; use UiBuild.Label / PixelText
 - [Real input devices in PlayMode tests](playmode-real-input-devices.md) — batch PlayMode needs IgnoreFocus + AllDeviceInputAlwaysGoesToGameView or queued key/pad presses vanish
+- [Telegraph fairness contract](telegraph-fairness-contract.md) — enemy damage hits players only via CombatHurtbox.AttachPlayer + DamageTargets.Resolve; fairness proofs and their traps

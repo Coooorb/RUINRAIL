@@ -15,6 +15,8 @@ Stats below are pre-Depth/Co-op-scaling baselines.
 | **Crusher Unit** | Rustworks | 475 | 26–32 | 2.5 | 325 |
 | **Mutated Brute** | Overgrown Labs | 525 | 28–34 | 2.4 | 350 |
 | **Prototype X-7** | Overgrown Labs | 375 | 5 × 8–10 salvo | 3.4 | 300 |
+| **Cryo Enforcer** | Cryo Vaults | 500 | 28–34 | 2.3 | 325 |
+| **Vault Stalker** | Cryo Vaults | 375 | 18–22 dash | 3.5 | 300 |
 
 ## Ruined Metro
 
@@ -39,6 +41,19 @@ Very high-HP mutant. Double Slam, telegraphed Mutation Leap, and short Roar Rush
 
 ### Prototype X-7
 Mobile ranged combat prototype. Energy Burst, radial projectile pulse, and telegraphed Blink Shot reposition followed by broad salvo.
+
+## Cryo Vaults (2026-09-29)
+
+Values chosen inside the existing Elites' envelopes (heavy ≈ Scrap Executioner, mobile ≈ Prototype X-7).
+
+### Cryo Enforcer
+Heavy insulated security unit with a coolant tank on its back. Broad Cleave (wide close arc, 22–26), Frost Slam
+(telegraphed ground slam, 26–30, radius 2.6) and a telegraphed Enforcer Charge (28–34, 6.5 tiles).
+
+### Vault Stalker
+Lean, mobile vault-security frame with a shard launcher. Frost Fan (5 ice splinters over 70°), Shard Burst (three aimed
+splinters) and a telegraphed Vault Dash (0.6 s, 7 tiles, 18–22) that carries it through and past the player — its
+reposition.
 
 ## Reward and Spawn Rules
 

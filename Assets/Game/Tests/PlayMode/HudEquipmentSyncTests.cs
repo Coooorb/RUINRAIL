@@ -166,6 +166,99 @@ namespace RuinRail.Tests
             Assert.IsTrue(_vm.Snapshot.Primary.IsActive);
         }
 
+        /// <summary>
+        /// A Legendary's right-click special belongs to the weapon in the hand: not to one in the backpack, not to one
+        /// holstered in the other slot. It is usable, and on the HUD, the moment that weapon is switched in and gone the
+        /// moment it is switched out; its cooldown keeps counting while holstered; Legendary ↔ Legendary always shows
+        /// and fires the held one's own special; an unequipped Legendary leaves nothing behind.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator LegendarySpecial_IsOnlyUsableAndShown_ForTheHeldLegendaryWeapon()
+        {
+            var special = _rig.Special;
+            bool NothingShown() => _vm.Snapshot.Primary.SpecialName == null && _vm.Snapshot.Secondary.SpecialName == null;
+            var ui = InventoryUi();
+            int BackpackIndexOf(ItemInstance item) => _state.Inventory.BackpackSlots.ToList().FindIndex(i => i != null && i.InstanceId == item.InstanceId);
+
+            // 1. Owned, in the backpack: nothing.
+            var vanguard = new ItemInstance("weapon_vanguard", 1, Rarity.Legendary);
+            Assert.IsTrue(_state.Inventory.TryAddToBackpack(vanguard));
+            yield return null;
+            Assert.IsNull(special.Special, "a Legendary in the backpack has no live special");
+            Assert.IsFalse(special.TryActivate(), "and right-click does nothing");
+            Assert.IsTrue(NothingShown(), "and the HUD shows no special");
+
+            // 2. Equipped in the secondary slot while the P9 is held: still nothing.
+            Assert.AreEqual(InventoryActionResult.Done, ui.MoveTo(Backpack(BackpackIndexOf(vanguard)), Equipped(EquippedSlot.SecondaryWeapon)));
+            yield return null;
+            Assert.AreEqual(WeaponSlot.Primary, _rig.Loadout.ActiveSlot);
+            Assert.AreEqual(1, special.Registered, "the holstered Legendary is mounted and registered");
+            Assert.IsNull(special.Special, "a holstered Legendary's special is not live");
+            Assert.IsFalse(special.TryActivate(), "right-click with the P9 in hand does nothing");
+            Assert.IsTrue(NothingShown(), "the HUD shows no special for the holstered weapon");
+
+            // 3. Switched into the hand: live at once, fires, cooldown starts; the HUD shows it on the held slot only.
+            _rig.Loadout.SelectSlot(WeaponSlot.Secondary);
+            Assert.AreEqual("overrun", special.Special?.Id, "switching it into the hand makes its special live immediately");
+            _vm.Tick();
+            Assert.AreEqual("overrun", _vm.Snapshot.Secondary.SpecialName);
+            Assert.IsNull(_vm.Snapshot.Primary.SpecialName);
+            Assert.IsTrue(_vm.Snapshot.Secondary.SpecialReady);
+            Assert.IsTrue(special.TryActivate(), "the held Legendary fires its special");
+            var cooldown = special.State;
+            Assert.IsFalse(cooldown.IsReady);
+
+            // 4. Switched away during the cooldown: gone at once, from the input and the HUD.
+            while (special.IsRunning) yield return null;
+            _rig.Loadout.SelectSlot(WeaponSlot.Primary);
+            Assert.IsNull(special.Special, "switching away makes it unusable immediately");
+            Assert.IsFalse(special.TryActivate());
+            _vm.Tick();
+            Assert.IsTrue(NothingShown(), "no stale special on the HUD after switching away");
+            var remainingAtSwitch = cooldown.CooldownRemaining;
+            var until = Time.time + 0.4f;
+            while (Time.time < until) yield return null;
+
+            // 5. Back in the hand: the same cooldown, still counting down while it was holstered.
+            _rig.Loadout.SelectSlot(WeaponSlot.Secondary);
+            Assert.AreSame(cooldown, special.State, "the weapon keeps its own cooldown");
+            Assert.Less(cooldown.CooldownRemaining, remainingAtSwitch - 0.3f, "the cooldown kept counting while holstered");
+            Assert.IsFalse(special.TryActivate(), "still cooling: no second use");
+            _vm.Tick();
+            Assert.AreEqual("overrun", _vm.Snapshot.Secondary.SpecialName);
+            Assert.IsFalse(_vm.Snapshot.Secondary.SpecialReady, "the HUD shows the cooldown of the held weapon");
+
+            // 6. Legendary ↔ Legendary: a second Legendary in the primary slot; each hand shows and fires its own.
+            var redline = new ItemInstance("weapon_redline", 1, Rarity.Legendary);
+            Assert.IsTrue(_state.Inventory.TryAddToBackpack(redline));
+            Assert.AreEqual(InventoryActionResult.Done, ui.MoveTo(Backpack(BackpackIndexOf(redline)), Equipped(EquippedSlot.PrimaryWeapon)));
+            yield return null;
+            Assert.AreEqual(2, special.Registered, "both Legendaries are registered");
+            _rig.Loadout.SelectSlot(WeaponSlot.Secondary);
+            _rig.Loadout.SelectSlot(WeaponSlot.Primary);
+            Assert.AreEqual("overcharge_barrage", special.Special?.Id, "the held Redline's own special");
+            _vm.Tick();
+            Assert.AreEqual("overcharge_barrage", _vm.Snapshot.Primary.SpecialName);
+            Assert.IsNull(_vm.Snapshot.Secondary.SpecialName);
+            Assert.IsTrue(special.TryActivate(), "the Redline fires its own special");
+            while (special.IsRunning) yield return null;
+            _rig.Loadout.SelectSlot(WeaponSlot.Secondary);
+            Assert.AreEqual("overrun", special.Special?.Id, "switching to the Vanguard shows and arms the Vanguard's");
+            _vm.Tick();
+            Assert.AreEqual("overrun", _vm.Snapshot.Secondary.SpecialName);
+            Assert.IsNull(_vm.Snapshot.Primary.SpecialName);
+
+            // 7. The held Legendary goes back to the backpack: nothing of it remains.
+            Assert.AreEqual(InventoryActionResult.Done, ui.MoveTo(Equipped(EquippedSlot.SecondaryWeapon), Backpack(_state.Inventory.BackpackSlots.ToList().FindIndex(i => i == null))));
+            yield return null;
+            Assert.AreEqual(1, special.Registered, "the unequipped Legendary's special is gone with its weapon");
+            _rig.Loadout.SelectSlot(WeaponSlot.Secondary);
+            Assert.IsNull(special.Special, "the emptied hand has no special");
+            Assert.IsFalse(special.TryActivate());
+            _vm.Tick();
+            Assert.IsNull(_vm.Snapshot.Secondary.SpecialName);
+        }
+
         [Test]
         public void DragDropIntoPrimary_AndDropEquipped_LeaveTheHudConsistent()
         {

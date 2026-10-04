@@ -82,6 +82,7 @@ namespace RuinRail.Networking
 
             BindInput(IsOwner);
             RuinRail.Gameplay.Combat.CombatLayers.TagPlayerBody(gameObject);
+            RuinRail.Gameplay.Combat.CombatHurtbox.AttachPlayer(gameObject); // enemy attacks hit only what is drawn
             ComposeVisuals();
 
             _participantId.OnValueChanged += OnParticipantIdChanged;

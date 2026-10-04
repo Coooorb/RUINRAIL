@@ -13,7 +13,7 @@ namespace RuinRail.Tests
 {
     /// <summary>
     /// The room activation volume sits inside the room proper: past the wall ring and every door cell, with an explicit
-    /// interior margin, and never overlapping a neighbouring room — for all 63 shipped rooms in every orientation and
+    /// interior margin, and never overlapping a neighbouring room — for all 84 shipped rooms in every orientation and
     /// for assembled dungeons across the three biomes.
     /// </summary>
     public sealed class RoomEntryGeometryTests
@@ -28,10 +28,10 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void InteriorVolume_IsInsetByTheMargin_AndExcludesEveryDoorCell_ForAll63Rooms()
+        public void InteriorVolume_IsInsetByTheMargin_AndExcludesEveryDoorCell_ForAllShippedRooms()
         {
             var catalog = GameContentCatalog.Load();
-            Assert.AreEqual(63, catalog.Rooms.Count);
+            Assert.AreEqual(84, catalog.Rooms.Count);
             foreach (var room in catalog.Rooms)
             {
                 var root = room.Prefab.GetComponent<RoomRoot>();
@@ -66,7 +66,7 @@ namespace RuinRail.Tests
             _created.Add(rules);
             var generator = new DungeonGraphGenerator(rules);
             var checkedRooms = 0;
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             foreach (var seed in Enumerable.Range(1, 8))
             {
                 var generation = DungeonGenerationPipeline.Generate(generator, pools.PoolFor(biome), seed, 1 + seed % 6);

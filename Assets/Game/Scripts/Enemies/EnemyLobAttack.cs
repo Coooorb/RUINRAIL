@@ -21,6 +21,12 @@ namespace RuinRail.Gameplay.Enemies
         public Vector2 LandingPoint => _landing;
         public ThrownGrenade LastGrenade { get; private set; }
 
+        /// <summary>Where the bomb will really land if thrown now: the locked point, clamped to the throw range as the grenade clamps it.</summary>
+        public Vector2 PlannedLanding => ThrownGrenade.ClampLanding(transform.position, _landing, _definition != null ? _definition.AttackRange : 0f);
+
+        /// <summary>The thrown bomb is still in the air: its blast ring is the live danger.</summary>
+        public bool IsBombInFlight => LastGrenade != null && !LastGrenade.IsResolved;
+
         public void Configure(EnemyDefinition definition, IDamageRoller damageRoller)
         {
             _definition = definition;

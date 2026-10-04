@@ -28,7 +28,7 @@ namespace RuinRail.App
 {
     /// <summary>
     /// Built-player co-op expedition proof (`-coop-expedition host|client -coop-port P -coop-size N -coop-out f.json
-    /// [-seed S] [-coop-scenario duo|trio|relay]`): two or three processes of the shipped player play one real expedition over
+    /// [-seed S] [-coop-scenario duo|trio|relay|telegraph|shotfeel]`): two or three processes of the shipped player play one real expedition over
     /// UnityTransport on loopback — Shelter lobby, the host's start, identical D1 on every peer, a real combat room,
     /// pickup and coin races, a merchant trade, Downed/revive both ways, the boss, the Transit vote, a networked
     /// descend to D2, and the Return with its save. Every step drives the shipping paths: the player input the host
@@ -38,7 +38,7 @@ namespace RuinRail.App
     /// The <c>relay</c> scenario (a seed with a Secure Relay on D1) instead proves the 57.7 transaction across processes:
     /// each player secures one item, the client's verdict is withheld by the host and recovered after a real reconnect.
     /// </summary>
-    public sealed class CoopExpeditionProof : MonoBehaviour
+    public sealed partial class CoopExpeditionProof : MonoBehaviour
     {
         public const string Argument = "-coop-expedition";
         public const string ScenarioArgument = "-coop-scenario";
@@ -635,6 +635,12 @@ namespace RuinRail.App
                     break;
                 case "relay-secure":
                     yield return ClientRelaySecure(command);
+                    break;
+                case "telegraph-watch":
+                    yield return ClientTelegraphWatch(command);
+                    break;
+                case "shot-watch":
+                    yield return ClientShotWatch(command);
                     break;
                 case "relay-check":
                     yield return ClientRelayCheck(command);
@@ -1521,6 +1527,18 @@ namespace RuinRail.App
             if (_scenario == "relay")
             {
                 yield return RelayScenario(clients);
+                yield break;
+            }
+
+            if (_scenario == "telegraph")
+            {
+                yield return TelegraphScenario(clients);
+                yield break;
+            }
+
+            if (_scenario == "shotfeel")
+            {
+                yield return ShotFeelScenario(clients);
                 yield break;
             }
 

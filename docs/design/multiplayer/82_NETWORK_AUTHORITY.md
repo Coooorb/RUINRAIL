@@ -25,3 +25,5 @@ Another peer's shots and grenade throws are presentation only on every other pee
 ## Feel
 
 Player movement should remain locally responsive. This is a small PvE game, so do not build competitive-shooter-grade anti-cheat/prediction complexity before it is necessary.
+
+The owner predicts its own movement from its intents; the host simulates the member from the same intents and publishes the position with the intent sequence that produced it. The owner compares that position with where it predicted itself after the same intent: errors under 0.05 tiles are ignored, larger ones are eased out (10/s, no visible jump), and errors beyond 0.75 tiles snap. Drift therefore never persists, so a client is shown where the host judges its hits (2026-10-03: drift below the old snap tolerance, e.g. a host copy shoved by enemy bodies, used to persist and let a client see itself outside a telegraph it was hit by).

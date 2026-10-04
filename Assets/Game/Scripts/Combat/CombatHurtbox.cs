@@ -26,7 +26,53 @@ namespace RuinRail.Gameplay.Combat
         public static readonly Vector2 BossSize = new(1.5f, 2.2f);
         public static readonly Vector2 BossOffset = new(0f, 1.1f);
 
+        // The player: the largest boxes that lie inside the drawn body in every live frame of every facing (measured from the
+        // shipped sheet, 32 px per tile, feet pivot): the feet and legs (±4.5 px, 0–11 px above the feet) and the lower torso
+        // (±3.5 px, 0–19 px), each half a pixel inside the drawn pixels. Nothing is drawn below the feet, so nothing there
+        // can be hit: an enemy attack can only damage a player whose drawn body visibly touches its red area.
+        public static readonly Vector2 PlayerFeetSize = new(9f / 32f, 11f / 32f);
+        public static readonly Vector2 PlayerFeetOffset = new(0f, 5.5f / 32f);
+        public static readonly Vector2 PlayerBodySize = new(7f / 32f, 19f / 32f);
+        public static readonly Vector2 PlayerBodyOffset = new(0f, 9.5f / 32f);
+
         [SerializeField] private BoxCollider2D _box;
+        [SerializeField] private BoxCollider2D _second;
+
+        /// <summary>
+        /// The actor is hit only through this hurtbox (players): its other colliders — the feet-level movement circle, its
+        /// own shots in flight — are never a damage surface. Enemy hurtboxes are not exclusive.
+        /// </summary>
+        public bool Exclusive { get; private set; }
+
+        /// <summary>The boxes of this hurtbox (one for enemies, two for players).</summary>
+        public System.Collections.Generic.IEnumerable<BoxCollider2D> Boxes
+        {
+            get
+            {
+                if (_box != null) yield return _box;
+                if (_second != null) yield return _second;
+            }
+        }
+
+        /// <summary>True when the collider is one of this hurtbox's boxes.</summary>
+        public bool Owns(Collider2D collider) => collider != null && (collider == _box || collider == _second);
+
+        /// <summary>Attaches (or returns) a player's exclusive two-box hurtbox. Idempotent; every player composition calls it.</summary>
+        public static CombatHurtbox AttachPlayer(GameObject player)
+        {
+            var hurtbox = Attach(player, PlayerFeetSize, PlayerFeetOffset);
+            if (hurtbox._second == null)
+            {
+                var second = hurtbox._box.gameObject.AddComponent<BoxCollider2D>();
+                second.isTrigger = true;
+                second.size = PlayerBodySize;
+                second.offset = PlayerBodyOffset - PlayerFeetOffset;
+                hurtbox._second = second;
+            }
+
+            hurtbox.Exclusive = true;
+            return hurtbox;
+        }
 
         public BoxCollider2D Box => _box;
         public Vector2 Size => _box != null ? _box.size : Vector2.zero;

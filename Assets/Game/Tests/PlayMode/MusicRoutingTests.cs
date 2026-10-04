@@ -59,11 +59,11 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void ExactlyElevenTrackRoles_SevenStingers_ThreeAmbience_AndDeterministicSelection()
+        public void ExactlyFourteenTrackRoles_SevenStingers_FourAmbience_AndDeterministicSelection()
         {
-            Assert.AreEqual(11, Enum.GetValues(typeof(MusicRole)).Length);
+            Assert.AreEqual(14, Enum.GetValues(typeof(MusicRole)).Length);
             Assert.AreEqual(7, Enum.GetValues(typeof(StingerRole)).Length);
-            CollectionAssert.AreEqual(new[] { "Main Menu", "The Shelter", "Ruined Metro — Exploration", "Ruined Metro — Combat", "Ruined Metro — Boss", "Rustworks — Exploration", "Rustworks — Combat", "Rustworks — Boss", "Overgrown Labs — Exploration", "Overgrown Labs — Combat", "Overgrown Labs — Boss" },
+            CollectionAssert.AreEqual(new[] { "Main Menu", "The Shelter", "Ruined Metro — Exploration", "Ruined Metro — Combat", "Ruined Metro — Boss", "Rustworks — Exploration", "Rustworks — Combat", "Rustworks — Boss", "Overgrown Labs — Exploration", "Overgrown Labs — Combat", "Overgrown Labs — Boss", "Cryo Vaults — Exploration", "Cryo Vaults — Combat", "Cryo Vaults — Boss" },
                 Enum.GetValues(typeof(MusicRole)).Cast<MusicRole>().Select(MusicStateResolver.DisplayName), "art/105 list, in order.");
             CollectionAssert.AreEquivalent(new[] { StingerRole.LegendaryDrop, StingerRole.EliteEncounter, StingerRole.BossDefeated, StingerRole.ExtractionSuccess, StingerRole.ExpeditionFailed, StingerRole.LevelUp, StingerRole.RoomCleared }, Enum.GetValues(typeof(StingerRole)).Cast<StingerRole>());
 
@@ -75,19 +75,20 @@ namespace RuinRail.Tests
                 var c = MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Combat);
                 var b = MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Boss);
                 Assert.AreNotEqual(e, c); Assert.AreNotEqual(c, b); Assert.AreNotEqual(e, b);
-                StringAssert.StartsWith(biome == Biome.RuinedMetro ? "Ruined Metro" : biome == Biome.Rustworks ? "Rustworks" : "Overgrown Labs", MusicStateResolver.DisplayName(e));
+                StringAssert.StartsWith(biome == Biome.RuinedMetro ? "Ruined Metro" : biome == Biome.Rustworks ? "Rustworks" : biome == Biome.CryoVaults ? "Cryo Vaults" : "Overgrown Labs", MusicStateResolver.DisplayName(e));
                 Assert.AreEqual(b, MusicStateResolver.BossRoleFor(biome), "Both bosses of the biome share its Boss track.");
                 Assert.AreEqual(e, MusicStateResolver.Resolve(MusicScreen.Expedition, biome, CombatIntensity.Exploration), "Deterministic.");
             }
 
             var catalog = AssetDatabase.LoadAssetAtPath<MusicCatalog>("Assets/Game/ScriptableObjects/Audio/MusicCatalog.asset");
             Assert.IsNotNull(catalog);
-            Assert.IsTrue(catalog.HasExactSlots, "11 + 6 + 3 slots, no invented count.");
+            Assert.IsTrue(catalog.HasExactSlots, "14 + 7 + 4 slots, no invented count.");
             Assert.AreEqual(0, catalog.MissingTracks.Count(), "Every music role is bound to a generated track.");
             Assert.AreEqual(0, catalog.MissingStingers.Count());
             Assert.AreEqual(0, catalog.MissingAmbience.Count());
             Assert.IsTrue(catalog.IsContentComplete);
             StringAssert.Contains("machinery, steam", catalog.Ambience.First(a => a.Biome == Biome.Rustworks).Character);
+            StringAssert.Contains("refrigeration", catalog.Ambience.First(a => a.Biome == Biome.CryoVaults).Character);
         }
 
         [Test]

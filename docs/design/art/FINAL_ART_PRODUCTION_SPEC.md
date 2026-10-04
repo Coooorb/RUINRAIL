@@ -1793,7 +1793,7 @@ RUINRAIL V1 visual production is complete only when:
 3. All 33 weapons are visible and correctly aligned.
 4. All 72 item icons are bound.
 5. All three biomes have distinct final tiles, props and lighting.
-6. All 63 rooms use final release tiles/dressing with zero release placeholder references.
+6. All 84 rooms use final release tiles/dressing with zero release placeholder references.
 7. Shelter/base stations are visually complete.
 8. All required world objects have final visuals.
 9. UI is fully skinned and uses a real pixel-compatible font.

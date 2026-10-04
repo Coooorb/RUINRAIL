@@ -80,9 +80,9 @@ namespace RuinRail.Tests.EditMode
             var brokenOnDepth1 = scan.Where(d => d.Depth == 1 && d.Events.Contains(DungeonEventKind.BrokenMachine)).Select(d => d.Seed).ToList();
             sb.AppendLine($"BrokenMachine on depth 1: seeds {string.Join(" ", brokenOnDepth1)}");
             var allBiomes = scan.Select(d => d.Biome).Distinct().Count();
-            sb.AppendLine($"biomes covered: {allBiomes} of 3");
+            sb.AppendLine($"biomes covered: {allBiomes} of 4");
             File.WriteAllText(ScanPath, sb.ToString());
-            Assert.AreEqual(3, allBiomes, "the sweep crosses all three biomes");
+            Assert.AreEqual(4, allBiomes, "the sweep crosses all four biomes");
             foreach (var kind in RoomCategoryComposer.RandomEventKinds) Assert.IsNotEmpty(perKind[kind], kind + " never appears on a generated depth");
             Assert.IsNotEmpty(brokenOnDepth1, "a Broken Machine reaches depth 1 of some seed");
             Assert.IsTrue(scan.All(d => d.Specials.Count > 0), "every generated depth has special rooms");

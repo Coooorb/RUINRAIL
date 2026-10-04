@@ -42,11 +42,22 @@ namespace RuinRail.UI.Navigation
 
         public bool TryActivate()
         {
-            if (!IsEnabled || Activate == null) return false;
+            if (!IsEnabled || Activate == null)
+            {
+                AnyActivation?.Invoke(this, false);
+                return false;
+            }
+
             Activations++;
+            // Raised before the action runs, so a screen's sound cue can let the action's own outcome (a refused
+            // purchase, a full Storage) replace the plain confirm within the same frame.
+            AnyActivation?.Invoke(this, true);
             Activate();
             return true;
         }
+
+        /// <summary>Every activation attempt of any focus item (true = it ran); presentation observers only (UI sound cues).</summary>
+        public static event Action<FocusItem, bool> AnyActivation;
     }
 
     /// <summary>

@@ -30,6 +30,14 @@
   same (profile seed, refresh count, level) inputs a reload uses, and the old stock's sold marks are cleared. The Shelter
   counter sells any held item the player picks (backpack or Storage); Starter Kit items are listed but cannot be sold. (`design/base/72_TRADER.md`)
 
+## Content
+- **Four biomes** (design update 2026-09-29, explicit owner request): Cryo Vaults joins Ruined Metro, Rustworks and
+  Overgrown Labs with the same content structure (21 rooms, the same depth gates, 2 Elites, 2 bosses, its own hazard,
+  music, ambience, atmosphere) on the shared architecture. Biome selection keeps its rule — each other biome 40, the
+  previous biome 20 — so a direct repeat is now 1 in 7 and depth 1 is 1 in 4. `Biome` values are append-only. Every
+  run seed's biome sequence changed with the fourth biome (graphs and event rolls do not depend on the biome); tests
+  that need a biome search for a seed rather than pinning one. (`design/dungeon/56_BIOMES.md`)
+
 ## Balance
 - Approved V1 baselines stay data-driven and are **frozen** in `../production/FINAL_RELEASE_FROZEN_BASELINE.csv`
   (incl. D1 ammo/Blaster tuning and Field Knife). Never rebalance during unrelated work. (`design/07_TUNABLE_VALUES.md`)

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace RuinRail.Tests
 {
-    /// <summary>TASK 126/127: Subject Omega (1,250 HP, 28–34, XP 750) and A.E.G.I.S. Core (1,050 HP, 28–34, XP 700) with four attacks each, phase 2 at 50%, pinned by the Labs arenas; six Bosses exist.</summary>
+    /// <summary>TASK 126/127: Subject Omega (1,250 HP, 28–34, XP 750) and A.E.G.I.S. Core (1,050 HP, 28–34, XP 700) with four attacks each, phase 2 at 50%, pinned by the Labs arenas; eight Bosses exist.</summary>
     public class LabsBossesDefinitionTests
     {
         private static BossDefinition[] Roster() => AssetDatabase.FindAssets("t:BossDefinition").Select(g => AssetDatabase.LoadAssetAtPath<BossDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(b => b != null).ToArray();
@@ -104,14 +104,14 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void OvergrownLabs_HasExactlyTwoBosses_ArenasPinThem_AndSixBossesExistAcrossTheBiomes()
+        public void OvergrownLabs_HasExactlyTwoBosses_ArenasPinThem_AndEightBossesExistAcrossTheBiomes()
         {
             var all = Roster();
             var labs = all.Where(b => b.Biome == Biome.OvergrownLabs).ToList();
             CollectionAssert.AreEquivalent(new[] { "boss_subject_omega", "boss_aegis_core" }, labs.Select(b => b.Id));
-            Assert.AreEqual(6, all.Length, "126: six Bosses, two per biome.");
-            Assert.AreEqual(6, all.Select(b => b.Id).Distinct().Count());
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }) Assert.AreEqual(2, all.Count(b => b.Biome == biome), biome.ToString());
+            Assert.AreEqual(8, all.Length, "126: eight Bosses, two per biome.");
+            Assert.AreEqual(8, all.Select(b => b.Id).Distinct().Count());
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }) Assert.AreEqual(2, all.Count(b => b.Biome == biome), biome.ToString());
 
             var arenas = RoomValidationTools.LoadAllRoomDefinitions().Where(d => d.Biome == Biome.OvergrownLabs && d.RoomType == Dungeon.Rooms.RoomType.Boss).OrderBy(d => d.Id).ToList();
             Assert.AreEqual(2, arenas.Count);

@@ -512,7 +512,7 @@ namespace RuinRail.Tests
             Note($"04 auto reload: mag 1->0 reserve {reserve} reloading={weapon.IsReloading} autoReloads={weapon.AutoReloads} reloadTime {weapon.Definition.ReloadTime}s");
 
             // ---- 6-9. every biome's door open and combat-locked, on its shipped combat room in this scene ----
-            foreach (var other in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var other in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 var definition = content.Rooms.First(r => r.Biome == other && r.RoomType == RoomType.Combat && r.SizeClass == RoomSizeClass.Medium);
                 var origin = new Vector2(4000f + (int)other * 100f, 4000f);

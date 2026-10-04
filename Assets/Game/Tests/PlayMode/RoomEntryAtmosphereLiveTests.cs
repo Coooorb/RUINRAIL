@@ -103,7 +103,7 @@ namespace RuinRail.Tests
 
         [UnityTest]
         public IEnumerator LiveRun_FirstRoomEntry_PlaysTheBiomeFlourishOnce_AndChangesNothing(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             yield return Boot(biome);
             var run = _run;
@@ -172,7 +172,7 @@ namespace RuinRail.Tests
         /// <summary>Every variant of the biome, played in a real room of a real run: captured early and late, presentation only, gone on its own.</summary>
         [UnityTest]
         public IEnumerator LiveRun_EveryVariant_IsShort_PresentationOnly_AndCaptured(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             yield return Boot(biome);
             var run = _run;
@@ -271,7 +271,7 @@ namespace RuinRail.Tests
         /// </summary>
         [UnityTest]
         public IEnumerator LiveRun_PersistentRoomDetails_AreLocalized_Varied_Deterministic_AndCleanedUp(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             yield return Boot(biome);
             var run = _run;

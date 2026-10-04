@@ -84,7 +84,8 @@ namespace RuinRail.Tests
             var (enemy, target) = EnemyWithTarget("shooter", new Vector2(5f, 0f));
             var shape = TelegraphIndicator.ShapeOf(enemy, enemy.transform.position);
             Assert.AreEqual(TelegraphIndicator.KindProjectile, shape.Kind);
-            Assert.AreEqual(enemy.Definition.ProjectileRange, shape.Size.x, 0.001f, "lane length is the projectile range");
+            var radius = AttackFootprint.EnemyProjectileRadius;
+            Assert.AreEqual(enemy.Definition.ProjectileRange + radius * 2f, shape.Size.x, 0.001f, "lane length is the projectile range plus the shot's own radius at each end (never shorter than the real path)");
             Assert.LessOrEqual(shape.Size.y, 1f, "a narrow lane");
             Assert.Less(shape.Size.x * shape.Size.y, enemy.Definition.AttackRange * enemy.Definition.AttackRange, "far smaller than the old AttackRange² square (" + enemy.Definition.AttackRange * 2f + "² tiles)");
             Assert.AreEqual(0f, shape.AngleDegrees, 0.5f, "along the direction to the target");
@@ -122,7 +123,7 @@ namespace RuinRail.Tests
         [UnityTest]
         public IEnumerator EveryShippedEliteGroundAttack_MarkerFootprint_IsTheResolversHitArea()
         {
-            Assert.AreEqual(6, _catalog.Elites.Count, "the six shipped Elites");
+            Assert.AreEqual(8, _catalog.Elites.Count, "the eight shipped Elites");
             var attacks = _catalog.Elites.SelectMany(e => e.Moveset).Where(a => a != null && a.Motion != AttackMotion.Projectile).Distinct().ToList();
             Assert.Greater(attacks.Count, 10);
             var origin = new Vector2(800f, 800f);
@@ -188,12 +189,14 @@ namespace RuinRail.Tests
             Assert.IsTrue(indicator.IsShowing);
             Assert.AreEqual(TelegraphIndicator.KindProjectile, indicator.MarkerKind);
 
-            var marker = Object.FindObjectsByType<PooledEffect>(FindObjectsSortMode.None).FirstOrDefault(e => e.IsActive && e.Kind == TelegraphIndicator.KindProjectile);
-            Assert.IsNotNull(marker, "the lane marker is a live pooled effect");
-            Assert.IsTrue(marker.Renderer.sprite.name.StartsWith("vfx_telegraph_projectile_"), "final telegraph art, not the placeholder quad: " + marker.Renderer.sprite.name);
-            var bounds = marker.Renderer.bounds.size;
-            Assert.LessOrEqual(Mathf.Max(bounds.x, bounds.y), enemy.Definition.ProjectileRange + 0.25f, "no larger than the lane length");
-            Assert.LessOrEqual(Mathf.Min(bounds.x, bounds.y), 1f, "and narrow — nothing like a 14×14 tile square");
+            var view = indicator.View;
+            Assert.IsNotNull(view, "the lane marker is painted");
+            Assert.IsTrue(view.IsVisible, "and shown");
+            Assert.AreEqual(Quaternion.identity, view.transform.rotation, "painted on the world pixel grid, never rotated");
+            Assert.AreEqual(Vector3.one, view.transform.localScale, "or stretched");
+            var rect = view.WorldRect;
+            Assert.LessOrEqual(Mathf.Max(rect.width, rect.height), enemy.Definition.ProjectileRange + 1f, "no larger than the lane length");
+            Assert.LessOrEqual(Mathf.Min(rect.width, rect.height), 1f, "and narrow — nothing like a 14×14 tile square");
         }
 
         private (EnemyController enemy, GameObject target) EnemyWithTarget(string id, Vector2 targetAt, Vector2? enemyAt = null)

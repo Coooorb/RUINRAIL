@@ -34,7 +34,7 @@ namespace RuinRail.Tests
         public void EveryShippedRoom_HasAPlayerFacingName_ThatIsNeverAnInternalId()
         {
             var rooms = ShippedRooms();
-            Assert.GreaterOrEqual(rooms.Count, 63, "every authored room of the three biomes is covered");
+            Assert.GreaterOrEqual(rooms.Count, 84, "every authored room of the four biomes is covered");
             foreach (var room in rooms)
             {
                 var name = RoomDisplayNames.NameOf(room);

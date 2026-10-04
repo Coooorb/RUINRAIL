@@ -8,6 +8,9 @@ TextureImporter:
   - first:
       213: -6765878384420185677
     second: vfx_proj_pellet_0_0
+  - first:
+      213: 4062534741978055211
+    second: vfx_proj_pellet_0_1
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -108,8 +111,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 3
-        height: 3
+        width: 7
+        height: 7
       alignment: 9
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,6 +123,28 @@ TextureImporter:
       bones: []
       spriteID: 3b9142fd475ca12a0800000000000000
       internalID: -6765878384420185677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_proj_pellet_0_1
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 0
+        width: 7
+        height: 7
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b220947d2d5016830800000000000000
+      internalID: 4062534741978055211
       vertices: []
       indices: 
       edges: []
@@ -140,6 +165,7 @@ TextureImporter:
     nameFileIdTable:
       vfx_proj_pellet_0: -896261825722215300
       vfx_proj_pellet_0_0: -6765878384420185677
+      vfx_proj_pellet_0_1: 4062534741978055211
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

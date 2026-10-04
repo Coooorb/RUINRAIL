@@ -175,6 +175,7 @@ namespace RuinRail.UI.Hud
             Biome.RuinedMetro => "RUINED METRO",
             Biome.Rustworks => "RUSTWORKS",
             Biome.OvergrownLabs => "OVERGROWN LABS",
+            Biome.CryoVaults => "CRYO VAULTS",
             _ => biome.ToString().ToUpperInvariant()
         };
     }

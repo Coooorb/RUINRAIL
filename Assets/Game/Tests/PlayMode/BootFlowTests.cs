@@ -53,7 +53,7 @@ namespace RuinRail.Tests
             var catalog = GameContentCatalog.Load();
             Assert.IsNotNull(catalog, "Resources/GameContentCatalog.asset");
             CollectionAssert.IsEmpty(catalog.Problems());
-            Assert.AreEqual(63, catalog.Rooms.Count);
+            Assert.AreEqual(84, catalog.Rooms.Count);
             Assert.IsFalse(catalog.Rooms.Any(r => r.Id.StartsWith("test_") || AssetDatabase.GetAssetPath(r).Contains("/_Test/")), "The grid test fixture room never ships in normal navigation.");
             var buildScenes = EditorBuildSettings.scenes.Where(s => s.enabled).Select(s => s.path).ToArray();
             CollectionAssert.AreEqual(new[] { "Assets/Game/Scenes/Bootstrap.unity", "Assets/Game/Scenes/MainMenu.unity", "Assets/Game/Scenes/Base.unity", "Assets/Game/Scenes/Dungeon.unity" }, buildScenes);

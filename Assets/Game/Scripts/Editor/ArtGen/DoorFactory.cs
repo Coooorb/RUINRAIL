@@ -28,6 +28,7 @@ namespace RuinRail.EditorTools.ArtGen
             Biome.RuinedMetro => "ruinedmetro",
             Biome.Rustworks => "rustworks",
             Biome.OvergrownLabs => "overgrownlabs",
+            Biome.CryoVaults => "cryovaults",
             _ => biome.ToString().ToLowerInvariant()
         };
 
@@ -51,7 +52,7 @@ namespace RuinRail.EditorTools.ArtGen
             }
 
             AssetDatabase.Refresh();
-            Debug.Log("Door sprites generated: 3 biomes × open/locked.");
+            Debug.Log($"Door sprites generated: {System.Enum.GetValues(typeof(Biome)).Length} biomes × open/locked.");
         }
 
         private sealed class Skin
@@ -77,6 +78,14 @@ namespace RuinRail.EditorTools.ArtGen
                 Slat = RuinPalette.Hex("#8D9A98"), SlatLight = RuinPalette.Hex("#A9B5B2"), SlatDark = RuinPalette.Hex("#66716F"),
                 Seam = RuinPalette.Hex("#2F3A3B"), OpenLamp = RuinPalette.ElectricCyan, LockLamp = RuinPalette.EmergencyRed,
                 Accent = RuinPalette.TerminalGreen, Outline = RuinPalette.OutlineGreenBlack, SlatPitch = 8, Panels = true
+            },
+            // Insulated vault shutter: dark steel posts, frost-pale slats, cyan open lamp, amber-red emergency lock.
+            Biome.CryoVaults => new Skin
+            {
+                Post = RuinPalette.Hex("#262E35"), PostLight = RuinPalette.Hex("#4A5760"), Housing = RuinPalette.Hex("#34404A"),
+                Slat = RuinPalette.Hex("#6E8390"), SlatLight = RuinPalette.Hex("#A9C6D2"), SlatDark = RuinPalette.Hex("#44535D"),
+                Seam = RuinPalette.Hex("#1A2229"), OpenLamp = RuinPalette.ElectricCyan, LockLamp = RuinPalette.EmergencyRed,
+                Accent = RuinPalette.Hex("#A9DDE8"), Outline = RuinPalette.OutlineCharcoal, SlatPitch = 5, Panels = true
             },
             _ => new Skin
             {

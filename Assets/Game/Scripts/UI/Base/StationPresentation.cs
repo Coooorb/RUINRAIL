@@ -12,7 +12,22 @@ namespace RuinRail.UI.Base
     public enum RowTone { Neutral, Good, Warn, Bad, Muted }
 
     /// <summary>How a row is drawn. Pair/Heading/Text are the original text rows; the rest carry their meaning visually.</summary>
-    public enum RowKind { Pair, Heading, Text, Bar, Item, Badge, Pips }
+    public enum RowKind { Pair, Heading, Text, Bar, Item, Badge, Pips, Grid }
+
+    /// <summary>One tile of a <see cref="RowKind.Grid"/> row: what is drawn, in which rarity frame, and how many.</summary>
+    public readonly struct StationItem
+    {
+        public StationItem(string itemId, Rarity rarity, int quantity)
+        {
+            ItemId = itemId ?? string.Empty;
+            Rarity = rarity;
+            Quantity = quantity;
+        }
+
+        public string ItemId { get; }
+        public Rarity Rarity { get; }
+        public int Quantity { get; }
+    }
 
     /// <summary>One line of a station's data panel. A value-less row is a heading inside the list.</summary>
     public readonly struct StationRow
@@ -23,8 +38,9 @@ namespace RuinRail.UI.Base
         }
 
         private StationRow(RowKind kind, string key, string value, RowTone tone = RowTone.Neutral, float fraction = 0f,
-            string itemId = null, Rarity rarity = Rarity.Common, int filled = 0, int total = 0)
+            string itemId = null, Rarity rarity = Rarity.Common, int filled = 0, int total = 0, IReadOnlyList<StationItem> items = null)
         {
+            Items = items ?? System.Array.Empty<StationItem>();
             Kind = kind;
             Key = key ?? string.Empty;
             Value = value ?? string.Empty;
@@ -49,12 +65,18 @@ namespace RuinRail.UI.Base
         public int Filled { get; }
         public int Total { get; }
 
+        /// <summary>Grid rows: the items drawn as icon tiles, in order (the screen shows as many as fit, then "+N").</summary>
+        public IReadOnlyList<StationItem> Items { get; }
+
         public bool IsHeading => Kind == RowKind.Heading;
 
         /// <summary>A sentence that needs the whole column rather than the key/value split (an attribute's effect line).</summary>
         public bool IsText => Kind == RowKind.Text;
 
         public static StationRow Heading(string text) => new(text, null, true);
+
+        /// <summary>A key / value row whose value carries a tone (a price the bank cannot cover: <see cref="RowTone.Bad"/>).</summary>
+        public static StationRow Toned(string key, string value, RowTone tone) => new(RowKind.Pair, key, value, tone);
 
         /// <summary>One full-width line of text inside the list; no value, no rule, no extra spacing.</summary>
         public static StationRow Text(string text) => new(text, null, false, true);
@@ -71,6 +93,10 @@ namespace RuinRail.UI.Base
         public static StationRow Badge(string text, RowTone tone) => new(RowKind.Badge, text, null, tone);
 
         /// <summary>Key, then one square per slot, <paramref name="filled"/> of them lit (party size, Ready count).</summary>
+        /// <summary>Items as a grid of icon tiles in their rarity frames (the Storage at a glance).</summary>
+        public static StationRow Grid(IReadOnlyList<StationItem> items) =>
+            new(RowKind.Grid, string.Empty, null, RowTone.Neutral, 0f, null, Rarity.Common, items?.Count ?? 0, items?.Count ?? 0, items);
+
         public static StationRow Pips(string key, int filled, int total, string value = null, RowTone tone = RowTone.Good) =>
             new(RowKind.Pips, key, value, tone, 0f, null, Rarity.Common, filled, total);
     }
@@ -136,16 +162,15 @@ namespace RuinRail.UI.Base
             var full = storage.Count >= storage.Capacity;
             var rows = new List<StationRow>
             {
-                StationRow.Bar("CAPACITY", $"{storage.Count} / {storage.Capacity}", Share(storage.Count, storage.Capacity), full ? RowTone.Bad : RowTone.Warn),
-                new("SHOWING", (storage.Filter?.ToString().ToUpperInvariant() ?? "ALL") + (storage.SortByRarity ? " · RARITY" : " · NAME"))
+                StationRow.Bar("CAPACITY", $"{storage.Count} / {storage.Capacity}", Share(storage.Count, storage.Capacity), full ? RowTone.Bad : RowTone.Warn)
             };
 
+            // What is stored, at a glance: icon tiles in their rarity frames (the stash is where it is sorted and moved).
             var items = storage.Items;
             if (items.Count > 0)
             {
                 rows.Add(StationRow.Heading("STORED"));
-                foreach (var item in items.Take(12))
-                    rows.Add(StationRow.Item(string.Empty, item.DefinitionId, NameOf(hub, item), item.Rarity));
+                rows.Add(StationRow.Grid(items.Select(i => new StationItem(i.DefinitionId, i.Rarity, i.Quantity)).ToList()));
             }
             else rows.Add(StationRow.Text("Nothing stored yet."));
 
@@ -264,13 +289,13 @@ namespace RuinRail.UI.Base
                     Share(workshop.StorageTier, workshop.MaxStorageTier), storageMaxed ? RowTone.Good : RowTone.Warn),
                 storageMaxed
                     ? StationRow.Badge("MAX TIER", RowTone.Good)
-                    : new StationRow($"TO {workshop.NextStorageCapacity} SLOTS", workshop.NextStorageUpgradeCost + " C"),
+                    : StationRow.Toned($"TO {workshop.NextStorageCapacity} SLOTS", workshop.NextStorageUpgradeCost + " C", workshop.Banked >= workshop.NextStorageUpgradeCost ? RowTone.Neutral : RowTone.Bad),
                 StationRow.Heading("TRADER"),
                 StationRow.Bar($"LEVEL {workshop.TraderLevel} / {workshop.TraderMaxLevel}", string.Empty,
                     Share(workshop.TraderLevel, workshop.TraderMaxLevel), traderMaxed ? RowTone.Good : RowTone.Warn),
                 traderMaxed
                     ? StationRow.Badge("MAX LEVEL", RowTone.Good)
-                    : new StationRow($"TO LEVEL {workshop.TraderLevel + 1}", workshop.NextTraderUpgradeCost + " C")
+                    : StationRow.Toned($"TO LEVEL {workshop.TraderLevel + 1}", workshop.NextTraderUpgradeCost + " C", workshop.Banked >= workshop.NextTraderUpgradeCost ? RowTone.Neutral : RowTone.Bad)
             };
 
             return new StationView

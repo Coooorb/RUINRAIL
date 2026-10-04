@@ -6,39 +6,76 @@ using UnityEngine;
 namespace RuinRail.Gameplay.Combat.Weapons.Specials
 {
     /// <summary>
-    /// Routes the Special input (RMB / LT) to the fixed special of one Legendary weapon while that weapon is the active
-    /// one. Normal weapons simply have no controller, so they ignore the input. The cooldown belongs to this weapon
-    /// instance and keeps counting while holstered; a special input while unequipped, cooling, or already running does
-    /// nothing. Running executions (bursts, dashes) are ticked here; a dash execution owns movement via IMovementOverride.
+    /// Routes the Special input (RMB / LT) to the fixed special of the Legendary weapon the player is <b>holding</b>.
+    /// Every mounted Legendary weapon registers its special here; only the one whose weapon is the loadout's active,
+    /// live weapon is the <see cref="Special"/> — what the input fires and what the HUD shows. A Legendary in the
+    /// backpack is not mounted at all, a holstered one is registered but inactive, and a weapon destroyed by a remount
+    /// never counts (its entries are cleared with it). Normal weapons register nothing, so they ignore the input.
+    /// Each special's cooldown belongs to its weapon instance and keeps counting while holstered; a special input while
+    /// nothing Legendary is held, cooling, or already running does nothing. Running executions (bursts, dashes) are
+    /// ticked here; a dash execution owns movement via IMovementOverride.
     /// </summary>
     public sealed class LegendarySpecialController : MonoBehaviour, IMovementOverride
     {
-        private ILegendarySpecial _special;
-        private LegendarySpecialState _state;
-        private IEquippableWeapon _weapon;
+        private sealed class Entry
+        {
+            public ILegendarySpecial Special;
+            public LegendarySpecialState State;
+            public IEquippableWeapon Weapon;
+            public Func<SpecialContext> ContextFactory;
+
+            /// <summary>The weapon is still mounted (not destroyed by a remount) and is the active, held one.</summary>
+            public bool IsHeld => Weapon != null && !(Weapon is UnityEngine.Object o && o == null) && Weapon.IsEquipped;
+        }
+
+        private readonly System.Collections.Generic.List<Entry> _entries = new();
         private IPlayerInputReader _inputReader;
         private readonly ActionGateLookup _actionGate = new();
-        private Func<SpecialContext> _contextFactory;
         private ISpecialExecution _running;
         private bool _specialHeldLastFrame;
 
-        public ILegendarySpecial Special => _special;
-        /// <summary>Cooldown state of the configured special (HUD overlay); null until configured.</summary>
-        public LegendarySpecialState State => _state;
+        private Entry Held
+        {
+            get
+            {
+                foreach (var entry in _entries) if (entry.IsHeld) return entry;
+                return null;
+            }
+        }
+
+        /// <summary>The held Legendary weapon's special; null while the held weapon has none (or nothing is held).</summary>
+        public ILegendarySpecial Special => Held?.Special;
+        /// <summary>Cooldown state of the held weapon's special (HUD overlay); null while the held weapon has none.</summary>
+        public LegendarySpecialState State => Held?.State;
         public bool IsRunning => _running != null && !_running.IsComplete;
         public bool IsActive => IsRunning && _running.LocksMovement;
-        public bool IsWeaponEquipped => _weapon != null && _weapon.IsEquipped;
+        /// <summary>True while a Legendary weapon with a special is the held weapon.</summary>
+        public bool IsWeaponEquipped => Held != null;
+        /// <summary>One mounted weapon's own cooldown, held or holstered (diagnostics/tests); null when it has no special.</summary>
+        public LegendarySpecialState StateOf(IEquippableWeapon weapon)
+        {
+            foreach (var entry in _entries) if (ReferenceEquals(entry.Weapon, weapon)) return entry.State;
+            return null;
+        }
+
+        /// <summary>Specials of the mounted Legendary weapons (held or holstered).</summary>
+        public int Registered => _entries.Count;
         public int Activations { get; private set; }
 
         public event Action<ILegendarySpecial> SpecialFired;
 
+        /// <summary>Registers the special of one mounted Legendary weapon (each weapon keeps its own cooldown).</summary>
         public void Configure(ILegendarySpecial special, IEquippableWeapon weapon, Func<SpecialContext> contextFactory, LegendarySpecialState state = null)
         {
-            _special = special ?? throw new ArgumentNullException(nameof(special));
-            _weapon = weapon ?? throw new ArgumentNullException(nameof(weapon));
-            _contextFactory = contextFactory ?? throw new ArgumentNullException(nameof(contextFactory));
-            _state = state ?? new LegendarySpecialState(special.CooldownSeconds);
+            if (special == null) throw new ArgumentNullException(nameof(special));
+            if (weapon == null) throw new ArgumentNullException(nameof(weapon));
+            if (contextFactory == null) throw new ArgumentNullException(nameof(contextFactory));
+            _entries.RemoveAll(e => ReferenceEquals(e.Weapon, weapon));
+            _entries.Add(new Entry { Special = special, Weapon = weapon, ContextFactory = contextFactory, State = state ?? new LegendarySpecialState(special.CooldownSeconds) });
         }
+
+        /// <summary>The weapons were remounted: every registered special goes with the components it belonged to.</summary>
+        public void Clear() => _entries.Clear();
 
         public void SetInputReader(IPlayerInputReader inputReader)
         {
@@ -54,7 +91,7 @@ namespace RuinRail.Gameplay.Combat.Weapons.Specials
         private void Update()
         {
             var dt = Time.deltaTime;
-            _state?.Tick(dt);
+            foreach (var entry in _entries) entry.State?.Tick(dt);
             if (_running != null)
             {
                 _running.Tick(dt);
@@ -67,16 +104,17 @@ namespace RuinRail.Gameplay.Combat.Weapons.Specials
             _specialHeldLastFrame = held;
         }
 
-        /// <summary>Attempts the special now (input edge or scripted). Only the active Legendary weapon may fire it, only when ready.</summary>
+        /// <summary>Attempts the special now (input edge or scripted). Only the held Legendary weapon may fire its own, only when ready.</summary>
         public bool TryActivate()
         {
-            if (_special == null || _state == null || !IsWeaponEquipped || IsRunning || !_actionGate.CanAct(this)) return false;
-            if (!_state.TryUse()) return false;
+            var entry = Held;
+            if (entry == null || IsRunning || !_actionGate.CanAct(this)) return false;
+            if (!entry.State.TryUse()) return false;
 
-            var execution = _special.Begin(_contextFactory());
+            var execution = entry.Special.Begin(entry.ContextFactory());
             if (execution != null && !execution.IsComplete) _running = execution;
             Activations++;
-            SpecialFired?.Invoke(_special);
+            SpecialFired?.Invoke(entry.Special);
             return true;
         }
     }

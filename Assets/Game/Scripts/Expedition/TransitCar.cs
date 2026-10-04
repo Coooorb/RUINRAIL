@@ -6,23 +6,21 @@ using UnityEngine;
 namespace RuinRail.Gameplay.Expedition
 {
     /// <summary>
-    /// The armored transit in the Boss Room (60_EXTRACTION_TRANSIT steps 4–6). Inactive until the bound BossEncounter
-    /// reports defeat; then boarding (Interact) surfaces the decision and choices are forwarded to the ExpeditionService.
-    /// Repeated boarding/choices after resolution are no-ops.
+    /// The Boss Room's transit hook (60_EXTRACTION_TRANSIT steps 4–6). There is no in-world transit object to board:
+    /// once the bound BossEncounter reports defeat, this records the defeat on the ExpeditionService (which opens the
+    /// Return / Descend decision the post-boss panel shows) and marks itself activated, the state co-op mirrors.
+    /// It is not an interactable, has no collider and no prompt; choices go through the decision panel.
     /// </summary>
-    public sealed class TransitCar : MonoBehaviour, IInteractable, IInteractionPrompt
+    public sealed class TransitCar : MonoBehaviour
     {
         [SerializeField] private BossEncounter _bossEncounter;
 
         private ExpeditionService _service;
-        private bool _boarded;
 
         public bool IsActivated { get; private set; }
-        public bool IsBoarded => _boarded;
         public TransitDecision Decision => _service?.Transit;
 
         public event Action<TransitCar> Activated;
-        public event Action<TransitCar> Boarded;
 
         public void Configure(ExpeditionService service, BossEncounter bossEncounter = null)
         {
@@ -62,24 +60,5 @@ namespace RuinRail.Gameplay.Expedition
             Activated?.Invoke(this);
         }
 
-        public bool CanInteract(GameObject interactor) => IsActivated && !_boarded && _service != null && _service.Transit != null && _service.Transit.State == TransitDecisionState.Open;
-
-        /// <summary>The HUD prompt for the one Interact action (ui/90): boarding is offered only while the decision is open.</summary>
-        public string PromptFor(GameObject interactor) => CanInteract(interactor) ? "BOARD TRANSIT" : string.Empty;
-
-        public bool Interact(GameObject interactor)
-        {
-            if (!CanInteract(interactor)) return false;
-            _boarded = true;
-            Boarded?.Invoke(this);
-            return true;
-        }
-
-        /// <summary>Forwards the local player's choice; false when not boarded or already resolved.</summary>
-        public bool Choose(TransitChoice choice)
-        {
-            if (!_boarded || _service == null) return false;
-            return _service.ChooseTransit(choice);
-        }
     }
 }

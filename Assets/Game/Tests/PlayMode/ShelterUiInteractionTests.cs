@@ -326,6 +326,98 @@ namespace RuinRail.Tests
             Assert.AreEqual(0, horizontalSteps, "Moving the list directly must not raise the input event that drives it.");
         }
 
+        /// <summary>
+        /// Every meaningful Shelter interaction answers with exactly one UI sound on the shared bus, whichever input drove
+        /// it: a step (real keyboard), a tab change, confirm, back, hover, a click on a disabled control, a refused
+        /// purchase, a coin transaction — and a view model that speaks for itself (the loadout) is never doubled.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator Shelter_EveryInteraction_SoundsExactlyOnce_WithTheRightCue()
+        {
+            yield return OpenShelter();
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            hub.Onboarding.SubmitDisplayName("Sound Check");
+            hub.Onboarding.AcknowledgeStarterKit();
+            Assert.IsNotNull(hub.Sounds, "the Shelter composes its UI sound cues");
+            var heard = new List<RuinRail.Core.Rendering.UiSound>();
+            System.Action<RuinRail.Core.Rendering.UiSound> listen = heard.Add;
+            RuinRail.Core.Rendering.UiSoundBus.Raised += listen;
+
+            var background = UnityEngine.InputSystem.InputSystem.settings.backgroundBehavior;
+            UnityEngine.InputSystem.InputSystem.settings.backgroundBehavior = UnityEngine.InputSystem.InputSettings.BackgroundBehavior.IgnoreFocus;
+            var editorRouting = UnityEngine.InputSystem.InputSystem.settings.editorInputBehaviorInPlayMode;
+            UnityEngine.InputSystem.InputSystem.settings.editorInputBehaviorInPlayMode = UnityEngine.InputSystem.InputSettings.EditorInputBehaviorInPlayMode.AllDeviceInputAlwaysGoesToGameView;
+            var keyboard = UnityEngine.InputSystem.InputSystem.AddDevice<UnityEngine.InputSystem.Keyboard>();
+            UnityEngine.InputSystem.InputSystem.EnableDevice(keyboard);
+            keyboard.MakeCurrent();
+            try
+            {
+                IEnumerator Key(UnityEngine.InputSystem.Key key)
+                {
+                    UnityEngine.InputSystem.InputSystem.QueueStateEvent(keyboard, new UnityEngine.InputSystem.LowLevel.KeyboardState(key));
+                    yield return null;
+                    UnityEngine.InputSystem.InputSystem.QueueStateEvent(keyboard, new UnityEngine.InputSystem.LowLevel.KeyboardState());
+                    yield return null;
+                }
+
+                IEnumerator Expect(string what, RuinRail.Core.Rendering.UiSound sound, IEnumerator act)
+                {
+                    yield return null;
+                    heard.Clear();
+                    yield return act;
+                    yield return null;
+                    yield return null;
+                    CollectionAssert.AreEqual(new[] { sound }, heard, what + $": exactly one {sound} (heard: {string.Join(", ", heard)})");
+                }
+
+                IEnumerator Do(System.Action action) { action(); yield return null; }
+
+                // Keyboard: a step along the tab bar, a tab opened by confirm, a step inside it, back out.
+                yield return Expect("arrow along the tabs", RuinRail.Core.Rendering.UiSound.Navigate, Key(UnityEngine.InputSystem.Key.RightArrow));
+                yield return Expect("confirm opens the tab", RuinRail.Core.Rendering.UiSound.Confirm, Key(UnityEngine.InputSystem.Key.Enter));
+                Assert.IsNotNull(hub.Hub.Current, "a station opened");
+                Assert.AreEqual(BaseStation.Loadout, hub.Hub.Current);
+                yield return Expect("an arrow inside the loadout grid", RuinRail.Core.Rendering.UiSound.Navigate, Key(UnityEngine.InputSystem.Key.RightArrow));
+                yield return Expect("back closes the station", RuinRail.Core.Rendering.UiSound.Cancel, Key(UnityEngine.InputSystem.Key.Escape));
+                Assert.IsNull(hub.Hub.Current, "Back closed the station");
+                hub.Hub.Open(BaseStation.Trader);
+                yield return null;
+                yield return Expect("switching section with an arrow from a list station", RuinRail.Core.Rendering.UiSound.Confirm, Key(UnityEngine.InputSystem.Key.RightArrow));
+                Assert.AreEqual(BaseStation.Character, hub.Hub.Current, "the arrow switched to the next section");
+                hub.Hub.Close();
+
+                // Pointer: hover ticks, a click on a disabled control is refused audibly.
+                yield return Expect("hover", RuinRail.Core.Rendering.UiSound.Navigate, Do(() => Control(hub, "station." + BaseStation.Workshop).SimulateHover(true)));
+                Control(hub, "station." + BaseStation.Workshop).SimulateHover(false);
+                yield return Expect("tab click", RuinRail.Core.Rendering.UiSound.Confirm, Do(() => Control(hub, "station." + BaseStation.Multiplayer).SimulateClick()));
+                var disabled = hub.Controls.FirstOrDefault(c => c != null && c.Item != null && !c.IsEnabled);
+                Assert.IsNotNull(disabled, "the terminal has a disabled control (LEAVE SESSION while solo)");
+                yield return Expect("click on a disabled control", RuinRail.Core.Rendering.UiSound.Failure, Do(() => disabled.SimulateClick()));
+
+                // Outcomes: a refused purchase, then a coin transaction.
+                hub.Hub.Open(BaseStation.Workshop);
+                yield return null;
+                Assert.Less(hub.Session.Banked.Balance, hub.Hub.Workshop.NextStorageUpgradeCost);
+                yield return Expect("an upgrade the bank cannot cover", RuinRail.Core.Rendering.UiSound.Failure, Do(() => Control(hub, "workshop.storage").SimulateClick()));
+                hub.Session.Banked.Credit(hub.Hub.Workshop.NextStorageUpgradeCost, "sound check");
+                yield return Expect("a paid upgrade", RuinRail.Core.Rendering.UiSound.Purchase, Do(() => Control(hub, "workshop.storage").SimulateClick()));
+
+                // A view model that already speaks (the loadout's pick-up) is heard once, never twice.
+                hub.Hub.Open(BaseStation.Loadout);
+                yield return null;
+                hub.PanelList.Focus("slot." + RuinRail.Gameplay.Items.EquippedSlot.PrimaryWeapon);
+                yield return Expect("loadout pick-up (the inventory's own cue)", RuinRail.Core.Rendering.UiSound.Confirm, Key(UnityEngine.InputSystem.Key.Enter));
+                yield return Expect("put it down again with back", RuinRail.Core.Rendering.UiSound.Cancel, Key(UnityEngine.InputSystem.Key.Escape));
+            }
+            finally
+            {
+                RuinRail.Core.Rendering.UiSoundBus.Raised -= listen;
+                UnityEngine.InputSystem.InputSystem.RemoveDevice(keyboard);
+                UnityEngine.InputSystem.InputSystem.settings.backgroundBehavior = background;
+                UnityEngine.InputSystem.InputSystem.settings.editorInputBehaviorInPlayMode = editorRouting;
+            }
+        }
+
         [UnityTest]
         public IEnumerator SwitchingFromMouseToKeyboardAndBack_NeedsNoClickFirst()
         {

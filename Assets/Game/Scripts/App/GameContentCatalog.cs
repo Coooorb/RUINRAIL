@@ -149,13 +149,13 @@ namespace RuinRail.App
             Need(PlayerBalance, nameof(PlayerBalance)); Need(AmmoBalance, nameof(AmmoBalance)); Need(Economy, nameof(Economy)); Need(Trader, nameof(Trader)); Need(Workshop, nameof(Workshop));
             Need(DepthScaling, nameof(DepthScaling)); Need(Stagger, nameof(Stagger)); Need(Events, nameof(Events)); Need(Merchant, nameof(Merchant)); Need(Loot, nameof(Loot));
             Need(DisplayNamePolicy, nameof(DisplayNamePolicy)); Need(CameraRig, nameof(CameraRig)); Need(Feedback, nameof(Feedback)); Need(AimAssist, nameof(AimAssist)); Need(AudioEvents, nameof(AudioEvents)); Need(Music, nameof(Music));
-            if (Lighting.Count(l => l != null) != 3) problems.Add($"lighting profiles {Lighting.Count(l => l != null)}/3");
+            if (Lighting.Count(l => l != null) != 4) problems.Add($"lighting profiles {Lighting.Count(l => l != null)}/4");
             if (Items.Count(i => i != null) != 72) problems.Add($"items {Items.Count(i => i != null)}/72");
             if (Specials.Count(s => s != null) != 11) problems.Add($"legendary specials {Specials.Count(s => s != null)}/11");
             if (Enemies.Count(e => e != null) != 9) problems.Add($"enemies {Enemies.Count(e => e != null)}/9");
-            if (Elites.Count(e => e != null) != 6) problems.Add($"elites {Elites.Count(e => e != null)}/6");
-            if (Bosses.Count(b => b != null) != 6) problems.Add($"bosses {Bosses.Count(b => b != null)}/6");
-            if (Rooms.Count(r => r != null) != 63) problems.Add($"rooms {Rooms.Count(r => r != null)}/63");
+            if (Elites.Count(e => e != null) != 8) problems.Add($"elites {Elites.Count(e => e != null)}/8");
+            if (Bosses.Count(b => b != null) != 8) problems.Add($"bosses {Bosses.Count(b => b != null)}/8");
+            if (Rooms.Count(r => r != null) != 84) problems.Add($"rooms {Rooms.Count(r => r != null)}/84");
             if (Rooms.Any(r => r != null && r.Prefab == null)) problems.Add("a room has no prefab");
             if (AnimationSetFor(CharacterVisual.PlayerActorId) == null) problems.Add("missing player animation set");
             var weaponsWithoutSprite = Items.OfType<WeaponDefinition>().Count(w => WeaponSpriteFor(w.Id) == null);

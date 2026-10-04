@@ -12,7 +12,7 @@ using UnityEngine.Tilemaps;
 namespace RuinRail.EditorTools.Production
 {
     /// <summary>
-    /// TASK 165 requirement 2 — walk everything that actually ships (the build scenes and the 63 room prefabs) and
+    /// TASK 165 requirement 2 — walk everything that actually ships (the build scenes and the 84 room prefabs) and
     /// report every renderer still pointing at placeholder art or at nothing at all.
     ///
     /// The manifest says what art is owed; this says what the release path is currently rendering. The two can differ:

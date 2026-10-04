@@ -88,9 +88,15 @@ namespace RuinRail.App
         private Text _partySummary;
         private GameObject _onboardingCard;
         private Image _expeditionPlate;
+        /// <summary>The expedition card (right column): shown over the idle Shelter, stepped aside while a station is open.</summary>
+        private GameObject _expeditionCard;
         private readonly List<Image> _readyPips = new();
         private Text _expeditionState;
         private Text _expeditionHint;
+
+        private UiSoundCues _sounds;
+        /// <summary>The Shelter's UI sound cues (tests read what played).</summary>
+        public UiSoundCues Sounds => _sounds;
 
         public BaseHubViewModel Hub => _hub;
         /// <summary>The Multiplayer Terminal view model the MULTIPLAYER station shows (READY lives here).</summary>
@@ -104,7 +110,7 @@ namespace RuinRail.App
         public FocusList PanelList => _panelList;
         public BaseSession Session => _app.Menu.Session;
         /// <summary>Every control currently on the screen: tab bar plus whatever the open station contributes.</summary>
-        public IReadOnlyList<UiControl> Controls => _controls.Concat(_panelControls).Where(c => c != null).ToList();
+        public IReadOnlyList<UiControl> Controls => _controls.Concat(_panelControls).Where(c => c != null && c.gameObject.activeInHierarchy).ToList();
 
         public static BaseHubScreen Create(GameApp app)
         {
@@ -176,9 +182,15 @@ namespace RuinRail.App
             _input.Back += OnBack;
             _input.Horizontal += StepSection;
             _input.InputBlocked = () => app.InputBlocked || (_nameEntryView != null && _nameEntryView.OwnsInput);
+            // UI sound for every Shelter interaction, on the shared UI sound bus: steps, hover, confirm, tab changes,
+            // back, refused actions and the stations' own outcomes (a purchase, a full Storage) — one cue per frame.
+            _sounds = gameObject.AddComponent<UiSoundCues>();
+            _sounds.Bind(() => !app.InputBlocked);
+            _input.Navigated += _sounds.Step;
 
             _root = UiKit.ReferenceRoot(transform);
-            UiKit.Backdrop(_root, UiSkin.Load()?.ShelterBackdrop);
+            // The baked place, and the quiet life in it (lamps, dust, the door, the details).
+            FrontEndAmbience.Attach(UiKit.Backdrop(_root, UiSkin.Load()?.ShelterBackdrop), FrontEndAmbience.Place.Shelter);
 
             BuildHeader();
             BuildTabs();
@@ -301,6 +313,7 @@ namespace RuinRail.App
             if (StashOpen || Session == null) return;
             _stash = new StashViewModel(Session, _hub.Storage, _hub.Loadout);
             _stash.Specials = _app != null ? _app.Specials : null;
+            _stash.Changed += OnStashChanged;
             _stashView = RuinRail.UI.Inventory.StashView.Create(_stash, CloseStash);
             _input.Stack.Push(_stashView.FocusList);
             var summary = Session.Expedition.LastSummary;
@@ -308,9 +321,16 @@ namespace RuinRail.App
             RefreshTexts();
         }
 
+        /// <summary>A refused stash move (Storage full, backpack full) sounds refused, whichever input tried it.</summary>
+        private void OnStashChanged()
+        {
+            if (_stash != null && _stash.MessageIsError) _sounds?.Outcome(true);
+        }
+
         public void CloseStash()
         {
             if (!StashOpen) return;
+            _stash.Changed -= OnStashChanged;
             _input.Stack.Remove(_stashView.FocusList);
             Destroy(_stashView.gameObject);
             _stashView = null;
@@ -353,7 +373,8 @@ namespace RuinRail.App
             if (!_stationList.Move(delta)) return;
 
             var station = StationOf(_stationList.Focused?.Id);
-            if (station.HasValue && _hub.Current != null && _hub.Current != station) _hub.Open(station.Value);
+            if (station.HasValue && _hub.Current != null && _hub.Current != station) { _hub.Open(station.Value); _sounds?.Section(); }
+            else _sounds?.Step(true);
         }
 
         // ---------------- zone 4a: the survivor card ----------------
@@ -468,40 +489,48 @@ namespace RuinRail.App
         {
             var column = ScreenLayout.RightColumn;
             const int cardHeight = 146;
-            UiKit.Panel(_root, new UiRect(column.X, column.Y, column.Width, cardHeight), "ExpeditionPanel");
+            _expeditionCard = new GameObject("ExpeditionCard");
+            _expeditionCard.transform.SetParent(_root, false);
+            var group = _expeditionCard.AddComponent<RectTransform>();
+            group.anchorMin = group.anchorMax = new Vector2(0f, 1f);
+            group.pivot = new Vector2(0f, 1f);
+            group.anchoredPosition = Vector2.zero;
+            group.sizeDelta = new Vector2(ScreenLayout.Width, ScreenLayout.Height);
+            var card = _expeditionCard.transform;
+            UiKit.Panel(card, new UiRect(column.X, column.Y, column.Width, cardHeight), "ExpeditionPanel");
             var inner = column.Inset(UiTheme.Pad);
             var y = inner.Y;
 
-            UiKit.Label(_root, "EXPEDITION", new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+            UiKit.Label(card, "EXPEDITION", new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
             y += UiText.LineHeight + 2;
 
-            _expeditionPlate = UiKit.Plate(_root, new UiRect(inner.X, y, inner.Width, UiText.Height(1, 2) + 8), UiTheme.AmberDim, "ExpeditionPlate");
-            _expeditionState = UiKit.Label(_root, string.Empty, new UiRect(inner.X, y + 4, inner.Width, UiText.Height(1, 2)), 2, TextAnchor.UpperCenter, UiTheme.Ink);
+            _expeditionPlate = UiKit.Plate(card, new UiRect(inner.X, y, inner.Width, UiText.Height(1, 2) + 8), UiTheme.AmberDim, "ExpeditionPlate");
+            _expeditionState = UiKit.Label(card, string.Empty, new UiRect(inner.X, y + 4, inner.Width, UiText.Height(1, 2)), 2, TextAnchor.UpperCenter, UiTheme.Ink);
             _expeditionState.alignment = TextAnchor.UpperCenter;
             y += UiText.Height(1, 2) + 12;
 
-            UiKit.Label(_root, "READY", new UiRect(inner.X, y, 36, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+            UiKit.Label(card, "READY", new UiRect(inner.X, y, 36, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
             _readyPips.Clear();
             for (var i = 0; i < RuinRail.Networking.SessionRequest.MaxPartySize; i++)
-                _readyPips.Add(UiKit.Plate(_root, new UiRect(inner.X + 40 + i * 10, y + 1, 7, 7), UiTheme.PanelEdgeSoft, "ReadyPip"));
+                _readyPips.Add(UiKit.Plate(card, new UiRect(inner.X + 40 + i * 10, y + 1, 7, 7), UiTheme.PanelEdgeSoft, "ReadyPip"));
             y += UiText.LineHeight + 2;
 
-            _expeditionHint = UiKit.Label(_root, string.Empty, new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+            _expeditionHint = UiKit.Label(card, string.Empty, new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
             y += UiText.LineHeight + 4;
-            UiKit.Plate(_root, new UiRect(inner.X, y, inner.Width, 1), UiTheme.PanelEdgeSoft, "Rule");
+            UiKit.Plate(card, new UiRect(inner.X, y, inner.Width, 1), UiTheme.PanelEdgeSoft, "Rule");
             y += 5;
 
             // What a failed run costs: two marked lines instead of a paragraph.
-            RiskLine(inner, ref y, UiTheme.Danger, "LOST ON FAIL", "gear, backpack");
-            RiskLine(inner, ref y, UiTheme.Terminal, "ALWAYS KEPT", "XP, coins, storage");
+            RiskLine(card, inner, ref y, UiTheme.Danger, "LOST ON FAIL", "gear, backpack");
+            RiskLine(card, inner, ref y, UiTheme.Terminal, "ALWAYS KEPT", "XP, coins, storage");
         }
 
-        private void RiskLine(UiRect inner, ref int y, Color tone, string heading, string detail)
+        private static void RiskLine(Transform card, UiRect inner, ref int y, Color tone, string heading, string detail)
         {
-            UiKit.Plate(_root, new UiRect(inner.X, y + 1, 5, 5), tone, "RiskMarker");
-            UiKit.Label(_root, heading, new UiRect(inner.X + 9, y, inner.Width - 9, UiText.Height()), 1, TextAnchor.UpperLeft, tone);
+            UiKit.Plate(card, new UiRect(inner.X, y + 1, 5, 5), tone, "RiskMarker");
+            UiKit.Label(card, heading, new UiRect(inner.X + 9, y, inner.Width - 9, UiText.Height()), 1, TextAnchor.UpperLeft, tone);
             y += UiText.LineHeight;
-            UiKit.Label(_root, detail, new UiRect(inner.X + 9, y, inner.Width - 9, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+            UiKit.Label(card, detail, new UiRect(inner.X + 9, y, inner.Width - 9, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
             y += UiText.LineHeight + 2;
         }
 
@@ -539,6 +568,7 @@ namespace RuinRail.App
             // the section they were leaving. So the tab bar is re-pointed at whatever is actually open, which keeps
             // the click, the confirm and the horizontal-step paths agreeing with the panel on screen.
             if (station.HasValue) _stationList.Focus("station." + station.Value);
+            if (_expeditionCard != null) _expeditionCard.SetActive(station == null);
 
             if (station == null)
             {
@@ -580,7 +610,7 @@ namespace RuinRail.App
 
         private void BuildStationPanel(BaseStation station)
         {
-            var column = ScreenLayout.MainColumn;
+            var column = ScreenLayout.StationColumn;
             _panel = UiKit.Panel(_root, column, "StationPanel:" + station);
             var inner = new UiRect(UiTheme.Pad, UiTheme.Pad, column.Width - UiTheme.Pad * 2, column.Height - UiTheme.Pad * 2);
 
@@ -701,10 +731,10 @@ namespace RuinRail.App
 
         // ---------------- the Trader counter ----------------
 
-        /// <summary>Visible offer rows before the list scrolls (the focus window pages the rest).</summary>
-        public const int TraderVisibleRows = 4;
-        /// <summary>Detail lines under the counter (the pager adds its own hint line when they overflow).</summary>
-        public const int TraderDetailLines = 6;
+        /// <summary>Most offer rows shown before the list scrolls (the focus window pages the rest; fewer when the panel is short).</summary>
+        public const int TraderVisibleRows = 6;
+        /// <summary>Detail lines beside the counter (the pager adds its own hint line when they overflow).</summary>
+        public const int TraderDetailLines = 22;
 
         public IReadOnlyList<MerchantRowView> TraderRows => _traderRows;
         public string TraderDetailTitleText => _traderDetailTitle != null ? _traderDetailTitle.text : string.Empty;
@@ -735,18 +765,25 @@ namespace RuinRail.App
                 _panelList = ScreenNavigation.Trader(_hub.Trader, () => SetTraderSelling(true));
             }
 
+            // The counter: the offers (or the survivor's items) on the left, SELL / BUY under them, and the focused
+            // entry's details in their own column on the right — read side by side instead of paged under the list.
+            const int listWidth = 284;
+            const int columnGap = 10;
+            const int sellHeight = 18;
             var rowPitch = MerchantRowView.Height + 2;
-            var listHeight = TraderVisibleRows * rowPitch;
-            var sellY = region.Y + listHeight + 2;
-            const int sellHeight = 16;
-            var detailTop = sellY + sellHeight + 6;
+            var visibleRows = Mathf.Clamp((region.Height - sellHeight - 4) / rowPitch, 1, TraderVisibleRows);
+            var list = new UiRect(region.X, region.Y, listWidth, region.Height);
+            var details = new UiRect(list.Right + columnGap, region.Y, region.Right - list.Right - columnGap, region.Height);
+            var offerCount = _panelList.Items.Count(i => ShelterTraderPresentation.RowIndexOf(i.Id) >= 0);
+            // SELL / BUY sits right under the last offer on screen, not at the bottom of an empty list area.
+            var sellY = list.Y + Mathf.Clamp(offerCount, 1, visibleRows) * rowPitch + 2;
 
             var skin = UiSkin.Load();
             var offerItems = _panelList.Items.Where(i => ShelterTraderPresentation.RowIndexOf(i.Id) >= 0).ToList();
-            var window = _traderWindow = new FocusWindow(_panelList, TraderVisibleRows, offerItems.Count);
-            for (var slot = 0; slot < TraderVisibleRows; slot++)
+            var window = _traderWindow = new FocusWindow(_panelList, visibleRows, offerItems.Count);
+            for (var slot = 0; slot < visibleRows; slot++)
             {
-                var bounds = new UiRect(region.X, region.Y + slot * rowPitch, region.Width, MerchantRowView.Height);
+                var bounds = new UiRect(list.X, list.Y + slot * rowPitch, list.Width, MerchantRowView.Height);
                 var row = MerchantRowView.Create(_panel.transform, bounds, skin != null ? skin.InventorySlot : null, "TraderRow" + slot);
                 row.gameObject.SetActive(slot < offerItems.Count);
                 row.Bind(_panelList, slot < offerItems.Count ? offerItems[slot] : null,
@@ -760,23 +797,25 @@ namespace RuinRail.App
             if (sellItem != null)
             {
                 var sell = UiKit.Control(_panel.transform, _panelList, sellItem,
-                    new UiRect(region.X, sellY, region.Width, sellHeight), ControlRole.Button,
+                    new UiRect(list.X, sellY, list.Width, sellHeight), ControlRole.Button,
                     i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); RefreshStationData(); },
-                    labelAnchor: TextAnchor.MiddleLeft);
+                    labelAnchor: TextAnchor.MiddleCenter);
                 _panelControls.Add(sell);
             }
 
-            UiKit.Plate(_panel.transform, new UiRect(region.X, detailTop - 4, region.Width, 1), UiTheme.PanelEdgeSoft, "TraderRule");
+            UiKit.Plate(_panel.transform, new UiRect(details.X - columnGap / 2, details.Y, 1, details.Height), UiTheme.PanelEdgeSoft, "TraderRule");
             _traderDetailTitle = UiKit.Label(_panel.transform, string.Empty,
-                new UiRect(region.X, detailTop, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+                new UiRect(details.X, details.Y, details.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink);
+            // The subtitle (rarity · category · price or sale value) wraps onto a second line rather than ending in "…".
             _traderDetailSubtitle = UiKit.Label(_panel.transform, string.Empty,
-                new UiRect(region.X, detailTop + UiText.LineHeight, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+                new UiRect(details.X, details.Y + UiText.LineHeight, details.Width, UiText.Height(2)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
+            UiKit.Plate(_panel.transform, new UiRect(details.X, details.Y + UiText.LineHeight * 3 + 1, details.Width, 1), UiTheme.PanelEdgeSoft, "TraderDetailRule");
             for (var i = 0; i < TraderDetailLines; i++)
             {
-                var y = detailTop + UiText.LineHeight * 2 + 3 + i * UiText.LineHeight;
-                if (y + UiText.Height() > region.Bottom) break;
+                var y = details.Y + UiText.LineHeight * 3 + 5 + i * UiText.LineHeight;
+                if (y + UiText.Height() > details.Bottom) break;
                 _traderDetailLines.Add(UiKit.Label(_panel.transform, string.Empty,
-                    new UiRect(region.X, y, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink));
+                    new UiRect(details.X, y, details.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Ink));
             }
 
             _panel.AddComponent<FocusWindowDriver>().Bind(window);
@@ -900,7 +939,7 @@ namespace RuinRail.App
             var affordable = _traderSelling ? !row.IsUnsellable && row.Price > 0 : row.IsSold || row.Price <= banked;
             _traderDetailTitle.text = UiText.Fit(tooltip.Name, width);
             _traderDetailTitle.color = UiTheme.Ink;
-            _traderDetailSubtitle.text = UiText.Fit(_traderSelling ? ShelterTraderPresentation.SellSubtitle(row, tooltip) : ShelterTraderPresentation.DetailSubtitle(row, tooltip, affordable), width);
+            _traderDetailSubtitle.text = _traderSelling ? ShelterTraderPresentation.SellSubtitle(row, tooltip) : ShelterTraderPresentation.DetailSubtitle(row, tooltip, affordable);
             _traderDetailSubtitle.color = affordable ? UiTheme.InkMuted : UiTheme.Danger;
 
             var key = row.Item != null ? row.Item.InstanceId : row.Index.ToString();
@@ -929,11 +968,12 @@ namespace RuinRail.App
                 _ => ScreenNavigation.Transit(_hub.Transit, _hub.Multiplayer)
             };
 
-            // Transit's and Storage's controls are the primary actions of their stations (depart; open the stash).
+            // One control language across the Shelter: every station action is an 18 px button with a centred label;
+            // the two stations whose actions are THE primary ones (depart; open the stash) draw them as 22 px primaries.
             var prominent = station == BaseStation.Transit || station == BaseStation.Storage;
             var role = prominent ? ControlRole.Primary : ControlRole.Button;
-            var rowHeight = prominent ? 22 : 14;
-            const int gap = 2;
+            var rowHeight = prominent ? 22 : 18;
+            const int gap = 3;
 
             var capacity = ScreenLayout.RowCapacity(region, rowHeight, gap);
             var rows = ScreenLayout.Rows(region, rowHeight, gap, capacity);
@@ -944,7 +984,7 @@ namespace RuinRail.App
                 if (IsCoinControl(_panelList.Items[slot].Id)) continue; // laid out as the coin selector below
                 var control = UiKit.Control(_panel.transform, _panelList, _panelList.Items[slot], rows[slot], role,
                     i => { _panelList.Focus(i.Id); _panelList.ActivateFocused(); RefreshTexts(); RefreshStationData(); },
-                    labelAnchor: role == ControlRole.Primary ? TextAnchor.MiddleCenter : TextAnchor.MiddleLeft);
+                    labelAnchor: TextAnchor.MiddleCenter);
                 window.Register(slot, control);
                 _panelControls.Add(control);
             }
@@ -1027,20 +1067,27 @@ namespace RuinRail.App
             }
 
             var y = region.Y;
+            RowKind? previous = null;
             foreach (var row in view.Rows)
             {
                 if (y + UiText.Height() > region.Bottom) break;
 
                 if (row.IsHeading)
                 {
-                    y += 3;
+                    // A section opens with air above it and under its rule, so it reads as a new group, not a row.
+                    if (previous != null) y += 6;
                     if (y + UiText.Height() > region.Bottom) break;
                     UiKit.Label(parent, UiText.Fit(row.Key, region.Width),
                         new UiRect(region.X, y, region.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
                     UiKit.Plate(parent, new UiRect(region.X, y + UiText.Height() + 1, region.Width, 1), UiTheme.AmberDim, "Rule");
-                    y += UiText.LineHeight + 3;
+                    y += UiText.LineHeight + 4;
+                    previous = row.Kind;
                     continue;
                 }
+
+                // A block (a rank bar and its effect lines) is separated from the next by a little air.
+                if (row.Kind == RowKind.Bar && previous == RowKind.Text) y += 3;
+                previous = row.Kind;
 
                 if (row.IsText)
                 {
@@ -1051,6 +1098,14 @@ namespace RuinRail.App
                     continue;
                 }
 
+                if (row.Kind == RowKind.Grid)
+                {
+                    // The grid takes the rest of the column: as many tiles as fit, the last one counting the others.
+                    y += 2;
+                    DrawGridRow(parent, new UiRect(region.X, y, region.Width, region.Bottom - y), row);
+                    break;
+                }
+
                 var height = RowHeight(row);
                 if (y + height > region.Bottom) break;
                 switch (row.Kind)
@@ -1059,7 +1114,10 @@ namespace RuinRail.App
                     case RowKind.Item: DrawItemRow(parent, region, y, row); break;
                     case RowKind.Badge: DrawBadgeRow(parent, region, y, row); break;
                     case RowKind.Pips: DrawPipsRow(parent, region, y, row); break;
-                    default: UiKit.StatRow(parent, new UiRect(region.X, y, region.Width, UiText.Height()), row.Key, row.Value); break;
+                    default:
+                        if (row.Tone == RowTone.Neutral) UiKit.StatRow(parent, new UiRect(region.X, y, region.Width, UiText.Height()), row.Key, row.Value);
+                        else DrawTonedPair(parent, region, y, row);
+                        break;
                 }
 
                 y += height;
@@ -1137,6 +1195,60 @@ namespace RuinRail.App
             UiKit.Label(parent, UiText.Fit(row.Value, region.Right - x), new UiRect(x, y + 3, region.Right - x, UiText.Height()), 1, TextAnchor.UpperLeft, nameColor);
         }
 
+        /// <summary>A key / value row whose value carries its tone (a cost the bank cannot cover reads red).</summary>
+        private static void DrawTonedPair(Transform parent, UiRect region, int y, StationRow row)
+        {
+            var valueWidth = Mathf.Min(UiText.Width(row.Value), region.Width / 2);
+            UiKit.Label(parent, UiText.Fit(row.Key, region.Width - valueWidth - 4), new UiRect(region.X, y, region.Width - valueWidth - 4, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.InkMuted);
+            var value = UiKit.Label(parent, UiText.Fit(row.Value, valueWidth), new UiRect(region.Right - valueWidth, y, valueWidth, UiText.Height()), 1, TextAnchor.UpperRight, ToneColor(row.Tone));
+            value.alignment = TextAnchor.UpperRight;
+        }
+
+        /// <summary>Pitch of one item tile in a grid row: the 32 px icon at native size plus its 1 px rarity frame.</summary>
+        public const int GridTile = 34;
+
+        /// <summary>
+        /// Items as icon tiles in their rarity frames, the icons at native pixels (never resampled), a stack's count in
+        /// the corner. When there are more than fit, the last tile shows how many more (the stash holds them all).
+        /// </summary>
+        private void DrawGridRow(Transform parent, UiRect area, StationRow row)
+        {
+            var columns = Mathf.Max(1, (area.Width + 2) / (GridTile + 2));
+            var rows = Mathf.Max(1, (area.Height + 2) / (GridTile + 2));
+            var capacity = columns * rows;
+            var items = row.Items;
+            var shown = items.Count > capacity ? capacity - 1 : items.Count;
+            var left = area.X + (area.Width - (columns * (GridTile + 2) - 2)) / 2;
+            for (var i = 0; i < Mathf.Min(items.Count, capacity); i++)
+            {
+                var tile = new UiRect(left + i % columns * (GridTile + 2), area.Y + i / columns * (GridTile + 2), GridTile, GridTile);
+                var more = i == shown;
+                var rarity = more ? UiTheme.PanelEdge : RarityStyle.For(items[i].Rarity).Color;
+                UiKit.Plate(parent, tile, rarity, "GridFrame");
+                UiKit.Plate(parent, new UiRect(tile.X + 1, tile.Y + 1, tile.Width - 2, tile.Height - 2), UiTheme.WithAlpha(UiTheme.NearBlack, 0.92f), "GridTile");
+                if (more)
+                {
+                    var count = UiKit.Label(parent, "+" + (items.Count - shown), new UiRect(tile.X, tile.Y + (GridTile - UiText.LineHeight) / 2, tile.Width, UiText.Height()), 1, TextAnchor.UpperCenter, UiTheme.InkMuted);
+                    count.alignment = TextAnchor.UpperCenter;
+                    continue;
+                }
+
+                var icon = Session?.Configs.Resolve(items[i].ItemId)?.Icon;
+                if (icon != null)
+                {
+                    var image = UiKit.Plate(parent, new UiRect(tile.X + 1, tile.Y + 1, 32, 32), Color.white, "GridIcon");
+                    image.sprite = icon;
+                    image.preserveAspect = true;
+                }
+
+                if (items[i].Quantity > 1)
+                {
+                    var qty = UiKit.Label(parent, "x" + items[i].Quantity, new UiRect(tile.X + 2, tile.Bottom - UiText.LineHeight - 1, tile.Width - 3, UiText.Height()), 1, TextAnchor.UpperRight, UiTheme.Ink);
+                    qty.alignment = TextAnchor.UpperRight;
+                }
+            }
+        }
+
         /// <summary>Text width a status plate holds on one line; longer statuses wrap onto a second line.</summary>
         private const int BadgeTextWidth = 132;
 
@@ -1145,8 +1257,9 @@ namespace RuinRail.App
         {
             var twoLines = UiText.Width(row.Key) > BadgeTextWidth;
             var plate = new UiRect(region.X, y, region.Width, (twoLines ? UiText.Height(2) : UiText.Height()) + 8);
-            UiKit.Plate(parent, plate, UiTheme.Darken(ToneColor(row.Tone), 0.55f), "StatusPlate");
-            UiKit.Plate(parent, new UiRect(plate.X, plate.Y, 2, plate.Height), ToneColor(row.Tone), "StatusEdge");
+            var tone = row.Tone == RowTone.Neutral ? UiTheme.Cyan : ToneColor(row.Tone);
+            UiKit.Plate(parent, plate, row.Tone == RowTone.Neutral ? UiTheme.WithAlpha(UiTheme.NearBlack, 0.9f) : UiTheme.Darken(tone, 0.55f), "StatusPlate");
+            UiKit.Plate(parent, new UiRect(plate.X, plate.Y, 2, plate.Height), tone, "StatusEdge");
             var label = UiKit.Label(parent, twoLines ? row.Key : UiText.Fit(row.Key, plate.Width - 8),
                 new UiRect(plate.X + 4, plate.Y + 4, plate.Width - 8, twoLines ? UiText.Height(2) : UiText.Height()),
                 1, TextAnchor.UpperCenter, UiTheme.Ink, wrap: twoLines);
@@ -1194,6 +1307,7 @@ namespace RuinRail.App
             var width = ScreenLayout.Width - UiTheme.ScreenMargin - (UiTheme.ScreenMargin + UiText.Width(_prompts.Footer()) + 8 + UiTheme.Pad);
             _feedback.text = UiText.Fit(feedback.Text, width);
             _feedback.color = feedback.IsError ? UiTheme.Danger : UiTheme.Terminal;
+            _feedbackShownAt = Time.unscaledTime;
             // Every station action reports here, whichever input ran it. A confirm from the keyboard or a controller
             // has no click handler behind it, so this is where the open station re-reads what the action changed
             // (the Workshop's level, cost and Banked Coins, the counter's stock and prices).
@@ -1245,9 +1359,17 @@ namespace RuinRail.App
             if (_storageTabPip != null) _storageTabPip.enabled = loot;
         }
 
+        /// <summary>How long an action's result stays in the footer before it clears (it reports, it does not linger).</summary>
+        public const float FeedbackSeconds = 6f;
+        private float _feedbackShownAt = float.NegativeInfinity;
+
+        /// <summary>The footer's current action result (empty once it has cleared).</summary>
+        public string FeedbackText => _feedback != null ? _feedback.text : string.Empty;
+
         private void Update()
         {
             _footer.text = _prompts.Footer();
+            if (_feedback.text.Length > 0 && Time.unscaledTime - _feedbackShownAt > FeedbackSeconds) _feedback.text = string.Empty;
             ApplyTraderRebuild();
             RefreshTexts();
             // The counter's details page with the same wheel / PageUp-Down / right-stick input the merchant uses.
@@ -1307,6 +1429,7 @@ namespace RuinRail.App
         {
             _feedback.text = UiText.Fit(summary.Title, 40);
             _feedback.color = summary.Summary.IsSuccess ? UiTheme.Terminal : UiTheme.Danger;
+            _feedbackShownAt = Time.unscaledTime;
         }
 
         /// <summary>CHANGE NAME: opens the field, or says why the name cannot change right now.</summary>
@@ -1332,6 +1455,7 @@ namespace RuinRail.App
 
         private void OnBack()
         {
+            _sounds?.Back();
             if (StashOpen) { if (!_stashView.HandleBack()) CloseStash(); return; } // Back first cancels a swap being chosen
             // A picked-up loadout item is put down first; the next Back leaves the station.
             if (_hub.Current == BaseStation.Loadout && _hub.Loadout.Inventory.Selected.HasValue) { _hub.Loadout.Inventory.CancelSelection(); return; }

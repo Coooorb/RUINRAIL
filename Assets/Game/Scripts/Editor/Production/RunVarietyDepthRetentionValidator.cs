@@ -193,14 +193,14 @@ namespace RuinRail.EditorTools.Production
                 report.Lines.Add(line);
             }
 
-            // Identity means the three biomes must not share one weighting.
+            // Identity means the biomes must not share one weighting.
             var signatures = ((Biome[])Enum.GetValues(typeof(Biome))).Select(b => string.Join(",",
                 (enemies ?? Array.Empty<RuinRail.Gameplay.Enemies.EnemyDefinition>()).Where(e => e != null && e.ThreatCost > 0f)
                 .OrderBy(e => e.Id, StringComparer.Ordinal).Select(e => BiomeEncounterWeights.Of(b, e)))).ToList();
             var distinct = new Line
             {
                 Rule = "biome encounter weighting",
-                Subject = "the three biomes differ",
+                Subject = "the biomes differ",
                 Detail = signatures.Distinct().Count() + " distinct weightings"
             };
             if (signatures.Distinct().Count() != signatures.Count) distinct.Problems.Add("two biomes share an identical archetype weighting");

@@ -106,7 +106,7 @@ namespace RuinRail.Tests
 
         [UnityTest]
         public IEnumerator LiveRun_CombatAndEliteClears_PresentOnce_WithNoticeStingerAndDoorRelease(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             var content = GameContentCatalog.Load();
             _app = GameApp.Ensure(content, _saveDir);

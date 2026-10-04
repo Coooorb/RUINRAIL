@@ -162,6 +162,9 @@ namespace RuinRail.UI.Inventory
             var dim = UiBuild.Plate(_root, ScreenLayout.Screen, UiTheme.WithAlpha(UiTheme.NearBlack, 0.88f), "Dim");
             dim.raycastTarget = true; // nothing of the Shelter underneath can be clicked while the stash is up
             _panel = dim.gameObject;
+            // The band above the window is covered outright: the Shelter's wordmark sits there, and any half of it left
+            // showing beside STASH reads as a garbled second title.
+            UiBuild.Plate(_panel.transform, ScreenLayout.Header, UiTheme.NearBlack, "HeaderCover");
 
             // Opaque: the Shelter's header wordmark sits right behind the title bar and must not show through it.
             var window = UiBuild.Panel(_panel.transform, Window, "Panel", UiTheme.NearBlack, UiTheme.PanelEdge).transform;

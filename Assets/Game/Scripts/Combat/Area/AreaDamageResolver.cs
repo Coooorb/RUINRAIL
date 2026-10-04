@@ -33,7 +33,7 @@ namespace RuinRail.Gameplay.Combat.Area
             var seen = new HashSet<IDamageable>();
             for (var i = 0; i < count; i++)
             {
-                var damageable = Overlaps[i].GetComponentInParent<IDamageable>();
+                var damageable = DamageTargets.Resolve(Overlaps[i]);
                 if (damageable == null || !seen.Add(damageable)) continue;
                 if (TeamMember.TeamOf(Overlaps[i]) == sourceTeam) continue;
                 targets.Add(damageable);

@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1906dce41f141c3b844fed647b047e4, type: 3}
+  m_Name: Boss_SubjectZero
+  m_EditorClassIdentifier: Game.Gameplay::RuinRail.Gameplay.Enemies.Bosses.BossDefinition
+  _id: boss_subject_zero
+  _displayName: Subject Zero
+  _biome: 3
+  _baseHealth: 1250
+  _moveSpeed: 2.6
+  _baseXp: 750
+  _strongestAttackDamageMin: 28
+  _strongestAttackDamageMax: 34
+  _phaseTwoHealthFraction: 0.5
+  _phaseTwoTimingMultiplier: 0.8
+  _staggerResistancePercent: 95
+  _moveset:
+  - {fileID: 11400000, guid: 55aaf6b88f1bd9fefda8e81922b84e6b, type: 2}
+  - {fileID: 11400000, guid: e3ab46be2f64c0bbac196a50c16d36a4, type: 2}
+  - {fileID: 11400000, guid: f45f6fbae4e9efd9b4f9ca8bb6323aca, type: 2}
+  - {fileID: 11400000, guid: 27cc8c4c03972a832ed0c73d6b74e33a, type: 2}
+  _phaseTwoArenaHazards:
+  - {fileID: 11400000, guid: ee2e520a5bdf3184ef0850f481dc1709, type: 2}
+  _summonAttack: {fileID: 0}
+  _summonDefinition: {fileID: 0}
+  _summonCount: 0
+  _maxLivingSummons: 0
+  _summonRadiusTiles: 2

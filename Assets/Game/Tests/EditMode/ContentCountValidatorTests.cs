@@ -19,9 +19,9 @@ namespace RuinRail.Tests.EditMode
             Assert.IsTrue(report.Pass, "\n" + report.ToMarkdown());
 
             int Actual(string category, string scope) => report.Lines.Single(l => l.Category == category && l.Scope == scope).Actual;
-            Assert.AreEqual(3, Actual("Biomes", "all"));
-            Assert.AreEqual(63, Actual("Room prefabs", "all biomes"));
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            Assert.AreEqual(4, Actual("Biomes", "all"));
+            Assert.AreEqual(84, Actual("Room prefabs", "all biomes"));
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 Assert.AreEqual(21, Actual("Room prefabs", biome.ToString()));
                 Assert.AreEqual(2, Actual("Rooms: Start", biome.ToString()));
@@ -46,8 +46,8 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(16, Actual("Accessory families", "all"));
             Assert.AreEqual(10, Actual("Consumables", "all"));
             Assert.AreEqual(9, Actual("Normal enemy archetypes", "all"));
-            Assert.AreEqual(6, Actual("Elites", "all"));
-            Assert.AreEqual(6, Actual("Bosses", "all"));
+            Assert.AreEqual(8, Actual("Elites", "all"));
+            Assert.AreEqual(8, Actual("Bosses", "all"));
             Assert.AreEqual(7, Actual("Dungeon event kinds", "all")); // 57.1–57.6 + the rare Secure Relay (57.7)
             Assert.IsEmpty(report.Problems);
         }
@@ -59,7 +59,7 @@ namespace RuinRail.Tests.EditMode
             var b = ContentCountValidator.ValidateProject().ToMarkdown();
             Assert.AreEqual(a, b, "Same project, byte-identical report (stable ordering, no timestamps).");
             StringAssert.Contains("Result: **PASS**", a);
-            StringAssert.Contains("| Room prefabs | all biomes | 63 | 63 | PASS |", a);
+            StringAssert.Contains("| Room prefabs | all biomes | 84 | 84 | PASS |", a);
             StringAssert.Contains("| Weapons | all | 33 | 33 | PASS |", a);
             StringAssert.Contains("| Elites | Rustworks | 2 | 2 | PASS |", a);
         }
@@ -80,7 +80,7 @@ namespace RuinRail.Tests.EditMode
             StringAssert.Contains("## Problems", duplicate.ToMarkdown());
 
             // And the project scan really is the source of those lines: constants match production/126 exactly.
-            Assert.AreEqual(63, ContentCountValidator.RoomsTotal);
+            Assert.AreEqual(84, ContentCountValidator.RoomsTotal);
             Assert.AreEqual(21, ContentCountValidator.RoomsPerBiome);
             Assert.AreEqual(33, ContentCountValidator.Weapons);
             Assert.AreEqual(11, ContentCountValidator.WeaponClasses);
@@ -88,8 +88,8 @@ namespace RuinRail.Tests.EditMode
             Assert.AreEqual(16, ContentCountValidator.AccessoryFamilies);
             Assert.AreEqual(10, ContentCountValidator.Consumables);
             Assert.AreEqual(9, ContentCountValidator.NormalEnemies);
-            Assert.AreEqual(6, ContentCountValidator.Elites);
-            Assert.AreEqual(6, ContentCountValidator.Bosses);
+            Assert.AreEqual(8, ContentCountValidator.Elites);
+            Assert.AreEqual(8, ContentCountValidator.Bosses);
             Assert.AreEqual(7, ContentCountValidator.DungeonEvents);
             Assert.AreEqual(21, ContentCountValidator.RoomDistribution.Sum(d => d.count));
         }

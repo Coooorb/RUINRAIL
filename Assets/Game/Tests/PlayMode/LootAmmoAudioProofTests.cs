@@ -413,7 +413,7 @@ namespace RuinRail.Tests
         /// </summary>
         [UnityTest]
         public IEnumerator LiveRun_EachBiome_PlaysItsOwnTheme_ThroughCombatAndBoss_WithoutRestartsBetweenRooms(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             yield return EnterDungeon(SeedFor(biome));
             var run = Object.FindFirstObjectByType<ExpeditionScene>();
@@ -425,7 +425,7 @@ namespace RuinRail.Tests
             var clip = catalog.TrackFor(explore);
             StringAssert.Contains(biome.ToString().ToLowerInvariant(), clip.name, "the biome's own file");
             Assert.AreNotSame(catalog.TrackFor(MusicRole.MainMenu), clip, "not the Main Menu bed");
-            foreach (var other in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }.Where(b => b != biome))
+            foreach (var other in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }.Where(b => b != biome))
                 Assert.Greater(Mathf.Abs(catalog.TrackFor(MusicStateResolver.Resolve(MusicScreen.Expedition, other, CombatIntensity.Exploration)).length - clip.length), 0.01f, $"{biome} and {other} run at different tempi");
             var health = run.Rig.Player.GetComponent<HealthComponent>();
             IEnumerator Clear(RoomRuntime room)
@@ -494,7 +494,7 @@ namespace RuinRail.Tests
             var catalog = director.Catalog;
             var shared = catalog.TrackFor(MusicRole.MainMenu);
             Assert.AreSame(shared, catalog.TrackFor(MusicRole.Shelter), "the Shelter slot is the Main Menu asset itself");
-            Assert.AreEqual(9, System.Enum.GetValues(typeof(MusicRole)).Cast<MusicRole>().Select(r => catalog.TrackFor(r)).Where(c => c != shared).Distinct().Count(), "every other role keeps its own track");
+            Assert.AreEqual(12, System.Enum.GetValues(typeof(MusicRole)).Cast<MusicRole>().Select(r => catalog.TrackFor(r)).Where(c => c != shared).Distinct().Count(), "every other role keeps its own track");
             AssertBed(director, "main menu", MusicRole.MainMenu, expectAmbience: null);
             for (var f = 0f; f < 0.5f; f += Time.unscaledDeltaTime) yield return null;
             var menuSource = director.GetComponentsInChildren<AudioSource>().Single(s => s.name.StartsWith("Music") && s.isPlaying && s.clip == shared);
@@ -550,7 +550,7 @@ namespace RuinRail.Tests
             yield return null;
             var director = _app.Music;
             var inventory = PlayerInventory.FromRegistry(_app.Registry, _app.Content.AmmoBalance);
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 _app.MusicBinder.EnterExpedition(new ExpeditionState(7, biome, inventory));
                 yield return null;

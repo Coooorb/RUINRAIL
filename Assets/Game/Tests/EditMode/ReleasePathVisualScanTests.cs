@@ -16,7 +16,7 @@ namespace RuinRail.Tests.EditMode
         {
             var report = ReleasePathVisualScan.Scan();
 
-            Assert.GreaterOrEqual(report.PrefabsScanned, 63, "All 63 room prefabs are in the release path and must be scanned.");
+            Assert.GreaterOrEqual(report.PrefabsScanned, 84, "All 84 room prefabs are in the release path and must be scanned.");
             Assert.Greater(report.RenderersScanned, 0, "A scan that inspects nothing proves nothing.");
         }
 

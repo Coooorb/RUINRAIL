@@ -739,6 +739,9 @@ namespace RuinRail.Networking
 
         // ---------------------------------------------------------------- shots
 
+        // One trigger pull emits its pellets in one frame: only the first carries the muzzle flash.
+        private int _lastShotFlashFrame = -1;
+
         private void OnProjectileLaunched(ProjectilePool pool, Vector2 origin, ProjectileSpawnData data)
         {
             if (_bus.RemoteClients.Count == 0) return;
@@ -753,8 +756,11 @@ namespace RuinRail.Networking
                 Speed = data.Speed,
                 Range = data.MaxRange,
                 Team = (int)data.SourceTeam,
-                Visual = new Unity.Collections.FixedString32Bytes(data.VisualId ?? string.Empty)
+                Visual = new Unity.Collections.FixedString32Bytes(data.VisualId ?? string.Empty),
+                Flash = isHostPlayer && UnityEngine.Time.frameCount != _lastShotFlashFrame,
+                Blast = data.ExplosionRadius
             });
+            if (isHostPlayer) _lastShotFlashFrame = UnityEngine.Time.frameCount;
         }
 
         private void OnShotReceived(ShotNetRecord shot)

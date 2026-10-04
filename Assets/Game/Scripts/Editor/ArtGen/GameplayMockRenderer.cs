@@ -224,6 +224,7 @@ namespace RuinRail.EditorTools.ArtGen
         {
             TileFactory.Biome.RuinedMetro => ("elite_railguard", "boss_the_conductor"),
             TileFactory.Biome.Rustworks => ("elite_crusher_unit", "boss_scrap_king"),
+            TileFactory.Biome.CryoVaults => ("elite_cryo_enforcer", "boss_the_warden"),
             _ => ("elite_prototype_x7", "boss_aegis_core")
         };
 

@@ -148,6 +148,38 @@ namespace RuinRail.Tests
 
             Assert.AreEqual(BaseHubViewModel.Stations.Length + 1, written.Count,
                 "One capture for the hub itself and one for each of the seven stations.");
+
+            // A lived-in Shelter: stored items (the Storage grid), unspent points (enabled attributes), the open stash
+            // and the counter's sell side — the states a player actually reads.
+            var session = hub.Session;
+            foreach (var id in new[] { "weapon_rattler_9", "armor_scout_rig", "accessory_ammo_pouch", "consumable_medkit", "weapon_wasp_45" })
+                session.Storage.TryAdd(new RuinRail.Gameplay.Items.ItemInstance(id, 1, RuinRail.Gameplay.Items.Rarity.Rare));
+            session.Storage.TryAdd(new RuinRail.Gameplay.Items.ItemInstance("ammo_light", 90));
+            session.Progression.AddXp(1200);
+            foreach (var (station, name) in new[] { (BaseStation.Storage, "ui_shelter_storage_items"), (BaseStation.Character, "ui_shelter_character_points") })
+            {
+                hub.Hub.Close();
+                yield return null;
+                hub.Hub.Open(station);
+                yield return null;
+                yield return null;
+                written.Add(UiScreenCapture.Capture(name).Path);
+            }
+
+            hub.Hub.Open(BaseStation.Storage);
+            yield return null;
+            hub.OpenStash();
+            yield return null;
+            yield return null;
+            written.Add(UiScreenCapture.Capture("ui_shelter_stash").Path);
+            hub.CloseStash();
+            hub.Hub.Open(BaseStation.Trader);
+            yield return null;
+            hub.PanelList.Focus("trader.sell");
+            hub.PanelList.ActivateFocused();
+            yield return null;
+            yield return null;
+            written.Add(UiScreenCapture.Capture("ui_shelter_trader_sell").Path);
             Debug.Log("Polish UI previews written:\n" + string.Join("\n", written));
         }
     }

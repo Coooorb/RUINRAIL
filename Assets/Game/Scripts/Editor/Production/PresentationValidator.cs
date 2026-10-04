@@ -16,7 +16,7 @@ namespace RuinRail.EditorTools.Production
     /// <summary>
     /// TASK 137 production validation (art/101, art/102): the approved sorting layers exist in the approved order, the
     /// camera config is 640×360 at PPU 32, every baked room prefab renders its layers on the approved sorting layers,
-    /// and each of the three biomes has a readable lighting profile. Deterministic markdown for the final gate.
+    /// and each biome has a readable lighting profile. Deterministic markdown for the final gate.
     /// </summary>
     public static class PresentationValidator
     {
@@ -153,7 +153,7 @@ namespace RuinRail.EditorTools.Production
             if (config.ExplosionSeconds > 1f) report.Problems.Add("Explosion effects linger longer than a second and would hide hazards/projectiles (art/104).");
         }
 
-        /// <summary>Creates the approved camera config and the three biome lighting profiles when missing (idempotent).</summary>
+        /// <summary>Creates the approved camera config and the biome lighting profiles when missing (idempotent).</summary>
         [MenuItem("RuinRail/Production/Create Presentation Assets")]
         public static void CreateAssets()
         {

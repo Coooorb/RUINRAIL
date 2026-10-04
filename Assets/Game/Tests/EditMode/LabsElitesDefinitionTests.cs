@@ -95,13 +95,13 @@ namespace RuinRail.Tests
         }
 
         [Test]
-        public void OvergrownLabs_HasExactlyTwoElites_AndSixElitesExistAcrossTheThreeBiomes()
+        public void OvergrownLabs_HasExactlyTwoElites_AndEightElitesExistAcrossTheBiomes()
         {
             var all = AssetDatabase.FindAssets("t:EliteDefinition").Select(g => AssetDatabase.LoadAssetAtPath<EliteDefinition>(AssetDatabase.GUIDToAssetPath(g))).Where(e => e != null).ToList();
             CollectionAssert.AreEquivalent(new[] { "elite_mutated_brute", "elite_prototype_x7" }, all.Where(e => e.Biome == Biome.OvergrownLabs).Select(e => e.Id));
-            Assert.AreEqual(6, all.Count, "126: six Elites, two per biome.");
-            Assert.AreEqual(6, all.Select(e => e.Id).Distinct().Count());
-            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs })
+            Assert.AreEqual(8, all.Count, "126: eight Elites, two per biome.");
+            Assert.AreEqual(8, all.Select(e => e.Id).Distinct().Count());
+            foreach (var biome in new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults })
             {
                 Assert.AreEqual(2, all.Count(e => e.Biome == biome), biome.ToString());
             }

@@ -20,7 +20,10 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         private readonly IDamageRoller _roller;
         private readonly ProjectilePool _projectilePool;
         private readonly HashSet<IDamageable> _hitThisWindow = new();
-        private readonly Collider2D[] _overlaps = new Collider2D[32];
+        // The queries are unfiltered (walls, props, pickups, projectiles, hazards and every actor count), so a long boss zone
+        // across a busy arena can touch dozens of colliders: the buffer must hold them all or a player standing inside the
+        // drawn footprint could be silently missed.
+        private readonly Collider2D[] _overlaps = new Collider2D[128];
         private readonly List<Projectile> _spawnedProjectiles = new();
 
         private EnemyAttackDefinition _attack;
@@ -39,6 +42,21 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
         public bool IsRunning => _attack != null;
         public EnemyAttackDefinition Current => _attack;
+
+        /// <summary>Attacks begun on this resolver so far (presentation counts strikes with it).</summary>
+        public int Begun { get; private set; }
+
+        /// <summary>Hit windows (or the dash) that have struck for the current/last attack.</summary>
+        public int WindowsFired { get; private set; }
+
+        /// <summary>The direction the running attack was locked to.</summary>
+        public Vector2 Direction => _direction;
+
+        /// <summary>Hit windows of the running attack still to come (0 once the last has struck; a dash has none).</summary>
+        public int WindowsRemaining => _attack == null || _attack.Motion == AttackMotion.Dash ? 0 : _attack.HitCount - _hitsDone;
+
+        /// <summary>Seconds until the next hit window strikes (0 when none is pending).</summary>
+        public float SecondsToNextWindow => WindowsRemaining <= 0 ? 0f : Mathf.Max(0f, _hitsDone * _attack.HitIntervalSeconds - _elapsed);
         public int HitsLanded { get; private set; }
         public int LastDamageDealt { get; private set; }
 
@@ -58,6 +76,10 @@ namespace RuinRail.Gameplay.Enemies.Attacks
         public void Begin(EnemyAttackDefinition attack, Vector2 lockedDirection)
         {
             _attack = attack;
+            Begun++;
+            // The lane the telegraph drew for this dash (same footprint, same wall clip): its hits stay inside it.
+            if (attack.Motion == AttackMotion.Dash) _dashLane = AttackFootprint.Dash(attack, _self.position, lockedDirection, true, null, _self);
+            WindowsFired = 0;
             _direction = lockedDirection.sqrMagnitude > 0.0001f ? lockedDirection.normalized : Vector2.right;
             _elapsed = 0f;
             _hitsDone = 0;
@@ -110,6 +132,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
                 _hitThisWindow.Clear();
                 window();
                 _hitsDone++;
+                WindowsFired = _hitsDone;
             }
 
             if (_hitsDone >= _attack.HitCount)
@@ -123,20 +146,20 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
         private void StrikeInFront()
         {
-            var center = (Vector2)_self.position + _direction * (_attack.HitRadius * 0.5f);
-            StrikeCircle(center, _attack.HitRadius);
+            var strike = AttackFootprint.Strike(_attack, _self.position, _direction);
+            StrikeCircle(strike.Centre, strike.Radius);
         }
 
         private void StrikeAround()
         {
-            StrikeCircle(_self.position, _attack.HitRadius);
+            var strike = AttackFootprint.Strike(_attack, _self.position, _direction);
+            StrikeCircle(strike.Centre, strike.Radius);
         }
 
         private void StrikeZone()
         {
-            var center = (Vector2)_self.position + _direction * (_attack.ZoneLength * 0.5f);
-            var angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
-            var count = Physics2D.OverlapBox(center, new Vector2(_attack.ZoneLength, _attack.ZoneWidth), angle, Physics2DQueries.LegacyQueryFilter(), _overlaps);
+            var strike = AttackFootprint.Strike(_attack, _self.position, _direction);
+            var count = Physics2D.OverlapBox(strike.Centre, strike.Size, strike.AngleDegrees, Physics2DQueries.LegacyQueryFilter(), _overlaps);
             ApplyHits(count);
         }
 
@@ -148,20 +171,19 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             }
 
             var count = _attack.ProjectileCount;
-            var spread = _attack.SpreadDegrees;
             for (var i = 0; i < count; i++)
             {
-                // Even fan: deterministic, readable, no RNG needed.
-                var offset = count == 1 || spread <= 0f ? 0f : Mathf.Lerp(-spread * 0.5f, spread * 0.5f, i / (float)(count - 1));
-                var direction = (Vector2)(Quaternion.Euler(0f, 0f, offset) * _direction);
+                // Even fan: deterministic, readable, no RNG needed — the same lanes the telegraph draws.
+                var direction = AttackFootprint.LaneDirection(_attack, _direction, i);
                 var damage = _roller.Roll(_attack.DamageMin, _attack.DamageMax);
                 var data = new ProjectileSpawnData(damage, _attack.ProjectileSpeed, _attack.ProjectileRange, _attack.Knockback, _attack.StaggerPower, direction, _self.gameObject, null, 0f, DamageTeam.Enemy, false, _attack.ProjectileVisualId);
-                _spawnedProjectiles.Add(_projectilePool.Spawn((Vector2)_self.position + direction * 0.6f, data));
+                _spawnedProjectiles.Add(_projectilePool.Spawn((Vector2)_self.position + direction * AttackFootprint.VolleyMuzzleOffset, data));
             }
         }
 
         private bool TickDash(float deltaTime)
         {
+            WindowsFired = 1;
             var step = Mathf.Min(_attack.DashSpeed * deltaTime, _attack.DashDistance - _dashTravelled);
 
             // A wall ahead ends the dash right there: no clipping and a readable recovery window for the player. The
@@ -170,7 +192,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             if (WallAhead(step + Mathf.Max(_attack.HitRadius * 0.5f, BodyRadius())))
             {
                 if (_body != null) _body.linearVelocity = Vector2.zero;
-                StrikeCircle(_self.position, _attack.HitRadius);
+                StrikeDash();
                 LastDashStoppedByWall = true;
                 _attack = null;
                 return true;
@@ -189,7 +211,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
                 if (free < physicsStep - 0.0001f)
                 {
                     if (_body != null) _body.linearVelocity = free > 0.0001f ? _direction * (free / Time.fixedDeltaTime) : Vector2.zero;
-                    StrikeCircle(_self.position, _attack.HitRadius);
+                    StrikeDash();
                     LastDashStoppedByBounds = true;
                     _attack = null;
                     return true;
@@ -202,7 +224,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             }
 
             _dashTravelled += step;
-            StrikeCircle(_self.position, _attack.HitRadius);
+            StrikeDash();
 
             if (_dashTravelled >= _attack.DashDistance - 0.0001f)
             {
@@ -238,6 +260,29 @@ namespace RuinRail.Gameplay.Enemies.Attacks
             return false;
         }
 
+        /// <summary>
+        /// A dash strikes around the running body, but only inside the lane it was warned with: the body can be shoved off
+        /// its line (crowding, a wall corner, the room edge), and its damage must never leave the red drawn for it.
+        /// </summary>
+        private void StrikeDash()
+        {
+            var count = Physics2D.OverlapCircle(_self.position, _attack.HitRadius, Physics2DQueries.LegacyQueryFilter(), _overlaps);
+            var lane = _dashLane;
+            var laneCount = Physics2D.OverlapCapsule(lane.Centre, lane.Size, CapsuleDirection2D.Horizontal, lane.AngleDegrees, Physics2DQueries.LegacyQueryFilter(), _laneOverlaps);
+            var kept = 0;
+            for (var i = 0; i < count; i++)
+            {
+                var inLane = false;
+                for (var j = 0; j < laneCount && !inLane; j++) inLane = _laneOverlaps[j] == _overlaps[i];
+                if (inLane) _overlaps[kept++] = _overlaps[i];
+            }
+
+            ApplyHits(kept);
+        }
+
+        private AttackFootprint.Shape _dashLane;
+        private readonly Collider2D[] _laneOverlaps = new Collider2D[128];
+
         private void StrikeCircle(Vector2 center, float radius)
         {
             var count = Physics2D.OverlapCircle(center, radius, Physics2DQueries.LegacyQueryFilter(), _overlaps);
@@ -255,7 +300,7 @@ namespace RuinRail.Gameplay.Enemies.Attacks
 
                 // Now that enemies are solid, an Elite's slam must not injure the enemies beside it: explicit allies are skipped.
                 if (TeamMember.AreAllies(_overlaps[i], _self)) continue;
-                var damageable = _overlaps[i].GetComponentInParent<IDamageable>();
+                var damageable = DamageTargets.Resolve(_overlaps[i]);
                 if (damageable == null || !_hitThisWindow.Add(damageable))
                 {
                     continue;

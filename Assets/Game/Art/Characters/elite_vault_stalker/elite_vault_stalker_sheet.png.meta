@@ -1,0 +1,5157 @@
+fileFormatVersion: 2
+guid: 65437534a9a3d4ab1adf0092c4cf0462
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1649553318384197035
+    second: elite_vault_stalker_sheet_0
+  - first:
+      213: 4418681465834363108
+    second: elite_vault_stalker_sheet_1
+  - first:
+      213: 1755503630560215953
+    second: elite_vault_stalker_sheet_2
+  - first:
+      213: -594810281421754896
+    second: elite_vault_stalker_sheet_3
+  - first:
+      213: -4405397467980667797
+    second: elite_vault_stalker_sheet_4
+  - first:
+      213: -2588273426961273129
+    second: elite_vault_stalker_sheet_5
+  - first:
+      213: 1294351205077345052
+    second: elite_vault_stalker_sheet_6
+  - first:
+      213: -7554476517259087071
+    second: elite_vault_stalker_sheet_7
+  - first:
+      213: 5846473582951317774
+    second: elite_vault_stalker_sheet_8
+  - first:
+      213: 22857671126744674
+    second: elite_vault_stalker_sheet_9
+  - first:
+      213: 7037898954520214231
+    second: elite_vault_stalker_sheet_10
+  - first:
+      213: 2695943408221524318
+    second: elite_vault_stalker_sheet_11
+  - first:
+      213: -6463497137410870843
+    second: elite_vault_stalker_sheet_12
+  - first:
+      213: -5526051727906154784
+    second: elite_vault_stalker_sheet_13
+  - first:
+      213: 7349442819837917977
+    second: elite_vault_stalker_sheet_14
+  - first:
+      213: 5131283870510196222
+    second: elite_vault_stalker_sheet_15
+  - first:
+      213: 7545083818021098897
+    second: elite_vault_stalker_sheet_16
+  - first:
+      213: 2275411660284467615
+    second: elite_vault_stalker_sheet_17
+  - first:
+      213: 2384027141891295135
+    second: elite_vault_stalker_sheet_18
+  - first:
+      213: 758579989076241119
+    second: elite_vault_stalker_sheet_19
+  - first:
+      213: -4968757949763028434
+    second: elite_vault_stalker_sheet_20
+  - first:
+      213: -19725164539189647
+    second: elite_vault_stalker_sheet_21
+  - first:
+      213: 3844059402331331546
+    second: elite_vault_stalker_sheet_22
+  - first:
+      213: -972711056852785253
+    second: elite_vault_stalker_sheet_23
+  - first:
+      213: -5173877054389946245
+    second: elite_vault_stalker_sheet_24
+  - first:
+      213: 980071919886350266
+    second: elite_vault_stalker_sheet_25
+  - first:
+      213: 5330544302107769223
+    second: elite_vault_stalker_sheet_26
+  - first:
+      213: 8593797460834717202
+    second: elite_vault_stalker_sheet_27
+  - first:
+      213: 8191861239901271925
+    second: elite_vault_stalker_sheet_28
+  - first:
+      213: -2210834527111349369
+    second: elite_vault_stalker_sheet_29
+  - first:
+      213: -1002370832231637645
+    second: elite_vault_stalker_sheet_30
+  - first:
+      213: 4029172282925262809
+    second: elite_vault_stalker_sheet_31
+  - first:
+      213: -1213750008756855879
+    second: elite_vault_stalker_sheet_32
+  - first:
+      213: 5657396423195404968
+    second: elite_vault_stalker_sheet_33
+  - first:
+      213: 7824721638413871227
+    second: elite_vault_stalker_sheet_34
+  - first:
+      213: 4564498056436956726
+    second: elite_vault_stalker_sheet_35
+  - first:
+      213: 7908940698346045031
+    second: elite_vault_stalker_sheet_36
+  - first:
+      213: 1152755636970978052
+    second: elite_vault_stalker_sheet_37
+  - first:
+      213: 4395102119400907207
+    second: elite_vault_stalker_sheet_38
+  - first:
+      213: 3994524095824262297
+    second: elite_vault_stalker_sheet_39
+  - first:
+      213: 6989597320113507551
+    second: elite_vault_stalker_sheet_40
+  - first:
+      213: 1976050812140775071
+    second: elite_vault_stalker_sheet_41
+  - first:
+      213: -1614877641209576397
+    second: elite_vault_stalker_sheet_42
+  - first:
+      213: 2807654307327272797
+    second: elite_vault_stalker_sheet_43
+  - first:
+      213: -7341557715212289058
+    second: elite_vault_stalker_sheet_44
+  - first:
+      213: -105765491724738887
+    second: elite_vault_stalker_sheet_45
+  - first:
+      213: 4330392960002117195
+    second: elite_vault_stalker_sheet_46
+  - first:
+      213: 8048144313154058912
+    second: elite_vault_stalker_sheet_47
+  - first:
+      213: 5949907824144469703
+    second: elite_vault_stalker_sheet_48
+  - first:
+      213: 7829086751910304881
+    second: elite_vault_stalker_sheet_49
+  - first:
+      213: -6928708980543354202
+    second: elite_vault_stalker_sheet_50
+  - first:
+      213: 4704076587453110183
+    second: elite_vault_stalker_sheet_51
+  - first:
+      213: -19013036249738915
+    second: elite_vault_stalker_sheet_52
+  - first:
+      213: -9174957397208062519
+    second: elite_vault_stalker_sheet_53
+  - first:
+      213: -5625413882347726496
+    second: elite_vault_stalker_sheet_54
+  - first:
+      213: -3930191206622549894
+    second: elite_vault_stalker_sheet_55
+  - first:
+      213: 1876579926985336316
+    second: elite_vault_stalker_sheet_56
+  - first:
+      213: 1581215875489882470
+    second: elite_vault_stalker_sheet_57
+  - first:
+      213: 8073241115804337893
+    second: elite_vault_stalker_sheet_58
+  - first:
+      213: 415817411764489365
+    second: elite_vault_stalker_sheet_59
+  - first:
+      213: 3833948619966291964
+    second: elite_vault_stalker_sheet_60
+  - first:
+      213: -9066269792175253665
+    second: elite_vault_stalker_sheet_61
+  - first:
+      213: -6122936654089572081
+    second: elite_vault_stalker_sheet_62
+  - first:
+      213: 8085361867379933916
+    second: elite_vault_stalker_sheet_63
+  - first:
+      213: 5981436667570192255
+    second: elite_vault_stalker_sheet_64
+  - first:
+      213: 194441221695167630
+    second: elite_vault_stalker_sheet_65
+  - first:
+      213: -7318808552963558749
+    second: elite_vault_stalker_sheet_66
+  - first:
+      213: -635167527987942328
+    second: elite_vault_stalker_sheet_67
+  - first:
+      213: -6491157157783679313
+    second: elite_vault_stalker_sheet_68
+  - first:
+      213: -4106528896513518952
+    second: elite_vault_stalker_sheet_69
+  - first:
+      213: 1903450207916527130
+    second: elite_vault_stalker_sheet_70
+  - first:
+      213: -1468404187892066324
+    second: elite_vault_stalker_sheet_71
+  - first:
+      213: -6234422600611176497
+    second: elite_vault_stalker_sheet_72
+  - first:
+      213: -2874224460168301971
+    second: elite_vault_stalker_sheet_73
+  - first:
+      213: -3362459225716831783
+    second: elite_vault_stalker_sheet_74
+  - first:
+      213: 1066384815379183212
+    second: elite_vault_stalker_sheet_75
+  - first:
+      213: -7090231091738584241
+    second: elite_vault_stalker_sheet_76
+  - first:
+      213: 37018903706555153
+    second: elite_vault_stalker_sheet_77
+  - first:
+      213: -3586560202509124355
+    second: elite_vault_stalker_sheet_78
+  - first:
+      213: 7874698262338920679
+    second: elite_vault_stalker_sheet_79
+  - first:
+      213: 5478167963498687906
+    second: elite_vault_stalker_sheet_80
+  - first:
+      213: 6623100872712589978
+    second: elite_vault_stalker_sheet_81
+  - first:
+      213: -9148137190139766538
+    second: elite_vault_stalker_sheet_82
+  - first:
+      213: 497737968720710667
+    second: elite_vault_stalker_sheet_83
+  - first:
+      213: 4333806910485615611
+    second: elite_vault_stalker_sheet_84
+  - first:
+      213: -2844556254277214821
+    second: elite_vault_stalker_sheet_85
+  - first:
+      213: -4097208769826066122
+    second: elite_vault_stalker_sheet_86
+  - first:
+      213: 2654164186372280632
+    second: elite_vault_stalker_sheet_87
+  - first:
+      213: -4194893111946149322
+    second: elite_vault_stalker_sheet_88
+  - first:
+      213: -8286075582896706098
+    second: elite_vault_stalker_sheet_89
+  - first:
+      213: 970747901763544834
+    second: elite_vault_stalker_sheet_90
+  - first:
+      213: 6133564661438342304
+    second: elite_vault_stalker_sheet_91
+  - first:
+      213: -7934941381925731754
+    second: elite_vault_stalker_sheet_92
+  - first:
+      213: 3364555211204066569
+    second: elite_vault_stalker_sheet_93
+  - first:
+      213: 6678439242943218796
+    second: elite_vault_stalker_sheet_94
+  - first:
+      213: -8288584967336615864
+    second: elite_vault_stalker_sheet_95
+  - first:
+      213: 1343687750739862427
+    second: elite_vault_stalker_sheet_96
+  - first:
+      213: 3776461840306184076
+    second: elite_vault_stalker_sheet_97
+  - first:
+      213: -2711744184502696621
+    second: elite_vault_stalker_sheet_98
+  - first:
+      213: -8483471878020316778
+    second: elite_vault_stalker_sheet_99
+  - first:
+      213: 3943200395508995940
+    second: elite_vault_stalker_sheet_100
+  - first:
+      213: 2842244678368688063
+    second: elite_vault_stalker_sheet_101
+  - first:
+      213: -1213385348790808928
+    second: elite_vault_stalker_sheet_102
+  - first:
+      213: -1696125056765557108
+    second: elite_vault_stalker_sheet_103
+  - first:
+      213: 9115808710594414292
+    second: elite_vault_stalker_sheet_104
+  - first:
+      213: 1719332128810561792
+    second: elite_vault_stalker_sheet_105
+  - first:
+      213: 4909641220375688936
+    second: elite_vault_stalker_sheet_106
+  - first:
+      213: -5499930470229760599
+    second: elite_vault_stalker_sheet_107
+  - first:
+      213: 6677748966034193625
+    second: elite_vault_stalker_sheet_108
+  - first:
+      213: 6731661835621550101
+    second: elite_vault_stalker_sheet_109
+  - first:
+      213: -475472740145207930
+    second: elite_vault_stalker_sheet_110
+  - first:
+      213: 585573803653471577
+    second: elite_vault_stalker_sheet_111
+  - first:
+      213: -6505305389156794178
+    second: elite_vault_stalker_sheet_112
+  - first:
+      213: 8844997685633790748
+    second: elite_vault_stalker_sheet_113
+  - first:
+      213: -762878977656365875
+    second: elite_vault_stalker_sheet_114
+  - first:
+      213: 6782119917943581715
+    second: elite_vault_stalker_sheet_115
+  - first:
+      213: -8831498288374968614
+    second: elite_vault_stalker_sheet_116
+  - first:
+      213: 40643878460639550
+    second: elite_vault_stalker_sheet_117
+  - first:
+      213: 8738454533359771865
+    second: elite_vault_stalker_sheet_118
+  - first:
+      213: 4727365309872768272
+    second: elite_vault_stalker_sheet_119
+  - first:
+      213: 2311006135095195387
+    second: elite_vault_stalker_sheet_120
+  - first:
+      213: 7643970489851803792
+    second: elite_vault_stalker_sheet_121
+  - first:
+      213: 6915324335484747867
+    second: elite_vault_stalker_sheet_122
+  - first:
+      213: -1467850171433067093
+    second: elite_vault_stalker_sheet_123
+  - first:
+      213: 6105364827639382197
+    second: elite_vault_stalker_sheet_124
+  - first:
+      213: -2995674933248269752
+    second: elite_vault_stalker_sheet_125
+  - first:
+      213: -892714891500821575
+    second: elite_vault_stalker_sheet_126
+  - first:
+      213: 8741607052395604873
+    second: elite_vault_stalker_sheet_127
+  - first:
+      213: 5878904479686217593
+    second: elite_vault_stalker_sheet_128
+  - first:
+      213: -1899196691674635266
+    second: elite_vault_stalker_sheet_129
+  - first:
+      213: 6112366884043988945
+    second: elite_vault_stalker_sheet_130
+  - first:
+      213: 8748160860720437463
+    second: elite_vault_stalker_sheet_131
+  - first:
+      213: -1991411388812011089
+    second: elite_vault_stalker_sheet_132
+  - first:
+      213: -5552307743791112062
+    second: elite_vault_stalker_sheet_133
+  - first:
+      213: -7527643535998486626
+    second: elite_vault_stalker_sheet_134
+  - first:
+      213: -8742898573951687536
+    second: elite_vault_stalker_sheet_135
+  - first:
+      213: -2797851654222969182
+    second: elite_vault_stalker_sheet_136
+  - first:
+      213: -3746338935606142776
+    second: elite_vault_stalker_sheet_137
+  - first:
+      213: -5042465401849167743
+    second: elite_vault_stalker_sheet_138
+  - first:
+      213: 4251066170403349210
+    second: elite_vault_stalker_sheet_139
+  - first:
+      213: -4139220398738528924
+    second: elite_vault_stalker_sheet_140
+  - first:
+      213: 6890564724446922342
+    second: elite_vault_stalker_sheet_141
+  - first:
+      213: 5758608486244874958
+    second: elite_vault_stalker_sheet_142
+  - first:
+      213: -4872919427884779336
+    second: elite_vault_stalker_sheet_143
+  - first:
+      213: -5859472484445127649
+    second: elite_vault_stalker_sheet_144
+  - first:
+      213: -3639860036280747066
+    second: elite_vault_stalker_sheet_145
+  - first:
+      213: 2315042774777870671
+    second: elite_vault_stalker_sheet_146
+  - first:
+      213: -7463805384126361249
+    second: elite_vault_stalker_sheet_147
+  - first:
+      213: 5511373355368159027
+    second: elite_vault_stalker_sheet_148
+  - first:
+      213: -1339769924601891748
+    second: elite_vault_stalker_sheet_149
+  - first:
+      213: -5397196917699154122
+    second: elite_vault_stalker_sheet_150
+  - first:
+      213: -1507181483161634540
+    second: elite_vault_stalker_sheet_151
+  - first:
+      213: -2800173092225150790
+    second: elite_vault_stalker_sheet_152
+  - first:
+      213: -7797165524764654245
+    second: elite_vault_stalker_sheet_153
+  - first:
+      213: -5187206705819478064
+    second: elite_vault_stalker_sheet_154
+  - first:
+      213: -3907672885136904478
+    second: elite_vault_stalker_sheet_155
+  - first:
+      213: 7217834798719329105
+    second: elite_vault_stalker_sheet_156
+  - first:
+      213: -5199191388815285836
+    second: elite_vault_stalker_sheet_157
+  - first:
+      213: -6395063890083251708
+    second: elite_vault_stalker_sheet_158
+  - first:
+      213: -226117572422504664
+    second: elite_vault_stalker_sheet_159
+  - first:
+      213: 7272435065995418119
+    second: elite_vault_stalker_sheet_160
+  - first:
+      213: -255023018924215723
+    second: elite_vault_stalker_sheet_161
+  - first:
+      213: -6779986915034616998
+    second: elite_vault_stalker_sheet_162
+  - first:
+      213: -3038989225223999111
+    second: elite_vault_stalker_sheet_163
+  - first:
+      213: 4952509806878360401
+    second: elite_vault_stalker_sheet_164
+  - first:
+      213: 2579851275314845328
+    second: elite_vault_stalker_sheet_165
+  - first:
+      213: -4311240944642398232
+    second: elite_vault_stalker_sheet_166
+  - first:
+      213: -5353437686101173322
+    second: elite_vault_stalker_sheet_167
+  - first:
+      213: -1853513022124790674
+    second: elite_vault_stalker_sheet_0_0
+  - first:
+      213: -1092923599413112257
+    second: elite_vault_stalker_sheet_0_1
+  - first:
+      213: -7909601138715170658
+    second: elite_vault_stalker_sheet_0_2
+  - first:
+      213: 902206324064168880
+    second: elite_vault_stalker_sheet_0_3
+  - first:
+      213: 8280159390188754606
+    second: elite_vault_stalker_sheet_0_4
+  - first:
+      213: 6093677193871462073
+    second: elite_vault_stalker_sheet_0_5
+  - first:
+      213: 6115036241587619396
+    second: elite_vault_stalker_sheet_0_6
+  - first:
+      213: -3038282049248003624
+    second: elite_vault_stalker_sheet_0_7
+  - first:
+      213: -4367047661307241853
+    second: elite_vault_stalker_sheet_0_8
+  - first:
+      213: 8409882718521941875
+    second: elite_vault_stalker_sheet_0_9
+  - first:
+      213: 6117468414617205562
+    second: elite_vault_stalker_sheet_0_10
+  - first:
+      213: -4465710803070302173
+    second: elite_vault_stalker_sheet_0_11
+  - first:
+      213: -6954419999729767044
+    second: elite_vault_stalker_sheet_0_12
+  - first:
+      213: 5327751823043566028
+    second: elite_vault_stalker_sheet_0_13
+  - first:
+      213: 319298829426029084
+    second: elite_vault_stalker_sheet_0_14
+  - first:
+      213: -4987832518823338231
+    second: elite_vault_stalker_sheet_0_15
+  - first:
+      213: 1872730137472332750
+    second: elite_vault_stalker_sheet_0_16
+  - first:
+      213: -1092702061618868127
+    second: elite_vault_stalker_sheet_0_17
+  - first:
+      213: 5626414535825497043
+    second: elite_vault_stalker_sheet_0_18
+  - first:
+      213: 3866065125247667074
+    second: elite_vault_stalker_sheet_0_19
+  - first:
+      213: 5221014162977009414
+    second: elite_vault_stalker_sheet_0_20
+  - first:
+      213: -1830552679064755595
+    second: elite_vault_stalker_sheet_1_0
+  - first:
+      213: 2743257707726810143
+    second: elite_vault_stalker_sheet_1_1
+  - first:
+      213: -2048595543879590698
+    second: elite_vault_stalker_sheet_1_2
+  - first:
+      213: 604907728437420215
+    second: elite_vault_stalker_sheet_1_3
+  - first:
+      213: -7863931098177758708
+    second: elite_vault_stalker_sheet_1_4
+  - first:
+      213: -176287863863260072
+    second: elite_vault_stalker_sheet_1_5
+  - first:
+      213: -3873637481163267261
+    second: elite_vault_stalker_sheet_1_6
+  - first:
+      213: 9036187267122102618
+    second: elite_vault_stalker_sheet_1_7
+  - first:
+      213: 71415141489851927
+    second: elite_vault_stalker_sheet_1_8
+  - first:
+      213: -1770277171060917633
+    second: elite_vault_stalker_sheet_1_9
+  - first:
+      213: -5981207075725180237
+    second: elite_vault_stalker_sheet_1_10
+  - first:
+      213: 5234372123852530905
+    second: elite_vault_stalker_sheet_1_11
+  - first:
+      213: -2021131870004173319
+    second: elite_vault_stalker_sheet_1_12
+  - first:
+      213: -3023413740745818316
+    second: elite_vault_stalker_sheet_1_13
+  - first:
+      213: 6490366782214194069
+    second: elite_vault_stalker_sheet_1_14
+  - first:
+      213: 5502872967873829003
+    second: elite_vault_stalker_sheet_1_15
+  - first:
+      213: -9136611716255381650
+    second: elite_vault_stalker_sheet_1_16
+  - first:
+      213: 7106724755296529353
+    second: elite_vault_stalker_sheet_1_17
+  - first:
+      213: 1269106881737271506
+    second: elite_vault_stalker_sheet_1_18
+  - first:
+      213: 6820001542538637746
+    second: elite_vault_stalker_sheet_1_19
+  - first:
+      213: 5169872955569041795
+    second: elite_vault_stalker_sheet_1_20
+  - first:
+      213: -3452326501154848009
+    second: elite_vault_stalker_sheet_2_0
+  - first:
+      213: -7960865400849798503
+    second: elite_vault_stalker_sheet_2_1
+  - first:
+      213: 8192964089962888173
+    second: elite_vault_stalker_sheet_2_2
+  - first:
+      213: -7540962013036621388
+    second: elite_vault_stalker_sheet_2_3
+  - first:
+      213: -552491981281327756
+    second: elite_vault_stalker_sheet_2_4
+  - first:
+      213: 2094649713771420634
+    second: elite_vault_stalker_sheet_2_5
+  - first:
+      213: 4928450818298808040
+    second: elite_vault_stalker_sheet_2_6
+  - first:
+      213: -8037805902188303634
+    second: elite_vault_stalker_sheet_2_7
+  - first:
+      213: 1309652664397031836
+    second: elite_vault_stalker_sheet_2_8
+  - first:
+      213: -5298873916582886573
+    second: elite_vault_stalker_sheet_2_9
+  - first:
+      213: -868288353744312776
+    second: elite_vault_stalker_sheet_2_10
+  - first:
+      213: -7433081532665835386
+    second: elite_vault_stalker_sheet_2_11
+  - first:
+      213: 6204844579523684931
+    second: elite_vault_stalker_sheet_2_12
+  - first:
+      213: -5695889693167802963
+    second: elite_vault_stalker_sheet_2_13
+  - first:
+      213: -6395577664875740751
+    second: elite_vault_stalker_sheet_2_14
+  - first:
+      213: -7983252242892092791
+    second: elite_vault_stalker_sheet_2_15
+  - first:
+      213: -5310927071266839321
+    second: elite_vault_stalker_sheet_2_16
+  - first:
+      213: 8956081250917708172
+    second: elite_vault_stalker_sheet_2_17
+  - first:
+      213: -3284334392048957878
+    second: elite_vault_stalker_sheet_2_18
+  - first:
+      213: -9151381988019502028
+    second: elite_vault_stalker_sheet_2_19
+  - first:
+      213: -6856613744516638824
+    second: elite_vault_stalker_sheet_2_20
+  - first:
+      213: -4015371262286346370
+    second: elite_vault_stalker_sheet_3_0
+  - first:
+      213: -8126218847998193293
+    second: elite_vault_stalker_sheet_3_1
+  - first:
+      213: 4668814842873247153
+    second: elite_vault_stalker_sheet_3_2
+  - first:
+      213: -2664144107820708122
+    second: elite_vault_stalker_sheet_3_3
+  - first:
+      213: 2503188564760281231
+    second: elite_vault_stalker_sheet_3_4
+  - first:
+      213: -6239289839161808722
+    second: elite_vault_stalker_sheet_3_5
+  - first:
+      213: -8229619609701282822
+    second: elite_vault_stalker_sheet_3_6
+  - first:
+      213: -5478872203283780687
+    second: elite_vault_stalker_sheet_3_7
+  - first:
+      213: 2650691392752408210
+    second: elite_vault_stalker_sheet_3_8
+  - first:
+      213: -838849405107194291
+    second: elite_vault_stalker_sheet_3_9
+  - first:
+      213: 5080685662964425469
+    second: elite_vault_stalker_sheet_3_10
+  - first:
+      213: 4002241498818615579
+    second: elite_vault_stalker_sheet_3_11
+  - first:
+      213: -2964288822460086399
+    second: elite_vault_stalker_sheet_3_12
+  - first:
+      213: 3007256828514947027
+    second: elite_vault_stalker_sheet_3_13
+  - first:
+      213: 8318114866692566019
+    second: elite_vault_stalker_sheet_3_14
+  - first:
+      213: 9104388217317935025
+    second: elite_vault_stalker_sheet_3_15
+  - first:
+      213: 387041332187547036
+    second: elite_vault_stalker_sheet_3_16
+  - first:
+      213: -4428104462830840748
+    second: elite_vault_stalker_sheet_3_17
+  - first:
+      213: -4595824560663751695
+    second: elite_vault_stalker_sheet_3_18
+  - first:
+      213: 5866346439968794407
+    second: elite_vault_stalker_sheet_3_19
+  - first:
+      213: -8952194224684731734
+    second: elite_vault_stalker_sheet_3_20
+  - first:
+      213: 2597855452751524891
+    second: elite_vault_stalker_sheet_4_0
+  - first:
+      213: -7034155004996371070
+    second: elite_vault_stalker_sheet_4_1
+  - first:
+      213: -4997672475038539061
+    second: elite_vault_stalker_sheet_4_2
+  - first:
+      213: 745748259281456084
+    second: elite_vault_stalker_sheet_4_3
+  - first:
+      213: -137955325045382536
+    second: elite_vault_stalker_sheet_4_4
+  - first:
+      213: -936760388934776759
+    second: elite_vault_stalker_sheet_4_5
+  - first:
+      213: -4814392936386576538
+    second: elite_vault_stalker_sheet_4_6
+  - first:
+      213: -6982999539702274717
+    second: elite_vault_stalker_sheet_4_7
+  - first:
+      213: -6727331537126420975
+    second: elite_vault_stalker_sheet_4_8
+  - first:
+      213: -8367758772322074849
+    second: elite_vault_stalker_sheet_4_9
+  - first:
+      213: 8450080767760421442
+    second: elite_vault_stalker_sheet_4_10
+  - first:
+      213: 6898807099064162148
+    second: elite_vault_stalker_sheet_4_11
+  - first:
+      213: 8742746974420558752
+    second: elite_vault_stalker_sheet_4_12
+  - first:
+      213: -4619232794663214335
+    second: elite_vault_stalker_sheet_4_13
+  - first:
+      213: -8500177875924349722
+    second: elite_vault_stalker_sheet_4_14
+  - first:
+      213: -6325172596214443936
+    second: elite_vault_stalker_sheet_4_15
+  - first:
+      213: -7697136422645068249
+    second: elite_vault_stalker_sheet_4_16
+  - first:
+      213: 4526714677647169457
+    second: elite_vault_stalker_sheet_4_17
+  - first:
+      213: 2313222387515767585
+    second: elite_vault_stalker_sheet_4_18
+  - first:
+      213: -378864508013171559
+    second: elite_vault_stalker_sheet_4_19
+  - first:
+      213: -2568262485270733929
+    second: elite_vault_stalker_sheet_4_20
+  - first:
+      213: -1772993824381056035
+    second: elite_vault_stalker_sheet_5_0
+  - first:
+      213: 3661731566587755225
+    second: elite_vault_stalker_sheet_5_1
+  - first:
+      213: -6489874198060447119
+    second: elite_vault_stalker_sheet_5_2
+  - first:
+      213: -8973218493965874189
+    second: elite_vault_stalker_sheet_5_3
+  - first:
+      213: -2517313306588312530
+    second: elite_vault_stalker_sheet_5_4
+  - first:
+      213: 752018043917993968
+    second: elite_vault_stalker_sheet_5_5
+  - first:
+      213: -7053317888967974342
+    second: elite_vault_stalker_sheet_5_6
+  - first:
+      213: -6597717854006577478
+    second: elite_vault_stalker_sheet_5_7
+  - first:
+      213: 8266004144493451598
+    second: elite_vault_stalker_sheet_5_8
+  - first:
+      213: 5932646190364396987
+    second: elite_vault_stalker_sheet_5_9
+  - first:
+      213: 8683684761645243467
+    second: elite_vault_stalker_sheet_5_10
+  - first:
+      213: -8675743621064264237
+    second: elite_vault_stalker_sheet_5_11
+  - first:
+      213: -3017676154243720184
+    second: elite_vault_stalker_sheet_5_12
+  - first:
+      213: -296448103847516808
+    second: elite_vault_stalker_sheet_5_13
+  - first:
+      213: -7956042105853898395
+    second: elite_vault_stalker_sheet_5_14
+  - first:
+      213: -975270826546729037
+    second: elite_vault_stalker_sheet_5_15
+  - first:
+      213: -8750039816391506070
+    second: elite_vault_stalker_sheet_5_16
+  - first:
+      213: 5665216820107374847
+    second: elite_vault_stalker_sheet_5_17
+  - first:
+      213: 4419284552257670559
+    second: elite_vault_stalker_sheet_5_18
+  - first:
+      213: -3877051662337380024
+    second: elite_vault_stalker_sheet_5_19
+  - first:
+      213: -5203302569037434518
+    second: elite_vault_stalker_sheet_5_20
+  - first:
+      213: -5856928224799426345
+    second: elite_vault_stalker_sheet_6_0
+  - first:
+      213: 849258494862753442
+    second: elite_vault_stalker_sheet_6_1
+  - first:
+      213: -3562337916167726137
+    second: elite_vault_stalker_sheet_6_2
+  - first:
+      213: 6358013069978636507
+    second: elite_vault_stalker_sheet_6_3
+  - first:
+      213: -6558726816355915149
+    second: elite_vault_stalker_sheet_6_4
+  - first:
+      213: 1421692382223579130
+    second: elite_vault_stalker_sheet_6_5
+  - first:
+      213: 6394699216163056325
+    second: elite_vault_stalker_sheet_6_6
+  - first:
+      213: 3291645765129235523
+    second: elite_vault_stalker_sheet_6_7
+  - first:
+      213: 4570696118445461350
+    second: elite_vault_stalker_sheet_6_8
+  - first:
+      213: -5887777770011629768
+    second: elite_vault_stalker_sheet_6_9
+  - first:
+      213: -8462414615343919310
+    second: elite_vault_stalker_sheet_6_10
+  - first:
+      213: 3405315328312030160
+    second: elite_vault_stalker_sheet_6_11
+  - first:
+      213: 4953622505928894882
+    second: elite_vault_stalker_sheet_6_12
+  - first:
+      213: -7849470733713444036
+    second: elite_vault_stalker_sheet_6_13
+  - first:
+      213: 6766467888901210828
+    second: elite_vault_stalker_sheet_6_14
+  - first:
+      213: 8010568305651573445
+    second: elite_vault_stalker_sheet_6_15
+  - first:
+      213: -1919460742034119064
+    second: elite_vault_stalker_sheet_6_16
+  - first:
+      213: 6804119722350148838
+    second: elite_vault_stalker_sheet_6_17
+  - first:
+      213: -6052089083695224745
+    second: elite_vault_stalker_sheet_6_18
+  - first:
+      213: 2019931748368193796
+    second: elite_vault_stalker_sheet_6_19
+  - first:
+      213: 8153915500770672974
+    second: elite_vault_stalker_sheet_6_20
+  - first:
+      213: -7459825629872738002
+    second: elite_vault_stalker_sheet_7_0
+  - first:
+      213: 6145649414899976800
+    second: elite_vault_stalker_sheet_7_1
+  - first:
+      213: 8407994622950633835
+    second: elite_vault_stalker_sheet_7_2
+  - first:
+      213: -3409181381414730845
+    second: elite_vault_stalker_sheet_7_3
+  - first:
+      213: -3259415892341967941
+    second: elite_vault_stalker_sheet_7_4
+  - first:
+      213: -8561423407854203794
+    second: elite_vault_stalker_sheet_7_5
+  - first:
+      213: -7191512513477514126
+    second: elite_vault_stalker_sheet_7_6
+  - first:
+      213: 6172000141666483049
+    second: elite_vault_stalker_sheet_7_7
+  - first:
+      213: -1787266803889732433
+    second: elite_vault_stalker_sheet_7_8
+  - first:
+      213: -4671517453222394126
+    second: elite_vault_stalker_sheet_7_9
+  - first:
+      213: 774730526057779267
+    second: elite_vault_stalker_sheet_7_10
+  - first:
+      213: 4664430695350094870
+    second: elite_vault_stalker_sheet_7_11
+  - first:
+      213: 4774256771719855481
+    second: elite_vault_stalker_sheet_7_12
+  - first:
+      213: 6030210970170592485
+    second: elite_vault_stalker_sheet_7_13
+  - first:
+      213: 3332043621630652284
+    second: elite_vault_stalker_sheet_7_14
+  - first:
+      213: -814013630577710182
+    second: elite_vault_stalker_sheet_7_15
+  - first:
+      213: -1673099593041861986
+    second: elite_vault_stalker_sheet_7_16
+  - first:
+      213: -3698605902229533891
+    second: elite_vault_stalker_sheet_7_17
+  - first:
+      213: -8352856417165207537
+    second: elite_vault_stalker_sheet_7_18
+  - first:
+      213: -2655749243514725270
+    second: elite_vault_stalker_sheet_7_19
+  - first:
+      213: 6460737716187760721
+    second: elite_vault_stalker_sheet_7_20
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6ce0b90abff646e0800000000000000
+      internalID: -1853513022124790674
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f321752e6c725d0f0800000000000000
+      internalID: -1092923599413112257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e986bd3dba37b3290800000000000000
+      internalID: -7909601138715170658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bba4f32fd7458c00800000000000000
+      internalID: 902206324064168880
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea6d0df581909e270800000000000000
+      internalID: 8280159390188754606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9be8b944f17119450800000000000000
+      internalID: 6093677193871462073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 44648781019fcd450800000000000000
+      internalID: 6115036241587619396
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8d9702fd29ad5d5d0800000000000000
+      internalID: -3038282049248003624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 38ad4962a412563c0800000000000000
+      internalID: -4367047661307241853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37f523866c7e5b470800000000000000
+      internalID: 8409882718521941875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b3ee18c1d95e450800000000000000
+      internalID: 6117468414617205562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 328ce595fab9602c0800000000000000
+      internalID: -4465710803070302173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7d2c393bdfec7f90800000000000000
+      internalID: -6954419999729767044
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc993ff2e0affe940800000000000000
+      internalID: 5327751823043566028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c12f229f7906e6400800000000000000
+      internalID: 319298829426029084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90f946430c8a7cab0800000000000000
+      internalID: -4987832518823338231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec3f43c43264df910800000000000000
+      internalID: 1872730137472332750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 160dedba341f5d0f0800000000000000
+      internalID: -1092702061618868127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3db19f6d53a051e40800000000000000
+      internalID: 5626414535825497043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28bc9e48fb507a530800000000000000
+      internalID: 3866065125247667074
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_0_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 392
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60f278718b4c47840800000000000000
+      internalID: 5221014162977009414
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 572a4bd79029896e0800000000000000
+      internalID: -1830552679064755595
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1ca86cc952021620800000000000000
+      internalID: 2743257707726810143
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dcdb9ee43de193e0800000000000000
+      internalID: -2048595543879590698
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7b0a663cf50156800800000000000000
+      internalID: 604907728437420215
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c0a97f2c454bdd290800000000000000
+      internalID: -7863931098177758708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 85cc7303f13bd8df0800000000000000
+      internalID: -176287863863260072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 343ef9afb331e3ac0800000000000000
+      internalID: -3873637481163267261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a5188b4917cf66d70800000000000000
+      internalID: 9036187267122102618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 71e361c51b7bdf000800000000000000
+      internalID: 71415141489851927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f7a3ee0da46be67e0800000000000000
+      internalID: -1770277171060917633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b2095bbadb7efca0800000000000000
+      internalID: -5981207075725180237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d4ef68b6b934a840800000000000000
+      internalID: 5234372123852530905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f52e2cc54f73f3e0800000000000000
+      internalID: -2021131870004173319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f7fc5b83daa06d0800000000000000
+      internalID: -3023413740745818316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5934fd3733a621a50800000000000000
+      internalID: 6490366782214194069
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b88183e0fc12e5c40800000000000000
+      internalID: 5502872967873829003
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e670de94d0c343180800000000000000
+      internalID: -9136611716255381650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9cbaceb038820a260800000000000000
+      internalID: 7106724755296529353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d824f32cf5cc9110800000000000000
+      internalID: 1269106881737271506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b1b1aed44385ae50800000000000000
+      internalID: 6820001542538637746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_1_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 336
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 381779adf041fb740800000000000000
+      internalID: 5169872955569041795
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f28ff1a65fd610d0800000000000000
+      internalID: -3452326501154848009
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99a66ada813558190800000000000000
+      internalID: -7960865400849798503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: debf4cf7e6143b170800000000000000
+      internalID: 8192964089962888173
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b1dc3cb00f195790800000000000000
+      internalID: -7540962013036621388
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 475897268772558f0800000000000000
+      internalID: -552491981281327756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: adb183611d0b11d10800000000000000
+      internalID: 2094649713771420634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e60fad38ef556440800000000000000
+      internalID: 4928450818298808040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eea278a3e1af37090800000000000000
+      internalID: -8037805902188303634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c996780d822dc2210800000000000000
+      internalID: 1309652664397031836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3538e7c5f3e9676b0800000000000000
+      internalID: -5298873916582886573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8362678b75833f3f0800000000000000
+      internalID: -868288353744312776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 680dfea6ab368d890800000000000000
+      internalID: -7433081532665835386
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34a640935490c1650800000000000000
+      internalID: 6204844579523684931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: da5acee808224f0b0800000000000000
+      internalID: -5695889693167802963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1c8afbff75e37a0800000000000000
+      internalID: -6395577664875740751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 98a8316d16ac53190800000000000000
+      internalID: -7983252242892092791
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e4622997fbcb46b0800000000000000
+      internalID: -5310927071266839321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c817c7442746a4c70800000000000000
+      internalID: 8956081250917708172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a46c2568543bb62d0800000000000000
+      internalID: -3284334392048957878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43480386192cff080800000000000000
+      internalID: -9151381988019502028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_2_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 280
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8975604902a68d0a0800000000000000
+      internalID: -6856613744516638824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e774c1e7c198648c0800000000000000
+      internalID: -4015371262286346370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 371dbf5230fd93f80800000000000000
+      internalID: -8126218847998193293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b5f787fc56fac040800000000000000
+      internalID: 4668814842873247153
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ee85e69c0f070bd0800000000000000
+      internalID: -2664144107820708122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f804b58bcbc1db220800000000000000
+      internalID: 2503188564760281231
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea86e0ec2f69969a0800000000000000
+      internalID: -6239289839161808722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afb8a2f31948acd80800000000000000
+      internalID: -8229619609701282822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bb228962c227f3b0800000000000000
+      internalID: -5478872203283780687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 296513a17c529c420800000000000000
+      internalID: 2650691392752408210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d46b98419eecb54f0800000000000000
+      internalID: -838849405107194291
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df22a6c11b8328640800000000000000
+      internalID: 5080685662964425469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b19196a3071da8730800000000000000
+      internalID: 4002241498818615579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1870b9d750bbcd6d0800000000000000
+      internalID: -2964288822460086399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3df4004072cebb920800000000000000
+      internalID: 3007256828514947027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30c2b166661ef6370800000000000000
+      internalID: 8318114866692566019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b7cc76b8d8495e70800000000000000
+      internalID: 9104388217317935025
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c95ce6e7a0c0f5500800000000000000
+      internalID: 387041332187547036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45455a0c3763c82c0800000000000000
+      internalID: -4428104462830840748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f31f9b69e95830c0800000000000000
+      internalID: -4595824560663751695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727a7b38103796150800000000000000
+      internalID: 5866346439968794407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_3_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 224
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa2fc5d88ca63c380800000000000000
+      internalID: -8952194224684731734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b14f01f25cf6d0420800000000000000
+      internalID: 2597855452751524891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28db720aa49a16e90800000000000000
+      internalID: -7034155004996371070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc2a49ddc53b4aab0800000000000000
+      internalID: -4997672475038539061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4db4656371e695a00800000000000000
+      internalID: 745748259281456084
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 872ebcfdc52e51ef0800000000000000
+      internalID: -137955325045382536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 948c2e1b365fff2f0800000000000000
+      internalID: -936760388934776759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66f3781d127df2db0800000000000000
+      internalID: -4814392936386576538
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36564598ae6671f90800000000000000
+      internalID: -6982999539702274717
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 11e0c432c97b3a2a0800000000000000
+      internalID: -6727331537126420975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1f75991bbfbfdb80800000000000000
+      internalID: -8367758772322074849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 24258b510b7b44570800000000000000
+      internalID: 8450080767760421442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46799a1518c7dbf50800000000000000
+      internalID: 6898807099064162148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a3657b5d0a745970800000000000000
+      internalID: 8742746974420558752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 103a34b3f3035efb0800000000000000
+      internalID: -4619232794663214335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ec05e9f14d490a80800000000000000
+      internalID: -8500177875924349722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0605a9339097838a0800000000000000
+      internalID: -6325172596214443936
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e058c64374e2590800000000000000
+      internalID: -7697136422645068249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b7d4b8040f12de30800000000000000
+      internalID: 4526714677647169457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12bbb5661873a1020800000000000000
+      internalID: 2313222387515767585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99c2fddbcb00ebaf0800000000000000
+      internalID: -378864508013171559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_4_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 168
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 79bd97b70e2bb5cd0800000000000000
+      internalID: -2568262485270733929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ddb4ecca28f0567e0800000000000000
+      internalID: -1772993824381056035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9da3c49857511d230800000000000000
+      internalID: 3661731566587755225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 17a42ab3dc55fe5a0800000000000000
+      internalID: -6489874198060447119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fbc2376259b87380800000000000000
+      internalID: -8973218493965874189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e2c807c82e4b01dd0800000000000000
+      internalID: -2517313306588312530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0f78a643d64bf6a00800000000000000
+      internalID: 752018043917993968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a32e72400c49d1e90800000000000000
+      internalID: -7053317888967974342
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab67fa761923074a0800000000000000
+      internalID: -6597717854006577478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e49507869feb6b270800000000000000
+      internalID: 8266004144493451598
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bbd8eb2174ef45250800000000000000
+      internalID: 5932646190364396987
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b4c56575845a28870800000000000000
+      internalID: 8683684761645243467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3d57a188421999780800000000000000
+      internalID: -8675743621064264237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80cd22ba68f0f16d0800000000000000
+      internalID: -3017676154243720184
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 875a4db250ec2ebf0800000000000000
+      internalID: -296448103847516808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 561178e8bd5769190800000000000000
+      internalID: -7956042105853898395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3bf61e7b9542772f0800000000000000
+      internalID: -975270826546729037
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a67c57d852d919680800000000000000
+      internalID: -8750039816391506070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0711aaea4ee9e40800000000000000
+      internalID: 5665216820107374847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9d80bac2e3745d30800000000000000
+      internalID: 4419284552257670559
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 841fa8afd02f13ac0800000000000000
+      internalID: -3877051662337380024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_5_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 112
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6175a9b1e72ac7b0800000000000000
+      internalID: -5203302569037434518
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d8fed59fc208bea0800000000000000
+      internalID: -5856928224799426345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2aef6ccf91c29cb00800000000000000
+      internalID: 849258494862753442
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7cbdae01a88009ec0800000000000000
+      internalID: -3562337916167726137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bd01e5173333c3850800000000000000
+      internalID: 6358013069978636507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 37ae64cc5b8baf4a0800000000000000
+      internalID: -6558726816355915149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: af7b05e60bddab310800000000000000
+      internalID: 1421692382223579130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ca2ed87e098eb850800000000000000
+      internalID: 6394699216163056325
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 34c62fc22664ead20800000000000000
+      internalID: 3291645765129235523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66fc23437ef5e6f30800000000000000
+      internalID: 4570696118445461350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 837e30e10596a4ea0800000000000000
+      internalID: -5887777770011629768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23f0a5e3eb67f8a80800000000000000
+      internalID: -8462414615343919310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d33b3cbf3c124f20800000000000000
+      internalID: 3405315328312030160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a9a5497c6dceb440800000000000000
+      internalID: 4953622505928894882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c337f2ab4f3111390800000000000000
+      internalID: -7849470733713444036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc24b06d1b257ed50800000000000000
+      internalID: 6766467888901210828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c26d53ae614b2f60800000000000000
+      internalID: 8010568305651573445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 866afb6ff94bc55e0800000000000000
+      internalID: -1919460742034119064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6ecf8e376d61d6e50800000000000000
+      internalID: 6804119722350148838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 758a3513b09a20ca0800000000000000
+      internalID: -6052089083695224745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 409150c193d380c10800000000000000
+      internalID: 2019931748368193796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_6_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 56
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e41ccf752f6882170800000000000000
+      internalID: 8153915500770672974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e21b41d0d10697890800000000000000
+      internalID: -7459825629872738002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 06a4331f49bb94550800000000000000
+      internalID: 6145649414899976800
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_2
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b61fd56ef823fa470800000000000000
+      internalID: 8407994622950633835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_3
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3a346e1a89720b0d0800000000000000
+      internalID: -3409181381414730845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_4
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb3b1b9d38a34c2d0800000000000000
+      internalID: -3259415892341967941
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_5
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e6cc22b55c6bf2980800000000000000
+      internalID: -8561423407854203794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_6
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27c6564a87d923c90800000000000000
+      internalID: -7191512513477514126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_7
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96bf0bd9d6957a550800000000000000
+      internalID: 6172000141666483049
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_8
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fa40e4baf4a5237e0800000000000000
+      internalID: -1787266803889732433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_9
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f644a680af6b2fb0800000000000000
+      internalID: -4671517453222394126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_10
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 340535a0f4560ca00800000000000000
+      internalID: 774730526057779267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_11
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61c45c311036bb040800000000000000
+      internalID: 4664430695350094870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_12
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97d7dd02d31914240800000000000000
+      internalID: 4774256771719855481
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_13
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec8ead8dec9fa350800000000000000
+      internalID: 6030210970170592485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_14
+      rect:
+        serializedVersion: 2
+        x: 560
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c7fa66b150ccd3e20800000000000000
+      internalID: 3332043621630652284
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_15
+      rect:
+        serializedVersion: 2
+        x: 600
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a9be6137aea04b4f0800000000000000
+      internalID: -814013630577710182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_16
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e92a3ead8c4f7c8e0800000000000000
+      internalID: -1673099593041861986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_17
+      rect:
+        serializedVersion: 2
+        x: 680
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3b02792789ebacc0800000000000000
+      internalID: -3698605902229533891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_18
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f08960b0851b41c80800000000000000
+      internalID: -8352856417165207537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_19
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a6cdacf3222e42bd0800000000000000
+      internalID: -2655749243514725270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: elite_vault_stalker_sheet_7_20
+      rect:
+        serializedVersion: 2
+        x: 800
+        y: 0
+        width: 40
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5, y: 0.15}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1580750f8b629a950800000000000000
+      internalID: 6460737716187760721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      elite_vault_stalker_sheet_0: 1649553318384197035
+      elite_vault_stalker_sheet_0_0: -1853513022124790674
+      elite_vault_stalker_sheet_0_1: -1092923599413112257
+      elite_vault_stalker_sheet_0_10: 6117468414617205562
+      elite_vault_stalker_sheet_0_11: -4465710803070302173
+      elite_vault_stalker_sheet_0_12: -6954419999729767044
+      elite_vault_stalker_sheet_0_13: 5327751823043566028
+      elite_vault_stalker_sheet_0_14: 319298829426029084
+      elite_vault_stalker_sheet_0_15: -4987832518823338231
+      elite_vault_stalker_sheet_0_16: 1872730137472332750
+      elite_vault_stalker_sheet_0_17: -1092702061618868127
+      elite_vault_stalker_sheet_0_18: 5626414535825497043
+      elite_vault_stalker_sheet_0_19: 3866065125247667074
+      elite_vault_stalker_sheet_0_2: -7909601138715170658
+      elite_vault_stalker_sheet_0_20: 5221014162977009414
+      elite_vault_stalker_sheet_0_3: 902206324064168880
+      elite_vault_stalker_sheet_0_4: 8280159390188754606
+      elite_vault_stalker_sheet_0_5: 6093677193871462073
+      elite_vault_stalker_sheet_0_6: 6115036241587619396
+      elite_vault_stalker_sheet_0_7: -3038282049248003624
+      elite_vault_stalker_sheet_0_8: -4367047661307241853
+      elite_vault_stalker_sheet_0_9: 8409882718521941875
+      elite_vault_stalker_sheet_1: 4418681465834363108
+      elite_vault_stalker_sheet_10: 7037898954520214231
+      elite_vault_stalker_sheet_100: 3943200395508995940
+      elite_vault_stalker_sheet_101: 2842244678368688063
+      elite_vault_stalker_sheet_102: -1213385348790808928
+      elite_vault_stalker_sheet_103: -1696125056765557108
+      elite_vault_stalker_sheet_104: 9115808710594414292
+      elite_vault_stalker_sheet_105: 1719332128810561792
+      elite_vault_stalker_sheet_106: 4909641220375688936
+      elite_vault_stalker_sheet_107: -5499930470229760599
+      elite_vault_stalker_sheet_108: 6677748966034193625
+      elite_vault_stalker_sheet_109: 6731661835621550101
+      elite_vault_stalker_sheet_11: 2695943408221524318
+      elite_vault_stalker_sheet_110: -475472740145207930
+      elite_vault_stalker_sheet_111: 585573803653471577
+      elite_vault_stalker_sheet_112: -6505305389156794178
+      elite_vault_stalker_sheet_113: 8844997685633790748
+      elite_vault_stalker_sheet_114: -762878977656365875
+      elite_vault_stalker_sheet_115: 6782119917943581715
+      elite_vault_stalker_sheet_116: -8831498288374968614
+      elite_vault_stalker_sheet_117: 40643878460639550
+      elite_vault_stalker_sheet_118: 8738454533359771865
+      elite_vault_stalker_sheet_119: 4727365309872768272
+      elite_vault_stalker_sheet_12: -6463497137410870843
+      elite_vault_stalker_sheet_120: 2311006135095195387
+      elite_vault_stalker_sheet_121: 7643970489851803792
+      elite_vault_stalker_sheet_122: 6915324335484747867
+      elite_vault_stalker_sheet_123: -1467850171433067093
+      elite_vault_stalker_sheet_124: 6105364827639382197
+      elite_vault_stalker_sheet_125: -2995674933248269752
+      elite_vault_stalker_sheet_126: -892714891500821575
+      elite_vault_stalker_sheet_127: 8741607052395604873
+      elite_vault_stalker_sheet_128: 5878904479686217593
+      elite_vault_stalker_sheet_129: -1899196691674635266
+      elite_vault_stalker_sheet_13: -5526051727906154784
+      elite_vault_stalker_sheet_130: 6112366884043988945
+      elite_vault_stalker_sheet_131: 8748160860720437463
+      elite_vault_stalker_sheet_132: -1991411388812011089
+      elite_vault_stalker_sheet_133: -5552307743791112062
+      elite_vault_stalker_sheet_134: -7527643535998486626
+      elite_vault_stalker_sheet_135: -8742898573951687536
+      elite_vault_stalker_sheet_136: -2797851654222969182
+      elite_vault_stalker_sheet_137: -3746338935606142776
+      elite_vault_stalker_sheet_138: -5042465401849167743
+      elite_vault_stalker_sheet_139: 4251066170403349210
+      elite_vault_stalker_sheet_14: 7349442819837917977
+      elite_vault_stalker_sheet_140: -4139220398738528924
+      elite_vault_stalker_sheet_141: 6890564724446922342
+      elite_vault_stalker_sheet_142: 5758608486244874958
+      elite_vault_stalker_sheet_143: -4872919427884779336
+      elite_vault_stalker_sheet_144: -5859472484445127649
+      elite_vault_stalker_sheet_145: -3639860036280747066
+      elite_vault_stalker_sheet_146: 2315042774777870671
+      elite_vault_stalker_sheet_147: -7463805384126361249
+      elite_vault_stalker_sheet_148: 5511373355368159027
+      elite_vault_stalker_sheet_149: -1339769924601891748
+      elite_vault_stalker_sheet_15: 5131283870510196222
+      elite_vault_stalker_sheet_150: -5397196917699154122
+      elite_vault_stalker_sheet_151: -1507181483161634540
+      elite_vault_stalker_sheet_152: -2800173092225150790
+      elite_vault_stalker_sheet_153: -7797165524764654245
+      elite_vault_stalker_sheet_154: -5187206705819478064
+      elite_vault_stalker_sheet_155: -3907672885136904478
+      elite_vault_stalker_sheet_156: 7217834798719329105
+      elite_vault_stalker_sheet_157: -5199191388815285836
+      elite_vault_stalker_sheet_158: -6395063890083251708
+      elite_vault_stalker_sheet_159: -226117572422504664
+      elite_vault_stalker_sheet_16: 7545083818021098897
+      elite_vault_stalker_sheet_160: 7272435065995418119
+      elite_vault_stalker_sheet_161: -255023018924215723
+      elite_vault_stalker_sheet_162: -6779986915034616998
+      elite_vault_stalker_sheet_163: -3038989225223999111
+      elite_vault_stalker_sheet_164: 4952509806878360401
+      elite_vault_stalker_sheet_165: 2579851275314845328
+      elite_vault_stalker_sheet_166: -4311240944642398232
+      elite_vault_stalker_sheet_167: -5353437686101173322
+      elite_vault_stalker_sheet_17: 2275411660284467615
+      elite_vault_stalker_sheet_18: 2384027141891295135
+      elite_vault_stalker_sheet_19: 758579989076241119
+      elite_vault_stalker_sheet_1_0: -1830552679064755595
+      elite_vault_stalker_sheet_1_1: 2743257707726810143
+      elite_vault_stalker_sheet_1_10: -5981207075725180237
+      elite_vault_stalker_sheet_1_11: 5234372123852530905
+      elite_vault_stalker_sheet_1_12: -2021131870004173319
+      elite_vault_stalker_sheet_1_13: -3023413740745818316
+      elite_vault_stalker_sheet_1_14: 6490366782214194069
+      elite_vault_stalker_sheet_1_15: 5502872967873829003
+      elite_vault_stalker_sheet_1_16: -9136611716255381650
+      elite_vault_stalker_sheet_1_17: 7106724755296529353
+      elite_vault_stalker_sheet_1_18: 1269106881737271506
+      elite_vault_stalker_sheet_1_19: 6820001542538637746
+      elite_vault_stalker_sheet_1_2: -2048595543879590698
+      elite_vault_stalker_sheet_1_20: 5169872955569041795
+      elite_vault_stalker_sheet_1_3: 604907728437420215
+      elite_vault_stalker_sheet_1_4: -7863931098177758708
+      elite_vault_stalker_sheet_1_5: -176287863863260072
+      elite_vault_stalker_sheet_1_6: -3873637481163267261
+      elite_vault_stalker_sheet_1_7: 9036187267122102618
+      elite_vault_stalker_sheet_1_8: 71415141489851927
+      elite_vault_stalker_sheet_1_9: -1770277171060917633
+      elite_vault_stalker_sheet_2: 1755503630560215953
+      elite_vault_stalker_sheet_20: -4968757949763028434
+      elite_vault_stalker_sheet_21: -19725164539189647
+      elite_vault_stalker_sheet_22: 3844059402331331546
+      elite_vault_stalker_sheet_23: -972711056852785253
+      elite_vault_stalker_sheet_24: -5173877054389946245
+      elite_vault_stalker_sheet_25: 980071919886350266
+      elite_vault_stalker_sheet_26: 5330544302107769223
+      elite_vault_stalker_sheet_27: 8593797460834717202
+      elite_vault_stalker_sheet_28: 8191861239901271925
+      elite_vault_stalker_sheet_29: -2210834527111349369
+      elite_vault_stalker_sheet_2_0: -3452326501154848009
+      elite_vault_stalker_sheet_2_1: -7960865400849798503
+      elite_vault_stalker_sheet_2_10: -868288353744312776
+      elite_vault_stalker_sheet_2_11: -7433081532665835386
+      elite_vault_stalker_sheet_2_12: 6204844579523684931
+      elite_vault_stalker_sheet_2_13: -5695889693167802963
+      elite_vault_stalker_sheet_2_14: -6395577664875740751
+      elite_vault_stalker_sheet_2_15: -7983252242892092791
+      elite_vault_stalker_sheet_2_16: -5310927071266839321
+      elite_vault_stalker_sheet_2_17: 8956081250917708172
+      elite_vault_stalker_sheet_2_18: -3284334392048957878
+      elite_vault_stalker_sheet_2_19: -9151381988019502028
+      elite_vault_stalker_sheet_2_2: 8192964089962888173
+      elite_vault_stalker_sheet_2_20: -6856613744516638824
+      elite_vault_stalker_sheet_2_3: -7540962013036621388
+      elite_vault_stalker_sheet_2_4: -552491981281327756
+      elite_vault_stalker_sheet_2_5: 2094649713771420634
+      elite_vault_stalker_sheet_2_6: 4928450818298808040
+      elite_vault_stalker_sheet_2_7: -8037805902188303634
+      elite_vault_stalker_sheet_2_8: 1309652664397031836
+      elite_vault_stalker_sheet_2_9: -5298873916582886573
+      elite_vault_stalker_sheet_3: -594810281421754896
+      elite_vault_stalker_sheet_30: -1002370832231637645
+      elite_vault_stalker_sheet_31: 4029172282925262809
+      elite_vault_stalker_sheet_32: -1213750008756855879
+      elite_vault_stalker_sheet_33: 5657396423195404968
+      elite_vault_stalker_sheet_34: 7824721638413871227
+      elite_vault_stalker_sheet_35: 4564498056436956726
+      elite_vault_stalker_sheet_36: 7908940698346045031
+      elite_vault_stalker_sheet_37: 1152755636970978052
+      elite_vault_stalker_sheet_38: 4395102119400907207
+      elite_vault_stalker_sheet_39: 3994524095824262297
+      elite_vault_stalker_sheet_3_0: -4015371262286346370
+      elite_vault_stalker_sheet_3_1: -8126218847998193293
+      elite_vault_stalker_sheet_3_10: 5080685662964425469
+      elite_vault_stalker_sheet_3_11: 4002241498818615579
+      elite_vault_stalker_sheet_3_12: -2964288822460086399
+      elite_vault_stalker_sheet_3_13: 3007256828514947027
+      elite_vault_stalker_sheet_3_14: 8318114866692566019
+      elite_vault_stalker_sheet_3_15: 9104388217317935025
+      elite_vault_stalker_sheet_3_16: 387041332187547036
+      elite_vault_stalker_sheet_3_17: -4428104462830840748
+      elite_vault_stalker_sheet_3_18: -4595824560663751695
+      elite_vault_stalker_sheet_3_19: 5866346439968794407
+      elite_vault_stalker_sheet_3_2: 4668814842873247153
+      elite_vault_stalker_sheet_3_20: -8952194224684731734
+      elite_vault_stalker_sheet_3_3: -2664144107820708122
+      elite_vault_stalker_sheet_3_4: 2503188564760281231
+      elite_vault_stalker_sheet_3_5: -6239289839161808722
+      elite_vault_stalker_sheet_3_6: -8229619609701282822
+      elite_vault_stalker_sheet_3_7: -5478872203283780687
+      elite_vault_stalker_sheet_3_8: 2650691392752408210
+      elite_vault_stalker_sheet_3_9: -838849405107194291
+      elite_vault_stalker_sheet_4: -4405397467980667797
+      elite_vault_stalker_sheet_40: 6989597320113507551
+      elite_vault_stalker_sheet_41: 1976050812140775071
+      elite_vault_stalker_sheet_42: -1614877641209576397
+      elite_vault_stalker_sheet_43: 2807654307327272797
+      elite_vault_stalker_sheet_44: -7341557715212289058
+      elite_vault_stalker_sheet_45: -105765491724738887
+      elite_vault_stalker_sheet_46: 4330392960002117195
+      elite_vault_stalker_sheet_47: 8048144313154058912
+      elite_vault_stalker_sheet_48: 5949907824144469703
+      elite_vault_stalker_sheet_49: 7829086751910304881
+      elite_vault_stalker_sheet_4_0: 2597855452751524891
+      elite_vault_stalker_sheet_4_1: -7034155004996371070
+      elite_vault_stalker_sheet_4_10: 8450080767760421442
+      elite_vault_stalker_sheet_4_11: 6898807099064162148
+      elite_vault_stalker_sheet_4_12: 8742746974420558752
+      elite_vault_stalker_sheet_4_13: -4619232794663214335
+      elite_vault_stalker_sheet_4_14: -8500177875924349722
+      elite_vault_stalker_sheet_4_15: -6325172596214443936
+      elite_vault_stalker_sheet_4_16: -7697136422645068249
+      elite_vault_stalker_sheet_4_17: 4526714677647169457
+      elite_vault_stalker_sheet_4_18: 2313222387515767585
+      elite_vault_stalker_sheet_4_19: -378864508013171559
+      elite_vault_stalker_sheet_4_2: -4997672475038539061
+      elite_vault_stalker_sheet_4_20: -2568262485270733929
+      elite_vault_stalker_sheet_4_3: 745748259281456084
+      elite_vault_stalker_sheet_4_4: -137955325045382536
+      elite_vault_stalker_sheet_4_5: -936760388934776759
+      elite_vault_stalker_sheet_4_6: -4814392936386576538
+      elite_vault_stalker_sheet_4_7: -6982999539702274717
+      elite_vault_stalker_sheet_4_8: -6727331537126420975
+      elite_vault_stalker_sheet_4_9: -8367758772322074849
+      elite_vault_stalker_sheet_5: -2588273426961273129
+      elite_vault_stalker_sheet_50: -6928708980543354202
+      elite_vault_stalker_sheet_51: 4704076587453110183
+      elite_vault_stalker_sheet_52: -19013036249738915
+      elite_vault_stalker_sheet_53: -9174957397208062519
+      elite_vault_stalker_sheet_54: -5625413882347726496
+      elite_vault_stalker_sheet_55: -3930191206622549894
+      elite_vault_stalker_sheet_56: 1876579926985336316
+      elite_vault_stalker_sheet_57: 1581215875489882470
+      elite_vault_stalker_sheet_58: 8073241115804337893
+      elite_vault_stalker_sheet_59: 415817411764489365
+      elite_vault_stalker_sheet_5_0: -1772993824381056035
+      elite_vault_stalker_sheet_5_1: 3661731566587755225
+      elite_vault_stalker_sheet_5_10: 8683684761645243467
+      elite_vault_stalker_sheet_5_11: -8675743621064264237
+      elite_vault_stalker_sheet_5_12: -3017676154243720184
+      elite_vault_stalker_sheet_5_13: -296448103847516808
+      elite_vault_stalker_sheet_5_14: -7956042105853898395
+      elite_vault_stalker_sheet_5_15: -975270826546729037
+      elite_vault_stalker_sheet_5_16: -8750039816391506070
+      elite_vault_stalker_sheet_5_17: 5665216820107374847
+      elite_vault_stalker_sheet_5_18: 4419284552257670559
+      elite_vault_stalker_sheet_5_19: -3877051662337380024
+      elite_vault_stalker_sheet_5_2: -6489874198060447119
+      elite_vault_stalker_sheet_5_20: -5203302569037434518
+      elite_vault_stalker_sheet_5_3: -8973218493965874189
+      elite_vault_stalker_sheet_5_4: -2517313306588312530
+      elite_vault_stalker_sheet_5_5: 752018043917993968
+      elite_vault_stalker_sheet_5_6: -7053317888967974342
+      elite_vault_stalker_sheet_5_7: -6597717854006577478
+      elite_vault_stalker_sheet_5_8: 8266004144493451598
+      elite_vault_stalker_sheet_5_9: 5932646190364396987
+      elite_vault_stalker_sheet_6: 1294351205077345052
+      elite_vault_stalker_sheet_60: 3833948619966291964
+      elite_vault_stalker_sheet_61: -9066269792175253665
+      elite_vault_stalker_sheet_62: -6122936654089572081
+      elite_vault_stalker_sheet_63: 8085361867379933916
+      elite_vault_stalker_sheet_64: 5981436667570192255
+      elite_vault_stalker_sheet_65: 194441221695167630
+      elite_vault_stalker_sheet_66: -7318808552963558749
+      elite_vault_stalker_sheet_67: -635167527987942328
+      elite_vault_stalker_sheet_68: -6491157157783679313
+      elite_vault_stalker_sheet_69: -4106528896513518952
+      elite_vault_stalker_sheet_6_0: -5856928224799426345
+      elite_vault_stalker_sheet_6_1: 849258494862753442
+      elite_vault_stalker_sheet_6_10: -8462414615343919310
+      elite_vault_stalker_sheet_6_11: 3405315328312030160
+      elite_vault_stalker_sheet_6_12: 4953622505928894882
+      elite_vault_stalker_sheet_6_13: -7849470733713444036
+      elite_vault_stalker_sheet_6_14: 6766467888901210828
+      elite_vault_stalker_sheet_6_15: 8010568305651573445
+      elite_vault_stalker_sheet_6_16: -1919460742034119064
+      elite_vault_stalker_sheet_6_17: 6804119722350148838
+      elite_vault_stalker_sheet_6_18: -6052089083695224745
+      elite_vault_stalker_sheet_6_19: 2019931748368193796
+      elite_vault_stalker_sheet_6_2: -3562337916167726137
+      elite_vault_stalker_sheet_6_20: 8153915500770672974
+      elite_vault_stalker_sheet_6_3: 6358013069978636507
+      elite_vault_stalker_sheet_6_4: -6558726816355915149
+      elite_vault_stalker_sheet_6_5: 1421692382223579130
+      elite_vault_stalker_sheet_6_6: 6394699216163056325
+      elite_vault_stalker_sheet_6_7: 3291645765129235523
+      elite_vault_stalker_sheet_6_8: 4570696118445461350
+      elite_vault_stalker_sheet_6_9: -5887777770011629768
+      elite_vault_stalker_sheet_7: -7554476517259087071
+      elite_vault_stalker_sheet_70: 1903450207916527130
+      elite_vault_stalker_sheet_71: -1468404187892066324
+      elite_vault_stalker_sheet_72: -6234422600611176497
+      elite_vault_stalker_sheet_73: -2874224460168301971
+      elite_vault_stalker_sheet_74: -3362459225716831783
+      elite_vault_stalker_sheet_75: 1066384815379183212
+      elite_vault_stalker_sheet_76: -7090231091738584241
+      elite_vault_stalker_sheet_77: 37018903706555153
+      elite_vault_stalker_sheet_78: -3586560202509124355
+      elite_vault_stalker_sheet_79: 7874698262338920679
+      elite_vault_stalker_sheet_7_0: -7459825629872738002
+      elite_vault_stalker_sheet_7_1: 6145649414899976800
+      elite_vault_stalker_sheet_7_10: 774730526057779267
+      elite_vault_stalker_sheet_7_11: 4664430695350094870
+      elite_vault_stalker_sheet_7_12: 4774256771719855481
+      elite_vault_stalker_sheet_7_13: 6030210970170592485
+      elite_vault_stalker_sheet_7_14: 3332043621630652284
+      elite_vault_stalker_sheet_7_15: -814013630577710182
+      elite_vault_stalker_sheet_7_16: -1673099593041861986
+      elite_vault_stalker_sheet_7_17: -3698605902229533891
+      elite_vault_stalker_sheet_7_18: -8352856417165207537
+      elite_vault_stalker_sheet_7_19: -2655749243514725270
+      elite_vault_stalker_sheet_7_2: 8407994622950633835
+      elite_vault_stalker_sheet_7_20: 6460737716187760721
+      elite_vault_stalker_sheet_7_3: -3409181381414730845
+      elite_vault_stalker_sheet_7_4: -3259415892341967941
+      elite_vault_stalker_sheet_7_5: -8561423407854203794
+      elite_vault_stalker_sheet_7_6: -7191512513477514126
+      elite_vault_stalker_sheet_7_7: 6172000141666483049
+      elite_vault_stalker_sheet_7_8: -1787266803889732433
+      elite_vault_stalker_sheet_7_9: -4671517453222394126
+      elite_vault_stalker_sheet_8: 5846473582951317774
+      elite_vault_stalker_sheet_80: 5478167963498687906
+      elite_vault_stalker_sheet_81: 6623100872712589978
+      elite_vault_stalker_sheet_82: -9148137190139766538
+      elite_vault_stalker_sheet_83: 497737968720710667
+      elite_vault_stalker_sheet_84: 4333806910485615611
+      elite_vault_stalker_sheet_85: -2844556254277214821
+      elite_vault_stalker_sheet_86: -4097208769826066122
+      elite_vault_stalker_sheet_87: 2654164186372280632
+      elite_vault_stalker_sheet_88: -4194893111946149322
+      elite_vault_stalker_sheet_89: -8286075582896706098
+      elite_vault_stalker_sheet_9: 22857671126744674
+      elite_vault_stalker_sheet_90: 970747901763544834
+      elite_vault_stalker_sheet_91: 6133564661438342304
+      elite_vault_stalker_sheet_92: -7934941381925731754
+      elite_vault_stalker_sheet_93: 3364555211204066569
+      elite_vault_stalker_sheet_94: 6678439242943218796
+      elite_vault_stalker_sheet_95: -8288584967336615864
+      elite_vault_stalker_sheet_96: 1343687750739862427
+      elite_vault_stalker_sheet_97: 3776461840306184076
+      elite_vault_stalker_sheet_98: -2711744184502696621
+      elite_vault_stalker_sheet_99: -8483471878020316778
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

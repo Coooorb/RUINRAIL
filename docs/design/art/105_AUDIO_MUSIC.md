@@ -27,10 +27,13 @@ V1 targets **11 full music tracks**:
 9. Overgrown Labs — Exploration.
 10. Overgrown Labs — Combat.
 11. Overgrown Labs — Boss.
+12. Cryo Vaults — Exploration.
+13. Cryo Vaults — Combat.
+14. Cryo Vaults — Boss.
 
 The two Bosses within one biome share that biome's Boss track for V1.
 
-**Biome themes (2026-09-28).** Each biome's three tracks share one identity, told apart by ear before any melody: mode, tempo, lead timbre and one signature layer, following the biome's ambience character. Ruined Metro: natural minor, 76/112/128 BPM (exploration/combat/boss), electric hum, a square-wave station chime with a tunnel echo, rail-joint clacks, a running train-like bass in combat. Rustworks: phrygian (flat 2nd), 66/100/116 BPM, a heavy detuned drone, anvil strikes, steam swells, a 3+3+2 piston bass in combat. Overgrown Labs: dorian (raised 6th), 84/116/132 BPM, bubbling FM-bell arpeggios, a soft shimmer and instrument clicks, a syncopated soft kick in combat. A biome keeps one root across its three tracks so exploration ↔ combat ↔ boss crossfade in key.
+**Biome themes (2026-09-28).** Each biome's three tracks share one identity, told apart by ear before any melody: mode, tempo, lead timbre and one signature layer, following the biome's ambience character. Ruined Metro: natural minor, 76/112/128 BPM (exploration/combat/boss), electric hum, a square-wave station chime with a tunnel echo, rail-joint clacks, a running train-like bass in combat. Rustworks: phrygian (flat 2nd), 66/100/116 BPM, a heavy detuned drone, anvil strikes, steam swells, a 3+3+2 piston bass in combat. Overgrown Labs: dorian (raised 6th), 84/116/132 BPM, bubbling FM-bell arpeggios, a soft shimmer and instrument clicks, a syncopated soft kick in combat. Cryo Vaults (2026-09-29): a sparse cold minor (no 4th or 7th), 70/104/120 BPM, restrained — a cycling refrigeration drone, open-fifth glass pads, a relay tick on the beat and a bell motif answered by a long far echo; combat adds a muted eighth-note bass and a soft kick, the boss a low octave stab and a snare. A biome keeps one root across its three tracks so exploration ↔ combat ↔ boss crossfade in key.
 
 **Main Menu theme (2026-09-28).** The menu no longer shares the Shelter's generic bed: a calm 60 BPM, eight-bar theme of soft sine-led pads that breathe on a slow minor progression, a distant low rail hum, a faint low-passed wind, a sparse slow melody and a muffled station chime every four bars — no percussion, noise transients or bright/buzzy voices, and no louder than the bed it replaced. **The Shelter plays the same theme (2026-09-28):** its slot binds the Main Menu asset itself (no copy), so Main Menu ↔ Shelter keeps the bed playing without a restart or crossfade; the old Shelter bed file is no longer bound.
 
@@ -54,10 +57,11 @@ Stingers are not counted as full music tracks.
 - Ruined Metro: electricity, tunnels, distant metal, old transit infrastructure.
 - Rustworks: machinery, steam, industrial movement.
 - Overgrown Labs: electronics, organic/bio ambience, damaged laboratory equipment.
+- Cryo Vaults: low ventilation, refrigeration machinery, pressure releases, condensation, distant metal and ice.
 
 Keep ambience below combat readability.
 
-**Ambience beds (2026-09-28).** Each biome's loop is dark room tone, never a noise floor: its air is noise through a steep low-pass at a low cutoff, and the biome character comes from tonal layers and sparse soft events (Ruined Metro: tunnel air, electrical hum, a distant metal knock; Rustworks: engine cycle, press, a soft steam swell every six seconds; Overgrown Labs: ventilation, a faint electronic chirp, a wet drip). The first beds were filtered white noise with constant high washes; their energy above 2 kHz sat within 3–7 dB of the music and read as a constant rush. The ambience ceiling is 0.2 of the SFX gain, which keeps the reshaped beds at or below their old overall level and 15 dB or more under the music.
+**Ambience beds (2026-09-28).** Each biome's loop is dark room tone, never a noise floor: its air is noise through a steep low-pass at a low cutoff, and the biome character comes from tonal layers and sparse soft events (Ruined Metro: tunnel air, electrical hum, a distant metal knock; Rustworks: engine cycle, press, a soft steam swell every six seconds; Overgrown Labs: ventilation, a faint electronic chirp, a wet drip; Cryo Vaults: low ventilation, the refrigeration hum cycling, a soft low-passed pressure release every seven seconds, a slow condensation drip, a distant metal/ice creak). The first beds were filtered white noise with constant high washes; their energy above 2 kHz sat within 3–7 dB of the music and read as a constant rush. The ambience ceiling is 0.2 of the SFX gain, which keeps the reshaped beds at or below their old overall level and 15 dB or more under the music.
 
 ## SFX Coverage Rule
 

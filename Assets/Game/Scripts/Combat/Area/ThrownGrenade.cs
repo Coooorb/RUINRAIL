@@ -34,9 +34,29 @@ namespace RuinRail.Gameplay.Combat.Area
             _resolved = false;
             transform.position = origin;
             Origin = origin;
-            var toTarget = landing - origin;
-            _landing = toTarget.magnitude <= data.ThrowRangeTiles ? landing : origin + toTarget.normalized * data.ThrowRangeTiles;
+            _landing = ClampLanding(origin, landing, data.ThrowRangeTiles);
         }
+
+        /// <summary>Where a throw from <paramref name="origin"/> aimed at <paramref name="landing"/> really comes down: no further than the throw range.</summary>
+        public static Vector2 ClampLanding(Vector2 origin, Vector2 landing, float throwRange)
+        {
+            var toTarget = landing - origin;
+            return toTarget.magnitude <= throwRange ? landing : origin + toTarget.normalized * throwRange;
+        }
+
+        /// <summary>0 at the throw, 1 at the landing (the blast).</summary>
+        public float Progress01
+        {
+            get
+            {
+                if (_resolved) return 1f;
+                var total = Vector2.Distance(Origin, _landing);
+                return total < 0.0001f ? 1f : Mathf.Clamp01(Vector2.Distance(Origin, transform.position) / total);
+            }
+        }
+
+        /// <summary>Seconds until the blast at the throw speed.</summary>
+        public float SecondsToLanding => _resolved || _data.ThrowSpeed <= 0f ? 0f : Vector2.Distance(transform.position, _landing) / _data.ThrowSpeed;
 
         private void Update()
         {

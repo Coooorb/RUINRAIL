@@ -1,0 +1,533 @@
+fileFormatVersion: 2
+guid: 00d8bd0b8c5d541bcad6bdbe6b228e80
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 3121084345982511189
+    second: vfx_explosion_r64_0
+  - first:
+      213: 2722569812817016335
+    second: vfx_explosion_r64_1
+  - first:
+      213: -7335853850836683364
+    second: vfx_explosion_r64_2
+  - first:
+      213: 1468250930241315207
+    second: vfx_explosion_r64_3
+  - first:
+      213: -5113060292219187487
+    second: vfx_explosion_r64_4
+  - first:
+      213: -7583589286854012318
+    second: vfx_explosion_r64_5
+  - first:
+      213: 4177018026827928666
+    second: vfx_explosion_r64_6
+  - first:
+      213: -8464475169851303420
+    second: vfx_explosion_r64_7
+  - first:
+      213: 9085472834566549809
+    second: vfx_explosion_r64_8
+  - first:
+      213: 1743769864937234061
+    second: vfx_explosion_r64_9
+  - first:
+      213: -606587828171052950
+    second: vfx_explosion_r64_10
+  - first:
+      213: -379634286405731363
+    second: vfx_explosion_r64_11
+  - first:
+      213: -3955942658338735378
+    second: vfx_explosion_r64_12
+  - first:
+      213: 4208624285529918624
+    second: vfx_explosion_r64_13
+  - first:
+      213: 8223932304320108463
+    second: vfx_explosion_r64_14
+  - first:
+      213: -433700871336800690
+    second: vfx_explosion_r64_15
+  - first:
+      213: 6206210936772655989
+    second: vfx_explosion_r64_16
+  - first:
+      213: 656291717568102823
+    second: vfx_explosion_r64_17
+  - first:
+      213: 5056937284026095032
+    second: vfx_explosion_r64_18
+  - first:
+      213: 4336569550677621338
+    second: vfx_explosion_r64_19
+  - first:
+      213: 281219521180238372
+    second: vfx_explosion_r64_20
+  - first:
+      213: 7268172388143895489
+    second: vfx_explosion_r64_21
+  - first:
+      213: -4614602165698898397
+    second: vfx_explosion_r64_22
+  - first:
+      213: -3161891208464619058
+    second: vfx_explosion_r64_23
+  - first:
+      213: -6430772861644818547
+    second: vfx_explosion_r64_24
+  - first:
+      213: 6370563893325296041
+    second: vfx_explosion_r64_25
+  - first:
+      213: 5204505585135184210
+    second: vfx_explosion_r64_26
+  - first:
+      213: 4887778191991490795
+    second: vfx_explosion_r64_27
+  - first:
+      213: 8019872096447014993
+    second: vfx_explosion_r64_28
+  - first:
+      213: -7706669818359176680
+    second: vfx_explosion_r64_29
+  - first:
+      213: -299674660724450267
+    second: vfx_explosion_r64_30
+  - first:
+      213: -7347061710877216913
+    second: vfx_explosion_r64_31
+  - first:
+      213: 7069344911433682805
+    second: vfx_explosion_r64_32
+  - first:
+      213: 8351303313610383527
+    second: vfx_explosion_r64_33
+  - first:
+      213: -4529297003807424663
+    second: vfx_explosion_r64_34
+  - first:
+      213: 4088764625430750527
+    second: vfx_explosion_r64_35
+  - first:
+      213: 6460648676629827464
+    second: vfx_explosion_r64_36
+  - first:
+      213: -6562109164933994972
+    second: vfx_explosion_r64_37
+  - first:
+      213: -7968860198798453150
+    second: vfx_explosion_r64_38
+  - first:
+      213: 628008994770835317
+    second: vfx_explosion_r64_39
+  - first:
+      213: -3036631330587001396
+    second: vfx_explosion_r64_40
+  - first:
+      213: 682942710729030646
+    second: vfx_explosion_r64_41
+  - first:
+      213: 2932561172465259498
+    second: vfx_explosion_r64_42
+  - first:
+      213: -5840887158650962636
+    second: vfx_explosion_r64_43
+  - first:
+      213: -5309483779114041086
+    second: vfx_explosion_r64_44
+  - first:
+      213: 5387757473369934527
+    second: vfx_explosion_r64_45
+  - first:
+      213: -4345309977308248428
+    second: vfx_explosion_r64_46
+  - first:
+      213: 6675911502405288607
+    second: vfx_explosion_r64_47
+  - first:
+      213: -722903705400130446
+    second: vfx_explosion_r64_48
+  - first:
+      213: -1310018088088074231
+    second: vfx_explosion_r64_49
+  - first:
+      213: -3713129168722015912
+    second: vfx_explosion_r64_50
+  - first:
+      213: 7556846975941986139
+    second: vfx_explosion_r64_51
+  - first:
+      213: -2764546232351167837
+    second: vfx_explosion_r64_52
+  - first:
+      213: -4741068709109231437
+    second: vfx_explosion_r64_53
+  - first:
+      213: 6728342580198041223
+    second: vfx_explosion_r64_54
+  - first:
+      213: -2044936874095318290
+    second: vfx_explosion_r64_55
+  - first:
+      213: -8722568924749857862
+    second: vfx_explosion_r64_56
+  - first:
+      213: -4583767554203426298
+    second: vfx_explosion_r64_57
+  - first:
+      213: -6411779572999551485
+    second: vfx_explosion_r64_58
+  - first:
+      213: 5526629693505078774
+    second: vfx_explosion_r64_59
+  - first:
+      213: -3968924074066528129
+    second: vfx_explosion_r64_60
+  - first:
+      213: 7704267053618412355
+    second: vfx_explosion_r64_61
+  - first:
+      213: -308472166633724893
+    second: vfx_explosion_r64_62
+  - first:
+      213: 7173921374195904392
+    second: vfx_explosion_r64_63
+  - first:
+      213: 2878963713193465297
+    second: vfx_explosion_r64_64
+  - first:
+      213: -164273834587189520
+    second: vfx_explosion_r64_0_0
+  - first:
+      213: 1061166955921226473
+    second: vfx_explosion_r64_0_1
+  - first:
+      213: 4945047260839842623
+    second: vfx_explosion_r64_0_2
+  - first:
+      213: 7600259522550344617
+    second: vfx_explosion_r64_0_3
+  - first:
+      213: 2348126138726576452
+    second: vfx_explosion_r64_0_4
+  - first:
+      213: -5879850859554617056
+    second: vfx_explosion_r64_0_5
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 8192
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0fe0a8b51d168bdf0800000000000000
+      internalID: -164273834587189520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_1
+      rect:
+        serializedVersion: 2
+        x: 130
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ea311f59b50abe00800000000000000
+      internalID: 1061166955921226473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_2
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3390e3a84650a440800000000000000
+      internalID: 4945047260839842623
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_3
+      rect:
+        serializedVersion: 2
+        x: 390
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9aba46294cb897960800000000000000
+      internalID: 7600259522550344617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_4
+      rect:
+        serializedVersion: 2
+        x: 520
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4417b924848369020800000000000000
+      internalID: 2348126138726576452
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: vfx_explosion_r64_0_5
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 0
+        width: 130
+        height: 130
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 029c8f7cbc2966ea0800000000000000
+      internalID: -5879850859554617056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      vfx_explosion_r64_0: 3121084345982511189
+      vfx_explosion_r64_0_0: -164273834587189520
+      vfx_explosion_r64_0_1: 1061166955921226473
+      vfx_explosion_r64_0_2: 4945047260839842623
+      vfx_explosion_r64_0_3: 7600259522550344617
+      vfx_explosion_r64_0_4: 2348126138726576452
+      vfx_explosion_r64_0_5: -5879850859554617056
+      vfx_explosion_r64_1: 2722569812817016335
+      vfx_explosion_r64_10: -606587828171052950
+      vfx_explosion_r64_11: -379634286405731363
+      vfx_explosion_r64_12: -3955942658338735378
+      vfx_explosion_r64_13: 4208624285529918624
+      vfx_explosion_r64_14: 8223932304320108463
+      vfx_explosion_r64_15: -433700871336800690
+      vfx_explosion_r64_16: 6206210936772655989
+      vfx_explosion_r64_17: 656291717568102823
+      vfx_explosion_r64_18: 5056937284026095032
+      vfx_explosion_r64_19: 4336569550677621338
+      vfx_explosion_r64_2: -7335853850836683364
+      vfx_explosion_r64_20: 281219521180238372
+      vfx_explosion_r64_21: 7268172388143895489
+      vfx_explosion_r64_22: -4614602165698898397
+      vfx_explosion_r64_23: -3161891208464619058
+      vfx_explosion_r64_24: -6430772861644818547
+      vfx_explosion_r64_25: 6370563893325296041
+      vfx_explosion_r64_26: 5204505585135184210
+      vfx_explosion_r64_27: 4887778191991490795
+      vfx_explosion_r64_28: 8019872096447014993
+      vfx_explosion_r64_29: -7706669818359176680
+      vfx_explosion_r64_3: 1468250930241315207
+      vfx_explosion_r64_30: -299674660724450267
+      vfx_explosion_r64_31: -7347061710877216913
+      vfx_explosion_r64_32: 7069344911433682805
+      vfx_explosion_r64_33: 8351303313610383527
+      vfx_explosion_r64_34: -4529297003807424663
+      vfx_explosion_r64_35: 4088764625430750527
+      vfx_explosion_r64_36: 6460648676629827464
+      vfx_explosion_r64_37: -6562109164933994972
+      vfx_explosion_r64_38: -7968860198798453150
+      vfx_explosion_r64_39: 628008994770835317
+      vfx_explosion_r64_4: -5113060292219187487
+      vfx_explosion_r64_40: -3036631330587001396
+      vfx_explosion_r64_41: 682942710729030646
+      vfx_explosion_r64_42: 2932561172465259498
+      vfx_explosion_r64_43: -5840887158650962636
+      vfx_explosion_r64_44: -5309483779114041086
+      vfx_explosion_r64_45: 5387757473369934527
+      vfx_explosion_r64_46: -4345309977308248428
+      vfx_explosion_r64_47: 6675911502405288607
+      vfx_explosion_r64_48: -722903705400130446
+      vfx_explosion_r64_49: -1310018088088074231
+      vfx_explosion_r64_5: -7583589286854012318
+      vfx_explosion_r64_50: -3713129168722015912
+      vfx_explosion_r64_51: 7556846975941986139
+      vfx_explosion_r64_52: -2764546232351167837
+      vfx_explosion_r64_53: -4741068709109231437
+      vfx_explosion_r64_54: 6728342580198041223
+      vfx_explosion_r64_55: -2044936874095318290
+      vfx_explosion_r64_56: -8722568924749857862
+      vfx_explosion_r64_57: -4583767554203426298
+      vfx_explosion_r64_58: -6411779572999551485
+      vfx_explosion_r64_59: 5526629693505078774
+      vfx_explosion_r64_6: 4177018026827928666
+      vfx_explosion_r64_60: -3968924074066528129
+      vfx_explosion_r64_61: 7704267053618412355
+      vfx_explosion_r64_62: -308472166633724893
+      vfx_explosion_r64_63: 7173921374195904392
+      vfx_explosion_r64_64: 2878963713193465297
+      vfx_explosion_r64_7: -8464475169851303420
+      vfx_explosion_r64_8: 9085472834566549809
+      vfx_explosion_r64_9: 1743769864937234061
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

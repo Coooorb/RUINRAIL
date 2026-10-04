@@ -30,10 +30,41 @@ namespace RuinRail.EditorTools.ArtGen
         /// </summary>
         public static readonly IReadOnlyList<string> ConsumableRoles = new[] { "grenade", "shock", "smoke_cloud", "fire_zone" };
 
-        public static int FrameCount(string role) => role switch
+        /// <summary>
+        /// Shot feel: the muzzle flashes and impact bursts a weapon's projectile profile names, drawn at native pixel size
+        /// (never resampled on the pixel-perfect camera), authored pointing +X from the centre — a muzzle flash along the
+        /// shot, an impact facing back toward the shooter. Light (SMG, bow), standard (pistol, rifle), heavy (battle
+        /// rifle, shotgun, rocket), rail (sniper) and energy (blaster): one weight ladder in the warm brass/amber language,
+        /// energy in cyan. Short and front-loaded: the hot frame first, then smoke that is mostly air.
+        /// </summary>
+        public static readonly IReadOnlyList<string> ShotFeelRoles = new[]
+        {
+            "muzzle_light", "muzzle_heavy", "muzzle_rail", "muzzle_energy", "impact_light", "impact_heavy", "impact_energy"
+        };
+
+        /// <summary>
+        /// A radius-true blast sheet: the explosion drawn at native pixels for one exact gameplay radius (in pixels at
+        /// 32 px/tile), so the runtime never stretches the art to show the real area. One per distinct rocket radius.
+        /// </summary>
+        public static string BlastRole(int radiusPixels) => "explosion_r" + radiusPixels;
+
+        private static bool IsBlast(string role, out int radius)
+        {
+            radius = 0;
+            return role.StartsWith("explosion_r", System.StringComparison.Ordinal) && int.TryParse(role.Substring("explosion_r".Length), out radius) && radius > 0;
+        }
+
+        public static int FrameCount(string role) => IsBlast(role, out _) ? 6 : role switch
         {
             "muzzle" => 3,
             "impact" => 4,
+            "muzzle_light" => 2,
+            "muzzle_heavy" => 4,
+            "muzzle_rail" => 3,
+            "muzzle_energy" => 3,
+            "impact_light" => 3,
+            "impact_heavy" => 5,
+            "impact_energy" => 4,
             "explosion" => 7,
             "melee" => 4,
             "stagger" => 3,
@@ -47,9 +78,11 @@ namespace RuinRail.EditorTools.ArtGen
             _ => 2   // telegraphs pulse rather than play out
         };
 
-        public static int SizeOf(string role) => role switch
+        public static int SizeOf(string role) => IsBlast(role, out var blast) ? blast * 2 + 2 : role switch
         {
             "explosion" => 32,
+            "muzzle" or "impact" or "muzzle_energy" or "impact_energy" => 24,
+            "muzzle_heavy" or "muzzle_rail" or "impact_heavy" => 32,
             "melee" => 24,
             "loot_glow" => 24,
             "grenade" => 12,
@@ -68,10 +101,18 @@ namespace RuinRail.EditorTools.ArtGen
             var frames = FrameCount(role);
             var t = frames <= 1 ? 0f : (float)frame / (frames - 1);
 
+            if (IsBlast(role, out var blastRadius)) { RadiusBlast(c, mid, blastRadius, frame); return c; }
             switch (role)
             {
-                case "muzzle": Muzzle(c, mid, t); break;
-                case "impact": Impact(c, mid, t); break;
+                case "muzzle": ShotMuzzle(c, mid, frame, 9, 3.5f, Warm); break;
+                case "impact": ShotImpact(c, mid, frame, frames, 9, Warm); break;
+                case "muzzle_light": ShotMuzzle(c, mid, frame + 1, 6, 2.2f, Warm); break;
+                case "muzzle_heavy": ShotMuzzle(c, mid, frame, 14, 5.5f, Warm, jets: true); break;
+                case "muzzle_rail": RailMuzzle(c, mid, frame); break;
+                case "muzzle_energy": EnergyMuzzle(c, mid, frame); break;
+                case "impact_light": ShotImpact(c, mid, frame + 1, frames + 1, 6, Warm); break;
+                case "impact_heavy": ShotImpact(c, mid, frame, frames, 13, Warm, debris: true); break;
+                case "impact_energy": EnergyImpact(c, mid, frame, frames); break;
                 case "explosion": Explosion(c, mid, t); break;
                 case "melee": MeleeArc(c, size, mid, t); break;
                 case "stagger": Stagger(c, mid, t); break;
@@ -234,39 +275,319 @@ namespace RuinRail.EditorTools.ArtGen
             }
         }
 
-        // 19.1 muzzle flash: warm white core, orange edge, 3 frames
-        private static void Muzzle(PixelCanvas c, int mid, float t)
-        {
-            var reach = Mathf.RoundToInt(Mathf.Lerp(6f, 2f, t));
-            var core = RuinPalette.Hex("#FFF3C8");
-            var edge = RuinPalette.OxideOrange;
+        // ---- shot feel ----
 
-            // A forward star rather than a ball: the flash reads directionally.
-            c.Line(mid, mid, mid + reach, mid, edge, 3);
-            c.Line(mid, mid, mid + reach - 1, mid, core, 1);
-            c.Line(mid, mid - reach / 2, mid, mid + reach / 2, edge);
-            if (t < 0.6f)
+        private readonly struct ShotRamp
+        {
+            public ShotRamp(Color32 white, Color32 core, Color32 hot, Color32 edge, Color32 smoke)
             {
-                c.Line(mid + 1, mid - 2, mid + reach - 1, mid - 3, edge);
-                c.Line(mid + 1, mid + 2, mid + reach - 1, mid + 3, edge);
-                c.Ellipse(mid, mid, 2, 2, core);
+                White = white; Core = core; Hot = hot; Edge = edge; Smoke = smoke;
+            }
+
+            public Color32 White { get; }
+            public Color32 Core { get; }
+            public Color32 Hot { get; }
+            public Color32 Edge { get; }
+            public Color32 Smoke { get; }
+        }
+
+        private static readonly ShotRamp Warm = new(RuinPalette.Hex("#FFFFFF"), RuinPalette.Hex("#FFF3C8"), RuinPalette.AmberActive, RuinPalette.OxideOrange, RuinPalette.Hex("#8C8A80"));
+        private static readonly ShotRamp Cold = new(RuinPalette.Hex("#FFFFFF"), RuinPalette.Hex("#DDFBFF"), RuinPalette.Hex("#7FE6F0"), RuinPalette.ElectricCyan, RuinPalette.Hex("#5E8A92"));
+
+        /// <summary>A forward cone along +X from the centre: edge, hot body, cream core, white centre line.</summary>
+        private static void Cone(PixelCanvas c, int mid, int length, float half, ShotRamp ramp, int back = 2)
+        {
+            for (var d = -back; d <= length; d++)
+            {
+                var k = d < 0 ? 1f + d / (float)(back + 1) : 1f - d / (float)(length + 1);
+                var h = half * Mathf.Sqrt(Mathf.Max(0f, k));
+                var x = mid + d;
+                for (var y = -Mathf.CeilToInt(h); y <= Mathf.CeilToInt(h); y++)
+                {
+                    var a = Mathf.Abs(y);
+                    if (a > h + 0.35f) continue;
+                    c.Set(x, mid + y, a > h * 0.62f ? ramp.Edge : a > h * 0.3f ? ramp.Hot : ramp.Core);
+                }
+
+                if (d >= -1 && d < length * 0.7f) c.Set(x, mid, ramp.White);
             }
         }
 
-        // 19.2 projectile impact: compact, 4 frames
-        private static void Impact(PixelCanvas c, int mid, float t)
+        /// <summary>A loose, mostly-air smoke puff (dithered) so it never hides what is behind it.</summary>
+        private static void Puff(PixelCanvas c, float cx, float cy, float r, Color32 col, int phase)
         {
-            var r = Mathf.RoundToInt(Mathf.Lerp(2f, 6f, t));
-            var col = t < 0.5f ? RuinPalette.Hex("#FFE9B0") : RuinPalette.WarningOchre;
-            for (var a = 0; a < 8; a++)
+            for (var y = Mathf.FloorToInt(cy - r); y <= Mathf.CeilToInt(cy + r); y++)
+            for (var x = Mathf.FloorToInt(cx - r); x <= Mathf.CeilToInt(cx + r); x++)
             {
-                var ang = a * Mathf.PI / 4f;
-                var x = mid + Mathf.RoundToInt(Mathf.Cos(ang) * r);
-                var y = mid + Mathf.RoundToInt(Mathf.Sin(ang) * r);
-                c.Set(x, y, col);
-                if (t < 0.5f) c.Set(x - Mathf.RoundToInt(Mathf.Cos(ang)), y - Mathf.RoundToInt(Mathf.Sin(ang)), col);
+                var dx = (x + 0.5f - cx) / r; var dy = (y + 0.5f - cy) / r;
+                var dd = dx * dx + dy * dy;
+                if (dd > 1f) continue;
+                // Denser at the heart, thinning to the rim: a soft clump, never a hollow ring.
+                if (((x + y + phase) & 1) == 0 && Hash(x, y + phase) > 0.2f + dd * 0.55f) c.Set(x, y, col);
             }
-            if (t < 0.35f) c.Ellipse(mid, mid, 2, 2, RuinPalette.Hex("#FFF6DA"));
+        }
+
+        /// <summary>
+        /// Muzzle flash: frame 0 the full cone with side spikes (heavy guns add side jets), frame 1 a shorter hot cone,
+        /// later frames a small ember and smoke that drifts forward.
+        /// </summary>
+        private static void ShotMuzzle(PixelCanvas c, int mid, int frame, int length, float half, ShotRamp ramp, bool jets = false)
+        {
+            switch (frame)
+            {
+                case 0:
+                    Cone(c, mid, length, half, ramp);
+                    var spike = Mathf.Max(2, Mathf.RoundToInt(half * 0.9f));
+                    c.Line(mid + 1, mid + Mathf.CeilToInt(half * 0.5f), mid + 1 + spike, mid + Mathf.CeilToInt(half * 0.5f) + spike, ramp.Hot);
+                    c.Line(mid + 1, mid - Mathf.CeilToInt(half * 0.5f), mid + 1 + spike, mid - Mathf.CeilToInt(half * 0.5f) - spike, ramp.Hot);
+                    if (jets)
+                    {
+                        c.Line(mid, mid + 2, mid - 1, mid + Mathf.RoundToInt(half) + 2, ramp.Edge);
+                        c.Line(mid, mid - 2, mid - 1, mid - Mathf.RoundToInt(half) - 2, ramp.Edge);
+                        c.Line(mid + 1, mid + 2, mid, mid + Mathf.RoundToInt(half) + 1, ramp.Hot);
+                        c.Line(mid + 1, mid - 2, mid, mid - Mathf.RoundToInt(half) - 1, ramp.Hot);
+                    }
+                    break;
+                case 1:
+                    Cone(c, mid, Mathf.Max(3, length * 3 / 5), Mathf.Max(1.5f, half * 0.7f), ramp, 1);
+                    if (jets) { c.Set(mid, mid + Mathf.RoundToInt(half) + 1, ramp.Edge); c.Set(mid, mid - Mathf.RoundToInt(half) - 1, ramp.Edge); }
+                    Puff(c, mid + length * 0.55f, mid, Mathf.Max(2f, half * 0.8f), ramp.Smoke, frame);
+                    break;
+                case 2:
+                    c.Set(mid + 1, mid, ramp.Core); c.Set(mid + 2, mid, ramp.Hot);
+                    Puff(c, mid + length * 0.65f, mid, Mathf.Max(2.5f, half), ramp.Smoke, frame);
+                    break;
+                default:
+                    Puff(c, mid + length * 0.75f, mid + 1, Mathf.Max(3f, half * 1.2f), RuinPalette.Darken(ramp.Smoke, 0.15f), frame);
+                    break;
+            }
+        }
+
+        /// <summary>Sniper: a long white-hot rail with cyan edges and perpendicular vent flares.</summary>
+        private static void RailMuzzle(PixelCanvas c, int mid, int frame)
+        {
+            var len = frame == 0 ? 15 : frame == 1 ? 10 : 0;
+            if (len > 0)
+            {
+                for (var d = -1; d <= len; d++)
+                {
+                    c.Set(mid + d, mid, d < len - 2 ? Cold.White : Cold.Hot);
+                    if (d < len - 3) { c.Set(mid + d, mid + 1, Cold.Hot); c.Set(mid + d, mid - 1, Cold.Hot); }
+                    if (frame == 0 && d < len / 2) { c.Set(mid + d, mid + 2, Cold.Edge); c.Set(mid + d, mid - 2, Cold.Edge); }
+                }
+
+                var vent = frame == 0 ? 5 : 3;
+                for (var side = -1; side <= 1; side += 2)
+                {
+                    c.Line(mid + 2, mid + side * 2, mid + 2, mid + side * (2 + vent), Warm.Hot);
+                    c.Set(mid + 2, mid + side * (2 + vent), Warm.Core);
+                }
+
+                c.Ellipse(mid, mid, 2f, 2f, Warm.Core);
+                c.Set(mid, mid, Cold.White);
+            }
+            else Puff(c, mid + 6, mid, 3f, Cold.Smoke, frame);
+        }
+
+        /// <summary>Blaster: a cyan ring snapping out round a white core with a short forward spike.</summary>
+        private static void EnergyMuzzle(PixelCanvas c, int mid, int frame)
+        {
+            var r = 3.5f + frame * 2f;
+            for (var a = 0; a < 64; a++)
+            {
+                var ang = a * Mathf.PI / 32f;
+                var x = mid + 1 + Mathf.RoundToInt(Mathf.Cos(ang) * r);
+                var y = mid + Mathf.RoundToInt(Mathf.Sin(ang) * r * 0.85f);
+                if (frame < 2 || (a & 1) == 0) c.Set(x, y, frame == 0 ? Cold.Hot : Cold.Edge);
+            }
+
+            if (frame == 0)
+            {
+                Cone(c, mid, 7, 2.2f, Cold, 1);
+                c.Ellipse(mid + 1, mid, 2.2f, 2.2f, Cold.Core);
+                c.Set(mid + 1, mid, Cold.White);
+            }
+            else if (frame == 1)
+            {
+                c.Ellipse(mid + 1, mid, 1.4f, 1.4f, Cold.Hot);
+                c.Set(mid + 3, mid, Cold.Core);
+            }
+        }
+
+        /// <summary>
+        /// Impact burst, facing back along +X toward the shooter: a white-hot flash, then sparks thrown back in a fan,
+        /// then embers and a dust ring that is mostly air. Heavy hits add dark debris chips.
+        /// </summary>
+        private static void ShotImpact(PixelCanvas c, int mid, int frame, int frames, int reach, ShotRamp ramp, bool debris = false)
+        {
+            var t = frames <= 1 ? 0f : frame / (float)(frames - 1);
+            var flash = reach * 0.42f;
+            if (frame == 0)
+            {
+                c.Ellipse(mid, mid, flash + 1f, flash + 1f, ramp.Edge);
+                c.Ellipse(mid, mid, flash, flash, ramp.Hot);
+                c.Ellipse(mid, mid, flash * 0.6f, flash * 0.6f, ramp.Core);
+                c.Ellipse(mid, mid, Mathf.Max(1f, flash * 0.3f), Mathf.Max(1f, flash * 0.3f), ramp.White);
+                // A cross glint: reads as a hit even at a glance.
+                c.Line(mid - Mathf.RoundToInt(flash + 2), mid, mid + Mathf.RoundToInt(flash + 2), mid, ramp.Core);
+                c.Line(mid, mid - Mathf.RoundToInt(flash + 2), mid, mid + Mathf.RoundToInt(flash + 2), ramp.Core);
+                return;
+            }
+
+            var sparks = debris ? 9 : 7;
+            for (var i = 0; i < sparks; i++)
+            {
+                // Mostly back toward the shooter (+X), a few to the sides.
+                var spread = (Hash(i, 3) - 0.5f) * (i % 3 == 0 ? 3.4f : 2.1f);
+                var len = reach * (0.55f + Hash(i, 5) * 0.45f);
+                var r0 = Mathf.Lerp(1.5f, len * 0.75f, t);
+                var r1 = Mathf.Lerp(len * 0.55f, len, t);
+                var cos = Mathf.Cos(spread); var sin = Mathf.Sin(spread);
+                var x0 = mid + Mathf.RoundToInt(cos * r0); var y0 = mid + Mathf.RoundToInt(sin * r0);
+                var x1 = mid + Mathf.RoundToInt(cos * r1); var y1 = mid + Mathf.RoundToInt(sin * r1);
+                if (t < 0.7f) c.Line(x0, y0, x1, y1, t < 0.4f ? ramp.Hot : ramp.Edge);
+                c.Set(x1, y1, t < 0.5f ? ramp.Core : ramp.Hot);
+            }
+
+            if (t < 0.45f)
+            {
+                c.Ellipse(mid, mid, flash * 0.7f, flash * 0.7f, ramp.Hot);
+                c.Ellipse(mid, mid, flash * 0.4f, flash * 0.4f, ramp.Core);
+            }
+            else if (t < 0.8f) c.Set(mid, mid, ramp.Hot);
+
+            if (debris && t > 0.2f)
+                for (var i = 0; i < 5; i++)
+                {
+                    var ang = (Hash(i, 11) - 0.5f) * 3f;
+                    var r = Mathf.Lerp(3f, reach * 0.9f, t) * (0.6f + Hash(i, 13) * 0.4f);
+                    var x = mid + Mathf.RoundToInt(Mathf.Cos(ang) * r); var y = mid + Mathf.RoundToInt(Mathf.Sin(ang) * r);
+                    c.Set(x, y, RuinPalette.DarkSteel); c.Set(x + 1, y, RuinPalette.MidSteel);
+                }
+
+            if (t > 0.5f) Puff(c, mid + 1, mid, Mathf.Lerp(flash, reach * 0.8f, t), ramp.Smoke, frame);
+        }
+
+        /// <summary>
+        /// The radius-true blast, native pixels: a crisp rim on the exact gameplay radius from the first frame (the area is
+        /// live at once), a white-hot fireball that swells to most of it, then a broken ring of fire and smoke that is
+        /// mostly air by the last frames, so hazards and telegraphs under it read again quickly.
+        /// </summary>
+        private static void RadiusBlast(PixelCanvas c, int mid, int radius, int frame)
+        {
+            var R = (float)radius;
+            var white = Warm.White; var core = Warm.Core; var hot = Warm.Hot; var edge = Warm.Edge;
+            var dark = RuinPalette.BurntRustDark; var smoke = Warm.Smoke; var soot = RuinPalette.Darken(Warm.Smoke, 0.35f);
+            var cx = mid + 0.5f; var cy = mid + 0.5f;
+            float Noise(float angle, int seed) => Hash(Mathf.FloorToInt((angle + Mathf.PI) * 6f), seed);
+
+            void Rim(int every, Color32 outer, Color32 inner)
+            {
+                for (var a = 0; a < 720; a++)
+                {
+                    if (every > 1 && (a / 6) % every != 0) continue;
+                    var ang = a * Mathf.PI / 360f;
+                    c.Set(Mathf.FloorToInt(cx + Mathf.Cos(ang) * (R - 0.5f)), Mathf.FloorToInt(cy + Mathf.Sin(ang) * (R - 0.5f)), outer);
+                    if (inner.a > 0) c.Set(Mathf.FloorToInt(cx + Mathf.Cos(ang) * (R - 1.5f)), Mathf.FloorToInt(cy + Mathf.Sin(ang) * (R - 1.5f)), inner);
+                }
+            }
+
+            for (var y = 0; y < c.Height; y++)
+            for (var x = 0; x < c.Width; x++)
+            {
+                var dx = x + 0.5f - cx; var dy = y + 0.5f - cy;
+                var d = Mathf.Sqrt(dx * dx + dy * dy) / R;
+                if (d > 1f) continue;
+                var ang = Mathf.Atan2(dy, dx);
+                var n = Noise(ang, frame);
+                var dither = Hash(x, y + frame * 31);
+                switch (frame)
+                {
+                    case 0:
+                        if (d < 0.18f) c.Set(x, y, white);
+                        else if (d < 0.32f) c.Set(x, y, core);
+                        else if (d < 0.42f + n * 0.05f) c.Set(x, y, hot);
+                        else if (d < 0.48f + n * 0.06f) c.Set(x, y, edge);
+                        break;
+                    case 1:
+                        if (d < 0.14f) c.Set(x, y, white);
+                        else if (d < 0.38f) c.Set(x, y, core);
+                        else if (d < 0.6f + n * 0.06f) c.Set(x, y, hot);
+                        else if (d < 0.72f + n * 0.08f) c.Set(x, y, edge);
+                        else if (d < 0.76f + n * 0.08f) c.Set(x, y, dark);
+                        break;
+                    case 2:
+                        if (d < 0.22f) c.Set(x, y, core);
+                        else if (d < 0.5f + n * 0.08f) c.Set(x, y, dither < 0.2f ? edge : hot);
+                        else if (d < 0.8f + n * 0.1f) c.Set(x, y, dither < 0.3f ? dark : edge);
+                        else if (d < 0.86f + n * 0.1f && dither < 0.6f) c.Set(x, y, dark);
+                        break;
+                    case 3:
+                        // The fire breaks into a ring; the heart clears to thin smoke.
+                        if (d > 0.58f + n * 0.08f && d < 0.92f && dither < 0.5f) c.Set(x, y, dither < 0.18f ? hot : dither < 0.34f ? edge : dark);
+                        else if (d < 0.58f && ((x + y) & 1) == 0 && dither < 0.4f) c.Set(x, y, smoke);
+                        break;
+                    case 4:
+                        if (d > 0.62f && ((x + y) & 1) == 0 && dither < 0.32f) c.Set(x, y, d > 0.85f ? soot : smoke);
+                        else if (dither > 0.985f) c.Set(x, y, hot); // embers
+                        break;
+                    default:
+                        if (d > 0.7f && ((x + y) & 1) == 0 && dither < 0.12f) c.Set(x, y, soot);
+                        else if (dither > 0.993f) c.Set(x, y, edge);
+                        break;
+                }
+            }
+
+            // Sparks thrown to the edge of the area on the first frames.
+            if (frame <= 1)
+                for (var i = 0; i < 12; i++)
+                {
+                    var ang = (i + Hash(i, 41) * 0.6f) * Mathf.PI * 2f / 12f;
+                    var r0 = R * (frame == 0 ? 0.5f : 0.74f); var r1 = R * (frame == 0 ? 0.78f : 0.94f);
+                    c.Line(Mathf.FloorToInt(cx + Mathf.Cos(ang) * r0), Mathf.FloorToInt(cy + Mathf.Sin(ang) * r0),
+                        Mathf.FloorToInt(cx + Mathf.Cos(ang) * r1), Mathf.FloorToInt(cy + Mathf.Sin(ang) * r1), frame == 0 ? core : hot);
+                }
+
+            // The true radius as a broken ring of sparks (cream/amber, never the telegraphs' solid orange outline), thinning as it clears.
+            switch (frame)
+            {
+                case 0: Rim(2, core, hot); break;
+                case 1: Rim(2, hot, new Color32(0, 0, 0, 0)); break;
+                case 2: Rim(3, hot, new Color32(0, 0, 0, 0)); break;
+                case 3: Rim(4, edge, new Color32(0, 0, 0, 0)); break;
+            }
+        }
+
+        /// <summary>Blaster hit: a white flash, a cyan shock ring and plasma droplets splashing back.</summary>
+        private static void EnergyImpact(PixelCanvas c, int mid, int frame, int frames)
+        {
+            var t = frame / (float)(frames - 1);
+            if (frame == 0)
+            {
+                c.Ellipse(mid, mid, 4.5f, 4.5f, Cold.Edge);
+                c.Ellipse(mid, mid, 3.5f, 3.5f, Cold.Hot);
+                c.Ellipse(mid, mid, 2f, 2f, Cold.White);
+                return;
+            }
+
+            var r = Mathf.Lerp(4f, 10f, t);
+            for (var a = 0; a < 72; a++)
+            {
+                var ang = a * Mathf.PI / 36f;
+                if (t > 0.6f && (a & 1) == 1) continue;
+                c.Set(mid + Mathf.RoundToInt(Mathf.Cos(ang) * r), mid + Mathf.RoundToInt(Mathf.Sin(ang) * r), t < 0.5f ? Cold.Hot : Cold.Edge);
+            }
+
+            for (var i = 0; i < 6; i++)
+            {
+                var ang = (Hash(i, 17) - 0.5f) * 2.4f;
+                var d = Mathf.Lerp(3f, 9f, t) * (0.7f + Hash(i, 19) * 0.3f);
+                var x = mid + Mathf.RoundToInt(Mathf.Cos(ang) * d); var y = mid + Mathf.RoundToInt(Mathf.Sin(ang) * d);
+                c.Set(x, y, Cold.Core);
+                if (t < 0.6f) c.Set(x + 1, y, Cold.Hot);
+            }
+
+            if (t < 0.5f) c.Ellipse(mid, mid, 2f, 2f, Cold.Hot);
         }
 
         // 19.3 explosion: hot centre -> orange -> smoke, clear radius read, 7 frames

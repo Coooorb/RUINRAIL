@@ -3,7 +3,7 @@ using RuinRail.Core;
 
 namespace RuinRail.Audio
 {
-    /// <summary>art/105: exactly the 11 full V1 music tracks. Both Bosses of a biome share that biome's Boss track.</summary>
+    /// <summary>art/105: the full music tracks (menu, Shelter, exploration/combat/boss per biome). Both Bosses of a biome share that biome's Boss track. Values are stored as ints in the catalog: append only.</summary>
     public enum MusicRole
     {
         MainMenu,
@@ -16,7 +16,10 @@ namespace RuinRail.Audio
         RustworksBoss,
         OvergrownLabsExploration,
         OvergrownLabsCombat,
-        OvergrownLabsBoss
+        OvergrownLabsBoss,
+        CryoVaultsExploration,
+        CryoVaultsCombat,
+        CryoVaultsBoss
     }
 
     /// <summary>art/105: exactly the six required stingers (not counted as tracks).</summary>
@@ -50,7 +53,7 @@ namespace RuinRail.Audio
     /// <summary>Deterministic role selection (art/105): screen → menu/shelter; expedition → biome × exploration/combat/boss.</summary>
     public static class MusicStateResolver
     {
-        public const int TrackCount = 11;
+        public const int TrackCount = 14;
         public const int StingerCount = 7;
 
         public static MusicRole Resolve(MusicScreen screen, Biome biome, CombatIntensity intensity)
@@ -72,6 +75,9 @@ namespace RuinRail.Audio
                 (Biome.OvergrownLabs, CombatIntensity.Exploration) => MusicRole.OvergrownLabsExploration,
                 (Biome.OvergrownLabs, CombatIntensity.Combat) => MusicRole.OvergrownLabsCombat,
                 (Biome.OvergrownLabs, CombatIntensity.Boss) => MusicRole.OvergrownLabsBoss,
+                (Biome.CryoVaults, CombatIntensity.Exploration) => MusicRole.CryoVaultsExploration,
+                (Biome.CryoVaults, CombatIntensity.Combat) => MusicRole.CryoVaultsCombat,
+                (Biome.CryoVaults, CombatIntensity.Boss) => MusicRole.CryoVaultsBoss,
                 _ => throw new ArgumentOutOfRangeException(nameof(biome))
             };
         }
@@ -92,6 +98,9 @@ namespace RuinRail.Audio
             MusicRole.OvergrownLabsExploration => "Overgrown Labs — Exploration",
             MusicRole.OvergrownLabsCombat => "Overgrown Labs — Combat",
             MusicRole.OvergrownLabsBoss => "Overgrown Labs — Boss",
+            MusicRole.CryoVaultsExploration => "Cryo Vaults — Exploration",
+            MusicRole.CryoVaultsCombat => "Cryo Vaults — Combat",
+            MusicRole.CryoVaultsBoss => "Cryo Vaults — Boss",
             _ => role.ToString()
         };
 
@@ -101,6 +110,7 @@ namespace RuinRail.Audio
             Biome.RuinedMetro => "electricity, tunnels, distant metal, old transit infrastructure",
             Biome.Rustworks => "machinery, steam, industrial movement",
             Biome.OvergrownLabs => "electronics, organic/bio ambience, damaged laboratory equipment",
+            Biome.CryoVaults => "low ventilation, refrigeration machinery, pressure releases, condensation, distant metal and ice",
             _ => string.Empty
         };
     }

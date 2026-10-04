@@ -261,6 +261,7 @@ namespace RuinRail.App
             _expedition.State.Inventory.EquippedChanged += OnClientInventoryChanged;
             _expedition.State.Inventory.BackpackChanged += OnClientInventoryChanged2;
             _coopClient.ActorSpawned += BindReplicaPresentation;
+            _coopClient.ShotDrawn += FlashRemoteShot;
             _coopClient.Xp += OnClientXp;
             _coopClient.TransitOpened += OnClientTransitOpened;
             _coopClient.TransitVotes += OnClientTransitVotes;
@@ -811,6 +812,15 @@ namespace RuinRail.App
         {
             _shotPresentation ??= new ProjectilePoolHolder(transform);
             _shotPresentation.Draw(shot);
+            FlashRemoteShot(shot);
+        }
+
+        /// <summary>Another player's trigger pull: its profile's muzzle flash where the shot left, once (pellets share it).</summary>
+        private void FlashRemoteShot(ShotNetRecord shot)
+        {
+            if (!shot.Flash || shot.Team != (int)DamageTeam.Player || _feedback == null) return;
+            var profile = RuinRail.Gameplay.Combat.Projectiles.ProjectileVisualCatalog.Active?.Find(shot.Visual.ToString());
+            _feedback.MuzzleFlash(profile, shot.Origin, shot.Direction);
         }
 
         /// <summary>Wraps the zero-damage pool the host draws client shots with.</summary>
@@ -831,7 +841,7 @@ namespace RuinRail.App
             public void Draw(ShotNetRecord shot)
             {
                 Drawn++;
-                _pool.Spawn(shot.Origin, new RuinRail.Gameplay.Combat.Projectiles.ProjectileSpawnData(0, shot.Speed, shot.Range, 0f, 0f, shot.Direction, null, null, 0f,
+                _pool.Spawn(shot.Origin, new RuinRail.Gameplay.Combat.Projectiles.ProjectileSpawnData(0, shot.Speed, shot.Range, 0f, 0f, shot.Direction, null, null, shot.Blast,
                     (DamageTeam)shot.Team, false, shot.Visual.ToString()));
             }
         }

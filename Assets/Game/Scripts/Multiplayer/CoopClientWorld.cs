@@ -230,6 +230,9 @@ namespace RuinRail.Networking
             return true;
         }
 
+        // One trigger pull emits its pellets in one frame: only the first carries the muzzle flash.
+        private int _lastShotFlashFrame = -1;
+
         private void OnLocalLaunch(ProjectilePool pool, Vector2 origin, ProjectileSpawnData data)
         {
             if (_localPlayer == null || data.Source != _localPlayer) return;
@@ -241,8 +244,11 @@ namespace RuinRail.Networking
                 Speed = data.Speed,
                 Range = data.MaxRange,
                 Team = (int)data.SourceTeam,
-                Visual = new FixedString32Bytes(data.VisualId ?? string.Empty)
+                Visual = new FixedString32Bytes(data.VisualId ?? string.Empty),
+                Flash = Time.frameCount != _lastShotFlashFrame,
+                Blast = data.ExplosionRadius
             });
+            _lastShotFlashFrame = Time.frameCount;
         }
 
         private void OnShot(ShotNetRecord shot)
@@ -258,9 +264,13 @@ namespace RuinRail.Networking
 
             ShotsDrawn++;
             // Zero damage and no knockback: another peer's shot is drawn along its real path and resolves nothing here.
-            _shotPool.Spawn(shot.Origin, new ProjectileSpawnData(0, shot.Speed, shot.Range, 0f, 0f, shot.Direction, null, null, 0f,
+            _shotPool.Spawn(shot.Origin, new ProjectileSpawnData(0, shot.Speed, shot.Range, 0f, 0f, shot.Direction, null, null, shot.Blast,
                 (DamageTeam)shot.Team, false, shot.Visual.ToString()));
+            ShotDrawn?.Invoke(shot);
         }
+
+        /// <summary>Another peer's shot was drawn here (presentation: its muzzle flash once per trigger pull).</summary>
+        public event Action<ShotNetRecord> ShotDrawn;
 
         // ---------------------------------------------------------------- inventory mirror
 

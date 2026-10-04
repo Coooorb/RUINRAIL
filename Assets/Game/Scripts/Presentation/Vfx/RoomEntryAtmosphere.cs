@@ -18,6 +18,10 @@ namespace RuinRail.Presentation.Vfx
     ///   Overgrown Labs — 0 creeping veins (bioluminescent growth crawling in from the walls); 1 specimen stir (bubbles
     ///     rising in two tanks, a violet specimen lamp stuttering); 2 quarantine scan (a pale scan line sweeping the room,
     ///     a violet warning lamp).
+    ///   Cryo Vaults — 0 pressure purge (vents in both side walls blink amber, then purge cold vapour across the floor
+    ///     with glinting ice crystals); 1 emergency thaw cycle (amber heating lamps and floor heater strips warm up while
+    ///     frost patches on the floor melt into drips and a little steam); 2 cryo wake sequence (dormant status lights on
+    ///     the walls and the containers switch on one after another, red to amber to cyan).
     /// Presentation only: no collider, no light source, nothing a system reads; overlays stay under 8 % opacity so what
     /// is visible in the room never changes. Placement and variant are seeded by the room, so every peer matches.
     /// </summary>
@@ -271,6 +275,83 @@ namespace RuinRail.Presentation.Vfx
                     float Stutter(float t) => stutter[Mathf.Clamp(Mathf.FloorToInt(t * stutter.Length), 0, stutter.Length - 1)];
                     AddLamp(SideWall(Side()), new Color(0.8f, 0.35f, 1f), 0.05f, 1.6f, Stutter);
                     AddOverlay(room, new Color(0.55f, 0.3f, 0.8f), 0.05f, 1.6f, t => 0.04f * Stutter(t));
+                    break;
+                }
+                case Biome.CryoVaults when variant == 0: // pressure purge
+                {
+                    // Both side walls carry a purge vent: an amber lamp warns, then a jet of cold vapour rolls out across
+                    // the floor, spreading as it slows, with a few ice crystals glinting as they settle.
+                    var vapour = new Color(0.86f, 0.94f, 0.96f);
+                    for (var v = 0; v < 2; v++)
+                    {
+                        var side = v == 0 ? -1 : 1;
+                        var vent = SideWall(side);
+                        var at = 0.45f + v * 0.2f;
+                        AddLamp(vent + new Vector2(0f, 0.5f), new Color(1f, 0.66f, 0.25f), v * 0.2f, 0.9f, t => Mathf.Repeat(t * 3f, 1f) < 0.5f ? 0.9f : 0.15f);
+                        for (var i = 0; i < 18; i++)
+                            Add(vent + new Vector2(0f, R(-0.2f, 0.2f)), 4, vapour, new Vector2(-side * R(1.6f, 3.0f), R(-0.3f, 0.3f)), 0f, at + i * 0.04f, R(0.9f, 1.3f), t => 0.75f * (1f - t) * Mathf.Min(1f, t * 8f), sway: 0.15f, endPixels: 11);
+                        for (var i = 0; i < 8; i++)
+                            Add(vent + new Vector2(-side * R(0.5f, 2.5f), R(-0.6f, 0.6f)), 1, Color.white, new Vector2(-side * R(0.2f, 0.6f), R(-0.3f, -0.1f)), 0f, at + 0.2f + R(0f, 0.5f), R(0.5f, 0.8f), t => Mathf.Repeat(t * 4f, 1f) < 0.5f ? 0.95f : 0.35f);
+                    }
+
+                    AddOverlay(room, new Color(0.75f, 0.9f, 1f), 0.5f, 1.2f, t => 0.045f * Mathf.Sin(t * Mathf.PI));
+                    break;
+                }
+                case Biome.CryoVaults when variant == 1: // emergency thaw cycle
+                {
+                    // The thaw system kicks in: amber heating lamps and a row of floor heater strips warm up, and the
+                    // frost patches on the floor melt — each fades, drips and gives off a thin wisp of steam.
+                    var amber = new Color(1f, 0.62f, 0.22f);
+                    AddLamp(SideWall(-1), amber, 0f, 1.9f, t => 0.25f + 0.7f * Mathf.Min(1f, t * 2.5f) * (t > 0.8f ? (1f - t) / 0.2f : 1f));
+                    AddLamp(SideWall(1), amber, 0.1f, 1.8f, t => 0.25f + 0.7f * Mathf.Min(1f, t * 2.5f) * (t > 0.8f ? (1f - t) / 0.2f : 1f));
+                    var strips = Mathf.Clamp(Mathf.FloorToInt(inner.width / 2.4f), 4, 10);
+                    for (var i = 0; i < strips; i++)
+                        AddBar(new Vector2(inner.xMin + (i + 0.5f) * (inner.width / strips), inner.yMin), 12, 3, amber, Vector2.zero, 0.1f + i * 0.05f, 1.6f, t => 0.95f * Mathf.Min(1f, t * 3f) * (1f - t * 0.6f));
+                    for (var f = 0; f < 6; f++)
+                    {
+                        var patch = Anywhere();
+                        var melt = R(0.5f, 0.9f);
+                        Add(patch, 10, new Color(0.9f, 0.97f, 1f), Vector2.zero, 0f, 0f, melt + 0.5f, t => 0.8f * (1f - t), endPixels: 3);
+                        Add(patch + new Vector2(R(-0.2f, 0.2f), R(-0.2f, 0.2f)), 6, Color.white, Vector2.zero, 0f, 0f, melt + 0.3f, t => 0.7f * (1f - t), endPixels: 2);
+                        for (var d = 0; d < 3; d++)
+                            Add(patch + new Vector2(R(-0.15f, 0.15f), 0f), 2, new Color(0.62f, 0.85f, 0.95f), new Vector2(0f, -0.2f), 2.5f, melt * 0.6f + d * 0.18f, 0.45f, t => 0.95f * (1f - t));
+                        Add(patch, 3, new Color(0.9f, 0.92f, 0.92f), new Vector2(0f, R(0.5f, 0.8f)), 0f, melt, 0.8f, t => 0.55f * Mathf.Sin(t * Mathf.PI), sway: 0.2f, endPixels: 6);
+                    }
+
+                    AddOverlay(room, amber, 0.2f, 1.6f, t => 0.04f * Mathf.Sin(t * Mathf.PI));
+                    break;
+                }
+                case Biome.CryoVaults: // cryo wake sequence
+                {
+                    // Dormant systems come back one after another: a column of status lights on each side wall and the
+                    // panels on the containers switch on in sequence — red, then amber, then a steady cyan.
+                    var red = new Color(1f, 0.3f, 0.25f);
+                    var amber = new Color(1f, 0.66f, 0.25f);
+                    var cyan = new Color(0.66f, 0.9f, 0.95f);
+                    System.Func<float, float> Wake(int order) => t => t < 0.12f ? (Mathf.Repeat(t * 30f, 1f) < 0.5f ? 0.9f : 0.1f) : 0.85f * (t > 0.85f ? (1f - t) / 0.15f : 1f);
+                    for (var side = -1; side <= 1; side += 2)
+                    {
+                        var top = SideWall(side);
+                        for (var i = 0; i < 4; i++)
+                        {
+                            var at = new Vector2(top.x, Mathf.Max(inner.yMin, top.y - i * 0.45f));
+                            var start = 0.1f + i * 0.18f + (side > 0 ? 0.09f : 0f);
+                            AddLamp(at, red, start, 0.25f, Wake(i));
+                            AddLamp(at, amber, start + 0.25f, 0.25f, Wake(i));
+                            AddLamp(at, cyan, start + 0.5f, 1.9f - start - 0.5f, Wake(i));
+                        }
+                    }
+
+                    for (var i = 0; i < 5; i++)
+                    {
+                        var panel = Anywhere();
+                        var start = 0.3f + i * 0.2f;
+                        AddBar(panel, 6, 3, amber, Vector2.zero, start, 0.2f, t => 0.9f);
+                        AddBar(panel, 10, 7, cyan, Vector2.zero, start + 0.2f, 1.7f - start, t => 0.18f * (t > 0.8f ? (1f - t) / 0.2f : 1f));
+                        AddBar(panel, 6, 3, cyan, Vector2.zero, start + 0.2f, 1.7f - start, t => 0.95f * (t > 0.8f ? (1f - t) / 0.2f : 1f));
+                    }
+
+                    AddOverlay(room, cyan, 0.9f, 0.9f, t => 0.03f * Mathf.Sin(t * Mathf.PI));
                     break;
                 }
                 default: // OvergrownLabs quarantine scan

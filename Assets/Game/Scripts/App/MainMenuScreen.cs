@@ -64,7 +64,8 @@ namespace RuinRail.App
             _input.InputBlocked = () => app.InputBlocked;
 
             _root = UiKit.ReferenceRoot(transform);
-            UiKit.Backdrop(_root, UiSkin.Load()?.MenuBackdrop);
+            // The baked place, and the quiet life in it (lamps, dust, the door, the details).
+            FrontEndAmbience.Attach(UiKit.Backdrop(_root, UiSkin.Load()?.MenuBackdrop), FrontEndAmbience.Place.MainMenu);
 
             BuildIdentity();
             BuildActions();

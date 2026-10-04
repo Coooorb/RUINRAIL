@@ -25,7 +25,7 @@ using UnityEngine.TestTools;
 namespace RuinRail.Tests
 {
     /// <summary>
-    /// The non-combat room regression matrix (57/58/60): every non-combat / special room type of the shipped 63-room
+    /// The non-combat room regression matrix (57/58/60): every non-combat / special room type of the shipped 84-room
     /// pool — each of the six Event rooms under every one of the five seeded event kinds, the Medical rooms, the Loot,
     /// Treasure, Merchant and Start rooms and the Boss rooms' cache + transit — is instantiated from its real prefab,
     /// composed by the real composer with the shipped services, and driven through the end-to-end interaction
@@ -180,9 +180,9 @@ namespace RuinRail.Tests
         public IEnumerator EveryNonCombatRoomType_IsFunctionalEndToEnd_AndTheMatrixIsWritten()
         {
             var rooms = ShippedRooms().ToList();
-            Assert.AreEqual(63, rooms.Count, "the shipped pool");
+            Assert.AreEqual(84, rooms.Count, "the shipped pool");
             var nonCombat = rooms.Where(r => r.RoomType != RoomType.Combat).ToList();
-            Assert.AreEqual(30, nonCombat.Count, "6 Start + 3 Loot + 3 Treasure + 3 Merchant + 6 Event + 3 Medical + 6 Boss");
+            Assert.AreEqual(40, nonCombat.Count, "8 Start + 4 Loot + 4 Treasure + 4 Merchant + 8 Event + 4 Medical + 8 Boss");
             var nodeId = 100;
             var offset = 0f;
             var failures = new List<string>();
@@ -202,7 +202,7 @@ namespace RuinRail.Tests
             }
 
             WriteMatrix();
-            Assert.AreEqual(60, _rows.Count, "30 rooms, the 6 Event rooms under all 6 Event-room kinds each (6 x 6 + 24)");
+            Assert.AreEqual(80, _rows.Count, "40 rooms, the 8 Event rooms under all 6 Event-room kinds each (8 x 6 + 32)");
             Assert.IsEmpty(failures, string.Join("\n", failures));
             Assert.IsTrue(_rows.All(r => r[11] == "PASS"), "no discovered non-combat room type is left NOT IMPLEMENTED or failing");
         }
@@ -318,15 +318,16 @@ namespace RuinRail.Tests
                     if (transit == null || binding.Boss == null) { Fail("boss room without transit/boss"); Record(room, category, "Boss Cache + Transit", "", false, false, false, false, false, result); break; }
                     // 46: the boss's death spawns the Boss Cache — nothing to open (or find) before it falls.
                     if (binding.BossCache != null) Fail("a Boss Cache existed before the boss fell");
-                    if (transit.CanInteract(player) || Prompt(transit, player) != string.Empty) Fail("transit usable before the boss fell");
+                    if (transit.GetComponent<Collider2D>() != null || transit.GetComponentInChildren<WorldObjectVisual>() != null) Fail("the boss room still has an in-world transit");
+                    if (_expedition.Transit != null) Fail("transit decision open before the boss fell");
                     runtime.NotifyPlayerEntered(player);
                     yield return null;
                     binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(99999));
                     yield return null;
                     var cache = binding.BossCache;
                     if (cache == null) { Fail("the boss's death spawned no Boss Cache"); Record(room, category, "Boss Cache + Transit", "", false, false, false, false, false, result); break; }
-                    var art = HasVisibleArt(cache) && HasVisibleArt(transit);
-                    if (!art) Fail("cache/transit without visible art");
+                    var art = HasVisibleArt(cache);
+                    if (!art) Fail("cache without visible art");
                     var unlocked = !cache.IsLocked && transit.IsActivated && runtime.Lifecycle == RoomLifecycleState.Cleared;
                     if (!unlocked) Fail("defeat did not unlock the cache / activate the transit");
                     var prompt = Prompt(cache, player);
@@ -336,13 +337,12 @@ namespace RuinRail.Tests
                     yield return null;
                     var delivered = _services.GroundLoot.Count > before;
                     var idempotent = !cache.Interact(player) && cache.IsOpened && runtime.State.IsResolved("boss_cache");
-                    var transitPrompt = Prompt(transit, player);
-                    var boarded = transit.CanInteract(player) && transitPrompt == "BOARD TRANSIT" && transit.Interact(player) && transit.IsBoarded && !transit.Interact(player);
+                    // Leaving is the post-boss decision panel: it is open, and nothing in the arena offers boarding.
+                    var decisionOpen = _expedition.Transit != null && _expedition.Transit.State == TransitDecisionState.Open;
                     if (!opened || !delivered) Fail("boss cache delivered nothing");
                     if (!idempotent) Fail("boss cache opened twice");
-                    if (!boarded) Fail("transit not boardable once ('" + transitPrompt + "')");
-                    if (_expedition.Transit == null || _expedition.Transit.State != TransitDecisionState.Open) Fail("transit decision not open");
-                    Record(room, category, "Boss Cache (Interact) + Transit (Interact -> decision)", prompt + " / " + transitPrompt, true, art, opened && boarded, delivered && unlocked, idempotent, result);
+                    if (!decisionOpen) Fail("transit decision not open");
+                    Record(room, category, "Boss Cache (Interact) + Transit decision (panel)", prompt + " / decision", true, art, opened && decisionOpen, delivered && unlocked, idempotent, result);
                     // The decision is consumed here so the next boss room starts from a fresh one.
                     _expedition.ChooseTransit(TransitChoice.DescendDeeper);
                     break;

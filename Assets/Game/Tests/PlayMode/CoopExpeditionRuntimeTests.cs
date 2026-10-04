@@ -681,8 +681,8 @@ namespace RuinRail.Tests
             }
 
             Assert.AreEqual(9, actors.Count(a => a.kind == CoopActorKind.Normal), "9 normal archetypes");
-            Assert.AreEqual(6, actors.Count(a => a.kind == CoopActorKind.Elite), "6 elite variants");
-            Assert.AreEqual(6, actors.Count(a => a.kind == CoopActorKind.Boss), "6 bosses");
+            Assert.AreEqual(8, actors.Count(a => a.kind == CoopActorKind.Elite), "8 elite variants");
+            Assert.AreEqual(8, actors.Count(a => a.kind == CoopActorKind.Boss), "8 bosses");
             var ids = actors.ToDictionary(a => a.go, a => w.Host.Register(a.go, 4, true));
             yield return null;
             Pump(w, 3);

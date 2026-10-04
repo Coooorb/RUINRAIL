@@ -85,7 +85,7 @@ namespace RuinRail.EditorTools.Production
             }
         }
 
-        /// <summary>The batches TASK 153-164 own, in task order. Together they must cover every art role in the manifest.</summary>
+        /// <summary>The batches TASK 153-164 own, in task order, plus the Cryo Vaults tileset batch. Together they must cover every art role in the manifest.</summary>
         public static readonly IReadOnlyList<Batch> Batches = new[]
         {
             new Batch
@@ -152,6 +152,14 @@ namespace RuinRail.EditorTools.Production
             },
             new Batch
             {
+                // The fourth biome (design update 2026-09-29); numbered after the original TASK 153-164 batches.
+                TaskNumber = 168, Name = "Cryo Vaults final tileset and props",
+                Categories = new[] { "Biome tiles", "Biome props and dressing", "Biome lighting" },
+                RoleFilter = r => r.RoleId.StartsWith("CryoVaults", StringComparison.Ordinal),
+                ReadabilityRule = "art/106 section 7: dark steel cold storage with ice blue, pale cyan and white frost, sparse amber/red emergency light; never a bright snow field, so actors read first."
+            },
+            new Batch
+            {
                 TaskNumber = 162, Name = "Safehouse transit and base environment art",
                 Categories = new[] { "World objects and base presentation" },
                 ReadabilityRule = "art/106 section 8: the Shelter is patched but maintained, warmer and more inhabited than a dungeon; the transit car reads heavy, mechanical and dependable."
@@ -167,7 +175,7 @@ namespace RuinRail.EditorTools.Production
                 TaskNumber = 164, Name = "63 room art dressing and environment integration",
                 Categories = new[] { "Biome props and dressing" },
                 RoleFilter = r => true,
-                ReadabilityRule = "art/106 section 2: dressing may never hide an actor, projectile, hazard, door or interactable in any of the 63 rooms."
+                ReadabilityRule = "art/106 section 2: dressing may never hide an actor, projectile, hazard, door or interactable in any of the shipped rooms."
             }
         };
 

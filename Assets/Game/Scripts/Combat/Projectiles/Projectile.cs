@@ -27,6 +27,8 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         private bool _isResolved;
 
         public ProjectileSpawnData Data => _data;
+        /// <summary>Drawn by a presentation-only pool (another peer's shot): it resolves nothing on this peer.</summary>
+        public bool IsPresentationOnly => _pool != null && _pool.IsPresentationOnly;
         public bool IsResolved => _isResolved;
 
         /// <summary>Result of the last detonation (explosive projectiles only).</summary>
@@ -34,6 +36,19 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         public event System.Action<Projectile, Vector2> Exploded;
         /// <summary>A non-explosive hit landed (target or wall) at a position; presentation only — damage was already applied by the hit path.</summary>
         public event System.Action<Projectile, Vector2, bool> Impacted;
+
+        /// <summary>
+        /// Every pooled projectile's hit/wall impact and detonation, for presentation observers that cannot know each
+        /// pooled instance (the scene's combat feedback, audio). Raised right after the instance events; read-only.
+        /// </summary>
+        public static event System.Action<Projectile, Vector2, bool> AnyImpacted;
+        public static event System.Action<Projectile, Vector2> AnyExploded;
+
+        private void RaiseImpacted(Vector2 at, bool onTarget)
+        {
+            Impacted?.Invoke(this, at, onTarget);
+            AnyImpacted?.Invoke(this, at, onTarget);
+        }
 
         public void SetPool(ProjectilePool pool)
         {
@@ -144,7 +159,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             {
                 var candidate = SweepHits[i];
                 if (candidate.collider == null || !IsRelevant(candidate.collider)) continue;
-                if ((_data.Piercing || _data.PierceCount > 0) && _pierced.Contains(candidate.collider.GetComponentInParent<IDamageable>())) continue;
+                if ((_data.Piercing || _data.PierceCount > 0) && _pierced.Contains(DamageTargets.Resolve(candidate.collider))) continue;
                 if (!found || candidate.distance < nearest.distance)
                 {
                     nearest = candidate;
@@ -160,7 +175,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
         {
             if (other.transform == transform) return false;
             if (_data.Source != null && (other.transform == _data.Source.transform || other.transform.IsChildOf(_data.Source.transform))) return false;
-            var damageable = other.GetComponentInParent<IDamageable>();
+            var damageable = DamageTargets.Resolve(other);
             if (damageable != null) return !IsSameTeam(other);
             return other.GetComponentInParent<EnvironmentObstacle>() != null;
         }
@@ -187,7 +202,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 return;
             }
 
-            var damageable = other.GetComponentInParent<IDamageable>();
+            var damageable = DamageTargets.Resolve(other);
             if (damageable != null && IsSameTeam(other))
             {
                 return; // pass through teammates without resolving
@@ -207,7 +222,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 {
                     Impact.ImpactDispatcher.Apply(other, new Impact.ImpactRequest(_data.Direction, _data.Knockback, _data.StaggerPower, DamageKind.Normal, _data.Source, _data.Feedback));
                     ReportKill(other);
-                    Impacted?.Invoke(this, _rigidbody2D.position, true);
+                    RaiseImpacted(_rigidbody2D.position, true);
                 }
 
                 return; // never resolved by a target: only walls and range end a piercing shot
@@ -226,7 +241,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                     ReportKill(other);
                 }
 
-                Impacted?.Invoke(this, _rigidbody2D.position, true);
+                RaiseImpacted(_rigidbody2D.position, true);
                 return;
             }
 
@@ -239,7 +254,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                     ReportKill(other);
                 }
 
-                Impacted?.Invoke(this, _rigidbody2D.position, true);
+                RaiseImpacted(_rigidbody2D.position, true);
 
                 ReturnToPool();
                 return;
@@ -255,7 +270,7 @@ namespace RuinRail.Gameplay.Combat.Projectiles
                 }
 
                 _isResolved = true;
-                Impacted?.Invoke(this, _rigidbody2D.position, false);
+                RaiseImpacted(_rigidbody2D.position, false);
                 ReturnToPool();
             }
         }
@@ -281,9 +296,20 @@ namespace RuinRail.Gameplay.Combat.Projectiles
             if (_isResolved) return;
             _isResolved = true;
             var centre = _rigidbody2D.position;
+            // Another peer's rocket drawn on this peer: it shows its blast, but the shooter's peer resolved the real one.
+            if (IsPresentationOnly)
+            {
+                LastExplosion = default;
+                Exploded?.Invoke(this, centre);
+                AnyExploded?.Invoke(this, centre);
+                ReturnToPool();
+                return;
+            }
+
             LastExplosion = Area.AreaDamageResolver.Apply(centre, _data.ExplosionRadius, _data.Damage, _data.Damage, DamageKind.Explosion, _data.StaggerPower,
                 _data.SourceTeam, ExactRoller, _data.Knockback, _data.Source, _data.Feedback);
             Exploded?.Invoke(this, centre);
+            AnyExploded?.Invoke(this, centre);
             ReturnToPool();
         }
 

@@ -111,13 +111,13 @@ namespace RuinRail.Tests
 
             // ---- room depth gating ----
             var gated = catalog.Rooms.Where(r => r != null && r.MinDepth > 1).OrderBy(r => r.Id, StringComparer.Ordinal).ToList();
-            Check("depth-gated rooms", "9", gated.Count.ToString(), "RunVarietyDepthRetentionValidator");
+            Check("depth-gated rooms", "12", gated.Count.ToString(), "RunVarietyDepthRetentionValidator");
             foreach (Biome biome in Enum.GetValues(typeof(Biome)))
                 Check($"rooms per biome ({biome})", "21", catalog.Rooms.Count(r => r != null && r.Biome == biome).ToString(), "RunVarietyDepthRetentionValidator");
 
             // ---- biome gameplay identity ----
             var authored = BiomeEncounterWeights.Authored.ToList();
-            Check("authored biome encounter weights", "12", authored.Count.ToString(), "EncounterDirectorTests");
+            Check("authored biome encounter weights", "16", authored.Count.ToString(), "EncounterDirectorTests");
             foreach (var group in authored.GroupBy(a => a.Biome).OrderBy(g => g.Key))
                 rows.Add($"biome identity ({group.Key}),\"{string.Join(" ", group.OrderBy(a => a.EnemyId).Select(a => a.EnemyId + ":" + a.Weight))}\",same,EncounterDirectorTests,RECORDED");
 

@@ -35,6 +35,12 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 314545d9e895d9543a9e8b87c05cb600, type: 3}
   - Role: 10
     Clip: {fileID: 8300000, guid: 10c2e859bfc294d45b5586df69866893, type: 3}
+  - Role: 11
+    Clip: {fileID: 8300000, guid: b4e3aef96739e435bbd8a64209047130, type: 3}
+  - Role: 12
+    Clip: {fileID: 8300000, guid: 38c3f5882003c4b18989dc083079c043, type: 3}
+  - Role: 13
+    Clip: {fileID: 8300000, guid: 9022db30efa624569b4fbf6e0dba84fb, type: 3}
   _stingers:
   - Role: 0
     Clip: {fileID: 8300000, guid: bab6a31be48ef5345bb72fa8b697b446, type: 3}
@@ -60,3 +66,7 @@ MonoBehaviour:
   - Biome: 2
     Loop: {fileID: 8300000, guid: b6259bce5bd766d4eaa5a2186627a081, type: 3}
     Character: electronics, organic/bio ambience, damaged laboratory equipment
+  - Biome: 3
+    Loop: {fileID: 8300000, guid: 5b36f2454358c4cd4b9c69b68af52e95, type: 3}
+    Character: low ventilation, refrigeration machinery, pressure releases, condensation,
+      distant metal and ice

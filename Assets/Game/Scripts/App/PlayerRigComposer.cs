@@ -260,6 +260,8 @@ namespace RuinRail.App
         {
             foreach (var c in _mounted) if (c != null) UnityEngine.Object.Destroy(c);
             _mounted.Clear();
+            // The specials belonged to the components just destroyed; the remount registers the mounted Legendaries again.
+            Special?.Clear();
             var primary = Mount(Inventory.GetEquipped(EquippedSlot.PrimaryWeapon));
             var secondary = Mount(Inventory.GetEquipped(EquippedSlot.SecondaryWeapon));
             Loadout.SetPrimary(primary);

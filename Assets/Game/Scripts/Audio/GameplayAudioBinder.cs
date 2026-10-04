@@ -64,11 +64,17 @@ namespace RuinRail.Audio
             if (_audio == null) _audio = GetComponent<AudioService>();
             UiSoundBus.Raised -= OnUiSound;
             UiSoundBus.Raised += OnUiSound;
+            // Every pooled rocket's detonation (pools recycle instances, so a per-projectile hook would miss shots).
+            Projectile.AnyExploded -= OnAnyExploded;
+            Projectile.AnyExploded += OnAnyExploded;
         }
+
+        private void OnAnyExploded(Projectile projectile, Vector2 at) => Play(AudioEventIds.RocketExplosion, at);
 
         private void OnDestroy()
         {
             UiSoundBus.Raised -= OnUiSound;
+            Projectile.AnyExploded -= OnAnyExploded;
             foreach (var u in _unsubscribe) u();
             _unsubscribe.Clear();
         }

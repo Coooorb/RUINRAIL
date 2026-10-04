@@ -24,7 +24,7 @@ namespace RuinRail.EditorTools.ArtGen
     {
         public const int Size = 32;
 
-        public enum Biome { RuinedMetro, Rustworks, OvergrownLabs }
+        public enum Biome { RuinedMetro, Rustworks, OvergrownLabs, CryoVaults }
 
         /// <summary>
         /// The floor family every biome supplies (spec B1.4 of the polish pass).
@@ -102,6 +102,7 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 case Biome.RuinedMetro: MetroFloor(c, family, seed); break;
                 case Biome.Rustworks: RustworksFloor(c, family, seed); break;
+                case Biome.CryoVaults: CryoFloor(c, family, seed); break;
                 default: LabsFloor(c, family, seed); break;
             }
         }
@@ -299,6 +300,88 @@ namespace RuinRail.EditorTools.ArtGen
             }
         }
 
+        // ---------------- Cryo Vaults (56: underground cold storage, not snow) ----------------
+
+        /// <summary>Insulated steel deck: dark, cold, with a faint blue cast — the calm material the frost sits on.</summary>
+        private static readonly Color32 CryoDeck = RuinPalette.Hex("#39424A");
+        /// <summary>Drain grating in the cold rooms: darker, ribbed, where condensation collects.</summary>
+        private static readonly Color32 CryoGrate = RuinPalette.Hex("#2A3238");
+        private static readonly Color32 FrostWhite = RuinPalette.Hex("#DCEFF4");
+        private static readonly Color32 IceBlue = RuinPalette.Hex("#79A9C4");
+        private static readonly Color32 PaleCyan = RuinPalette.Hex("#A9DDE8");
+
+        private static void CryoFloor(PixelCanvas c, FloorFamily family, int seed)
+        {
+            var rng = new System.Random(seed);
+            var deck = CalmRamp(CryoDeck);
+
+            switch (family)
+            {
+                case FloorFamily.Base:
+                    // A big insulated deck plate: dark steel, one plate edge, nothing else to catch the eye.
+                    Material(c, deck, seed, cells: 4, shadowAt: 0.34f, lightAt: 0.78f);
+                    PlateEdge(c, RuinPalette.Darken(CryoDeck, 0.40f), RuinPalette.Lighten(CryoDeck, 0.12f));
+                    break;
+
+                case FloorFamily.Worn:
+                    // The same deck with a thin film of old frost worn into broad, faint patches.
+                    Material(c, WornRamp(CryoDeck), seed, cells: 4, shadowAt: 0.36f, lightAt: 0.70f);
+                    PlateEdge(c, RuinPalette.Darken(CryoDeck, 0.40f), RuinPalette.Lighten(CryoDeck, 0.12f));
+                    Region(c, seed + 9, RuinPalette.Lighten(CryoDeck, 0.10f), 0.30f, 3);
+                    RegionAlpha(c, seed + 27, RuinPalette.Darken(IceBlue, 0.35f), 0.12f, 3);
+                    break;
+
+                case FloorFamily.Cracked:
+                    // Fractured ice sheet over the plate: pale fracture lines, never a hole. The sheet is a thin
+                    // wash, so the cracked deck stays within the floor family's luminance band (no bright blotch).
+                    Material(c, deck, seed, cells: 4, shadowAt: 0.34f, lightAt: 0.76f);
+                    PlateEdge(c, RuinPalette.Darken(CryoDeck, 0.40f), RuinPalette.Lighten(CryoDeck, 0.12f));
+                    RegionAlpha(c, seed + 13, RuinPalette.Darken(PaleCyan, 0.45f), 0.20f, 3);
+                    CrackSystem(c, rng, RuinPalette.Darken(PaleCyan, 0.18f), RuinPalette.Darken(PaleCyan, 0.42f));
+                    break;
+
+                case FloorFamily.Utility:
+                    // Condensation drain grating: ribs that run edge to edge so neighbours join into one channel.
+                    Material(c, CalmRamp(CryoGrate), seed, cells: 4, shadowAt: 0.32f, lightAt: 0.76f);
+                    for (var x = 2; x < Size; x += 5)
+                    {
+                        c.Line(x, 0, x, Size - 1, RuinPalette.Darken(CryoGrate, 0.40f));
+                        c.Line(x + 1, 0, x + 1, Size - 1, RuinPalette.Lighten(CryoGrate, 0.14f));
+                    }
+                    RegionAlpha(c, seed + 31, RuinPalette.Darken(IceBlue, 0.30f), 0.10f, 2);
+                    break;
+
+                default:
+                    // Frost bloom: one clustered crystal growth, the biome's loudest floor note (used sparingly).
+                    Material(c, deck, seed, cells: 4, shadowAt: 0.34f, lightAt: 0.76f);
+                    PlateEdge(c, RuinPalette.Darken(CryoDeck, 0.40f), RuinPalette.Lighten(CryoDeck, 0.12f));
+                    FrostBloom(c, seed + 3, rng);
+                    break;
+            }
+        }
+
+        /// <summary>A clustered frost growth: a soft pale bed with crystalline white spurs, never scattered pixels.</summary>
+        private static void FrostBloom(PixelCanvas c, int seed, System.Random rng, bool onEmptyCanvas = false)
+        {
+            RegionAlpha(c, seed, RuinPalette.Darken(PaleCyan, 0.30f), onEmptyCanvas ? 0.20f : 0.28f, 3);
+            var cx = 10 + rng.Next(Size - 20);
+            var cy = 10 + rng.Next(Size - 20);
+            for (var i = 0; i < 7; i++)
+            {
+                var angle = i * Mathf.PI * 2f / 7f + (float)rng.NextDouble() * 0.5f;
+                var length = 3 + rng.Next(6);
+                var ex = cx + Mathf.RoundToInt(Mathf.Cos(angle) * length);
+                var ey = cy + Mathf.RoundToInt(Mathf.Sin(angle) * length);
+                c.Line(cx, cy, ex, ey, i % 2 == 0 ? FrostWhite : PaleCyan);
+                // A short branch off each spur, the crystalline read.
+                var bx = cx + Mathf.RoundToInt(Mathf.Cos(angle) * length * 0.6f);
+                var by = cy + Mathf.RoundToInt(Mathf.Sin(angle) * length * 0.6f);
+                c.Line(bx, by, bx + Mathf.RoundToInt(Mathf.Cos(angle + 0.9f) * 2f), by + Mathf.RoundToInt(Mathf.Sin(angle + 0.9f) * 2f), PaleCyan);
+            }
+
+            c.Set(cx, cy, FrostWhite);
+        }
+
         // =====================================================================
         //  Floor detail layer (spec B6)
         // =====================================================================
@@ -336,6 +419,7 @@ namespace RuinRail.EditorTools.ArtGen
         {
             Biome.RuinedMetro => RuinPalette.Hex("#2E3133"),
             Biome.Rustworks => RuinPalette.Hex("#1E1F21"),
+            Biome.CryoVaults => RuinPalette.Hex("#232A31"),
             _ => RuinPalette.Hex("#565E56")
         };
 
@@ -346,6 +430,8 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 Biome.RuinedMetro => RuinPalette.Darken(RuinPalette.WarningOchre, 0.28f),
                 Biome.Rustworks => RuinPalette.Darken(RuinPalette.DirtyYellow, 0.30f),
+                // Cold-storage lane lines: faded frost-white paint on dark steel.
+                Biome.CryoVaults => RuinPalette.Darken(FrostWhite, 0.38f),
                 _ => RuinPalette.Darken(RuinPalette.ColdBlue, 0.25f)
             };
 
@@ -366,6 +452,18 @@ namespace RuinRail.EditorTools.ArtGen
         {
             var dark = RuinPalette.Hex("#15191B");
             var rim = biome == Biome.Rustworks ? RuinPalette.Darken(RuinPalette.Rust, 0.3f) : RuinPalette.Darken(RuinPalette.MidSteel, 0.25f);
+
+            if (biome == Biome.CryoVaults)
+            {
+                // Refrigeration vent: a recessed louvre with frost gathered on its rim.
+                var ventRim = RuinPalette.Darken(RuinPalette.MidSteel, 0.20f);
+                c.Rect(6, 10, 20, 12, ventRim);
+                c.Rect(7, 11, 18, 10, dark);
+                for (var y = 12; y < 21; y += 3) c.Line(8, y, 23, y, RuinPalette.Darken(ventRim, 0.10f));
+                for (var x = 6; x < 26; x += 2) c.Set(x, 10, RuinPalette.Darken(PaleCyan, 0.20f + (x % 4) * 0.05f));
+                c.Line(6, 21, 25, 21, RuinPalette.Lighten(ventRim, 0.15f));
+                return;
+            }
 
             if (biome == Biome.RuinedMetro)
             {
@@ -407,6 +505,12 @@ namespace RuinRail.EditorTools.ArtGen
                     RegionAlpha(c, seed + 57, RuinPalette.Darken(RuinPalette.OxideOrange, 0.40f), 0.05f, 2);
                     break;
 
+                case Biome.CryoVaults:
+                    // Condensation: a thin frosted puddle that has half-refrozen at its edge.
+                    RegionAlpha(c, seed, RuinPalette.Darken(IceBlue, 0.25f), 0.22f, 3);
+                    RegionAlpha(c, seed + 43, RuinPalette.Darken(FrostWhite, 0.30f), 0.06f, 2);
+                    break;
+
                 default:
                     MossPatch(c, seed, rng, onEmptyCanvas: true);
                     break;
@@ -424,6 +528,7 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 case Biome.RuinedMetro: MetroStructure(c, role, seed, rng); break;
                 case Biome.Rustworks: RustworksStructure(c, role, seed, rng); break;
+                case Biome.CryoVaults: CryoStructure(c, role, seed, rng); break;
                 default: LabsStructure(c, role, seed, rng); break;
             }
         }
@@ -529,6 +634,53 @@ namespace RuinRail.EditorTools.ArtGen
             }
         }
 
+        private static void CryoStructure(PixelCanvas c, TileRole role, int seed, System.Random rng)
+        {
+            switch (role)
+            {
+                case TileRole.Wall:
+                    // Insulated vault wall: ribbed steel panels, a frozen coolant pipe run, frost gathered along the top.
+                    var panel = RuinPalette.Hex("#4B565E");
+                    Material(c, RuinPalette.RampOf(panel, 0.22f, 0.10f), seed, cells: 4, shadowAt: 0.34f, lightAt: 0.78f);
+                    for (var x = 0; x < Size; x += 8) c.Rect(x, 0, 1, Size, RuinPalette.Darken(panel, 0.30f));
+                    c.Rect(0, 15, Size, 5, RuinPalette.Darken(IceBlue, 0.50f));
+                    c.Rect(0, 16, Size, 3, RuinPalette.Darken(IceBlue, 0.25f));
+                    c.Line(0, 16, Size - 1, 16, RuinPalette.Darken(PaleCyan, 0.10f));
+                    for (var x = 3; x < Size; x += 9) c.Rect(x, 14, 2, 7, RuinPalette.Darken(RuinPalette.MidSteel, 0.15f));
+                    c.Rect(0, Size - 3, Size, 3, RuinPalette.Lighten(panel, 0.22f));
+                    // Frost crust along the top edge, irregular so a wall run never reads as a stamped border.
+                    for (var x = 0; x < Size; x++)
+                    {
+                        var depth = 1 + (int)((Mathf.Sin(x * 0.7f + seed) + 1f) * 1.2f) + (rng.Next(4) == 0 ? 1 : 0);
+                        for (var y = 0; y < depth; y++) c.Set(x, Size - 1 - y, y == 0 ? FrostWhite : PaleCyan);
+                    }
+                    c.Rect(0, 0, Size, 2, RuinPalette.Darken(RuinPalette.DarkSteel, 0.35f));
+                    break;
+
+                case TileRole.Obstacle:
+                    // Cryo storage container: steel frame, frosted viewing panel, one small status light.
+                    Material(c, RuinPalette.RampOf(RuinPalette.Hex("#2C3339"), 0.24f, 0.10f), seed, cells: 4, shadowAt: 0.36f, lightAt: 0.82f);
+                    var frame = RuinPalette.Hex("#5C6870");
+                    c.Rect(3, 2, Size - 6, Size - 4, frame);
+                    c.ShadeForm(3, 2, Size - 6, Size - 4, frame, RuinPalette.RampOf(frame));
+                    c.RectOutline(3, 2, Size - 6, Size - 4, RuinPalette.Darken(RuinPalette.DarkSteel, 0.30f));
+                    c.Rect(7, 7, Size - 14, Size - 16, RuinPalette.Darken(IceBlue, 0.45f));
+                    c.Rect(8, 8, Size - 16, Size - 18, RuinPalette.Darken(PaleCyan, 0.25f));
+                    // Frost across the glass from the bottom corner up.
+                    for (var y = 8; y < Size - 10; y++)
+                    for (var x = 8; x < Size - 8; x++)
+                        if ((x - 8) + (Size - 10 - y) * 1.3f < 9 + rng.Next(3)) c.Set(x, y, (x + y) % 3 == 0 ? FrostWhite : PaleCyan);
+                    c.Line(8, 8, Size - 9, 8, RuinPalette.Lighten(PaleCyan, 0.35f));
+                    c.Rect(Size - 10, Size - 8, 3, 2, (seed & 1) == 0 ? RuinPalette.ElectricCyan : RuinPalette.AmberActive);
+                    c.Rect(6, Size - 8, 8, 2, RuinPalette.Darken(frame, 0.30f));
+                    break;
+
+                case TileRole.Hazard:
+                    CryoHazard(c, seed, rng, 0);
+                    break;
+            }
+        }
+
         // =====================================================================
         //  Damaging floor hazards (animated)
         // =====================================================================
@@ -553,6 +705,7 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 case Biome.RuinedMetro: MetroHazard(c, seed, rng, frame); break;
                 case Biome.Rustworks: RustworksHazard(c, seed, rng, frame); break;
+                case Biome.CryoVaults: CryoHazard(c, seed, rng, frame); break;
                 default: LabsHazard(c, seed, rng, frame); break;
             }
 
@@ -649,6 +802,73 @@ namespace RuinRail.EditorTools.ArtGen
             }
 
             c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(RuinPalette.DeepOlive, 0.3f));
+        }
+
+        /// <summary>
+        /// Cryo Coolant Leak: a pool of supercooled coolant spilling from a floor line. The coolant sheet is always
+        /// there — the whole footprint reads as dangerous on every frame, like every other hazard — and on top of it
+        /// the leak cycles: frost crystals and a pressure ring build around the vent (frames 1–4), then the vent
+        /// releases and a bright surge of coolant runs out across the pool (frames 5–7) before settling back to
+        /// frame 0. Ice blue / pale cyan / frost white only; no orange, no green.
+        /// </summary>
+        private static void CryoHazard(PixelCanvas c, int seed, System.Random rng, int frame)
+        {
+            Material(c, RuinPalette.RampOf(RuinPalette.Hex("#1E2E3A"), 0.26f, 0.10f), seed, cells: 4, shadowAt: 0.38f, lightAt: 0.84f);
+            var w = HazardPhase(frame);
+            // The coolant sheet: slow, cold ripples that never leave the tile empty.
+            for (var y = 0; y < Size; y++)
+            for (var x = 0; x < Size; x++)
+            {
+                var n = (Mathf.Sin(x * 0.33f + y * 0.21f + w * 0.5f) + Mathf.Sin(y * 0.41f - x * 0.17f)) * 0.5f;
+                if (n > 0.55f) c.Set(x, y, PaleCyan);
+                else if (n > 0.05f) c.Set(x, y, IceBlue);
+                else if (n > -0.35f) c.Set(x, y, RuinPalette.Darken(IceBlue, 0.30f));
+            }
+
+            // The leaking vent: a floor seam the coolant comes out of.
+            const int vx = 13, vy = 14;
+            c.Rect(vx - 1, vy - 1, 8, 5, RuinPalette.Darken(RuinPalette.DarkSteel, 0.20f));
+            c.Rect(vx, vy, 6, 3, RuinPalette.Hex("#0E1A22"));
+
+            var build = frame >= 1 && frame <= 4 ? frame / 4f : 0f;      // frost/pressure building
+            var surge = frame >= 5 ? (frame - 4) / 3f : 0f;             // release running outward
+            if (build > 0f)
+            {
+                // Frost crystals creeping inward on the vent rim, and a pressure ring tightening around it.
+                var reach = 1 + Mathf.RoundToInt(build * 4f);
+                for (var i = 0; i < reach; i++)
+                {
+                    c.Set(vx - 2 - i, vy + 1, FrostWhite);
+                    c.Set(vx + 7 + i, vy + 1, FrostWhite);
+                    c.Set(vx + 2, vy - 2 - i / 2, PaleCyan);
+                    c.Set(vx + 3, vy + 4 + i / 2, PaleCyan);
+                }
+
+                var ring = Mathf.RoundToInt(8 - build * 3f);
+                for (var a = 0; a < 16; a++)
+                {
+                    var angle = a * Mathf.PI / 8f;
+                    c.Set(vx + 3 + Mathf.RoundToInt(Mathf.Cos(angle) * ring), vy + 1 + Mathf.RoundToInt(Mathf.Sin(angle) * ring * 0.7f), RuinPalette.Lighten(IceBlue, 0.35f));
+                }
+            }
+
+            if (surge > 0f)
+            {
+                // The release: bright coolant spraying out from the vent and running across the pool.
+                var radius = 3f + surge * 12f;
+                for (var y = 0; y < Size; y++)
+                for (var x = 0; x < Size; x++)
+                {
+                    var dx = (x - (vx + 3)) / 1.2f;
+                    var dy = y - (vy + 1);
+                    var d = Mathf.Sqrt(dx * dx + dy * dy);
+                    if (Mathf.Abs(d - radius) < 1.2f) c.Set(x, y, FrostWhite);
+                    else if (d < radius && (x + y + frame) % 4 == 0) c.Set(x, y, RuinPalette.Lighten(PaleCyan, 0.25f));
+                }
+            }
+
+            Blobs(c, RuinPalette.Lighten(PaleCyan, 0.30f), rng, 3, 1);
+            c.RectOutline(0, 0, Size, Size, RuinPalette.Darken(IceBlue, 0.55f));
         }
 
         // =====================================================================

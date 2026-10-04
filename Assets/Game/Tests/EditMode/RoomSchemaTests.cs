@@ -99,7 +99,7 @@ namespace RuinRail.Tests
             Assert.AreEqual(new Vector2Int(24, 16), RoomSizeClasses.DimensionsOf(RoomSizeClass.Medium));
             Assert.AreEqual(new Vector2Int(32, 20), RoomSizeClasses.DimensionsOf(RoomSizeClass.Large));
             Assert.AreEqual(new Vector2Int(36, 24), RoomSizeClasses.DimensionsOf(RoomSizeClass.Boss));
-            CollectionAssert.AreEquivalent(new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs }, System.Enum.GetValues(typeof(Biome)));
+            CollectionAssert.AreEquivalent(new[] { Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults }, System.Enum.GetValues(typeof(Biome)));
             CollectionAssert.AreEquivalent(
                 new[] { RoomType.Start, RoomType.Combat, RoomType.Loot, RoomType.Treasure, RoomType.Merchant, RoomType.Event, RoomType.MedicalRecovery, RoomType.Boss },
                 System.Enum.GetValues(typeof(RoomType)));

@@ -16,8 +16,8 @@ namespace RuinRail.Tests.EditMode
             CollectionAssert.IsEmpty(fails, "Every engineering/verification requirement must pass on the real repository.");
             Assert.IsTrue(report.Lines.Count >= 30);
             Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("33 weapons") && l.Result == "PASS"));
-            Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("63 rooms") && l.Result == "PASS"));
-            Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("Exactly 11 music roles") && l.Result == "PASS"));
+            Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("84 rooms") && l.Result == "PASS"));
+            Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("Exactly 14 music roles") && l.Result == "PASS"));
             Assert.IsTrue(report.Lines.Any(l => l.Requirement.StartsWith("Post-MVP") && l.Result == "PASS"), "No prohibited scope in runtime code.");
             // External content is derived from the asset audits and the completion manifest, never hard-coded either way.
             var manifest = CompletionAssetManifest.Generate();

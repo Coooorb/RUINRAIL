@@ -1,0 +1,221 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using NUnit.Framework;
+using RuinRail.Core;
+using RuinRail.Dungeon.Rooms;
+using RuinRail.Dungeon.Runtime;
+using RuinRail.Gameplay.Combat;
+using RuinRail.Gameplay.Enemies;
+using RuinRail.Gameplay.Enemies.Bosses;
+using RuinRail.Gameplay.Enemies.Encounters;
+using RuinRail.Gameplay.Loot;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.TestTools;
+
+namespace RuinRail.Tests
+{
+    /// <summary>
+    /// Cryo Vaults bosses: The Warden (1,150 HP, 28–34, XP 700: sweep fan, aimed volley, long lockdown charge, radial
+    /// emergency purge; phase 2 adds purge lanes) and Subject Zero (1,250 HP, 28–34, XP 750: frenzy charge, chained slam,
+    /// claw cleave, radial burst; phase 2 adds thaw ruptures) — range picks, once-only phase 2 at 50%, and the Cryo arena
+    /// bindings with once-only cache/transit/XP hooks.
+    /// </summary>
+    public class CryoBossesTests
+    {
+        private readonly List<Object> _created = new();
+        private BossDefinition _zero;
+        private BossDefinition _warden;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _zero = AssetDatabase.LoadAssetAtPath<BossDefinition>("Assets/Game/ScriptableObjects/Enemies/Bosses/Boss_SubjectZero.asset");
+            _warden = AssetDatabase.LoadAssetAtPath<BossDefinition>("Assets/Game/ScriptableObjects/Enemies/Bosses/Boss_TheWarden.asset");
+            Assert.IsNotNull(_zero);
+            Assert.IsNotNull(_warden);
+            DamageAuthority.LocalIsAuthoritative = true;
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            foreach (var o in _created) if (o != null) Object.DestroyImmediate(o);
+            foreach (var boss in Object.FindObjectsByType<BossController>(FindObjectsSortMode.None)) if (boss != null) Object.DestroyImmediate(boss.transform.parent != null ? boss.transform.parent.gameObject : boss.gameObject);
+            _created.Clear();
+        }
+
+        private static void Set(object target, string field, object value)
+        {
+            var type = target.GetType();
+            FieldInfo info = null;
+            while (type != null && info == null) { info = type.GetField(field, BindingFlags.NonPublic | BindingFlags.Instance); type = type.BaseType; }
+            info.SetValue(target, value);
+        }
+
+        private (GameObject go, HealthComponent health) SpawnPlayerDummy(Vector2 position)
+        {
+            var go = new GameObject("PlayerDummy");
+            _created.Add(go);
+            go.transform.position = position;
+            go.AddComponent<BoxCollider2D>().size = Vector2.one;
+            go.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+            go.AddComponent<TeamMember>().SetTeam(DamageTeam.Player);
+            var health = go.AddComponent<HealthComponent>();
+            health.SetMaxHealth(2000);
+            return (go, health);
+        }
+
+        [Test]
+        public void CryoBosses_ExposeTheirStats_AndPickAttacksByRange()
+        {
+            Assert.AreEqual(Biome.CryoVaults, _zero.Biome);
+            Assert.AreEqual(Biome.CryoVaults, _warden.Biome);
+            var zero = new DefaultBossSpawner(new[] { _zero }).Spawn(_zero, Vector2.zero, null);
+            _created.Add(zero.gameObject);
+            Assert.AreEqual(1250, zero.Boss.Health.MaxHealth);
+            Assert.AreEqual(750, zero.Boss.XpValue);
+            var (player, _) = SpawnPlayerDummy(new Vector2(1.5f, 0f));
+            zero.Boss.SetTarget(player.transform);
+            BossSelectionAssert.CanSelectAt(zero.Boss, player.transform, Vector2.zero, 1.5f, "Chained Slam", "Close: the chained slams.");
+            BossSelectionAssert.CanSelectAt(zero.Boss, player.transform, Vector2.zero, 1.5f, "Claw Cleave", "Close: the claw cleave.");
+            BossSelectionAssert.CanSelectAt(zero.Boss, player.transform, Vector2.zero, 5f, "Radial Burst", "Mid: the radial burst.");
+            BossSelectionAssert.OnlySelectableAt(zero.Boss, player.transform, Vector2.zero, 8f, "Frenzy Charge", "Far: the fast charge.");
+
+            var warden = new DefaultBossSpawner(new[] { _warden }).Spawn(_warden, new Vector2(60f, 0f), null);
+            _created.Add(warden.gameObject);
+            Assert.AreEqual(1150, warden.Boss.Health.MaxHealth);
+            Assert.AreEqual(700, warden.Boss.XpValue);
+            var (target, _) = SpawnPlayerDummy(new Vector2(61.5f, 0f));
+            warden.Boss.SetTarget(target.transform);
+            BossSelectionAssert.OnlySelectableAt(warden.Boss, target.transform, new Vector2(60f, 0f), 1f, "Emergency Purge", "Close: the radial purge.");
+            BossSelectionAssert.CanSelectAt(warden.Boss, target.transform, new Vector2(60f, 0f), 5f, "Sweep Fan", "Mid: the sweep fan.");
+            BossSelectionAssert.CanSelectAt(warden.Boss, target.transform, new Vector2(60f, 0f), 5f, "Lockdown Charge", "Mid: the long charge.");
+            BossSelectionAssert.OnlySelectableAt(warden.Boss, target.transform, new Vector2(60f, 0f), 11f, "Aimed Volley", "Far: the aimed volley.");
+            var charge = _warden.Moveset.First(a => a.DisplayName == "Lockdown Charge");
+            Assert.IsTrue(_warden.Moveset.All(a => a == charge || a.TelegraphSeconds < charge.TelegraphSeconds), "The lockdown charge carries the longest telegraph of the moveset.");
+        }
+
+        [UnityTest]
+        public IEnumerator PhaseTwo_StartsOnceAtHalfHealth_ForBothCryoBosses_AndAddsTheArenaMechanic()
+        {
+            foreach (var (definition, half, extra) in new[] { (_zero, 625, "Thaw Rupture"), (_warden, 575, "Purge Lane") })
+            {
+                var encounter = new DefaultBossSpawner(new[] { definition }).Spawn(definition, Vector2.zero, null);
+                _created.Add(encounter.gameObject);
+                var boss = encounter.Boss;
+                var phases = new List<int>();
+                encounter.PhaseChanged += (_, p) => phases.Add(p);
+                var (player, _) = SpawnPlayerDummy(new Vector2(40f, 0f));
+                boss.SetTarget(player.transform);
+                yield return null;
+
+                boss.Health.TryApplyDamage(new DamageRequest(half - 1));
+                Assert.AreEqual(1, boss.Phase, $"{definition.Id}: one above half: still phase 1.");
+                boss.Health.TryApplyDamage(new DamageRequest(1));
+                Assert.AreEqual(2, boss.Phase, $"{definition.Id}: exactly half: phase 2.");
+                Assert.AreEqual(definition.PhaseTwoTimingMultiplier, boss.TimingMultiplier, 0.0001f);
+                CollectionAssert.AreEqual(new[] { 2 }, phases);
+                BossSelectionAssert.CanSelectAt(boss, player.transform, Vector2.zero, 3f, extra, $"{definition.Id}: phase 2 adds its arena mechanic to the rotation.");
+                boss.Health.TryApplyDamage(new DamageRequest(200));
+                CollectionAssert.AreEqual(new[] { 2 }, phases, "Phase transition happens exactly once.");
+                Object.DestroyImmediate(encounter.gameObject);
+                Object.DestroyImmediate(player);
+            }
+        }
+
+        private RoomRuntime CreateArena(string[] tags)
+        {
+            var definition = ScriptableObject.CreateInstance<RoomDefinition>();
+            _created.Add(definition);
+            Set(definition, "_id", "cryo_boss_test");
+            Set(definition, "_roomType", RoomType.Boss);
+            Set(definition, "_biome", Biome.CryoVaults);
+            Set(definition, "_tags", tags);
+            var go = new GameObject("Arena");
+            _created.Add(go);
+            go.AddComponent<UnityEngine.Grid>();
+            var root = go.AddComponent<RoomRoot>();
+            root.Configure(definition, new Vector2Int(36, 24));
+            foreach (var (role, cell) in new[] { (RoomMarkerRole.BossAnchor, new Vector2Int(18, 12)), (RoomMarkerRole.ChestSpawn, new Vector2Int(15, 5)), (RoomMarkerRole.InteractableSpawn, new Vector2Int(5, 2)) })
+            {
+                var marker = new GameObject(role.ToString()).AddComponent<RoomMarker>();
+                marker.transform.SetParent(go.transform, false);
+                marker.Configure(role, cell);
+                marker.SnapToGrid();
+            }
+
+            var socket = new GameObject("Door_S").AddComponent<DoorSocket>();
+            socket.transform.SetParent(go.transform, false);
+            socket.Configure(DoorDirection.South, new Vector2Int(17, 0));
+            socket.SnapToGrid();
+            var runtime = go.AddComponent<RoomRuntime>();
+            runtime.Configure(root, 9, depth: 3, partySize: 2);
+            return runtime;
+        }
+
+        [UnityTest]
+        public IEnumerator CryoArenas_BindTheirBoss_ScaleIt_AndDefeatOpensCacheAndTransitOnce()
+        {
+            foreach (var (tag, id, hp, xpExpected) in new[] { ("boss:subject_zero", "boss_subject_zero", 1250, 750), ("boss:the_warden", "boss_the_warden", 1150, 700) })
+            {
+                yield return ArenaRun(tag, id, hp, xpExpected);
+            }
+        }
+
+        private IEnumerator ArenaRun(string tag, string id, int hp, int xpExpected)
+        {
+            var services = new DungeonRuntimeServices
+            {
+                LootCatalog = AssetDatabase.LoadAssetAtPath<LootSourceCatalog>("Assets/Game/ScriptableObjects/Loot/LootSourceCatalog.asset"),
+                GroundLoot = new GroundLootRegistry(),
+                BossSpawner = new RosterBossSpawner(new DefaultBossSpawner(new[] { _zero, _warden }))
+            };
+            var context = new DungeonRuntimeContext(11, 3, 2, System.Array.Empty<EnemyDefinition>(), new DefaultEnemySpawner());
+            var room = CreateArena(new[] { "cryovaults", "boss", tag });
+            var binding = RoomCategoryComposer.Compose(room, context, services);
+            Assert.IsNotNull(binding.Boss);
+            Assert.AreEqual(id, binding.Boss.Boss.Definition.Id);
+            Assert.AreEqual(DepthScaling.ScaledHealth(hp, 3, 2, true), binding.Boss.Boss.Health.MaxHealth, "Boss HP on the boss curve (duo x1.65 after depth).");
+            Assert.IsNull(binding.BossCache, "The Boss Cache does not exist before the boss dies (46: boss death spawns it).");
+            Assert.IsFalse(binding.Transit.IsActivated);
+
+            var (player, _) = SpawnPlayerDummy((Vector2)room.transform.position + new Vector2(17.5f, 1f));
+            var transitActivations = 0;
+            binding.Transit.Activated += _ => transitActivations++;
+            var cleared = 0;
+            room.Cleared += (_, _) => cleared++;
+            var defeated = new List<int>();
+            binding.Boss.BossDefeated += (_, xp) => defeated.Add(xp);
+            Assert.IsTrue(room.NotifyPlayerEntered(player));
+            Assert.IsTrue(room.DoorsLocked);
+            yield return null;
+
+            DamageAuthority.LocalIsAuthoritative = false;
+            Assert.IsFalse(binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(10)), "Clients never damage the boss.");
+            DamageAuthority.LocalIsAuthoritative = true;
+            binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(99999));
+            yield return null;
+            Assert.IsTrue(binding.Boss.IsDefeated);
+            CollectionAssert.AreEqual(new[] { xpExpected }, defeated, "XP once.");
+            Assert.IsTrue(binding.BossCache != null && !binding.BossCache.IsLocked, "The boss's death spawns one openable Boss Cache.");
+            Assert.AreEqual(1, transitActivations);
+            Assert.AreEqual(1, cleared);
+            Assert.IsFalse(room.DoorsLocked);
+
+            Assert.IsFalse(binding.Boss.Boss.Health.TryApplyDamage(new DamageRequest(1)));
+            binding.Transit.Activate();
+            yield return null;
+            Assert.AreEqual(1, transitActivations);
+            Assert.AreEqual(1, cleared);
+            Assert.AreEqual(1, defeated.Count);
+            Assert.IsTrue(binding.BossCache.TryOpen(out _));
+            Assert.IsFalse(binding.BossCache.TryOpen(out _), "Boss Cache pays once.");
+            foreach (var go in services.GroundLoot.Tracked.ToArray()) if (go != null) Object.DestroyImmediate(go);
+            Object.DestroyImmediate(room.gameObject);
+            Object.DestroyImmediate(player);
+        }
+    }
+}

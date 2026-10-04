@@ -353,7 +353,7 @@ namespace RuinRail.Tests
 
         [UnityTest]
         public IEnumerator LiveRun_EnemiesRouteAroundObstacles_DoorwaysAndCorners_NeverPinned_InEveryBiome(
-            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs)] Biome biome)
+            [Values(Biome.RuinedMetro, Biome.Rustworks, Biome.OvergrownLabs, Biome.CryoVaults)] Biome biome)
         {
             _app = GameApp.Ensure(GameContentCatalog.Load(), _saveDir);
             _app.SetRunSeedOverride(SeedFor(biome));

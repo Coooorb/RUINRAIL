@@ -343,11 +343,12 @@ namespace RuinRail.Tests
                         Assert.IsFalse(binding.BossCache.TryOpen(out _));
                         Assert.IsTrue(cache.Items.Count > 0);
                         yield return PickUpEverything(run);
-                        Assert.IsTrue(binding.Transit.Interact(run.Player));
-                        Assert.IsFalse(binding.Transit.Interact(run.Player));
+                        // No in-world transit to board: the open decision (the post-boss panel) takes the choice, once.
+                        Assert.IsNull(binding.Transit.GetComponent<Collider2D>(), "the transit hook is not a world object");
+                        Assert.IsFalse((object)binding.Transit is RuinRail.Gameplay.Loot.IInteractable, "and offers no interaction");
                         AssertNoDuplicates(run);
-                        Assert.IsTrue(binding.Transit.Choose(choice), "Transit choice applies once.");
-                        Assert.IsFalse(binding.Transit.Choose(choice));
+                        Assert.IsTrue(run.Expedition.ChooseTransit(choice), "Transit choice applies once.");
+                        Assert.IsFalse(run.Expedition.ChooseTransit(choice));
                         break;
                 }
 
@@ -418,7 +419,9 @@ namespace RuinRail.Tests
             var elitesSeen = new HashSet<string>();
             var categories = new HashSet<RoomType>();
             var events = new HashSet<DungeonEventKind>();
-            var seeds = new[] { 2026, 7, 13, 21, 42, 99, 104, 313, 5, 64, 77, 128, 256, 512, 777, 1024 };
+            // 96 places a Merchant on both depths (Event and Loot too): after the Non-Combat separation rule none of the
+            // other seeds reaches a Merchant at depth 1-2 in any biome. The graph does not depend on the biome, so every gate plays it.
+            var seeds = new[] { 2026, 96, 7, 13, 21, 42, 99, 104, 313, 5, 64, 77, 128, 256, 512, 777, 1024 };
             var required = new[] { RoomType.Start, RoomType.Combat, RoomType.Merchant, RoomType.Event, RoomType.Loot, RoomType.Treasure, RoomType.MedicalRecovery, RoomType.Boss };
             var runsPlayed = 0;
 

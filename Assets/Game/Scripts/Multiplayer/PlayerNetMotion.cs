@@ -293,6 +293,27 @@ namespace RuinRail.Networking
             return (predicted - authoritative).sqrMagnitude > tolerance * tolerance;
         }
 
+        /// <summary>Errors below this (tiles) are left alone: the owner's prediction and the host agree.</summary>
+        public const float DeadBandTiles = 0.05f;
+
+        /// <summary>How fast a smaller error is eased out (per second): a fraction per physics step, never a visible snap.</summary>
+        public const float EaseRatePerSecond = 10f;
+
+        /// <summary>
+        /// The shift to apply to the owner's body this step: the host's position for an intent sequence minus where the owner
+        /// predicted itself after that same intent. Large errors snap; smaller ones ease out; tiny ones are left alone. Without
+        /// this, drift below the snap tolerance (a host copy shoved by enemy bodies a client does not simulate) persisted, and a
+        /// client could see itself up to 0.75 tiles from where the host judged its hits.
+        /// </summary>
+        public static Vector2 SequenceCorrection(Vector2 authoritative, Vector2 predictedAtSequence, float deltaTime, float tolerance = SnapToleranceTiles)
+        {
+            var error = authoritative - predictedAtSequence;
+            var size = error.magnitude;
+            if (size > tolerance) return error;
+            if (size <= DeadBandTiles) return Vector2.zero;
+            return error * Mathf.Clamp01(EaseRatePerSecond * deltaTime);
+        }
+
         public static Vector2 Reconcile(Vector2 predicted, Vector2 authoritative, float tolerance = SnapToleranceTiles)
         {
             return NeedsCorrection(predicted, authoritative, tolerance) ? authoritative : predicted;

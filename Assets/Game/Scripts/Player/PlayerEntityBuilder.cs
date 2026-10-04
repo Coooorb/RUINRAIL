@@ -46,6 +46,7 @@ namespace RuinRail.Gameplay.Player
             var collider = go.AddComponent<CircleCollider2D>();
             collider.radius = 0.4f;
             CombatLayers.TagPlayerBody(go);
+            CombatHurtbox.AttachPlayer(go); // enemy attacks hit only what is drawn
             go.AddComponent<TeamMember>().SetTeam(DamageTeam.Player);
             var health = go.AddComponent<HealthComponent>();
             if (options.BalanceConfig != null) health.SetMaxHealth(options.BalanceConfig.MaxHealth);

@@ -30,7 +30,32 @@ namespace RuinRail.EditorTools.ArtGen
             public string Description = string.Empty;
             /// <summary>Presentation scale bound into the catalog profile (boss volleys draw at 2x).</summary>
             public int Scale = 1;
+            /// <summary>Shot feel bound into the profile: muzzle flash / impact effect kinds, their seconds, the weapon kick.</summary>
+            public string MuzzleKind = string.Empty;
+            public float MuzzleSeconds;
+            public string ImpactKind = string.Empty;
+            public float ImpactSeconds;
+            public float RecoilPixels;
         }
+
+        /// <summary>
+        /// The weight ladder of the player families' shot feel (presentation only): what flashes at the muzzle, what bursts
+        /// where the shot lands, how hard the held weapon kicks. Light for rapid fire, heavy for slugs and blasts, a rail
+        /// for the sniper, cyan for energy. Legendary variants share their family's stack.
+        /// </summary>
+        public static readonly IReadOnlyDictionary<string, (string muzzle, float muzzleSeconds, string impact, float impactSeconds, float recoil)> ShotFeel =
+            new Dictionary<string, (string, float, string, float, float)>
+            {
+                ["proj_pistol"] = ("muzzle", 0.07f, "impact", 0.16f, 2f),
+                ["proj_smg"] = ("muzzle_light", 0.05f, "impact_light", 0.12f, 1f),
+                ["proj_rifle"] = ("muzzle", 0.07f, "impact", 0.16f, 2f),
+                ["proj_battle_rifle"] = ("muzzle_heavy", 0.08f, "impact_heavy", 0.2f, 3f),
+                ["proj_pellet"] = ("muzzle_heavy", 0.1f, "impact_light", 0.14f, 4f),
+                ["proj_sniper"] = ("muzzle_rail", 0.09f, "impact_heavy", 0.22f, 3f),
+                ["proj_arrow"] = ("none", 0f, "impact_light", 0.12f, 1f),
+                ["proj_energy_bolt"] = ("muzzle_energy", 0.08f, "impact_energy", 0.18f, 2f),
+                ["proj_rocket"] = ("muzzle_heavy", 0.1f, "impact", 0.16f, 4f)
+            };
 
         /// <summary>Family default profile per ranged weapon class.</summary>
         public static readonly IReadOnlyDictionary<WeaponClass, string> FamilyDefaults = new Dictionary<WeaponClass, string>
@@ -74,7 +99,13 @@ namespace RuinRail.EditorTools.ArtGen
             ["omega_spore_burst"] = "proj_boss_spore",
             ["aegis_triple_burst"] = "proj_boss_energy",
             ["aegis_radial_ring"] = "proj_boss_energy",
-            ["aegis_ring_while_line"] = "proj_boss_energy"
+            ["aegis_ring_while_line"] = "proj_boss_energy",
+            ["vault_stalker_frost_fan"] = "proj_enemy_frost",
+            ["vault_stalker_shard_burst"] = "proj_enemy_frost",
+            ["warden_sweep_fan"] = "proj_boss_frost",
+            ["warden_aimed_volley"] = "proj_boss_frost",
+            ["warden_emergency_purge"] = "proj_boss_frost",
+            ["subject_zero_radial_burst"] = "proj_boss_frost"
         };
 
         public static IReadOnlyList<Spec> Specs()
@@ -88,16 +119,16 @@ namespace RuinRail.EditorTools.ArtGen
             {
                 var s = legendary ? LegendarySuffix : string.Empty;
                 var tag = legendary ? " (Legendary: amber accent, longer tracer)" : string.Empty;
-                Add("proj_pistol" + s, legendary ? 10 : 8, 3, "small conventional bullet with a short warm tracer" + tag);
-                Add("proj_smg" + s, legendary ? 9 : 7, 2, "small fast-looking thin tracer" + tag);
-                Add("proj_rifle" + s, legendary ? 12 : 10, 3, "medium rifle tracer" + tag);
-                Add("proj_battle_rifle" + s, legendary ? 14 : 12, 3, "heavier, brighter rifle projectile" + tag);
-                Add("proj_pellet" + s, 3, 3, "one readable shotgun pellet" + tag, pivotX: 0.5f);
-                Add("proj_sniper" + s, legendary ? 20 : 16, 1, "thin high-contrast fast tracer" + tag, pivotX: 0.95f);
+                Add("proj_pistol" + s, legendary ? 12 : 10, 5, "punchy brass slug: outlined, hot cream core, short warm tracer" + tag);
+                Add("proj_smg" + s, legendary ? 13 : 11, 5, "quick bright round: short hot body, long thin tracer, readable in a stream" + tag);
+                Add("proj_rifle" + s, legendary ? 15 : 13, 5, "strong steel-cored rifle tracer with a long ochre tail" + tag);
+                Add("proj_battle_rifle" + s, legendary ? 18 : 16, 7, "heavy round: thick white-hot core, amber flanks, long tail" + tag);
+                Add("proj_pellet" + s, 7, 7, "chunky hot shotgun pellet: white core, amber body, dark rim" + tag, pivotX: 0.5f, frames: 2, frameSeconds: 0.05f);
+                Add("proj_sniper" + s, 20, 3, "precise rail: white-hot core line with cyan flanks and a dark rim" + tag, pivotX: 0.95f);
                 Add("proj_arrow" + s, 14, 3, "arrow with steel head and fletching, aligned to travel" + tag, pivotX: 0.9f);
-                Add("proj_energy_bolt" + s, 8, 4, "distinct cyan energy bolt, 2-frame flicker" + tag, frames: 2, pivotX: 0.75f);
-                Add("proj_rocket" + s, 12, 5, "rocket body with amber nose and a flickering exhaust trail" + tag, frames: 2, pivotX: 0.8f, trail: "proj_rocket_trail" + s, trailBack: 0.34f, frameSeconds: 0.05f);
-                Add("proj_rocket_trail" + s, 8, 3, "rocket exhaust puff" + tag, frames: 2, pivotX: 0.9f, frameSeconds: 0.05f);
+                Add("proj_energy_bolt" + s, 12, 7, "cyan plasma bolt: white core, glowing halo, 2-frame flicker" + tag, frames: 2, pivotX: 0.75f);
+                Add("proj_rocket" + s, 14, 7, "rocket body with amber nose and a flickering exhaust trail" + tag, frames: 2, pivotX: 0.8f, trail: "proj_rocket_trail" + s, trailBack: 0.4f, frameSeconds: 0.05f);
+                Add("proj_rocket_trail" + s, 12, 5, "rocket exhaust flame and smoke" + tag, frames: 2, pivotX: 0.9f, frameSeconds: 0.05f);
             }
 
             // Hostile.
@@ -111,8 +142,19 @@ namespace RuinRail.EditorTools.ArtGen
             Add("proj_boss_furnace", 7, 7, "Foundry Titan ember: molten chunk with a dark crust, 2-frame glow", frames: 2, pivotX: 0.6f, frameSeconds: 0.08f);
             Add("proj_boss_spore", 6, 6, "Subject Omega spore: toxic green bulb with a pale core, 2-frame pulse", frames: 2, pivotX: 0.6f, frameSeconds: 0.09f);
             Add("proj_boss_energy", 9, 5, "Aegis Core lab energy: teal-green bolt with a white core, 2-frame flicker", frames: 2, pivotX: 0.75f);
+            Add("proj_enemy_frost", 9, 5, "Cryo Vaults ice splinter: pale cyan with a white tip and a running glint, 2-frame", frames: 2, pivotX: 0.75f);
+            Add("proj_boss_frost", 11, 5, "Cryo Vaults boss ice lance: pale cyan and frost white, ice-blue flanks, 2-frame glint", frames: 2, pivotX: 0.75f);
             // Boss volleys draw at twice their pixel size so they read at gameplay distance (the hitbox is unchanged).
             foreach (var spec in list) if (spec.Id.StartsWith("proj_boss_", System.StringComparison.Ordinal)) spec.Scale = 2;
+            foreach (var spec in list)
+            {
+                var family = spec.Id.EndsWith(LegendarySuffix, StringComparison.Ordinal) ? spec.Id.Substring(0, spec.Id.Length - LegendarySuffix.Length) : spec.Id;
+                if (!ShotFeel.TryGetValue(family, out var feel)) continue;
+                spec.MuzzleKind = feel.muzzle; spec.MuzzleSeconds = feel.muzzleSeconds;
+                spec.ImpactKind = feel.impact; spec.ImpactSeconds = feel.impactSeconds;
+                spec.RecoilPixels = feel.recoil;
+            }
+
             return list;
         }
 
@@ -138,7 +180,12 @@ namespace RuinRail.EditorTools.ArtGen
         private static readonly Color32 Toxic = RuinPalette.PaleToxic;
         private static readonly Color32 ToxicDim = RuinPalette.SickGreen;
         private static readonly Color32 Cyan = RuinPalette.ElectricCyan;
+        /// <summary>The player's energy / rail cyan: brighter than the hostile teal so a player bolt never reads as a threat.</summary>
+        private static readonly Color32 PlayerCyan = RuinPalette.Hex("#7FE6F0");
         private static readonly Color32 Teal = RuinPalette.TerminalGreen;
+        private static readonly Color32 IceBlue = RuinPalette.Hex("#79A9C4");
+        private static readonly Color32 PaleCyan = RuinPalette.Hex("#A9DDE8");
+        private static readonly Color32 FrostWhite = RuinPalette.Hex("#DCEFF4");
 
         public static PixelCanvas Build(string id, int frame)
         {
@@ -148,14 +195,14 @@ namespace RuinRail.EditorTools.ArtGen
             var family = legendary ? id.Substring(0, id.Length - LegendarySuffix.Length) : id;
             switch (family)
             {
-                case "proj_pistol": Tracer(c, Brass, Ochre, legendary); break;
-                case "proj_smg": ThinTracer(c, Brass, legendary); break;
-                case "proj_rifle": Tracer(c, Steel, Ochre, legendary); break;
-                case "proj_battle_rifle": HeavyTracer(c, Steel, Ochre, legendary); break;
-                case "proj_pellet": Pellet(c, legendary ? Amber : Brass); break;
-                case "proj_sniper": Rail(c, legendary ? Amber : Cyan, HotWhite); break;
+                case "proj_pistol": Slug(c, 1, 0, 3, Brass, legendary ? Amber : Ochre, legendary); break;
+                case "proj_smg": Slug(c, 1, 0, 6, legendary ? Amber : Ochre, Ochre, legendary); break;
+                case "proj_rifle": Slug(c, 1, 0, 5, Steel, Ochre, legendary); break;
+                case "proj_battle_rifle": Slug(c, 2, 1, 6, legendary ? Amber : Ochre, Ochre, legendary); break;
+                case "proj_pellet": Pellet(c, legendary ? Amber : Brass, frame); break;
+                case "proj_sniper": PlayerRail(c, legendary ? Amber : PlayerCyan); break;
                 case "proj_arrow": Arrow(c, legendary); break;
-                case "proj_energy_bolt": Bolt(c, legendary ? Amber : Cyan, Core, frame); break;
+                case "proj_energy_bolt": Plasma(c, legendary ? Amber : PlayerCyan, frame); break;
                 case "proj_rocket": Rocket(c, legendary, frame); break;
                 case "proj_rocket_trail": Exhaust(c, legendary ? Amber : Ochre, frame); break;
                 case "proj_enemy_round": Tracer(c, HostileOrange, HostileRed, false, hostile: true); break;
@@ -168,6 +215,8 @@ namespace RuinRail.EditorTools.ArtGen
                 case "proj_boss_furnace": Ember(c, frame); break;
                 case "proj_boss_spore": Spore(c, frame); break;
                 case "proj_boss_energy": Bolt(c, Teal, Core, frame, wide: true); break;
+                case "proj_enemy_frost":
+                case "proj_boss_frost": IceShard(c, frame); break;
                 default: Tracer(c, Steel, Ochre, false); break;
             }
 
@@ -189,15 +238,6 @@ namespace RuinRail.EditorTools.ArtGen
             }
         }
 
-        private static void ThinTracer(PixelCanvas c, Color32 body, bool legendary)
-        {
-            var w = c.Width;
-            for (var x = 0; x < w - 2; x++) c.Set(x, 0, x % 2 == 0 ? Ochre : RuinPalette.Darken(Ochre, 0.4f));
-            c.Set(w - 2, 0, body);
-            c.Set(w - 1, 0, HotWhite);
-            if (c.Height > 1) { c.Set(w - 1, 1, Outline); c.Set(w - 2, 1, legendary ? Amber : Outline); }
-        }
-
         private static void HeavyTracer(PixelCanvas c, Color32 body, Color32 tracer, bool legendary, bool hostile = false)
         {
             var w = c.Width; var mid = c.Height / 2;
@@ -209,11 +249,71 @@ namespace RuinRail.EditorTools.ArtGen
             if (legendary) { c.Set(w - 3, mid + 1, Amber); c.Set(w - 4, mid, Amber); }
         }
 
-        private static void Pellet(PixelCanvas c, Color32 body)
+        /// <summary>
+        /// A player round, pointing +X: an outlined capsule of <paramref name="halfBody"/> rows each side of the centre
+        /// (tapering one row toward the tail when <paramref name="taper"/> is set), a hot core, a white-hot nose, and a
+        /// dithered tracer tail of <paramref name="tail"/> pixels behind it. Thick enough to read as dangerous, small
+        /// enough to never cover the enemy it flies at.
+        /// </summary>
+        private static void Slug(PixelCanvas c, int halfBody, int taper, int tail, Color32 body, Color32 tracer, bool legendary)
         {
-            c.Set(1, 1, HotWhite);
-            c.Set(0, 1, body); c.Set(2, 1, body); c.Set(1, 0, body); c.Set(1, 2, body);
-            c.Set(0, 0, Outline); c.Set(2, 0, Outline); c.Set(0, 2, Outline); c.Set(2, 2, Outline);
+            var w = c.Width; var mid = c.Height / 2;
+            var head = w - 1;
+            var start = tail; // the body runs from just after the tail to the nose
+            for (var x = 0; x < start; x++)
+                c.Set(x, mid, x % 2 == (start % 2) ? tracer : RuinPalette.Darken(tracer, 0.35f));
+            for (var x = start; x <= head; x++)
+            {
+                var fromHead = head - x;
+                var h = halfBody;
+                if (fromHead == 0) h = Mathf.Max(0, halfBody - 1); // a rounded nose
+                if (taper > 0 && x - start < (w - start) / 3) h = Mathf.Max(0, halfBody - taper);
+                for (var dy = -h; dy <= h; dy++)
+                {
+                    var a = Mathf.Abs(dy);
+                    var col = a == h && h > 0 ? body : fromHead <= 1 ? HotWhite : Core;
+                    if (h == 0) col = fromHead <= 1 ? HotWhite : fromHead <= 3 ? Core : body;
+                    c.Set(x, mid + dy, col);
+                }
+
+                c.Set(x, mid + h + 1, Outline);
+                c.Set(x, mid - h - 1, Outline);
+            }
+
+            c.Set(head, mid, HotWhite);
+            if (legendary)
+            {
+                // The Legendary accent: amber flanks behind the nose.
+                var ax = Mathf.Max(start, head - 3);
+                c.Set(ax, mid + halfBody, Amber); c.Set(ax, mid - halfBody, Amber);
+                c.Set(ax - 1, mid + halfBody, Amber); c.Set(ax - 1, mid - halfBody, Amber);
+            }
+        }
+
+        // A chunky hot pellet: dark rim, warm body, white core; the second frame breathes so a cloud of pellets shimmers.
+        private static void Pellet(PixelCanvas c, Color32 body, int frame)
+        {
+            var mid = c.Width / 2;
+            c.Ellipse(mid + 0.5f, mid + 0.5f, 3.4f, 3.4f, Outline);
+            c.Ellipse(mid + 0.5f, mid + 0.5f, 2.5f, 2.5f, body);
+            c.Ellipse(mid + 0.5f, mid + 0.5f, frame == 0 ? 1.6f : 1.2f, frame == 0 ? 1.6f : 1.2f, Core);
+            c.Set(mid, mid, HotWhite);
+            c.Set(mid + 1, mid + 1, frame == 0 ? HotWhite : Core);
+        }
+
+        // Player plasma: a soft halo round a white core, outlined, flickering between a long and a short body.
+        private static void Plasma(PixelCanvas c, Color32 halo, int frame)
+        {
+            var w = c.Width; var mid = c.Height / 2;
+            var len = frame == 0 ? w - 1 : w - 2;
+            var cx = len * 0.6f;
+            c.Ellipse(cx, mid + 0.5f, len * 0.5f, 3.4f, Outline);
+            c.Ellipse(cx, mid + 0.5f, len * 0.5f - 1f, 2.5f, RuinPalette.Darken(halo, 0.25f));
+            c.Ellipse(cx + 0.5f, mid + 0.5f, len * 0.5f - 2f, 1.6f, halo);
+            for (var x = Mathf.RoundToInt(cx) - 1; x < len - 1; x++) c.Set(x, mid, Core);
+            c.Set(len - 2, mid, HotWhite); c.Set(len - 3, mid, HotWhite);
+            // A spark trailing the bolt.
+            c.Set(0, mid + (frame == 0 ? 1 : -1), halo);
         }
 
         // A one-pixel rail: bright head, colour body, fading tail (sniper).
@@ -229,6 +329,26 @@ namespace RuinRail.EditorTools.ArtGen
             // A dark tail end: the rail stays readable over a bright floor as well as a dark one.
             c.Set(0, 0, Outline);
             c.Set(1, 0, RuinPalette.Darken(body, 0.7f));
+        }
+
+        // The player's sniper rail: a white-hot core line over most of its length, coloured flanks, a dark fading tail.
+        private static void PlayerRail(PixelCanvas c, Color32 body)
+        {
+            var w = c.Width; var mid = c.Height / 2;
+            for (var x = 0; x < w; x++)
+            {
+                var t = (float)x / (w - 1);
+                c.Set(x, mid, t > 0.4f ? HotWhite : t > 0.15f ? body : RuinPalette.Darken(body, 0.55f));
+                if (t > 0.3f && t < 0.97f)
+                {
+                    var flank = t > 0.6f ? body : RuinPalette.Darken(body, 0.3f);
+                    c.Set(x, mid - 1, flank);
+                    c.Set(x, mid + 1, flank);
+                }
+            }
+
+            c.Set(0, mid, Outline);
+            c.Set(1, mid, RuinPalette.Darken(body, 0.7f));
         }
 
         private static void Arrow(PixelCanvas c, bool legendary)
@@ -283,6 +403,32 @@ namespace RuinRail.EditorTools.ArtGen
 
             c.Set(w - 2, mid - 1, hot); c.Set(w - 2, mid + 1, hot);
             c.Set(w - len, mid, RuinPalette.MidSteel); // smoke at the very tail
+        }
+
+        /// <summary>
+        /// An elongated ice splinter along the travel axis: widest a third of the way back from the tip, tapering to a
+        /// point at both ends, ice-blue flanks round a pale-cyan body, a white tip and a glint that runs down the body
+        /// on alternate frames. Cold where every other hostile round is warm or toxic, outlined so it holds on frost.
+        /// </summary>
+        private static void IceShard(PixelCanvas c, int frame)
+        {
+            var w = c.Width; var h = c.Height; var mid = h / 2;
+            var widest = (w - 1) * 0.62f;
+            for (var x = 0; x < w; x++)
+            {
+                var t = x <= widest ? x / widest : (w - 1 - x) / (w - 1 - widest);
+                var half = Mathf.Clamp(Mathf.RoundToInt(t * (mid - 1)), 0, mid - 1);
+                for (var dy = -half; dy <= half; dy++)
+                    c.Set(x, mid + dy, Mathf.Abs(dy) == half && half > 0 ? IceBlue : PaleCyan);
+                if (mid - half - 1 >= 0) c.Set(x, mid - half - 1, Outline);
+                if (mid + half + 1 < h) c.Set(x, mid + half + 1, Outline);
+            }
+
+            c.Set(w - 1, mid, HotWhite);
+            c.Set(w - 2, mid, FrostWhite);
+            var glint = frame == 0 ? (int)widest : (int)widest - 3;
+            if (glint > 0) c.Set(glint, mid, HotWhite);
+            c.Set(0, mid, IceBlue);
         }
 
         private static void Shard(PixelCanvas c, Color32 body, Color32 edge)
