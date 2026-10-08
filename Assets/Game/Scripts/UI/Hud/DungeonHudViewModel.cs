@@ -30,7 +30,12 @@ namespace RuinRail.UI.Hud
         public bool IsActive;
         public HudResourceKind Resource;
         public int Magazine;
+        /// <summary>Magazine capacity (presentation: the HUD's round gauge).</summary>
+        public int MagazineSize;
         public int Reserve;
+        public bool IsReloading;
+        /// <summary>Progress of the running reload, 0..1 (presentation only).</summary>
+        public float Reload01;
         public float Heat01;
         public bool Overheated;
         public float Charge01;
@@ -567,7 +572,7 @@ namespace RuinRail.UI.Hud
 
         private bool RefreshWeapon(HudWeaponState state, IEquippableWeapon weapon, WeaponSlot slot)
         {
-            var before = (state.Name, state.IsActive, state.Resource, state.Magazine, state.Reserve, Mathf.RoundToInt(state.Heat01 * 100f), state.Overheated, Mathf.RoundToInt(state.Charge01 * 100f), state.IsCharging, state.NoAmmo, state.SpecialName, Mathf.RoundToInt(state.SpecialCooldown01 * 100f), state.SpecialReady, state.DefinitionId, state.Icon, state.Rarity);
+            var before = (state.Name, state.IsActive, state.Resource, state.Magazine, state.Reserve, Mathf.RoundToInt(state.Heat01 * 100f), state.Overheated, Mathf.RoundToInt(state.Charge01 * 100f), state.IsCharging, state.NoAmmo, state.SpecialName, Mathf.RoundToInt(state.SpecialCooldown01 * 100f), state.SpecialReady, state.DefinitionId, state.Icon, state.Rarity, (state.MagazineSize, state.IsReloading, Mathf.RoundToInt(state.Reload01 * 50f)));
             if (weapon is UnityEngine.Object unityWeapon && unityWeapon == null) weapon = null;   // a destroyed component is no weapon
             state.IsActive = _loadout != null && _loadout.ActiveSlot == slot && weapon != null;
             var item = _inventory?.GetEquipped(InventorySlotOf(slot));
@@ -577,12 +582,18 @@ namespace RuinRail.UI.Hud
             state.SpecialName = null;
             state.SpecialCooldown01 = 0f;
             state.SpecialReady = false;
+            state.MagazineSize = 0;
+            state.IsReloading = false;
+            state.Reload01 = 0f;
             switch (weapon)
             {
                 case RangedWeapon ranged:
                     state.Name = ranged.Definition != null ? ranged.Definition.DisplayName : "—";
                     state.Resource = HudResourceKind.Ammo;
                     state.Magazine = ranged.MagazineAmmo;
+                    state.MagazineSize = ranged.CurrentMagazineSize;
+                    state.IsReloading = ranged.IsReloading;
+                    state.Reload01 = ranged.ReloadProgress01;
                     state.Reserve = ranged.Definition != null && _reserve != null ? _reserve(ranged.Definition.AmmoType) : 0;
                     state.NoAmmo = state.Magazine <= 0 && state.Reserve <= 0;
                     break;
@@ -618,7 +629,7 @@ namespace RuinRail.UI.Hud
                 state.SpecialReady = _special.State.IsReady;
             }
 
-            var after = (state.Name, state.IsActive, state.Resource, state.Magazine, state.Reserve, Mathf.RoundToInt(state.Heat01 * 100f), state.Overheated, Mathf.RoundToInt(state.Charge01 * 100f), state.IsCharging, state.NoAmmo, state.SpecialName, Mathf.RoundToInt(state.SpecialCooldown01 * 100f), state.SpecialReady, state.DefinitionId, state.Icon, state.Rarity);
+            var after = (state.Name, state.IsActive, state.Resource, state.Magazine, state.Reserve, Mathf.RoundToInt(state.Heat01 * 100f), state.Overheated, Mathf.RoundToInt(state.Charge01 * 100f), state.IsCharging, state.NoAmmo, state.SpecialName, Mathf.RoundToInt(state.SpecialCooldown01 * 100f), state.SpecialReady, state.DefinitionId, state.Icon, state.Rarity, (state.MagazineSize, state.IsReloading, Mathf.RoundToInt(state.Reload01 * 50f)));
             return !before.Equals(after);
         }
 

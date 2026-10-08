@@ -91,18 +91,7 @@ namespace RuinRail.UI.Hud
         {
             _notchHp = notchHp;
             _lowStyling = lowStyling;
-            // Outline with chamfered (cut) corners, then the bevelled rim: light above, shadow below.
-            _outline = new[]
-            {
-                UiBuild.Plate(transform, new UiRect(1, 0, width - 2, 1), Outline, "OutlineTop"),
-                UiBuild.Plate(transform, new UiRect(1, height - 1, width - 2, 1), Outline, "OutlineBottom"),
-                UiBuild.Plate(transform, new UiRect(0, 1, 1, height - 2), Outline, "OutlineLeft"),
-                UiBuild.Plate(transform, new UiRect(width - 1, 1, 1, height - 2), Outline, "OutlineRight")
-            };
-            UiBuild.Plate(transform, new UiRect(1, 1, width - 2, 1), RimLight, "RimTop");
-            UiBuild.Plate(transform, new UiRect(1, height - 2, width - 2, 1), RimShadow, "RimBottom");
-            UiBuild.Plate(transform, new UiRect(1, 2, 1, height - 4), Rim, "RimLeft");
-            UiBuild.Plate(transform, new UiRect(width - 2, 2, 1, height - 4), Rim, "RimRight");
+            _outline = Frame(transform, width, height, out _);
 
             _innerWidth = width - 4;
             _innerHeight = height - 4;
@@ -124,6 +113,29 @@ namespace RuinRail.UI.Hud
 
             _edge = UiBuild.Plate(transform, new UiRect(2, 3, 1, Mathf.Max(1, _innerHeight - 2)), Edge, "LeadingEdge");
         }
+
+        /// <summary>
+        /// The HUD frame (spec 18): a black outline with chamfered (cut) corners around a bevelled metal rim — light above,
+        /// shadow below. Shared by every framed HUD element so they read as one family. Returns the four outline plates.
+        /// </summary>
+        public static Image[] Frame(Transform parent, int width, int height, out Image rimTop)
+        {
+            var outline = new[]
+            {
+                UiBuild.Plate(parent, new UiRect(1, 0, width - 2, 1), Outline, "OutlineTop"),
+                UiBuild.Plate(parent, new UiRect(1, height - 1, width - 2, 1), Outline, "OutlineBottom"),
+                UiBuild.Plate(parent, new UiRect(0, 1, 1, height - 2), Outline, "OutlineLeft"),
+                UiBuild.Plate(parent, new UiRect(width - 1, 1, 1, height - 2), Outline, "OutlineRight")
+            };
+            rimTop = UiBuild.Plate(parent, new UiRect(1, 1, width - 2, 1), RimLight, "RimTop");
+            UiBuild.Plate(parent, new UiRect(1, height - 2, width - 2, 1), RimShadow, "RimBottom");
+            UiBuild.Plate(parent, new UiRect(1, 2, 1, height - 4), Rim, "RimLeft");
+            UiBuild.Plate(parent, new UiRect(width - 2, 2, 1, height - 4), Rim, "RimRight");
+            return outline;
+        }
+
+        public static Color RimLightColor => RimLight;
+        public static Color OutlineColor => Outline;
 
         /// <summary>Shows the HP the HUD read; the first call (and any change of maximum) snaps without feedback.</summary>
         public void Show(int hp, int maxHp)

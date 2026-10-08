@@ -175,10 +175,13 @@ namespace RuinRail.UI.Hud
     }
 
     /// <summary>
-    /// One bottom-centre weapon slot (91 Weapons): a slot plate with the equipped item's rarity frame and icon, the
-    /// slot number chip (1 / 2), amber brackets and a brighter plate while active, and beside it the name and — only
-    /// for weapons that have one — the resource readout ("12 / 124", "NO AMMO", heat, draw) plus the legendary
-    /// special line. A melee weapon shows its icon and name only.
+    /// One bottom-centre weapon card (91 Weapons), framed like the HP bar (spec 18: black chamfered outline, bevelled metal
+    /// rim): a recessed icon well with the item's rarity frame, its definition icon on a 1 px drop shadow and the slot
+    /// number chip; beside it the name, the resource readout ("12 / 124", "NO AMMO", heat, draw — only for weapons that
+    /// have one), a gauge (magazine rounds as pips, heat, draw, or the reload sweep) and the status line (the held
+    /// Legendary's special, else RELOADING). The held weapon is lit — amber rim, brackets, full-bright icon and ink; a
+    /// holstered one is dimmed; an empty slot is a faint card; a weapon with no ammo left shows red. Switching in, a
+    /// finished reload and a special coming ready each get one short flash. A melee weapon shows its icon and name only.
     /// </summary>
     public sealed class HudWeaponSlotView : MonoBehaviour
     {
@@ -187,23 +190,64 @@ namespace RuinRail.UI.Hud
         public const int TextWidth = 80;
         public const int Gap = 4;
         public const int Width = SlotSize + Gap + TextWidth;
-        private const int Inset = 3;
+        /// <summary>Above this magazine size the round gauge is a continuous bar instead of one pip per round.</summary>
+        public const int MaxPips = 25;
+        public const float SwitchFlashSeconds = 0.25f;
+        public const float ReloadFlashSeconds = 0.18f;
+        public const float SpecialFlashSeconds = 0.35f;
+        private const int Well = 36;
+        private const int GaugeWidth = TextWidth - 4;
+        private const int GaugeHeight = 3;
 
+        private static readonly Color CardFill = UiTheme.WithAlpha(UiTheme.Hex("#161B1D"), 0.97f);
+        private static readonly Color CardFillActive = UiTheme.WithAlpha(UiTheme.Hex("#1E2528"), 0.98f);
+        // Rarity backlight behind the icon (common → legendary), so a small icon reads in its well.
+        private static readonly Color[] RarityGlow = { UiTheme.Hex("#8E9894"), UiTheme.Hex("#6FBF8C"), UiTheme.Hex("#58A6D6"), UiTheme.Hex("#B07CE0"), UiTheme.Hex("#E7A74A") };
+        private static readonly Color WellFill = UiTheme.Hex("#0D1112");
+        private static readonly Color WellShadow = UiTheme.Hex("#070909");
+        private static readonly Color Round = UiTheme.Hex("#E9CF92");
+        private static readonly Color RoundLow = UiTheme.Hex("#E58A3C");
+        private static readonly Color RoundSpent = UiTheme.Hex("#2B3133");
+        private static readonly Color HeatCool = UiTheme.Hex("#5FB6B0");
+        private static readonly Color HeatHot = UiTheme.Hex("#E2653A");
+        private static readonly Color Draw = UiTheme.Hex("#9FD8E6");
+
+        private Image _card;
+        private Image _rimTop;
+        private Image[] _outline;
         private Image _plate;
         private Image _rarity;
         private Image _icon;
+        private Image _iconShadow;
+        private Image _glowOuter;
+        private Image _glowInner;
         private Image _emptyMark;
+        private Image _flash;
         private Image _numberBack;
         private Text _number;
         private Text _name;
         private Text _resource;
         private Text _special;
+        private Image _gaugeBack;
+        private Image _gaugeFill;
+        private readonly List<Image> _pips = new();
         private readonly List<Image> _brackets = new();
         private System.Func<int, Sprite> _rarityFrame;
+        private bool _shown;
+        private bool _wasActive;
+        private bool _wasReloading;
+        private bool _wasSpecialReady;
+        private float _switchFlash;
+        private float _reloadFlash;
+        private float _specialFlash;
+        private Color _gaugeColor;
+        private Color _specialColor;
 
         public string SlotNumber { get; private set; } = string.Empty;
         public bool IsActive { get; private set; }
         public bool IsEmpty { get; private set; } = true;
+        /// <summary>A weapon with nothing left to fire (no magazine, no reserve).</summary>
+        public bool IsUnavailable { get; private set; }
         public string NameText => _name != null ? _name.text : string.Empty;
         /// <summary>The visible resource line: empty for melee and for an empty slot.</summary>
         public string ResourceText => _resource != null && _resource.enabled ? _resource.text : string.Empty;
@@ -213,6 +257,12 @@ namespace RuinRail.UI.Hud
         public bool IconVisible => _icon != null && _icon.enabled;
         public Sprite FrameSprite => _rarity != null && _rarity.enabled ? _rarity.sprite : null;
         public bool BracketsVisible => _brackets.Count > 0 && _brackets[0].enabled;
+        /// <summary>Pips lit / drawn in the round gauge (0 / 0 when it is a continuous bar or hidden).</summary>
+        public int PipsLit { get; private set; }
+        public int PipsShown { get; private set; }
+        /// <summary>The continuous gauge's fill (heat, draw, reload, large magazines); -1 when hidden or pips.</summary>
+        public float GaugeFill => _gaugeFill != null && _gaugeFill.enabled ? _gaugeFill.fillAmount : -1f;
+        public bool FlashActive => _switchFlash > 0f || _reloadFlash > 0f || _specialFlash > 0f;
         public RectTransform Rect => (RectTransform)transform;
         public RectTransform SlotRect { get; private set; }
 
@@ -228,69 +278,205 @@ namespace RuinRail.UI.Hud
 
         private void Build(Sprite slotSprite)
         {
-            var slot = new UiRect(0, 0, SlotSize, SlotSize);
-            SlotRect = UiBuild.NewRect(transform, "Slot", slot);
-            var inner = new UiRect(0, 0, SlotSize, SlotSize);
-            _plate = UiBuild.Sliced(SlotRect, inner, slotSprite, null, "Plate");
-            _rarity = UiBuild.Sliced(SlotRect, inner, null, Color.white, "RarityFrame");
+            // The card: one framed unit per weapon, the HP bar's frame so the bottom HUD reads as one family.
+            _card = UiBuild.Plate(transform, new UiRect(1, 1, Width - 2, SlotSize - 2), CardFill, "Card");
+            _outline = HudHealthBarView.Frame(transform, Width, SlotSize, out _rimTop);
+
+            // The icon well: recessed (dark, shadowed top edge), the rarity frame around it, the icon on a drop shadow.
+            SlotRect = UiBuild.NewRect(transform, "Slot", new UiRect(0, 0, SlotSize, SlotSize));
+            var well = new UiRect(2, 2, Well, Well);
+            _plate = UiBuild.Plate(SlotRect, well, WellFill, "Plate");
+            UiBuild.Plate(SlotRect, new UiRect(2, 2, Well, 1), WellShadow, "WellShadow");
+            _rarity = UiBuild.Sliced(SlotRect, well, null, Color.white, "RarityFrame");
             _rarity.enabled = false;
-            _emptyMark = UiBuild.Plate(SlotRect, new UiRect((SlotSize - 4) / 2, (SlotSize - 4) / 2, 4, 4), UiTheme.InkDisabled, "EmptyMark");
-            var iconRect = UiBuild.NewRect(SlotRect, "Icon", new UiRect((SlotSize - IconSize) / 2, (SlotSize - IconSize) / 2, IconSize, IconSize));
-            _icon = iconRect.gameObject.AddComponent<Image>();
-            _icon.raycastTarget = false;
-            _icon.preserveAspect = true;
-            _icon.enabled = false;
+            _emptyMark = UiBuild.Plate(SlotRect, new UiRect(2 + (Well - 4) / 2, 2 + (Well - 4) / 2, 4, 4), UiTheme.InkDisabled, "EmptyMark");
+            _glowOuter = UiBuild.Plate(SlotRect, new UiRect(2 + (Well - 24) / 2, 2 + (Well - 24) / 2, 24, 24), Color.clear, "GlowOuter");
+            _glowInner = UiBuild.Plate(SlotRect, new UiRect(2 + (Well - 16) / 2, 2 + (Well - 16) / 2, 16, 16), Color.clear, "GlowInner");
+            var iconBounds = new UiRect(2 + (Well - IconSize) / 2, 2 + (Well - IconSize) / 2, IconSize, IconSize);
+            _iconShadow = Icon(new UiRect(iconBounds.X + 1, iconBounds.Y + 1, IconSize, IconSize), "IconShadow");
+            _iconShadow.color = new Color(0f, 0f, 0f, 0.55f);
+            _icon = Icon(iconBounds, "Icon");
+            _flash = UiBuild.Plate(SlotRect, well, new Color(1f, 1f, 1f, 0f), "Flash");
 
-            // Slot number chip, top-left: the key that selects the slot.
-            var chip = new UiRect(Inset - 1, Inset - 1, 8, UiText.LineHeight);
-            _numberBack = UiBuild.Plate(SlotRect, chip, UiTheme.WithAlpha(UiTheme.NearBlack, 0.85f), "NumberBack");
+            // Slot number chip, top-left of the well: the key that selects the slot.
+            var chip = new UiRect(2, 2, 8, UiText.LineHeight);
+            _numberBack = UiBuild.Plate(SlotRect, chip, UiTheme.WithAlpha(UiTheme.NearBlack, 0.9f), "NumberBack");
             _number = UiBuild.Label(SlotRect, SlotNumber, chip, 1, TextAnchor.UpperCenter, UiTheme.Ink, false, gameObject.name + "Number");
-
-            _brackets.AddRange(UiBuild.Brackets(SlotRect, inner, UiTheme.Amber));
+            _brackets.AddRange(UiBuild.Brackets(SlotRect, well, UiTheme.Amber));
             foreach (var bracket in _brackets) bracket.enabled = false;
 
-            // Text column: name, resource, special — one line box each at the HUD line pitch, so no two share pixels.
-            // A translucent plate under the column keeps the readout legible over bright floor tiles.
+            // The info column: a 1 px divider, then name / resource / gauge / status, each in its own band.
             var x = SlotSize + Gap;
-            UiBuild.Plate(transform, new UiRect(x - 2, 0, TextWidth + 4, SlotSize), UiTheme.WithAlpha(UiTheme.NearBlack, 0.55f), "TextPlate");
-            _name = UiBuild.Label(transform, "—", new UiRect(x, 2, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, gameObject.name + "Name");
-            _resource = UiBuild.Label(transform, string.Empty, new UiRect(x, 2 + DungeonHudView.LinePitch, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, gameObject.name + "Resource");
+            UiBuild.Plate(transform, new UiRect(SlotSize - 1, 3, 1, SlotSize - 6), UiTheme.WithAlpha(UiTheme.PanelEdgeSoft, 0.9f), "Divider");
+            _name = UiBuild.Label(transform, "—", new UiRect(x, 3, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, gameObject.name + "Name");
+            _resource = UiBuild.Label(transform, string.Empty, new UiRect(x, 13, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Ink, false, gameObject.name + "Resource");
             _resource.enabled = false;
-            _special = UiBuild.Label(transform, string.Empty, new UiRect(x, 2 + DungeonHudView.LinePitch * 2, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Amber, false, gameObject.name + "Special");
+            var gauge = new UiRect(x, 24, GaugeWidth, GaugeHeight);
+            _gaugeBack = UiBuild.Plate(transform, new UiRect(gauge.X - 1, gauge.Y - 1, GaugeWidth + 2, GaugeHeight + 2), UiTheme.WithAlpha(WellShadow, 0.95f), "GaugeBack");
+            _gaugeFill = UiBuild.Fillable(transform, gauge, Round, Image.FillMethod.Horizontal, (int)Image.OriginHorizontal.Left, "GaugeFill");
+            _special = UiBuild.Label(transform, string.Empty, new UiRect(x, 29, TextWidth, UiText.LineHeight), 1, TextAnchor.UpperLeft, UiTheme.Amber, false, gameObject.name + "Special");
             _special.enabled = false;
+        }
+
+        private Image Icon(UiRect bounds, string name)
+        {
+            var rect = UiBuild.NewRect(SlotRect, name, bounds);
+            var image = rect.gameObject.AddComponent<Image>();
+            image.raycastTarget = false;
+            image.preserveAspect = true;
+            image.enabled = false;
+            return image;
         }
 
         public void Show(HudWeaponState w)
         {
             IsActive = w.IsActive;
             IsEmpty = string.IsNullOrEmpty(w.DefinitionId) && (string.IsNullOrEmpty(w.Name) || w.Name == "—");
+            IsUnavailable = !IsEmpty && w.NoAmmo && w.Resource == HudResourceKind.Ammo;
+            if (_shown && IsActive && !_wasActive) _switchFlash = SwitchFlashSeconds;
+            if (_shown && _wasReloading && !w.IsReloading && IsActive) _reloadFlash = ReloadFlashSeconds;
+            var specialReady = !IsEmpty && w.SpecialName != null && w.SpecialReady;
+            if (_shown && specialReady && !_wasSpecialReady) _specialFlash = SpecialFlashSeconds;
+            _shown = true;
+            _wasActive = IsActive;
+            _wasReloading = w.IsReloading;
+            _wasSpecialReady = specialReady;
+
+            // The card: lit when held, dimmed when holstered, faint when empty.
+            _card.color = IsEmpty ? UiTheme.WithAlpha(CardFill, 0.6f) : IsActive ? CardFillActive : CardFill;
+            _rimTop.color = IsActive ? UiTheme.Amber : HudHealthBarView.RimLightColor;
+            var outline = IsActive ? UiTheme.Darken(UiTheme.AmberDim, 0.35f) : HudHealthBarView.OutlineColor;
+            foreach (var o in _outline) o.color = outline;
+
             var frame = !IsEmpty ? _rarityFrame?.Invoke(w.Rarity) : null;
             _rarity.enabled = frame != null;
             _rarity.sprite = frame;
-            _icon.enabled = !IsEmpty && w.Icon != null;
-            _icon.sprite = w.Icon;
+            _rarity.type = Image.Type.Sliced;
+            // Slice borders at native pixels: the HUD canvas's reference pixels-per-unit would otherwise blow the
+            // frame's 4 px border up until it swallows the well.
+            var canvas = _rarity.canvas;
+            if (frame != null && canvas != null) _rarity.pixelsPerUnitMultiplier = canvas.referencePixelsPerUnit / Mathf.Max(0.0001f, frame.pixelsPerUnit);
+            var glow = IsEmpty ? Color.clear : RarityGlow[Mathf.Clamp(w.Rarity, 0, RarityGlow.Length - 1)];
+            var glowAlpha = IsActive ? 1f : 0.5f;
+            _glowOuter.color = UiTheme.WithAlpha(glow, 0.09f * glowAlpha);
+            _glowInner.color = UiTheme.WithAlpha(glow, 0.14f * glowAlpha);
+            _rarity.color = IsActive ? Color.white : new Color(0.7f, 0.7f, 0.7f, 0.85f);
+            _icon.enabled = _iconShadow.enabled = !IsEmpty && w.Icon != null;
+            _icon.sprite = _iconShadow.sprite = w.Icon;
+            _icon.color = IsUnavailable ? new Color(0.85f, 0.45f, 0.42f, IsActive ? 1f : 0.7f) : IsActive ? Color.white : new Color(0.62f, 0.64f, 0.64f, 1f);
             _emptyMark.enabled = IsEmpty;
-            _plate.color = _plate.sprite != null
-                ? (IsActive ? Color.white : new Color(0.62f, 0.62f, 0.62f, 1f))
-                : (IsActive ? UiTheme.Lighten(UiTheme.Charcoal, 0.12f) : UiTheme.Charcoal);
             foreach (var bracket in _brackets) bracket.enabled = IsActive;
             _number.color = IsActive ? UiTheme.Amber : UiTheme.InkMuted;
 
-            _name.text = IsEmpty ? "—" : w.Name;
-            _name.color = IsEmpty ? UiTheme.InkFaint : IsActive ? UiTheme.Amber : UiTheme.Ink;
+            _name.text = IsEmpty ? "—" : UiText.Fit(w.Name, TextWidth);
+            _name.color = IsEmpty ? UiTheme.InkFaint : IsActive ? UiTheme.Amber : UiTheme.InkMuted;
 
             var showsResource = !IsEmpty && w.ShowsResource;
             _resource.enabled = showsResource;
             if (showsResource)
             {
-                _resource.text = w.NoAmmo && w.Resource == HudResourceKind.Ammo ? "NO AMMO" : w.ResourceText;
-                _resource.color = w.NoAmmo && w.Resource == HudResourceKind.Ammo ? UiTheme.Danger : IsActive ? UiTheme.Ink : UiTheme.InkMuted;
+                _resource.text = IsUnavailable ? "NO AMMO" : w.ResourceText;
+                _resource.color = IsUnavailable || (w.Resource == HudResourceKind.Heat && w.Overheated) ? UiTheme.Danger : IsActive ? UiTheme.Ink : UiTheme.InkMuted;
             }
 
+            ShowGauge(w, showsResource);
+
+            // Status line: the held Legendary's special (only ever set for the held weapon), else a running reload.
             var showsSpecial = !IsEmpty && w.SpecialName != null;
-            _special.enabled = showsSpecial;
+            var reloading = !IsEmpty && w.IsReloading && w.Resource == HudResourceKind.Ammo;
+            _special.enabled = showsSpecial || reloading;
             if (showsSpecial)
+            {
                 _special.text = w.SpecialReady ? "RMB READY" : $"RMB {Mathf.RoundToInt(w.SpecialCooldown01 * 100f)}%";
+                _specialColor = w.SpecialReady ? UiTheme.Amber : UiTheme.AmberDim;
+            }
+            else if (reloading)
+            {
+                _special.text = "RELOADING";
+                _specialColor = UiTheme.InkMuted;
+            }
+
+            Paint();
+        }
+
+        private void ShowGauge(HudWeaponState w, bool showsResource)
+        {
+            var dim = IsActive ? 1f : 0.6f;
+            var pips = 0;
+            var lit = 0;
+            var bar = -1f;
+            if (showsResource)
+            {
+                switch (w.Resource)
+                {
+                    case HudResourceKind.Ammo when w.IsReloading:
+                        bar = w.Reload01;
+                        _gaugeColor = UiTheme.Amber;
+                        break;
+                    case HudResourceKind.Ammo when w.MagazineSize > 0 && w.MagazineSize <= MaxPips:
+                        pips = w.MagazineSize;
+                        lit = Mathf.Clamp(w.Magazine, 0, pips);
+                        _gaugeColor = lit * 4 <= pips ? RoundLow : Round;
+                        break;
+                    case HudResourceKind.Ammo when w.MagazineSize > 0:
+                        bar = Mathf.Clamp01(w.Magazine / (float)w.MagazineSize);
+                        _gaugeColor = w.Magazine * 4 <= w.MagazineSize ? RoundLow : Round;
+                        break;
+                    case HudResourceKind.Heat:
+                        bar = w.Heat01;
+                        _gaugeColor = w.Overheated ? UiTheme.Danger : Color.Lerp(HeatCool, HeatHot, w.Heat01);
+                        break;
+                    case HudResourceKind.Charge:
+                        bar = w.IsCharging ? w.Charge01 : 1f;
+                        _gaugeColor = w.IsCharging ? Draw : UiTheme.WithAlpha(Draw, 0.6f);
+                        break;
+                }
+            }
+
+            _gaugeColor = UiTheme.WithAlpha(_gaugeColor, _gaugeColor.a * dim);
+            _gaugeBack.enabled = pips > 0 || bar >= 0f;
+            if (IsUnavailable) _gaugeBack.color = UiTheme.WithAlpha(UiTheme.Darken(UiTheme.Danger, 0.45f), 0.95f);
+            else _gaugeBack.color = UiTheme.WithAlpha(WellShadow, 0.95f);
+            _gaugeFill.enabled = bar >= 0f;
+            _gaugeFill.fillAmount = Mathf.Max(0f, bar);
+
+            // One pip per round: the magazine at a glance, spent rounds dark, the last quarter warm.
+            var pipWidth = pips > 0 ? Mathf.Max(1, (GaugeWidth - (pips - 1)) / pips) : 0;
+            while (_pips.Count < pips) _pips.Add(UiBuild.Plate(transform, new UiRect(0, 24, 1, GaugeHeight), Round, "Pip" + _pips.Count));
+            for (var i = 0; i < _pips.Count; i++)
+            {
+                var on = i < pips;
+                _pips[i].enabled = on;
+                if (!on) continue;
+                var rect = _pips[i].rectTransform;
+                rect.anchoredPosition = new Vector2(SlotSize + Gap + i * (pipWidth + 1), -24f);
+                rect.sizeDelta = new Vector2(pipWidth, GaugeHeight);
+            }
+
+            PipsShown = pips;
+            PipsLit = lit;
+        }
+
+        private void Paint()
+        {
+            var reload = _reloadFlash / ReloadFlashSeconds;
+            for (var i = 0; i < PipsShown; i++)
+                _pips[i].color = i < PipsLit ? Color.Lerp(_gaugeColor, Color.white, 0.6f * reload) : RoundSpent;
+            _gaugeFill.color = Color.Lerp(_gaugeColor, Color.white, 0.6f * reload);
+            var switchIn = _switchFlash / SwitchFlashSeconds;
+            _flash.color = UiTheme.WithAlpha(UiTheme.Amber, 0.35f * switchIn * switchIn);
+            var special = _specialFlash / SpecialFlashSeconds;
+            if (_special.enabled) _special.color = Color.Lerp(_specialColor, Color.white, 0.7f * special);
+        }
+
+        private void Update()
+        {
+            if (!FlashActive) return;
+            var dt = Time.unscaledDeltaTime;
+            _switchFlash = Mathf.Max(0f, _switchFlash - dt);
+            _reloadFlash = Mathf.Max(0f, _reloadFlash - dt);
+            _specialFlash = Mathf.Max(0f, _specialFlash - dt);
+            Paint();
         }
     }
 

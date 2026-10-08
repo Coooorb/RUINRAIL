@@ -39,6 +39,8 @@ namespace RuinRail.Gameplay.Combat.Weapons
         public int MagazineAmmo { get; private set; }
         public RangedWeaponDefinition Definition => _definition;
         public bool IsReloading { get; private set; }
+        /// <summary>Presentation: how far the running reload is (0..1); 0 when not reloading.</summary>
+        public float ReloadProgress01 => IsReloading && CurrentReloadTime > 0f ? Mathf.Clamp01(1f - _reloadTimeRemaining / CurrentReloadTime) : 0f;
         public Projectile LastSpawnedProjectile { get; private set; }
         public IReadOnlyList<Projectile> LastSpawnedProjectiles => _lastSpawnedProjectiles;
         public IFiringPattern FiringPattern
