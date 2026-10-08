@@ -26,3 +26,4 @@
 - [UI text must be PixelText](pixel-font-bottom-row-loss-global.md) — plain Text on a pixel-perfect canvas drops pixel-font rows; use UiBuild.Label / PixelText
 - [Real input devices in PlayMode tests](playmode-real-input-devices.md) — batch PlayMode needs IgnoreFocus + AllDeviceInputAlwaysGoesToGameView or queued key/pad presses vanish
 - [Telegraph fairness contract](telegraph-fairness-contract.md) — enemy damage hits players only via CombatHurtbox.AttachPlayer + DamageTargets.Resolve; fairness proofs and their traps
+- [WaitForEndOfFrame hangs in batch](batch-waitforendofframe-hangs.md) — -nographics PlayMode never resumes it; use one extra yield return null; delete a killed run's InitTestScene
