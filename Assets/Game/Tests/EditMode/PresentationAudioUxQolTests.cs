@@ -551,7 +551,12 @@ namespace RuinRail.Tests
             // The boss bar is framed rather than a bare quad, and nothing was laid over it to hide the old rectangle.
             var hud = File.ReadAllText("Assets/Game/Scripts/UI/Hud/DungeonHudView.cs");
             StringAssert.Contains("\"BossPlate\"", hud);
-            StringAssert.Contains("UiBuild.Border(bossBack", hud);
+            // Framed by the shared HUD health bar (outline + bevelled rim around a recessed trough), as the player's bar is.
+            StringAssert.Contains("HudHealthBarView.Create(BossPanel", hud);
+            var bar = File.ReadAllText("Assets/Game/Scripts/UI/Hud/HudHealthBarView.cs");
+            StringAssert.Contains("\"OutlineTop\"", bar);
+            StringAssert.Contains("\"RimTop\"", bar);
+            StringAssert.Contains("\"Trough\"", bar);
             rows.Add("boss bar,framed track over a theme plate,HUD,n/a,n/a,PASS");
 
             WriteMatrix("readability_matrix.csv", rows);

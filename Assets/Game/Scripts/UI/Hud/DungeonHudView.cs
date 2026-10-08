@@ -29,6 +29,10 @@ namespace RuinRail.UI.Hud
         public const int LinePitch = UiText.LineHeight + 1;
         public const int LineHeight = UiText.LineHeight;
         public const int BarHeight = 8;
+        /// <summary>The player's HP bar: tall enough for its rim, trough and lit fill, so the HP block matches the dash slot.</summary>
+        public const int HpBarHeight = 12;
+        /// <summary>HP per notch on the player's bar: a raised maximum reads as more of the same steps.</summary>
+        public const int HpNotchHp = 20;
         public const int HpBarWidth = 150;
         public const int WeaponsGap = 8;
         public const int WeaponsWidth = HudWeaponSlotView.Width * 2 + WeaponsGap;
@@ -50,7 +54,7 @@ namespace RuinRail.UI.Hud
         private DungeonHudViewModel _viewModel;
         private Canvas _canvas;
         private Text _hp;
-        private Image _hpFill;
+        private HudHealthBarView _hpBar;
         private HudDashIconView _dashIcon;
         private HudWeaponSlotView _primary;
         private HudWeaponSlotView _secondary;
@@ -65,7 +69,7 @@ namespace RuinRail.UI.Hud
         private Text _statusDetail;
         private Text _biome;
         private Text _bossName;
-        private Image _bossFill;
+        private HudHealthBarView _bossBar;
         private readonly List<Text> _party = new();
         private RectTransform _partyRoot;
         private Font _font;
@@ -87,7 +91,9 @@ namespace RuinRail.UI.Hud
         /// <summary>Boss bar: top-centre between the minimap block and the coins; active only during a boss encounter.</summary>
         public RectTransform BossPanel { get; private set; }
         public string BossNameText => _bossName != null ? _bossName.text : string.Empty;
-        public float BossFill => _bossFill != null ? _bossFill.fillAmount : 0f;
+        public float BossFill => _bossBar != null ? _bossBar.Target01 : 0f;
+        public HudHealthBarView HpBar => _hpBar;
+        public HudHealthBarView BossBar => _bossBar;
         public bool BossVisible => BossPanel != null && BossPanel.gameObject.activeSelf;
         public DungeonHudViewModel ViewModel => _viewModel;
         public int Renders { get; private set; }
@@ -199,21 +205,11 @@ namespace RuinRail.UI.Hud
             DashPanel = Panel("Dash", root, new Vector2(0f, 0f), new Vector2(Margin, Margin), new Vector2(HudDashIconView.Size, HudDashIconView.Size));
             _dashIcon = HudDashIconView.Create(DashPanel, new UiRect(0, 0, HudDashIconView.Size, HudDashIconView.Size), slotSprite, dashSprite);
 
-            HpPanel = Panel("HP", root, new Vector2(0f, 0f), new Vector2(Margin + HudDashIconView.Size + 4, Margin), new Vector2(HpBarWidth, BarHeight + LineHeight));
+            HpPanel = Panel("HP", root, new Vector2(0f, 0f), new Vector2(Margin + HudDashIconView.Size + 4, Margin), new Vector2(HpBarWidth, HpBarHeight + LineHeight));
             // A translucent plate keeps the number readable over bright floor tiles (the bar itself is opaque).
-            UiBuild.Plate(HpPanel, new UiRect(-2, -2, HpBarWidth + 4, BarHeight + LineHeight + 4), UiTheme.WithAlpha(UiTheme.NearBlack, 0.55f), "HpPlate").transform.SetAsFirstSibling();
-            var barBack = Panel("HpBarBack", HpPanel, new Vector2(0f, 1f), Vector2.zero, new Vector2(HpBarWidth, BarHeight));
-            var barBackImage = barBack.gameObject.AddComponent<Image>();
-            barBackImage.color = new Color(0.12f, 0.12f, 0.12f, 0.9f);
-            barBackImage.raycastTarget = false;
-            var fill = Panel("HpBarFill", barBack, new Vector2(0f, 0f), Vector2.zero, new Vector2(HpBarWidth, BarHeight));
-            _hpFill = fill.gameObject.AddComponent<Image>();
-            _hpFill.color = new Color(0.85f, 0.2f, 0.2f, 1f);
-            _hpFill.type = Image.Type.Filled;
-            _hpFill.fillMethod = Image.FillMethod.Horizontal;
-            _hpFill.sprite = UiBuild.Solid();   // uGUI ignores Filled without a sprite (see the dash wipe)
-            _hpFill.raycastTarget = false;
-            _hp = Label("HpText", HpPanel, new Vector2(0f, 1f), new Vector2(0f, -BarHeight), new Vector2(HpBarWidth, LineHeight), TextAnchor.UpperLeft);
+            UiBuild.Plate(HpPanel, new UiRect(-2, -2, HpBarWidth + 4, HpBarHeight + LineHeight + 4), UiTheme.WithAlpha(UiTheme.NearBlack, 0.55f), "HpPlate").transform.SetAsFirstSibling();
+            _hpBar = HudHealthBarView.Create(HpPanel, new UiRect(0, 0, HpBarWidth, HpBarHeight), HpNotchHp, true, "HpBarBack");
+            _hp = Label("HpText", HpPanel, new Vector2(0f, 1f), new Vector2(0f, -HpBarHeight), new Vector2(HpBarWidth, LineHeight), TextAnchor.UpperLeft);
 
             // Bottom-centre: both weapon slots as icon slots with their number, rarity frame, active brackets and —
             // where the weapon has one — the resource readout (91 Weapons).
@@ -268,18 +264,8 @@ namespace RuinRail.UI.Hud
             UiBuild.Plate(BossPanel, new UiRect(-3, -2, 226, LineHeight + BarHeight + 4), UiTheme.WithAlpha(UiTheme.NearBlack, 0.62f), "BossPlate")
                 .transform.SetAsFirstSibling();
             _bossName = Label("BossName", BossPanel, new Vector2(0f, 1f), Vector2.zero, new Vector2(220f, LineHeight), TextAnchor.UpperCenter);
-            var bossBack = Panel("BossBarBack", BossPanel, new Vector2(0f, 1f), new Vector2(0f, -LineHeight), new Vector2(220f, BarHeight - 2));
-            var bossBackImage = bossBack.gameObject.AddComponent<Image>();
-            bossBackImage.color = UiTheme.WithAlpha(UiTheme.Charcoal, 0.92f);
-            bossBackImage.raycastTarget = false;
-            UiBuild.Border(bossBack, new UiRect(0, 0, 220, BarHeight - 2), UiTheme.PanelEdgeSoft);
-            var bossFill = Panel("BossBarFill", bossBack, new Vector2(0f, 0f), Vector2.zero, new Vector2(220f, BarHeight - 2));
-            _bossFill = bossFill.gameObject.AddComponent<Image>();
-            _bossFill.color = new Color(0.85f, 0.2f, 0.2f, 1f);
-            _bossFill.type = Image.Type.Filled;
-            _bossFill.fillMethod = Image.FillMethod.Horizontal;
-            _bossFill.sprite = UiBuild.Solid();
-            _bossFill.raycastTarget = false;
+            // The same health bar as the player's (frame, lit fill, damage chip), without notches or low-HP styling.
+            _bossBar = HudHealthBarView.Create(BossPanel, new UiRect(0, LineHeight, 220, BarHeight), 0, false, "BossBarBack");
             BossPanel.gameObject.SetActive(false);
 
             // Top-centre, under the boss band: the brief room-title reveal.
@@ -338,7 +324,7 @@ namespace RuinRail.UI.Hud
         {
             Renders++;
             _hp.text = s.HpText + (s.ShieldVisible ? "  [SHIELD]" : string.Empty);
-            _hpFill.fillAmount = s.MaxHp > 0 ? Mathf.Clamp01(s.Hp / (float)s.MaxHp) : 0f;
+            _hpBar.Show(s.Hp, s.MaxHp);
             _dashIcon.Show(s.DashReady, s.DashCooldown01, s.DashDisabled);
             _primary.Show(s.Primary);
             _secondary.Show(s.Secondary);
@@ -352,7 +338,7 @@ namespace RuinRail.UI.Hud
             if (s.BossVisible)
             {
                 _bossName.text = $"{s.BossName}  {s.BossHp} / {s.BossMaxHp}";
-                _bossFill.fillAmount = s.BossHp01;
+                _bossBar.Show(s.BossHp, s.BossMaxHp);
             }
 
             for (var i = 0; i < _party.Count; i++)

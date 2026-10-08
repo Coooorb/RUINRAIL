@@ -209,15 +209,18 @@ namespace RuinRail.Tests
             Assert.Greater(shot.CountLit(hpBand, 96), 40, "HP text pixels present in its band");
             Assert.Greater(shot.CountLit(dashBand, 60), 40, "dash icon pixels present in its slot");
             var barRect = PixelRect(ReferenceRect((RectTransform)view.HpPanel.Find("HpBarBack"), view));
+            // The bar is framed (outline + rim, 2 px) around a lit fill (highlight → shadow rows): count red-dominant
+            // pixels over its interior.
+            var interior = new RectInt(barRect.xMin + 2, barRect.yMin + 2, barRect.width - 4, barRect.height - 4);
             var red = 0;
-            for (var y = barRect.yMin; y < barRect.yMax; y++)
-            for (var x = barRect.xMin; x < barRect.xMax; x++)
+            for (var y = interior.yMin; y < interior.yMax; y++)
+            for (var x = interior.xMin; x < interior.xMax; x++)
             {
                 var p = shot.At(x, y);
-                if (p.r > 150 && p.g < 90 && p.b < 90) red++;
+                if (p.r > 100 && p.r > p.g + 60 && p.r > p.b + 60) red++;
             }
 
-            Assert.Greater(red, barRect.width * barRect.height / 2, "the HP bar fill is drawn");
+            Assert.Greater(red, interior.width * interior.height / 2, "the HP bar fill is drawn");
             Assert.IsFalse(barRect.Overlaps(hpBand) || barRect.Overlaps(dashBand), "the bar has its own band");
         }
 
