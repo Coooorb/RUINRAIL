@@ -7,6 +7,7 @@ It is a working release candidate. Protect it.
 Expanded process, examples and rationale: `docs/DEVELOPMENT_WORKFLOW.md`. Doc index: `docs/README.md`.
 
 ## 1. Startup (every task)
+0. Git pre-sync (§12) — before reading or editing anything.
 1. Classify the task mode (§2). If the prompt gives one, use it; escalate if the work proves riskier (§2).
 2. Read `docs/CURRENT_STATE.md` only when project-level context is needed.
 3. Load only the relevant skill(s) from `.claude/skills/` (§8).
@@ -30,7 +31,7 @@ Expanded process, examples and rationale: `docs/DEVELOPMENT_WORKFLOW.md`. Doc in
   HIGH_RISK broader but still search-driven; RELEASE broad state, no duplicate historical reading. "Maybe useful" is not a reason to read.
 
 ## 3. Development loop
-UNDERSTAND → PLAN → IMPLEMENT one coherent step → RUN → TEST → LOOK → CRITIQUE → FIX → VERIFY → **STOP**.
+UNDERSTAND → PLAN → IMPLEMENT one coherent step → RUN → TEST → LOOK → CRITIQUE → FIX → VERIFY → COMMIT + PUSH (§12) → **STOP**.
 - One task = one coherent improvement (one bug, one interaction, one seam, one visual issue, one vertical slice).
 - New features: the smallest complete playable slice end-to-end (incl. save/load, UI, co-op if in scope) before breadth.
 - Before creating a helper/service/test/script/doc, search for an existing one. Reuse it.
@@ -86,9 +87,19 @@ Stop background tasks cleanly. Parallelize only independent work.
 - Toolchain pins in `docs/ENVIRONMENT.md` — never silently change Unity or package versions.
 - Be conservative with `Assets/` serialized data, `.meta`, scenes, prefabs, ScriptableObjects, `Resources/`, asmdefs, `Packages/`, `ProjectSettings/`.
 
-## 12. Worktree safety
-The working tree is authoritative and may hold uncommitted work. Never `git checkout/restore/reset/clean/stash` or any
-broad revert; reverse only your own edits. Commit only when asked.
+## 12. Worktree safety and Git sync (standing authorization — no need to repeat it in prompts)
+The working tree is authoritative and may hold uncommitted work; GitHub never overrides it. Never `git checkout/restore/
+reset/clean/stash/rebase`, force-push, auto-resolve conflicts or broad-revert; reverse only your own edits.
+- **Pre-sync:** `git fetch origin` → `git status -sb`. Continue only on `main` tracking `origin/main`.
+  Up to date → go. Behind only → `git merge --ff-only origin/main` (git refuses if it would touch dirty files).
+  Other branch, ahead, diverged, ff refused or conflict → **STOP and report**. Fetch failed → report, work locally, no push.
+  Record already-dirty/untracked paths: they are pre-existing work, never part of this task's commit.
+- **Commit + push** only after the mode's done-evidence passed (§5). Failing, partial or unverified → no commit, report.
+  `git add -- <paths this task changed>` (never `-A`/`.`; skip Unity-touched serialized files the task did not intend),
+  check `git diff --cached --stat`, one descriptive commit, `git push origin main`, then confirm
+  `git rev-parse main origin/main` match. Push rejected/failed → keep the local commit, report; never force.
+- A path that was dirty before the task and also edited by it cannot be split safely → leave it uncommitted and report.
+- Committing pre-existing work (one-time baseline) or skipping the push needs explicit user instruction.
 
 ## 13. Environment truth
 Report exactly, never fake: `Windows x64: NOT RUN — module unavailable` (do not install it);
