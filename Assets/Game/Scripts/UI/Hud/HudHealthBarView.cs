@@ -38,6 +38,8 @@ namespace RuinRail.UI.Hud
         private static readonly Color Notch = new(0.04f, 0.03f, 0.03f, 0.55f);
         // The lit fill, top to bottom: highlight, light, body, shadow (spec 18 bar: a lit surface, never a flat block).
         private static readonly Color[] Ramp = { UiTheme.Hex("#F0907C"), UiTheme.Hex("#D9574A"), UiTheme.Hex("#B53A35"), UiTheme.Hex("#7C2326") };
+        // The Elite variant (91: Elite fights read apart from Boss fights): an amber lit fill, the Elite accent.
+        private static readonly Color[] EliteRamp = { UiTheme.Hex("#FFD79C"), UiTheme.Hex("#F0A64A"), UiTheme.Hex("#D27F2C"), UiTheme.Hex("#8A4C1C") };
         private static readonly Color[] HotRamp = { UiTheme.Hex("#FFB09A"), UiTheme.Hex("#F0604E"), UiTheme.Hex("#D6413A"), UiTheme.Hex("#93282A") };
 
         private readonly List<Image> _rows = new();
@@ -48,6 +50,7 @@ namespace RuinRail.UI.Hud
         private Image _heal;
         private Image _edge;
         private Image[] _outline;
+        private Image _rimTop;
         private int _innerWidth;
         private int _innerHeight;
         private int _notchHp;
@@ -91,7 +94,7 @@ namespace RuinRail.UI.Hud
         {
             _notchHp = notchHp;
             _lowStyling = lowStyling;
-            _outline = Frame(transform, width, height, out _);
+            _outline = Frame(transform, width, height, out _rimTop);
 
             _innerWidth = width - 4;
             _innerHeight = height - 4;
@@ -136,6 +139,27 @@ namespace RuinRail.UI.Hud
 
         public static Color RimLightColor => RimLight;
         public static Color OutlineColor => Outline;
+
+        public bool IsEliteStyle { get; private set; }
+
+        /// <summary>The bar now shows a different actor: its next value is taken as-is, with no damage/heal feedback.</summary>
+        public void Snap() => _shown = false;
+
+        /// <summary>Switches between the default (red) and the Elite (amber fill, amber top rim) look; HP logic is unchanged.</summary>
+        public void SetEliteStyle(bool elite)
+        {
+            if (IsEliteStyle == elite || _rows.Count == 0) return;
+            IsEliteStyle = elite;
+            var ramp = elite ? EliteRamp : Ramp;
+            for (var y = 0; y < _rows.Count; y++)
+            {
+                var tone = y == 0 ? 0 : y == 1 ? 1 : y >= _innerHeight - Mathf.Max(1, _innerHeight / 4) ? 3 : 2;
+                _rowBase[y] = ramp[tone];
+            }
+
+            _rimTop.color = elite ? UiTheme.Amber : RimLight;
+            Draw();
+        }
 
         /// <summary>Shows the HP the HUD read; the first call (and any change of maximum) snaps without feedback.</summary>
         public void Show(int hp, int maxHp)

@@ -157,6 +157,8 @@ namespace RuinRail.UI.Hud
         /// <summary>Boss bar (55/46): shown only while a boss encounter is active and the boss alive.</summary>
         public bool BossVisible;
         public string BossName = string.Empty;
+        /// <summary>The top-screen bar is showing an Elite (91: Elites and Bosses get prominent top-screen bars), not a Boss.</summary>
+        public bool BossIsElite;
 
         /// <summary>
         /// 91 enemy-remaining readout: shown only while the local player's room is an active standard combat
@@ -346,7 +348,7 @@ namespace RuinRail.UI.Hud
             Unbind(ref _bossHealth, h => { h.Damaged -= OnBossHealth; h.Healed -= OnBossHealth; h.Died -= OnBossDied; });
             _bossHealth = health;
             _bossActive = isActive;
-            Snapshot.BossName = displayName ?? string.Empty;
+            _bossName = displayName ?? string.Empty;
             if (_bossHealth != null)
             {
                 _bossHealth.Damaged += OnBossHealth;
@@ -388,17 +390,66 @@ namespace RuinRail.UI.Hud
             return true;
         }
 
+        private string _bossName = string.Empty;
+        private readonly List<(string name, HealthComponent health, Func<bool> isActive)> _elites = new();
+
+        /// <summary>
+        /// An Elite for the top-screen bar (91): shown while its encounter is active and it is alive, under its name in the
+        /// Elite variant. Any number may be bound (one per Elite room); an active Boss always takes the bar first.
+        /// </summary>
+        public void BindElite(string displayName, HealthComponent health, Func<bool> isActive)
+        {
+            if (health == null || _elites.Any(e => e.health == health)) return;
+            _elites.Add((displayName ?? string.Empty, health, isActive));
+            health.Damaged += OnBossHealth;
+            health.Healed += OnBossHealth;
+            health.Died += OnBossDied;
+            if (RefreshBoss()) Raise();
+        }
+
+        public void ClearElites()
+        {
+            foreach (var (_, health, _) in _elites)
+            {
+                if (health == null) continue;
+                health.Damaged -= OnBossHealth;
+                health.Healed -= OnBossHealth;
+                health.Died -= OnBossDied;
+            }
+
+            _elites.Clear();
+            if (RefreshBoss()) Raise();
+        }
+
         private void OnBossHealth(int _) { if (RefreshBoss()) Raise(); }
         private void OnBossDied() { if (RefreshBoss()) Raise(); }
 
         private bool RefreshBoss()
         {
-            var before = (Snapshot.BossVisible, Snapshot.BossHp, Snapshot.BossMaxHp);
-            var active = _bossHealth != null && _bossHealth.IsAlive && (_bossActive == null || _bossActive());
-            Snapshot.BossVisible = active;
-            Snapshot.BossHp = _bossHealth != null ? _bossHealth.CurrentHealth : 0;
-            Snapshot.BossMaxHp = _bossHealth != null ? _bossHealth.MaxHealth : 0;
-            return before != (Snapshot.BossVisible, Snapshot.BossHp, Snapshot.BossMaxHp);
+            var before = (Snapshot.BossVisible, Snapshot.BossHp, Snapshot.BossMaxHp, Snapshot.BossName, Snapshot.BossIsElite);
+            HealthComponent shown = null;
+            var name = string.Empty;
+            var elite = false;
+            if (_bossHealth != null && _bossHealth.IsAlive && (_bossActive == null || _bossActive())) { shown = _bossHealth; name = _bossName; }
+            else
+            {
+                foreach (var (eliteName, health, isActive) in _elites)
+                {
+                    if (health == null || !health.IsAlive || (isActive != null && !isActive())) continue;
+                    shown = health;
+                    name = eliteName;
+                    elite = true;
+                    break;
+                }
+            }
+
+            Snapshot.BossVisible = shown != null;
+            Snapshot.BossIsElite = elite;
+            // With nothing showing, the bar keeps the Boss's numbers (its last read), never an Elite's.
+            Snapshot.BossName = shown != null ? name : _bossName;
+            Snapshot.BossHp = shown != null ? shown.CurrentHealth : _bossHealth != null ? _bossHealth.CurrentHealth : 0;
+            Snapshot.BossMaxHp = shown != null ? shown.MaxHealth : _bossHealth != null ? _bossHealth.MaxHealth : 0;
+            return before != (Snapshot.BossVisible, Snapshot.BossHp, Snapshot.BossMaxHp, Snapshot.BossName, Snapshot.BossIsElite);
         }
 
         /// <summary>
@@ -722,6 +773,7 @@ namespace RuinRail.UI.Hud
             BindExpedition(null);
             BindParty(null);
             BindBoss(null, null, null);
+            ClearElites();
         }
     }
 }

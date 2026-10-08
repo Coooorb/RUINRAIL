@@ -758,7 +758,11 @@ namespace RuinRail.App
                     break;
                 case CoopActorKind.Elite:
                     var elite = content.Elites.FirstOrDefault(e => e != null && e.Id == spawn.DefinitionId);
-                    if (elite != null) moveset = elite.Moveset.ToList();
+                    if (elite != null)
+                    {
+                        moveset = elite.Moveset.ToList();
+                        displayName = elite.DisplayName;
+                    }
                     break;
                 default:
                     enemy = content.Enemies.FirstOrDefault(e => e != null && e.Id == spawn.DefinitionId);
@@ -775,7 +779,12 @@ namespace RuinRail.App
             if (kind != CoopActorKind.Boss) RuinRail.Presentation.EnemyBiomeTint.Apply(body != null ? body.Renderer : null, _expedition.State.Biome, elite: kind == CoopActorKind.Elite);
             replica.gameObject.AddComponent<EnemyAnimationDriver>().ConfigureReplica(body, replica);
             if (kind == CoopActorKind.Normal) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Normal);
-            else if (kind == CoopActorKind.Elite) replica.gameObject.AddComponent<WorldHealthBar>().Configure(replica.Health, WorldHealthBar.Style.Elite, 1.7f, content.Feedback != null ? content.Feedback.EliteBossTelegraphColor : (Color?)null);
+            else if (kind == CoopActorKind.Elite)
+            {
+                // The host's Elite on the same top-screen bar (91), from the replicated health; shown while its room is active and the local player is in it.
+                var eliteRoom = Rooms != null && Rooms.TryGetValue(spawn.RoomNode, out var er) ? er : null;
+                _hud?.BindElite(displayName, replica.Health, () => replica != null && replica.gameObject.activeInHierarchy && (eliteRoom == null || (eliteRoom.Lifecycle == RoomLifecycleState.Active && CurrentRoom == eliteRoom)));
+            }
             var replicaFlash = replica.gameObject.AddComponent<HitFlash>();
             replicaFlash.Configure(content.Feedback, replica.Health, null, body != null ? body.Renderer : null);
             if (kind == CoopActorKind.Boss) replicaFlash.UseBossProfile(); // strength from the replicated HP drop

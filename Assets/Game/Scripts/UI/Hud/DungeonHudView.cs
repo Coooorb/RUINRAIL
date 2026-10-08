@@ -70,6 +70,7 @@ namespace RuinRail.UI.Hud
         private Text _biome;
         private Text _bossName;
         private HudHealthBarView _bossBar;
+        private string _bossShownName;
         private readonly List<Text> _party = new();
         private RectTransform _partyRoot;
         private Font _font;
@@ -337,7 +338,12 @@ namespace RuinRail.UI.Hud
             BossPanel.gameObject.SetActive(s.BossVisible);
             if (s.BossVisible)
             {
-                _bossName.text = $"{s.BossName}  {s.BossHp} / {s.BossMaxHp}";
+                // The top bar is shared by Bosses and Elites (91): an Elite reads as one by its tag, amber ink and amber fill.
+                if (s.BossName != _bossShownName || s.BossIsElite != _bossBar.IsEliteStyle) _bossBar.Snap();
+                _bossShownName = s.BossName;
+                _bossBar.SetEliteStyle(s.BossIsElite);
+                _bossName.color = s.BossIsElite ? UiTheme.Amber : Color.white;
+                _bossName.text = (s.BossIsElite ? "ELITE " : string.Empty) + $"{s.BossName}  {s.BossHp} / {s.BossMaxHp}";
                 _bossBar.Show(s.BossHp, s.BossMaxHp);
             }
 

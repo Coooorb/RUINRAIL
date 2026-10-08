@@ -618,9 +618,17 @@ namespace RuinRail.App
             // caches the body's resting colour.
             if (isElite) RuinRail.Presentation.EnemyBiomeTint.Apply(body != null ? body.Renderer : null, _expedition.State.Biome, elite: true);
             if (actor.GetComponent<EnemyAnimationDriver>() == null) actor.gameObject.AddComponent<EnemyAnimationDriver>().Configure(body, null, actor, actor.GetComponent<Rigidbody2D>());
-            // Elites carry the stronger world bar in the Elite accent; bosses use the screen bar instead.
-            if (isElite && actor.GetComponent<WorldHealthBar>() == null)
-                actor.gameObject.AddComponent<WorldHealthBar>().Configure(actor.Health, WorldHealthBar.Style.Elite, 1.7f, _app.Content.Feedback != null ? _app.Content.Feedback.EliteBossTelegraphColor : (Color?)null);
+            // Elites and Bosses get the prominent top-screen bar with their name (91); an Elite's is the Elite variant and
+            // shows while it lives and its room's encounter is active with the local player in it. No world bar on top of it (one HP read per actor).
+            if (isElite && !_eliteHudBound.Contains(actor))
+            {
+                _eliteHudBound.Add(actor);
+                var room = actor.GetComponentInParent<RoomRuntime>();
+                var name = actor is EliteController named && named.Definition != null ? named.Definition.DisplayName : "ELITE";
+                _hud?.BindElite(name, actor.Health, () => actor != null && actor.gameObject.activeInHierarchy && (room == null || (room.Lifecycle == RoomLifecycleState.Active && CurrentRoom == room)));
+                // Damage numbers: the same pool and binding as normal enemies and bosses (Elites had none at all).
+                _effects?.GetComponent<DamageNumberPool>()?.Bind(actor.Health);
+            }
             // Bosses get the same combat read as every normal enemy: the ground danger marker for each telegraphed move
             // (without it a boss's slams, zones and dashes had no marker at all outside a co-op client), the hit flash,
             // damage numbers and impact feedback. Presentation only: it reads the actor's state, never drives it.
@@ -655,6 +663,8 @@ namespace RuinRail.App
             _app.AudioBinder.Attach(actor).Attach(actor.Health, false);
             if (actor is EliteController eliteActor) _app.MusicBinder.Attach(eliteActor);
         }
+
+        private readonly HashSet<MovesetActorController> _eliteHudBound = new();
 
         // The run's world-effect pool and its feedback (there is also a ground-layer pool, so never look these up by type).
         private EffectPool _effects;

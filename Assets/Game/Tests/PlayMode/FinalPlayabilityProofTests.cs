@@ -235,19 +235,24 @@ namespace RuinRail.Tests
                 run.BindActorPresentation(elite, definition.Id, isElite: true);
             }
 
-            var eliteBar = elite.GetComponent<WorldHealthBar>();
-            Assert.IsNotNull(eliteBar, "Elite carries the Elite bar");
-            Assert.AreEqual(WorldHealthBar.Style.Elite, eliteBar.BarStyle);
+            // 91: Elites get the prominent top-screen bar with their name (the Elite variant), not a small world bar.
+            Assert.IsNull(elite.GetComponent<WorldHealthBar>(), "one HP read per Elite: the top-screen bar");
             elite.Health.TryApplyDamage(new DamageRequest(Mathf.Max(1, elite.Health.MaxHealth * 3 / 10)));
-            Assert.IsTrue(eliteBar.IsVisible);
             yield return null;
+            if (run.Hud.Snapshot.BossVisible)
+            {
+                Assert.IsTrue(run.Hud.Snapshot.BossIsElite, "the Elite variant of the top bar");
+                Assert.AreEqual(elite.Health.CurrentHealth, run.Hud.Snapshot.BossHp);
+            }
+            else Assert.AreNotEqual(run.CurrentRoom, elite.GetComponentInParent<RoomRuntime>(), "the Elite bar is hidden only outside the Elite's room");
             LiveDungeonCapture.Capture(Folder, "04_elite_health_bar", run.Camera.Camera, ppu);
 
             // ---- 5. the Boss bar during the boss encounter ----
             var bossNode = run.Generation.Graph.BossId;
             var bossBinding = run.Rooms[bossNode].GetComponent<RoomContentBinding>();
             Assert.IsNotNull(bossBinding?.Boss?.Boss, "boss composed for the depth");
-            Assert.IsFalse(run.Hud.Snapshot.BossVisible, "no boss bar before the encounter");
+            // The shared top bar may still show the Elite variant (the player stands in the live Elite's room): never the Boss's.
+            Assert.IsFalse(run.Hud.Snapshot.BossVisible && !run.Hud.Snapshot.BossIsElite, "no boss bar before the encounter");
             yield return Teleport(run, InteriorCentre(run, bossNode));
             // Entry plays the room introduction: the boss is held (no target, no attack) and player input is held with it.
             var bossEngagement = (BossEngagement)run.Rooms[bossNode].Engagement;
