@@ -43,6 +43,13 @@ namespace RuinRail.EditorTools.ArtGen
         };
 
         /// <summary>
+        /// Dash feel: the push-off burst left at the dash's start, authored pointing +X = away from the dash direction
+        /// (the runtime rotates it there). Cold speed streaks and a kick of floor dust, front-loaded and mostly air by the
+        /// second frame so nothing under it is hidden.
+        /// </summary>
+        public static readonly IReadOnlyList<string> DashRoles = new[] { "dash_burst" };
+
+        /// <summary>
         /// A radius-true blast sheet: the explosion drawn at native pixels for one exact gameplay radius (in pixels at
         /// 32 px/tile), so the runtime never stretches the art to show the real area. One per distinct rocket radius.
         /// </summary>
@@ -65,6 +72,7 @@ namespace RuinRail.EditorTools.ArtGen
             "impact_light" => 3,
             "impact_heavy" => 5,
             "impact_energy" => 4,
+            "dash_burst" => 4,
             "explosion" => 7,
             "melee" => 4,
             "stagger" => 3,
@@ -82,7 +90,7 @@ namespace RuinRail.EditorTools.ArtGen
         {
             "explosion" => 32,
             "muzzle" or "impact" or "muzzle_energy" or "impact_energy" => 24,
-            "muzzle_heavy" or "muzzle_rail" or "impact_heavy" => 32,
+            "muzzle_heavy" or "muzzle_rail" or "impact_heavy" or "dash_burst" => 32,
             "melee" => 24,
             "loot_glow" => 24,
             "grenade" => 12,
@@ -113,6 +121,7 @@ namespace RuinRail.EditorTools.ArtGen
                 case "impact_light": ShotImpact(c, mid, frame + 1, frames + 1, 6, Warm); break;
                 case "impact_heavy": ShotImpact(c, mid, frame, frames, 13, Warm, debris: true); break;
                 case "impact_energy": EnergyImpact(c, mid, frame, frames); break;
+                case "dash_burst": DashBurst(c, mid, frame, frames); break;
                 case "explosion": Explosion(c, mid, t); break;
                 case "melee": MeleeArc(c, size, mid, t); break;
                 case "stagger": Stagger(c, mid, t); break;
@@ -466,6 +475,71 @@ namespace RuinRail.EditorTools.ArtGen
                 }
 
             if (t > 0.5f) Puff(c, mid + 1, mid, Mathf.Lerp(flash, reach * 0.8f, t), ramp.Smoke, frame);
+        }
+
+        /// <summary>
+        /// Dash push-off, facing +X = behind the dash: frame 0 a cold crescent where the foot kicked and four speed
+        /// streaks, then the crescent opens and thins while the streaks run back and break up, and a kick of floor dust
+        /// drifts out behind; the last frame is dust only. Cold like the energy shots so it never reads as a hit.
+        /// </summary>
+        private static void DashBurst(PixelCanvas c, int mid, int frame, int frames)
+        {
+            var t = frames <= 1 ? 0f : frame / (float)(frames - 1);
+            var dust = RuinPalette.DustBeige; var dustShade = RuinPalette.Darken(RuinPalette.DustBeige, 0.3f);
+
+            if (frame < 3)
+            {
+                // The crescent opens toward the back: a kick plane across the dash line.
+                var r = Mathf.Lerp(5f, 10f, t);
+                var col = frame == 0 ? Cold.Core : frame == 1 ? Cold.Hot : Cold.Edge;
+                for (var a = -65; a <= 65; a += 3)
+                {
+                    var ang = a * Mathf.Deg2Rad;
+                    var x = mid - 3 + Mathf.RoundToInt(Mathf.Cos(ang) * r * 0.55f);
+                    var y = mid + Mathf.RoundToInt(Mathf.Sin(ang) * r);
+                    if (frame < 2) c.Set(x + 1, y, Cold.Edge); // a cyan rim behind the bright face
+                    c.Set(x, y, col);
+                    if (frame == 0 && Mathf.Abs(a) < 40) c.Set(x - 1, y, Cold.White);
+                }
+
+                // The launch frame carries the punch: a white-hot kick flash where the foot pushed off.
+                if (frame == 0)
+                {
+                    c.Ellipse(mid - 2, mid, 2.5f, 4.5f, Cold.Hot);
+                    c.Ellipse(mid - 2, mid, 1.5f, 3f, Cold.Core);
+                    c.Ellipse(mid - 2, mid, 0.8f, 1.6f, Cold.White);
+                }
+
+                // Speed streaks: staggered lengths so they read as motion, never as a solid block.
+                int[] rows = { -5, -2, 1, 4 };
+                for (var i = 0; i < rows.Length; i++)
+                {
+                    var len = 7 + Mathf.RoundToInt(Hash(i, 21) * 6f);
+                    var start = mid - 2 + Mathf.RoundToInt(t * 9f) + (i % 2);
+                    var from = frame == 2 ? start + len / 2 : start;
+                    for (var x = from; x < start + len; x++)
+                    {
+                        if (frame == 2 && ((x + i) & 1) == 1) continue;
+                        c.Set(x, mid + rows[i], x < start + 2 && frame == 0 ? Cold.White : frame == 0 ? Cold.Core : Cold.Edge);
+                    }
+                }
+            }
+
+            if (frame >= 1)
+            {
+                // Floor dust kicked out behind, spreading and thinning.
+                var push = Mathf.Lerp(3f, 9f, t);
+                var size = Mathf.Lerp(2.5f, 4.5f, t);
+                Puff(c, mid + push, mid - 3f, size, frame == 3 ? dustShade : dust, frame);
+                Puff(c, mid + push + 1f, mid + 3f, size * 0.85f, frame == 3 ? dustShade : dust, frame + 1);
+                if (frame < 3) Puff(c, mid + push - 1f, mid, size * 0.6f, dustShade, frame + 2);
+                for (var i = 0; i < 4; i++)
+                {
+                    var ang = (Hash(i, 31) - 0.5f) * 2.2f;
+                    var rr = Mathf.Lerp(4f, 13f, t) * (0.7f + Hash(i, 33) * 0.3f);
+                    c.Set(mid + Mathf.RoundToInt(Mathf.Cos(ang) * rr), mid + Mathf.RoundToInt(Mathf.Sin(ang) * rr), t < 0.6f ? RuinPalette.ConcreteLight : dustShade);
+                }
+            }
         }
 
         /// <summary>

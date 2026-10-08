@@ -38,6 +38,11 @@ namespace RuinRail.App
                 flash.UsePlayerProfile();
             }
 
+            // Dash presentation (push-off burst + afterimages): read-only over PlayerDash.IsDashing on whichever peer runs it.
+            var dash = player.GetComponent<PlayerDash>();
+            if (body != null && dash != null && player.GetComponent<RuinRail.Presentation.Vfx.DashTrailVfx>() == null)
+                player.AddComponent<RuinRail.Presentation.Vfx.DashTrailVfx>().Configure(dash, body.Renderer, content.VfxFramesFor);
+
             var loadout = player.GetComponent<WeaponLoadout>();
             var weaponDriver = player.GetComponent<WeaponVisualDriver>();
             if (weaponDriver == null) weaponDriver = player.AddComponent<WeaponVisualDriver>();

@@ -373,7 +373,7 @@ namespace RuinRail.EditorTools.ArtGen
 
         public static void GenerateVfx()
         {
-            foreach (var role in VfxFactory.Roles)
+            foreach (var role in VfxFactory.Roles.Concat(VfxFactory.DashRoles))
             {
                 var frames = new List<PixelCanvas>();
                 for (var f = 0; f < VfxFactory.FrameCount(role); f++) frames.Add(VfxFactory.Build(role, f));
@@ -409,6 +409,32 @@ namespace RuinRail.EditorTools.ArtGen
                 ProvenanceRecorder.Record();
                 var missing = VfxFactory.ConsumableRoles.Where(r => catalog.VfxFramesFor(r).Count != VfxFactory.FrameCount(r)).ToList();
                 Debug.Log("Consumable VFX: " + (missing.Count == 0 ? "all frames bound" : "missing " + string.Join(",", missing)));
+                EditorApplication.Exit(missing.Count == 0 ? 0 : 1);
+            }
+            catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
+        }
+
+        /// <summary>Batch: the dash push-off sheet only — generate, import and rebind the content catalog's effect frames.</summary>
+        public static void GenerateDashVfxBatch()
+        {
+            try
+            {
+                Pending.Clear();
+                foreach (var role in VfxFactory.DashRoles)
+                {
+                    var frames = new List<PixelCanvas>();
+                    for (var f = 0; f < VfxFactory.FrameCount(role); f++) frames.Add(VfxFactory.Build(role, f));
+                    var size = VfxFactory.SizeOf(role);
+                    WriteSheet(PixelCanvas.Row(frames), $"{ArtRoot}/Vfx/vfx_{role}.png", size, size, 32, new Vector2(0.5f, 0.5f));
+                }
+
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                ApplyPendingImports();
+                var catalog = RuinRail.EditorTools.Production.GameContentCatalogBuilder.Build();
+                AssetDatabase.SaveAssets();
+                ProvenanceRecorder.Record();
+                var missing = VfxFactory.DashRoles.Where(r => catalog.VfxFramesFor(r).Count != VfxFactory.FrameCount(r)).ToList();
+                Debug.Log("Dash VFX: " + (missing.Count == 0 ? "all frames bound" : "missing " + string.Join(",", missing)));
                 EditorApplication.Exit(missing.Count == 0 ? 0 : 1);
             }
             catch (Exception e) { Debug.LogError(e); EditorApplication.Exit(1); }
