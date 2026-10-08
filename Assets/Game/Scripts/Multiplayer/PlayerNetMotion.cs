@@ -110,6 +110,8 @@ namespace RuinRail.Networking
         public Vector2 AimDirection;
         public BodyFacing8 Facing;
         public bool IsDashing;
+        /// <summary>The dash's direction while <see cref="IsDashing"/> (replica presentation); serialized only then.</summary>
+        public Vector2 DashDirection;
         public bool IsInvulnerable;
         public uint DashSequence;
         public uint LastIntentSequence;

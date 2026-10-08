@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
+using RuinRail.App;
 using RuinRail.Gameplay.Player;
 using RuinRail.Networking;
+using RuinRail.Presentation.Animation;
+using RuinRail.Presentation.Vfx;
+using Unity.Collections;
+using Unity.Netcode;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.TestTools;
@@ -204,6 +209,90 @@ namespace RuinRail.Tests
             }
 
             Assert.LessOrEqual(t, 0.5f, "converged within half a second");
+        }
+
+        // ---- Remote dash presentation ----
+
+        [Test]
+        public void DashDirection_TravelsOnlyOnDashingTicks_AndSurvivesInterpolation()
+        {
+            byte[] Write(PlayerNetState state, out int size)
+            {
+                using var writer = new FastBufferWriter(256, Allocator.Temp);
+                writer.WriteNetworkSerializable(new PlayerNetStatePayload { State = state });
+                size = writer.Length;
+                return writer.ToArray();
+            }
+
+            PlayerNetState Read(byte[] bytes)
+            {
+                using var reader = new FastBufferReader(bytes, Allocator.Temp);
+                reader.ReadNetworkSerializable(out PlayerNetStatePayload payload);
+                return payload.State;
+            }
+
+            var dashing = new PlayerNetState { Position = new Vector2(3f, 1f), IsDashing = true, DashDirection = new Vector2(0.6f, -0.8f), DashSequence = 4, Time = 1.0 };
+            var walking = new PlayerNetState { Position = new Vector2(3f, 1f), DashDirection = new Vector2(0.6f, -0.8f), DashSequence = 4, Time = 1.0 };
+            var dashed = Read(Write(dashing, out var dashingSize));
+            var walked = Read(Write(walking, out var walkingSize));
+            Assert.IsTrue(dashed.IsDashing);
+            Assert.AreEqual(0.6f, dashed.DashDirection.x, 0.0001f);
+            Assert.AreEqual(-0.8f, dashed.DashDirection.y, 0.0001f);
+            Assert.AreEqual(4u, dashed.DashSequence, "every later field still lines up");
+            Assert.AreEqual(1.0, dashed.Time, 1e-9);
+            Assert.AreEqual(Vector2.zero, walked.DashDirection, "not sent off a dash");
+            Assert.AreEqual(walkingSize + 8, dashingSize, "the direction costs 8 bytes, and only while dashing");
+
+            var interpolator = new ReplicaInterpolator(0.1);
+            interpolator.Push(new PlayerNetState { Position = Vector2.zero, Time = 0.0 });
+            interpolator.Push(new PlayerNetState { Position = new Vector2(0f, -0.85f), Time = 0.05, IsDashing = true, DashDirection = Vector2.down });
+            var sample = interpolator.Sample(0.13);
+            Assert.IsTrue(sample.IsDashing);
+            Assert.AreEqual(Vector2.down, sample.DashDirection, "the render-time sample carries the dash's direction with its flag");
+        }
+
+        [UnityTest]
+        public IEnumerator ReplicaDashPresentation_DrivesAnimationAndTrail_WithoutTouchingTheDash()
+        {
+            var replica = PlayerEntityBuilder.Build(new PlayerEntityBuilder.Options { Name = "Replica", IsLocal = false, BalanceConfig = _balance, Position = new Vector2(4f, 4f) });
+            _created.Add(replica);
+            var body = replica.GetComponent<Rigidbody2D>();
+            body.bodyType = RigidbodyType2D.Kinematic; // a pure replica, as NetworkPlayerMotion makes it
+            PlayerVisualComposer.Compose(replica, GameContentCatalog.Load());
+            var dash = replica.GetComponent<PlayerDash>();
+            var trail = replica.GetComponent<DashTrailVfx>();
+            var animation = replica.GetComponent<PlayerAnimationDriver>();
+            Assert.IsNotNull(trail, "replicas are composed with the dash presentation");
+            if (trail.Pool != null) _created.Add(trail.Pool.gameObject);
+            yield return null;
+            Assert.AreNotEqual(PlayerAnimState.Dash, animation.State);
+
+            dash.ApplyReplicatedPresentation(true, Vector2.left * 3f);
+            for (var i = 0; i < 3; i++) yield return new WaitForFixedUpdate();
+            yield return null;
+            Assert.IsTrue(dash.IsDashingPresented);
+            Assert.AreEqual(Vector2.left, dash.DashDirectionPresented);
+            Assert.AreEqual(PlayerAnimState.Dash, animation.State, "the remote dash animates");
+            Assert.AreEqual(1, trail.DashesShown);
+            Assert.AreEqual(1, trail.BurstsShown, "one launch burst");
+            // Presentation only: no simulated dash, no iFrames, no cooldown, no dash velocity on the replica's body.
+            Assert.IsFalse(dash.IsDashing);
+            Assert.IsFalse(dash.IsInvulnerable);
+            Assert.IsTrue(dash.CanDash);
+            Assert.AreEqual(0, dash.DashesStarted);
+            Assert.AreEqual(Vector2.zero, body.linearVelocity);
+            Assert.AreEqual(new Vector2(4f, 4f), body.position);
+
+            // Interpolation carries the body along the dash: the trail follows it, once.
+            for (var i = 1; i <= 6; i++) { body.MovePosition(new Vector2(4f - i * 0.5f, 4f)); yield return new WaitForFixedUpdate(); yield return null; }
+            Assert.GreaterOrEqual(trail.GhostsShown, 4, "afterimages along the replica's path");
+            dash.ApplyReplicatedPresentation(false, Vector2.zero);
+            yield return null;
+            Assert.IsFalse(dash.IsDashingPresented);
+            Assert.AreNotEqual(PlayerAnimState.Dash, animation.State);
+            Assert.AreEqual(1, trail.DashesShown, "still exactly one dash shown");
+            yield return new WaitForSeconds(0.4f);
+            Assert.AreEqual(0, trail.Pool.Live, "every effect cleaned up");
         }
 
         // ---- Acceptance 4: solo unchanged ----

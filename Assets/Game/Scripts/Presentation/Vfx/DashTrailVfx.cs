@@ -8,8 +8,9 @@ namespace RuinRail.Presentation.Vfx
     /// <summary>
     /// Dash presentation on a player body: a cold push-off burst ('dash_burst') where the dash started and a short trail
     /// of fading afterimages of the body's current frame, drawn at the bottom of the Characters layer — behind every actor,
-    /// so the trail never covers an enemy, and above the floor/hazard layers only for its ~0.2 s. Read-only over <see cref="PlayerDash"/>: it watches IsDashing and
-    /// DashDirection and never touches timing, speed, iFrames or collision.
+    /// so the trail never covers an enemy, and above the floor/hazard layers only for its ~0.2 s. Read-only over
+    /// <see cref="PlayerDash"/>'s presented dash (its own, or a network replica's mirror of the host's): it never touches
+    /// timing, speed, iFrames or collision.
     /// </summary>
     public sealed class DashTrailVfx : MonoBehaviour
     {
@@ -62,7 +63,7 @@ namespace RuinRail.Presentation.Vfx
         {
             if (_dash == null) return;
             EnsurePool();
-            var dashing = _dash.IsDashing;
+            var dashing = _dash.IsDashingPresented;
             if (dashing && !_wasDashing)
             {
                 DashesShown++;
@@ -89,7 +90,8 @@ namespace RuinRail.Presentation.Vfx
 
         private void Burst()
         {
-            var direction = _dash.DashDirection.sqrMagnitude > 0.0001f ? _dash.DashDirection.normalized : Vector2.right;
+            var presented = _dash.DashDirectionPresented;
+            var direction = presented.sqrMagnitude > 0.0001f ? presented.normalized : Vector2.right;
             var at = (Vector2)transform.position;
             // Authored pointing +X = behind the dash.
             var effect = _pool.Spawn("dash_burst", at, BurstLifetime, new Color(1f, 1f, 1f, 0.85f), 1f, Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg);

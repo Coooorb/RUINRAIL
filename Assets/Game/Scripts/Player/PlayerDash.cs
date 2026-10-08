@@ -27,6 +27,27 @@ namespace RuinRail.Gameplay.Player
         public bool IsActive => IsDashing;
         public Vector2 DashDirection => _dashDirection;
 
+        // Presentation-only mirror of the host's dash for a pure network replica, which never simulates a dash itself.
+        private bool _replicaDashing;
+        private Vector2 _replicaDirection;
+
+        /// <summary>
+        /// Dashing as this peer should draw it (dash animation, dash VFX): its own simulated dash, or on a pure network
+        /// replica the host's replicated one. Presentation only — gameplay reads <see cref="IsDashing"/>.
+        /// </summary>
+        public bool IsDashingPresented => IsDashing || _replicaDashing;
+        public Vector2 DashDirectionPresented => IsDashing ? _dashDirection : _replicaDirection;
+
+        /// <summary>
+        /// A replica's interpolated dash flag/direction from the host's state. Never changes IsDashing, iFrames, velocity
+        /// or cooldown: the replica's body stays driven by interpolation alone.
+        /// </summary>
+        public void ApplyReplicatedPresentation(bool dashing, Vector2 direction)
+        {
+            _replicaDashing = dashing;
+            _replicaDirection = dashing && direction.sqrMagnitude > 0.0001f ? direction.normalized : Vector2.zero;
+        }
+
         public void SetInputReader(IPlayerInputReader inputReader)
         {
             AttachInputReader(inputReader);

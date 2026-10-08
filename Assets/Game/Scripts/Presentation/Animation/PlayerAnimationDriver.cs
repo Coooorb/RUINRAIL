@@ -99,7 +99,7 @@ namespace RuinRail.Presentation.Animation
             _lastLife = life;
             var moving = (_reader != null && _reader.Move.sqrMagnitude > 0.01f) || (_body != null && _body.linearVelocity.sqrMagnitude > 0.01f);
             var facing = _aiming != null ? _aiming.BodyFacing : Facing;
-            return new PlayerAnimInputs(life, _dash != null && _dash.IsDashing, moving, facing, _sinceRevive);
+            return new PlayerAnimInputs(life, _dash != null && _dash.IsDashingPresented, moving, facing, _sinceRevive);
         }
 
         public void Tick(float deltaTime)

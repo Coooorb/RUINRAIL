@@ -28,7 +28,7 @@ namespace RuinRail.App
 {
     /// <summary>
     /// Built-player co-op expedition proof (`-coop-expedition host|client -coop-port P -coop-size N -coop-out f.json
-    /// [-seed S] [-coop-scenario duo|trio|relay|telegraph|shotfeel]`): two or three processes of the shipped player play one real expedition over
+    /// [-seed S] [-coop-scenario duo|trio|relay|telegraph|shotfeel|dashfeel]`): two or three processes of the shipped player play one real expedition over
     /// UnityTransport on loopback — Shelter lobby, the host's start, identical D1 on every peer, a real combat room,
     /// pickup and coin races, a merchant trade, Downed/revive both ways, the boss, the Transit vote, a networked
     /// descend to D2, and the Return with its save. Every step drives the shipping paths: the player input the host
@@ -641,6 +641,12 @@ namespace RuinRail.App
                     break;
                 case "shot-watch":
                     yield return ClientShotWatch(command);
+                    break;
+                case "dash-watch":
+                    yield return ClientDashWatch(command);
+                    break;
+                case "dash-warm":
+                    yield return ClientDashWarm(command);
                     break;
                 case "relay-check":
                     yield return ClientRelayCheck(command);
@@ -1539,6 +1545,12 @@ namespace RuinRail.App
             if (_scenario == "shotfeel")
             {
                 yield return ShotFeelScenario(clients);
+                yield break;
+            }
+
+            if (_scenario == "dashfeel")
+            {
+                yield return DashFeelScenario(clients);
                 yield break;
             }
 

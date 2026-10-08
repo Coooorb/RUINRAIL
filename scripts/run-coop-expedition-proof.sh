@@ -6,7 +6,9 @@
 #
 # scenario: duo / trio (default by size), relay (57.7 Secure Relay; needs a seed whose D1 picks one, e.g. 6) or telegraph
 # (host↔client agreement of every attack telegraph in a busy fight and against the D1 boss, plus paint cost) or shotfeel
-# (a ballistic gun, shotgun, blaster and rocket fired by each peer: flash, projectiles and impact/blast exactly once on both).
+# (a ballistic gun, shotgun, blaster and rocket fired by each peer: flash, projectiles and impact/blast exactly once on both)
+# or dashfeel (every member's dashes drawn exactly once on every peer; keeps the graphics device and renders 640×360
+# mid-dash frames of every peer's view to <out-dir>/dashfeel).
 #
 # Writes host.json / clientN.json (step results + per-step peer views) and the peers' logs into <out-dir>.
 # Exit code 0 only when every peer reports success. Build the player first (ReleaseBuildTool.BuildMacBatch).
@@ -18,6 +20,9 @@ SEED="${3:-11}"
 PORT="${4:-7940}"
 SCENARIO_ARGS=()
 [[ -n "${5:-}" ]] && SCENARIO_ARGS=(-coop-scenario "$5")
+# Captures need a graphics device (still -batchmode: the dashfeel scenario renders its camera into a texture).
+DISPLAY_ARGS=(-nographics)
+[[ "${5:-}" == "dashfeel" ]] && DISPLAY_ARGS=()
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_PATH="$(cd "$SCRIPT_DIR/.." && pwd)"
 PLAYER="$PROJECT_PATH/Builds/MacOS/RUINRAIL.app/Contents/MacOS/RUINRAIL"
@@ -31,13 +36,13 @@ mkdir -p "$OUT"
 OUT="$(cd "$OUT" && pwd)"
 SAVES="$(mktemp -d)"
 
-"$PLAYER" -batchmode -nographics -coop-expedition host -coop-port "$PORT" -coop-size "$SIZE" -seed "$SEED" ${SCENARIO_ARGS[@]+"${SCENARIO_ARGS[@]}"} \
+"$PLAYER" -batchmode ${DISPLAY_ARGS[@]+"${DISPLAY_ARGS[@]}"} -coop-expedition host -coop-port "$PORT" -coop-size "$SIZE" -seed "$SEED" ${SCENARIO_ARGS[@]+"${SCENARIO_ARGS[@]}"} \
   -coop-out "$OUT/host.json" -savedir "$SAVES/host" -logFile "$OUT/host.log" >/dev/null 2>&1 &
 HOST_PID=$!
 sleep 3
 CLIENT_PIDS=()
 for i in $(seq 1 $((SIZE - 1))); do
-  "$PLAYER" -batchmode -nographics -coop-expedition client -coop-index "$i" -coop-port "$PORT" -coop-size "$SIZE" -seed "$SEED" ${SCENARIO_ARGS[@]+"${SCENARIO_ARGS[@]}"} \
+  "$PLAYER" -batchmode ${DISPLAY_ARGS[@]+"${DISPLAY_ARGS[@]}"} -coop-expedition client -coop-index "$i" -coop-port "$PORT" -coop-size "$SIZE" -seed "$SEED" ${SCENARIO_ARGS[@]+"${SCENARIO_ARGS[@]}"} \
     -coop-out "$OUT/client$i.json" -savedir "$SAVES/client$i" -logFile "$OUT/client$i.log" >/dev/null 2>&1 &
   CLIENT_PIDS+=($!)
   sleep 1

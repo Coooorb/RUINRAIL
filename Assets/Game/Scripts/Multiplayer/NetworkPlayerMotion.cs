@@ -19,6 +19,8 @@ namespace RuinRail.Networking
             serializer.SerializeValue(ref facing);
             State.Facing = (BodyFacing8)facing;
             serializer.SerializeValue(ref State.IsDashing);
+            // Only on the few ticks a dash is live: replicas draw its burst/trail along the real direction.
+            if (State.IsDashing) serializer.SerializeValue(ref State.DashDirection);
             serializer.SerializeValue(ref State.IsInvulnerable);
             serializer.SerializeValue(ref State.DashSequence);
             serializer.SerializeValue(ref State.LastIntentSequence);
@@ -106,6 +108,7 @@ namespace RuinRail.Networking
             if (_body != null) _body.bodyType = RigidbodyType2D.Dynamic;
             if (_dash != null)
             {
+                _dash.ApplyReplicatedPresentation(false, Vector2.zero); // it simulates its own dash from now on
                 _dash.DashStarted -= OnOwnerDashStarted;
                 _dash.DashStarted += OnOwnerDashStarted;
             }
@@ -193,6 +196,7 @@ namespace RuinRail.Networking
                 AimDirection = _aiming != null ? _aiming.AimDirection : Vector2.right,
                 Facing = _aiming != null ? _aiming.BodyFacing : BodyFacing8.E,
                 IsDashing = _dash != null && _dash.IsDashing,
+                DashDirection = _dash != null && _dash.IsDashing ? _dash.DashDirection : Vector2.zero,
                 IsInvulnerable = _dash != null && _dash.IsInvulnerable,
                 DashSequence = IsOwner ? _dashSequence : _lastAppliedDashSequence,
                 LastIntentSequence = _remoteReader != null ? _sequenceOfLastStep : _intentSequence,
@@ -236,6 +240,8 @@ namespace RuinRail.Networking
             if (_body != null) _body.MovePosition(sample.Position);
             else transform.position = sample.Position;
             _aiming?.ApplyReplicatedAim(sample.AimDirection);
+            // The dash as the replica draws it, on the same render-time sample as its position (presentation only).
+            _dash?.ApplyReplicatedPresentation(sample.IsDashing, sample.DashDirection);
         }
     }
 }
