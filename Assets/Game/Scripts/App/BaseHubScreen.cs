@@ -36,7 +36,9 @@ namespace RuinRail.App
         private BaseHubViewModel _hub;
         private ShelterOnboardingViewModel _onboarding;
         private DisplayNameEntry _nameEntry;
-        private DisplayNameEntryView _nameEntryView;
+        private TextEntryView _nameEntryView;
+        private JoinCodeEntry _joinCodeEntry;
+        private TextEntryView _joinCodeView;
         private TerminalViewModel _terminal;
         private SessionPartyBridge _partyBridge;
         private SessionRoster _approvalRoster;
@@ -104,7 +106,9 @@ namespace RuinRail.App
         public ShelterOnboardingViewModel Onboarding => _onboarding;
         /// <summary>The display-name field the Character station's CHANGE NAME opens.</summary>
         public DisplayNameEntry NameEntry => _nameEntry;
-        public DisplayNameEntryView NameEntryView => _nameEntryView;
+        public TextEntryView NameEntryView => _nameEntryView;
+        public JoinCodeEntry JoinCodeEntry => _joinCodeEntry;
+        public TextEntryView JoinCodeView => _joinCodeView;
         public MenuInput Input => _input;
         public FocusList StationList => _stationList;
         public FocusList PanelList => _panelList;
@@ -181,7 +185,7 @@ namespace RuinRail.App
             _input = gameObject.AddComponent<MenuInput>();
             _input.Back += OnBack;
             _input.Horizontal += StepSection;
-            _input.InputBlocked = () => app.InputBlocked || (_nameEntryView != null && _nameEntryView.OwnsInput);
+            _input.InputBlocked = () => app.InputBlocked || (_nameEntryView != null && _nameEntryView.OwnsInput) || (_joinCodeView != null && _joinCodeView.OwnsInput);
             // UI sound for every Shelter interaction, on the shared UI sound bus: steps, hover, confirm, tab changes,
             // back, refused actions and the stations' own outcomes (a purchase, a full Storage) — one cue per frame.
             _sounds = gameObject.AddComponent<UiSoundCues>();
@@ -197,8 +201,13 @@ namespace RuinRail.App
             BuildLeftColumn();
             BuildRightColumn();
             BuildFooter();
-            _nameEntryView = gameObject.AddComponent<DisplayNameEntryView>();
+            _nameEntryView = gameObject.AddComponent<TextEntryView>();
             _nameEntryView.Bind(_nameEntry, _root);
+            // JOIN BY CODE: the friend's code is typed or pasted here; the host's COPY JOIN CODE fills the clipboard.
+            _terminal.Clipboard = code => GUIUtility.systemCopyBuffer = code;
+            _joinCodeEntry = new JoinCodeEntry(_terminal, () => GUIUtility.systemCopyBuffer);
+            _joinCodeView = gameObject.AddComponent<TextEntryView>();
+            _joinCodeView.Bind(_joinCodeEntry, _root);
 
             _input.Stack.Push(_stationList);
             _hub.StationChanged += OnStationChanged;
@@ -964,7 +973,7 @@ namespace RuinRail.App
                 BaseStation.Trader => ScreenNavigation.Trader(_hub.Trader, () => SetTraderSelling(true)),
                 BaseStation.Character => ScreenNavigation.Character(_hub.Character, OpenNameEntry),
                 BaseStation.Workshop => ScreenNavigation.Workshop(_hub.Workshop),
-                BaseStation.Multiplayer => ScreenNavigation.Multiplayer(_terminal),
+                BaseStation.Multiplayer => ScreenNavigation.Multiplayer(_terminal, OpenJoinCodeEntry),
                 _ => ScreenNavigation.Transit(_hub.Transit, _hub.Multiplayer)
             };
 
@@ -1431,6 +1440,9 @@ namespace RuinRail.App
             _feedback.color = summary.Summary.IsSuccess ? UiTheme.Terminal : UiTheme.Danger;
             _feedbackShownAt = Time.unscaledTime;
         }
+
+        /// <summary>JOIN BY CODE: opens the code field (the terminal enables it only while not in a session).</summary>
+        public void OpenJoinCodeEntry() => _joinCodeView?.Open();
 
         /// <summary>CHANGE NAME: opens the field, or says why the name cannot change right now.</summary>
         public void OpenNameEntry()

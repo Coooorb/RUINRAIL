@@ -6,7 +6,9 @@ using NUnit.Framework;
 using RuinRail.App;
 using RuinRail.Core;
 using RuinRail.Core.Input;
+using RuinRail.Networking;
 using RuinRail.UI.Base;
+using RuinRail.UI.Multiplayer;
 using RuinRail.UI.Theme;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -660,6 +662,50 @@ namespace RuinRail.Tests
             hub.Hub.Open(BaseStation.Multiplayer);
             yield return null;
             UiScreenCapture.Capture("name_saved_max_terminal");
+        }
+
+        /// <summary>
+        /// JOIN BY CODE in the Multiplayer terminal opens the code field (it used to join with an empty code and fail
+        /// silently): typing is filtered to the code alphabet and capped at 6, a short code is refused on screen, and
+        /// JOIN hands the code to the terminal, which attempts the join.
+        /// </summary>
+        [UnityTest]
+        public IEnumerator Terminal_JoinByCode_OpensTheCodeField_AndJoinsWithTheTypedCode()
+        {
+            yield return OpenShelter();
+            var hub = Object.FindFirstObjectByType<BaseHubScreen>();
+            GUIUtility.systemCopyBuffer = string.Empty;
+            hub.Hub.Open(BaseStation.Multiplayer);
+            yield return null;
+
+            Assert.IsTrue(hub.Input.Stack.Current.Focus("terminal." + TerminalAction.Join), "JOIN BY CODE is reachable by focus navigation");
+            Assert.IsTrue(hub.Input.Stack.Activate());
+            yield return null;
+            Assert.IsTrue(hub.JoinCodeEntry.IsOpen);
+            Assert.IsTrue(hub.JoinCodeView.IsVisible);
+            Assert.IsTrue(hub.Input.InputBlocked(), "the Shelter menu does not navigate while the player types");
+
+            UiControl Button(string id) => hub.GetComponentsInChildren<UiControl>(true).First(c => c.Id == id);
+
+            hub.JoinCodeEntry.Type("ab-1");
+            Assert.AreEqual("AB1", hub.JoinCodeEntry.Text, "letters/digits only, upper-cased");
+            Button("joincode.save").SimulateClick();
+            yield return null;
+            Assert.IsTrue(hub.JoinCodeEntry.IsOpen, "a short code is refused");
+            Assert.AreEqual(JoinCodeEntry.MalformedError, hub.JoinCodeView.ErrorText);
+
+            hub.JoinCodeEntry.Type("c2d3xyz");
+            Assert.AreEqual("AB1C2D", hub.JoinCodeEntry.Text, "capped at 6 characters");
+            yield return null;
+            UiScreenCapture.Capture("join_code_entry_open");
+            Button("joincode.save").SimulateClick();
+            yield return null;
+            Assert.IsFalse(hub.JoinCodeEntry.IsOpen);
+            Assert.IsFalse(hub.JoinCodeView.IsVisible);
+            Assert.AreEqual("AB1C2D", hub.Terminal.JoinCodeInput, "the typed code reached the terminal");
+            Assert.AreNotEqual(TerminalState.Idle, hub.Terminal.State, "the terminal attempted the join");
+            yield return null;
+            UiScreenCapture.Capture("join_code_after_join");
         }
 
         private static void AssertShelterShows(BaseHubScreen hub, string name)

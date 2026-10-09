@@ -9,20 +9,22 @@ using UnityEngine.UI;
 namespace RuinRail.App
 {
     /// <summary>
-    /// The Shelter's display-name field: a small modal over the Character station, drawn with the shared kit.
+    /// The Shelter's text-entry modal (display name, co-op join code): a small panel drawn with the shared kit over
+    /// whatever station opened it, bound to one <see cref="ITextEntryField"/>.
     ///
     /// While it is open it owns the input — the Shelter's <see cref="MenuInput"/> is blocked through
     /// <see cref="OwnsInput"/>, because WASD, Q/E and Space are menu keys there and would otherwise navigate while the
-    /// player types. A keyboard types into it (Enter saves, Esc cancels, Backspace deletes); a controller edits the
-    /// last character with Up/Down, adds with Right, deletes with Left or X, saves with A and cancels with B; the
-    /// mouse clicks SAVE / CANCEL. The key that opened or closed the field is never read twice in the same frame.
+    /// player types. A keyboard types into it (Ctrl+V pastes, Enter confirms, Esc cancels, Backspace deletes); a
+    /// controller edits the last character with Up/Down, adds with Right, deletes with Left or X, confirms with A and
+    /// cancels with B; the mouse clicks the confirm / CANCEL buttons. The key that opened or closed the field is never
+    /// read twice in the same frame.
     /// </summary>
-    public sealed class DisplayNameEntryView : MonoBehaviour
+    public sealed class TextEntryView : MonoBehaviour
     {
         private const int PanelWidth = 232;
         private const int PanelHeight = 100;
 
-        private DisplayNameEntry _entry;
+        private ITextEntryField _entry;
         private GameObject _modal;
         private Text _field;
         private Text _error;
@@ -41,7 +43,9 @@ namespace RuinRail.App
         public string ErrorText => _error != null ? _error.text : string.Empty;
         public FocusList Buttons => _buttons;
 
-        public void Bind(DisplayNameEntry entry, Transform root)
+        private string SaveId => _entry.IdPrefix + ".save";
+
+        public void Bind(ITextEntryField entry, Transform root)
         {
             _entry = entry;
             _entry.Changed += OnChanged;
@@ -52,7 +56,7 @@ namespace RuinRail.App
         private void Build(Transform root)
         {
             var screen = ScreenLayout.Screen;
-            _modal = new GameObject("DisplayNameEntry");
+            _modal = new GameObject("TextEntry." + _entry.IdPrefix);
             _modal.transform.SetParent(root, false);
             var rect = _modal.AddComponent<RectTransform>();
             rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
@@ -65,15 +69,15 @@ namespace RuinRail.App
             dim.raycastTarget = true;
 
             var bounds = new UiRect((screen.Width - PanelWidth) / 2, (screen.Height - PanelHeight) / 2, PanelWidth, PanelHeight);
-            var panel = UiKit.Panel(_modal.transform, bounds, "NamePanel").transform;
+            var panel = UiKit.Panel(_modal.transform, bounds, "EntryPanel").transform;
             var inner = new UiRect(UiTheme.Pad, UiTheme.Pad, PanelWidth - UiTheme.Pad * 2, PanelHeight - UiTheme.Pad * 2);
             var y = inner.Y;
 
-            UiKit.Label(panel, "DISPLAY NAME", new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
+            UiKit.Label(panel, _entry.Title, new UiRect(inner.X, y, inner.Width, UiText.Height()), 1, TextAnchor.UpperLeft, UiTheme.Amber);
             UiKit.Plate(panel, new UiRect(inner.X, y + UiText.Height() + 1, inner.Width, 1), UiTheme.AmberDim, "HeadingRule");
             y += UiText.LineHeight + 5;
 
-            // The field is sized for the longest name the policy allows plus the caret, so a maximum-length name fits.
+            // The field is sized for the longest text the field allows plus the caret, so a maximum-length entry fits.
             var fieldWidth = UiText.Width(new string('W', Mathf.Max(1, _entry.MaxLength) + 1)) + UiTheme.PadSmall * 2;
             var field = new UiRect(inner.X, y, Mathf.Min(inner.Width, fieldWidth), UiText.Height() + 6);
             UiKit.Plate(panel, field, UiTheme.NearBlack, "Field");
@@ -86,9 +90,9 @@ namespace RuinRail.App
             y += UiText.LineHeight;
             _hint = UiKit.Label(panel, string.Empty, new UiRect(inner.X, y, inner.Width, UiText.Height(2)), 1, TextAnchor.UpperLeft, UiTheme.InkMuted, wrap: true);
 
-            _buttons = new FocusList("NameEntry", 2);
-            _buttons.Add("name.save", "SAVE", () => _entry.Submit());
-            _buttons.Add("name.cancel", "CANCEL", () => _entry.Cancel());
+            _buttons = new FocusList(_entry.Title, 2);
+            _buttons.Add(SaveId, _entry.ConfirmLabel, () => _entry.Submit());
+            _buttons.Add(_entry.IdPrefix + ".cancel", "CANCEL", () => _entry.Cancel());
             const int buttonWidth = 64;
             const int buttonHeight = 14;
             var buttonY = inner.Bottom - buttonHeight;
@@ -101,12 +105,12 @@ namespace RuinRail.App
             }
         }
 
-        /// <summary>Opens the field on the saved name; false (field stays closed) when the entry refused to open.</summary>
+        /// <summary>Opens the field; false (field stays closed) when the entry refused to open.</summary>
         public bool Open()
         {
             if (_entry == null || !_entry.Open()) return false;
             _openedFrame = Time.frameCount;
-            _buttons.Focus("name.save");
+            _buttons.Focus(SaveId);
             return true;
         }
 
@@ -148,6 +152,7 @@ namespace RuinRail.App
 
             if (_typed.Length > 0)
             {
+                // The field filters what it accepts, so the control character Ctrl+V also sends is dropped there.
                 _entry.Type(_typed.ToString());
                 _typed.Clear();
                 ActiveInputDevice.Set(InputDeviceKind.KeyboardMouse);
@@ -155,6 +160,7 @@ namespace RuinRail.App
 
             if (kb != null)
             {
+                if (kb.ctrlKey.isPressed && kb.vKey.wasPressedThisFrame) _entry.Type(GUIUtility.systemCopyBuffer);
                 if (kb.backspaceKey.wasPressedThisFrame) _entry.Backspace();
                 if (kb.enterKey.wasPressedThisFrame || kb.numpadEnterKey.wasPressedThisFrame) { _entry.Submit(); return; }
                 if (kb.escapeKey.wasPressedThisFrame) { _entry.Cancel(); return; }
@@ -181,9 +187,7 @@ namespace RuinRail.App
             var caret = _entry.IsOpen && _entry.Text.Length < _entry.MaxLength && Mathf.Repeat(Time.unscaledTime, 1f) < 0.5f ? "_" : string.Empty;
             _field.text = _entry.Text + caret;
             _error.text = _entry.Error;
-            _hint.text = ActiveInputDevice.Current == InputDeviceKind.Gamepad
-                ? "Up/Down letter  Right add  Left delete\nA save  B cancel"
-                : $"{_entry.MinLength}-{_entry.MaxLength}: letters, numbers, space, _ -\nEnter save  Esc cancel";
+            _hint.text = _entry.Hint(ActiveInputDevice.Current == InputDeviceKind.Gamepad);
         }
 
         private void Unhook()

@@ -67,6 +67,9 @@ namespace RuinRail.UI.Multiplayer
         public int CopyRequests { get; private set; }
         public string LastCopiedCode { get; private set; }
 
+        /// <summary>Owner hook: puts the copied join code on the system clipboard (null = count the copy only).</summary>
+        public Action<string> Clipboard { get; set; }
+
         /// <summary>
         /// Owner hook run right before the local player goes Ready: returns true when it changed the loadout (the
         /// Starter Loadout fallback for a player with nothing equipped, base/75), which the terminal then reports as
@@ -171,6 +174,7 @@ namespace RuinRail.UI.Multiplayer
                 case TerminalAction.CopyCode:
                     CopyRequests++;
                     LastCopiedCode = JoinCodeToShare;
+                    Clipboard?.Invoke(LastCopiedCode);
                     Raise();
                     return SessionError.None;
                 default: return SessionError.None;
@@ -185,6 +189,116 @@ namespace RuinRail.UI.Multiplayer
         {
             _terminal.Changed -= OnTerminalChanged;
             _lobby.MemberChanged -= OnMemberChanged;
+        }
+    }
+
+    /// <summary>
+    /// JOIN BY CODE's field: the friend's 6-character code, typed, pasted or dialled in with a controller. Only
+    /// letters/digits are accepted (upper-cased, capped at <see cref="JoinCode.Length"/>); a well-formed code is
+    /// handed to the terminal and joined, anything else keeps the field open and says why. Opens on the last code
+    /// entered, else on a well-formed code found on the clipboard (the host's COPY JOIN CODE).
+    /// </summary>
+    public sealed class JoinCodeEntry : Onboarding.ITextEntryField
+    {
+        public const string Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        public static readonly string MalformedError = $"Enter the {JoinCode.Length}-character join code.";
+
+        private readonly TerminalViewModel _terminal;
+        private readonly Func<string> _clipboard;
+
+        public JoinCodeEntry(TerminalViewModel terminal, Func<string> clipboard = null)
+        {
+            _terminal = terminal ?? throw new ArgumentNullException(nameof(terminal));
+            _clipboard = clipboard;
+        }
+
+        public string Title => "JOIN BY CODE";
+        public string IdPrefix => "joincode";
+        public string ConfirmLabel => "JOIN";
+        public bool IsOpen { get; private set; }
+        public string Text { get; private set; } = string.Empty;
+        public string Error { get; private set; } = string.Empty;
+        public int MaxLength => JoinCode.Length;
+        public event Action Changed;
+
+        public string Hint(bool gamepad) => gamepad
+            ? "Up/Down letter  Right add  Left delete\nA join  B cancel"
+            : "Type the code or paste it (Ctrl+V)\nEnter join  Esc cancel";
+
+        /// <summary>Refused (false) while the terminal cannot join (already in a session, or busy connecting).</summary>
+        public bool Open()
+        {
+            if (!_terminal.IsEnabled(TerminalAction.Join)) return false;
+            var pasted = _clipboard?.Invoke();
+            Text = _terminal.JoinCodeInputIsWellFormed ? _terminal.JoinCodeInput
+                : JoinCode.IsWellFormed(pasted) ? JoinCode.Normalize(pasted) : string.Empty;
+            Error = string.Empty;
+            IsOpen = true;
+            Changed?.Invoke();
+            return true;
+        }
+
+        public void Type(string typed)
+        {
+            if (!IsOpen || string.IsNullOrEmpty(typed)) return;
+            var text = Text;
+            foreach (var c in typed)
+            {
+                if (text.Length >= MaxLength) break;
+                var upper = char.ToUpperInvariant(c);
+                if (Charset.IndexOf(upper) >= 0) text += upper;
+            }
+
+            Set(text);
+        }
+
+        public void Backspace()
+        {
+            if (!IsOpen || Text.Length == 0) return;
+            Set(Text.Substring(0, Text.Length - 1));
+        }
+
+        public void AddCharacter()
+        {
+            if (!IsOpen || Text.Length >= MaxLength) return;
+            Set(Text + (Text.Length > 0 ? Text[Text.Length - 1] : 'A'));
+        }
+
+        public void Cycle(int delta)
+        {
+            if (!IsOpen || delta == 0) return;
+            if (Text.Length == 0) { Set("A"); return; }
+            var index = Charset.IndexOf(Text[Text.Length - 1]);
+            var next = Charset[((index < 0 ? 0 : index) + delta % Charset.Length + Charset.Length) % Charset.Length];
+            Set(Text.Substring(0, Text.Length - 1) + next);
+        }
+
+        /// <summary>Joins with a well-formed code (the outcome shows on the terminal); otherwise stays open with the reason.</summary>
+        public bool Submit()
+        {
+            if (!IsOpen) return false;
+            if (!JoinCode.IsWellFormed(Text)) { Error = MalformedError; Changed?.Invoke(); return false; }
+            _terminal.SetJoinCodeInput(Text);
+            IsOpen = false;
+            Error = string.Empty;
+            Changed?.Invoke();
+            _ = _terminal.ActivateAsync(TerminalAction.Join);
+            return true;
+        }
+
+        public void Cancel()
+        {
+            if (!IsOpen) return;
+            IsOpen = false;
+            Error = string.Empty;
+            Changed?.Invoke();
+        }
+
+        private void Set(string text)
+        {
+            Text = text;
+            Error = string.Empty;
+            Changed?.Invoke();
         }
     }
 

@@ -164,10 +164,16 @@ namespace RuinRail.UI.Navigation
             return list;
         }
 
-        public static FocusList Multiplayer(TerminalViewModel terminal)
+        /// <param name="openJoinCode">Opens the join-code field; JOIN BY CODE joins only through it (null = join the code already entered).</param>
+        public static FocusList Multiplayer(TerminalViewModel terminal, Action openJoinCode = null)
         {
             var list = new FocusList("Multiplayer");
-            foreach (var action in TerminalViewModel.Actions) list.Add("terminal." + action, TerminalViewModel.Label(action), () => { _ = terminal.ActivateAsync(action); }, () => terminal.IsEnabled(action));
+            foreach (var action in TerminalViewModel.Actions)
+            {
+                Action activate = action == TerminalAction.Join && openJoinCode != null ? openJoinCode : () => { _ = terminal.ActivateAsync(action); };
+                list.Add("terminal." + action, TerminalViewModel.Label(action), activate, () => terminal.IsEnabled(action));
+            }
+
             return list;
         }
 

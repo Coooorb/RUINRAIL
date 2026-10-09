@@ -177,6 +177,31 @@ namespace RuinRail.UI.Onboarding
     }
 
     /// <summary>
+    /// A short single-line field edited in the shared text-entry modal (display name, co-op join code): keyboard
+    /// types/pastes, a controller edits the last character in place (Cycle) and appends/removes characters.
+    /// </summary>
+    public interface ITextEntryField
+    {
+        string Title { get; }
+        /// <summary>Focus-id prefix of the modal's buttons (<c>&lt;prefix&gt;.save</c> / <c>&lt;prefix&gt;.cancel</c>).</summary>
+        string IdPrefix { get; }
+        string ConfirmLabel { get; }
+        bool IsOpen { get; }
+        string Text { get; }
+        string Error { get; }
+        int MaxLength { get; }
+        string Hint(bool gamepad);
+        event Action Changed;
+        bool Open();
+        void Type(string typed);
+        void Backspace();
+        void AddCharacter();
+        void Cycle(int delta);
+        bool Submit();
+        void Cancel();
+    }
+
+    /// <summary>
     /// The display-name field (player/10: "changed later from profile/settings UI using the same validation"). Holds
     /// the text being edited and commits it through <see cref="ShelterOnboardingViewModel.SubmitDisplayName"/>, the one
     /// path that validates, stores and autosaves the name, so first launch and later renames cannot diverge.
@@ -185,10 +210,18 @@ namespace RuinRail.UI.Onboarding
     /// string the HUD was not sized for. A controller edits the last character in place (Cycle) and appends/removes
     /// characters; a keyboard types. An invalid commit (empty, too short, blocked) keeps the saved name and says why.
     /// </summary>
-    public sealed class DisplayNameEntry
+    public sealed class DisplayNameEntry : ITextEntryField
     {
         /// <summary>The controller's character wheel: exactly the characters the validator accepts.</summary>
         public const string Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 _-";
+
+        public string Title => "DISPLAY NAME";
+        public string IdPrefix => "name";
+        public string ConfirmLabel => "SAVE";
+
+        public string Hint(bool gamepad) => gamepad
+            ? "Up/Down letter  Right add  Left delete\nA save  B cancel"
+            : $"{MinLength}-{MaxLength}: letters, numbers, space, _ -\nEnter save  Esc cancel";
 
         private readonly ShelterOnboardingViewModel _onboarding;
         private readonly Func<string> _blockedReason;
