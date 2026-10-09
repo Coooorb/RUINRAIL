@@ -6,8 +6,9 @@ namespace RuinRail.Networking
 {
     /// <summary>
     /// INetworkDriver over Netcode for GameObjects' NetworkManager. The Sessions package wires Relay into the
-    /// transport when a session is created/joined with Relay networking, so this driver only starts/stops the local
-    /// endpoint. Host only — no dedicated server start path exists here on purpose.
+    /// transport and starts the endpoint when a session is created/joined with Relay networking, so on that path this
+    /// driver adopts the running endpoint; the direct-address path starts it here. Host only — no dedicated server
+    /// start path exists here on purpose.
     /// </summary>
     public sealed class NgoNetworkDriver : INetworkDriver
     {
@@ -103,15 +104,18 @@ namespace RuinRail.Networking
 
         public event Action<INetworkDriver> Stopped;
 
+        // The Sessions package's default NGO network handler starts NetworkManager itself while a Relay session is
+        // created/joined, so an endpoint already listening in the requested role is that session's endpoint: adopt it.
+        // Refusing it made every live Host/Join tear its own session down ("Leave your current session…").
         public ServiceResult StartHost()
         {
-            if (IsListening) return ServiceResult.Fail(ServiceErrorKind.InvalidState, "already listening");
+            if (IsListening) return _manager.IsHost ? ServiceResult.Ok() : ServiceResult.Fail(ServiceErrorKind.InvalidState, "already listening as a client");
             return _manager.StartHost() ? ServiceResult.Ok() : ServiceResult.Fail(ServiceErrorKind.Unknown, "NetworkManager.StartHost failed");
         }
 
         public ServiceResult StartClient()
         {
-            if (IsListening) return ServiceResult.Fail(ServiceErrorKind.InvalidState, "already listening");
+            if (IsListening) return !_manager.IsServer ? ServiceResult.Ok() : ServiceResult.Fail(ServiceErrorKind.InvalidState, "already listening as the host");
             return _manager.StartClient() ? ServiceResult.Ok() : ServiceResult.Fail(ServiceErrorKind.Unknown, "NetworkManager.StartClient failed");
         }
 
