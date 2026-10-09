@@ -22,6 +22,21 @@ namespace RuinRail.Tests.EditMode
         }
 
         [Test]
+        public void ConcurrentInstances_SignInAsDifferentPlayers()
+        {
+            // Two game instances on one machine must not share the cached anonymous player, or the second cannot join
+            // the first one's session. Each claim of the same slot family returns the next free slot.
+            var prefix = "RUINRAIL-test-slot-" + System.Guid.NewGuid().ToString("N") + "-";
+            var first = UnityMultiplayerServices.AuthProfileSlot.Claim(prefix);
+            var second = UnityMultiplayerServices.AuthProfileSlot.Claim(prefix);
+
+            Assert.AreEqual(0, first);
+            Assert.AreEqual(1, second);
+            Assert.IsNull(UnityMultiplayerServices.AuthProfileSlot.NameFor(first), "the first instance keeps the player's default identity");
+            Assert.AreEqual("instance1", UnityMultiplayerServices.AuthProfileSlot.NameFor(second));
+        }
+
+        [Test]
         public void FakesRequireAnExplicitOptOut()
         {
             Assert.AreEqual(LiveServiceConfiguration.Mode.Fake,

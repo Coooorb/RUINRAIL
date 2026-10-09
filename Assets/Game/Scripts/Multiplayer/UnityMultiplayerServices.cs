@@ -24,7 +24,11 @@ namespace RuinRail.Networking
         {
             try
             {
-                if (!IsInitialized) await UnityServices.InitializeAsync();
+                if (!IsInitialized)
+                {
+                    var profile = AuthProfileSlot.Profile;
+                    await UnityServices.InitializeAsync(profile == null ? new InitializationOptions() : new InitializationOptions().SetProfile(profile));
+                }
                 if (!AuthenticationService.Instance.IsSignedIn) await AuthenticationService.Instance.SignInAnonymouslyAsync();
                 return ServiceResult.Ok();
             }
@@ -52,6 +56,7 @@ namespace RuinRail.Networking
             }
             catch (Exception e)
             {
+                UnityEngine.Debug.LogWarning($"[Sessions] create failed: {e.GetType().Name}: {e.Message}");
                 return ServiceResult<SessionHandle>.Fail(Classify(e), e.Message);
             }
         }
@@ -70,6 +75,7 @@ namespace RuinRail.Networking
             }
             catch (Exception e)
             {
+                UnityEngine.Debug.LogWarning($"[Sessions] join failed: {e.GetType().Name}: {e.Message}");
                 return ServiceResult<SessionHandle>.Fail(Classify(e), e.Message);
             }
         }
@@ -88,6 +94,47 @@ namespace RuinRail.Networking
             catch (Exception e)
             {
                 return ServiceResult.Fail(ServiceErrorKind.Unknown, e.Message);
+            }
+        }
+
+        /// <summary>
+        /// Unity Authentication caches the anonymous player per profile, so every game instance on one machine signs in
+        /// as the same player — and a player cannot join the session it hosts ("already a member of the lobby"). Each
+        /// running instance therefore claims the lowest free slot: slot 0 keeps the default profile (the player's
+        /// existing identity), later concurrent instances sign in as their own stable "instanceN" player.
+        /// </summary>
+        public static class AuthProfileSlot
+        {
+            public const int MaxSlots = 8;
+            private static readonly System.Collections.Generic.List<System.Threading.Mutex> Held = new();
+            private static int? _slot;
+
+            /// <summary>This process's slot (claimed on first use and held for the process lifetime).</summary>
+            public static int Slot => _slot ??= Claim("RUINRAIL-auth-slot-");
+
+            /// <summary>The profile to initialize Unity Services with; null = the default profile.</summary>
+            public static string Profile => NameFor(Slot);
+
+            public static string NameFor(int slot) => slot <= 0 ? null : "instance" + slot;
+
+            /// <summary>Claims the lowest free named slot; slot 0 when slots cannot be claimed (single instance behaviour).</summary>
+            public static int Claim(string prefix)
+            {
+                for (var i = 0; i < MaxSlots; i++)
+                {
+                    try
+                    {
+                        var mutex = new System.Threading.Mutex(true, prefix + i, out var createdNew);
+                        if (createdNew) { Held.Add(mutex); return i; }
+                        mutex.Dispose();
+                    }
+                    catch (Exception)
+                    {
+                        return 0;
+                    }
+                }
+
+                return 0;
             }
         }
 
